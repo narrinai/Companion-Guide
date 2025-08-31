@@ -1,0 +1,88 @@
+# Netlify configuration for SEO optimization
+
+[build]
+  # Build settings (for static site)
+  publish = "."
+
+[build.environment]
+  # Environment variables for build process
+  NODE_VERSION = "18"
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    
+    # Performance headers
+    Cache-Control = "public, max-age=31536000"
+
+# Specific cache headers for HTML pages
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Cache headers for assets
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Redirect rules (same as _redirects but in netlify.toml)
+[[redirects]]
+  from = "/ai-girlfriends"
+  to = "/categories/ai-girlfriends.html"
+  status = 301
+
+[[redirects]]
+  from = "/character-chat"
+  to = "/categories/character-chat.html"
+  status = 301
+
+[[redirects]]
+  from = "/character-ai"
+  to = "/companions/character-ai.html"
+  status = 301
+
+[[redirects]]
+  from = "/replika"
+  to = "/companions/replika.html"
+  status = 301
+
+# 404 page redirect
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  
+# Form handling (if needed for future contact forms)
+[build.processing]
+  skip_processing = false
+[build.processing.css]
+  bundle = true
+  minify = true
+[build.processing.js]
+  bundle = true
+  minify = true
+[build.processing.html]
+  pretty_urls = true
+
+# Edge functions (for future A/B testing or analytics)
+# [functions]
+#   directory = "netlify/functions"

@@ -1,0 +1,104 @@
+{
+  "companions": [
+    {
+      "id": "character-ai",
+      "name": "Character.AI",
+      "category": "character-chat",
+      "description": "Chat with millions of AI characters created by users worldwide",
+      "logo": "/images/logos/character-ai.png",
+      "website": "https://character.ai",
+      "rating": 4.5,
+      "pricing": "Free with premium options",
+      "pros": [
+        "Huge variety of characters",
+        "High-quality conversations",
+        "Active community"
+      ],
+      "cons": [
+        "Can be addictive",
+        "Limited free usage"
+      ],
+      "features": ["Character creation", "Group chats", "Voice calls", "Image generation"]
+    },
+    {
+      "id": "replika",
+      "name": "Replika",
+      "category": "ai-girlfriends",
+      "description": "Your AI companion that learns from you and develops a unique personality",
+      "logo": "/images/logos/replika.png",
+      "website": "https://replika.ai",
+      "rating": 4.2,
+      "pricing": "Free with Pro subscription",
+      "pros": [
+        "Personalized AI that learns",
+        "Emotional support focus",
+        "3D avatar customization"
+      ],
+      "cons": [
+        "Premium features expensive",
+        "Can feel repetitive"
+      ],
+      "features": ["Memory system", "3D avatar", "Voice calls", "AR mode"]
+    },
+    {
+      "id": "janitor-ai",
+      "name": "Janitor AI",
+      "category": "character-chat",
+      "description": "Uncensored AI character chat platform with diverse characters",
+      "logo": "/images/logos/janitor-ai.png",
+      "website": "https://janitorai.com",
+      "rating": 4.3,
+      "pricing": "Free with API key required",
+      "pros": [
+        "Uncensored conversations",
+        "Large character library",
+        "Custom character creation"
+      ],
+      "cons": [
+        "Requires API setup",
+        "Can be complex for beginners"
+      ],
+      "features": ["NSFW content", "Custom characters", "Advanced AI models", "Community"]
+    },
+    {
+      "id": "crushon-ai",
+      "name": "CrushOn.AI",
+      "category": "ai-girlfriends",
+      "description": "AI girlfriend and boyfriend simulator with emotional connections",
+      "logo": "/images/logos/crushon-ai.png",
+      "website": "https://crushon.ai",
+      "rating": 4.1,
+      "pricing": "Free with premium tiers",
+      "pros": [
+        "Romantic focus",
+        "Emotional intelligence",
+        "Multiple relationship types"
+      ],
+      "cons": [
+        "Limited free messages",
+        "Newer platform"
+      ],
+      "features": ["Romantic roleplay", "Emotional AI", "Custom avatars", "Voice messages"]
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "category": "productivity-bots",
+      "description": "Advanced AI assistant for work, analysis, and creative tasks",
+      "logo": "/images/logos/claude.png",
+      "website": "https://claude.ai",
+      "rating": 4.7,
+      "pricing": "Free with Pro subscription",
+      "pros": [
+        "Excellent reasoning",
+        "Large context window",
+        "Safe and helpful"
+      ],
+      "cons": [
+        "Less personalized",
+        "Focused on productivity"
+      ],
+      "features": ["Document analysis", "Code generation", "Creative writing", "Research"]
+    }
+  ]
+}
