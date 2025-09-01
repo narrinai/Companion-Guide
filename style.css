@@ -1,16 +1,30 @@
-/* Minimalistic Design System */
+/* Modern Design System - Companion Guide */
 :root {
-    /* Minimal color palette */
-    --primary: #000000;
-    --secondary: #666666;
-    --tertiary: #999999;
-    --accent: #2563eb;
+    /* Brand colors */
+    --primary: #1a1a1a;
+    --secondary: #4a5568;
+    --tertiary: #718096;
+    --brand-purple: #8b5cf6;
+    --brand-blue: #3b82f6;
+    --brand-gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+    --accent: #8b5cf6;
+    
+    /* Neutral colors */
     --background: #ffffff;
-    --surface: #fafafa;
-    --border: #e5e5e5;
-    --success: #059669;
-    --warning: #d97706;
-    --error: #dc2626;
+    --surface: #f8fafc;
+    --surface-secondary: #f1f5f9;
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+    
+    /* Semantic colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    
+    /* Text colors */
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
     
     /* Typography */
     --font-primary: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
@@ -54,7 +68,7 @@ body {
     font-family: var(--font-primary);
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--primary);
+    color: var(--text-primary);
     background: var(--background);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -73,7 +87,7 @@ h3 { font-size: 1.5rem; margin-bottom: var(--space-3); }
 h4 { font-size: 1.25rem; margin-bottom: var(--space-3); }
 
 p {
-    color: var(--secondary);
+    color: var(--text-secondary);
     margin-bottom: var(--space-4);
 }
 
@@ -118,7 +132,10 @@ nav h1 {
 }
 
 nav h1 a {
-    color: var(--primary);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
 }
 
 nav ul {
@@ -128,13 +145,13 @@ nav ul {
 }
 
 nav a {
-    color: var(--secondary);
+    color: var(--text-secondary);
     font-weight: 500;
     transition: color 0.2s ease;
 }
 
 nav a:hover {
-    color: var(--primary);
+    color: var(--text-primary);
     text-decoration: none;
 }
 
@@ -154,7 +171,7 @@ main {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: var(--space-4);
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: var(--brand-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -202,8 +219,8 @@ main {
     font-size: 2rem;
     margin-bottom: var(--space-2);
     background: none;
-    -webkit-text-fill-color: var(--primary);
-    color: var(--primary);
+    -webkit-text-fill-color: var(--text-primary);
+    color: var(--text-primary);
 }
 
 .rating {
@@ -213,7 +230,7 @@ main {
 }
 
 .tagline {
-    color: var(--secondary);
+    color: var(--text-secondary);
     margin-bottom: var(--space-6);
 }
 
@@ -254,7 +271,7 @@ main {
 }
 
 .category-card h3 a {
-    color: var(--primary);
+    color: var(--text-primary);
     font-weight: 600;
 }
 
@@ -312,7 +329,7 @@ main {
 }
 
 .companion-card h3 a {
-    color: var(--primary);
+    color: var(--text-primary);
     font-weight: 600;
     font-size: 1.25rem;
 }
@@ -331,7 +348,7 @@ main {
 
 .features span {
     background: var(--surface);
-    color: var(--secondary);
+    color: var(--text-secondary);
     padding: var(--space-1) var(--space-3);
     border-radius: var(--radius);
     font-size: 0.75rem;
@@ -341,7 +358,7 @@ main {
 }
 
 .pricing {
-    color: var(--tertiary);
+    color: var(--text-muted);
     font-size: 0.875rem;
     font-weight: 500;
 }
