@@ -1,0 +1,16 @@
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="replikaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00D4AA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00A693;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="56" height="56" rx="12" fill="url(#replikaGrad)"/>
+  <!-- Heart/AI symbol -->
+  <path d="M28 38c-8-6-16-12-16-20 0-4.4 3.6-8 8-8s8 3.6 8 8c0-4.4 3.6-8 8-8s8 3.6 8 8c0 8-8 14-16 20z" fill="white" opacity="0.9"/>
+  <!-- AI dots -->
+  <circle cx="23" cy="22" r="1.5" fill="url(#replikaGrad)" opacity="0.8"/>
+  <circle cx="28" cy="22" r="1.5" fill="url(#replikaGrad)" opacity="0.8"/>
+  <circle cx="33" cy="22" r="1.5" fill="url(#replikaGrad)" opacity="0.8"/>
+</svg>
