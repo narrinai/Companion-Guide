@@ -65,6 +65,16 @@
   to = "/companions/replika"
   status = 301
 
+[[redirects]]
+  from = "/narrin-ai"
+  to = "/companions/narrin-ai"
+  status = 301
+
+[[redirects]]
+  from = "/narrin"
+  to = "/companions/narrin-ai"
+  status = 301
+
 # 404 page redirect
 [[redirects]]
   from = "/*"
