@@ -98,7 +98,7 @@
 
                 <div class="contact-form-section">
                     <h2>Send us a Message</h2>
-                    <form class="contact-form" id="contactForm" action="/contact" method="POST" netlify netlify-honeypot="bot-field">
+                    <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                         <input type="hidden" name="bot-field">
                         <input type="hidden" name="form-name" value="contact">
                         
@@ -153,7 +153,7 @@
                     <div class="form-error" id="formError" style="display: none;">
                         <div class="error-icon">❌</div>
                         <h3>Something went wrong</h3>
-                        <p>Please try again or contact us directly at info@narrin.ai</p>
+                        <p>Please try again later</p>
                     </div>
                 </div>
             </div>
