@@ -848,13 +848,15 @@ nav a:hover {
 }
 
 /* Topics Section */
-.topics-list {
+.topics-list,
+.news-grid {
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
 }
 
-.topic-card {
+.topic-card,
+.news-card {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-secondary);
     border-radius: var(--radius-lg);
@@ -863,12 +865,14 @@ nav a:hover {
     position: relative;
 }
 
-.topic-card:hover {
+.topic-card:hover,
+.news-card:hover {
     border-color: var(--border-accent);
     transform: translateY(-1px);
 }
 
-.topic-badge {
+.topic-badge,
+.news-badge {
     position: absolute;
     top: var(--space-4);
     right: var(--space-4);
@@ -881,16 +885,19 @@ nav a:hover {
     text-transform: uppercase;
 }
 
-.topic-card.featured {
+.topic-card.featured,
+.news-card.featured {
     border-color: var(--accent-purple);
     background-color: rgba(139, 92, 246, 0.05);
 }
 
-.topic-card.featured .topic-badge {
+.topic-card.featured .topic-badge,
+.news-card.featured .news-badge {
     background-color: var(--accent-purple);
 }
 
-.topic-card h3 {
+.topic-card h3,
+.news-card h3 {
     margin: 0 0 var(--space-3) 0;
     font-size: 1rem;
     font-weight: 600;
@@ -898,32 +905,45 @@ nav a:hover {
     padding-right: var(--space-12);
 }
 
-.topic-card h3 a {
+.topic-card h3 a,
+.news-card h3 a {
     color: var(--text-primary);
 }
 
-.topic-card h3 a:hover {
+.topic-card h3 a:hover,
+.news-card h3 a:hover {
     color: var(--accent-blue);
 }
 
-.topic-card p {
+.topic-card p,
+.news-card p {
     font-size: 0.875rem;
     line-height: 1.5;
     margin-bottom: var(--space-4);
 }
 
-.topic-meta {
+.topic-meta,
+.news-meta {
     display: flex;
     gap: var(--space-4);
     font-size: 0.75rem;
     color: var(--text-muted);
 }
 
-.topic-meta .category {
+.topic-meta .category,
+.news-meta .category {
     background-color: var(--bg-tertiary);
     padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-sm);
     font-weight: 500;
+}
+
+.news-source {
+    color: var(--accent-blue);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
 }
 
 .topics-cta {
