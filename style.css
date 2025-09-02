@@ -1085,12 +1085,15 @@ nav a:hover {
 }
 
 .category-card {
+    display: block;
     text-align: center;
     padding: var(--space-8);
     background-color: var(--bg-surface);
     border: 1px solid var(--border-secondary);
     border-radius: var(--radius-xl);
     transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
 }
 
 .category-card:hover {
