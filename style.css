@@ -271,15 +271,125 @@ nav a:hover {
 }
 
 .companion-card {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
     background-color: var(--bg-surface);
     border: 1px solid var(--border-secondary);
-    border-radius: var(--radius-lg);
-    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
     transition: all 0.2s ease;
-    max-width: 100%;
+    position: relative;
+}
+
+.companion-card .card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.companion-card .logo {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    object-fit: contain;
+    background-color: var(--bg-tertiary);
+    padding: var(--space-2);
+    flex-shrink: 0;
+}
+
+.companion-card .title-section {
+    flex: 1;
+}
+
+.companion-card .title-section h3 {
+    margin: 0 0 var(--space-1) 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.companion-card .title-section h3 a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.companion-card .rating-line {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.companion-card .stars {
+    color: var(--accent-orange);
+}
+
+.companion-card .rating-score {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.companion-card .review-count {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.companion-card .description {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-4);
+    line-height: 1.5;
+}
+
+.companion-card .feature-highlights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.companion-card .feature-item {
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    text-align: center;
+}
+
+.companion-card .feature-icon {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-2);
+}
+
+.companion-card .feature-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+}
+
+.companion-card .feature-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.companion-card .pricing-section {
+    margin-bottom: var(--space-6);
+}
+
+.companion-card .price-main {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin-bottom: var(--space-1);
+}
+
+.companion-card .price-note {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.companion-card .card-actions {
+    display: flex;
+    gap: var(--space-4);
 }
 
 .companion-card:hover {
