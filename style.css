@@ -249,11 +249,16 @@ nav a:hover {
 .view-all-link {
     color: var(--accent-blue);
     font-weight: 600;
-    font-size: 0.875rem;
-    padding: var(--space-2) var(--space-4);
+    font-size: 1.125rem;
+    padding: var(--space-3);
     background-color: var(--bg-tertiary);
     border-radius: var(--radius-md);
     transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
 }
 
 .view-all-link:hover {
