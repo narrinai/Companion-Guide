@@ -1649,6 +1649,29 @@ footer {
     margin-bottom: var(--space-12);
 }
 
+.category-hero {
+    text-align: center;
+    padding: var(--space-16) 0 var(--space-12) 0;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-2xl);
+    margin-bottom: var(--space-12);
+}
+
+.category-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+}
+
+.category-hero p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
 .category-breadcrumb {
     font-size: 0.875rem;
     color: var(--text-muted);
