@@ -93,6 +93,12 @@
 [build.processing.html]
   pretty_urls = true
 
+# Contact form redirects
+[[redirects]]
+  from = "/contact-success"
+  to = "/contact.html?success=true"
+  status = 302
+
 # Edge functions (for future A/B testing or analytics)
 # [functions]
 #   directory = "netlify/functions"
