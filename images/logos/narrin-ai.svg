@@ -1,9 +1,9 @@
 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Narrin.AI logo based on their branding: white N on teal circle -->
-  <circle cx="28" cy="28" r="26" fill="#14b8a6"/>
-  <circle cx="28" cy="28" r="22" fill="white"/>
-  <circle cx="28" cy="28" r="20" fill="#14b8a6"/>
+  <!-- White background circle -->
+  <circle cx="28" cy="28" r="26" fill="white"/>
   
-  <!-- Letter N in Outfit font style -->
-  <path d="M18 18v20h4V24.5l12 13.5h4V18h-4v13.5L22 18z" fill="white" stroke="none"/>
+  <!-- Narrin text in brand colors -->
+  <text x="28" y="32" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700">
+    <tspan fill="#5EEAD4">Narrin</tspan><tspan fill="#F59E0B"> AI</tspan>
+  </text>
 </svg>
