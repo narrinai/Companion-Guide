@@ -116,9 +116,7 @@ a:hover {
 header {
     background-color: var(--bg-secondary);
     border-bottom: 1px solid var(--border-primary);
-    position: sticky;
-    top: 0;
-    z-index: 50;
+    position: static;
 }
 
 nav {
