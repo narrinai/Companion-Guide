@@ -313,9 +313,11 @@ nav a:hover {
 .logo {
     width: 56px;
     height: 56px;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     border: 1px solid var(--border-primary);
     flex-shrink: 0;
+    object-fit: cover;
+    background-color: var(--bg-tertiary);
 }
 
 .content {
