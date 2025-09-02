@@ -1775,6 +1775,12 @@ footer {
     margin-bottom: var(--space-6);
 }
 
+.product-highlights.compact {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+}
+
 .highlight-item {
     display: flex;
     align-items: flex-start;
@@ -1783,6 +1789,14 @@ footer {
     padding: var(--space-4);
     background-color: var(--bg-tertiary);
     border-radius: var(--radius-lg);
+}
+
+.product-highlights.compact .highlight-item {
+    padding: var(--space-3);
+    gap: var(--space-2);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .highlight-icon {
@@ -1940,6 +1954,55 @@ footer {
     background-color: var(--bg-tertiary);
 }
 
+.faq-section {
+    margin: var(--space-16) 0;
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    border: 1px solid var(--border-secondary);
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: var(--space-8);
+    font-size: 1.75rem;
+    color: var(--text-primary);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-6);
+}
+
+.faq-item {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    transition: all 0.2s ease;
+}
+
+.faq-item:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-1px);
+}
+
+.faq-item h3 {
+    margin: 0 0 var(--space-3) 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.faq-item p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .main-layout {
@@ -2040,11 +2103,19 @@ footer {
         flex-direction: column;
     }
     
+    .product-highlights.compact {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
     .product-actions {
         flex-direction: column;
     }
     
     .insights-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .faq-grid {
         grid-template-columns: 1fr;
     }
     
