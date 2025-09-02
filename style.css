@@ -534,16 +534,23 @@ nav a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--space-6);
-    margin-top: var(--space-6);
+    margin-top: var(--space-8);
 }
 
 .highlight-item {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
-    padding: var(--space-4);
+    gap: var(--space-3);
+    padding: var(--space-6);
     background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-secondary);
     border-radius: var(--radius-lg);
+    transition: all 0.2s ease;
+}
+
+.highlight-item:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-1px);
 }
 
 .highlight-item strong {
