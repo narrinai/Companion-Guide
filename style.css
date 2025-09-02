@@ -170,7 +170,7 @@ nav a:hover {
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: var(--space-12) 0 var(--space-8) 0;
+    padding: var(--space-8) 0 var(--space-6) 0;
     background-color: var(--bg-secondary);
 }
 
@@ -955,8 +955,8 @@ nav a:hover {
 
 /* Categories Section */
 .categories-overview {
-    margin: var(--space-20) 0;
-    padding: var(--space-16) 0;
+    margin: var(--space-12) 0;
+    padding: var(--space-8) 0;
     background-color: var(--bg-secondary);
     border-radius: var(--radius-2xl);
 }
