@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sent - Companion Guide</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <h1><a href="/"><img src="/images/logo.svg" alt="Companion Guide" width="32" height="32">Companion Guide</a></h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/companions">Companions</a></li>
+                <li><a href="/categories">Categories</a></li>
+                <li><a href="/news">News & Insights</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="success-page">
+            <div class="success-card">
+                <div class="success-icon">✅</div>
+                <h1>Thank you!</h1>
+                <p>Your form submission has been received.</p>
+                <p>We'll get back to you within 24-48 hours.</p>
+                <a href="/" class="btn-primary">← Back to our site</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <style>
+        .success-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            padding: var(--space-8) 0;
+        }
+        
+        .success-card {
+            background: var(--bg-surface);
+            padding: var(--space-16);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-primary);
+            text-align: center;
+            max-width: 500px;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: var(--space-6);
+        }
+        
+        .success-card h1 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+        
+        .success-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+        }
+        
+        .success-card p:last-of-type {
+            margin-bottom: var(--space-8);
+        }
+    </style>
+</body>
+</html>
