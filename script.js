@@ -102,10 +102,13 @@ document.querySelectorAll('a[target="_blank"]').forEach(link => {
     });
 });
 
-// Simple mobile menu toggle (if needed in future)
-function toggleMobileMenu() {
-    const nav = document.querySelector('nav ul');
-    nav.classList.toggle('mobile-open');
+// Mobile hamburger menu toggle
+function toggleMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
 }
 
 // Utility function to format ratings
