@@ -803,13 +803,13 @@ nav a:hover {
 }
 
 .alternative img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: var(--radius-lg);
     margin-bottom: var(--space-4);
     object-fit: contain;
     background-color: var(--bg-tertiary);
-    padding: var(--space-2);
+    padding: var(--space-3);
 }
 
 .alternative h3 {
