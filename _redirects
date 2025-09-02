@@ -1,8 +1,10 @@
 # Netlify redirects file for SEO and user experience
 
-# Redirect common variations to canonical URLs
-/ai-girlfriends /categories/ai-girlfriends.html 301
-/character-chat /categories/character-chat.html 301
+# Redirect removed categories to main categories page
+/ai-girlfriends /categories 301
+/character-chat /categories 301
+/categories/ai-girlfriends /categories 301
+/categories/character-chat /categories 301
 /productivity /categories/productivity-bots.html 301
 /therapy /categories/therapy-bots.html 301
 
