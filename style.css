@@ -268,8 +268,8 @@ nav a:hover {
 
 /* Companion Cards */
 .companions-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: var(--space-4);
 }
 
@@ -2173,6 +2173,8 @@ footer {
 @media (max-width: 768px) {
     .container {
         padding: 0 var(--space-4);
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     nav {
@@ -2233,15 +2235,60 @@ footer {
     .companion-card .logo {
         width: 80px;
         height: 80px;
+        margin: 0 auto;
     }
     
-    .feature-highlights {
+    .companion-card .feature-highlights {
         grid-template-columns: 1fr 1fr;
         gap: var(--space-3);
     }
     
-    .feature-item {
+    .companion-card .feature-item {
         text-align: center;
+        padding: var(--space-3);
+    }
+    
+    .companion-card .card-actions {
+        flex-direction: column;
+        gap: var(--space-3);
+        width: 100%;
+    }
+    
+    .companion-card .btn-primary,
+    .companion-card .btn-secondary {
+        width: 100%;
+        text-align: center;
+        padding: var(--space-3) var(--space-4);
+    }
+    
+    .companion-card .description {
+        text-align: center;
+        line-height: 1.6;
+    }
+    
+    .companion-card .title-section {
+        text-align: center;
+    }
+    
+    .companion-card .pricing-section {
+        text-align: center;
+        margin: var(--space-6) 0;
+    }
+    
+    .companion-card .product-badge {
+        position: static;
+        display: inline-block;
+        margin-bottom: var(--space-2);
+    }
+    
+    /* Ensure main layout stacks properly on mobile */
+    .main-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+    
+    .companions-section, .topics-section {
+        margin-bottom: var(--space-8);
     }
     
     /* Category grid mobile responsiveness */
