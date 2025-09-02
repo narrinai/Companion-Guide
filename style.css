@@ -311,13 +311,14 @@ nav a:hover {
 }
 
 .logo {
-    width: 56px;
+    width: 80px;
     height: 56px;
     border-radius: var(--radius-xl);
     border: 1px solid var(--border-primary);
     flex-shrink: 0;
-    object-fit: cover;
+    object-fit: contain;
     background-color: var(--bg-tertiary);
+    padding: var(--space-2);
 }
 
 .content {
