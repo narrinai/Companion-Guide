@@ -98,7 +98,7 @@
 
                 <div class="contact-form-section">
                     <h2>Send us a Message</h2>
-                    <form class="contact-form" id="contactForm" name="contact" netlify netlify-honeypot="bot-field" action="/success">
+                    <form class="contact-form" id="contactForm">
                         <input type="hidden" name="bot-field">
                         
                         <div class="form-group">
@@ -207,7 +207,58 @@
 
     <script src="script.js"></script>
     <script>
-        // Let Netlify handle the form natively - remove JavaScript submission
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const button = form.querySelector('button[type="submit"]');
+            const successDiv = document.getElementById('formSuccess');
+            const errorDiv = document.getElementById('formError');
+            
+            // Show loading state
+            const originalText = button.textContent;
+            button.textContent = 'Sending...';
+            button.disabled = true;
+            
+            // Hide any previous messages
+            successDiv.style.display = 'none';
+            errorDiv.style.display = 'none';
+            
+            try {
+                const response = await fetch('/.netlify/functions/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        company: formData.get('company'),
+                        subject: formData.get('subject'),
+                        message: formData.get('message'),
+                        newsletter: formData.get('newsletter') === 'yes'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    form.style.display = 'none';
+                    successDiv.style.display = 'block';
+                } else {
+                    throw new Error(result.error || 'Unknown error');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                errorDiv.style.display = 'block';
+            } finally {
+                button.textContent = originalText;
+                button.disabled = false;
+            }
+        });
     </script>
 </body>
 </html>

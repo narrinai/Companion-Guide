@@ -1,0 +1,11 @@
+{
+  "name": "ai-companion-reviews",
+  "version": "1.0.0",
+  "description": "AI Companion Reviews website",
+  "dependencies": {
+    "nodemailer": "^6.9.0"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^2.0.0"
+  }
+}

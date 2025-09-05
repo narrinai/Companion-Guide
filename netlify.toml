@@ -3,6 +3,7 @@
 [build]
   # Build settings (for static site)
   publish = "."
+  functions = "netlify/functions"
 
 [build.environment]
   # Environment variables for build process
@@ -99,6 +100,6 @@
   to = "/contact.html?success=true"
   status = 302
 
-# Edge functions (for future A/B testing or analytics)
-# [functions]
-#   directory = "netlify/functions"
+# Functions configuration
+[functions]
+  directory = "netlify/functions"
