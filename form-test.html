@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Test</title>
+</head>
+<body>
+    <h1>Test Form - Hidden from Users</h1>
+    <form name="contact" netlify hidden>
+        <input type="text" name="name">
+        <input type="email" name="email">
+        <input type="text" name="company">
+        <select name="subject">
+            <option value="general">General</option>
+        </select>
+        <textarea name="message"></textarea>
+        <input type="checkbox" name="newsletter" value="yes">
+    </form>
+    
+    <p>This form is to ensure Netlify detects the form structure during build.</p>
+</body>
+</html>
