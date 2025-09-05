@@ -97,7 +97,7 @@
 # Contact form redirects
 [[redirects]]
   from = "/contact-success"
-  to = "/contact.html?success=true"
+  to = "/success.html"
   status = 302
 
 # Functions configuration
