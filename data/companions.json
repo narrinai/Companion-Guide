@@ -79,26 +79,6 @@
         "Newer platform"
       ],
       "features": ["Romantic roleplay", "Emotional AI", "Custom avatars", "Voice messages"]
-    },
-    {
-      "id": "claude",
-      "name": "Claude",
-      "category": "productivity-bots",
-      "description": "Advanced AI assistant for work, analysis, and creative tasks",
-      "logo": "/images/logos/claude.png",
-      "website": "https://claude.ai",
-      "rating": 4.7,
-      "pricing": "Free with Pro subscription",
-      "pros": [
-        "Excellent reasoning",
-        "Large context window",
-        "Safe and helpful"
-      ],
-      "cons": [
-        "Less personalized",
-        "Focused on productivity"
-      ],
-      "features": ["Document analysis", "Code generation", "Creative writing", "Research"]
     }
   ]
 }
