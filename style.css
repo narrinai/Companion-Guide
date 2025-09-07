@@ -2675,4 +2675,255 @@ footer {
     .faq-grid {
         grid-template-columns: 1fr;
     }
-}/* Force Netlify Deploy Mon Sep  1 14:06:30 CEST 2025 */
+}
+
+/* User Reviews Section */
+.user-reviews {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    margin: var(--space-8) 0;
+    border: 1px solid var(--border-primary);
+}
+
+.user-reviews .section-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.user-reviews h2 {
+    color: var(--text-primary);
+    font-size: 1.75rem;
+    margin-bottom: var(--space-2);
+}
+
+.user-reviews p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Reviews Container */
+.reviews-container {
+    margin-bottom: var(--space-8);
+}
+
+.reviews-placeholder {
+    text-align: center;
+    padding: var(--space-8);
+    color: var(--text-muted);
+    font-style: italic;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    border: 1px dashed var(--border-primary);
+}
+
+/* Review Form */
+.review-form-container {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    border: 1px solid var(--border-primary);
+}
+
+.review-form-container h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    margin-bottom: var(--space-4);
+    text-align: center;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: var(--font-sans);
+}
+
+.char-counter {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--space-1);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Checkbox styling */
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: var(--space-2);
+    width: 18px;
+    height: 18px;
+}
+
+/* Submit button */
+.submit-review-btn {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: white;
+    border: none;
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: var(--space-2);
+}
+
+.submit-review-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.form-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: var(--space-2);
+}
+
+/* Mobile responsiveness for review form */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .review-form-container {
+        padding: var(--space-4);
+    }
+    
+    .user-reviews {
+        padding: var(--space-4);
+    }
+}
+
+/* Review Success Page */
+.success-section {
+    text-align: center;
+    padding: var(--space-16) 0;
+}
+
+.success-content {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--bg-secondary);
+    padding: var(--space-12);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-primary);
+}
+
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-4);
+}
+
+.success-content h1 {
+    color: var(--accent-green);
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+}
+
+.success-message {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-8);
+}
+
+.next-steps {
+    text-align: left;
+    background: var(--bg-tertiary);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    margin-bottom: var(--space-8);
+}
+
+.next-steps h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+}
+
+.next-steps ul {
+    list-style: none;
+    padding: 0;
+}
+
+.next-steps li {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+    padding-left: 0;
+}
+
+.actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .success-content {
+        padding: var(--space-8);
+    }
+    
+    .actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Force Netlify Deploy Mon Sep  1 14:06:30 CEST 2025 */

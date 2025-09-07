@@ -99,6 +99,11 @@
   to = "/success.html"
   status = 302
 
+[[redirects]]
+  from = "/review-submitted"
+  to = "/review-success.html"
+  status = 302
+
 # Functions configuration
 [functions]
   directory = "netlify/functions"

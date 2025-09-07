@@ -138,3 +138,41 @@ if ('IntersectionObserver' in window) {
         imageObserver.observe(img);
     });
 }
+
+// Review form character counter
+document.addEventListener('DOMContentLoaded', function() {
+    const reviewTextarea = document.getElementById('review-text');
+    const charCounter = document.querySelector('.char-counter .current');
+    
+    if (reviewTextarea && charCounter) {
+        reviewTextarea.addEventListener('input', function() {
+            const currentLength = this.value.length;
+            charCounter.textContent = currentLength;
+            
+            // Change color based on character count
+            if (currentLength > 800) {
+                charCounter.style.color = 'var(--accent-red)';
+            } else if (currentLength > 600) {
+                charCounter.style.color = 'var(--accent-orange)';
+            } else {
+                charCounter.style.color = 'var(--text-muted)';
+            }
+        });
+    }
+    
+    // Review form submission handler
+    const reviewForm = document.querySelector('.review-form');
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('.submit-review-btn');
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Re-enable after 3 seconds (in case of errors)
+            setTimeout(() => {
+                submitBtn.textContent = 'Submit Review for Approval';
+                submitBtn.disabled = false;
+            }, 3000);
+        });
+    }
+});
