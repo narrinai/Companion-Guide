@@ -2720,6 +2720,27 @@ footer {
     border: 1px dashed var(--border-primary);
 }
 
+/* Recent Reviews Section */
+.recent-reviews-section {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-primary);
+}
+
+.recent-reviews-section h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    margin-bottom: var(--space-6);
+    text-align: center;
+}
+
+.recent-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
 /* Individual Review Items */
 .review-item {
     background: var(--bg-surface);
