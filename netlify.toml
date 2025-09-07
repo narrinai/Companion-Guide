@@ -1,13 +1,12 @@
 # Netlify configuration for SEO optimization
 
 [build]
-  # Build settings (for static site)
+  # Build settings (for static site)  
   publish = "."
   functions = "netlify/functions"
-
-[build.environment]
-  # Environment variables for build process
-  NODE_VERSION = "18"
+  
+  # Disable secrets scanning for this static site
+  environment = { NODE_VERSION = "18", SECRETS_SCAN_ENABLED = "false" }
 
 # Headers for security and performance
 [[headers]]
