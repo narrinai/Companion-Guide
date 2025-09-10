@@ -2491,6 +2491,25 @@ footer {
         width: 80px;
         height: 80px;
         margin: 0 auto;
+        object-fit: contain;
+        background-color: var(--bg-tertiary);
+    }
+    
+    .product-logo {
+        width: 60px !important;
+        height: 60px !important;
+        object-fit: contain;
+        background-color: var(--bg-tertiary);
+    }
+    
+    /* Fix for small logo files that might distort */
+    img[alt*="Charstar"], 
+    img[alt*="Muah"], 
+    img[alt*="Sakura"],
+    img[alt*="Nomi"] {
+        object-fit: contain !important;
+        background-color: white;
+        border-radius: var(--radius-md);
     }
     
     .companion-card .feature-highlights {
