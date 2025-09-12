@@ -3117,4 +3117,254 @@ footer {
     }
 }
 
+/* Table of Contents Styles */
+.table-of-contents {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    padding: var(--space-8);
+    margin-bottom: var(--space-12);
+}
+
+.toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+}
+
+.toc-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-column li {
+    margin-bottom: var(--space-3);
+}
+
+.toc-column a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    display: block;
+    transition: all 0.2s ease;
+}
+
+.toc-column a:hover {
+    color: var(--accent-blue);
+    background: var(--bg-tertiary);
+}
+
+/* Market Images */
+.market-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    margin: var(--space-6) 0;
+}
+
+/* Competitive Analysis Styles */
+.competitor-tier {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+.competitor-tier h4 {
+    color: var(--accent-blue);
+    margin-bottom: var(--space-4);
+}
+
+.market-insight {
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    padding: var(--space-6);
+    margin: var(--space-8) 0;
+    position: relative;
+}
+
+.market-insight::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* Funding and Investment Styles */
+.funding-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+    margin: var(--space-8) 0;
+}
+
+.funding-item {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    padding: var(--space-6);
+}
+
+.funding-item h4 {
+    color: var(--accent-green);
+    margin-bottom: var(--space-4);
+    font-size: 1.2rem;
+}
+
+.acquisition-trends {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+    margin: var(--space-8) 0;
+}
+
+.acquirer-type {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-secondary);
+    padding: var(--space-6);
+}
+
+.acquirer-type h4 {
+    color: var(--accent-orange);
+    margin-bottom: var(--space-3);
+}
+
+.investor-quote {
+    background: var(--bg-tertiary);
+    border-left: 4px solid var(--accent-blue);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    margin: var(--space-8) 0;
+    font-style: italic;
+}
+
+.investor-quote p {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-4);
+}
+
+.investor-quote cite {
+    color: var(--text-muted);
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Engagement Metrics Styles */
+.engagement-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+    margin: var(--space-8) 0;
+}
+
+.metric-item {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    padding: var(--space-6);
+}
+
+.metric-item h4 {
+    color: var(--accent-purple);
+    margin-bottom: var(--space-4);
+    font-size: 1.1rem;
+}
+
+.metric-item ul {
+    list-style: none;
+    padding: 0;
+}
+
+.metric-item li {
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border-secondary);
+    color: var(--text-secondary);
+}
+
+.metric-item li:last-child {
+    border-bottom: none;
+}
+
+/* Platform Highlights */
+.emerging-platforms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-6);
+    margin: var(--space-8) 0;
+}
+
+.platform-highlight {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    padding: var(--space-6);
+}
+
+.platform-highlight h4 {
+    color: var(--accent-green);
+    margin-bottom: var(--space-4);
+}
+
+.platform-highlight h4 a {
+    color: var(--accent-green);
+    text-decoration: none;
+}
+
+.platform-highlight h4 a:hover {
+    color: var(--accent-blue);
+}
+
+/* Segment Analysis */
+.segment-analysis {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-secondary);
+    padding: var(--space-6);
+    margin: var(--space-6) 0;
+}
+
+.segment-analysis h4 {
+    color: var(--accent-orange);
+    margin-bottom: var(--space-3);
+}
+
+@media (max-width: 768px) {
+    .toc-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .funding-highlights {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .acquisition-trends {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .engagement-metrics {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .emerging-platforms {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+}
+
 /* Force Netlify Deploy Mon Sep  1 14:06:30 CEST 2025 */
