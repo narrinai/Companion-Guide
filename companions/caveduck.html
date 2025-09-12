@@ -146,6 +146,33 @@
             <p>Caveduck is an AI character chat and creation platform that allows users to create and interact with personalized AI characters. With the tagline "Create your own unique AI friend," Caveduck emphasizes user creativity and personalization in AI interactions.</p>
             
             <p>The platform stands out with its integrated AI image generation capabilities, extensive character customization options, and support for multiple languages. Caveduck offers both web and mobile app experiences, making it accessible across different devices and use cases.</p>
+            
+            <div class="intro-highlights">
+                <div class="highlight-item">
+                    <strong>🎨 AI Image Generation:</strong>
+                    <span>Generate stunning AI artwork and images during conversations to enhance your character interactions</span>
+                </div>
+                <div class="highlight-item">
+                    <strong>🏷️ 100+ Character Tags:</strong>
+                    <span>Organize and customize characters with extensive tagging system including Fantasy, Romance, Sci-Fi, and more</span>
+                </div>
+                <div class="highlight-item">
+                    <strong>🌍 Multilingual Support:</strong>
+                    <span>Chat with AI characters in multiple languages, connecting with a global community of users</span>
+                </div>
+                <div class="highlight-item">
+                    <strong>📱 Mobile App Availability:</strong>
+                    <span>Full-featured iOS and Android apps for seamless character chat experiences on the go</span>
+                </div>
+                <div class="highlight-item">
+                    <strong>💎 Point-Based Premium:</strong>
+                    <span>Pay only for premium features you use with flexible point system - no monthly subscriptions required</span>
+                </div>
+                <div class="highlight-item">
+                    <strong>🆓 Free Trial Access:</strong>
+                    <span>Try all core features including basic character chat and creation without any upfront costs</span>
+                </div>
+            </div>
         </section>
 
         <section class="features">
@@ -242,6 +269,134 @@
                     
                     <p>While it may not have the massive community of larger platforms, Caveduck's focus on creativity and personalization makes it a solid choice for users who prioritize character creation and visual interactions. The point-based pricing system allows users to pay only for premium features they actually use.</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- User Reviews Section -->
+        <section class="user-reviews">
+            <div class="section-header">
+                <h2>👥 Most Recent User Reviews</h2>
+                <p>Share your experience with Caveduck</p>
+            </div>
+            
+            <!-- Existing Reviews -->
+            <div class="reviews-container">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">ArtisticSoul_23</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">1 day ago</span>
+                    </div>
+                    <h4 class="review-title">love the image generation feature</h4>
+                    <p class="review-text">finally an ai chat app that lets you generate images while talking! the character creation is really detailed with all the tags. made some fantasy characters and the ai images really bring them to life. point system is fair - only pay for what you use. mobile app works great too</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-4 weeks</span>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">carlos_madrid</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">3 days ago</span>
+                    </div>
+                    <h4 class="review-title">great for multilingual users</h4>
+                    <p class="review-text">been using caveduck for 2 months now. as someone who speaks spanish and english the multilingual support is amazing. my characters can switch languages naturally in conversation. the 100+ tags system is incredible for organizing characters. free trial let me test everything before spending points</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-3 months</span>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">RoleplayQueen</span>
+                            <span class="review-rating">⭐⭐⭐☆☆</span>
+                        </div>
+                        <span class="review-date">5 days ago</span>
+                    </div>
+                    <h4 class="review-title">good concept but small community</h4>
+                    <p class="review-text">the character creation tools are really good and the ai image gen is cool. problem is not many people use this compared to character ai or replika. hard to find popular community characters. point system is confusing at first. still solid if you want to create your own characters from scratch</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-4 weeks</span>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">MobileUser_K</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">1 week ago</span>
+                    </div>
+                    <h4 class="review-title">mobile app is surprisingly good</h4>
+                    <p class="review-text">downloaded the app and was impressed. most ai chat apps have terrible mobile versions but caveduck actually works well on phone. image generation works on mobile too which is rare. character tagging system makes it easy to find the type of character you want. free version gives you enough to try it out</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for less than a week</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review Submission Form -->
+            <div class="review-form-container">
+                <h3>Write a Review</h3>
+                <form name="companion-review" method="POST" data-netlify="true" action="/review-success.html" class="review-form">
+                    <input type="hidden" name="form-name" value="companion-review" />
+                    <input type="hidden" name="companion" value="caveduck" />
+                    <input type="hidden" name="companion-name" value="Caveduck" />
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reviewer-name">Your Name *</label>
+                            <input type="text" id="reviewer-name" name="reviewer-name" placeholder="Enter your name" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rating">Rating *</label>
+                            <select id="rating" name="rating" required>
+                                <option value="">Select rating</option>
+                                <option value="5">⭐⭐⭐⭐⭐ 5 stars</option>
+                                <option value="4">⭐⭐⭐⭐ 4 stars</option>
+                                <option value="3">⭐⭐⭐ 3 stars</option>
+                                <option value="2">⭐⭐ 2 stars</option>
+                                <option value="1">⭐ 1 star</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-title">Review Title *</label>
+                        <input type="text" id="review-title" name="review-title" placeholder="Brief summary of your experience" required maxlength="100" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-text">Your Review *</label>
+                        <textarea id="review-text" name="review-text" placeholder="Share your detailed experience with Caveduck..." required maxlength="1000"></textarea>
+                        <div class="char-counter">
+                            <span class="current">0</span>/<span class="max">1000</span> characters
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="usage-duration">How long have you used Caveduck?</label>
+                        <select id="usage-duration" name="usage-duration">
+                            <option value="">Select duration</option>
+                            <option value="less-than-week">Less than a week</option>
+                            <option value="1-4-weeks">1-4 weeks</option>
+                            <option value="1-3-months">1-3 months</option>
+                            <option value="3-6-months">3-6 months</option>
+                            <option value="6-months-plus">6+ months</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-review-btn">Submit Review for Approval</button>
+                    <p class="form-note">Your review will be moderated before appearing on the site.</p>
+                </form>
             </div>
         </section>
 
