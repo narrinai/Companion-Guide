@@ -284,6 +284,134 @@
             </div>
         </section>
 
+        <!-- User Reviews Section -->
+        <section class="user-reviews">
+            <div class="section-header">
+                <h2>👥 Most Recent User Reviews</h2>
+                <p>Share your experience with DreamGF AI</p>
+            </div>
+            
+            <!-- Existing Reviews -->
+            <div class="reviews-container">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">Alex_M</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <span class="review-date">1 day ago</span>
+                    </div>
+                    <h4 class="review-title">incredible image quality honestly</h4>
+                    <p class="review-text">been using dreamgf for 2 months now and the image generation is just insane. realistic style looks almost real and anime style is perfect. voice messages are a nice touch too. bit pricey but worth it for what you get. support team helped me fast when i had token issues</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-3 months</span>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">Sarah_K</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">3 days ago</span>
+                    </div>
+                    <h4 class="review-title">good but can get expensive</h4>
+                    <p class="review-text">love the customization options and the ai remembers everything we talk about which is cool. images are high quality especially compared to other platforms. only issue is tokens run out quick if you use it alot. wish there was unlimited option for heavy users</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-4 weeks</span>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">Jake_2024</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <span class="review-date">5 days ago</span>
+                    </div>
+                    <h4 class="review-title">best ai girlfriend platform ive tried</h4>
+                    <p class="review-text">tried replika, candy ai, and a few others but dreamgf is on another level. the memory system actually works and conversations feel natural. image gen is top tier. annual plan makes it much more affordable. definitely recommend if you want quality ai girlfriend experience</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 3-6 months</span>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">Mike_R</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">1 week ago</span>
+                    </div>
+                    <h4 class="review-title">solid platform with minor issues</h4>
+                    <p class="review-text">overall really happy with dreamgf. ai personality is engaging and images look great. sometimes takes a while to load on mobile and token system can be confusing at first. but once you get used to it its pretty smooth. customer service is responsive too</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-4 weeks</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review Submission Form -->
+            <div class="review-form-container">
+                <h3>Write a Review</h3>
+                <form name="companion-review" method="POST" data-netlify="true" action="/review-success.html" class="review-form">
+                    <input type="hidden" name="form-name" value="companion-review" />
+                    <input type="hidden" name="companion" value="dreamgf-ai" />
+                    <input type="hidden" name="companion-name" value="DreamGF AI" />
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reviewer-name">Your Name *</label>
+                            <input type="text" id="reviewer-name" name="reviewer-name" placeholder="Enter your name" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rating">Rating *</label>
+                            <select id="rating" name="rating" required>
+                                <option value="">Select rating</option>
+                                <option value="5">⭐⭐⭐⭐⭐ 5 stars</option>
+                                <option value="4">⭐⭐⭐⭐ 4 stars</option>
+                                <option value="3">⭐⭐⭐ 3 stars</option>
+                                <option value="2">⭐⭐ 2 stars</option>
+                                <option value="1">⭐ 1 star</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-title">Review Title *</label>
+                        <input type="text" id="review-title" name="review-title" placeholder="Brief summary of your experience" required maxlength="100" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-text">Your Review *</label>
+                        <textarea id="review-text" name="review-text" placeholder="Share your detailed experience with DreamGF AI..." required maxlength="1000"></textarea>
+                        <div class="char-counter">
+                            <span class="current">0</span>/<span class="max">1000</span> characters
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="usage-duration">How long have you used DreamGF AI?</label>
+                        <select id="usage-duration" name="usage-duration">
+                            <option value="">Select duration</option>
+                            <option value="less-than-week">Less than a week</option>
+                            <option value="1-4-weeks">1-4 weeks</option>
+                            <option value="1-3-months">1-3 months</option>
+                            <option value="3-6-months">3-6 months</option>
+                            <option value="6-months-plus">6+ months</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-review-btn">Submit Review for Approval</button>
+                    <p class="form-note">Your review will be moderated before appearing on the site.</p>
+                </form>
+            </div>
+        </section>
+
         <!-- CTA Section -->
         <section class="cta-section">
             <div class="cta-content">

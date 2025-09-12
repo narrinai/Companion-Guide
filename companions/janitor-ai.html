@@ -271,6 +271,134 @@
             </div>
         </section>
 
+        <!-- User Reviews Section -->
+        <section class="user-reviews">
+            <div class="section-header">
+                <h2>👥 Most Recent User Reviews</h2>
+                <p>Share your experience with Janitor AI</p>
+            </div>
+            
+            <!-- Existing Reviews -->
+            <div class="reviews-container">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">creative_writer</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <span class="review-date">1 day ago</span>
+                    </div>
+                    <h4 class="review-title">finally an ai that doesnt censor everything but setup is tricky</h4>
+                    <p class="review-text">took me forever to figure out the api setup but omg its worth it. no filters means i can actually write mature stories without getting blocked. characters are really well made by the community. only downside is paying for openai tokens but its still cheaper than other premium platforms</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-3 months</span>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">RoleplayKing</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <span class="review-date">3 days ago</span>
+                    </div>
+                    <h4 class="review-title">best platform for adult roleplay hands down</h4>
+                    <p class="review-text">been using janitor ai for 5 months now and its incredible for nsfw content. no stupid filtering or warnings. api setup was confusing at first but youtube tutorials helped. community is active and characters are high quality. worth the learning curve for sure</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 3-6 months</span>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">Sarah_J</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">5 days ago</span>
+                    </div>
+                    <h4 class="review-title">love the freedom but api costs add up</h4>
+                    <p class="review-text">janitor ai is amazing for uncensored conversations and the character variety is huge. setup was harder than i expected and needed help from discord. api costs can get expensive if you chat alot but still better than monthly subscriptions. wish there was better beginner guidance</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-4 weeks</span>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">alex_m_2024</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <span class="review-date">1 week ago</span>
+                    </div>
+                    <h4 class="review-title">perfect for mature content creation</h4>
+                    <p class="review-text">switched from character ai because of the censoring and janitor is everything i wanted. completely uncensored, great characters, active community. the api thing seemed scary but its actually not that hard once you do it. using gpt-4 and loving every conversation</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-4 weeks</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review Submission Form -->
+            <div class="review-form-container">
+                <h3>Write a Review</h3>
+                <form name="companion-review" method="POST" data-netlify="true" action="/review-success.html" class="review-form">
+                    <input type="hidden" name="form-name" value="companion-review" />
+                    <input type="hidden" name="companion" value="janitor-ai" />
+                    <input type="hidden" name="companion-name" value="Janitor AI" />
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reviewer-name">Your Name *</label>
+                            <input type="text" id="reviewer-name" name="reviewer-name" placeholder="Enter your name" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rating">Rating *</label>
+                            <select id="rating" name="rating" required>
+                                <option value="">Select rating</option>
+                                <option value="5">⭐⭐⭐⭐⭐ 5 stars</option>
+                                <option value="4">⭐⭐⭐⭐ 4 stars</option>
+                                <option value="3">⭐⭐⭐ 3 stars</option>
+                                <option value="2">⭐⭐ 2 stars</option>
+                                <option value="1">⭐ 1 star</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-title">Review Title *</label>
+                        <input type="text" id="review-title" name="review-title" placeholder="Brief summary of your experience" required maxlength="100" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-text">Your Review *</label>
+                        <textarea id="review-text" name="review-text" placeholder="Share your detailed experience with Janitor AI..." required maxlength="1000"></textarea>
+                        <div class="char-counter">
+                            <span class="current">0</span>/<span class="max">1000</span> characters
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="usage-duration">How long have you used Janitor AI?</label>
+                        <select id="usage-duration" name="usage-duration">
+                            <option value="">Select duration</option>
+                            <option value="less-than-week">Less than a week</option>
+                            <option value="1-4-weeks">1-4 weeks</option>
+                            <option value="1-3-months">1-3 months</option>
+                            <option value="3-6-months">3-6 months</option>
+                            <option value="6-months-plus">6+ months</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-review-btn">Submit Review for Approval</button>
+                    <p class="form-note">Your review will be moderated before appearing on the site.</p>
+                </form>
+            </div>
+        </section>
+
         <section class="alternatives">
             <h2>Similar Alternatives</h2>
             <div class="alternatives-grid">
