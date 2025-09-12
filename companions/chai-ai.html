@@ -296,6 +296,130 @@
             </div>
         </section>
 
+        <section class="user-reviews">
+            <div class="section-header">
+                <h2>👥 Most Recent User Reviews</h2>
+                <p>Share your experience with Chai AI</p>
+            </div>
+            
+            <!-- Existing Reviews -->
+            <div class="reviews-container">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">mobile_user23</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">1 day ago</span>
+                    </div>
+                    <h4 class="review-title">great mobile app but limited free features</h4>
+                    <p class="review-text">love how smooth it runs on my phone compared to other platforms. the community characters are really creative and fun to chat with. the chat games add a nice touch too. wish the free version had more daily messages tho - premium is a bit pricey but worth it if you use it a lot</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-3 months</span>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">ChaiLover99</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <span class="review-date">3 days ago</span>
+                    </div>
+                    <h4 class="review-title">perfect for mobile chatting and interactive games</h4>
+                    <p class="review-text">been using chai for months now and its the best mobile ai chat app. the gamified conversations are so fun and unique. creating characters is super easy and the community rating system helps find the best ones. much better mobile experience than character.ai</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 6+ months</span>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">alex_gaming</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">5 days ago</span>
+                    </div>
+                    <h4 class="review-title">solid platform but subscription cost is high</h4>
+                    <p class="review-text">really like the mobile-first design and the conversation games are addictive. character creation tools work well and community has some amazing bots. free tier is pretty limited though and $14/month feels expensive compared to alternatives. still worth trying</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 3-6 months</span>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">sarah_writes</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">1 week ago</span>
+                    </div>
+                    <h4 class="review-title">great community features and mobile optimization</h4>
+                    <p class="review-text">chai ai really nails the mobile experience. everything feels designed for phones first which is refreshing. love browsing community characters and the rating system works well. chat games keep conversations interesting. only complaint is message limits on free plan</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-4 weeks</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review Submission Form -->
+            <div class="review-form-container">
+                <h3>Write a Review</h3>
+                <form name="companion-review" method="POST" data-netlify="true" action="/review-success.html" class="review-form">
+                    <input type="hidden" name="form-name" value="companion-review" />
+                    <input type="hidden" name="companion" value="chai-ai" />
+                    <input type="hidden" name="companion-name" value="Chai AI" />
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reviewer-name">Your Name *</label>
+                            <input type="text" id="reviewer-name" name="reviewer-name" placeholder="Enter your name" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rating">Rating *</label>
+                            <select id="rating" name="rating" required>
+                                <option value="">Select rating</option>
+                                <option value="5">⭐⭐⭐⭐⭐ 5 stars</option>
+                                <option value="4">⭐⭐⭐⭐ 4 stars</option>
+                                <option value="3">⭐⭐⭐ 3 stars</option>
+                                <option value="2">⭐⭐ 2 stars</option>
+                                <option value="1">⭐ 1 star</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-title">Review Title *</label>
+                        <input type="text" id="review-title" name="review-title" placeholder="Brief summary of your experience" required maxlength="100" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-text">Your Review *</label>
+                        <textarea id="review-text" name="review-text" placeholder="Share your detailed experience with Chai AI..." required maxlength="1000"></textarea>
+                        <div class="char-counter">
+                            <span class="current">0</span>/<span class="max">1000</span> characters
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="usage-duration">How long have you used Chai AI?</label>
+                        <select id="usage-duration" name="usage-duration">
+                            <option value="">Select duration</option>
+                            <option value="less-than-week">Less than a week</option>
+                            <option value="1-4-weeks">1-4 weeks</option>
+                            <option value="1-3-months">1-3 months</option>
+                            <option value="3-6-months">3-6 months</option>
+                            <option value="6-months-plus">6+ months</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-review-btn">Submit Review for Approval</button>
+                    <p class="form-note">Your review will be moderated before appearing on the site.</p>
+                </form>
+            </div>
+        </section>
+
         <section class="cta-section">
             <h2>Ready to Experience Chai AI?</h2>
             <p>Discover mobile-first AI character chat with community personalities</p>

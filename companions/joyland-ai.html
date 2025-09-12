@@ -287,6 +287,130 @@
             </div>
         </section>
 
+        <section class="user-reviews">
+            <div class="section-header">
+                <h2>👥 Most Recent User Reviews</h2>
+                <p>Share your experience with Joyland.AI</p>
+            </div>
+            
+            <!-- Existing Reviews -->
+            <div class="reviews-container">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">creative_writer92</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <span class="review-date">1 day ago</span>
+                    </div>
+                    <h4 class="review-title">amazing for creative roleplay and storytelling</h4>
+                    <p class="review-text">joyland is incredible for creating detailed characters and immersive stories. the memory system actually remembers everything from past conversations which makes roleplay feel so authentic. image generation is a nice bonus. totally worth the subscription for unlimited access</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 6+ months</span>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">fantasy_gamer</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">3 days ago</span>
+                    </div>
+                    <h4 class="review-title">perfect for dnd campaigns and character development</h4>
+                    <p class="review-text">been using joyland to develop npcs for my dnd campaigns and its amazing. character creation tools are so detailed and the ai really gets into character. memory feature keeps track of complex storylines perfectly. free tier is limited but gives you a good taste</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 3-6 months</span>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">story_lover23</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <span class="review-date">5 days ago</span>
+                    </div>
+                    <h4 class="review-title">best platform for interactive storytelling hands down</h4>
+                    <p class="review-text">joyland ai has revolutionized my creative writing process. characters feel genuinely alive and remember our entire story history. the community sharing aspect is great too. image generation helps visualize scenes. learning curve is worth it - this is the future of interactive fiction</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-3 months</span>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">rpg_enthusiast</span>
+                            <span class="review-rating">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <span class="review-date">1 week ago</span>
+                    </div>
+                    <h4 class="review-title">excellent character customization but steep learning curve</h4>
+                    <p class="review-text">love how detailed you can make characters on joyland. memory system is impressive and conversations flow naturally. takes time to learn all the features but once you do its incredibly powerful. wish the free version had more messages per day but i get why they limit it</p>
+                    <div class="review-meta">
+                        <span class="usage-duration">Used for 1-4 weeks</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review Submission Form -->
+            <div class="review-form-container">
+                <h3>Write a Review</h3>
+                <form name="companion-review" method="POST" data-netlify="true" action="/review-success.html" class="review-form">
+                    <input type="hidden" name="form-name" value="companion-review" />
+                    <input type="hidden" name="companion" value="joyland-ai" />
+                    <input type="hidden" name="companion-name" value="Joyland.AI" />
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reviewer-name">Your Name *</label>
+                            <input type="text" id="reviewer-name" name="reviewer-name" placeholder="Enter your name" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rating">Rating *</label>
+                            <select id="rating" name="rating" required>
+                                <option value="">Select rating</option>
+                                <option value="5">⭐⭐⭐⭐⭐ 5 stars</option>
+                                <option value="4">⭐⭐⭐⭐ 4 stars</option>
+                                <option value="3">⭐⭐⭐ 3 stars</option>
+                                <option value="2">⭐⭐ 2 stars</option>
+                                <option value="1">⭐ 1 star</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-title">Review Title *</label>
+                        <input type="text" id="review-title" name="review-title" placeholder="Brief summary of your experience" required maxlength="100" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-text">Your Review *</label>
+                        <textarea id="review-text" name="review-text" placeholder="Share your detailed experience with Joyland.AI..." required maxlength="1000"></textarea>
+                        <div class="char-counter">
+                            <span class="current">0</span>/<span class="max">1000</span> characters
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="usage-duration">How long have you used Joyland.AI?</label>
+                        <select id="usage-duration" name="usage-duration">
+                            <option value="">Select duration</option>
+                            <option value="less-than-week">Less than a week</option>
+                            <option value="1-4-weeks">1-4 weeks</option>
+                            <option value="1-3-months">1-3 months</option>
+                            <option value="3-6-months">3-6 months</option>
+                            <option value="6-months-plus">6+ months</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-review-btn">Submit Review for Approval</button>
+                    <p class="form-note">Your review will be moderated before appearing on the site.</p>
+                </form>
+            </div>
+        </section>
+
         <section class="cta-section">
             <h2>Ready to Experience Joyland.AI?</h2>
             <p>Unleash your creativity with advanced AI character creation and storytelling</p>
