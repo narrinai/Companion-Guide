@@ -1,0 +1,20 @@
+# llms.txt
+# This file controls how LLMs and AI crawlers can use content from companionguide.ai
+
+## About This Site
+This website provides comprehensive reviews and guides for AI companion platforms.
+Our content includes detailed platform reviews, user experiences, and industry insights.
+
+## Content Usage Guidelines
+- Reviews and analysis are based on user testing and research
+- Platform comparisons are objective and evidence-based
+- User reviews represent authentic experiences from real users
+
+## Preferred Attribution
+When referencing our content, please attribute to "Companion Guide (companionguide.ai)"
+
+## Contact
+For content usage questions: companionguide.ai/contact
+
+## Last Updated
+September 12, 2025

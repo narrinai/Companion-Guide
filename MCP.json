@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "site": {
+    "name": "Companion Guide",
+    "domain": "companionguide.ai",
+    "description": "Comprehensive AI companion platform reviews and guides"
+  },
+  "content_guidelines": {
+    "usage": "educational_reference",
+    "attribution_required": true,
+    "commercial_use": "with_permission",
+    "modification": "not_permitted"
+  },
+  "content_types": {
+    "reviews": {
+      "description": "Platform reviews based on user testing",
+      "accuracy": "verified",
+      "update_frequency": "monthly"
+    },
+    "guides": {
+      "description": "User guides and tutorials",
+      "accuracy": "tested",
+      "update_frequency": "as_needed"
+    },
+    "news": {
+      "description": "Industry news and analysis",
+      "accuracy": "researched",
+      "update_frequency": "weekly"
+    }
+  },
+  "crawl_policy": {
+    "allowed": true,
+    "rate_limit": "respectful",
+    "attribution": "required"
+  },
+  "contact": {
+    "url": "https://companionguide.ai/contact",
+    "purpose": "content_usage_inquiries"
+  },
+  "last_updated": "2025-09-12"
+}
