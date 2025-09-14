@@ -1460,25 +1460,119 @@ footer {
 }
 
 .article-body {
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: 1.125rem;
+    line-height: 1.9;
     color: var(--text-secondary);
 }
 
 .content-section {
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-16);
 }
 
 .content-section h2 {
     color: var(--text-primary);
-    margin-bottom: var(--space-6);
-    font-size: 1.5rem;
+    margin-bottom: var(--space-8);
+    margin-top: var(--space-12);
+    font-size: 2rem;
+    font-weight: 700;
 }
 
 .content-section h3 {
     color: var(--text-primary);
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-8);
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.content-section h4 {
+    color: var(--text-primary);
     margin-bottom: var(--space-4);
-    font-size: 1.25rem;
+    margin-top: var(--space-6);
+    font-size: 1.375rem;
+    font-weight: 600;
+}
+
+.content-section p {
+    margin-bottom: var(--space-6);
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+.content-section ul, .content-section ol {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-8);
+}
+
+.content-section li {
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+    line-height: 1.7;
+}
+
+/* Platform Review Entries in Articles */
+.content-section h3[id*="#"],
+.content-section h4[id*="#"],
+.article-body h3:has([id*="#"]),
+.article-body h4:has([id*="#"]) {
+    font-size: 1.875rem !important;
+    font-weight: 700 !important;
+    margin-top: var(--space-16) !important;
+    margin-bottom: var(--space-8) !important;
+    padding: var(--space-4) 0;
+    border-bottom: 2px solid var(--border-secondary);
+    color: var(--text-primary);
+}
+
+/* Platform entries with emoji (🔥 #4: Platform Name) */
+.article-body h3:contains("🔥"),
+.article-body h3:contains("💰"),
+.article-body h3:contains("🎯"),
+.article-body h3:contains("⭐"),
+.article-body h3:contains("🚀"),
+.article-body h3:contains("💎"),
+.article-body h4:contains("#") {
+    font-size: 1.875rem !important;
+    font-weight: 700 !important;
+    margin-top: var(--space-16) !important;
+    margin-bottom: var(--space-8) !important;
+    padding: var(--space-4) 0;
+    border-bottom: 2px solid var(--border-secondary);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* Platform info paragraphs (Price: $x | Best For: x) */
+.article-body p:has(strong:contains("Price:")),
+.article-body p:has(strong:contains("Best For:")),
+.content-section p:has(strong) {
+    background-color: var(--bg-surface);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--accent-blue);
+    margin-bottom: var(--space-8) !important;
+    font-weight: 500;
+}
+
+/* Better spacing for platform descriptions */
+.article-body p + p {
+    margin-top: var(--space-6);
+}
+
+/* Key Features sections */
+.content-section:has(h3:contains("Key Features")) ul,
+.article-body ul:has(li:contains("customization")) {
+    background-color: var(--bg-surface);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin: var(--space-8) 0;
+}
+
+.content-section:has(h3:contains("Key Features")) li {
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border-secondary);
 }
 
 .guidelines-list {
