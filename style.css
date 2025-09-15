@@ -1460,8 +1460,8 @@ footer {
 }
 
 .article-body {
-    font-size: 1.125rem;
-    line-height: 1.9;
+    font-size: 0.9rem;
+    line-height: 1.7;
     color: var(--text-secondary);
 }
 
@@ -1473,7 +1473,7 @@ footer {
     color: var(--text-primary);
     margin-bottom: var(--space-8);
     margin-top: var(--space-12);
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
 }
 
@@ -1481,7 +1481,7 @@ footer {
     color: var(--text-primary);
     margin-bottom: var(--space-6);
     margin-top: var(--space-8);
-    font-size: 1.75rem;
+    font-size: 1.875rem;
     font-weight: 600;
 }
 
@@ -1489,14 +1489,15 @@ footer {
     color: var(--text-primary);
     margin-bottom: var(--space-4);
     margin-top: var(--space-6);
-    font-size: 1.375rem;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 
 .content-section p {
     margin-bottom: var(--space-6);
-    font-size: 1.125rem;
-    line-height: 1.8;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
 }
 
 .content-section ul, .content-section ol {
@@ -1506,8 +1507,9 @@ footer {
 
 .content-section li {
     margin-bottom: var(--space-3);
-    font-size: 1.125rem;
-    line-height: 1.7;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
 }
 
 /* Platform Review Entries in Articles */
