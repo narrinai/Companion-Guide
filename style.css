@@ -2294,6 +2294,30 @@ footer {
         grid-template-columns: 1fr;
         gap: var(--space-8);
     }
+
+    /* Mobile layout: Categories first, then News */
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .categories-overview {
+        order: 1;
+    }
+
+    .topics-section {
+        order: 2;
+    }
+
+    main.container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Ensure companions section comes first */
+    .main-layout {
+        order: 0;
+    }
 }
 
 /* Hamburger Menu */
