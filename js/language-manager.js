@@ -191,7 +191,10 @@ class LanguageManager {
 
     toggleLanguageMenu() {
         const menu = document.getElementById('languageMenu');
-        if (menu) {
+        const isMobile = window.innerWidth <= 768;
+
+        if (menu && isMobile) {
+            // Only toggle manually on mobile - desktop uses hover
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
         }
     }

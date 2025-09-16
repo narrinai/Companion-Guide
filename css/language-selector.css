@@ -68,6 +68,17 @@
     margin-top: 4px;
 }
 
+/* Desktop hover functionality */
+@media (min-width: 769px) {
+    .language-selector:hover .language-menu {
+        display: block;
+    }
+
+    .language-selector:hover .arrow {
+        transform: rotate(180deg);
+    }
+}
+
 .language-menu a {
     display: flex;
     align-items: center;
