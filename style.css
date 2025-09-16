@@ -2858,6 +2858,299 @@ footer {
     .faq-grid {
         grid-template-columns: 1fr;
     }
+
+    /* Article Mobile Responsiveness */
+    .article-content {
+        max-width: 100%;
+        padding: var(--space-4) 0;
+        margin: 0;
+    }
+
+    .article-header {
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-6);
+    }
+
+    .article-header h1 {
+        font-size: 1.75rem;
+        line-height: 1.3;
+        margin-bottom: var(--space-4);
+    }
+
+    .article-summary {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: var(--space-6);
+    }
+
+    .article-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
+        margin-bottom: var(--space-6);
+    }
+
+    .article-meta .article-badge {
+        margin-bottom: var(--space-2);
+    }
+
+    .breadcrumb {
+        font-size: 0.875rem;
+        margin-bottom: var(--space-4);
+    }
+
+    .article-body {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .article-body h2 {
+        font-size: 1.5rem;
+        margin-top: var(--space-8);
+        margin-bottom: var(--space-4);
+        line-height: 1.3;
+    }
+
+    .article-body h3 {
+        font-size: 1.25rem;
+        margin-top: var(--space-6);
+        margin-bottom: var(--space-3);
+        line-height: 1.3;
+    }
+
+    .article-body h4 {
+        font-size: 1.125rem;
+        margin-top: var(--space-4);
+        margin-bottom: var(--space-3);
+    }
+
+    .article-body p {
+        margin-bottom: var(--space-4);
+        font-size: 0.95rem;
+    }
+
+    .article-body img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        margin: var(--space-4) 0 !important;
+        border-radius: var(--radius-md) !important;
+    }
+
+    .article-body ul, .article-body ol {
+        margin-bottom: var(--space-4);
+        padding-left: var(--space-6);
+    }
+
+    .article-body li {
+        margin-bottom: var(--space-2);
+        font-size: 0.95rem;
+    }
+
+    .article-body blockquote {
+        margin: var(--space-6) 0;
+        padding: var(--space-4);
+        font-size: 0.95rem;
+    }
+
+    /* Article Components Mobile */
+    .custom-toc {
+        margin: var(--space-6) 0;
+        padding: var(--space-4);
+        font-size: 0.9rem;
+    }
+
+    .custom-toc li {
+        margin-bottom: var(--space-2);
+        padding: var(--space-2) 0;
+    }
+
+    .custom-toc a {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .highlight-box, .pro-tip, .important-note {
+        margin: var(--space-6) 0;
+        padding: var(--space-4);
+        font-size: 0.95rem;
+    }
+
+    .highlight-box h3, .pro-tip h4, .important-note h4 {
+        font-size: 1.125rem;
+        margin-bottom: var(--space-3);
+    }
+
+    .example-box {
+        margin: var(--space-6) 0;
+        padding: var(--space-4);
+        font-size: 0.9rem;
+    }
+
+    .example-box h4 {
+        font-size: 1rem;
+        margin-bottom: var(--space-3);
+    }
+
+    .example-box p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .verdict-box {
+        margin: var(--space-8) 0;
+        padding: var(--space-6);
+    }
+
+    .verdict-box h3 {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-4);
+    }
+
+    .comparison-table {
+        overflow-x: auto;
+        margin: var(--space-6) 0;
+    }
+
+    .comparison-table table {
+        min-width: 600px;
+        font-size: 0.875rem;
+    }
+
+    .comparison-table th {
+        font-size: 0.875rem;
+        padding: var(--space-2);
+    }
+
+    .comparison-table td {
+        font-size: 0.875rem;
+        padding: var(--space-2);
+    }
+
+    .faq-item {
+        margin-bottom: var(--space-6);
+        padding: var(--space-4);
+    }
+
+    .faq-item h3 {
+        font-size: 1.125rem;
+        margin-bottom: var(--space-3);
+    }
+
+    .faq-item p {
+        font-size: 0.95rem;
+    }
+
+    .article-tags {
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin: var(--space-6) 0;
+    }
+
+    .tag {
+        font-size: 0.875rem;
+        padding: var(--space-1) var(--space-3);
+    }
+
+    .article-navigation {
+        flex-direction: column;
+        gap: var(--space-4);
+        margin-top: var(--space-8);
+    }
+
+    .nav-link {
+        text-align: center;
+        padding: var(--space-3) var(--space-4);
+        font-size: 0.95rem;
+    }
+
+    .cta-box {
+        margin: var(--space-8) 0;
+        padding: var(--space-6);
+        text-align: center;
+    }
+
+    .cta-box h3 {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-4);
+    }
+
+    .cta-box p {
+        font-size: 0.95rem;
+        margin-bottom: var(--space-6);
+    }
+
+    .cta-button {
+        display: block;
+        width: 100%;
+        margin-bottom: var(--space-3);
+        padding: var(--space-4);
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    .cta-button.secondary {
+        margin-bottom: 0;
+    }
+}
+
+/* Extra Small Mobile Devices (480px and below) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-3);
+    }
+
+    .article-content {
+        padding: var(--space-3) 0;
+    }
+
+    .article-header h1 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .article-body h2 {
+        font-size: 1.25rem;
+        margin-top: var(--space-6);
+    }
+
+    .article-body h3 {
+        font-size: 1.125rem;
+        margin-top: var(--space-4);
+    }
+
+    .article-body p {
+        font-size: 0.9rem;
+    }
+
+    .custom-toc {
+        padding: var(--space-3);
+        font-size: 0.875rem;
+    }
+
+    .highlight-box, .pro-tip, .important-note {
+        padding: var(--space-3);
+        margin: var(--space-4) 0;
+    }
+
+    .verdict-box {
+        padding: var(--space-4);
+        margin: var(--space-6) 0;
+    }
+
+    .cta-box {
+        padding: var(--space-4);
+        margin: var(--space-6) 0;
+    }
+
+    .comparison-table table {
+        min-width: 500px;
+        font-size: 0.8rem;
+    }
+
+    .nav-menu li a {
+        font-size: 1.25rem;
+    }
 }
 
 /* User Reviews Section */
