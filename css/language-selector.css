@@ -1,6 +1,8 @@
 /* Language Selector Styles - Match Navigation Links */
 .language-selector-item {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .language-selector {
@@ -22,6 +24,8 @@
     border-radius: var(--radius-md);
     transition: all 0.2s ease;
     text-decoration: none;
+    height: auto;
+    line-height: 1.25;
 }
 
 .current-language:hover {
@@ -119,6 +123,12 @@
 /* Integration with existing nav styles */
 .nav-menu .language-selector-item {
     list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu {
+    align-items: center;
 }
 
 @media (max-width: 768px) {
