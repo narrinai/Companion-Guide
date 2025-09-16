@@ -30,9 +30,13 @@
       "description": "Plataforma de namorada IA com companions virtuais personalizáveis e experiências interativas para conversas românticas. Aplicativo móvel disponível.",
       "features": {
         "ai-girlfriend": "Namorada IA",
+        "romantic-focus": "Foco romântico",
         "customization": "Personalização",
+        "personalization": "Personalização profunda",
         "interactive": "Interativo",
-        "mobile-app": "App Móvel"
+        "engaging": "Recursos envolventes",
+        "mobile-app": "App Móvel",
+        "platforms": "iOS e Android"
       }
     },
     "narrin-ai": {
@@ -66,7 +70,7 @@
   "categories": {
     "ai-girlfriend": {
       "title": "Plataformas de Namorada e Namorado IA",
-      "description": "Descubra plataformas IA projetadas para relacionamentos românticos virtuais. Estes companions oferecem experiências de namoro personalizadas, conversas românticas e conexões emocionais com parceiros IA personalizáveis."
+      "description": "Melhores plataformas IA para relacionamentos românticos virtuais"
     },
     "wellness": {
       "title": "Bem-estar e Saúde Mental",
@@ -93,6 +97,18 @@
       "description": "Tutores IA e companions educacionais"
     }
   },
+  "footer": {
+    "description": "Sua fonte confiável para avaliações e guias de companions IA",
+    "navigation": "Navegação",
+    "featured-companions": "Companions IA Destacados",
+    "featured-guides": "Guias Destacados",
+    "guides": {
+      "replika": "Guia Completo do Replika",
+      "character-ai": "Guia de Avaliação do Character AI",
+      "fantasygf": "Guia do FantasyGF",
+      "ai-sex-chat": "Guia Completo para Plataformas IA NSFW"
+    }
+  },
   "common": {
     "read-review": "Ler Avaliação",
     "visit-website": "Visitar Site",
@@ -102,6 +118,7 @@
     "reviews": "avaliações",
     "pricing": "Preços",
     "features": "Recursos",
+    "platform": "Plataforma",
     "platforms": "Plataformas",
     "view-all": "Ver Todos",
     "latest": "Mais Recente",
