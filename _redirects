@@ -1,8 +1,8 @@
 # Netlify redirects file for SEO and user experience
 
-# Language routing for Portuguese
-/pt/* /pt/:splat 200
-/pt /pt/index.html 200
+# Redirect Portuguese URLs to main site (Portuguese version removed)
+/pt/* / 301
+/pt / 301
 
 # Redirect removed categories to main categories page
 /ai-girlfriends /categories 301
