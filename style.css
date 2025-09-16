@@ -65,6 +65,8 @@
 html {
     font-size: 16px;
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -75,6 +77,9 @@ body {
     background-color: var(--bg-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
 }
 
 /* Typography */
@@ -1376,6 +1381,8 @@ footer {
     max-width: 800px;
     margin: 0 auto;
     padding: var(--space-8) 0;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
 }
 
 .article-header {
@@ -2590,6 +2597,18 @@ footer {
 }
 
 @media (max-width: 768px) {
+    html {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        touch-action: manipulation;
+    }
+
+    body {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
     .container {
         padding: 0 var(--space-4);
         max-width: 100%;
@@ -2617,6 +2636,8 @@ footer {
         gap: var(--space-8);
         transition: left 0.3s ease;
         z-index: 999;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     .nav-menu.active {
@@ -2864,6 +2885,9 @@ footer {
         max-width: 100%;
         padding: var(--space-4) 0;
         margin: 0;
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+        position: relative;
     }
 
     .article-header {
@@ -3096,12 +3120,21 @@ footer {
 
 /* Extra Small Mobile Devices (480px and below) */
 @media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+
     .container {
         padding: 0 var(--space-3);
     }
 
     .article-content {
         padding: var(--space-3) 0;
+        -webkit-overflow-scrolling: touch;
     }
 
     .article-header h1 {
