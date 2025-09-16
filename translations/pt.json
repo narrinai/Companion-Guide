@@ -39,6 +39,32 @@
         "platforms": "iOS e Android"
       }
     },
+    "thotchat-ai": {
+      "description": "Plataforma de chat de personagens IA sem censura com interações personalizadas e conteúdo adulto. Sem restrições para conversas maduras.",
+      "features": {
+        "uncensored": "Sem Censura",
+        "no-restrictions": "Sem restrições",
+        "character-variety": "Variedade de Personagens",
+        "diverse-personalities": "Personalidades diversas",
+        "personalized": "Personalizado",
+        "adapts-style": "Adapta ao estilo",
+        "privacy": "Privacidade",
+        "secure-platform": "Plataforma segura"
+      }
+    },
+    "fantasygf": {
+      "description": "Plataforma de namoro virtual IA com chamadas de voz, geração de vídeo e sistema de recompensas XP. Recursos com 24 opções de voz e gerador de vídeos de beijo para experiências imersivas.",
+      "features": {
+        "voice-calls": "Chamadas de Voz",
+        "voice-options": "24 opções de voz",
+        "video-generator": "Gerador de Vídeo",
+        "kiss-videos": "Vídeos de beijo",
+        "xp-system": "Sistema XP",
+        "reward-progression": "Progressão de recompensas",
+        "anonymous": "Anônimo",
+        "private-billing": "Cobrança privada"
+      }
+    },
     "narrin-ai": {
       "description": "Transforme o caos mental diário em pensamento claro com um companion IA projetado para insights pessoais, processamento emocional e suporte à clareza mental.",
       "features": {

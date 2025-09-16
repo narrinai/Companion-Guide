@@ -41,12 +41,16 @@ class LanguageManager {
 
     async init() {
         try {
+            console.log('Language Manager: Initializing for language:', this.currentLanguage);
+
             // Load fallback (English) translations first
             await this.loadFallbackTranslations();
+            console.log('Language Manager: Fallback translations loaded:', Object.keys(this.fallbackTranslations).length > 0);
 
             // Load current language translations
             if (this.currentLanguage !== 'en') {
                 await this.loadTranslations(this.currentLanguage);
+                console.log('Language Manager: Current language translations loaded:', Object.keys(this.translations).length > 0);
             } else {
                 this.translations = this.fallbackTranslations;
             }
@@ -55,6 +59,8 @@ class LanguageManager {
             this.applyTranslations();
             this.updatePageMeta();
 
+            console.log('Language Manager: Initialization complete');
+
         } catch (error) {
             console.warn('Language initialization failed:', error);
         }
@@ -62,7 +68,9 @@ class LanguageManager {
 
     async loadFallbackTranslations() {
         try {
-            const response = await fetch('/translations/en.json');
+            // Determine correct path based on current location
+            const basePath = this.getBasePath();
+            const response = await fetch(`${basePath}translations/en.json`);
             this.fallbackTranslations = await response.json();
         } catch (error) {
             console.error('Failed to load fallback translations:', error);
@@ -71,12 +79,27 @@ class LanguageManager {
 
     async loadTranslations(language) {
         try {
-            const response = await fetch(`/translations/${language}.json`);
+            // Determine correct path based on current location
+            const basePath = this.getBasePath();
+            const response = await fetch(`${basePath}translations/${language}.json`);
             this.translations = await response.json();
         } catch (error) {
             console.warn(`Failed to load ${language} translations, using English fallback`);
             this.translations = this.fallbackTranslations;
         }
+    }
+
+    getBasePath() {
+        // If we're in a subdirectory like /pt/, we need to go up one level
+        const path = window.location.pathname;
+        const pathParts = path.split('/');
+
+        // Check if we're in a language subdirectory
+        if (pathParts[1] && this.supportedLanguages[pathParts[1]]) {
+            return '../'; // We're in /pt/, so go up to root
+        }
+
+        return '/'; // We're in root directory
     }
 
     createLanguageSelector() {
