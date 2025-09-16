@@ -1,0 +1,84 @@
+{
+  "nav": {
+    "home": "Home",
+    "companions": "Companions",
+    "categories": "Categories",
+    "news": "News & Insights",
+    "contact": "Contact"
+  },
+  "homepage": {
+    "hero": {
+      "title": "AI Companion Platform Guide",
+      "description": "Discover the best AI companion platforms. Expert reviews, guides, and the latest AI character platform news.",
+      "cta": "Explore Companions"
+    },
+    "companions": {
+      "title": "Top AI Companion Platforms",
+      "description": "Discover the most popular and highest-rated AI companion platforms"
+    },
+    "news": {
+      "title": "Latest AI Companion News",
+      "description": "Stay updated with the latest news and insights from the AI companion industry"
+    },
+    "categories": {
+      "title": "Explore AI Character Platforms by Category",
+      "description": "Find AI companion platforms tailored to your specific needs"
+    }
+  },
+  "companions": {
+    "candy-ai": {
+      "description": "AI girlfriend platform with customizable virtual companions and interactive experiences for romantic conversations. Mobile app available.",
+      "features": {
+        "ai-girlfriend": "AI Girlfriend",
+        "customization": "Customization",
+        "interactive": "Interactive",
+        "mobile-app": "Mobile App"
+      }
+    },
+    "narrin-ai": {
+      "description": "Transform daily mental chaos into clear thinking with an AI companion designed for personal insights, emotional processing, and mental clarity support.",
+      "features": {
+        "mental-clarity": "Mental Clarity",
+        "insights": "Insights",
+        "privacy": "Privacy",
+        "companion-types": "4 Types"
+      }
+    }
+  },
+  "categories": {
+    "ai-girlfriend": {
+      "title": "AI Girlfriend & Boyfriend Platforms",
+      "description": "Discover AI platforms designed for virtual romantic relationships. These companions offer personalized dating experiences, romantic conversations, and emotional connections with customizable AI partners."
+    },
+    "wellness": {
+      "title": "Wellness & Mental Health",
+      "description": "AI companions focused on mental health and emotional support"
+    },
+    "roleplay": {
+      "title": "Roleplay & Character Chat",
+      "description": "Best AI platforms for roleplay and character chat experiences"
+    },
+    "adult-content": {
+      "title": "Adult Content & Uncensored",
+      "description": "Best uncensored AI platforms for adult content"
+    },
+    "whatsapp": {
+      "title": "WhatsApp-Only AI",
+      "description": "AI companions that work exclusively within WhatsApp"
+    }
+  },
+  "common": {
+    "read-review": "Read Review",
+    "visit-website": "Visit Website",
+    "free": "Free",
+    "premium": "Premium",
+    "rating": "Rating",
+    "reviews": "reviews",
+    "pricing": "Pricing",
+    "features": "Features",
+    "platforms": "Platforms",
+    "view-all": "View All",
+    "latest": "Latest",
+    "featured": "Featured"
+  }
+}

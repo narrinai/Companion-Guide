@@ -1,0 +1,142 @@
+{
+  "nav": {
+    "home": "Início",
+    "companions": "Companions",
+    "categories": "Categorias",
+    "news": "Notícias e Insights",
+    "contact": "Contato"
+  },
+  "homepage": {
+    "hero": {
+      "title": "Guia de Plataformas de Companion IA",
+      "description": "Descubra as melhores plataformas de companion IA. Avaliações especializadas, guias e as últimas notícias sobre plataformas de personagens IA.",
+      "cta": "Explorar Companions"
+    },
+    "companions": {
+      "title": "Principais Plataformas de Companion IA",
+      "description": "Descubra as plataformas de companion IA mais populares e bem avaliadas"
+    },
+    "news": {
+      "title": "Últimas Notícias sobre Companion IA",
+      "description": "Mantenha-se atualizado com as últimas notícias e insights da indústria de companion IA"
+    },
+    "categories": {
+      "title": "Explore Plataformas de Personagens IA por Categoria",
+      "description": "Encontre plataformas de companion IA adaptadas às suas necessidades específicas"
+    }
+  },
+  "companions": {
+    "candy-ai": {
+      "description": "Plataforma de namorada IA com companions virtuais personalizáveis e experiências interativas para conversas românticas. Aplicativo móvel disponível.",
+      "features": {
+        "ai-girlfriend": "Namorada IA",
+        "customization": "Personalização",
+        "interactive": "Interativo",
+        "mobile-app": "App Móvel"
+      }
+    },
+    "narrin-ai": {
+      "description": "Transforme o caos mental diário em pensamento claro com um companion IA projetado para insights pessoais, processamento emocional e suporte à clareza mental.",
+      "features": {
+        "mental-clarity": "Clareza Mental",
+        "insights": "Insights",
+        "privacy": "Privacidade",
+        "companion-types": "4 Tipos"
+      }
+    },
+    "dreamgf-ai": {
+      "description": "Crie sua namorada IA dos sonhos com opções avançadas de personalização, geração de imagens realistas e conversas íntimas. Recursos de mensagens de voz e capacidades de memória.",
+      "features": {
+        "image-generation": "Geração de Imagem",
+        "voice-messages": "Mensagens de Voz",
+        "memory-system": "Sistema de Memória",
+        "token-system": "Sistema de Tokens"
+      }
+    },
+    "hammer-ai": {
+      "description": "Plataforma de chat de personagens IA gratuita e ilimitada com suporte a modelos locais e em nuvem. Oferece categorias diversas de personagens com interações focadas na privacidade.",
+      "features": {
+        "free": "100% Gratuito",
+        "privacy-first": "Privacidade Primeiro",
+        "diverse-characters": "Personagens Diversos",
+        "creative-tools": "Ferramentas Criativas"
+      }
+    }
+  },
+  "categories": {
+    "ai-girlfriend": {
+      "title": "Plataformas de Namorada e Namorado IA",
+      "description": "Descubra plataformas IA projetadas para relacionamentos românticos virtuais. Estes companions oferecem experiências de namoro personalizadas, conversas românticas e conexões emocionais com parceiros IA personalizáveis."
+    },
+    "wellness": {
+      "title": "Bem-estar e Saúde Mental",
+      "description": "Companions IA focados em saúde mental e suporte emocional"
+    },
+    "roleplay": {
+      "title": "Roleplay e Chat de Personagens",
+      "description": "Melhores plataformas IA para experiências de roleplay e chat de personagens"
+    },
+    "adult-content": {
+      "title": "Conteúdo Adulto e Sem Censura",
+      "description": "Melhores plataformas IA sem censura para conteúdo adulto"
+    },
+    "whatsapp": {
+      "title": "IA Exclusiva do WhatsApp",
+      "description": "Companions IA que funcionam exclusivamente no WhatsApp"
+    },
+    "adult-image": {
+      "title": "Geração de Imagens Adultas",
+      "description": "Melhores plataformas IA para criar arte NSFW e conteúdo visual"
+    },
+    "learning": {
+      "title": "Aprendizado e Educação",
+      "description": "Tutores IA e companions educacionais"
+    }
+  },
+  "common": {
+    "read-review": "Ler Avaliação",
+    "visit-website": "Visitar Site",
+    "free": "Gratuito",
+    "premium": "Premium",
+    "rating": "Avaliação",
+    "reviews": "avaliações",
+    "pricing": "Preços",
+    "features": "Recursos",
+    "platforms": "Plataformas",
+    "view-all": "Ver Todos",
+    "latest": "Mais Recente",
+    "featured": "Destacado",
+    "leader": "Líder",
+    "top-rated": "Mais Bem Avaliado",
+    "popular": "Popular",
+    "new": "Novo",
+    "adult": "Adulto",
+    "uncensored": "Sem Censura",
+    "free-trial": "Teste Gratuito"
+  },
+  "news": {
+    "title": "Notícias e Insights",
+    "articles": {
+      "ai-sex-chat-guide": {
+        "title": "O Guia Completo para Chat de Sexo IA e Plataformas IA NSFW - Análise de Mercado e Avaliações de Plataformas (2025)",
+        "description": "A indústria de chat de sexo IA explodiu para um mercado de $120M em 2025. Tudo que você precisa saber sobre esta indústria em crescimento."
+      },
+      "fantasygf-guide": {
+        "title": "Minha Experiência Completa com FantasyGF Após 6 Semanas - O Guia Definitivo do Usuário (2025)",
+        "description": "Após 6 semanas mergulhando no FantasyGF, tudo sobre recursos de namoro virtual, chamadas de voz, geração de vídeo e sistema de recompensas XP."
+      },
+      "character-ai-guide": {
+        "title": "Minha Experiência Completa com Character.AI Após 2 Meses - O Guia Definitivo do Usuário (2025)",
+        "description": "Após 2 meses mergulhando no Character.AI, tudo sobre recursos ocultos, segredos da comunidade e evolução de conversas."
+      },
+      "soulgen-guide": {
+        "title": "Avaliação do SoulGen IA e A Ascensão da Geração de Imagens Adultas - Guia Completo da Indústria (2025)",
+        "description": "O mercado de geração de imagens adultas IA explodiu para uma indústria de $2,8B em 2025, com SoulGen IA liderando a revolução."
+      },
+      "wellness-platforms": {
+        "title": "Melhores Plataformas de Companion IA para Bem-estar e Suporte à Saúde Mental",
+        "description": "Avaliação abrangente de plataformas de companion IA focadas em bem-estar e saúde mental, apresentando Narrin.AI e outras soluções terapêuticas."
+      }
+    }
+  }
+}

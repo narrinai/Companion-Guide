@@ -1,0 +1,125 @@
+/* Language Selector Styles */
+.language-selector-item {
+    position: relative;
+    margin-left: auto;
+}
+
+.language-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.current-language {
+    background: var(--bg-surface, #f8fafc);
+    border: 1px solid var(--border-secondary, #e2e8f0);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary, #1a202c);
+    transition: all 0.2s ease;
+}
+
+.current-language:hover {
+    background: var(--bg-hover, #f1f5f9);
+    border-color: var(--border-primary, #cbd5e0);
+}
+
+.current-language .flag {
+    font-size: 16px;
+}
+
+.current-language .lang-code {
+    font-weight: 600;
+    min-width: 20px;
+}
+
+.current-language .arrow {
+    font-size: 10px;
+    color: var(--text-secondary, #64748b);
+    transition: transform 0.2s ease;
+}
+
+.language-selector.active .arrow {
+    transform: rotate(180deg);
+}
+
+.language-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-surface, #ffffff);
+    border: 1px solid var(--border-secondary, #e2e8f0);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    min-width: 200px;
+    z-index: 1000;
+    display: none;
+    margin-top: 4px;
+}
+
+.language-menu a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    text-decoration: none;
+    color: var(--text-primary, #1a202c);
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid var(--border-light, #f1f5f9);
+}
+
+.language-menu a:last-child {
+    border-bottom: none;
+}
+
+.language-menu a:hover {
+    background: var(--bg-hover, #f8fafc);
+}
+
+.language-menu a.active {
+    background: var(--accent-blue-light, #dbeafe);
+    color: var(--accent-blue, #3b82f6);
+    font-weight: 600;
+}
+
+.language-menu a .flag {
+    font-size: 16px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .language-selector-item {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+
+    .language-menu {
+        right: auto;
+        left: 0;
+        min-width: 180px;
+    }
+
+    .current-language {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+}
+
+/* Integration with existing nav styles */
+.nav-menu .language-selector-item {
+    list-style: none;
+}
+
+@media (max-width: 768px) {
+    .nav-menu.active .language-selector-item {
+        display: block;
+        padding: 0;
+    }
+}
