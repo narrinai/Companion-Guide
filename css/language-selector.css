@@ -1,7 +1,6 @@
-/* Language Selector Styles */
+/* Language Selector Styles - Match Navigation Links */
 .language-selector-item {
     position: relative;
-    margin-left: auto;
 }
 
 .language-selector {
@@ -10,38 +9,41 @@
 }
 
 .current-language {
-    background: var(--bg-surface, #f8fafc);
-    border: 1px solid var(--border-secondary, #e2e8f0);
-    border-radius: 8px;
-    padding: 8px 12px;
+    background: transparent;
+    border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 14px;
+    color: var(--text-secondary);
     font-weight: 500;
-    color: var(--text-primary, #1a202c);
+    font-size: 0.875rem;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
     transition: all 0.2s ease;
+    text-decoration: none;
 }
 
 .current-language:hover {
-    background: var(--bg-hover, #f1f5f9);
-    border-color: var(--border-primary, #cbd5e0);
+    color: var(--text-primary);
+    background-color: var(--bg-tertiary);
 }
 
 .current-language .flag {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1;
 }
 
 .current-language .lang-code {
-    font-weight: 600;
-    min-width: 20px;
+    font-weight: 500;
+    font-size: 0.875rem;
 }
 
 .current-language .arrow {
-    font-size: 10px;
-    color: var(--text-secondary, #64748b);
+    font-size: 8px;
+    color: var(--text-secondary);
     transition: transform 0.2s ease;
+    margin-left: 2px;
 }
 
 .language-selector.active .arrow {
@@ -66,13 +68,13 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 16px;
+    padding: var(--space-2) var(--space-4);
     text-decoration: none;
-    color: var(--text-primary, #1a202c);
-    font-size: 14px;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
     font-weight: 500;
-    transition: background-color 0.2s ease;
-    border-bottom: 1px solid var(--border-light, #f1f5f9);
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--border-light);
 }
 
 .language-menu a:last-child {
@@ -80,17 +82,19 @@
 }
 
 .language-menu a:hover {
-    background: var(--bg-hover, #f8fafc);
+    color: var(--text-primary);
+    background-color: var(--bg-tertiary);
 }
 
 .language-menu a.active {
-    background: var(--accent-blue-light, #dbeafe);
-    color: var(--accent-blue, #3b82f6);
-    font-weight: 600;
+    color: var(--text-primary);
+    background-color: var(--bg-tertiary);
+    font-weight: 500;
 }
 
 .language-menu a .flag {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1;
 }
 
 /* Mobile responsiveness */
