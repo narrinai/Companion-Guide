@@ -241,6 +241,14 @@ nav a:hover {
     }
 }
 
+.az-column {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    border: 1px solid var(--border-primary);
+    min-height: 120px;
+}
+
 .az-column h3 {
     font-size: 0.875rem;
     font-weight: 600;
@@ -250,6 +258,7 @@ nav a:hover {
     letter-spacing: 0.05em;
     border-bottom: 1px solid var(--border-primary);
     padding-bottom: var(--space-2);
+    text-align: center;
 }
 
 .az-column ul {

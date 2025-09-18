@@ -466,18 +466,18 @@
                 <div class="footer-section">
                     <h4>Companion Guide</h4>
                     <p>Your trusted source for AI companion reviews and guides</p>
-                </div></div>
+                </div>
                 <div class="footer-section">
                     <h4>Navigation</h4>
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li><a href="/companions">Companions</a></li>
+                        <li><a href="/companions-az">Companions A-Z</a></li>
                         <li><a href="/categories">Categories</a></li>
                         <li><a href="/news">News & Insights</a></li>
-                        <li><a href="/companions-az">Companions A-Z</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>
-                </div></div>
+                </div>
                 <div class="footer-section">
                     <h4>Featured Links</h4>
                     <ul>
@@ -490,7 +490,7 @@
                         <li><a href="/news/character-ai-complete-guide-2025">Character AI Review Guide</a></li>
                         <li><a href="https://companionguide.ai/news/replika-ai-comprehensive-review-2025">Replika Complete Guide</a></li>
                     </ul>
-                </div></div>
+                </div>
             </div></div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Companion Guide. All rights reserved.</p>
@@ -580,8 +580,61 @@
             }, 'image/png');
         }
 
-        function drawCompanionGuideLogo(ctx, centerX, centerY, radius) {
-            // Background circle with gradient
+        let logoSvgContent = null;
+
+        // Load the SVG logo content
+        function loadLogoSvg() {
+            return fetch('/images/logo.svg')
+                .then(response => response.text())
+                .then(svgText => {
+                    logoSvgContent = svgText;
+                    return svgText;
+                });
+        }
+
+        async function drawCompanionGuideLogo(ctx, centerX, centerY, radius) {
+            try {
+                if (!logoSvgContent) {
+                    await loadLogoSvg();
+                }
+
+                // Create an image from SVG and wait for it to load
+                const img = await createImageFromSvg(logoSvgContent);
+
+                // Calculate position and size to center the logo
+                const size = radius * 2;
+                const x = centerX - radius;
+                const y = centerY - radius;
+
+                ctx.drawImage(img, x, y, size, size);
+            } catch (error) {
+                // Fallback if SVG loading fails
+                drawFallbackLogo(ctx, centerX, centerY, radius);
+            }
+        }
+
+        function createImageFromSvg(svgContent) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                const svgBlob = new Blob([svgContent], {type: 'image/svg+xml'});
+                const url = URL.createObjectURL(svgBlob);
+
+                img.onload = function() {
+                    URL.revokeObjectURL(url);
+                    resolve(img);
+                };
+
+                img.onerror = function() {
+                    URL.revokeObjectURL(url);
+                    reject(new Error('Failed to load SVG'));
+                };
+
+                img.src = url;
+            });
+        }
+
+        function drawFallbackLogo(ctx, centerX, centerY, radius) {
+            // Background circle with gradient (fallback)
             const gradient = ctx.createLinearGradient(
                 centerX - radius, centerY - radius,
                 centerX + radius, centerY + radius
@@ -595,7 +648,7 @@
             ctx.fill();
 
             // Scale factor for inner elements
-            const scale = radius / 18; // Original SVG viewBox is 40x40, logo centered at 20
+            const scale = radius / 18;
 
             // Chat bubble outline (simplified)
             const bubbleRadius = 8 * scale;
@@ -661,7 +714,7 @@
         }
 
         // Generate template preview
-        function generatePreview(canvasId, width, height, type) {
+        async function generatePreview(canvasId, width, height, type) {
             const canvas = document.getElementById(canvasId);
             if (!canvas) return;
 
@@ -741,8 +794,16 @@
                 { id: 'preview-presentation', width: 1920, height: 1080, type: 'presentation' }
             ];
 
-            templates.forEach(template => {
-                generatePreview(template.id, template.width, template.height, template.type);
+            // Load SVG first, then generate previews
+            loadLogoSvg().then(() => {
+                templates.forEach(template => {
+                    generatePreview(template.id, template.width, template.height, template.type);
+                });
+            }).catch(() => {
+                // If SVG loading fails, generate previews with fallback
+                templates.forEach(template => {
+                    generatePreview(template.id, template.width, template.height, template.type);
+                });
             });
         });
 
