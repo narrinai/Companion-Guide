@@ -80,6 +80,7 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     position: relative;
+    padding-top: 80px;
 }
 
 /* Typography */
@@ -121,8 +122,13 @@ a:hover {
 header {
     background-color: var(--bg-secondary);
     border-bottom: 1px solid var(--border-primary);
-    position: static;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 nav {
@@ -2790,6 +2796,13 @@ footer {
         -webkit-overflow-scrolling: touch;
         overflow-x: hidden;
         min-height: 100vh;
+        padding-top: 70px;
+    }
+
+    header {
+        position: relative;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 
     .container {
@@ -3359,6 +3372,7 @@ footer {
 
     body {
         -webkit-overflow-scrolling: touch;
+        padding-top: 65px;
     }
 
     .container {
