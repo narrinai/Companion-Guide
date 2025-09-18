@@ -158,8 +158,7 @@ nav h1 a:hover {
 }
 
 /* Hide mobile menu elements on desktop */
-.mobile-menu-logo,
-.nav-menu-links {
+.mobile-menu-logo {
     display: none;
 }
 

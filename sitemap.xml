@@ -39,50 +39,57 @@
 
   <!-- Category Pages -->
   <url>
-    <loc>https://companionguide.ai/categories/wellness</loc>
-    <lastmod>2025-09-12</lastmod>
+    <loc>https://companionguide.ai/categories/wellness-companions</loc>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://companionguide.ai/categories/learning</loc>
-    <lastmod>2025-09-12</lastmod>
+    <loc>https://companionguide.ai/categories/learning-companions</loc>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://companionguide.ai/categories/ai-girlfriend</loc>
-    <lastmod>2025-09-12</lastmod>
+    <loc>https://companionguide.ai/categories/ai-girlfriend-companions</loc>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://companionguide.ai/categories/roleplay-character-chat</loc>
-    <lastmod>2025-09-12</lastmod>
+    <loc>https://companionguide.ai/categories/roleplay-character-chat-companions</loc>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://companionguide.ai/categories/adult-content-uncensored</loc>
-    <lastmod>2025-09-12</lastmod>
+    <loc>https://companionguide.ai/categories/adult-content-uncensored-companions</loc>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
-    <loc>https://companionguide.ai/categories/adult-image-generation</loc>
-    <lastmod>2025-09-12</lastmod>
+    <loc>https://companionguide.ai/categories/adult-image-generation-companions</loc>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
-    <loc>https://companionguide.ai/categories/whatsapp-companions</loc>
-    <lastmod>2025-09-12</lastmod>
+    <loc>https://companionguide.ai/categories/whatsapp-companions-companions</loc>
+    <lastmod>2025-09-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/video-companions-companions</loc>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
