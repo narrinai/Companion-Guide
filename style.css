@@ -122,6 +122,7 @@ header {
     background-color: var(--bg-secondary);
     border-bottom: 1px solid var(--border-primary);
     position: static;
+    z-index: 1000;
 }
 
 nav {
@@ -2621,6 +2622,8 @@ footer {
     
     .hamburger {
         display: flex;
+        position: relative;
+        z-index: 10000;
     }
     
     .nav-menu {
@@ -2635,7 +2638,7 @@ footer {
         align-items: center;
         gap: var(--space-8);
         transition: left 0.3s ease;
-        z-index: 999;
+        z-index: 9999;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
