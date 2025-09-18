@@ -2874,9 +2874,8 @@ footer {
         display: flex !important;
         align-items: center;
         gap: var(--space-4);
-        margin-top: var(--space-4);
-        margin-bottom: var(--space-8);
-        padding-bottom: var(--space-4);
+        margin-bottom: var(--space-12);
+        padding-bottom: var(--space-6);
         border-bottom: 1px solid var(--border-primary);
     }
 
