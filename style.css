@@ -2296,6 +2296,25 @@ footer {
     color: var(--text-secondary);
 }
 
+/* Mobile Menu Overlay */
+.nav-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .main-layout {
@@ -2623,24 +2642,27 @@ footer {
     .hamburger {
         display: flex;
         position: relative;
-        z-index: 10000;
+        z-index: 9999999;
     }
     
     .nav-menu {
         position: fixed;
         top: 0;
         left: -100%;
-        width: 100%;
+        width: 100vw;
         height: 100vh;
-        background-color: var(--bg-primary);
+        background-color: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(10px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: var(--space-8);
         transition: left 0.3s ease;
-        z-index: 9999;
+        z-index: 999999;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        will-change: left;
+        isolation: isolate;
     }
     
     .nav-menu.active {
