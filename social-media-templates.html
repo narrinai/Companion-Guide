@@ -513,46 +513,49 @@
             ctx.fillRect(0, 0, width, height);
 
             // Calculate responsive sizes
-            const baseFontSize = Math.min(width, height) * 0.08;
-            const titleSize = Math.max(baseFontSize, 24);
-            const subtitleSize = Math.max(baseFontSize * 0.6, 16);
-            const logoSize = Math.max(titleSize * 1.2, 40);
+            const baseFontSize = Math.min(width, height) * 0.06;
+            const titleSize = Math.max(baseFontSize, 20);
+            const logoSize = Math.max(titleSize * 1.8, 50);
 
-            // Draw logo circle
-            const logoX = width / 2 - titleSize * 2.5;
-            const logoY = height / 2 - titleSize * 0.3;
+            // For profile pictures, show only the icon
+            if (type.includes('profile')) {
+                // Blue circle background
+                ctx.beginPath();
+                ctx.arc(width / 2, height / 2, Math.min(width, height) * 0.4, 0, Math.PI * 2);
+                ctx.fillStyle = '#6366f1';  // Blue background
+                ctx.fill();
 
-            // Blue gradient circle for logo
-            const logoGradient = ctx.createLinearGradient(logoX - logoSize/2, logoY - logoSize/2, logoX + logoSize/2, logoY + logoSize/2);
-            logoGradient.addColorStop(0, '#8b5cf6');
-            logoGradient.addColorStop(1, '#3b82f6');
+                // White companion icon
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `${Math.min(width, height) * 0.3}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('👤', width / 2, height / 2);
+            } else {
+                // For all other assets, show full logo with text
+                const logoX = width / 2 - titleSize * 4;
+                const logoY = height / 2;
 
-            ctx.beginPath();
-            ctx.arc(logoX, logoY, logoSize/2, 0, Math.PI * 2);
-            ctx.fillStyle = logoGradient;
-            ctx.fill();
+                // Blue circle for logo
+                ctx.beginPath();
+                ctx.arc(logoX, logoY, logoSize/2, 0, Math.PI * 2);
+                ctx.fillStyle = '#6366f1';  // Blue background
+                ctx.fill();
 
-            // Draw companion icon (simplified person/chat icon)
-            ctx.fillStyle = '#ffffff';
-            ctx.font = `${logoSize * 0.6}px Arial`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('👤', logoX, logoY);
+                // White companion icon
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `${logoSize * 0.5}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('👤', logoX, logoY);
 
-            // Configure text styling for title
-            ctx.fillStyle = '#ffffff';
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'middle';
-
-            // Draw main title
-            ctx.font = `bold ${titleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-            ctx.fillText('Companion Guide', logoX + logoSize/2 + 15, logoY);
-
-            // Draw subtitle
-            ctx.font = `${subtitleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-            ctx.fillStyle = '#a3a3a3';
-            ctx.textAlign = 'center';
-            ctx.fillText('AI Companion Reviews & Guides', width / 2, height / 2 + titleSize * 0.8);
+                // White text "companionguide.ai"
+                ctx.fillStyle = '#ffffff';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = 'middle';
+                ctx.font = `bold ${titleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
+                ctx.fillText('companionguide.ai', logoX + logoSize/2 + 20, logoY);
+            }
 
             // Add platform-specific text
             const platformText = getPlatformText(type);
@@ -620,39 +623,49 @@
             ctx.fillRect(0, 0, width, height);
 
             // Calculate responsive sizes
-            const baseFontSize = Math.min(width, height) * 0.08;
-            const titleSize = Math.max(baseFontSize, 24);
-            const logoSize = Math.max(titleSize * 1.2, 40);
+            const baseFontSize = Math.min(width, height) * 0.06;
+            const titleSize = Math.max(baseFontSize, 20);
+            const logoSize = Math.max(titleSize * 1.8, 50);
 
-            // Draw logo circle
-            const logoX = width / 2 - titleSize * 2.5;
-            const logoY = height / 2;
+            // For profile pictures, show only the icon
+            if (type.includes('profile')) {
+                // Blue circle background
+                ctx.beginPath();
+                ctx.arc(width / 2, height / 2, Math.min(width, height) * 0.4, 0, Math.PI * 2);
+                ctx.fillStyle = '#6366f1';  // Blue background
+                ctx.fill();
 
-            // Blue gradient circle for logo
-            const logoGradient = ctx.createLinearGradient(logoX - logoSize/2, logoY - logoSize/2, logoX + logoSize/2, logoY + logoSize/2);
-            logoGradient.addColorStop(0, '#8b5cf6');
-            logoGradient.addColorStop(1, '#3b82f6');
+                // White companion icon
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `${Math.min(width, height) * 0.3}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('👤', width / 2, height / 2);
+            } else {
+                // For all other assets, show full logo with text
+                const logoX = width / 2 - titleSize * 4;
+                const logoY = height / 2;
 
-            ctx.beginPath();
-            ctx.arc(logoX, logoY, logoSize/2, 0, Math.PI * 2);
-            ctx.fillStyle = logoGradient;
-            ctx.fill();
+                // Blue circle for logo
+                ctx.beginPath();
+                ctx.arc(logoX, logoY, logoSize/2, 0, Math.PI * 2);
+                ctx.fillStyle = '#6366f1';  // Blue background
+                ctx.fill();
 
-            // Draw companion icon
-            ctx.fillStyle = '#ffffff';
-            ctx.font = `${logoSize * 0.6}px Arial`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('👤', logoX, logoY);
+                // White companion icon
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `${logoSize * 0.5}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('👤', logoX, logoY);
 
-            // Configure text styling for title
-            ctx.fillStyle = '#ffffff';
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'middle';
-
-            // Draw main title
-            ctx.font = `bold ${titleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-            ctx.fillText('Companion Guide', logoX + logoSize/2 + 15, logoY);
+                // White text "companionguide.ai"
+                ctx.fillStyle = '#ffffff';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = 'middle';
+                ctx.font = `bold ${titleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
+                ctx.fillText('companionguide.ai', logoX + logoSize/2 + 20, logoY);
+            }
         }
 
         // Generate all previews when page loads
