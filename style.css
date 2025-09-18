@@ -2950,7 +2950,8 @@ footer {
 
     .article-body p {
         margin-bottom: var(--space-4);
-        font-size: 0.95rem;
+        font-size: 1.05rem;
+        line-height: 1.75;
     }
 
     .article-body img {
@@ -2968,13 +2969,15 @@ footer {
 
     .article-body li {
         margin-bottom: var(--space-2);
-        font-size: 0.95rem;
+        font-size: 1.05rem;
+        line-height: 1.65;
     }
 
     .article-body blockquote {
         margin: var(--space-6) 0;
         padding: var(--space-4);
-        font-size: 0.95rem;
+        font-size: 1.05rem;
+        line-height: 1.7;
     }
 
     /* Article Components Mobile */
@@ -2997,7 +3000,8 @@ footer {
     .highlight-box, .pro-tip, .important-note {
         margin: var(--space-6) 0;
         padding: var(--space-4);
-        font-size: 0.95rem;
+        font-size: 1rem;
+        line-height: 1.65;
     }
 
     .highlight-box h3, .pro-tip h4, .important-note h4 {
@@ -3062,7 +3066,8 @@ footer {
     }
 
     .faq-item p {
-        font-size: 0.95rem;
+        font-size: 1.05rem;
+        line-height: 1.65;
     }
 
     .article-tags {
@@ -3153,7 +3158,8 @@ footer {
     }
 
     .article-body p {
-        font-size: 0.9rem;
+        font-size: 1rem;
+        line-height: 1.7;
     }
 
     .custom-toc {
