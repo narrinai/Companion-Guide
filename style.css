@@ -2862,7 +2862,7 @@ footer {
         -webkit-overflow-scrolling: touch;
         will-change: left;
         isolation: isolate;
-        padding-top: var(--space-16);
+        padding-top: var(--space-6);
     }
     
     .nav-menu.active {
