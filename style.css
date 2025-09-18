@@ -223,8 +223,22 @@ nav a:hover {
 
 .az-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-6);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-4);
+    justify-items: stretch;
+}
+
+@media (min-width: 768px) {
+    .az-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-6);
+    }
+}
+
+@media (min-width: 1200px) {
+    .az-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
 }
 
 .az-column h3 {
