@@ -71,7 +71,7 @@ html {
 
 body {
     font-family: var(--font-sans);
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--bg-primary);
@@ -2800,7 +2800,8 @@ footer {
     }
 
     header {
-        position: relative;
+        position: fixed;
+        top: 0;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
     }
@@ -2839,8 +2840,7 @@ footer {
         -webkit-overflow-scrolling: touch;
         will-change: left;
         isolation: isolate;
-        padding: 0;
-        margin: 0;
+        padding-top: var(--space-16);
     }
     
     .nav-menu.active {
@@ -2852,11 +2852,9 @@ footer {
         display: flex !important;
         align-items: center;
         gap: var(--space-4);
-        margin: var(--space-2) 0 var(--space-8) 0;
-        padding: var(--space-2) 0 var(--space-4) 0;
+        margin-bottom: var(--space-12);
+        padding-bottom: var(--space-6);
         border-bottom: 1px solid var(--border-primary);
-        width: 100%;
-        justify-content: center;
     }
 
     /* Center navigation links in mobile */
@@ -3009,13 +3007,23 @@ footer {
     }
     
     .section-header {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
-        gap: var(--space-2);
+        gap: var(--space-4);
     }
-    
+
+    .section-header div {
+        flex: 1;
+    }
+
+    .section-header p {
+        max-width: 280px;
+        line-height: 1.4;
+    }
+
     .view-all-link {
-        align-self: flex-end;
+        flex-shrink: 0;
+        margin-top: var(--space-1);
     }
     
     .companion-card {
@@ -4110,6 +4118,141 @@ footer {
     .emerging-platforms {
         grid-template-columns: 1fr;
         gap: var(--space-4);
+    }
+}
+
+/* Mobile font improvements - Sept 18, 2025 */
+@media (max-width: 768px) {
+    p { font-size: 1.05rem; }
+    .article-body p { font-size: 1.05rem; }
+    .section-header p { font-size: 0.95rem; }
+
+    /* Mobile section ordering: companions → categories → news */
+    main.container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-layout { order: 1; }
+    .categories-overview { order: 2; }
+    .coming-soon-section { order: 3; }
+
+    /* Within main-layout: companions first, then news */
+    .main-layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .companions-section { order: 1; }
+    .topics-section { order: 2; }
+}
+
+@media (max-width: 480px) {
+    p { font-size: 1rem; }
+    .article-body p { font-size: 1rem; }
+    .section-header p { font-size: 0.9rem; }
+}
+
+/* Coming Soon Section */
+.coming-soon-section {
+    padding: var(--space-16) 0;
+    background-color: var(--bg-primary);
+}
+
+.coming-soon-card {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--border-primary);
+    padding: var(--space-12);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.coming-soon-card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+}
+
+.coming-soon-card > p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+}
+
+.coming-soon-description p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-8);
+}
+
+.coming-soon-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.coming-soon-actions .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border-primary);
+    color: var(--text-secondary);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.coming-soon-actions .btn-secondary:hover {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border-color: var(--border-accent);
+}
+
+.coming-soon-actions .btn-primary {
+    background: var(--accent-blue);
+    color: white;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.coming-soon-actions .btn-primary:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .coming-soon-section {
+        padding: var(--space-12) 0;
+    }
+
+    .coming-soon-card {
+        padding: var(--space-8);
+        margin: 0 var(--space-4);
+    }
+
+    .coming-soon-card h2 {
+        font-size: 1.75rem;
+    }
+
+    .coming-soon-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .coming-soon-actions .btn-secondary,
+    .coming-soon-actions .btn-primary {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
     }
 }
 
