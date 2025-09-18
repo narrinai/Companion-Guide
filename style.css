@@ -2573,6 +2573,64 @@ footer {
     left: 0;
 }
 
+/* Press Kit Section */
+.press-kit-section {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-secondary);
+}
+
+.press-kit-section h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+}
+
+.press-kit-section p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-4);
+    font-size: 0.9rem;
+}
+
+.press-kit-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.press-kit-link:hover {
+    background: var(--bg-elevated);
+    border-color: var(--accent-blue);
+    transform: translateY(-1px);
+}
+
+.press-kit-icon {
+    font-size: 1.5rem;
+    filter: grayscale(0.3);
+}
+
+.press-kit-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.press-kit-text strong {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.press-kit-text small {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
 .contact-form-section {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-secondary);
