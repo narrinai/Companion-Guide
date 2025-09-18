@@ -2847,13 +2847,14 @@ footer {
     }
 
     /* Show mobile logo in menu */
-    .mobile-menu-logo {
+    li.mobile-menu-logo {
         display: flex !important;
         align-items: center;
         gap: var(--space-4);
         margin-bottom: var(--space-12);
         padding-bottom: var(--space-6);
         border-bottom: 1px solid var(--border-primary);
+        list-style: none;
     }
 
     /* Center navigation links in mobile */
