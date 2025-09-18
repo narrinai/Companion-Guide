@@ -2862,7 +2862,7 @@ footer {
         -webkit-overflow-scrolling: touch;
         will-change: left;
         isolation: isolate;
-        padding-top: var(--space-6);
+        padding-top: 0;
     }
     
     .nav-menu.active {
@@ -2874,8 +2874,9 @@ footer {
         display: flex !important;
         align-items: center;
         gap: var(--space-4);
-        margin-bottom: var(--space-12);
-        padding-bottom: var(--space-6);
+        margin-top: var(--space-4);
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-4);
         border-bottom: 1px solid var(--border-primary);
     }
 
