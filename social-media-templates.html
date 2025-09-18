@@ -112,10 +112,42 @@
             align-items: center;
             padding: var(--space-4) 0;
             border-bottom: 1px solid var(--border-primary);
+            gap: var(--space-4);
         }
 
         .template-item:last-child {
             border-bottom: none;
+        }
+
+        .template-preview {
+            width: 60px;
+            height: 40px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #262626 100%);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .template-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+        }
+
+        .template-preview img {
+            width: 16px;
+            height: 16px;
+            z-index: 1;
+            position: relative;
         }
 
         .template-info h4 {
@@ -249,6 +281,9 @@
                         Profile Pictures
                     </h3>
                     <div class="template-item">
+                        <div class="template-preview">
+                            <img src="/images/logo.svg" alt="Logo preview">
+                        </div>
                         <div class="template-info">
                             <h4>Universal Profile Picture</h4>
                             <p>400x400px • Perfect for all platforms</p>
@@ -258,6 +293,9 @@
                         </button>
                     </div>
                     <div class="template-item">
+                        <div class="template-preview">
+                            <img src="/images/logo.svg" alt="Logo preview">
+                        </div>
                         <div class="template-info">
                             <h4>High-Res Profile Picture</h4>
                             <p>800x800px • For high-quality displays</p>
@@ -275,6 +313,9 @@
                         Social Media Banners
                     </h3>
                     <div class="template-item">
+                        <div class="template-preview">
+                            <img src="/images/logo.svg" alt="Logo preview">
+                        </div>
                         <div class="template-info">
                             <h4>LinkedIn Banner</h4>
                             <p>1584x396px • Professional networking</p>
@@ -284,6 +325,9 @@
                         </button>
                     </div>
                     <div class="template-item">
+                        <div class="template-preview">
+                            <img src="/images/logo.svg" alt="Logo preview">
+                        </div>
                         <div class="template-info">
                             <h4>Twitter/X Header</h4>
                             <p>1500x500px • Social media header</p>
@@ -293,6 +337,9 @@
                         </button>
                     </div>
                     <div class="template-item">
+                        <div class="template-preview">
+                            <img src="/images/logo.svg" alt="Logo preview">
+                        </div>
                         <div class="template-info">
                             <h4>Facebook Cover</h4>
                             <p>820x312px • Page cover photo</p>
@@ -310,6 +357,9 @@
                         Content Templates
                     </h3>
                     <div class="template-item">
+                        <div class="template-preview">
+                            <img src="/images/logo.svg" alt="Logo preview">
+                        </div>
                         <div class="template-info">
                             <h4>Instagram Post</h4>
                             <p>1080x1080px • Square social post</p>
@@ -319,6 +369,9 @@
                         </button>
                     </div>
                     <div class="template-item">
+                        <div class="template-preview">
+                            <img src="/images/logo.svg" alt="Logo preview">
+                        </div>
                         <div class="template-info">
                             <h4>Instagram Story</h4>
                             <p>1080x1920px • Vertical story format</p>
@@ -328,6 +381,9 @@
                         </button>
                     </div>
                     <div class="template-item">
+                        <div class="template-preview">
+                            <img src="/images/logo.svg" alt="Logo preview">
+                        </div>
                         <div class="template-info">
                             <h4>YouTube Thumbnail</h4>
                             <p>1280x720px • Video thumbnail</p>
@@ -345,6 +401,9 @@
                         Professional Assets
                     </h3>
                     <div class="template-item">
+                        <div class="template-preview">
+                            <img src="/images/logo.svg" alt="Logo preview">
+                        </div>
                         <div class="template-info">
                             <h4>Email Signature</h4>
                             <p>600x150px • Professional signature</p>
@@ -354,6 +413,9 @@
                         </button>
                     </div>
                     <div class="template-item">
+                        <div class="template-preview">
+                            <img src="/images/logo.svg" alt="Logo preview">
+                        </div>
                         <div class="template-info">
                             <h4>Presentation Slide</h4>
                             <p>1920x1080px • Full HD slide template</p>
