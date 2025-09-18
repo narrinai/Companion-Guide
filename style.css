@@ -223,30 +223,8 @@ nav a:hover {
 
 .az-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: var(--space-4);
-    justify-items: stretch;
-}
-
-@media (min-width: 768px) {
-    .az-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--space-6);
-    }
-}
-
-@media (min-width: 1200px) {
-    .az-grid {
-        grid-template-columns: repeat(6, 1fr);
-    }
-}
-
-.az-column {
-    background: var(--bg-secondary);
-    border-radius: var(--radius-lg);
-    padding: var(--space-4);
-    border: 1px solid var(--border-primary);
-    min-height: 120px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-6);
 }
 
 .az-column h3 {
@@ -258,7 +236,6 @@ nav a:hover {
     letter-spacing: 0.05em;
     border-bottom: 1px solid var(--border-primary);
     padding-bottom: var(--space-2);
-    text-align: center;
 }
 
 .az-column ul {
@@ -2862,7 +2839,7 @@ footer {
         -webkit-overflow-scrolling: touch;
         will-change: left;
         isolation: isolate;
-        padding-top: 0;
+        padding-top: var(--space-16);
     }
     
     .nav-menu.active {
