@@ -341,7 +341,7 @@ nav a:hover {
 /* Companion Cards */
 .companions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 1fr;
     gap: var(--space-6);
 }
 
@@ -2076,9 +2076,12 @@ footer {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-secondary);
     border-radius: var(--radius-xl);
-    padding: var(--space-8);
+    padding: var(--space-6);
     transition: all 0.2s ease;
     position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
 .companion-product-card:hover {
@@ -2098,15 +2101,14 @@ footer {
 }
 
 .product-badge {
-    position: absolute;
-    top: var(--space-6);
-    right: var(--space-6);
-    background-color: var(--accent-orange);
+    display: inline-block;
+    background-color: var(--accent-blue);
     color: white;
     padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-full);
     font-size: 0.75rem;
     font-weight: 600;
+    margin-bottom: var(--space-4);
 }
 
 .companion-product-card.high-performer .product-badge {
