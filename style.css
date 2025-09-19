@@ -3012,8 +3012,8 @@ footer {
     }
 
     .nav-menu li a {
-        font-size: 1.75rem;
-        padding: var(--space-6);
+        font-size: 1.375rem;
+        padding: var(--space-3);
         font-weight: 500;
         letter-spacing: 0.3px;
     }
