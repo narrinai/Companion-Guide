@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 { font-size: 2.25rem; margin-bottom: var(--space-6); }
 h2 { font-size: 1.875rem; margin-bottom: var(--space-4); }
-h3 { font-size: 1.5rem; margin-bottom: var(--space-3); }
+h3 { font-size: 1.125rem; margin-bottom: var(--space-3); }
 h4 { font-size: 1.25rem; margin-bottom: var(--space-3); }
 
 p {
@@ -242,7 +242,7 @@ nav a.active {
 }
 
 .az-index h2 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 700;
     margin-bottom: var(--space-6);
     text-align: center;
@@ -336,7 +336,7 @@ nav a.active {
 
 .section-header h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     color: var(--text-primary);
 }
 
@@ -427,7 +427,7 @@ main .companions-grid {
 
 .companion-card .title-section h3 {
     margin: 0 0 var(--space-1) 0;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 700;
 }
 
@@ -472,12 +472,12 @@ main .companions-grid {
 .companion-card .feature-item {
     background-color: var(--bg-tertiary);
     border-radius: var(--radius-lg);
-    padding: var(--space-4);
+    padding: var(--space-2);
     text-align: center;
 }
 
 .companion-card .feature-icon {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     margin-bottom: var(--space-2);
 }
 
@@ -499,7 +499,7 @@ main .companions-grid {
 }
 
 .companion-card .price-main {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 700;
     color: var(--accent-blue);
     margin-bottom: var(--space-1);
@@ -672,7 +672,7 @@ main .companions-grid {
 .hero-content {
     display: flex;
     align-items: center;
-    gap: var(--space-8);
+    gap: var(--space-2);
     max-width: 800px;
     margin: 0 auto;
 }
@@ -684,7 +684,7 @@ main .companions-grid {
     border: 2px solid var(--border-primary);
     object-fit: contain;
     background-color: var(--bg-tertiary);
-    padding: var(--space-4);
+    padding: var(--space-2);
     flex-shrink: 0;
 }
 
@@ -815,7 +815,7 @@ main .companions-grid {
 
 .features-list li {
     background-color: var(--bg-surface);
-    padding: var(--space-4);
+    padding: var(--space-2);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-secondary);
     font-size: 0.875rem;
@@ -881,7 +881,7 @@ main .companions-grid {
 .pros-cons-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-8);
+    gap: var(--space-2);
     margin-top: var(--space-6);
 }
 
@@ -926,7 +926,7 @@ main .companions-grid {
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--space-8);
+    gap: var(--space-2);
     margin-top: var(--space-6);
 }
 
@@ -992,7 +992,7 @@ main .companions-grid {
 .verdict-score {
     display: flex;
     align-items: center;
-    gap: var(--space-8);
+    gap: var(--space-2);
     background-color: var(--bg-surface);
     border: 1px solid var(--border-secondary);
     border-radius: var(--radius-lg);
@@ -1009,7 +1009,7 @@ main .companions-grid {
 }
 
 .verdict-text h3 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     margin-bottom: var(--space-4);
     color: var(--text-primary);
 }
@@ -1210,7 +1210,7 @@ main .companions-grid {
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-8);
+    gap: var(--space-2);
 }
 
 .category-card {
@@ -1277,7 +1277,7 @@ footer {
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-8);
+    gap: var(--space-2);
     margin-bottom: var(--space-12);
 }
 
@@ -1492,33 +1492,21 @@ footer {
     margin: 0;
 }
 
-/* Article Page Styles - Complete Fix */
-main.container {
-    width: 100%;
-    max-width: 100%;
-    padding: 0;
-}
-
+/* Article Page Styles - Simple Clean Design */
 .article-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 100px 20px 40px;
-    display: flex;
-    justify-content: center;
+    padding: 100px 20px 40px 20px;
 }
 
 .article-content {
-    width: 100%;
-    max-width: 900px;
-    background: rgba(26, 26, 26, 0.95);
-    border-radius: 12px;
-    padding: 40px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    max-width: 800px;
+    margin: 0 auto;
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 8px;
 }
 
 .article-sidebar {
-    display: none; /* Temporarily hidden for cleaner layout */
+    display: none;
 }
 
 .article-sidebar h3 {
@@ -1551,10 +1539,9 @@ main.container {
 }
 
 .article-header {
-    margin-bottom: 30px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    width: 100%;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333;
 }
 
 .breadcrumb {
@@ -1610,25 +1597,24 @@ main.container {
 }
 
 .article-header h1 {
-    font-size: 2rem;
-    line-height: 1.3;
-    margin: 20px 0;
-    color: var(--text-primary);
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin: 15px 0;
+    color: #ffffff;
 }
 
 .article-summary {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
+    font-size: 1rem;
+    color: #b3b3b3;
     line-height: 1.6;
     margin-bottom: 20px;
-    font-weight: 400;
 }
 
 .article-author {
     display: flex;
     align-items: center;
     gap: var(--space-4);
-    padding: var(--space-4);
+    padding: var(--space-2);
     background-color: var(--bg-surface);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-secondary);
@@ -1654,11 +1640,7 @@ main.container {
 .article-body {
     font-size: 1rem;
     line-height: 1.7;
-    color: var(--text-secondary);
-    width: 100%;
-    max-width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    color: #b3b3b3;
 }
 
 .content-section {
@@ -1668,7 +1650,7 @@ main.container {
 .content-section h2 {
     color: var(--text-primary);
     margin: 30px 0 20px;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 600;
 }
 
@@ -1810,7 +1792,7 @@ main.container {
 .article-body p:has(strong:contains("Best For:")),
 .content-section p:has(strong) {
     background-color: var(--bg-surface);
-    padding: var(--space-4);
+    padding: var(--space-2);
     border-radius: var(--radius-md);
     border-left: 4px solid var(--accent-blue);
     margin-bottom: var(--space-8) !important;
@@ -2090,7 +2072,7 @@ main.container {
 
 .category-stats {
     display: flex;
-    gap: var(--space-8);
+    gap: var(--space-2);
     justify-content: center;
 }
 
@@ -2134,7 +2116,7 @@ main.container {
 
 .filters-row {
     display: flex;
-    gap: var(--space-8);
+    gap: var(--space-2);
     align-items: center;
     flex-wrap: wrap;
 }
@@ -2270,7 +2252,7 @@ main.container {
 
 .product-title-section h3 {
     margin: 0 0 var(--space-2) 0;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 700;
 }
 
@@ -2335,7 +2317,7 @@ main.container {
     align-items: flex-start;
     gap: var(--space-3);
     flex: 1;
-    padding: var(--space-4);
+    padding: var(--space-2);
     background-color: var(--bg-tertiary);
     border-radius: var(--radius-lg);
 }
@@ -2349,7 +2331,7 @@ main.container {
 }
 
 .highlight-icon {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     flex-shrink: 0;
 }
 
@@ -2600,7 +2582,7 @@ main.container {
 @media (max-width: 1024px) {
     .main-layout {
         grid-template-columns: 1fr;
-        gap: var(--space-8);
+        gap: var(--space-2);
     }
 
     /* Mobile layout: Categories first, then News */
@@ -2696,7 +2678,7 @@ main.container {
 }
 
 .contact-icon {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     width: 40px;
     height: 40px;
     display: flex;
@@ -2771,7 +2753,7 @@ main.container {
     display: flex;
     align-items: center;
     gap: var(--space-3);
-    padding: var(--space-4);
+    padding: var(--space-2);
     background: var(--bg-surface);
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-lg);
@@ -2786,7 +2768,7 @@ main.container {
 }
 
 .press-kit-icon {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     filter: grayscale(0.3);
 }
 
@@ -2934,7 +2916,7 @@ main.container {
 .faq-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-8);
+    gap: var(--space-2);
 }
 
 .faq-item {
@@ -3003,7 +2985,7 @@ main.container {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        gap: var(--space-8);
+        gap: var(--space-2);
         transition: left 0.3s ease;
         z-index: 999999;
         overflow-y: auto;
@@ -3040,14 +3022,14 @@ main.container {
     }
 
     .mobile-menu-logo span {
-        font-size: 1.5rem;
+        font-size: 1.125rem;
         font-weight: 600;
         color: var(--text-primary);
     }
 
     .nav-menu li a {
-        font-size: 1.5rem;
-        padding: var(--space-4);
+        font-size: 1.125rem;
+        padding: var(--space-2);
     }
     
     .hero {
@@ -3137,9 +3119,13 @@ main.container {
     
     .companion-card .product-badge {
         position: absolute;
-        top: var(--space-3);
-        right: var(--space-3);
+        top: var(--space-2);
+        right: var(--space-2);
         margin-bottom: 0;
+        font-size: 0.65rem;
+        padding: var(--space-1) var(--space-2);
+        z-index: 10;
+        line-height: 1;
     }
     
     /* Ensure main layout stacks properly on mobile */
@@ -3277,7 +3263,7 @@ main.container {
     /* Contact Page Mobile */
     .contact-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-8);
+        gap: var(--space-2);
     }
     
     .contact-info {
@@ -3294,12 +3280,12 @@ main.container {
 
     /* Article Mobile Responsiveness */
     .article-container {
-        padding: 100px 15px 30px;
+        padding: 90px 15px 30px;
     }
 
     .article-content {
-        padding: 25px 20px;
-        border-radius: 8px;
+        padding: 20px;
+        border-radius: 0;
     }
 
     .article-sidebar {
@@ -3346,7 +3332,7 @@ main.container {
     }
 
     .article-body h2 {
-        font-size: 1.5rem;
+        font-size: 1.125rem;
         margin-top: var(--space-8);
         margin-bottom: var(--space-4);
         line-height: 1.3;
@@ -3392,7 +3378,7 @@ main.container {
 
     .article-body blockquote {
         margin: var(--space-6) 0;
-        padding: var(--space-4);
+        padding: var(--space-2);
         font-size: 1.05rem;
         line-height: 1.7;
     }
@@ -3400,7 +3386,7 @@ main.container {
     /* Article Components Mobile */
     .custom-toc {
         margin: var(--space-6) 0;
-        padding: var(--space-4);
+        padding: var(--space-2);
         font-size: 0.9rem;
     }
 
@@ -3416,7 +3402,7 @@ main.container {
 
     .highlight-box, .pro-tip, .important-note {
         margin: var(--space-6) 0;
-        padding: var(--space-4);
+        padding: var(--space-2);
         font-size: 1rem;
         line-height: 1.65;
     }
@@ -3428,7 +3414,7 @@ main.container {
 
     .example-box {
         margin: var(--space-6) 0;
-        padding: var(--space-4);
+        padding: var(--space-2);
         font-size: 0.9rem;
     }
 
@@ -3474,7 +3460,7 @@ main.container {
 
     .faq-item {
         margin-bottom: var(--space-6);
-        padding: var(--space-4);
+        padding: var(--space-2);
     }
 
     .faq-item h3 {
@@ -3530,7 +3516,7 @@ main.container {
         display: block;
         width: 100%;
         margin-bottom: var(--space-3);
-        padding: var(--space-4);
+        padding: var(--space-2);
         font-size: 0.95rem;
         text-align: center;
     }
@@ -3564,7 +3550,7 @@ main.container {
     }
 
     .article-header h1 {
-        font-size: 1.5rem;
+        font-size: 1.125rem;
         line-height: 1.2;
     }
 
@@ -3594,12 +3580,12 @@ main.container {
     }
 
     .verdict-box {
-        padding: var(--space-4);
+        padding: var(--space-2);
         margin: var(--space-6) 0;
     }
 
     .cta-box {
-        padding: var(--space-4);
+        padding: var(--space-2);
         margin: var(--space-6) 0;
     }
 
@@ -3876,11 +3862,11 @@ main.container {
     }
     
     .review-form-container {
-        padding: var(--space-4);
+        padding: var(--space-2);
     }
     
     .user-reviews {
-        padding: var(--space-4);
+        padding: var(--space-2);
     }
 }
 
@@ -3972,7 +3958,7 @@ main.container {
 
 .stat-item {
     text-align: center;
-    padding: var(--space-4);
+    padding: var(--space-2);
     background: var(--bg-tertiary);
     border-radius: var(--radius-md);
     border: 1px solid var(--border-secondary);
@@ -4021,7 +4007,7 @@ main.container {
     .market-stats {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--space-4);
-        padding: var(--space-4);
+        padding: var(--space-2);
     }
     
     .stat-number {
