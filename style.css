@@ -2066,9 +2066,9 @@ footer {
 }
 
 .category-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
     margin-bottom: var(--space-16);
 }
 
