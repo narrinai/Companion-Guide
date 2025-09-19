@@ -10,7 +10,7 @@ body:has(.article-hero) {
     padding-top: 60px;
 }
 
-/* Force consistent header design across all devices */
+/* Force mobile-style header design on all devices for article pages */
 body:has(.article-hero) header {
     position: fixed !important;
     top: 0;
@@ -23,18 +23,23 @@ body:has(.article-hero) header {
     backdrop-filter: none !important;
 }
 
+/* Mobile-style navigation layout */
 body:has(.article-hero) header nav {
     height: 60px !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: space-between !important;
+    justify-content: center !important;
     padding: 0 var(--space-4) !important;
-    max-width: 1200px;
-    margin: 0 auto;
+    position: relative !important;
 }
 
+/* Center the logo/title like mobile */
 body:has(.article-hero) header h1 {
     margin: 0 !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
 }
 
 body:has(.article-hero) header h1 a {
@@ -47,32 +52,18 @@ body:has(.article-hero) header h1 a {
     font-weight: 600 !important;
 }
 
-/* Hide desktop navigation on article pages to match mobile design */
+/* Hide desktop navigation completely */
 body:has(.article-hero) .nav-menu {
     display: none !important;
 }
 
-/* Show only hamburger menu and logo like mobile */
+/* Show hamburger menu on all devices for article pages */
 body:has(.article-hero) .hamburger {
     display: block !important;
-}
-
-/* Override desktop nav styles completely */
-body:has(.article-hero) header nav {
-    height: 60px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding: 0 var(--space-4) !important;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Center the logo/title */
-body:has(.article-hero) header h1 {
-    margin: 0 !important;
-    flex: 1;
-    text-align: center;
+    position: absolute !important;
+    right: var(--space-4) !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
 }
 
 /* Nav menu stays hidden on desktop for article pages */
