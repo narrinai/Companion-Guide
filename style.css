@@ -80,7 +80,7 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     position: relative;
-    padding-top: 80px;
+    padding-top: 60px;
 }
 
 /* Typography */
@@ -127,7 +127,7 @@ header {
     left: 0 !important;
     right: 0 !important;
     width: 100vw !important;
-    height: 80px !important;
+    height: 60px !important;
     z-index: 9999 !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -142,9 +142,9 @@ nav {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    padding: 1rem 2rem !important;
+    padding: 0.5rem 2rem !important;
     visibility: visible !important;
-    height: 80px !important;
+    height: 60px !important;
     max-width: 1200px !important;
     margin: 0 auto !important;
     width: 100% !important;
@@ -2861,7 +2861,7 @@ footer {
         -webkit-overflow-scrolling: touch;
         overflow-x: hidden;
         min-height: 100vh;
-        padding-top: 70px;
+        padding-top: 60px;
     }
 
     header {
@@ -3448,7 +3448,7 @@ footer {
 
     body {
         -webkit-overflow-scrolling: touch;
-        padding-top: 65px;
+        padding-top: 60px;
     }
 
     .container {
