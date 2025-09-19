@@ -1492,20 +1492,29 @@ footer {
     margin: 0;
 }
 
-/* Article Page Styles - Redesigned */
+/* Article Page Styles - Complete Fix */
+main.container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+}
+
 .article-container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 120px 20px 40px;
+    padding: 100px 20px 40px;
+    display: flex;
+    justify-content: center;
 }
 
 .article-content {
-    max-width: 800px;
-    margin: 0 auto;
-    background: var(--bg-secondary);
+    width: 100%;
+    max-width: 900px;
+    background: rgba(26, 26, 26, 0.95);
     border-radius: 12px;
     padding: 40px;
-    border: 1px solid var(--border-primary);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .article-sidebar {
@@ -1544,7 +1553,8 @@ footer {
 .article-header {
     margin-bottom: 30px;
     padding-bottom: 30px;
-    border-bottom: 1px solid var(--border-primary);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    width: 100%;
 }
 
 .breadcrumb {
@@ -1642,9 +1652,13 @@ footer {
 }
 
 .article-body {
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.7;
     color: var(--text-secondary);
+    width: 100%;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .content-section {
@@ -1729,6 +1743,32 @@ footer {
 
 .custom-toc a:hover {
     color: var(--accent-blue);
+}
+
+/* Highlight boxes and special content */
+.highlight-box {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.highlight-box h3 {
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.highlight-box ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.highlight-box li {
+    margin-bottom: 10px;
+    color: var(--text-secondary);
 }
 
 /* Platform Review Entries in Articles */
