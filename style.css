@@ -81,7 +81,7 @@ body {
     overflow-y: auto;
     min-height: 100vh;
     position: relative;
-    padding-top: 80px;
+    padding-top: 100px;
 }
 
 /* Typography */
@@ -218,7 +218,7 @@ header .nav-menu {
     }
 
     header .nav-menu li a {
-        font-size: 2rem !important;
+        font-size: 1.75rem !important;
         padding: var(--space-4) !important;
         font-weight: 500 !important;
         color: white !important;
@@ -1553,7 +1553,7 @@ footer {
 .article-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 100px 20px 40px;
+    padding: 20px 20px 40px;
 }
 
 .article-content {
@@ -1744,7 +1744,7 @@ footer {
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .article-container {
-        padding: 90px 15px 30px;
+        padding: 20px 15px 30px;
     }
 
     .article-content {
@@ -1772,7 +1772,7 @@ footer {
 
 @media (max-width: 480px) {
     .article-container {
-        padding: 85px 10px 20px;
+        padding: 20px 10px 20px;
     }
 
     .article-header h1 {
@@ -3377,7 +3377,7 @@ footer {
 
     /* Article Mobile Responsiveness */
     .article-container {
-        padding: 90px 15px 30px;
+        padding: 20px 15px 30px;
     }
 
     .article-content {
@@ -3639,7 +3639,7 @@ footer {
     }
 
     .article-container {
-        padding: 90px 10px 20px;
+        padding: 20px 10px 20px;
     }
 
     .article-content {
