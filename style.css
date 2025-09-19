@@ -3002,15 +3002,16 @@ footer {
     }
 
     .mobile-menu-logo span {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         font-weight: 600;
         color: var(--text-primary);
     }
 
     .nav-menu li a {
-        font-size: 1.25rem;
-        padding: var(--space-4);
+        font-size: 1.75rem;
+        padding: var(--space-6);
         font-weight: 500;
+        letter-spacing: 0.3px;
     }
     
     .hero {
@@ -3045,8 +3046,8 @@ footer {
     }
     
     .product-logo {
-        width: 75px !important;
-        height: 75px !important;
+        width: 90px !important;
+        height: 90px !important;
         object-fit: contain;
         background-color: var(--bg-tertiary);
         padding: var(--space-2);
