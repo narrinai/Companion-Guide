@@ -161,6 +161,21 @@ body:has(.article-hero) header h1 a {
     border-bottom-color: var(--accent-blue);
 }
 
+/* Hero Image */
+.hero-image {
+    margin-top: var(--space-8);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-xl);
+}
+
 /* Article Stats */
 .article-stats {
     display: grid;
