@@ -10,39 +10,69 @@ body:has(.article-hero) {
     padding-top: 60px;
 }
 
+/* Force consistent header design across all devices */
 body:has(.article-hero) header {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    background: var(--bg-primary);
+    background: var(--bg-primary) !important;
     border-bottom: 1px solid var(--border-primary);
-    height: 60px;
+    height: 60px !important;
+    backdrop-filter: none !important;
 }
 
 body:has(.article-hero) header nav {
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 var(--space-4);
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 var(--space-4) !important;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 body:has(.article-hero) header h1 {
-    margin: 0;
+    margin: 0 !important;
 }
 
 body:has(.article-hero) header h1 a {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--text-primary);
-    text-decoration: none;
-    font-size: 1.125rem;
-    font-weight: 600;
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--space-2) !important;
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+}
+
+body:has(.article-hero) .nav-menu {
+    display: flex !important;
+    position: static !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    flex-direction: row !important;
+    height: auto !important;
+    width: auto !important;
+}
+
+body:has(.article-hero) .nav-menu li {
+    margin: 0 !important;
+}
+
+body:has(.article-hero) .nav-menu li a {
+    font-size: 0.9rem !important;
+    padding: var(--space-2) var(--space-4) !important;
+    color: var(--text-secondary) !important;
+}
+
+body:has(.article-hero) .nav-menu li a.active {
+    color: var(--accent-blue) !important;
+}
+
+body:has(.article-hero) .hamburger {
+    display: none !important;
 }
 
 /* Article Hero Section */

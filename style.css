@@ -214,7 +214,7 @@ header .nav-menu {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        margin: var(--space-3) 0 !important;
+        margin: var(--space-1) 0 !important;
     }
 
     header .nav-menu li a {
