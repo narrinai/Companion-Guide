@@ -223,19 +223,19 @@ nav a:hover {
 
 .az-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-6);
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-4);
 }
 
 .az-column h3 {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--accent-blue);
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-2);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border-bottom: 1px solid var(--border-primary);
-    padding-bottom: var(--space-2);
+    padding-bottom: var(--space-1);
 }
 
 .az-column ul {
@@ -245,13 +245,13 @@ nav a:hover {
 }
 
 .az-column li {
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-1);
 }
 
 .az-column a {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     transition: color 0.2s ease;
 }
 
