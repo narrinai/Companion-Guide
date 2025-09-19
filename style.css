@@ -120,22 +120,26 @@ a:hover {
 
 /* Header */
 header {
-    background-color: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-primary);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+    background-color: var(--bg-secondary) !important;
+    border-bottom: 1px solid var(--border-primary) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    display: block !important;
+    visibility: visible !important;
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--space-4) 0;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: var(--space-4) 0 !important;
+    visibility: visible !important;
 }
 
 nav h1 {
@@ -158,9 +162,12 @@ nav h1 a:hover {
 }
 
 .nav-menu {
-    display: flex;
-    list-style: none;
-    gap: var(--space-8);
+    display: flex !important;
+    list-style: none !important;
+    gap: var(--space-8) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    visibility: visible !important;
 }
 
 /* Hide mobile menu elements on desktop */
@@ -2092,12 +2099,10 @@ footer {
 
 .companion-product-card.leader {
     border-color: var(--accent-blue);
-    background-color: rgba(59, 130, 246, 0.03);
 }
 
 .companion-product-card.high-performer {
     border-color: var(--accent-purple);
-    background-color: rgba(139, 92, 246, 0.03);
 }
 
 .product-badge {
@@ -2119,6 +2124,7 @@ footer {
     display: flex;
     gap: var(--space-4);
     margin-bottom: var(--space-6);
+    align-items: center;
 }
 
 .product-logo {
