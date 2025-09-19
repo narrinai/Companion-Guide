@@ -77,11 +77,9 @@ body:has(.article-hero) header h1 a {
 
 .article-meta-top {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     margin-bottom: var(--space-8);
-    flex-wrap: wrap;
-    gap: var(--space-4);
 }
 
 .breadcrumb-nav {
