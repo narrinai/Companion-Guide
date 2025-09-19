@@ -267,6 +267,12 @@ header nav a.active {
     color: #4f9eff !important;
 }
 
+/* Main content positioning */
+main {
+    position: relative;
+    z-index: 1;
+}
+
 /* Hero Section */
 .hero {
     text-align: center;
@@ -2984,20 +2990,29 @@ footer {
         -webkit-overflow-scrolling: touch;
         overflow-x: hidden;
         min-height: 100vh;
-        padding-top: 45px;
+        padding-top: 100px;
     }
 
     header {
-        position: fixed;
-        top: 0;
+        position: fixed !important;
+        top: 0 !important;
+        z-index: 9999999 !important;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
+        background-color: #1a1a1a !important;
+        height: 80px !important;
+        width: 100vw !important;
     }
 
     .container {
         padding: 0 var(--space-4);
         max-width: 100%;
         overflow-x: hidden;
+    }
+
+    main {
+        position: relative !important;
+        z-index: 1 !important;
     }
     
     nav {
@@ -3631,7 +3646,7 @@ footer {
 
     body {
         -webkit-overflow-scrolling: touch;
-        padding-top: 45px;
+        padding-top: 100px;
     }
 
     .container {
