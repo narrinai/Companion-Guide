@@ -103,7 +103,7 @@ body:has(.article-hero) .nav-menu {
 .article-hero {
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
     border-bottom: 1px solid var(--border-primary);
-    padding: var(--space-16) 0 var(--space-12) 0;
+    padding: var(--space-6) 0 var(--space-12) 0;
     position: relative;
     overflow: hidden;
 }
@@ -138,7 +138,7 @@ body:has(.article-hero) .nav-menu {
     .hero-content {
         max-width: 1000px;
         gap: var(--space-8);
-        padding: var(--space-16) var(--space-6);
+        padding: var(--space-8) var(--space-6);
     }
 
     .hero-title {

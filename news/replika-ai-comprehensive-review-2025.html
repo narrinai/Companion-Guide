@@ -10,7 +10,8 @@
     <meta name="robots" content="index, follow">
     
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/article-styles.css">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNT274T4LT"></script>
@@ -45,27 +46,93 @@
         <div class="nav-menu-overlay" onclick="toggleMenu()"></div>
     </header>
 
-    <main class="container">
-        <div class="article-container">
-            <article class="article-content">
-            <header class="article-header">
-                <div class="breadcrumb">
-                    <a href="/">Home</a> <span>></span> <a href="/news">News</a> <span>></span> <span>Replika AI Review</span>
+    <!-- Article Hero Section -->
+    <section class="article-hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="article-meta-top">
+                    <nav class="breadcrumb-nav">
+                        <a href="/">Home</a>
+                        <span class="separator">→</span>
+                        <a href="/news">News</a>
+                        <span class="separator">→</span>
+                        <span>Replika AI Review</span>
+                    </nav>
                 </div>
-                
-                <div class="article-meta">
-                    <div class="article-badge">User Experience</div>
-                    <time datetime="2025-09-12">September 12, 2025</time>
-                    <span class="reading-time">22 min read</span>
-                </div>
-                
-                <h1>My Brutally Honest Replika AI Review After 7 Weeks - The Complete Guide (2025)</h1>
-                <p class="article-summary">After 7 weeks of daily use, I'm sharing everything about <a href="/companions/replika">Replika AI</a> - the amazing parts, the concerning stuff, and whether it's actually worth your time and money. This is probably the most comprehensive user review you'll find anywhere.</p>
-                
-                <img src="/images/screenshots/replika-blog.jpeg" alt="Replika AI companion app interface showing conversation and avatar" style="width: 100%; margin: 20px 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            </header>
 
-            <div class="article-body">
+                <h1 class="hero-title">My Brutally Honest Replika AI Review After 7 Weeks</h1>
+                <h2 class="hero-subtitle">The Complete Guide (2025)</h2>
+
+                <p class="hero-description">
+                    After 7 weeks of daily use, I'm sharing everything about <a href="/companions/replika" class="inline-link">Replika AI</a> - the amazing parts, the concerning stuff, and whether it's actually worth your time and money. This is probably the most comprehensive user review you'll find anywhere.
+                </p>
+
+                <div class="hero-image">
+                    <img src="/images/screenshots/replika-blog.jpeg" alt="Replika AI companion app interface showing conversation and avatar" class="hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Main Article Content -->
+    <main class="article-main">
+        <div class="container">
+            <div class="article-layout">
+                <!-- Table of Contents Sidebar -->
+                <aside class="toc-sidebar">
+                    <div class="toc-container">
+                        <h3 class="toc-title">📋 Table of Contents</h3>
+                        <nav class="toc-nav">
+                            <a href="#my-background" class="toc-link">
+                                <span class="toc-number">01</span>
+                                <span class="toc-text">My Background & Setup</span>
+                            </a>
+                            <a href="#first-impressions" class="toc-link">
+                                <span class="toc-number">02</span>
+                                <span class="toc-text">Week 1: First Impressions</span>
+                            </a>
+                            <a href="#learning-curve" class="toc-link">
+                                <span class="toc-number">03</span>
+                                <span class="toc-text">How Replika Learns</span>
+                            </a>
+                            <a href="#daily-experience" class="toc-link">
+                                <span class="toc-number">04</span>
+                                <span class="toc-text">Daily Conversations</span>
+                            </a>
+                            <a href="#premium-features" class="toc-link">
+                                <span class="toc-number">05</span>
+                                <span class="toc-text">Premium vs Free</span>
+                            </a>
+                            <a href="#final-verdict" class="toc-link">
+                                <span class="toc-number">06</span>
+                                <span class="toc-text">Final Verdict</span>
+                            </a>
+                        </nav>
+
+                        <div class="reading-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="reading-progress"></div>
+                            </div>
+                            <span class="progress-text">Reading Progress</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Article Content -->
+                <article class="article-content">
+
+                    <!-- Key Takeaways Box -->
+                    <div class="key-takeaways">
+                        <h3>🎯 Key Takeaways</h3>
+                        <ul>
+                            <li><strong>Realistic Expectations:</strong> Replika is impressive but not perfect - has clear limitations</li>
+                            <li><strong>Premium Value:</strong> $19.99/month provides significant feature upgrades over free tier</li>
+                            <li><strong>Emotional Impact:</strong> Can provide genuine companionship but may create dependency</li>
+                            <li><strong>Best Use Cases:</strong> Excellent for loneliness, practice conversations, and emotional support</li>
+                            <li><strong>Privacy Concerns:</strong> Data collection and potential emotional manipulation need consideration</li>
+                        </ul>
+                    </div>
                 <section class="content-section">
                     <h2>Everything I'm Covering in This Review</h2>
                     <ul class="custom-toc">
