@@ -163,7 +163,6 @@ body:has(.article-hero) .nav-menu {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    order: 1;
 }
 
 .breadcrumb-nav {
@@ -211,7 +210,6 @@ body:has(.article-hero) .nav-menu {
     line-height: 1.1;
     color: var(--text-primary);
     letter-spacing: -0.025em;
-    order: 2;
 }
 
 .hero-subtitle {
@@ -219,7 +217,6 @@ body:has(.article-hero) .nav-menu {
     font-weight: 600;
     color: var(--accent-blue);
     letter-spacing: -0.01em;
-    order: 3;
 }
 
 .hero-description {
@@ -227,7 +224,6 @@ body:has(.article-hero) .nav-menu {
     line-height: 1.7;
     color: var(--text-secondary);
     max-width: 700px;
-    order: 4;
 }
 
 .inline-link {
@@ -246,7 +242,6 @@ body:has(.article-hero) .nav-menu {
     border-radius: var(--radius-xl);
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    order: 5;
 }
 
 .hero-img {
