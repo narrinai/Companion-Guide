@@ -118,42 +118,54 @@ a:hover {
     padding: 0 var(--space-6);
 }
 
-/* Header */
+/* Header - Force visibility */
 header {
-    background-color: var(--bg-secondary) !important;
-    border-bottom: 1px solid var(--border-primary) !important;
+    background-color: #1a1a1a !important;
+    border-bottom: 1px solid #333 !important;
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    width: 100% !important;
-    z-index: 1000 !important;
+    width: 100vw !important;
+    height: 80px !important;
+    z-index: 9999 !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: block !important;
     visibility: visible !important;
+    opacity: 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 nav {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    padding: var(--space-4) 0 !important;
+    padding: 1rem 2rem !important;
     visibility: visible !important;
+    height: 80px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
 }
 
 nav h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0;
-    color: var(--text-primary);
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    color: white !important;
+    display: block !important;
+    visibility: visible !important;
 }
 
 nav h1 a {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--text-primary);
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    color: white !important;
+    text-decoration: none !important;
+    visibility: visible !important;
     transition: color 0.2s ease;
 }
 
@@ -164,10 +176,11 @@ nav h1 a:hover {
 .nav-menu {
     display: flex !important;
     list-style: none !important;
-    gap: var(--space-8) !important;
+    gap: 2rem !important;
     margin: 0 !important;
     padding: 0 !important;
     visibility: visible !important;
+    opacity: 1 !important;
 }
 
 /* Hide mobile menu elements on desktop */
@@ -176,17 +189,24 @@ nav h1 a:hover {
 }
 
 nav a {
-    color: var(--text-secondary);
-    font-weight: 500;
-    font-size: 0.875rem;
-    padding: var(--space-2) var(--space-3);
-    border-radius: var(--radius-md);
+    color: #ccc !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 4px !important;
     transition: all 0.2s ease;
+    text-decoration: none !important;
+    display: inline-block !important;
+    visibility: visible !important;
 }
 
 nav a:hover {
-    color: var(--text-primary);
-    background-color: var(--bg-tertiary);
+    color: white !important;
+    background-color: rgba(255,255,255,0.1) !important;
+}
+
+nav a.active {
+    color: #4f9eff !important;
 }
 
 /* Hero Section */
