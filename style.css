@@ -78,9 +78,10 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    overflow-y: auto;
     min-height: 100vh;
     position: relative;
-    padding-top: 60px;
+    padding-top: 80px;
 }
 
 /* Typography */
@@ -1494,8 +1495,8 @@ footer {
 /* Article Page Styles */
 .article-container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--space-8) 0;
+    margin: 100px auto 0;
+    padding: var(--space-8) var(--space-6);
     display: grid;
     grid-template-columns: 1fr 300px;
     gap: var(--space-8);
@@ -1505,6 +1506,8 @@ footer {
 .article-content {
     -webkit-overflow-scrolling: touch;
     overflow-y: auto;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .article-sidebar {
@@ -3210,8 +3213,9 @@ footer {
     /* Article Mobile Responsiveness */
     .article-container {
         grid-template-columns: 1fr;
-        padding: var(--space-4) 0;
+        padding: var(--space-4) var(--space-4);
         gap: var(--space-6);
+        margin-top: 100px;
     }
 
     .article-content {
@@ -3477,8 +3481,9 @@ footer {
     }
 
     .article-container {
-        padding: var(--space-3) 0;
+        padding: var(--space-3) var(--space-3);
         gap: var(--space-4);
+        margin-top: 100px;
     }
 
     .article-content {
