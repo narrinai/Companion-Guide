@@ -1978,7 +1978,7 @@ footer {
 
 /* Category Pages G2-Style */
 .category-hero-section {
-    padding: var(--space-16) 0 var(--space-12) 0;
+    padding: var(--space-8) 0 var(--space-12) 0;
     background-color: var(--bg-secondary);
     border-radius: var(--radius-2xl);
     margin-bottom: var(--space-12);
@@ -3217,6 +3217,28 @@ footer {
     
     .product-title-section {
         padding-right: 0;
+        text-align: center;
+    }
+
+    .companion-product-card .product-description {
+        text-align: center;
+    }
+
+    .companion-product-card .product-tagline {
+        text-align: center;
+    }
+
+    .companion-product-card .product-pricing {
+        text-align: center;
+    }
+
+    .companion-product-card .product-content {
+        text-align: center;
+    }
+
+    .category-hero-section {
+        padding: var(--space-4) 0 var(--space-8) 0;
+        margin-bottom: var(--space-8);
     }
     
     .product-highlights {
