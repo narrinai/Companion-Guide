@@ -366,10 +366,26 @@ nav a.active {
 }
 
 /* Companion Cards */
+main .companions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    box-sizing: border-box;
+    min-height: auto;
+    position: relative;
+}
+
 .companions-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-6);
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    box-sizing: border-box;
 }
 
 .companion-card {
@@ -379,6 +395,11 @@ nav a.active {
     padding: var(--space-6);
     transition: all 0.2s ease;
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
 }
 
 .companion-card .card-header {
