@@ -341,8 +341,8 @@ nav a:hover {
 /* Companion Cards */
 .companions-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
 }
 
 .companion-card {
@@ -1507,14 +1507,26 @@ footer {
     font-size: 0.875rem;
     color: var(--text-muted);
     margin-bottom: var(--space-6);
+    background-color: var(--bg-secondary);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-primary);
 }
 
 .breadcrumb a {
     color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+    color: #60a5fa;
+    text-decoration: underline;
 }
 
 .breadcrumb span {
     margin: 0 var(--space-2);
+    color: var(--text-dim);
 }
 
 .article-meta {
