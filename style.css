@@ -2446,6 +2446,31 @@ footer {
     visibility: visible;
 }
 
+/* Desktop Navigation */
+@media (min-width: 769px) {
+    .nav-menu {
+        display: flex !important;
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        background-color: transparent !important;
+        backdrop-filter: none !important;
+        flex-direction: row !important;
+        justify-content: flex-end !important;
+        align-items: center !important;
+        gap: var(--space-8) !important;
+        transition: none !important;
+        z-index: auto !important;
+        overflow-y: visible !important;
+        left: auto !important;
+        visibility: visible !important;
+    }
+
+    .hamburger {
+        display: none !important;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .main-layout {
