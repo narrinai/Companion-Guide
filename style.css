@@ -218,7 +218,7 @@ header .nav-menu {
     }
 
     header .nav-menu li a {
-        font-size: 1.75rem !important;
+        font-size: 1.5rem !important;
         padding: var(--space-4) !important;
         font-weight: 500 !important;
         color: white !important;
