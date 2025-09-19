@@ -59,6 +59,7 @@
                 <li><a href="/contact" class="active">Contact</a></li>
             </ul>
         </nav>
+        <div class="nav-menu-overlay" onclick="toggleMenu()"></div>
     </header>
 
     <main class="container">
@@ -97,9 +98,9 @@
                             <li>Technical questions about AI companions</li>
                             <li>Media inquiries and interviews</li>
                         </ul>
-                    </li>
+                    </div>
 
-                </li>
+                </div>
 
                 <div class="contact-form-section">
                     <h2>Send us a Message</h2>
@@ -110,17 +111,17 @@
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required>
-                        </li>
+                        </div>
 
                         <div class="form-group">
                             <label for="email">Email Address</label>
                             <input type="email" id="email" name="email" required>
-                        </li>
+                        </div>
 
                         <div class="form-group">
                             <label for="company">Company/Organization (Optional)</label>
                             <input type="text" id="company" name="company">
-                        </li>
+                        </div>
 
                         <div class="form-group">
                             <label for="subject">Subject</label>
@@ -134,34 +135,34 @@
                                 <option value="technical">Technical Question</option>
                                 <option value="other">Other</option>
                             </select>
-                        </li>
+                        </div>
 
                         <div class="form-group">
                             <label for="message">Message</label>
                             <textarea id="message" name="message" rows="6" required placeholder="Tell us more about your inquiry..."></textarea>
-                        </li>
+                        </div>
 
                         <div class="form-group checkbox-group">
                             <input type="checkbox" id="newsletter" name="newsletter" value="yes">
                             <label for="newsletter">Subscribe to our newsletter for AI companion updates and insights</label>
-                        </li>
+                        </div>
 
                         <button type="submit" class="btn-primary">Send Message</button>
                     </form>
 
                     <div class="form-success" id="formSuccess" style="display: none;">
-                        <div class="success-icon">✅</li>
+                        <div class="success-icon">✅</div>
                         <h3>Message Sent Successfully!</h3>
                         <p>Thank you for reaching out. We'll get back to you within 24-48 hours.</p>
-                    </li>
+                    </div>
 
                     <div class="form-error" id="formError" style="display: none;">
-                        <div class="error-icon">❌</li>
+                        <div class="error-icon">❌</div>
                         <h3>Something went wrong</h3>
                         <p>Please try again later</p>
-                    </li>
-                </li>
-            </li>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="faq-section">
@@ -170,20 +171,20 @@
                 <div class="faq-item">
                     <h3>How do you select platforms to review?</h3>
                     <p>We evaluate AI companion platforms based on user popularity, feature innovation, and community feedback. We prioritize platforms that offer unique value to users.</p>
-                </li>
+                </div>
                 <div class="faq-item">
                     <h3>Can I request a review of a specific platform?</h3>
                     <p>Absolutely! Use the contact form above with the subject "Review Request" and tell us about the platform you'd like us to review.</p>
-                </li>
+                </div>
                 <div class="faq-item">
                     <h3>Do you offer partnership opportunities?</h3>
                     <p>Yes, we're open to partnerships with AI companion platforms, developers, and industry experts. Contact us with your partnership proposal.</p>
-                </li>
+                </div>
                 <div class="faq-item">
                     <h3>How often do you update your reviews?</h3>
                     <p>We regularly update our reviews to reflect platform changes, new features, and evolving user experiences. Major updates are reviewed quarterly.</p>
-                </li>
-            </li>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -193,7 +194,7 @@
                 <div class="footer-section">
                     <h4>Companion Guide</h4>
                     <p>Your trusted source for AI companion reviews and guides</p>
-                </li>
+                </div>
                 <div class="footer-section">
                     <h4>Navigation</h4>
                     <ul>
@@ -204,7 +205,7 @@
                         <li><a href="/companions-az">Companions A-Z</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>
-                </li>
+                </div>
                 <div class="footer-section">
                     <h4>Featured Links</h4>
                     <ul>
@@ -217,12 +218,12 @@
                         <li><a href="/news/character-ai-complete-guide-2025">Character AI Review Guide</a></li>
                         <li><a href="/news/replika-ai-comprehensive-review-2025">Replika Complete Guide</a></li>
                     </ul>
-                </li>
-            </li>
+                </div>
+            </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Companion Guide. All rights reserved.</p>
-            </li>
-        </li>
+            </div>
+        </div>
     </footer>
 
     <script src="script.js"></script>
