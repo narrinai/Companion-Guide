@@ -47,33 +47,35 @@ body:has(.article-hero) header h1 a {
     font-weight: 600 !important;
 }
 
+/* Hide desktop navigation on article pages to match mobile design */
 body:has(.article-hero) .nav-menu {
-    display: flex !important;
-    position: static !important;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    flex-direction: row !important;
-    height: auto !important;
-    width: auto !important;
-}
-
-body:has(.article-hero) .nav-menu li {
-    margin: 0 !important;
-}
-
-body:has(.article-hero) .nav-menu li a {
-    font-size: 0.9rem !important;
-    padding: var(--space-2) var(--space-4) !important;
-    color: var(--text-secondary) !important;
-}
-
-body:has(.article-hero) .nav-menu li a.active {
-    color: var(--accent-blue) !important;
-}
-
-body:has(.article-hero) .hamburger {
     display: none !important;
 }
+
+/* Show only hamburger menu and logo like mobile */
+body:has(.article-hero) .hamburger {
+    display: block !important;
+}
+
+/* Override desktop nav styles completely */
+body:has(.article-hero) header nav {
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 var(--space-4) !important;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Center the logo/title */
+body:has(.article-hero) header h1 {
+    margin: 0 !important;
+    flex: 1;
+    text-align: center;
+}
+
+/* Nav menu stays hidden on desktop for article pages */
 
 /* Article Hero Section */
 .article-hero {
