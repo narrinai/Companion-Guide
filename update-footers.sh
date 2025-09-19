@@ -1,30 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productivity AI Companions - Redirecting to Categories</title>
-    <meta name="robots" content="noindex, follow">
-    <link rel="canonical" href="https://companionguide.ai/categories">
-    
-    <!-- Redirect after 0 seconds -->
-    <meta http-equiv="refresh" content="0;url=/categories">
-    
-    <script>
-        // JavaScript redirect as backup
-        window.location.replace('/categories');
-    </script>
-</head>
-<body>
-    <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
-        <h1>Redirecting...</h1>
-        <p>Productivity AI companions category has been reorganized.</p>
-        <p>You are being redirected to our <a href="/categories">categories page</a>.</p>
-        <p>If you are not redirected automatically, <a href="/categories">click here</a>.</p>
-    </div>
-</body>
-</html>
-    <footer>
+#!/bin/bash
+
+# Footer content to replace with
+footer_content='    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -68,8 +45,29 @@
                 <p>&copy; 2025 Companion Guide. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+    </footer>'
 
-    <script src="../script.js"></script>
-</body>
-</html>
+# Process each HTML file in categories folder
+for file in categories/*.html; do
+    echo "Updating footer in: $(basename $file)"
+
+    # Create a temporary file
+    temp_file="${file}.tmp"
+
+    # Extract everything before footer
+    awk '/<footer>/{exit} {print}' "$file" > "$temp_file"
+
+    # Add new footer
+    echo "$footer_content" >> "$temp_file"
+
+    # Add closing tags
+    echo "" >> "$temp_file"
+    echo "    <script src=\"../script.js\"></script>" >> "$temp_file"
+    echo "</body>" >> "$temp_file"
+    echo "</html>" >> "$temp_file"
+
+    # Replace original file
+    mv "$temp_file" "$file"
+done
+
+echo "All category page footers updated!"

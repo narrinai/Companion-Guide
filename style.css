@@ -1492,31 +1492,24 @@ footer {
     margin: 0;
 }
 
-/* Article Page Styles */
+/* Article Page Styles - Redesigned */
 .article-container {
     max-width: 1200px;
-    margin: 100px auto 0;
-    padding: var(--space-8) var(--space-6);
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: var(--space-8);
-    align-items: start;
+    margin: 0 auto;
+    padding: 120px 20px 40px;
 }
 
 .article-content {
-    -webkit-overflow-scrolling: touch;
-    overflow-y: auto;
-    max-width: 100%;
-    overflow-x: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 40px;
+    border: 1px solid var(--border-primary);
 }
 
 .article-sidebar {
-    position: sticky;
-    top: var(--space-8);
-    background: var(--bg-secondary);
-    border-radius: var(--radius-lg);
-    padding: var(--space-6);
-    border: 1px solid var(--border-primary);
+    display: none; /* Temporarily hidden for cleaner layout */
 }
 
 .article-sidebar h3 {
@@ -1549,8 +1542,8 @@ footer {
 }
 
 .article-header {
-    margin-bottom: var(--space-12);
-    padding-bottom: var(--space-8);
+    margin-bottom: 30px;
+    padding-bottom: 30px;
     border-bottom: 1px solid var(--border-primary);
 }
 
@@ -1606,12 +1599,19 @@ footer {
     color: var(--text-muted);
 }
 
+.article-header h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin: 20px 0;
+    color: var(--text-primary);
+}
+
 .article-summary {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: var(--space-8);
-    font-weight: 500;
+    margin-bottom: 20px;
+    font-weight: 400;
 }
 
 .article-author {
@@ -1648,50 +1648,54 @@ footer {
 }
 
 .content-section {
-    margin-bottom: var(--space-16);
+    margin-bottom: 40px;
 }
 
 .content-section h2 {
     color: var(--text-primary);
-    margin-bottom: var(--space-8);
-    margin-top: var(--space-12);
-    font-size: 2.5rem;
-    font-weight: 700;
+    margin: 30px 0 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .content-section h3 {
     color: var(--text-primary);
-    margin-bottom: var(--space-6);
-    margin-top: var(--space-8);
-    font-size: 1.875rem;
+    margin: 25px 0 15px;
+    font-size: 1.25rem;
     font-weight: 600;
 }
 
 .content-section h4 {
     color: var(--text-primary);
-    margin-bottom: var(--space-4);
-    margin-top: var(--space-6);
-    font-size: 1.5rem;
+    margin: 20px 0 10px;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
 .content-section p {
-    margin-bottom: var(--space-6);
-    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-size: 1rem;
     line-height: 1.7;
     color: var(--text-secondary);
 }
 
 .content-section ul, .content-section ol {
-    margin-bottom: var(--space-6);
-    padding-left: var(--space-8);
+    margin: 20px 0;
+    padding-left: 30px;
 }
 
 .content-section li {
-    margin-bottom: var(--space-3);
-    font-size: 0.85rem;
+    margin-bottom: 10px;
+    font-size: 1rem;
     line-height: 1.6;
     color: var(--text-secondary);
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
 }
 
 /* Platform Review Entries in Articles */
@@ -3212,19 +3216,12 @@ footer {
 
     /* Article Mobile Responsiveness */
     .article-container {
-        grid-template-columns: 1fr;
-        padding: var(--space-4) var(--space-4);
-        gap: var(--space-6);
-        margin-top: 100px;
+        padding: 100px 15px 30px;
     }
 
     .article-content {
-        max-width: 100%;
-        padding: 0;
-        margin: 0;
-        -webkit-overflow-scrolling: touch;
-        overflow-y: auto;
-        position: relative;
+        padding: 25px 20px;
+        border-radius: 8px;
     }
 
     .article-sidebar {
@@ -3481,14 +3478,11 @@ footer {
     }
 
     .article-container {
-        padding: var(--space-3) var(--space-3);
-        gap: var(--space-4);
-        margin-top: 100px;
+        padding: 90px 10px 20px;
     }
 
     .article-content {
-        padding: 0;
-        -webkit-overflow-scrolling: touch;
+        padding: 20px 15px;
     }
 
     .article-header h1 {
