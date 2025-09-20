@@ -67,7 +67,7 @@
                 </p>
 
                 <div class="hero-image">
-                    <img src="/images/replika-ftc-complaint.webp" alt="FTC complaint against Replika AI" class="hero-img">
+                    <img src="/images/ai-companion-review.webp" alt="FTC complaint against Replika AI" class="hero-img">
                 </div>
             </div>
         </div>
@@ -78,6 +78,38 @@
     <main class="article-main">
         <div class="container">
             <div class="article-layout">
+                <!-- Table of Contents Sidebar -->
+                <aside class="toc-sidebar">
+                    <div class="toc-container">
+                        <h3 class="toc-title">📋 Table of Contents</h3>
+                        <nav class="toc-nav">
+                            <a href="#ftc-complaint" class="toc-link">
+                                <span class="toc-number">01</span>
+                                <span class="toc-text">FTC Complaint Details</span>
+                            </a>
+                            <a href="#industry-implications" class="toc-link">
+                                <span class="toc-number">02</span>
+                                <span class="toc-text">Industry Implications</span>
+                            </a>
+                            <a href="#regulatory-response" class="toc-link">
+                                <span class="toc-number">03</span>
+                                <span class="toc-text">Regulatory Response</span>
+                            </a>
+                            <a href="#key-takeaways" class="toc-link">
+                                <span class="toc-number">04</span>
+                                <span class="toc-text">Key Takeaways</span>
+                            </a>
+                        </nav>
+
+                        <div class="reading-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="reading-progress"></div>
+                            </div>
+                            <span class="progress-text">Reading Progress</span>
+                        </div>
+                    </div>
+                </aside>
+
                 <!-- Article Content -->
                 <article class="article-content">
 
@@ -91,12 +123,12 @@
                             <li><strong>Consumer Protection:</strong> Highlights need for transparency in AI service marketing</li>
                         </ul>
                     </div>
-                <section class="content-section">
+                <section class="content-section" id="ftc-complaint">
                     <h2>FTC Complaint Details</h2>
                     <p>The Federal Trade Commission has received a formal complaint against Replika, one of the most popular AI companion platforms, alleging deceptive marketing practices in how the company presents its services and capabilities to users.</p>
                 </section>
 
-                <section class="content-section">
+                <section class="content-section" id="industry-implications">
                     <h2>Industry Implications</h2>
                     <p>This complaint highlights growing scrutiny of AI companion platforms and their marketing practices, potentially setting precedents for industry regulation and transparency requirements.</p>
                 </section>
@@ -149,5 +181,30 @@
     </footer>
 
     <script src="../script.js"></script>
+    <script>
+        // Reading progress tracker
+        function updateReadingProgress() {
+            const article = document.querySelector('.article-content');
+            const progressBar = document.getElementById('reading-progress');
+
+            const articleHeight = article.offsetHeight;
+            const articleTop = article.offsetTop;
+            const scrolled = window.scrollY - articleTop;
+            const progress = Math.min(Math.max(scrolled / articleHeight, 0), 1);
+
+            progressBar.style.width = (progress * 100) + '%';
+        }
+
+        window.addEventListener('scroll', updateReadingProgress);
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
 </body>
 </html>

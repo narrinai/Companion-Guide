@@ -82,7 +82,7 @@
                 </p>
 
                 <div class="hero-image">
-                    <img src="/images/screenshots/ai-companion-market-analysis.webp" alt="AI companion market analysis showing growth trends, key players, and revenue projections" class="hero-img">
+                    <img src="/images/ai-companion-review.webp" alt="AI companion market analysis showing growth trends, key players, and revenue projections" class="hero-img">
                 </div>
             </div>
         </div>
@@ -92,35 +92,60 @@
     <main class="article-main">
         <div class="container">
             <div class="article-layout">
-                <!-- Article Content -->
-                <article class="article-content">
+                <!-- Table of Contents Sidebar -->
+                <aside class="toc-sidebar">
+                    <div class="toc-container">
+                        <h3 class="toc-title">📋 Table of Contents</h3>
+                        <nav class="toc-nav">
+                            <a href="#market-size" class="toc-link">
+                                <span class="toc-number">01</span>
+                                <span class="toc-text">Market Size and Growth</span>
+                            </a>
+                            <a href="#market-leaders" class="toc-link">
+                                <span class="toc-number">02</span>
+                                <span class="toc-text">Market Leaders</span>
+                            </a>
+                            <a href="#demographics" class="toc-link">
+                                <span class="toc-number">03</span>
+                                <span class="toc-text">User Demographics</span>
+                            </a>
+                            <a href="#business-models" class="toc-link">
+                                <span class="toc-number">04</span>
+                                <span class="toc-text">Business Models</span>
+                            </a>
+                            <a href="#regional-analysis" class="toc-link">
+                                <span class="toc-number">05</span>
+                                <span class="toc-text">Regional Analysis</span>
+                            </a>
+                            <a href="#key-takeaways" class="toc-link">
+                                <span class="toc-number">06</span>
+                                <span class="toc-text">Key Takeaways</span>
+                            </a>
+                        </nav>
 
-                <!-- Table of Contents -->
-                <section class="table-of-contents">
-                    <h2>📋 Table of Contents</h2>
-                    <div class="toc-grid">
-                        <div class="toc-column">
-                            <ul>
-                                <li><a href="#market-size">📊 Market Size and Growth Projections</a></li>
-                                <li><a href="#market-leaders">🏆 Market Leaders and Key Players</a></li>
-                                <li><a href="#demographics">👥 User Demographics and Behavioral Patterns</a></li>
-                                <li><a href="#business-models">💰 Business Models and Monetization Strategies</a></li>
-                                <li><a href="#regional-analysis">🌍 Regional Market Analysis</a></li>
-                                <li><a href="#technology-trends">🚀 Technology Trends and Innovation</a></li>
-                            </ul>
-                        </div>
-                        <div class="toc-column">
-                            <ul>
-                                <li><a href="#market-segments">🎯 Market Segments and Use Cases</a></li>
-                                <li><a href="#competitive-landscape">⚔️ Competitive Landscape Analysis</a></li>
-                                <li><a href="#investment-trends">💎 Investment and Funding Trends</a></li>
-                                <li><a href="#challenges">⚠️ Challenges and Market Risks</a></li>
-                                <li><a href="#future-predictions">🔮 Future Predictions and Market Outlook</a></li>
-                                <li><a href="#key-takeaways">💡 Key Takeaways for Stakeholders</a></li>
-                            </ul>
+                        <div class="reading-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="reading-progress"></div>
+                            </div>
+                            <span class="progress-text">Reading Progress</span>
                         </div>
                     </div>
-                </section>
+                </aside>
+
+                <!-- Article Content -->
+                <article class="article-content">
+                    <!-- Key Takeaways Box -->
+                    <div class="key-takeaways">
+                        <h3>🎯 Key Takeaways</h3>
+                        <ul>
+                            <li><strong>Market Size:</strong> AI companion market projected to grow from $120M in 2025 to $521B by 2033</li>
+                            <li><strong>Growth Rate:</strong> 78.5% CAGR represents one of tech's fastest-growing sectors</li>
+                            <li><strong>Key Players:</strong> Replika, Character.AI, and Nomi lead with innovative features and user engagement</li>
+                            <li><strong>Demographics:</strong> 65% users aged 18-34, with growing adoption across all age groups</li>
+                            <li><strong>Revenue Models:</strong> Freemium subscriptions and virtual goods drive monetization strategies</li>
+                        </ul>
+                    </div>
+
                 <section class="content-section" id="market-size">
                     <h2>📊 Market Size and Growth Projections</h2>
                     <p>The AI companion market has reached a critical inflection point in 2025. With multiple research firms tracking explosive growth, the numbers paint a picture of an industry transitioning from niche to mainstream adoption.</p>
@@ -661,5 +686,30 @@
     </footer>
 
     <script src="/script.js"></script>
+    <script>
+        // Reading progress tracker
+        function updateReadingProgress() {
+            const article = document.querySelector('.article-content');
+            const progressBar = document.getElementById('reading-progress');
+
+            const articleHeight = article.offsetHeight;
+            const articleTop = article.offsetTop;
+            const scrolled = window.scrollY - articleTop;
+            const progress = Math.min(Math.max(scrolled / articleHeight, 0), 1);
+
+            progressBar.style.width = (progress * 100) + '%';
+        }
+
+        window.addEventListener('scroll', updateReadingProgress);
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
 </body>
 </html>

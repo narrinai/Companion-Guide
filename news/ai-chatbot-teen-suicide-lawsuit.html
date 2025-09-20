@@ -67,7 +67,7 @@
                 </p>
 
                 <div class="hero-image">
-                    <img src="/images/screenshots/character-ai.webp" alt="Character.AI interface highlighting safety concerns and user protection measures" class="hero-img">
+                    <img src="/images/ai-companion-review.webp" alt="Character.AI interface highlighting safety concerns and user protection measures" class="hero-img">
                 </div>
             </div>
         </div>
@@ -77,10 +77,48 @@
     <main class="article-main">
         <div class="container">
             <div class="article-layout">
+                <!-- Table of Contents Sidebar -->
+                <aside class="toc-sidebar">
+                    <div class="toc-container">
+                        <h3 class="toc-title">📋 Table of Contents</h3>
+                        <nav class="toc-nav">
+                            <a href="#legal-action" class="toc-link">
+                                <span class="toc-number">01</span>
+                                <span class="toc-text">Legal Action Against Character.AI</span>
+                            </a>
+                            <a href="#industry-response" class="toc-link">
+                                <span class="toc-number">02</span>
+                                <span class="toc-text">Industry Response</span>
+                            </a>
+                            <a href="#key-takeaways" class="toc-link">
+                                <span class="toc-number">03</span>
+                                <span class="toc-text">Key Takeaways</span>
+                            </a>
+                        </nav>
+
+                        <div class="reading-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="reading-progress"></div>
+                            </div>
+                            <span class="progress-text">Reading Progress</span>
+                        </div>
+                    </div>
+                </aside>
+
                 <!-- Article Content -->
                 <article class="article-content">
+                    <!-- Key Takeaways Box -->
+                    <div class="key-takeaways">
+                        <h3>🎯 Key Takeaways</h3>
+                        <ul>
+                            <li><strong>Legal Precedent:</strong> First major lawsuit against AI companion platform regarding user safety</li>
+                            <li><strong>Target Platform:</strong> Character.AI faces claims about inadequate safety measures for minors</li>
+                            <li><strong>Industry Impact:</strong> Lawsuit prompts industry-wide discussions about safety protocols</li>
+                            <li><strong>Regulatory Focus:</strong> Highlights need for comprehensive safety frameworks for AI companions</li>
+                        </ul>
+                    </div>
 
-                    <section class="content-section">
+                <section class="content-section" id="legal-action">
                         <h2>🚨 Legal Action Against Character.AI</h2>
                         <p>A mother has filed a lawsuit against Character.AI, claiming the platform's AI companion contributed to her teenage son's tragic death. This case highlights the complex relationship between AI companions and vulnerable users.</p>
 
@@ -93,7 +131,7 @@
                         </div>
                     </section>
 
-                    <section class="content-section">
+                <section class="content-section" id="industry-response">
                         <h2>🛡️ Industry Response and Safety Measures</h2>
                         <p>The lawsuit has prompted industry-wide discussions about safety protocols, age verification, and the responsibility of AI companion platforms to protect users, especially minors.</p>
 
@@ -103,6 +141,30 @@
                             </blockquote>
                         </div>
                     </section>
+
+                <section class="content-section" id="key-takeaways">
+                    <h2>💡 Key Takeaways and Implications</h2>
+                    <p>This lawsuit represents a watershed moment for the AI companion industry, highlighting the urgent need for comprehensive safety measures and regulatory oversight.</p>
+
+                    <div class="takeaway-grid">
+                        <div class="takeaway-item">
+                            <h4>🎯 Legal Precedent</h4>
+                            <p>This case establishes important legal precedent for AI platform responsibility and user safety.</p>
+                        </div>
+                        <div class="takeaway-item">
+                            <h4>📈 Industry Impact</h4>
+                            <p>The lawsuit forces the entire industry to reassess safety protocols and protective measures.</p>
+                        </div>
+                        <div class="takeaway-item">
+                            <h4>🛡️ Safety Standards</h4>
+                            <p>Platforms must implement stronger age verification and content filtering systems.</p>
+                        </div>
+                        <div class="takeaway-item">
+                            <h4>⚖️ Regulatory Focus</h4>
+                            <p>Government agencies are likely to increase scrutiny of AI companion platforms.</p>
+                        </div>
+                    </div>
+                </section>
 
                     <!-- Article Footer -->
                     <footer class="article-footer">
@@ -201,5 +263,30 @@
     </footer>
 
     <script src="/script.js"></script>
+    <script>
+        // Reading progress tracker
+        function updateReadingProgress() {
+            const article = document.querySelector('.article-content');
+            const progressBar = document.getElementById('reading-progress');
+
+            const articleHeight = article.offsetHeight;
+            const articleTop = article.offsetTop;
+            const scrolled = window.scrollY - articleTop;
+            const progress = Math.min(Math.max(scrolled / articleHeight, 0), 1);
+
+            progressBar.style.width = (progress * 100) + '%';
+        }
+
+        window.addEventListener('scroll', updateReadingProgress);
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
 </body>
 </html>

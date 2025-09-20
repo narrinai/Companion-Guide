@@ -118,7 +118,7 @@
                 </p>
 
                 <div class="hero-image">
-                    <img src="/images/screenshots/ai-companion-safety-guidelines.webp" alt="AI companion safety guidelines showing industry standards and user protection measures" class="hero-img">
+                    <img src="/images/ai-companion-review.webp" alt="AI companion safety guidelines showing industry standards and user protection measures" class="hero-img">
                 </div>
             </div>
         </div>
@@ -128,17 +128,67 @@
     <main class="article-main">
         <div class="container">
             <div class="article-layout">
+                <!-- Table of Contents Sidebar -->
+                <aside class="toc-sidebar">
+                    <div class="toc-container">
+                        <h3 class="toc-title">📋 Table of Contents</h3>
+                        <nav class="toc-nav">
+                            <a href="#industry-standards" class="toc-link">
+                                <span class="toc-number">01</span>
+                                <span class="toc-text">Industry Standards</span>
+                            </a>
+                            <a href="#safety-guidelines" class="toc-link">
+                                <span class="toc-number">02</span>
+                                <span class="toc-text">Key Safety Guidelines</span>
+                            </a>
+                            <a href="#implementation" class="toc-link">
+                                <span class="toc-number">03</span>
+                                <span class="toc-text">Implementation Timeline</span>
+                            </a>
+                            <a href="#user-impact" class="toc-link">
+                                <span class="toc-number">04</span>
+                                <span class="toc-text">Impact on Users</span>
+                            </a>
+                            <a href="#industry-response" class="toc-link">
+                                <span class="toc-number">05</span>
+                                <span class="toc-text">Industry Response</span>
+                            </a>
+                            <a href="#key-takeaways" class="toc-link">
+                                <span class="toc-number">06</span>
+                                <span class="toc-text">Key Takeaways</span>
+                            </a>
+                        </nav>
+
+                        <div class="reading-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="reading-progress"></div>
+                            </div>
+                            <span class="progress-text">Reading Progress</span>
+                        </div>
+                    </div>
+                </aside>
+
                 <!-- Article Content -->
                 <article class="article-content">
+                    <!-- Key Takeaways Box -->
+                    <div class="key-takeaways">
+                        <h3>🎯 Key Takeaways</h3>
+                        <ul>
+                            <li><strong>Industry Coalition:</strong> Leading AI platforms unite to establish comprehensive safety standards</li>
+                            <li><strong>User Protection:</strong> Enhanced age verification, content filtering, and mental health safeguards</li>
+                            <li><strong>Implementation:</strong> Phased rollout across Q1-Q4 2025 with compliance verification</li>
+                            <li><strong>Privacy Focus:</strong> Improved data controls and transparency for user conversations</li>
+                        </ul>
+                    </div>
 
-                    <section class="content-section">
+                <section class="content-section" id="industry-standards">
                         <h2>🏢 Industry Coalition Announces New Standards</h2>
                         <p class="lead-paragraph">A coalition of leading AI companion platform developers, including <a href="/companions/character-ai" class="inline-link">Character.AI</a>, <a href="/companions/replika-ai" class="inline-link">Replika</a>, and emerging platforms, has announced comprehensive safety guidelines aimed at protecting users and establishing industry-wide ethical standards.</p>
 
                         <p>The new guidelines come in response to growing concerns about user safety, particularly regarding vulnerable populations and the potential for emotional dependency on AI companion platforms.</p>
                     </section>
 
-                    <section class="content-section">
+                <section class="content-section" id="safety-guidelines">
                         <h2>🛡️ Key Safety Guidelines</h2>
                         <div class="feature-showcase">
                             <div class="feature-item">
@@ -167,7 +217,7 @@
                         </div>
                     </section>
 
-                    <section class="content-section">
+                <section class="content-section" id="implementation">
                         <h2>📅 Platform Implementation Timeline</h2>
                         <p>Major AI companion platforms have committed to implementing these guidelines over the next 6 months:</p>
 
@@ -185,7 +235,7 @@
                         </div>
                     </section>
 
-                    <section class="content-section">
+                <section class="content-section" id="user-impact">
                         <h2>👥 Impact on Users</h2>
                         <p>Users can expect to see several changes to their AI companion platform experiences:</p>
 
@@ -208,7 +258,7 @@
                         </div>
                     </section>
 
-                    <section class="content-section">
+                <section class="content-section" id="industry-response">
                         <h2>💬 Industry Response</h2>
                         <div class="quote-callout">
                             <blockquote>
@@ -219,6 +269,30 @@
 
                         <p>The guidelines have received support from major platforms, with Character.AI stating they will exceed minimum requirements and Replika emphasizing their commitment to user mental health.</p>
                     </section>
+
+                <section class="content-section" id="key-takeaways">
+                    <h2>💡 Key Takeaways and Future Impact</h2>
+                    <p>The announcement of industry-wide safety guidelines marks a significant milestone in AI companion platform maturation, demonstrating the industry's commitment to responsible development and user protection.</p>
+
+                    <div class="takeaway-grid">
+                        <div class="takeaway-item">
+                            <h4>🎯 Industry Leadership</h4>
+                            <p>Proactive self-regulation demonstrates the industry's commitment to responsible AI development.</p>
+                        </div>
+                        <div class="takeaway-item">
+                            <h4>📈 User Trust</h4>
+                            <p>Enhanced safety measures build confidence and trust in AI companion platforms.</p>
+                        </div>
+                        <div class="takeaway-item">
+                            <h4>🛡️ Protection Standards</h4>
+                            <p>Comprehensive guidelines protect vulnerable users while maintaining platform functionality.</p>
+                        </div>
+                        <div class="takeaway-item">
+                            <h4>⚖️ Regulatory Precedent</h4>
+                            <p>Industry standards may influence future government regulations and compliance requirements.</p>
+                        </div>
+                    </div>
+                </section>
 
                     <!-- Article Footer -->
                     <footer class="article-footer">
@@ -310,5 +384,30 @@
     </footer>
 
     <script src="/script.js"></script>
+    <script>
+        // Reading progress tracker
+        function updateReadingProgress() {
+            const article = document.querySelector('.article-content');
+            const progressBar = document.getElementById('reading-progress');
+
+            const articleHeight = article.offsetHeight;
+            const articleTop = article.offsetTop;
+            const scrolled = window.scrollY - articleTop;
+            const progress = Math.min(Math.max(scrolled / articleHeight, 0), 1);
+
+            progressBar.style.width = (progress * 100) + '%';
+        }
+
+        window.addEventListener('scroll', updateReadingProgress);
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
 </body>
 </html>

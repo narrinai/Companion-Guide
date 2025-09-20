@@ -81,7 +81,7 @@
                 </p>
 
                 <div class="hero-image">
-                    <img src="/images/screenshots/ai-wellness-platforms.webp" alt="AI wellness companion platforms focused on mental health support and therapeutic applications" class="hero-img">
+                    <img src="/images/ai-companion-review.webp" alt="AI wellness companion platforms focused on mental health support and therapeutic applications" class="hero-img">
                 </div>
             </div>
         </div>
@@ -91,8 +91,58 @@
     <main class="article-main">
         <div class="container">
             <div class="article-layout">
+                <!-- Table of Contents Sidebar -->
+                <aside class="toc-sidebar">
+                    <div class="toc-container">
+                        <h3 class="toc-title">📋 Table of Contents</h3>
+                        <nav class="toc-nav">
+                            <a href="#market-overview" class="toc-link">
+                                <span class="toc-number">01</span>
+                                <span class="toc-text">Market Overview</span>
+                            </a>
+                            <a href="#what-are-wellness-companions" class="toc-link">
+                                <span class="toc-number">02</span>
+                                <span class="toc-text">What are Wellness Companions</span>
+                            </a>
+                            <a href="#therapeutic-vs-entertainment" class="toc-link">
+                                <span class="toc-number">03</span>
+                                <span class="toc-text">Therapeutic vs Entertainment</span>
+                            </a>
+                            <a href="#platforms-ranked" class="toc-link">
+                                <span class="toc-number">04</span>
+                                <span class="toc-text">Best Platforms Ranked</span>
+                            </a>
+                            <a href="#privacy-safety" class="toc-link">
+                                <span class="toc-number">05</span>
+                                <span class="toc-text">Privacy & Safety</span>
+                            </a>
+                            <a href="#key-takeaways" class="toc-link">
+                                <span class="toc-number">06</span>
+                                <span class="toc-text">Key Takeaways</span>
+                            </a>
+                        </nav>
+
+                        <div class="reading-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="reading-progress"></div>
+                            </div>
+                            <span class="progress-text">Reading Progress</span>
+                        </div>
+                    </div>
+                </aside>
+
                 <!-- Article Content -->
                 <article class="article-content">
+                    <!-- Key Takeaways Box -->
+                    <div class="key-takeaways">
+                        <h3>🎯 Key Takeaways</h3>
+                        <ul>
+                            <li><strong>Wellness Focus:</strong> AI companions designed specifically for mental health and emotional support</li>
+                            <li><strong>Therapeutic Applications:</strong> Platforms offering anxiety relief, depression support, and stress management</li>
+                            <li><strong>Privacy Priority:</strong> Enhanced security and confidentiality for sensitive mental health conversations</li>
+                            <li><strong>Clinical Integration:</strong> Some platforms work alongside traditional therapy and healthcare providers</li>
+                        </ul>
+                    </div>
 
                 <section>
                     <h2>Table of Contents</h2>
@@ -975,5 +1025,32 @@
             color: var(--text-secondary);
         }
     </style>
+
+    <script src="/script.js"></script>
+    <script>
+        // Reading progress tracker
+        function updateReadingProgress() {
+            const article = document.querySelector('.article-content');
+            const progressBar = document.getElementById('reading-progress');
+
+            const articleHeight = article.offsetHeight;
+            const articleTop = article.offsetTop;
+            const scrolled = window.scrollY - articleTop;
+            const progress = Math.min(Math.max(scrolled / articleHeight, 0), 1);
+
+            progressBar.style.width = (progress * 100) + '%';
+        }
+
+        window.addEventListener('scroll', updateReadingProgress);
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
 </body>
 </html>
