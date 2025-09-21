@@ -43,25 +43,33 @@
     <style>
         /* Deals Page Specific Styles */
         .deals-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1a1a1a;
             color: white;
-            padding: var(--space-16) var(--space-8);
-            border-radius: var(--radius-lg);
-            margin-bottom: var(--space-12);
+            padding: 4rem 2rem 3rem;
+            margin: -2rem -2rem 3rem -2rem;
             text-align: center;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            width: 100vw;
         }
 
         .deals-hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-4);
-            font-weight: 700;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #ffffff;
         }
 
         .deals-hero p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            max-width: 600px;
+            font-size: 1.1rem;
+            color: #999;
+            max-width: 700px;
             margin: 0 auto;
+            line-height: 1.6;
         }
 
         .deals-container {
@@ -71,37 +79,39 @@
         }
 
         .deal-card {
-            background: var(--surface);
-            border: 2px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-6);
+            background: #1f1f1f;
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 2rem;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
+            color: #fff;
         }
 
         .deal-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: #4a9eff;
         }
 
         .deal-card.featured {
-            border-color: var(--primary);
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-color: #4a9eff;
         }
 
         .deal-badge {
             position: absolute;
-            top: var(--space-4);
-            right: var(--space-4);
-            background: var(--accent-red);
+            top: 1.5rem;
+            right: 1.5rem;
+            background: #4a9eff;
             color: white;
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-full);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             font-weight: 600;
             font-size: 0.9rem;
-            animation: pulse 2s infinite;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         @keyframes pulse {
@@ -112,16 +122,18 @@
         .deal-header {
             display: flex;
             align-items: flex-start;
-            gap: var(--space-6);
-            margin-bottom: var(--space-6);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .deal-logo {
             width: 80px;
             height: 80px;
-            border-radius: var(--radius-md);
+            border-radius: 12px;
             object-fit: cover;
-            border: 2px solid var(--border);
+            border: 2px solid #333;
+            background: #2a2a2a;
+            padding: 12px;
         }
 
         .deal-info {
@@ -130,16 +142,16 @@
 
         .deal-title {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: var(--space-2);
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
         }
 
         .deal-offer {
-            font-size: 1.3rem;
-            color: var(--primary);
+            font-size: 1.1rem;
+            color: #4a9eff;
             font-weight: 600;
-            margin-bottom: var(--space-2);
+            margin-bottom: 0.5rem;
         }
 
         .deal-original-price {
@@ -155,17 +167,41 @@
         }
 
         .deal-description {
-            color: var(--text-secondary);
+            color: #999;
             line-height: 1.6;
-            margin-bottom: var(--space-4);
+            margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
 
         .deal-features {
-            background: var(--background);
-            border-radius: var(--radius-md);
-            padding: var(--space-3);
-            margin-bottom: var(--space-4);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .deal-feature-item {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .deal-feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .deal-feature-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .deal-feature-desc {
+            color: #666;
+            font-size: 0.85rem;
         }
 
         .deal-features h4 {
@@ -205,27 +241,36 @@
         .deal-button {
             display: inline-flex;
             align-items: center;
-            gap: var(--space-2);
-            background: var(--primary);
+            gap: 0.5rem;
+            background: #4a9eff;
             color: white;
-            padding: var(--space-3) var(--space-6);
-            border-radius: var(--radius-md);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s ease;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .deal-button:hover {
-            background: var(--primary-dark);
-            transform: translateX(4px);
+            background: #3a8eef;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #333;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: #444;
         }
 
         .deal-expiry {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
-            color: var(--text-muted);
+            gap: 0.5rem;
+            color: #666;
             font-size: 0.9rem;
         }
 
@@ -234,19 +279,21 @@
         }
 
         .deals-info-section {
-            background: var(--surface);
-            border-radius: var(--radius-lg);
-            padding: var(--space-8);
-            margin-bottom: var(--space-8);
+            background: #1f1f1f;
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
 
         .deals-info-section h2 {
-            color: var(--text);
-            margin-bottom: var(--space-4);
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .deals-info-section p {
-            color: var(--text-secondary);
+            color: #999;
             line-height: 1.6;
         }
 
@@ -302,7 +349,7 @@
     <main class="container">
         <!-- Hero Section -->
         <section class="deals-hero">
-            <h1>🎉 Exclusive AI Companion Deals</h1>
+            <h1>AI Companion Deals & Discounts</h1>
             <p>Save big on premium AI companion subscriptions with our hand-picked offers and exclusive discount codes</p>
         </section>
 
@@ -311,41 +358,62 @@
 
             <!-- Nectar AI Deal -->
             <article class="deal-card featured">
-                <div class="deal-badge">LIMITED TIME</div>
+                <div class="deal-badge">🔥 50% OFF</div>
 
                 <div class="deal-header">
                     <img src="/images/logos/nectar-ai.png" alt="Nectar AI" class="deal-logo">
                     <div class="deal-info">
                         <h3 class="deal-title"><a href="/companions/nectar-ai" style="color: inherit; text-decoration: none;">Nectar AI</a></h3>
-                        <div class="deal-offer">Up to 50% Off Annual Subscriptions</div>
-                        <div class="deal-pricing">
-                            <span class="deal-original-price">$179.88/year</span>
-                            <span class="deal-discount-price">From $89.94/year</span>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="color: #ffa500;">★★★★☆</span>
+                            <span style="color: #fff; font-size: 0.95rem;">4.4/5</span>
+                            <span style="color: #666; font-size: 0.9rem;">(36 reviews)</span>
                         </div>
                     </div>
                 </div>
 
                 <p class="deal-description">
-                    Get up to 50% off Nectar AI's annual plans! Create your perfect AI companion with advanced personality crafting and romantic interactions.
+                    Save 50% on annual plans! Create your perfect AI companion with advanced personality crafting, romantic interactions, and engaging conversations. Limited time offer.
                 </p>
 
-                <div class="deal-features" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-2); margin-bottom: var(--space-4);">
-                    <div style="display: flex; align-items: center; gap: var(--space-2);">✅ Unlimited messages</div>
-                    <div style="display: flex; align-items: center; gap: var(--space-2);">✅ Personality customization</div>
-                    <div style="display: flex; align-items: center; gap: var(--space-2);">✅ Image generation</div>
-                    <div style="display: flex; align-items: center; gap: var(--space-2);">✅ Voice messages</div>
+                <div class="deal-features">
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">💕</div>
+                        <div class="deal-feature-title">Romantic AI</div>
+                        <div class="deal-feature-desc">Love-centered</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🎭</div>
+                        <div class="deal-feature-title">Customizable</div>
+                        <div class="deal-feature-desc">Personality traits</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🎨</div>
+                        <div class="deal-feature-title">Image Gen</div>
+                        <div class="deal-feature-desc">Visual content</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🎤</div>
+                        <div class="deal-feature-title">Voice Messages</div>
+                        <div class="deal-feature-desc">Audio chats</div>
+                    </div>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
+                    <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">LIMITED TIME OFFER</div>
+                    <div style="display: flex; align-items: baseline; gap: 1rem;">
+                        <span style="text-decoration: line-through; color: #666;">$14.99/month</span>
+                        <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$7.49/month</span>
+                        <span style="color: #666; font-size: 0.85rem;">(billed annually)</span>
+                    </div>
                 </div>
 
                 <div class="deal-cta">
-                    <div style="display: flex; gap: var(--space-3);">
-                        <a href="/companions/nectar-ai" class="btn-primary" style="text-decoration: none; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--surface); color: var(--primary); border: 2px solid var(--primary); font-weight: 600;">Read Review</a>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="/companions/nectar-ai" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
                         <a href="https://trynectar.ai/?utm_source=affiliate&utm_medium=referral&utm_campaign=companionguide" class="deal-button" target="_blank">
-                            Get Deal →
+                            Claim Deal
                         </a>
-                    </div>
-                    <div class="deal-expiry">
-                        <span class="icon">⏰</span>
-                        <span>Limited time offer</span>
                     </div>
                 </div>
             </article>
