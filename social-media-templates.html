@@ -661,81 +661,67 @@
         }
 
         function drawFallbackLogo(ctx, centerX, centerY, radius) {
-            // Background circle with gradient
-            const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
-            gradient.addColorStop(0, '#8b5cf6'); // Purple center
-            gradient.addColorStop(1, '#3b82f6'); // Blue edge
+            // Background circle with gradient (fallback)
+            const gradient = ctx.createLinearGradient(
+                centerX - radius, centerY - radius,
+                centerX + radius, centerY + radius
+            );
+            gradient.addColorStop(0, '#8b5cf6'); // Purple
+            gradient.addColorStop(1, '#3b82f6'); // Blue
 
-            // Draw main circle
             ctx.beginPath();
             ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
             ctx.fillStyle = gradient;
             ctx.fill();
 
-            // Add white border
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-            ctx.strokeStyle = '#ffffff';
-            ctx.lineWidth = radius * 0.05;
-            ctx.stroke();
-
             // Scale factor for inner elements
-            const scale = radius / 24;
+            const scale = radius / 18;
 
-            // Draw AI chat bubble icon in center
-            // Main bubble background
+            // Chat bubble outline (simplified)
             const bubbleRadius = 8 * scale;
             ctx.beginPath();
-            ctx.arc(centerX, centerY - scale, bubbleRadius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            ctx.arc(centerX, centerY, bubbleRadius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
             ctx.fill();
 
-            // Bubble border
+            // AI brain/circuit pattern
+            // Central circle
             ctx.beginPath();
-            ctx.arc(centerX, centerY - scale, bubbleRadius, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(59, 130, 246, 0.3)';
-            ctx.lineWidth = scale * 0.5;
-            ctx.stroke();
+            ctx.arc(centerX, centerY, 2 * scale, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(139, 92, 246, 0.8)';
+            ctx.fill();
 
-            // AI dots pattern inside bubble
-            const dotPositions = [
-                {x: centerX - 3 * scale, y: centerY - scale},
-                {x: centerX, y: centerY - scale},
-                {x: centerX + 3 * scale, y: centerY - scale}
+            // Surrounding circles
+            const positions = [
+                {x: centerX - 4 * scale, y: centerY - 2 * scale, r: 1 * scale},
+                {x: centerX + 4 * scale, y: centerY - 2 * scale, r: 1 * scale},
+                {x: centerX - 2 * scale, y: centerY + 2 * scale, r: 0.8 * scale},
+                {x: centerX + 2 * scale, y: centerY + 2 * scale, r: 0.8 * scale}
             ];
 
-            dotPositions.forEach(pos => {
+            positions.forEach(pos => {
                 ctx.beginPath();
-                ctx.arc(pos.x, pos.y, scale * 0.8, 0, Math.PI * 2);
-                ctx.fillStyle = '#3b82f6';
+                ctx.arc(pos.x, pos.y, pos.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(59, 130, 246, 0.6)';
                 ctx.fill();
             });
 
-            // Neural network connections
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
-            ctx.lineWidth = scale * 0.3;
+            // Connecting lines
+            ctx.strokeStyle = 'rgba(59, 130, 246, 0.6)';
+            ctx.lineWidth = 0.5 * scale;
             ctx.lineCap = 'round';
 
-            // Draw network lines
-            const networkPoints = [
-                {x: centerX - 6 * scale, y: centerY + 4 * scale},
-                {x: centerX, y: centerY + 6 * scale},
-                {x: centerX + 6 * scale, y: centerY + 4 * scale}
-            ];
-
-            // Connect to center
-            networkPoints.forEach(point => {
-                ctx.beginPath();
-                ctx.moveTo(centerX, centerY + 2 * scale);
-                ctx.lineTo(point.x, point.y);
-                ctx.stroke();
-
-                // Draw small circle at end
-                ctx.beginPath();
-                ctx.arc(point.x, point.y, scale * 0.6, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                ctx.fill();
-            });
+            // Draw connection lines
+            ctx.beginPath();
+            ctx.moveTo(centerX - 2 * scale, centerY);
+            ctx.lineTo(centerX - 4 * scale, centerY - 2 * scale);
+            ctx.moveTo(centerX + 2 * scale, centerY);
+            ctx.lineTo(centerX + 4 * scale, centerY - 2 * scale);
+            ctx.moveTo(centerX - 1 * scale, centerY + 1 * scale);
+            ctx.lineTo(centerX - 2 * scale, centerY + 2 * scale);
+            ctx.moveTo(centerX + 1 * scale, centerY + 1 * scale);
+            ctx.lineTo(centerX + 2 * scale, centerY + 2 * scale);
+            ctx.stroke();
         }
 
         function getPlatformText(type) {
