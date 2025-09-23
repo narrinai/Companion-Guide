@@ -575,40 +575,32 @@
             ctx.fillStyle = accentGradient;
             ctx.fillRect(0, 0, downloadWidth, downloadHeight);
 
-            // Calculate responsive sizes (scaled for higher resolution) - larger for better visibility
-            const baseFontSize = Math.min(downloadWidth, downloadHeight) * 0.08;
-            const titleSize = Math.max(baseFontSize, 24 * downloadMultiplier);
-            const logoSize = Math.max(titleSize * 2, 60 * downloadMultiplier);
+            // Calculate responsive sizes (scaled for higher resolution) - much larger for maximum visibility
+            const baseFontSize = Math.min(downloadWidth, downloadHeight) * 0.15;
+            const titleSize = Math.max(baseFontSize, 40 * downloadMultiplier);
+            const logoSize = Math.max(titleSize * 2.5, 100 * downloadMultiplier);
 
             // For profile pictures, show only the logo
             if (type.includes('profile')) {
                 // Draw the complete logo (circle + AI pattern) centered
-                await drawCompanionGuideLogo(ctx, downloadWidth / 2, downloadHeight / 2, Math.min(downloadWidth, downloadHeight) * 0.35);
+                await drawCompanionGuideLogo(ctx, downloadWidth / 2, downloadHeight / 2, Math.min(downloadWidth, downloadHeight) * 0.45);
             } else {
                 // For all other assets, show full logo with text
-                const logoX = downloadWidth / 2 - titleSize * 4;
+                const logoX = downloadWidth / 2 - titleSize * 5;
                 const logoY = downloadHeight / 2;
 
                 // Draw the complete logo
-                await drawCompanionGuideLogo(ctx, logoX, logoY, logoSize/1.5);
+                await drawCompanionGuideLogo(ctx, logoX, logoY, logoSize/1.2);
 
                 // White text "Companionguide.ai"
                 ctx.fillStyle = '#ffffff';
                 ctx.textAlign = 'left';
                 ctx.textBaseline = 'middle';
                 ctx.font = `bold ${titleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-                ctx.fillText('Companionguide.ai', logoX + logoSize/1.5 + 20, logoY);
+                ctx.fillText('Companionguide.ai', logoX + logoSize/1.2 + 25, logoY);
             }
 
-            // Add platform-specific text
-            const platformText = getPlatformText(type);
-            if (platformText && !type.includes('profile')) {
-                const subtitleSize = titleSize * 0.6;
-                ctx.font = `${subtitleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-                ctx.fillStyle = '#3b82f6';
-                ctx.textAlign = 'center';
-                ctx.fillText(platformText, downloadWidth / 2, downloadHeight - subtitleSize * 2);
-            }
+            // Platform-specific text removed for cleaner design
 
             // Convert to blob and download
             canvas.toBlob(function(blob) {
@@ -797,29 +789,29 @@
             ctx.fillStyle = accentGradient;
             ctx.fillRect(0, 0, width, height);
 
-            // Calculate responsive sizes - larger for better visibility
-            const baseFontSize = Math.min(width, height) * 0.08;
-            const titleSize = Math.max(baseFontSize, 24);
-            const logoSize = Math.max(titleSize * 2, 60);
+            // Calculate responsive sizes - much larger for maximum visibility
+            const baseFontSize = Math.min(width, height) * 0.15;
+            const titleSize = Math.max(baseFontSize, 40);
+            const logoSize = Math.max(titleSize * 2.5, 100);
 
             // For profile pictures, show only the logo
             if (type.includes('profile')) {
                 // Draw the complete logo (circle + AI pattern) centered
-                drawCompanionGuideLogo(ctx, width / 2, height / 2, Math.min(width, height) * 0.35);
+                drawCompanionGuideLogo(ctx, width / 2, height / 2, Math.min(width, height) * 0.45);
             } else {
                 // For all other assets, show full logo with text
-                const logoX = width / 2 - titleSize * 4;
+                const logoX = width / 2 - titleSize * 5;
                 const logoY = height / 2;
 
                 // Draw the complete logo
-                drawCompanionGuideLogo(ctx, logoX, logoY, logoSize/1.5);
+                drawCompanionGuideLogo(ctx, logoX, logoY, logoSize/1.2);
 
                 // White text "Companionguide.ai"
                 ctx.fillStyle = '#ffffff';
                 ctx.textAlign = 'left';
                 ctx.textBaseline = 'middle';
                 ctx.font = `bold ${titleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-                ctx.fillText('Companionguide.ai', logoX + logoSize/1.5 + 20, logoY);
+                ctx.fillText('Companionguide.ai', logoX + logoSize/1.2 + 25, logoY);
             }
         }
 
