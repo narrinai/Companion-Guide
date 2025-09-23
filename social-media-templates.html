@@ -636,8 +636,24 @@
         }
 
         async function drawCompanionGuideLogo(ctx, centerX, centerY, radius) {
-            // Always use fallback logo for consistent rendering
-            drawFallbackLogo(ctx, centerX, centerY, radius);
+            try {
+                if (!logoSvgContent) {
+                    await loadLogoSvg();
+                }
+
+                // Create an image from SVG and wait for it to load
+                const img = await createImageFromSvg(logoSvgContent);
+
+                // Calculate position and size to center the logo
+                const size = radius * 2;
+                const x = centerX - radius;
+                const y = centerY - radius;
+
+                ctx.drawImage(img, x, y, size, size);
+            } catch (error) {
+                // Fallback if SVG loading fails
+                drawFallbackLogo(ctx, centerX, centerY, radius);
+            }
         }
 
         function createImageFromSvg(svgContent) {
