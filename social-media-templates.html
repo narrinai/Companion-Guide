@@ -367,6 +367,21 @@
                             </button>
                         </div>
                     </div>
+                    <div class="template-item">
+                        <div class="template-preview">
+                            <canvas id="preview-reddit" width="1920" height="384"></canvas>
+                        </div>
+                        <div class="template-details">
+                            <div class="template-info">
+                                <h4>Reddit Banner</h4>
+                                <div class="dimensions">1920x384px</div>
+                                <div class="description">Subreddit banner</div>
+                            </div>
+                            <button class="download-btn" onclick="downloadTemplate('reddit', 1920, 384)">
+                                <span>📥</span> Download PNG
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Content Templates -->
@@ -560,18 +575,18 @@
             ctx.fillStyle = accentGradient;
             ctx.fillRect(0, 0, downloadWidth, downloadHeight);
 
-            // Calculate responsive sizes (scaled for higher resolution)
-            const baseFontSize = Math.min(downloadWidth, downloadHeight) * 0.06;
-            const titleSize = Math.max(baseFontSize, 20 * downloadMultiplier);
-            const logoSize = Math.max(titleSize * 1.8, 50 * downloadMultiplier);
+            // Calculate responsive sizes (scaled for higher resolution) - smaller for better overview
+            const baseFontSize = Math.min(downloadWidth, downloadHeight) * 0.04;
+            const titleSize = Math.max(baseFontSize, 14 * downloadMultiplier);
+            const logoSize = Math.max(titleSize * 1.5, 30 * downloadMultiplier);
 
             // For profile pictures, show only the logo
             if (type.includes('profile')) {
                 // Draw the complete logo (circle + AI pattern) centered
-                drawCompanionGuideLogo(ctx, downloadWidth / 2, downloadHeight / 2, Math.min(downloadWidth, downloadHeight) * 0.4);
+                drawCompanionGuideLogo(ctx, downloadWidth / 2, downloadHeight / 2, Math.min(downloadWidth, downloadHeight) * 0.25);
             } else {
                 // For all other assets, show full logo with text
-                const logoX = downloadWidth / 2 - titleSize * 3;
+                const logoX = downloadWidth / 2 - titleSize * 2.5;
                 const logoY = downloadHeight / 2;
 
                 // Draw the complete logo
@@ -582,7 +597,7 @@
                 ctx.textAlign = 'left';
                 ctx.textBaseline = 'middle';
                 ctx.font = `bold ${titleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-                ctx.fillText('Companionguide.ai', logoX + logoSize/2 + 20, logoY);
+                ctx.fillText('Companionguide.ai', logoX + logoSize/2 + 15, logoY);
             }
 
             // Add platform-specific text
@@ -621,24 +636,8 @@
         }
 
         async function drawCompanionGuideLogo(ctx, centerX, centerY, radius) {
-            try {
-                if (!logoSvgContent) {
-                    await loadLogoSvg();
-                }
-
-                // Create an image from SVG and wait for it to load
-                const img = await createImageFromSvg(logoSvgContent);
-
-                // Calculate position and size to center the logo
-                const size = radius * 2;
-                const x = centerX - radius;
-                const y = centerY - radius;
-
-                ctx.drawImage(img, x, y, size, size);
-            } catch (error) {
-                // Fallback if SVG loading fails
-                drawFallbackLogo(ctx, centerX, centerY, radius);
-            }
+            // Always use fallback logo for consistent rendering
+            drawFallbackLogo(ctx, centerX, centerY, radius);
         }
 
         function createImageFromSvg(svgContent) {
@@ -662,67 +661,81 @@
         }
 
         function drawFallbackLogo(ctx, centerX, centerY, radius) {
-            // Background circle with gradient (fallback)
-            const gradient = ctx.createLinearGradient(
-                centerX - radius, centerY - radius,
-                centerX + radius, centerY + radius
-            );
-            gradient.addColorStop(0, '#8b5cf6'); // Purple
-            gradient.addColorStop(1, '#3b82f6'); // Blue
+            // Background circle with gradient
+            const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+            gradient.addColorStop(0, '#8b5cf6'); // Purple center
+            gradient.addColorStop(1, '#3b82f6'); // Blue edge
 
+            // Draw main circle
             ctx.beginPath();
             ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
             ctx.fillStyle = gradient;
             ctx.fill();
 
-            // Scale factor for inner elements
-            const scale = radius / 18;
+            // Add white border
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = radius * 0.05;
+            ctx.stroke();
 
-            // Chat bubble outline (simplified)
+            // Scale factor for inner elements
+            const scale = radius / 24;
+
+            // Draw AI chat bubble icon in center
+            // Main bubble background
             const bubbleRadius = 8 * scale;
             ctx.beginPath();
-            ctx.arc(centerX, centerY, bubbleRadius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.arc(centerX, centerY - scale, bubbleRadius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
             ctx.fill();
 
-            // AI brain/circuit pattern
-            // Central circle
+            // Bubble border
             ctx.beginPath();
-            ctx.arc(centerX, centerY, 2 * scale, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(139, 92, 246, 0.8)';
-            ctx.fill();
+            ctx.arc(centerX, centerY - scale, bubbleRadius, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(59, 130, 246, 0.3)';
+            ctx.lineWidth = scale * 0.5;
+            ctx.stroke();
 
-            // Surrounding circles
-            const positions = [
-                {x: centerX - 4 * scale, y: centerY - 2 * scale, r: 1 * scale},
-                {x: centerX + 4 * scale, y: centerY - 2 * scale, r: 1 * scale},
-                {x: centerX - 2 * scale, y: centerY + 2 * scale, r: 0.8 * scale},
-                {x: centerX + 2 * scale, y: centerY + 2 * scale, r: 0.8 * scale}
+            // AI dots pattern inside bubble
+            const dotPositions = [
+                {x: centerX - 3 * scale, y: centerY - scale},
+                {x: centerX, y: centerY - scale},
+                {x: centerX + 3 * scale, y: centerY - scale}
             ];
 
-            positions.forEach(pos => {
+            dotPositions.forEach(pos => {
                 ctx.beginPath();
-                ctx.arc(pos.x, pos.y, pos.r, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(59, 130, 246, 0.6)';
+                ctx.arc(pos.x, pos.y, scale * 0.8, 0, Math.PI * 2);
+                ctx.fillStyle = '#3b82f6';
                 ctx.fill();
             });
 
-            // Connecting lines
-            ctx.strokeStyle = 'rgba(59, 130, 246, 0.6)';
-            ctx.lineWidth = 0.5 * scale;
+            // Neural network connections
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.lineWidth = scale * 0.3;
             ctx.lineCap = 'round';
 
-            // Draw connection lines
-            ctx.beginPath();
-            ctx.moveTo(centerX - 2 * scale, centerY);
-            ctx.lineTo(centerX - 4 * scale, centerY - 2 * scale);
-            ctx.moveTo(centerX + 2 * scale, centerY);
-            ctx.lineTo(centerX + 4 * scale, centerY - 2 * scale);
-            ctx.moveTo(centerX - 1 * scale, centerY + 1 * scale);
-            ctx.lineTo(centerX - 2 * scale, centerY + 2 * scale);
-            ctx.moveTo(centerX + 1 * scale, centerY + 1 * scale);
-            ctx.lineTo(centerX + 2 * scale, centerY + 2 * scale);
-            ctx.stroke();
+            // Draw network lines
+            const networkPoints = [
+                {x: centerX - 6 * scale, y: centerY + 4 * scale},
+                {x: centerX, y: centerY + 6 * scale},
+                {x: centerX + 6 * scale, y: centerY + 4 * scale}
+            ];
+
+            // Connect to center
+            networkPoints.forEach(point => {
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY + 2 * scale);
+                ctx.lineTo(point.x, point.y);
+                ctx.stroke();
+
+                // Draw small circle at end
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, scale * 0.6, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fill();
+            });
         }
 
         function getPlatformText(type) {
@@ -732,6 +745,7 @@
                 'linkedin': 'Professional AI Companion Reviews',
                 'twitter': 'Latest AI Companion News & Reviews',
                 'facebook': 'Discover the Best AI Companions',
+                'reddit': 'Join the AI Companion Community',
                 'instagram': 'AI Companion Reviews',
                 'story': 'Follow for AI Updates',
                 'youtube': 'AI Companion Reviews',
@@ -781,18 +795,18 @@
             ctx.fillStyle = accentGradient;
             ctx.fillRect(0, 0, width, height);
 
-            // Calculate responsive sizes
-            const baseFontSize = Math.min(width, height) * 0.06;
-            const titleSize = Math.max(baseFontSize, 20);
-            const logoSize = Math.max(titleSize * 1.8, 50);
+            // Calculate responsive sizes - smaller for better overview
+            const baseFontSize = Math.min(width, height) * 0.04;
+            const titleSize = Math.max(baseFontSize, 14);
+            const logoSize = Math.max(titleSize * 1.5, 30);
 
             // For profile pictures, show only the logo
             if (type.includes('profile')) {
                 // Draw the complete logo (circle + AI pattern) centered
-                drawCompanionGuideLogo(ctx, width / 2, height / 2, Math.min(width, height) * 0.4);
+                drawCompanionGuideLogo(ctx, width / 2, height / 2, Math.min(width, height) * 0.25);
             } else {
                 // For all other assets, show full logo with text
-                const logoX = width / 2 - titleSize * 3;
+                const logoX = width / 2 - titleSize * 2.5;
                 const logoY = height / 2;
 
                 // Draw the complete logo
@@ -803,7 +817,7 @@
                 ctx.textAlign = 'left';
                 ctx.textBaseline = 'middle';
                 ctx.font = `bold ${titleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-                ctx.fillText('Companionguide.ai', logoX + logoSize/2 + 20, logoY);
+                ctx.fillText('Companionguide.ai', logoX + logoSize/2 + 15, logoY);
             }
         }
 
@@ -815,6 +829,7 @@
                 { id: 'preview-linkedin', width: 1920, height: 480, type: 'linkedin' },
                 { id: 'preview-twitter', width: 1500, height: 500, type: 'twitter' },
                 { id: 'preview-facebook', width: 820, height: 312, type: 'facebook' },
+                { id: 'preview-reddit', width: 1920, height: 384, type: 'reddit' },
                 { id: 'preview-instagram', width: 1200, height: 1200, type: 'instagram' },
                 { id: 'preview-story', width: 1080, height: 1920, type: 'story' },
                 { id: 'preview-youtube', width: 1920, height: 1080, type: 'youtube' },
