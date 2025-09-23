@@ -540,7 +540,7 @@
     </footer>
 
     <script>
-        function downloadTemplate(type, width, height) {
+        async function downloadTemplate(type, width, height) {
             // Create canvas
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
@@ -583,14 +583,14 @@
             // For profile pictures, show only the logo
             if (type.includes('profile')) {
                 // Draw the complete logo (circle + AI pattern) centered
-                drawCompanionGuideLogo(ctx, downloadWidth / 2, downloadHeight / 2, Math.min(downloadWidth, downloadHeight) * 0.25);
+                await drawCompanionGuideLogo(ctx, downloadWidth / 2, downloadHeight / 2, Math.min(downloadWidth, downloadHeight) * 0.25);
             } else {
                 // For all other assets, show full logo with text
                 const logoX = downloadWidth / 2 - titleSize * 2.5;
                 const logoY = downloadHeight / 2;
 
                 // Draw the complete logo
-                drawCompanionGuideLogo(ctx, logoX, logoY, logoSize/2);
+                await drawCompanionGuideLogo(ctx, logoX, logoY, logoSize/2);
 
                 // White text "Companionguide.ai"
                 ctx.fillStyle = '#ffffff';
