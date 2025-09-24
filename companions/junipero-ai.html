@@ -419,20 +419,20 @@
         <section class="alternatives">
             <h2>Similar Alternatives</h2>
             <div class="alternatives-grid">
-                <a href="character-ai" class="alternative">
-                    <img src="../images/logos/character-ai.png" alt="Character.AI">
-                    <h3>Character.AI</h3>
-                    <p>Popular AI chatbot platform with diverse character personalities</p>
+                <a href="secrets-ai" class="alternative">
+                    <img src="../images/logos/secrets-ai.png" alt="Secrets AI">
+                    <h3>Secrets AI</h3>
+                    <p>Premium AI girlfriend platform with advanced fantasy scenarios (4.8/5)</p>
                 </a>
-                <a href="replika" class="alternative">
-                    <img src="../images/logos/replika.png" alt="Replika">
-                    <h3>Replika</h3>
-                    <p>Personal AI companion with 3D avatar and emotional support</p>
+                <a href="nomi-ai" class="alternative">
+                    <img src="../images/logos/nomi-ai.png" alt="Nomi AI">
+                    <h3>Nomi AI</h3>
+                    <p>Revolutionary memory-driven emotional AI companion (4.7/5)</p>
                 </a>
-                <a href="candy-ai" class="alternative">
-                    <img src="../images/logos/candy-ai.png" alt="Candy.AI">
-                    <h3>Candy.AI</h3>
-                    <p>AI girlfriend platform with customizable virtual companions</p>
+                <a href="narrin-ai" class="alternative">
+                    <img src="../images/logos/narrin-ai.png" alt="Narrin AI">
+                    <h3>Narrin.AI</h3>
+                    <p>Mental clarity AI companion for wellness and insight generation (4.6/5)</p>
                 </a>
             </div>
         </section>
@@ -482,5 +482,44 @@
     </footer>
 
     <script src="../script.js"></script>
+    <script>
+        // Load high-rated alternatives from Airtable
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const response = await fetch('/.netlify/functions/get-companions');
+                const data = await response.json();
+
+                // Filter companions with rating 4.1+ and exclude current page
+                const highRatedCompanions = data.companions
+                    ?.filter(c => c.rating >= 4.1 && c.slug !== 'junipero-ai')
+                    ?.sort((a, b) => b.rating - a.rating)
+                    ?.slice(0, 3); // Top 3 alternatives
+
+                if (highRatedCompanions && highRatedCompanions.length > 0) {
+                    updateAlternatives(highRatedCompanions);
+                }
+            } catch (error) {
+                console.error('Error loading alternatives:', error);
+                // Keep static alternatives as fallback
+            }
+        });
+
+        function updateAlternatives(companions) {
+            const alternativesGrid = document.querySelector('.alternatives-grid');
+            if (!alternativesGrid || !Array.isArray(companions)) return;
+
+            const alternativesHTML = companions.map(companion => {
+                return `
+                    <a href="${companion.slug}" class="alternative">
+                        <img src="../images/logos/${companion.slug}.${companion.logo_url?.includes('.svg') ? 'svg' : 'png'}" alt="${companion.name}">
+                        <h3>${companion.name}</h3>
+                        <p>${companion.description?.split('.')[0] || 'Premium AI companion platform'} (${companion.rating}/5)</p>
+                    </a>
+                `;
+            }).join('');
+
+            alternativesGrid.innerHTML = alternativesHTML;
+        }
+    </script>
 </body>
 </html>

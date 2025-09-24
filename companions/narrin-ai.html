@@ -441,17 +441,17 @@
                 <a href="simone" class="alternative">
                     <img src="../images/logos/simone.png" alt="Simone">
                     <h3>Simone</h3>
-                    <p>WhatsApp-based AI companion with productivity tools</p>
+                    <p>WhatsApp-based AI companion with productivity tools (4.6/5)</p>
                 </a>
-                <a href="replika" class="alternative">
-                    <img src="../images/logos/replika.png" alt="Replika">
-                    <h3>Replika</h3>
-                    <p>Personal AI companion with 3D avatar and emotional support</p>
+                <a href="hammer-ai" class="alternative">
+                    <img src="../images/logos/hammer-ai.png" alt="Hammer AI">
+                    <h3>Hammer AI</h3>
+                    <p>Completely free AI companion with unlimited conversations (4.5/5)</p>
                 </a>
-                <a href="kajiwoto-ai" class="alternative">
-                    <img src="../images/logos/kajiwoto-ai.png" alt="Kajiwoto">
-                    <h3>Kajiwoto</h3>
-                    <p>AI companion with custom personalities and datasets</p>
+                <a href="dreamgf-ai" class="alternative">
+                    <img src="../images/logos/dreamgf-ai.svg" alt="DreamGF AI">
+                    <h3>DreamGF AI</h3>
+                    <p>AI girlfriend with advanced image generation features (4.3/5)</p>
                 </a>
             </div>
         </section>
@@ -501,5 +501,44 @@
     </footer>
 
     <script src="../script.js"></script>
+    <script>
+        // Load high-rated alternatives from Airtable
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const response = await fetch('/.netlify/functions/get-companions');
+                const data = await response.json();
+
+                // Filter companions with rating 4.1+ and exclude current page
+                const highRatedCompanions = data.companions
+                    ?.filter(c => c.rating >= 4.1 && c.slug !== 'narrin-ai')
+                    ?.sort((a, b) => b.rating - a.rating)
+                    ?.slice(0, 3); // Top 3 alternatives
+
+                if (highRatedCompanions && highRatedCompanions.length > 0) {
+                    updateAlternatives(highRatedCompanions);
+                }
+            } catch (error) {
+                console.error('Error loading alternatives:', error);
+                // Keep static alternatives as fallback
+            }
+        });
+
+        function updateAlternatives(companions) {
+            const alternativesGrid = document.querySelector('.alternatives-grid');
+            if (!alternativesGrid || !Array.isArray(companions)) return;
+
+            const alternativesHTML = companions.map(companion => {
+                return `
+                    <a href="${companion.slug}" class="alternative">
+                        <img src="../images/logos/${companion.slug}.${companion.logo_url?.includes('.svg') ? 'svg' : 'png'}" alt="${companion.name}">
+                        <h3>${companion.name}</h3>
+                        <p>${companion.description?.split('.')[0] || 'Premium AI companion platform'} (${companion.rating}/5)</p>
+                    </a>
+                `;
+            }).join('');
+
+            alternativesGrid.innerHTML = alternativesHTML;
+        }
+    </script>
 </body>
 </html>
