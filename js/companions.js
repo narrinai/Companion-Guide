@@ -176,24 +176,47 @@ class CompanionManager {
   }
 
   async renderFeaturedCompanions(containerId, limit = 6) {
-    const companions = await this.fetchCompanions({
-      sort: 'rating',
-      limit: limit
-    });
-
-    const featuredCompanions = companions.filter(c => c.featured);
-
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    if (featuredCompanions.length === 0) {
-      container.innerHTML = '<p>No featured companions available.</p>';
-      return;
-    }
+    try {
+      // Get all companions first, then filter for featured ones
+      const allCompanions = await this.fetchCompanions({
+        sort: 'rating'
+      });
 
-    container.innerHTML = featuredCompanions.map(companion =>
-      this.generateCompanionCard(companion)
-    ).join('');
+      console.log('Total companions loaded:', allCompanions.length); // Debug
+      console.log('Featured companions found:', allCompanions.filter(c => c.featured).length); // Debug
+
+      const featuredCompanions = allCompanions
+        .filter(c => c.featured === true || c.featured === 'true') // Handle both boolean and string
+        .slice(0, limit); // Apply limit after filtering
+
+      if (featuredCompanions.length === 0) {
+        // Show debug info
+        console.log('No featured companions found. Showing first 8 companions instead.'); // Debug
+
+        // Fallback: show top 8 companions by rating if no featured ones
+        const topCompanions = allCompanions.slice(0, limit);
+        container.innerHTML = topCompanions.map(companion =>
+          this.generateCompanionCard(companion)
+        ).join('');
+        return;
+      }
+
+      container.innerHTML = featuredCompanions.map(companion =>
+        this.generateCompanionCard(companion)
+      ).join('');
+    } catch (error) {
+      console.error('Error loading featured companions:', error);
+      container.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px; color: #666;">
+          <div style="font-size: 32px; margin-bottom: 15px;">⚠️</div>
+          <h3>Unable to Load Featured Companions</h3>
+          <p>Error: ${error.message}</p>
+        </div>
+      `;
+    }
   }
 
   async renderCompanionsByCategory(containerId, category, limit = null) {
@@ -218,6 +241,172 @@ class CompanionManager {
     container.innerHTML = companions.map(companion =>
       this.generateCompanionCard(companion)
     ).join('');
+  }
+
+  generateCategoryCompanionCard(companion, index) {
+    const logoUrl = companion.logo_url || companion.image_url || '/images/logos/default.png';
+    const reviewCountText = companion.review_count > 0 ? ` (${companion.review_count} reviews)` : '';
+    const badges = this.generateBadges(companion.badges);
+    const pricing = this.generatePricingHtml(companion.pricing_plans);
+
+    // Use slug from Airtable, fallback to 'unknown' if not present
+    const slug = companion.slug || 'unknown';
+
+    // Generate star rating using filled stars
+    const fullStars = Math.floor(companion.rating);
+    const starRating = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+
+    // Determine leader badge for #1 position
+    let badgeHtml = '';
+    if (index === 0) {
+      badgeHtml = '<div class="product-badge">#1 🏆 Leader</div>';
+    } else {
+      badgeHtml = `<div class="product-badge">#${index + 1}${badges ? ' ' + badges.replace('<div class="product-badge">', '').replace('</div>', '').replace(/🔞\s*<span>Adult<\/span>/, '🔞 Adult').replace(/🔥\s*<span>Popular<\/span>/, '🔥 Popular').replace(/✨\s*<span>New<\/span>/, '✨ New') : ''}</div>`;
+    }
+
+    // Add leader class for first item
+    const cardClass = index === 0 ? 'companion-product-card leader' : 'companion-product-card';
+
+    return `
+      <article class="${cardClass}">
+        ${badgeHtml}
+        <div class="product-header">
+          <img src="${logoUrl}" alt="${companion.name} logo" class="product-logo">
+          <div class="product-title-section">
+            <h3><a href="../companions/${slug}">${companion.name}</a></h3>
+            <div class="product-rating">
+              <span class="stars">${starRating}</span>
+              <span class="rating-score">${companion.rating}/5</span>
+              <span class="rating-count">${reviewCountText}</span>
+            </div>
+            <p class="product-tagline">${companion.short_description || 'AI companion platform'}</p>
+          </div>
+        </div>
+
+        <div class="product-content">
+          <p class="product-description">${companion.description || companion.short_description || 'AI companion platform'}</p>
+
+          ${this.generateCategoryFeatureHighlights(companion.features)}
+
+          <div class="product-pricing">
+            <div class="pricing-main">${pricing.replace('<p class="price">', '').replace('</p>', '')}</div>
+            <div class="pricing-sub">Premium plans available</div>
+          </div>
+
+          <div class="product-actions">
+            <a href="../companions/${slug}" class="btn-primary">Read Review</a>
+            <a href="${companion.website_url}" class="btn-secondary" target="_blank">Visit Website</a>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  generateCategoryFeatureHighlights(features) {
+    if (!features || features.length === 0) return '';
+
+    // Handle if features is a string (JSON)
+    let featureList = features;
+    if (typeof features === 'string') {
+      try {
+        featureList = JSON.parse(features);
+      } catch (e) {
+        return '';
+      }
+    }
+
+    // Ensure featureList is an array and has items
+    if (!Array.isArray(featureList) || featureList.length === 0) {
+      return '';
+    }
+
+    // Limit to first 4 features for category pages
+    const limitedFeatures = featureList.slice(0, 4);
+
+    const featureItems = limitedFeatures.map(feature => `
+      <div class="highlight-item">
+        <span class="highlight-icon">${feature.icon || '⭐'}</span>
+        <div>
+          <strong>${feature.title}</strong>
+          <p>${feature.description}</p>
+        </div>
+      </div>
+    `).join('');
+
+    return `
+      <div class="product-highlights compact">
+        ${featureItems}
+      </div>
+    `;
+  }
+
+  async renderCategoryCompanions(containerId, category, limit = null) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    try {
+      // Add loading skeletons
+      container.innerHTML = this.generateCategorySkeletons(limit || 8);
+
+      // Fetch all companions and filter by category
+      const allCompanions = await this.fetchCompanions({
+        sort: 'rating'
+      });
+
+      // Filter by category client-side
+      const companions = allCompanions.filter(comp =>
+        comp.categories && comp.categories.includes(category)
+      ).slice(0, limit || allCompanions.length);
+
+      if (companions.length === 0) {
+        container.innerHTML = '<p>No companions found in this category.</p>';
+        return;
+      }
+
+      // Render companions with proper indexing for badges
+      container.innerHTML = companions.map((companion, index) =>
+        this.generateCategoryCompanionCard(companion, index)
+      ).join('');
+
+    } catch (error) {
+      console.error('Error loading category companions:', error);
+      container.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px; color: #666;">
+          <div style="font-size: 32px; margin-bottom: 15px;">⚠️</div>
+          <h3>Unable to Load Companions</h3>
+          <p>Error: ${error.message}</p>
+        </div>
+      `;
+    }
+  }
+
+  generateCategorySkeletons(count = 8) {
+    const skeleton = `
+      <article class="companion-product-card" style="background: #1a1a1a; border: 1px solid #333; animation: shimmer 2s ease-in-out infinite; position: relative; overflow: hidden;">
+        <div style="background: #2d2d2d; height: 30px; width: 80px; margin-bottom: 16px; border-radius: 4px;"></div>
+        <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+          <div style="background: #2d2d2d; width: 60px; height: 60px; border-radius: 8px;"></div>
+          <div style="flex: 1;">
+            <div style="background: #2d2d2d; height: 20px; width: 70%; margin-bottom: 8px; border-radius: 4px;"></div>
+            <div style="background: #2d2d2d; height: 16px; width: 50%; margin-bottom: 8px; border-radius: 4px;"></div>
+            <div style="background: #2d2d2d; height: 14px; width: 60%; border-radius: 4px;"></div>
+          </div>
+        </div>
+        <div style="background: #2d2d2d; height: 40px; margin-bottom: 16px; border-radius: 4px;"></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;">
+          <div style="background: #2d2d2d; height: 60px; border-radius: 4px;"></div>
+          <div style="background: #2d2d2d; height: 60px; border-radius: 4px;"></div>
+          <div style="background: #2d2d2d; height: 60px; border-radius: 4px;"></div>
+          <div style="background: #2d2d2d; height: 60px; border-radius: 4px;"></div>
+        </div>
+        <div style="display: flex; gap: 12px;">
+          <div style="background: #2d2d2d; height: 36px; flex: 1; border-radius: 6px;"></div>
+          <div style="background: #2d2d2d; height: 36px; flex: 1; border-radius: 6px;"></div>
+        </div>
+      </article>
+    `;
+
+    return Array(count).fill(skeleton).join('');
   }
 
   async renderAllCompanions(containerId, sortBy = 'rating') {

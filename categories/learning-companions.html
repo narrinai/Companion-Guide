@@ -69,69 +69,8 @@
         </section>
 
         <!-- Companion Grid -->
-        <section class="category-grid">
-
-            <!-- #1 Narrin.AI -->
-            <article class="companion-product-card leader">
-                <div class="product-badge">#1 🏆 Leader</div>
-                <div class="product-header">
-                    <img src="../images/logos/narrin-ai-3.png" alt="Narrin.AI logo" class="product-logo">
-                    <div class="product-title-section">
-                        <h3><a href="../companions/narrin-ai">Narrin.AI</a></h3>
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <span class="rating-score">4.6/5</span>
-                            <span class="rating-count">(84 reviews)</span>
-                        </div>
-                        <p class="product-tagline">AI companion for mental clarity and learning insights</p>
-                    </div>
-                </div>
-                
-                <div class="product-content">
-                    <p class="product-description">AI companion designed for transforming mental chaos into clear thinking, providing personal insights and supporting cognitive learning through pattern recognition and mental clarity.</p>
-                    
-                    <div class="product-highlights compact">
-                        <div class="highlight-item">
-                            <span class="highlight-icon">🧠</span>
-                            <div>
-                                <strong>Mental Clarity</strong>
-                                <p>Clear thinking patterns</p>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="highlight-icon">💭</span>
-                            <div>
-                                <strong>Personal Insights</strong>
-                                <p>Learning patterns</p>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="highlight-icon">🔒</span>
-                            <div>
-                                <strong>Privacy</strong>
-                                <p>Secure processing</p>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="highlight-icon">🎯</span>
-                            <div>
-                                <strong>4 Types</strong>
-                                <p>Multiple approaches</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-pricing">
-                        <div class="pricing-main">Free</div>
-                        <div class="pricing-sub">$4.99/month after trial</div>
-                    </div>
-
-                    <div class="product-actions">
-                        <a href="../companions/narrin-ai" class="btn-primary">Read Review</a>
-                        <a href="https://narrin.ai" class="btn-secondary" target="_blank">Visit Website</a>
-                    </div>
-                </div>
-            </article>
+        <section class="category-grid" id="learning-companions-container">
+            <!-- Dynamic companions will be loaded here -->
         </section>
 
         <!-- Category Insights -->
@@ -292,6 +231,15 @@
         </div>
     </footer>
 
+    <script src="../js/companions.js"></script>
+    <script>
+        // Initialize category companions when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.companionManager) {
+                window.companionManager.renderCategoryCompanions('learning-companions-container', 'learning');
+            }
+        });
+    </script>
     <script src="../script.js"></script>
 </body>
 </html>

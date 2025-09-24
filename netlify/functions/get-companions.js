@@ -108,7 +108,7 @@ exports.handler = async (event, context) => {
         badges: badges,
         features: features,
         pricing_plans: pricingPlans,
-        featured: fields.featured === true || fields.featured === 'true',
+        featured: !!fields.is_featured, // Convert checkbox to boolean
         status: fields.status || 'active',
         review_count: parseInt(fields.review_count) || 0
       };
