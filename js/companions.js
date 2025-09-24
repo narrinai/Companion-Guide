@@ -250,46 +250,33 @@ class CompanionManager {
   }
 
   generateCategoryBadges(companion, index) {
-    // Priority order for badge selection
-    let selectedBadge = '';
-
     // #1 always gets Leader badge
     if (index === 0) {
-      selectedBadge = '<div class="product-badge">#1 🏆 Leader</div>';
-    } else {
-      // For other positions, check for special badges first, otherwise use ranking
-      let specialBadge = null;
-
-      if (companion.badges && Array.isArray(companion.badges)) {
-        // Priority order: Adult > Popular > Premium > New > Global > Characters > Other
-        for (const badge of companion.badges) {
-          if (badge.toLowerCase().includes('adult') || badge.toLowerCase().includes('nsfw')) {
-            specialBadge = '<div class="product-badge">🔞 Adult</div>';
-            break;
-          } else if (badge.toLowerCase().includes('popular')) {
-            specialBadge = '<div class="product-badge">🔥 Popular</div>';
-            break;
-          } else if (badge.toLowerCase().includes('premium')) {
-            specialBadge = '<div class="product-badge">💎 Premium</div>';
-            break;
-          } else if (badge.toLowerCase().includes('new')) {
-            specialBadge = '<div class="product-badge">✨ New</div>';
-            break;
-          } else if (badge.toLowerCase().includes('global')) {
-            specialBadge = '<div class="product-badge">🌍 Global</div>';
-            break;
-          } else if (badge.toLowerCase().includes('character')) {
-            specialBadge = '<div class="product-badge">🎭 Characters</div>';
-            break;
-          }
-        }
-      }
-
-      // Use special badge if found, otherwise use ranking badge
-      selectedBadge = specialBadge || `<div class="product-badge">#${index + 1}</div>`;
+      return '<div class="product-badge">#1 🏆 Leader</div>';
     }
 
-    return `<div class="product-badges">${selectedBadge}</div>`;
+    // For other positions, check for special badges first, otherwise use ranking
+    if (companion.badges && Array.isArray(companion.badges)) {
+      // Priority order: Adult > Popular > Premium > New > Global > Characters > Other
+      for (const badge of companion.badges) {
+        if (badge.toLowerCase().includes('adult') || badge.toLowerCase().includes('nsfw')) {
+          return '<div class="product-badge">🔞 Adult</div>';
+        } else if (badge.toLowerCase().includes('popular')) {
+          return '<div class="product-badge">🔥 Popular</div>';
+        } else if (badge.toLowerCase().includes('premium')) {
+          return '<div class="product-badge">💎 Premium</div>';
+        } else if (badge.toLowerCase().includes('new')) {
+          return '<div class="product-badge">✨ New</div>';
+        } else if (badge.toLowerCase().includes('global')) {
+          return '<div class="product-badge">🌍 Global</div>';
+        } else if (badge.toLowerCase().includes('character')) {
+          return '<div class="product-badge">🎭 Characters</div>';
+        }
+      }
+    }
+
+    // Use ranking badge as fallback
+    return `<div class="product-badge">#${index + 1}</div>`;
   }
 
   generateCategoryCompanionCard(companion, index) {
