@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "description": "AI Companion Reviews website",
   "dependencies": {
-    "nodemailer": "^6.9.0"
+    "nodemailer": "^6.9.0",
+    "airtable": "^0.12.2"
   },
   "devDependencies": {
-    "@netlify/functions": "^2.0.0"
+    "@netlify/functions": "^2.0.0",
+    "netlify-cli": "^17.10.1"
+  },
+  "scripts": {
+    "build": "echo 'Static site - no build step required'",
+    "dev": "netlify dev"
   }
 }
