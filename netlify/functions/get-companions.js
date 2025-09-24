@@ -47,12 +47,14 @@ exports.handler = async (event, context) => {
         short_description: fields.short_description,
         website_url: fields.website_url,
         affiliate_url: fields.affiliate_url,
-        image_url: fields.image_url,
-        categories: fields.categories ? fields.categories.split(',') : [],
-        badges: fields.badges ? fields.badges.split(',') : [],
+        logo_url: fields.logo_url,
+        image_url: fields.image_url, // Keep both for backward compatibility
+        categories: fields.categories ? fields.categories.split(';') : [],
+        badges: fields.badges ? fields.badges.split(';') : [],
         pricing_plans: pricingPlans,
         featured: fields.featured || false,
-        status: fields.status
+        status: fields.status,
+        review_count: fields.review_count || 0
       };
     });
 

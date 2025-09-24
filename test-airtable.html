@@ -97,6 +97,7 @@
                 <button onclick="testApiConnection()">Test API Connection</button>
                 <button onclick="testWithFilters()">Test met Filters</button>
                 <button onclick="testSorting()">Test Sorting</button>
+                <button onclick="testReviewCount()">Test Review Count</button>
                 <button onclick="clearResults()">Clear Results</button>
             </div>
             <div id="api-status" class="status loading">Klaar voor test...</div>
@@ -107,9 +108,11 @@
         <section class="test-section">
             <h2 class="test-header">🎨 Companion Card Rendering Test</h2>
             <div class="test-controls">
-                <button onclick="testCompanionCards()">Test Companion Cards</button>
+                <button onclick="testCompanionCards()">Test All Companions</button>
                 <button onclick="testFeaturedOnly()">Test Featured Only</button>
                 <button onclick="testByCategory()">Test by Category</button>
+                <button onclick="testDataValidation()" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">Validate Data</button>
+                <button onclick="clearTestArea()" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);">Clear</button>
             </div>
             <div id="render-status" class="status loading">Klaar voor test...</div>
             <div id="companions-test-container" class="companions-test-grid"></div>
@@ -241,6 +244,89 @@
             } catch (error) {
                 updateStatus('render-status', 'error', `❌ Category Render Error: ${error.message}`);
             }
+        }
+
+        async function testReviewCount() {
+            updateStatus('api-status', 'loading', 'Testing review count data...');
+
+            try {
+                const response = await fetch('/.netlify/functions/get-companions?sort=review_count&order=desc&limit=5');
+                const data = await response.json();
+
+                if (response.ok && data.companions?.length) {
+                    const topCompanion = data.companions[0];
+                    updateStatus('api-status', 'success', `✅ Review Count Test Success! Top companion: ${topCompanion.name} (${topCompanion.review_count} reviews)`);
+
+                    // Show review count data
+                    const reviewData = data.companions.map(c => `${c.name}: ${c.review_count} reviews`).join('\n');
+                    document.getElementById('api-response').textContent = `Top 5 by Review Count:\n${reviewData}\n\nFull Response:\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    updateStatus('api-status', 'error', `❌ Review Count Test Error: ${data.error || 'No companions found'}`);
+                }
+            } catch (error) {
+                updateStatus('api-status', 'error', `❌ Review Count Test Error: ${error.message}`);
+            }
+        }
+
+        async function testDataValidation() {
+            updateStatus('render-status', 'loading', 'Validating all companion data...');
+
+            try {
+                const response = await fetch('/.netlify/functions/get-companions');
+                const data = await response.json();
+
+                if (response.ok && data.companions?.length) {
+                    const companions = data.companions;
+                    let validationResults = [];
+
+                    // Check for missing fields
+                    companions.forEach(comp => {
+                        const issues = [];
+                        if (!comp.name) issues.push('Missing name');
+                        if (!comp.slug) issues.push('Missing slug');
+                        if (!comp.rating) issues.push('Missing rating');
+                        if (!comp.logo_url && !comp.image_url) issues.push('Missing logo_url/image_url');
+                        if (!comp.website_url) issues.push('Missing website_url');
+                        if (!comp.categories || comp.categories.length === 0) issues.push('Missing categories');
+                        if (comp.review_count === undefined) issues.push('Missing review_count');
+
+                        if (issues.length > 0) {
+                            validationResults.push(`${comp.name}: ${issues.join(', ')}`);
+                        }
+                    });
+
+                    if (validationResults.length === 0) {
+                        updateStatus('render-status', 'success', `✅ Data Validation Success! All ${companions.length} companions have complete data`);
+                        document.getElementById('companions-test-container').innerHTML = `
+                            <div style="padding: 20px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px; color: #155724;">
+                                <h3>✅ All Data Valid!</h3>
+                                <p><strong>${companions.length} companions</strong> loaded successfully</p>
+                                <p><strong>Featured companions:</strong> ${companions.filter(c => c.featured).length}</p>
+                                <p><strong>With review counts:</strong> ${companions.filter(c => c.review_count > 0).length}</p>
+                                <p><strong>Categories represented:</strong> ${[...new Set(companions.flatMap(c => c.categories))].length}</p>
+                                <p><strong>Highest review count:</strong> ${Math.max(...companions.map(c => c.review_count))}</p>
+                            </div>
+                        `;
+                    } else {
+                        updateStatus('render-status', 'error', `❌ Data Validation Issues: ${validationResults.length} companions have missing data`);
+                        document.getElementById('companions-test-container').innerHTML = `
+                            <div style="padding: 20px; background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 8px; color: #721c24;">
+                                <h3>❌ Data Validation Issues</h3>
+                                <pre style="white-space: pre-wrap; font-size: 12px;">${validationResults.join('\n')}</pre>
+                            </div>
+                        `;
+                    }
+                } else {
+                    updateStatus('render-status', 'error', `❌ Data Validation Error: ${data.error || 'No data received'}`);
+                }
+            } catch (error) {
+                updateStatus('render-status', 'error', `❌ Data Validation Error: ${error.message}`);
+            }
+        }
+
+        function clearTestArea() {
+            document.getElementById('companions-test-container').innerHTML = '<p style="padding: 20px; color: #666;">Click a test button to see results here...</p>';
+            updateStatus('render-status', 'info', 'Test area cleared');
         }
 
         async function checkEnvironment() {

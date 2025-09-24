@@ -72,23 +72,25 @@ class CompanionManager {
     const starRating = this.generateStarRating(companion.rating);
     const badges = this.generateBadges(companion.badges);
     const pricing = this.generatePricingHtml(companion.pricing_plans);
+    const logoUrl = companion.logo_url || companion.image_url; // Use logo_url or fallback to image_url
+    const reviewCountText = companion.review_count > 0 ? ` (${companion.review_count} reviews)` : '';
 
     return `
       <div class="companion-card" data-companion-id="${companion.id}">
         <div class="companion-image">
-          <img src="${companion.image_url}" alt="${companion.name}" loading="lazy">
+          <img src="${logoUrl}" alt="${companion.name}" loading="lazy">
           ${badges}
         </div>
         <div class="companion-info">
           <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
           <div class="rating">
             ${starRating}
-            <span class="rating-value">(${companion.rating}/5)</span>
+            <span class="rating-value">${companion.rating}/5${reviewCountText}</span>
           </div>
-          <p class="description">${companion.short_description}</p>
+          <p class="description">${companion.short_description || 'AI companion platform'}</p>
           ${pricing}
           <div class="companion-actions">
-            <a href="${companion.affiliate_url}" class="btn btn-primary" target="_blank" rel="noopener">Try ${companion.name}</a>
+            <a href="${companion.website_url}" class="btn btn-primary" target="_blank" rel="noopener">Try ${companion.name}</a>
             <a href="/companions/${companion.slug}" class="btn btn-secondary">Full Review</a>
           </div>
         </div>

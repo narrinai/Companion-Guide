@@ -502,6 +502,11 @@
                     </article>
 
                 </div>
+
+                <!-- Dynamic Companions (hidden until Airtable is configured) -->
+                <div id="featured-companions-dynamic" class="companions-grid" style="display: none;">
+                    <!-- Companions will be loaded here dynamically from Airtable -->
+                </div>
             </section>
 
             <!-- Right Column: News -->
@@ -783,5 +788,16 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="js/companions.js"></script>
+    <script>
+        // Initialize dynamic companions when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // For now, keep static companions but add functionality for dynamic loading
+            // This can be enabled once Airtable is set up
+
+            // Uncomment the line below once Airtable is configured:
+            // companionManager.renderFeaturedCompanions('featured-companions-dynamic', 8);
+        });
+    </script>
 </body>
 </html>

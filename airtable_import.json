@@ -1,0 +1,817 @@
+[
+  {
+    "name": "Candy AI",
+    "slug": "candy-ai",
+    "rating": 4.5,
+    "description": "In-depth Candy AI review covering features, pricing, and capabilities. Discover the AI girlfriend platform with customizable virtual companions and interactive experiences for romantic conversations.",
+    "short_description": "AI girlfriend platform with customizable virtual companions and interactive experiences",
+    "website_url": "https://t.mbsrv2.com/388589/7793?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "affiliate_url": "https://t.mbsrv2.com/388589/7793?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "image_url": "/images/logos/candy-ai.png",
+    "categories": [
+      "ai-girlfriend"
+    ],
+    "badges": [
+      "Featured",
+      "Popular",
+      "Leader"
+    ],
+    "featured": true,
+    "pricing_plans": "[{\"name\":\"Free Plan\",\"price\":0,\"period\":\"free\",\"features\":[\"1 AI girlfriend companion\",\"5 messages per day\",\"Limited customization options\",\"Text conversations only\",\"Standard response time\",\"Web access only\",\"Ads supported\"]},{\"name\":\"Basic Plan\",\"price\":12.99,\"period\":\"monthly\",\"features\":[\"1 AI girlfriend companion\",\"Daily conversation limits\",\"Basic customization options\",\"Text conversations\",\"Standard response time\",\"Mobile app access\"]},{\"name\":\"Premium Plan\",\"price\":25.99,\"period\":\"monthly\",\"features\":[\"Multiple AI girlfriends\",\"Unlimited conversations\",\"Advanced customization\",\"Voice messages\",\"Interactive activities\",\"Priority response time\",\"Exclusive content access\",\"Ad-free experience\"]},{\"name\":\"Deluxe Plan\",\"price\":49.99,\"period\":\"monthly\",\"features\":[\"All Premium features\",\"Unlimited AI girlfriends\",\"Advanced AI personality engine\",\"Custom voice options\",\"Exclusive deluxe content\",\"Priority customer support\",\"Early access to new features\",\"Maximum customization\"]}]",
+    "is_ai_girlfriend": true,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 12.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.570Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Caveduck",
+    "slug": "caveduck",
+    "rating": 3.1,
+    "description": "In-depth Caveduck review covering features, pricing, pros and cons. Complete guide to this AI character chat platform with image generation and multilingual support.",
+    "short_description": "Create your own unique AI friend with character chat and image generation",
+    "website_url": "https://caveduck.io",
+    "affiliate_url": "https://caveduck.io",
+    "image_url": "/images/logos/caveduck.svg",
+    "categories": [
+      "roleplaying",
+      "image-gen"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Plan\",\"price\":0,\"period\":\"free\",\"features\":[\"Free trial access\",\"Basic character chat\",\"Limited daily interactions\",\"Community character access\"]},{\"name\":\"Premium (Points)\",\"price\":0,\"period\":\"free\",\"features\":[\"AI image generation\",\"Unlimited character creation\",\"Enhanced interaction features\",\"Priority response times\",\"Advanced customization options\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": null,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Chai AI",
+    "slug": "chai-ai",
+    "rating": 4.1,
+    "description": "In-depth Chai AI review covering features, pricing, and capabilities. Discover the mobile-first AI character chat platform with community-created personalities and interactive conversation games.",
+    "short_description": "Mobile-first AI character chat with community personalities and games",
+    "website_url": "https://chai.ml",
+    "affiliate_url": "https://chai.ml",
+    "image_url": "/images/logos/chai-ai.png",
+    "categories": [
+      "roleplaying"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited daily messages\",\"Access to popular characters\",\"Basic chat features\",\"Community character discovery\",\"Character rating system\",\"Mobile app access\"]},{\"name\":\"Chai Premium\",\"price\":13.99,\"period\":\"monthly\",\"features\":[\"Unlimited messages\",\"Access to all characters\",\"Premium-only characters\",\"Advanced chat games\",\"Priority response time\",\"Enhanced customization\",\"Ad-free experience\",\"Early access to new features\"]},{\"name\":\"Annual Plan\",\"price\":99.99,\"period\":\"monthly\",\"features\":[\"All Premium features\",\"40% discount vs monthly\",\"Only $8.33/month\",\"Full year commitment\",\"Maximum savings\",\"Same premium experience\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 13.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Character.AI",
+    "slug": "character-ai",
+    "rating": 3.7,
+    "description": "In-depth Character.AI review covering features, pricing, pros and cons. Everything you need to know about the world's largest AI character chat platform with millions of characters.",
+    "short_description": "Chat with millions of AI characters created by users worldwide",
+    "website_url": "https://character.ai",
+    "affiliate_url": "https://character.ai",
+    "image_url": "/images/logos/character-ai.png",
+    "categories": [
+      "roleplaying"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Plan\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited daily messages\",\"Access to all public characters\",\"Create up to 10 characters\",\"Basic chat features\"]},{\"name\":\"Premium (c.ai+)\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"Unlimited messages\",\"Priority access (faster responses)\",\"Voice calls with characters\",\"Image generation\",\"Create unlimited characters\",\"Skip waiting rooms\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 9.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Cuties AI",
+    "slug": "cuties-ai",
+    "rating": 4.3,
+    "description": "In-depth Cuties AI review covering features, pricing, and capabilities. Discover the AI girlfriend platform with realistic NSFW chat, image generation, and customizable virtual companions.",
+    "short_description": "Realistic NSFW AI girlfriend platform with customizable companions",
+    "website_url": "https://t.mbsrv2.com/388589/9246/0?source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "affiliate_url": "https://t.mbsrv2.com/388589/9246/0?source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "image_url": "/images/logos/cuties-ai.png",
+    "categories": [
+      "ai-girlfriend",
+      "nsfw",
+      "image-gen"
+    ],
+    "badges": [
+      "Adult"
+    ],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Trial\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited daily messages\",\"Basic customization options\",\"Try AI girlfriend generator\",\"Experience NSFW conversations\",\"Test image generation features\"]},{\"name\":\"Premium Plan\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"Unlimited messaging and conversations\",\"Full customization capabilities\",\"Advanced AI image generation\",\"Realistic voice messages\",\"Premium personality options\",\"Discrete billing protection\",\"Priority customer support\"]},{\"name\":\"VIP Plan\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"All Premium features included\",\"Enhanced image generation quality\",\"Exclusive character templates\",\"Advanced video generation features\",\"Priority response times\",\"VIP customer support\",\"Early access to new features\"]}]",
+    "is_ai_girlfriend": true,
+    "is_nsfw": true,
+    "is_free": true,
+    "min_price": 9.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "DreamGF AI",
+    "slug": "dreamgf-ai",
+    "rating": 4.2,
+    "description": "In-depth DreamGF AI review covering features, pricing, and capabilities. Discover the premium AI chat platform and AI girlfriend website with advanced image generation, voice messages, and memory system.",
+    "short_description": "Customizable AI Girlfriend Platform with Advanced Image Generation",
+    "website_url": "https://t.mbsrv2.com/388589/6523?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "affiliate_url": "https://t.mbsrv2.com/388589/6523?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "image_url": "/images/logos/dreamgf-ai.svg",
+    "categories": [
+      "ai-girlfriend",
+      "image-gen"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Monthly Plan\",\"price\":12.99,\"period\":\"monthly\",\"features\":[\"Unlimited chat messages\",\"150 tokens monthly\",\"All image generation styles\",\"Voice message feature\",\"Memory system access\",\"Daily reward system\"]},{\"name\":\"Annual Plan\",\"price\":5.99,\"period\":\"monthly\",\"features\":[\"All monthly plan features\",\"Significant cost savings\",\"Priority customer support\",\"Extended token allowance\"]}]",
+    "is_ai_girlfriend": true,
+    "is_nsfw": false,
+    "is_free": false,
+    "min_price": 5.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "FantasyGF",
+    "slug": "fantasygf-ai",
+    "rating": 4.2,
+    "description": "In-depth FantasyGF review covering features, pricing, and capabilities. Discover the virtual dating AI platform with voice calls, video generation, and XP rewards.",
+    "short_description": "Virtual dating AI platform with voice calls & video generation",
+    "website_url": "https://fantasygf.com/create-ai-girl?via=53hyme",
+    "affiliate_url": "https://fantasygf.com/create-ai-girl?via=53hyme",
+    "image_url": "/images/logos/fantasygf-ai.png",
+    "categories": [
+      "ai-girlfriend",
+      "video",
+      "roleplaying"
+    ],
+    "badges": [
+      "Featured"
+    ],
+    "featured": true,
+    "pricing_plans": "[{\"name\":\"Free Plan\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited daily conversations\",\"Basic AI girlfriend interaction\",\"Standard customization options\",\"Community features access\",\"Basic voice interaction\",\"Limited XP rewards\"]},{\"name\":\"Premium Plan\",\"price\":12.99,\"period\":\"monthly\",\"features\":[\"Unlimited messaging\",\"All voice options (24 voices)\",\"Kiss video generator\",\"Full XP reward system\",\"Complete customization\",\"Premium voice interactions\",\"Anonymous billing\",\"Priority customer support\"]}]",
+    "is_ai_girlfriend": true,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 12.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "GirlfriendGPT",
+    "slug": "girlfriend-gpt",
+    "rating": 4.6,
+    "description": "In-depth GirlfriendGPT review covering features, pricing, and capabilities. Discover the uncensored AI companion platform designed for unrestricted fantasy interactions and NSFW conversations.",
+    "short_description": "Uncensored AI companion platform for unrestricted fantasy interactions",
+    "website_url": "https://t.mbsrv2.com/388589/7477?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "affiliate_url": "https://t.mbsrv2.com/388589/7477?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "image_url": "/images/logos/girlfriend-gpt.png",
+    "categories": [
+      "ai-girlfriend",
+      "nsfw",
+      "roleplaying"
+    ],
+    "badges": [
+      "Featured",
+      "Popular",
+      "Adult"
+    ],
+    "featured": true,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited AI character interactions\",\"Basic conversation features\",\"Access to some character types\",\"Limited image generation\",\"Community features\"]},{\"name\":\"Deluxe Plan\",\"price\":14.99,\"period\":\"monthly\",\"features\":[\"Unlimited AI character interactions\",\"Unlimited NSFW conversations\",\"Unlimited image generation\",\"Priority chat servers\",\"All 100+ character categories\",\"Voice chat features\",\"Long-term conversation memory\"]},{\"name\":\"Elite Plan\",\"price\":24.99,\"period\":\"monthly\",\"features\":[\"Everything in Deluxe Plan\",\"Premium AI model access\",\"Advanced image generation\",\"Priority support\",\"Early access to new features\",\"Custom character creation tools\",\"Enhanced voice quality\",\"Exclusive character content\"]}]",
+    "is_ai_girlfriend": true,
+    "is_nsfw": true,
+    "is_free": true,
+    "min_price": 14.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Hammer AI",
+    "slug": "hammer-ai",
+    "rating": 4.7,
+    "description": "In-depth Hammer AI review covering features, pricing, and capabilities. Discover the completely free AI character chat platform with unlimited conversations, local models, and privacy-focused design.",
+    "short_description": "100% Free AI Character Chat with Privacy Focus",
+    "website_url": "https://gumroad.com/a/748605075/zrsof",
+    "affiliate_url": "https://gumroad.com/a/748605075/zrsof",
+    "image_url": "/images/logos/hammerai.png",
+    "categories": [
+      "roleplaying"
+    ],
+    "badges": [
+      "Featured",
+      "Top Rated",
+      "Popular",
+      "Leader"
+    ],
+    "featured": true,
+    "pricing_plans": "[{\"name\":\"Free 🔨\",\"price\":0,\"period\":\"free\",\"features\":[\"✅ Unlimited conversations\",\"✅ Unlimited characters\",\"✅ Access to all local LLMs\",\"✅ No ads (desktop has no ads)\",\"✅ Prioritized feature requests\",\"✅ Private Discord channel\",\"✅ Cloud LLMs: Unlimited messages!\",\"✅ Max Context Size: 4,096 tokens\",\"✅ 11 Premium Cloud LLMs (Mistral-Nemo, Llama 3.1 70B, Midnight Rose 70B, and more)\",\"✅ Cloud Image Generation: 20 images per hour\",\"✅ 21 Image Models (Flux 1 Schnell, MajicMIX, Realistic Vision, and more)\",\"✅ Cloud Text-to-Speech: 40 TTS per day\"]},{\"name\":\"Starter 🥉\",\"price\":9,\"period\":\"monthly\",\"features\":[\"✅ Unlimited conversations\",\"✅ Unlimited characters\",\"✅ Access to all local LLMs\",\"✅ No ads (desktop has no ads)\",\"✅ Prioritized feature requests\",\"✅ Private Discord channel\",\"✅ Cloud LLMs: Unlimited messages!\",\"✅ Max Context Size: 4,096 tokens\",\"✅ 11 Premium Cloud LLMs (Mistral-Nemo, Llama 3.1 70B, Midnight Rose 70B, Magnum v4 72B, WizardLM 2, and more)\",\"✅ Cloud Image Generation: 20 images per hour\",\"✅ 21 Image Models (Flux 1 Schnell, MajicMIX, Realistic Vision, and more)\",\"✅ Cloud Text-to-Speech: 40 TTS per day\"]},{\"name\":\"Advanced 🥈\",\"price\":18,\"period\":\"monthly\",\"features\":[\"✅ Unlimited conversations\",\"✅ Unlimited characters\",\"✅ Access to all local LLMs\",\"✅ No ads (desktop has no ads)\",\"✅ Prioritized feature requests\",\"✅ Private Discord channel\",\"✅ Cloud LLMs: Unlimited messages!\",\"✅ Max Context Size: 8,192 tokens (2x Free/Starter)\",\"✅ 11 Premium Cloud LLMs (Same models as Starter)\",\"⚠️ Cloud Image Generation: 10 images per hour (vs 20 in Starter)\",\"✅ 21 Image Models (Same models as Starter)\",\"✅ Cloud Text-to-Speech: 40 TTS per day\"]},{\"name\":\"Ultimate 🥇\",\"price\":35,\"period\":\"monthly\",\"features\":[\"✅ Unlimited conversations\",\"✅ Unlimited characters\",\"✅ Access to all local LLMs\",\"✅ No ads (desktop has no ads)\",\"✅ Prioritized feature requests\",\"✅ Private Discord channel\",\"✅ Cloud LLMs: Unlimited messages!\",\"✅ Max Context Size: 30,720 tokens (7.5x Free/Starter)\",\"✅ 11 Premium Cloud LLMs (Same models as all plans)\",\"✅ Cloud Image Generation: 20 images per hour\",\"✅ 21 Image Models (Same models as all plans)\",\"✅ Cloud Text-to-Speech: 40 TTS per day\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 9,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Janitor AI",
+    "slug": "janitor-ai",
+    "rating": 3.3,
+    "description": "In-depth Janitor AI review covering features, pricing, and capabilities. Discover the uncensored AI character platform with NSFW content and advanced roleplay features for creative freedom.",
+    "short_description": "Uncensored AI character platform with creative freedom and NSFW content",
+    "website_url": "https://janitorai.com",
+    "affiliate_url": "https://janitorai.com",
+    "image_url": "/images/logos/janitor-ai.webp",
+    "categories": [
+      "roleplaying",
+      "nsfw"
+    ],
+    "badges": [
+      "Adult"
+    ],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Janitor AI Platform\",\"price\":0,\"period\":\"free\",\"features\":[\"Unlimited character access\",\"Character creation tools\",\"Community features\",\"Uncensored conversations\",\"Advanced roleplay features\",\"No subscription required\"]},{\"name\":\"OpenAI API Costs\",\"price\":0.002,\"period\":\"monthly\",\"features\":[\"~$0.002 per 1K tokens\",\"Average conversation: $0.01-0.05\",\"Heavy usage: $5-20/month\",\"Direct payment to OpenAI\",\"Usage-based pricing\",\"No markup from Janitor AI\"]},{\"name\":\"Alternative APIs\",\"price\":0,\"period\":\"free\",\"features\":[\"Claude API (Anthropic)\",\"Cohere API\",\"Local AI models\",\"Custom endpoints\",\"Pricing varies by provider\",\"Choose best value option\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": true,
+    "is_free": true,
+    "min_price": 0.002,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "JOI AI",
+    "slug": "joi-ai",
+    "rating": 4.6,
+    "description": "In-depth JOI AI review covering features, pricing, and capabilities. Discover the AI companion platform offering virtual characters and digital celebrities for interactive chat experiences.",
+    "short_description": "AI companion platform with customizable virtual characters and digital celebrities",
+    "website_url": "https://t.mbsrv2.com/388589/7875?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "affiliate_url": "https://t.mbsrv2.com/388589/7875?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "image_url": "/images/logos/joi.png",
+    "categories": [
+      "roleplaying"
+    ],
+    "badges": [
+      "Popular"
+    ],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited AI character interactions\",\"Basic customization options\",\"Standard conversation features\",\"Community character access\"]},{\"name\":\"Premium Plan\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"Unlimited AI character interactions\",\"Full customization control\",\"AI-generated images and videos\",\"Priority access to new characters\",\"Advanced personality settings\",\"Premium digital celebrities\"]},{\"name\":\"Enterprise\",\"price\":0,\"period\":\"free\",\"features\":[\"Custom AI character development\",\"White-label solutions\",\"API access\",\"Dedicated support\",\"Custom integrations\",\"Bulk user management\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 19.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Joyland.AI",
+    "slug": "joyland-ai",
+    "rating": 4.1,
+    "description": "In-depth Joyland.AI review covering features, pricing, and creative AI capabilities. Discover the versatile AI platform for creating unique characters and roleplay scenarios.",
+    "short_description": "Creative roleplay and character creation platform",
+    "website_url": "https://joyland.ai",
+    "affiliate_url": "https://joyland.ai",
+    "image_url": "/images/logos/joyland-ai.png",
+    "categories": [
+      "roleplaying"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"2 AI characters\",\"100 messages per day\",\"Basic character customization\",\"Standard memory\",\"Community access\"]},{\"name\":\"Standard Plan\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"Unlimited AI characters\",\"Unlimited messages\",\"Advanced character creation\",\"Enhanced memory system\",\"Image generation credits\",\"Priority support\",\"Export conversation history\"]},{\"name\":\"Pro Plan\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"Everything in Standard\",\"Advanced AI models\",\"Unlimited image generation\",\"Custom voice options\",\"Advanced roleplay tools\",\"Beta feature access\",\"Creator monetization tools\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 9.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Kajiwoto AI",
+    "slug": "kajiwoto-ai",
+    "rating": 3.4,
+    "description": "In-depth Kajiwoto AI review covering features, pricing, and custom AI training capabilities. Create your own Kajis with personalized training data and group conversations.",
+    "short_description": "Create and train custom AI companions with your own data",
+    "website_url": "https://kajiwoto.ai",
+    "affiliate_url": "https://kajiwoto.ai",
+    "image_url": "/images/logos/kajiwoto-ai.png",
+    "categories": [
+      "learning"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"Create unlimited Kajis\",\"Custom training data upload\",\"Private and public chat rooms\",\"Group conversations\",\"Basic personality customization\",\"Community access\",\"Standard response times\"]},{\"name\":\"Premium Features\",\"price\":8.99,\"period\":\"monthly\",\"features\":[\"All free features included\",\"Advanced AI models\",\"Priority response times\",\"Enhanced memory capacity\",\"Advanced training options\",\"Premium support\",\"Beta feature access\",\"Export conversation data\"]},{\"name\":\"Developer Plan\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"Everything in Premium\",\"API access\",\"Advanced analytics\",\"Bulk training tools\",\"Custom model fine-tuning\",\"Developer support\",\"Commercial usage rights\",\"Integration capabilities\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 8.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Kupid AI",
+    "slug": "kupid-ai",
+    "rating": 4.2,
+    "description": "In-depth Kupid AI review covering features, pricing, and capabilities. Discover the AI companion platform with customizable virtual girlfriends, voice messages, and image generation.",
+    "short_description": "Create your dream AI girlfriend with personalized virtual dating experiences",
+    "website_url": "https://t.mbsrv2.com/388589/6924?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "affiliate_url": "https://t.mbsrv2.com/388589/6924?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "image_url": "/images/logos/kupid-ai-2.png",
+    "categories": [
+      "ai-girlfriend",
+      "image-gen"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Plan\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited daily interactions\",\"Basic character customization\",\"Standard chat features\",\"Community access\",\"Character browsing\"]},{\"name\":\"Premium Plan\",\"price\":13.99,\"period\":\"monthly\",\"features\":[\"Unlimited conversations\",\"Voice message capabilities\",\"Advanced image generation\",\"Full character customization\",\"NSFW content access\",\"Chat memory features\",\"Priority support\"]},{\"name\":\"Ultimate Plan\",\"price\":49,\"period\":\"monthly\",\"features\":[\"Everything in Premium Plan\",\"Maximum coin allocation\",\"Unlimited image generation\",\"Multiple AI girlfriends\",\"Exclusive character options\",\"Priority image processing\",\"VIP customer support\",\"Early access to new features\"]}]",
+    "is_ai_girlfriend": true,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 13.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Lovescape",
+    "slug": "lovescape",
+    "rating": 4.2,
+    "description": "In-depth Lovescape review covering features, pricing, and capabilities. Discover the AI girlfriend platform with multilingual support, personalization, and immersive romantic experiences.",
+    "short_description": "Multilingual AI girlfriend platform with immersive romantic experiences",
+    "website_url": "https://t.mbsrv2.com/388589/7887?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "affiliate_url": "https://t.mbsrv2.com/388589/7887?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "image_url": "/images/logos/lovescape.png",
+    "categories": [
+      "ai-girlfriend"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited daily messages\",\"Basic character customization\",\"Standard conversation modes\",\"Multilingual support\",\"Community access\"]},{\"name\":\"Premium Plan\",\"price\":14.99,\"period\":\"monthly\",\"features\":[\"Unlimited messages\",\"Advanced character creation\",\"NSFW content access\",\"Premium personality options\",\"Priority response times\",\"Exclusive community features\",\"Advanced memory system\"]},{\"name\":\"Annual Plan\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"All Premium features\",\"Significant cost savings\",\"Priority customer support\",\"Early access to new features\",\"Extended conversation history\",\"Exclusive annual member benefits\"]}]",
+    "is_ai_girlfriend": true,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 9.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Muah.AI",
+    "slug": "muah-ai",
+    "rating": 3.2,
+    "description": "In-depth Muah.AI review covering features, pricing, and uncensored AI capabilities. Chat, voice calls, and photo sharing with complete privacy and adult content.",
+    "short_description": "Uncensored AI with voice calls & photo sharing",
+    "website_url": "https://muah.ai",
+    "affiliate_url": "https://muah.ai",
+    "image_url": "/images/logos/muah-ai.png",
+    "categories": [
+      "nsfw"
+    ],
+    "badges": [
+      "Adult"
+    ],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Basic Plan\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"1 AI companion\",\"100 messages per day\",\"Basic photo sharing\",\"Limited voice calls\",\"Standard customization\",\"Encrypted conversations\"]},{\"name\":\"Premium Plan\",\"price\":29.99,\"period\":\"monthly\",\"features\":[\"Unlimited AI companions\",\"Unlimited messages\",\"Full photo sharing capabilities\",\"Unlimited voice calls\",\"Advanced roleplay tools\",\"Custom character creation\",\"Priority support\",\"Beta feature access\"]},{\"name\":\"VIP Plan\",\"price\":99.99,\"period\":\"monthly\",\"features\":[\"Everything in Premium\",\"VIP companion access\",\"Phone call capabilities\",\"Advanced AI models\",\"Exclusive content\",\"Personal account manager\",\"Custom development requests\",\"Priority feature development\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": true,
+    "is_free": false,
+    "min_price": 9.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Narrin.AI",
+    "slug": "narrin-ai",
+    "rating": 4.6,
+    "description": "In-depth Narrin.AI review covering features, pricing, and capabilities. Discover the AI companion designed to transform mental chaos into clear thinking with personalized insights.",
+    "short_description": "AI companion that transforms mental chaos into clear thinking",
+    "website_url": "https://narrin.ai",
+    "affiliate_url": "https://narrin.ai",
+    "image_url": "/images/logos/narrin-ai-3.png",
+    "categories": [
+      "wellness"
+    ],
+    "badges": [
+      "Featured",
+      "Popular",
+      "Leader"
+    ],
+    "featured": true,
+    "pricing_plans": "[{\"name\":\"3-Day Free Trial\",\"price\":0,\"period\":\"free\",\"features\":[\"Unlimited AI companions\",\"Unlimited messages\",\"15 voice chats per month\",\"15 voice notes per month\",\"Extensive Companion Memory\",\"Extensive Companion Customization\"]},{\"name\":\"Engage Plan\",\"price\":4.99,\"period\":\"monthly\",\"features\":[\"Unlimited AI companions\",\"Unlimited messages\",\"15 voice chats per month\",\"15 voice notes per month\",\"Extensive Companion Memory\",\"Extensive Companion Customization\"]},{\"name\":\"Immerse Plan\",\"price\":11.99,\"period\":\"monthly\",\"features\":[\"Unlimited AI companions\",\"Unlimited chat messages\",\"Unlimited voice chats\",\"Unlimited voice notes\",\"Extensive Character Memory\",\"Extensive Companion Customization\",\"Early Access to new AI models\",\"Priority Support\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 4.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Nectar.AI",
+    "slug": "nectar-ai",
+    "rating": 4,
+    "description": "In-depth Nectar.AI review covering features, pricing, and AI companion customization. Create detailed characters with image generation and immersive roleplay.",
+    "short_description": "Craft your perfect AI companion with detailed customization",
+    "website_url": "https://nectar.ai",
+    "affiliate_url": "https://trynectar.ai/?utm_source=affiliate&utm_medium=referral&utm_campaign=companionguide",
+    "image_url": "/images/logos/nectar-ai.png",
+    "categories": [
+      "roleplaying",
+      "image-gen"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"Create basic AI companions\",\"Limited daily messages\",\"Standard character customization\",\"Basic image generation credits\",\"Community access\",\"Standard AI models\"]},{\"name\":\"Credit Packages\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"Advanced character creation\",\"Premium AI models\",\"Enhanced image generation\",\"Unlimited messaging with credits\",\"Priority processing\",\"Advanced customization tools\",\"Export capabilities\",\"Premium support\"]},{\"name\":\"VIP Subscription\",\"price\":29.99,\"period\":\"monthly\",\"features\":[\"Everything included\",\"Monthly credit allowance\",\"VIP AI models\",\"Unlimited image generation\",\"Advanced roleplay tools\",\"Custom model training\",\"Priority support\",\"Beta feature access\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 9.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Nomi.AI",
+    "slug": "nomi-ai",
+    "rating": 3.9,
+    "description": "In-depth Nomi.AI review covering features, pricing, and emotional AI capabilities. Discover the AI companion that offers authentic relationships and deep emotional bonds.",
+    "short_description": "AI companion with a soul for deep emotional connections",
+    "website_url": "https://nomi.ai",
+    "affiliate_url": "https://nomi.ai",
+    "image_url": "/images/logos/nomi-ai.webp",
+    "categories": [
+      "wellness"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"1 Nomi companion\",\"Limited daily messages\",\"Basic customization\",\"Text conversations only\",\"Standard memory\"]},{\"name\":\"Premium\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"Unlimited Nomi companions\",\"Unlimited messages\",\"Voice messages & calls\",\"Advanced personality customization\",\"Enhanced memory system\",\"Priority support\",\"Early access to new features\"]},{\"name\":\"Family Plan\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"4 Premium accounts\",\"All Premium features\",\"Family dashboard\",\"Parental controls\",\"Shared settings management\",\"Priority family support\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 9.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "OurDream AI",
+    "slug": "ourdream-ai",
+    "rating": 4.3,
+    "description": "In-depth OurDream AI review covering features, pricing, and capabilities. Discover the AI companion playground with unlimited chat, image generation, and video creation features.",
+    "short_description": "AI companion playground with unlimited chat, pics, videos, and more",
+    "website_url": "https://t.mbsrv2.com/388589/7710?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "affiliate_url": "https://t.mbsrv2.com/388589/7710?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "image_url": "/images/logos/ourdream-ai.png",
+    "categories": [
+      "video",
+      "image-gen",
+      "roleplaying"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"Character creation tools\",\"Limited chat interactions\",\"Basic image generation\",\"Community features\",\"Character browsing\"]},{\"name\":\"Premium Plan\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"Unlimited character creation\",\"Unlimited chat interactions\",\"Advanced image generation\",\"Video creation features\",\"Premium character models\",\"Priority generation queue\",\"Community rewards system\"]},{\"name\":\"Pro Plan\",\"price\":39.99,\"period\":\"monthly\",\"features\":[\"Everything in Premium Plan\",\"Advanced character customization\",\"High-definition anime models\",\"Priority customer support\",\"Exclusive character assets\",\"Advanced video features\",\"Beta feature access\",\"Enhanced community privileges\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 19.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Promptchan AI",
+    "slug": "promptchan-ai",
+    "rating": 3.8,
+    "description": "In-depth Promptchan AI review covering features, pricing, and capabilities. Discover the uncensored NSFW AI platform for image and video generation with community features.",
+    "short_description": "Uncensored NSFW AI Image & Video Generation Platform",
+    "website_url": "https://promptchan.com",
+    "affiliate_url": "https://promptchan.com",
+    "image_url": "/images/logos/promptchan-ai.svg",
+    "categories": [
+      "nsfw",
+      "video",
+      "image-gen"
+    ],
+    "badges": [
+      "Adult"
+    ],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Daily\",\"price\":0,\"period\":\"free\",\"features\":[\"Daily generations included\",\"Basic gem allocation\",\"Community gallery access\",\"Try platform features\"]},{\"name\":\"Plus Plan\",\"price\":4.49,\"period\":\"monthly\",\"features\":[\"100 Gems monthly\",\"Priority queue access\",\"Basic generation features\",\"Save-to-profile option\"]},{\"name\":\"Pro Plan\",\"price\":10.19,\"period\":\"monthly\",\"features\":[\"800 Gems monthly\",\"Unlimited casual generations\",\"Priority queue access\",\"All advanced features\",\"Image upscaling\",\"AI character creation\",\"Video generation\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": true,
+    "is_free": true,
+    "min_price": 4.49,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Replika",
+    "slug": "replika",
+    "rating": 4.3,
+    "description": "In-depth Replika review covering features, pricing, and capabilities. Discover the personal AI companion platform focused on emotional support with advanced memory and 3D avatar technology.",
+    "short_description": "Personal AI companion for emotional support and meaningful connections",
+    "website_url": "https://replika.com",
+    "affiliate_url": "https://replika.com",
+    "image_url": "/images/logos/replika.png",
+    "categories": [
+      "wellness"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free\",\"price\":0,\"period\":\"free\",\"features\":[\"Text conversations\",\"Basic 3D avatar\",\"Limited customization\",\"Daily conversation limits\",\"Basic activities\",\"Core emotional support features\"]},{\"name\":\"Replika Pro\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"Unlimited conversations\",\"Voice calls with AI companion\",\"Full avatar customization\",\"Relationship status options\",\"Advanced activities & games\",\"Priority support\",\"AR camera features\",\"Exclusive outfits & items\"]},{\"name\":\"Annual Plan\",\"price\":69.99,\"period\":\"monthly\",\"features\":[\"All Replika Pro features\",\"70% discount vs monthly\",\"Only $5.83/month\",\"Full year commitment\",\"Same premium experience\",\"Maximum savings\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 19.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Sakura AI",
+    "slug": "sakura-ai",
+    "rating": 4,
+    "description": "In-depth Sakura AI review covering features, pricing, and anime character capabilities. Discover the AI platform inspired by Japanese anime and kawaii culture.",
+    "short_description": "Anime-inspired AI character chat with kawaii culture",
+    "website_url": "https://sakura.fm",
+    "affiliate_url": "https://sakura.fm",
+    "image_url": "/images/logos/sakura-ai.png",
+    "categories": [
+      "roleplaying"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"All anime characters available\",\"Unlimited text conversations\",\"Voice chat capabilities\",\"Video interactions\",\"No content restrictions\",\"Character animations\",\"Kawaii visual effects\",\"No ads or interruptions\"]},{\"name\":\"Premium Features\",\"price\":0,\"period\":\"free\",\"features\":[\"Custom character creation\",\"Advanced voice options\",\"Exclusive character skins\",\"Priority server access\",\"Special animations\",\"Bonus content\",\"Early access features\",\"VIP support\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": null,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Secrets AI",
+    "slug": "secrets-ai",
+    "rating": 4.8,
+    "description": "In-depth Secrets AI review covering features, pricing, and capabilities. Discover the #1 realistic AI chat platform and AI girlfriend website for 24/7 AI chat with 100+ fantasies.",
+    "short_description": "#1 Realistic AI girlfriend website with video generation",
+    "website_url": "https://www.secrets.ai/browse?fpr=companionguide",
+    "affiliate_url": "https://www.secrets.ai/browse?fpr=companionguide",
+    "image_url": "/images/logos/secrets-ai-review-companionguide.png",
+    "categories": [
+      "ai-girlfriend",
+      "video",
+      "image-gen",
+      "nsfw"
+    ],
+    "badges": [
+      "Featured",
+      "Top Rated",
+      "Popular",
+      "Adult",
+      "Leader"
+    ],
+    "featured": true,
+    "pricing_plans": "[{\"name\":\"Basic Plan\",\"price\":0,\"period\":\"free\",\"features\":[\"20 Responses / Day\",\"200 💎 Moments\",\"Basic Memory\",\"❌ Custom Video + Image Generation\",\"❌ Premium Models\",\"❌ Time Machine\",\"❌ Access to Exclusive Bundles\",\"❌ Early Access to Models and Features\"]},{\"name\":\"Lite Plan\",\"price\":5.99,\"period\":\"monthly\",\"features\":[\"100 Responses / Day\",\"Video + Image Generation\",\"1,000 Monthly 💎\",\"Access to Exclusive Bundles\",\"Time Machine\",\"❌ Premium Models\",\"❌ Bonus Moments\",\"❌ Early Access to Models and Features\"]},{\"name\":\"Plus Plan\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"Unlimited Messaging\",\"Video + Image Generation\",\"3,000 Monthly 💎\",\"5% Bonus Moments\",\"Premium Models + Improved Memory\",\"Limited Time Machine\",\"Access to Exclusive Bundles\",\"❌ Early Access to Models and Features\"]},{\"name\":\"Premium Plan\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"Unlimited Messaging\",\"Video + Image Generation\",\"8,000 Monthly 💎\",\"10% Bonus Moments\",\"Premium Models + Enhanced Memory\",\"Unlimited Time Machine\",\"Access to Exclusive Bundles\",\"Early Access to Models and Features\"]}]",
+    "is_ai_girlfriend": true,
+    "is_nsfw": true,
+    "is_free": true,
+    "min_price": 5.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Selira.ai",
+    "slug": "selira-ai",
+    "rating": 3.8,
+    "description": "In-depth Selira.ai review covering features, pricing, pros and cons. Premium AI companion platform offering both entertainment and adult content capabilities.",
+    "short_description": "Premium AI companion with sophisticated entertainment and adult features",
+    "website_url": "https://selira.ai",
+    "affiliate_url": "https://selira.ai",
+    "image_url": "/images/logos/selira-ai.png",
+    "categories": [
+      "nsfw"
+    ],
+    "badges": [
+      "Adult"
+    ],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Trial\",\"price\":0,\"period\":\"free\",\"features\":[\"Unlimited companions\",\"5 chat messages per day\",\"Long term memory chat\",\"No image generation\"]},{\"name\":\"Engage Plan\",\"price\":4.99,\"period\":\"monthly\",\"features\":[\"Unlimited companions\",\"Unlimited chat messages\",\"Long term memory chat\",\"50 images per month\"]},{\"name\":\"Immerse Plan\",\"price\":11.99,\"period\":\"monthly\",\"features\":[\"Unlimited companions\",\"Unlimited chat messages\",\"Long term memory chat\",\"250 images per month\",\"Access to special companions\"]},{\"name\":\"50 Messages\",\"price\":2.99,\"period\":\"monthly\",\"features\":[\"50 chat messages\",\"Access to all companions\",\"Basic memory\",\"30 days to use\"]},{\"name\":\"200 Messages\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"200 chat messages\",\"Access to all companions\",\"5 voice chats\",\"Enhanced memory\",\"60 days to use\"]},{\"name\":\"500 Messages\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"500 chat messages\",\"Access to all companions\",\"15 voice chats\",\"Premium memory system\",\"90 days to use\",\"Priority support\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": true,
+    "is_free": true,
+    "min_price": 2.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Simone",
+    "slug": "simone",
+    "rating": 4.6,
+    "description": "In-depth Simone review covering features, pricing, and capabilities. Discover the WhatsApp-based AI companion that combines friendship with powerful AI tools and remembers your conversations.",
+    "short_description": "Your WhatsApp-based AI best friend with powerful tools",
+    "website_url": "https://simone.app",
+    "affiliate_url": "https://simone.app",
+    "image_url": "/images/logos/simone.png",
+    "categories": [
+      "whatsapp"
+    ],
+    "badges": [
+      "Featured",
+      "Popular",
+      "Leader"
+    ],
+    "featured": true,
+    "pricing_plans": "[{\"name\":\"Free\",\"price\":0,\"period\":\"free\",\"features\":[\"Text messages (limited)\",\"Discover AI features\",\"Chat on WhatsApp\",\"Community support\",\"Access to all features\"]},{\"name\":\"Essential\",\"price\":18,\"period\":\"monthly\",\"features\":[\"UNLIMITED text messages\",\"Voice synthesis\",\"Image generation\",\"All AI features\",\"Standard support\"]},{\"name\":\"Plus\",\"price\":39,\"period\":\"monthly\",\"features\":[\"Everything in Essential, plus:\",\"Extended usage\",\"Longer conversation context\",\"Priority support\",\"Early access to new features\"]},{\"name\":\"Infinity\",\"price\":99,\"period\":\"monthly\",\"features\":[\"Everything in Plus, plus:\",\"Maximum usage\",\"Unlimited conversation context\",\"VIP support\",\"Absolute priority access\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 18,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "SoulGen AI",
+    "slug": "soulgen-ai",
+    "rating": 3.9,
+    "description": "In-depth SoulGen AI review covering features, pricing, and capabilities. Discover the AI art generator with text-to-image creation, SoulChat, and advanced editing tools.",
+    "short_description": "AI Art Generator with Interactive Chat & Advanced Editing Tools",
+    "website_url": "https://www.soulgen.net/ai-chat",
+    "affiliate_url": "https://www.soulgen.net/ai-chat",
+    "image_url": "/images/logos/soulgen-ai.svg",
+    "categories": [
+      "image-gen"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Trial\",\"price\":0,\"period\":\"free\",\"features\":[\"1 credit per day\",\"Watermarked images\",\"Basic generation features\",\"SoulChat limited access\"]},{\"name\":\"Pro Monthly\",\"price\":12.99,\"period\":\"monthly\",\"features\":[\"100 credits per month\",\"Remove blur and watermarks\",\"Priority generation queue\",\"Advanced editing tools\",\"SoulChat unlimited messages\",\"Multi-creation support\"]},{\"name\":\"Pro Annual\",\"price\":7.58,\"period\":\"monthly\",\"features\":[\"All Pro features included\",\"Significant annual savings\",\"100 credits monthly\",\"Priority customer support\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": 7.58,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Soulkyn AI",
+    "slug": "soulkyn-ai",
+    "rating": 4.7,
+    "description": "In-depth Soulkyn AI review covering NSFW features, pricing, and capabilities. Discover the AI girlfriend platform with uncensored chat, image generation, and intimate conversations.",
+    "short_description": "NSFW AI girlfriend with uncensored chat, images, and voice messages",
+    "website_url": "https://soulkyn.com/?_go=companionguide",
+    "affiliate_url": "https://soulkyn.com/?_go=companionguide",
+    "image_url": "/images/screenshots/soulkyn-ai-review.png",
+    "categories": [
+      "ai-girlfriend",
+      "nsfw",
+      "image-gen"
+    ],
+    "badges": [
+      "Featured",
+      "Top Rated",
+      "Popular",
+      "Adult",
+      "Leader"
+    ],
+    "featured": true,
+    "pricing_plans": "[{\"name\":\"Just Chatting\",\"price\":11.99,\"period\":\"monthly\",\"features\":[\"✅ All galleries uncensored\",\"✅ 💬 5000 Chat Messages\",\"✅ 👤 Unlimited Characters\",\"✅ 🧠 Unlimited Memories\",\"✅ ⭐ 70B Uncensored Model\",\"✅ 🖼️ 5 Image Quota (up to 30 images*)\",\"✅ 🎤 5 Voice Messages\",\"✅ 💬 Premium Badge\"]},{\"name\":\"Premium\",\"price\":24.99,\"period\":\"monthly\",\"features\":[\"✅ All galleries uncensored\",\"✅ 💬 Unlimited Messages\",\"✅ 👤 Unlimited Characters\",\"✅ 🖼️ 300 Image Quota (up to 1800 images*)\",\"✅ 🎤 300 Voice Messages\",\"✅ 🧠 Unlimited Memories\",\"✅ ⭐ 70B Uncensored Model\",\"✅ ✨ Premium Badge\"]},{\"name\":\"Deluxe\",\"price\":49.99,\"period\":\"monthly\",\"features\":[\"✅ All galleries uncensored\",\"✅ 💬 Unlimited Messages\",\"✅ 👤 Unlimited Characters\",\"✅ 🖼️ Unlimited Images Generations\",\"✅ ♾️ Unlimited In-chat Images\",\"✅ 🎤 Unlimited Voice Messages\",\"✅ 🧠 Unlimited Memories\",\"✅ ⭐ 70B Uncensored Model\",\"✅ 🔗 Link public personas to chat/scenario up to 4\",\"✅ 👥 Group chat with public personas up to 3\",\"✅ ❤️ Premium Deluxe Badge\"]}]",
+    "is_ai_girlfriend": true,
+    "is_nsfw": true,
+    "is_free": false,
+    "min_price": 11.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "SpicyChat",
+    "slug": "spicychat-ai",
+    "rating": 4,
+    "description": "In-depth SpicyChat review covering features, pricing, and capabilities. Discover the adult-oriented AI companion platform with uncensored chat and mature content for intimate conversations.",
+    "short_description": "Adult-oriented AI platform with uncensored conversations and mature content",
+    "website_url": "https://spicychat.ai?ref=njq1ogy",
+    "affiliate_url": "https://spicychat.ai?ref=njq1ogy",
+    "image_url": "/images/logos/spicychat-ai.png",
+    "categories": [
+      "nsfw",
+      "roleplaying"
+    ],
+    "badges": [
+      "Adult"
+    ],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited daily messages\",\"Access to public characters\",\"Basic chat features\",\"Community character discovery\",\"Standard response time\",\"Basic customization options\"]},{\"name\":\"Premium\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"Unlimited messages\",\"Access to premium characters\",\"Private character creation\",\"Advanced customization\",\"Priority response time\",\"Enhanced roleplay features\",\"Ad-free experience\",\"Exclusive content access\"]},{\"name\":\"Annual Plan\",\"price\":79.99,\"period\":\"monthly\",\"features\":[\"All Premium features\",\"33% discount vs monthly\",\"Only $6.67/month\",\"Full year commitment\",\"Maximum savings\",\"Same premium experience\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": true,
+    "is_free": true,
+    "min_price": 9.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Stories AI",
+    "slug": "stories-ai",
+    "rating": 4,
+    "description": "In-depth Stories AI review covering features, pricing, and capabilities. Discover the privacy-first interactive storytelling platform by Tiny AI with no data training, pay-as-you-go pricing, and advanced roleplay features for RPG-style adventures.",
+    "short_description": "Privacy-first interactive story maker by Tiny AI - Create RPG adventures & roleplay experiences",
+    "website_url": "https://stories.thetiny.ai",
+    "affiliate_url": "https://stories.thetiny.ai/",
+    "image_url": "/images/screenshots/stories-ai-review-companionguide.png",
+    "categories": [
+      "roleplaying"
+    ],
+    "badges": [],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"Daily free chat messages\",\"Access to all features\",\"Multiple personas\",\"Group chat support\",\"Character import tool\",\"Lorebooks and scenarios\",\"Public/Private/Unlisted bots\"]},{\"name\":\"Pay As You Go\",\"price\":0,\"period\":\"free\",\"features\":[\"Transparent pricing per message\",\"No monthly commitment\",\"Top up as needed\",\"Multiple fine-tuned models\",\"Priority processing\",\"Extended context memory\",\"Community-driven features\",\"No hidden fees\"]},{\"name\":\"Why Pay As You Go?\",\"price\":0,\"period\":\"free\",\"features\":[\"No VC funding pressure\",\"Direct user support\",\"Community-driven roadmap\",\"Long-term sustainability\",\"No data monetization\",\"Transparent business model\",\"UK-based and compliant\",\"Here to stay promise\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": false,
+    "is_free": true,
+    "min_price": null,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "Swipey AI",
+    "slug": "swipey-ai",
+    "rating": 4.2,
+    "description": "In-depth Swipey AI review covering features, pricing, and capabilities. Discover the AI companion platform with NSFW chat, image generation, and voice interactions for romantic experiences.",
+    "short_description": "NSFW chat, AI character, video & voice interactions",
+    "website_url": "https://t.mbsrv2.com/388589/10219/0?source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "affiliate_url": "https://t.mbsrv2.com/388589/10219/0?source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "image_url": "/images/logos/swipey.png",
+    "categories": [
+      "ai-girlfriend",
+      "roleplaying",
+      "nsfw",
+      "video",
+      "image-gen"
+    ],
+    "badges": [
+      "Adult"
+    ],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited chat interactions\",\"Basic AI character access\",\"Standard conversation features\",\"Limited image generation\",\"Community features\"]},{\"name\":\"Premium Plan\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"Unlimited romantic conversations\",\"Premium AI character personalities\",\"Advanced voice interactions\",\"Unlimited NSFW image generation\",\"Priority conversation processing\",\"Advanced character customization\",\"Premium support\"]},{\"name\":\"Elite Plan\",\"price\":39.99,\"period\":\"monthly\",\"features\":[\"Everything in Premium Plan\",\"VIP AI character access\",\"Advanced voice synthesis\",\"High-resolution image generation\",\"Custom character creation\",\"Beta feature access\",\"Priority customer support\",\"Exclusive content library\"]}]",
+    "is_ai_girlfriend": true,
+    "is_nsfw": true,
+    "is_free": true,
+    "min_price": 19.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  },
+  {
+    "name": "ThotChat.ai",
+    "slug": "thotchat-ai",
+    "rating": 4.2,
+    "description": "In-depth ThotChat.ai review covering features, pricing, and capabilities. Discover the uncensored AI character chat platform with personalized interactions and adult content.",
+    "short_description": "Uncensored AI character chat with personalized interactions",
+    "website_url": "https://t.mbsrv2.com/388589/7797?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "affiliate_url": "https://t.mbsrv2.com/388589/7797?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
+    "image_url": "/images/logos/thotchat.webp",
+    "categories": [
+      "roleplaying",
+      "nsfw"
+    ],
+    "badges": [
+      "Adult"
+    ],
+    "featured": false,
+    "pricing_plans": "[{\"name\":\"Free Tier\",\"price\":0,\"period\":\"free\",\"features\":[\"Limited daily messages\",\"Basic character selection\",\"Standard conversation features\",\"Community access\"]},{\"name\":\"Premium\",\"price\":9.99,\"period\":\"monthly\",\"features\":[\"Unlimited messaging\",\"All character options\",\"Advanced conversation features\",\"Priority support\",\"No daily limits\",\"Premium character interactions\"]},{\"name\":\"VIP\",\"price\":19.99,\"period\":\"monthly\",\"features\":[\"Everything in Premium\",\"Exclusive character access\",\"Advanced customization\",\"VIP support priority\",\"Early feature access\"]}]",
+    "is_ai_girlfriend": false,
+    "is_nsfw": true,
+    "is_free": true,
+    "min_price": 9.99,
+    "status": "active",
+    "created_date": "2025-09-24T09:21:28.571Z",
+    "updated_date": "2025-09-24T09:21:28.571Z"
+  }
+]

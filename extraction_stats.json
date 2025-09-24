@@ -1,0 +1,18 @@
+{
+  "total_companions": 32,
+  "featured_companions": 8,
+  "ai_girlfriend_platforms": 10,
+  "nsfw_platforms": 11,
+  "free_platforms": 29,
+  "average_rating": "4.11",
+  "categories_breakdown": {
+    "ai-girlfriend": 10,
+    "roleplaying": 16,
+    "nsfw": 11,
+    "image-gen": 11,
+    "video": 5,
+    "wellness": 3,
+    "whatsapp": 1,
+    "learning": 1
+  }
+}
