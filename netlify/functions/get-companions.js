@@ -78,6 +78,21 @@ exports.handler = async (event, context) => {
         }
       }
 
+      // Handle features - can be JSON string or array
+      let features = [];
+      if (fields.features) {
+        if (typeof fields.features === 'string') {
+          try {
+            features = JSON.parse(fields.features);
+          } catch (e) {
+            console.error('Error parsing features for', fields.name, ':', e);
+            features = [];
+          }
+        } else if (Array.isArray(fields.features)) {
+          features = fields.features;
+        }
+      }
+
       return {
         id: record.id,
         name: fields.name || 'Unknown',
@@ -91,6 +106,7 @@ exports.handler = async (event, context) => {
         image_url: fields.image_url || fields.logo_url || '/images/logos/default.png',
         categories: categories,
         badges: badges,
+        features: features,
         pricing_plans: pricingPlans,
         featured: fields.featured === true || fields.featured === 'true',
         status: fields.status || 'active',

@@ -69,9 +69,42 @@ class CompanionManager {
     }).join('');
   }
 
+  generateFeatureHighlights(features) {
+    if (!features || features.length === 0) return '';
+
+    // Handle if features is a string (JSON)
+    let featureList = features;
+    if (typeof features === 'string') {
+      try {
+        featureList = JSON.parse(features);
+      } catch (e) {
+        return '';
+      }
+    }
+
+    // Ensure featureList is an array and has items
+    if (!Array.isArray(featureList) || featureList.length === 0) {
+      return '';
+    }
+
+    const featureItems = featureList.map(feature => `
+      <div class="feature-item">
+        <div class="feature-icon">${feature.icon || '⭐'}</div>
+        <div class="feature-title">${feature.title}</div>
+        <div class="feature-desc">${feature.description}</div>
+      </div>
+    `).join('');
+
+    return `
+      <div class="feature-highlights">
+        ${featureItems}
+      </div>
+    `;
+  }
+
   generatePricingHtml(pricingPlans) {
     if (!pricingPlans) {
-      return '<p class="price">Free</p>';
+      return 'Free trial';
     }
 
     // Handle if pricingPlans is a string (JSON)
@@ -80,17 +113,23 @@ class CompanionManager {
       try {
         plans = JSON.parse(pricingPlans);
       } catch (e) {
-        return '<p class="price">Free</p>';
+        return 'Free trial';
       }
     }
 
     // Ensure plans is an array and has items
     if (!Array.isArray(plans) || plans.length === 0) {
-      return '<p class="price">Free</p>';
+      return 'Free trial';
     }
 
     const lowestPrice = Math.min(...plans.map(plan => parseFloat(plan.price || 0)));
-    return `<p class="price">From $${lowestPrice}/month</p>`;
+
+    // Show "Free trial" if lowest price is 0, otherwise show "From $X/month"
+    if (lowestPrice === 0) {
+      return 'Free trial';
+    } else {
+      return `From $${lowestPrice}/month`;
+    }
   }
 
   generateCompanionCard(companion) {
@@ -98,6 +137,9 @@ class CompanionManager {
     const reviewCountText = companion.review_count > 0 ? ` (${companion.review_count} reviews)` : '';
     const badges = this.generateBadges(companion.badges);
     const pricing = this.generatePricingHtml(companion.pricing_plans);
+
+    // Use slug from Airtable, fallback to 'unknown' if not present
+    const slug = companion.slug || 'unknown';
 
     // Generate star rating using filled stars
     const fullStars = Math.floor(companion.rating);
@@ -109,7 +151,7 @@ class CompanionManager {
         <div class="card-header">
           <img src="${logoUrl}" alt="${companion.name}" class="logo">
           <div class="title-section">
-            <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
+            <h3><a href="/companions/${slug}">${companion.name}</a></h3>
             <div class="rating-line">
               <span class="stars">${starRating}</span>
               <span class="rating-score">${companion.rating}/5</span>
@@ -119,13 +161,15 @@ class CompanionManager {
         </div>
         <p class="description">${companion.description || companion.short_description || 'AI companion platform'}</p>
 
+        ${this.generateFeatureHighlights(companion.features)}
+
         <div class="pricing-section">
           <div class="price-main">${pricing.replace('<p class="price">', '').replace('</p>', '')}</div>
         </div>
 
         <div class="card-actions">
-          <a href="/companions/${companion.slug}" class="btn-primary">Read Review</a>
-          <a href="${companion.affiliate_url || companion.website_url}" class="btn-secondary" target="_blank" rel="noopener">Visit Website</a>
+          <a href="/companions/${slug}" class="btn-primary">Read Review</a>
+          <a href="${companion.website_url}" class="btn-secondary" target="_blank" rel="noopener">Visit Website</a>
         </div>
       </article>
     `;
@@ -177,21 +221,82 @@ class CompanionManager {
   }
 
   async renderAllCompanions(containerId, sortBy = 'rating') {
-    const companions = await this.fetchCompanions({
-      sort: sortBy
-    });
-
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    if (companions.length === 0) {
-      container.innerHTML = '<p>No companions available.</p>';
-      return;
-    }
+    try {
+      // First load: Get first 12 companions for fast initial render
+      console.log('Loading initial 12 companions...'); // Debug
+      const initialCompanions = await this.fetchCompanions({
+        sort: sortBy,
+        limit: 12
+      });
 
-    container.innerHTML = companions.map(companion =>
-      this.generateCompanionCard(companion)
-    ).join('');
+      console.log('Loaded initial companions:', initialCompanions.length); // Debug
+
+      if (initialCompanions.length === 0) {
+        container.innerHTML = '<p>No companions available.</p>';
+        return;
+      }
+
+      // Render initial companions immediately
+      container.innerHTML = initialCompanions.map(companion =>
+        this.generateCompanionCard(companion)
+      ).join('');
+
+      console.log('Rendered initial companions'); // Debug
+
+      // Add loading indicator for remaining companions
+      const loadingIndicator = document.createElement('div');
+      loadingIndicator.id = 'loading-more';
+      loadingIndicator.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px; color: #666;">
+          <div style="font-size: 24px; margin-bottom: 10px;">⏳</div>
+          <p>Loading more companions...</p>
+        </div>
+      `;
+      container.appendChild(loadingIndicator);
+
+      // Load remaining companions
+      setTimeout(async () => {
+        try {
+          const allCompanions = await this.fetchCompanions({
+            sort: sortBy
+          });
+
+          const remainingCompanions = allCompanions.slice(12);
+
+          if (remainingCompanions.length > 0) {
+            const remainingHtml = remainingCompanions.map(companion =>
+              this.generateCompanionCard(companion)
+            ).join('');
+
+            // Remove loading indicator and add remaining companions
+            loadingIndicator.remove();
+            container.insertAdjacentHTML('beforeend', remainingHtml);
+          } else {
+            loadingIndicator.remove();
+          }
+        } catch (error) {
+          console.error('Error loading remaining companions:', error);
+          loadingIndicator.innerHTML = `
+            <div style="text-align: center; padding: 20px; color: #999;">
+              <p>Some companions could not be loaded.</p>
+            </div>
+          `;
+        }
+      }, 500); // Small delay to show the first batch loading
+
+    } catch (error) {
+      console.error('Error loading initial companions:', error);
+      container.innerHTML = `
+        <div style="text-align: center; padding: 60px 20px; color: #666;">
+          <div style="font-size: 48px; margin-bottom: 20px;">❌</div>
+          <h3>Unable to Load Companions</h3>
+          <p>There was an error loading the companion data. Please try again later.</p>
+        </div>
+      `;
+    }
   }
 
   initializeFilters() {

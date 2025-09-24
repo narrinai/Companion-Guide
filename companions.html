@@ -69,9 +69,12 @@
         </section>
 
 
-        <section class="companions-grid">
-            <!-- #1 Secrets AI - 4.8/5 -->
-            <article class="companion-card featured">
+        <section class="companions-grid" id="companions-container">
+            <!-- Dynamic companion cards will be loaded here via JavaScript -->
+        </section>
+
+        <section class="companions-grid" style="display: none;">
+            <!-- Backup static content - hidden by default -->
                 <div class="product-badge">🏆 Top Rated</div>
                 <div class="card-header">
                     <img src="/images/logos/secrets-ai-review-companionguide.png" alt="Secrets AI" class="logo">
@@ -1711,5 +1714,31 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="js/companions.js"></script>
+    <script>
+        // Load companions progressively when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Prevent auto-scroll by ensuring we start at top
+            window.scrollTo(0, 0);
+
+            try {
+                // Use the progressive loading method
+                await window.companionManager.renderAllCompanions('companions-container', 'rating');
+            } catch (error) {
+                console.error('Error loading companions:', error);
+                // Show error message
+                const container = document.getElementById('companions-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; color: #666;">
+                            <div style="font-size: 48px; margin-bottom: 20px;">❌</div>
+                            <h3>Unable to Load Companions</h3>
+                            <p>There was an error loading the companion data. Please try again later.</p>
+                        </div>
+                    `;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
