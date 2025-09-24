@@ -55,12 +55,12 @@ function displayFeaturedCompanions(companions) {
 // Load featured companions for news page from Airtable
 async function loadNewsFeaturedCompanions() {
     try {
-        const response = await fetch('/netlify/functions/get-companions');
-        const companions = await response.json();
+        const response = await fetch('/.netlify/functions/get-companions');
+        const data = await response.json();
 
         // Get only companions that are marked as featured in Airtable
-        const featured = companions
-            .filter(c => c.is_featured === true)
+        const featured = data.companions
+            .filter(c => c.featured === true)
             .sort((a, b) => b.rating - a.rating);
 
         displayNewsFeaturedCompanions(featured);
@@ -80,8 +80,10 @@ function displayNewsFeaturedCompanions(companions) {
     if (!container) return;
 
     const html = companions.map((companion, index) => {
-        const features = companion.features ? JSON.parse(companion.features) : [];
-        const pricingPlans = companion.pricing_plans ? JSON.parse(companion.pricing_plans) : [];
+        const features = companion.features || [];
+        const pricingPlans = typeof companion.pricing_plans === 'string'
+            ? JSON.parse(companion.pricing_plans)
+            : companion.pricing_plans || [];
         const freePlan = pricingPlans.find(p => p.price === 0);
         const paidPlan = pricingPlans.find(p => p.price > 0);
 
@@ -112,7 +114,7 @@ function displayNewsFeaturedCompanions(companions) {
             <article class="companion-card ${featuredClass}">
                 ${badge ? `<div class="product-badge">${badge}</div>` : ''}
                 <div class="card-header">
-                    <img src="${companion.logo}" alt="${companion.name}" class="logo">
+                    <img src="${companion.logo_url}" alt="${companion.name}" class="logo">
                     <div class="title-section">
                         <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
                         <div class="rating-line">
@@ -141,7 +143,7 @@ function displayNewsFeaturedCompanions(companions) {
 
                 <div class="card-actions">
                     <a href="/companions/${companion.slug}" class="btn-primary">Read Review</a>
-                    <a href="${companion.website}" class="btn-secondary" target="_blank">Visit Website</a>
+                    <a href="${companion.website_url}" class="btn-secondary" target="_blank">Visit Website</a>
                 </div>
             </article>
         `;
