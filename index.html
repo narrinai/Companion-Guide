@@ -108,7 +108,12 @@
                     <a href="/companions" class="view-all-link">→</a>
                 </div>
 
-                <div class="companions-grid">
+                <div id="featured-companions-container" class="companions-grid">
+                    <!-- Dynamic featured companions will be loaded here -->
+                </div>
+
+                <div class="companions-grid" style="display: none;">
+                    <!-- Backup static companions - hidden -->
                     <article class="companion-card featured">
                         <div class="product-badge">🏆 <span>Leader</span></div>
                         <div class="card-header">
@@ -503,10 +508,6 @@
 
                 </div>
 
-                <!-- Dynamic Companions (hidden until Airtable is configured) -->
-                <div id="featured-companions-dynamic" class="companions-grid" style="display: none;">
-                    <!-- Companions will be loaded here dynamically from Airtable -->
-                </div>
             </section>
 
             <!-- Right Column: News -->
@@ -791,12 +792,24 @@
     <script src="js/companions.js"></script>
     <script>
         // Initialize dynamic companions when the page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // For now, keep static companions but add functionality for dynamic loading
-            // This can be enabled once Airtable is set up
-
-            // Uncomment the line below once Airtable is configured:
-            // companionManager.renderFeaturedCompanions('featured-companions-dynamic', 8);
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                // Load featured companions from Airtable (limit to 8 for homepage)
+                await window.companionManager.renderFeaturedCompanions('featured-companions-container', 8);
+            } catch (error) {
+                console.error('Error loading featured companions:', error);
+                // Show error message in container
+                const container = document.getElementById('featured-companions-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; color: #666;">
+                            <div style="font-size: 32px; margin-bottom: 15px;">⚠️</div>
+                            <h3>Unable to Load Featured Companions</h3>
+                            <p>There was an error loading the companion data. Please try again later.</p>
+                        </div>
+                    `;
+                }
+            }
         });
     </script>
 </body>
