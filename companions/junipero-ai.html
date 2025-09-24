@@ -199,9 +199,9 @@
                 <div class="pricing-tier featured">
                     <div class="tier-badge">MOST POPULAR</div>
                     <h3>Premium Plan</h3>
-                    <div class="price">$12.99 <span class="period">/month</span></div>
+                    <div class="price">$9.99 <span class="period">/month</span></div>
                     <p style="color: var(--accent-orange); font-size: 0.875rem; margin-bottom: var(--space-4); font-weight: 600;">FULL EXPERIENCE</p>
-                    <p>ONLY $0.43/DAY</p>
+                    <p>ONLY $0.33/DAY</p>
                     <p>Unlimited AI companion interactions with advanced features</p>
                     <ul>
                         <li>Unlimited AI character chat</li>
@@ -482,5 +482,62 @@
     </footer>
 
     <script src="../script.js"></script>
+    <script>
+        // Load dynamic pricing from Airtable for Junipero AI
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const response = await fetch('/.netlify/functions/get-companions');
+                const data = await response.json();
+
+                // Find Junipero AI companion data
+                const juniperoAI = data.companions?.find(c => c.slug === 'junipero-ai' || c.name === 'Junipero AI');
+
+                if (juniperoAI && juniperoAI.pricing_plans) {
+                    // Parse pricing plans
+                    let pricingPlans = typeof juniperoAI.pricing_plans === 'string'
+                        ? JSON.parse(juniperoAI.pricing_plans)
+                        : juniperoAI.pricing_plans;
+
+                    // Update pricing section with dynamic data
+                    updatePricingSection(pricingPlans);
+                }
+            } catch (error) {
+                console.error('Error loading Junipero AI pricing:', error);
+                // Keep static pricing as fallback
+            }
+        });
+
+        function updatePricingSection(pricingPlans) {
+            const pricingGrid = document.querySelector('.pricing-grid');
+            if (!pricingGrid || !Array.isArray(pricingPlans)) return;
+
+            // Generate dynamic pricing HTML
+            const pricingHTML = pricingPlans.map((plan, index) => {
+                const isPopular = plan.price > 0; // Premium plan is popular
+                const dailyPrice = plan.price > 0 ? (plan.price / 30).toFixed(2) : '0';
+
+                return `
+                    <div class="pricing-tier ${isPopular ? 'featured' : ''}">
+                        ${isPopular ? '<div class="tier-badge">MOST POPULAR</div>' : ''}
+                        <h3>${plan.name}</h3>
+                        <div class="price">$${plan.price} <span class="period">/${plan.period || 'month'}</span></div>
+                        ${isPopular ? `
+                            <p style="color: var(--accent-orange); font-size: 0.875rem; margin-bottom: var(--space-4); font-weight: 600;">FULL EXPERIENCE</p>
+                            <p>ONLY $${dailyPrice}/DAY</p>
+                        ` : plan.price === 0 ? `
+                            <p style="color: var(--accent-green); font-size: 0.875rem; margin-bottom: var(--space-4); font-weight: 600;">AVAILABLE UNTIL 2025-12-31</p>
+                        ` : ''}
+                        <p>${isPopular ? 'Unlimited AI companion interactions with advanced features' : 'Experience basic AI character interactions'}</p>
+                        <ul>
+                            ${plan.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                        ${plan.price === 0 ? '<p style="font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-2);">✓ No credit card required</p>' : ''}
+                    </div>
+                `;
+            }).join('');
+
+            pricingGrid.innerHTML = pricingHTML;
+        }
+    </script>
 </body>
 </html>
