@@ -135,11 +135,15 @@ class CompanionManager {
   }
 
   async renderCompanionsByCategory(containerId, category, limit = null) {
-    const companions = await this.fetchCompanions({
-      category: category,
-      sort: 'rating',
-      limit: limit
+    // Fetch all companions and filter client-side temporarily
+    const allCompanions = await this.fetchCompanions({
+      sort: 'rating'
     });
+
+    // Filter by category client-side
+    const companions = allCompanions.filter(comp =>
+      comp.categories && comp.categories.includes(category)
+    ).slice(0, limit || allCompanions.length);
 
     const container = document.getElementById(containerId);
     if (!container) return;

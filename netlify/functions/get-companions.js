@@ -23,9 +23,10 @@ exports.handler = async (event, context) => {
     let filterByFormula = '{status} = "Active"';
 
     if (category) {
-      // Handle category filtering - use FIND instead of SEARCH and handle both array and string formats
-      const escapedCategory = category.replace(/"/g, '""');
-      filterByFormula += ` AND (FIND("${escapedCategory}", ARRAYJOIN({categories}, ";")) > 0)`;
+      // Simple category filtering - let client side handle filtering for now
+      console.log('Category filtering requested for:', category);
+      // Remove category from server-side filtering temporarily to debug
+      // filterByFormula += ` AND FIND("${category}", {categories}) > 0`;
     }
 
     const selectOptions = {
