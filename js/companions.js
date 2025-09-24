@@ -60,11 +60,26 @@ class CompanionManager {
   }
 
   generatePricingHtml(pricingPlans) {
-    if (!pricingPlans || pricingPlans.length === 0) {
+    if (!pricingPlans) {
       return '<p class="price">Free</p>';
     }
 
-    const lowestPrice = Math.min(...pricingPlans.map(plan => parseFloat(plan.price)));
+    // Handle if pricingPlans is a string (JSON)
+    let plans = pricingPlans;
+    if (typeof pricingPlans === 'string') {
+      try {
+        plans = JSON.parse(pricingPlans);
+      } catch (e) {
+        return '<p class="price">Free</p>';
+      }
+    }
+
+    // Ensure plans is an array and has items
+    if (!Array.isArray(plans) || plans.length === 0) {
+      return '<p class="price">Free</p>';
+    }
+
+    const lowestPrice = Math.min(...plans.map(plan => parseFloat(plan.price || 0)));
     return `<p class="price">From $${lowestPrice}/month</p>`;
   }
 

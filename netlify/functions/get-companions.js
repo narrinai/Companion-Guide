@@ -2,15 +2,30 @@ const Airtable = require('airtable');
 
 exports.handler = async (event, context) => {
   try {
+    // Check environment variables
+    if (!process.env.AIRTABLE_TOKEN_CG) {
+      throw new Error('AIRTABLE_TOKEN_CG environment variable is not set');
+    }
+    if (!process.env.AIRTABLE_BASE_ID_CG) {
+      throw new Error('AIRTABLE_BASE_ID_CG environment variable is not set');
+    }
+    if (!process.env.AIRTABLE_TABLE_ID_CG) {
+      throw new Error('AIRTABLE_TABLE_ID_CG environment variable is not set');
+    }
+
+    console.log('Initializing Airtable connection...');
     const base = new Airtable({apiKey: process.env.AIRTABLE_TOKEN_CG})
       .base(process.env.AIRTABLE_BASE_ID_CG);
 
-    const { filter, category, sort, limit } = event.queryStringParameters || {};
+    const { filter, category, sort, limit, order } = event.queryStringParameters || {};
+    console.log('Query parameters:', { filter, category, sort, limit, order });
 
     let filterByFormula = '{status} = "Active"';
 
     if (category) {
-      filterByFormula += ` AND FIND("${category}", {categories}) > 0`;
+      // Handle category filtering - use FIND instead of SEARCH and handle both array and string formats
+      const escapedCategory = category.replace(/"/g, '""');
+      filterByFormula += ` AND (FIND("${escapedCategory}", ARRAYJOIN({categories}, ";")) > 0)`;
     }
 
     const selectOptions = {
@@ -19,6 +34,9 @@ exports.handler = async (event, context) => {
         { field: sort || 'rating', direction: 'desc' }
       ]
     };
+
+    console.log('Filter formula:', filterByFormula);
+    console.log('Select options:', selectOptions);
 
     if (limit) {
       selectOptions.maxRecords = parseInt(limit);
@@ -35,26 +53,47 @@ exports.handler = async (event, context) => {
       try {
         pricingPlans = fields.pricing_plans ? JSON.parse(fields.pricing_plans) : [];
       } catch (e) {
-        console.error('Error parsing pricing plans:', e);
+        console.error('Error parsing pricing plans for', fields.name, ':', e);
+        pricingPlans = [];
+      }
+
+      // Handle categories - can be array (multiselect) or string (semicolon separated)
+      let categories = [];
+      if (fields.categories) {
+        if (Array.isArray(fields.categories)) {
+          categories = fields.categories;
+        } else if (typeof fields.categories === 'string') {
+          categories = fields.categories.split(';').filter(cat => cat.trim());
+        }
+      }
+
+      // Handle badges - can be array (multiselect) or string (semicolon separated)
+      let badges = [];
+      if (fields.badges) {
+        if (Array.isArray(fields.badges)) {
+          badges = fields.badges;
+        } else if (typeof fields.badges === 'string') {
+          badges = fields.badges.split(';').filter(badge => badge.trim());
+        }
       }
 
       return {
         id: record.id,
-        name: fields.name,
-        slug: fields.slug,
-        rating: fields.rating,
-        description: fields.description,
-        short_description: fields.short_description,
-        website_url: fields.website_url,
-        affiliate_url: fields.affiliate_url,
-        logo_url: fields.logo_url,
-        image_url: fields.image_url, // Keep both for backward compatibility
-        categories: fields.categories ? fields.categories.split(';') : [],
-        badges: fields.badges ? fields.badges.split(';') : [],
+        name: fields.name || 'Unknown',
+        slug: fields.slug || 'unknown',
+        rating: fields.rating || 0,
+        description: fields.description || '',
+        short_description: fields.short_description || '',
+        website_url: fields.website_url || '',
+        affiliate_url: fields.affiliate_url || fields.website_url || '',
+        logo_url: fields.logo_url || fields.image_url || '/images/logos/default.png',
+        image_url: fields.image_url || fields.logo_url || '/images/logos/default.png',
+        categories: categories,
+        badges: badges,
         pricing_plans: pricingPlans,
-        featured: fields.featured || false,
-        status: fields.status,
-        review_count: fields.review_count || 0
+        featured: fields.featured === true || fields.featured === 'true',
+        status: fields.status || 'active',
+        review_count: parseInt(fields.review_count) || 0
       };
     });
 

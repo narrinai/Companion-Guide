@@ -377,7 +377,7 @@
                 }
 
                 const companion = companions[0];
-                const requiredFields = ['name', 'slug', 'rating', 'description', 'short_description', 'website_url', 'affiliate_url', 'image_url'];
+                const requiredFields = ['name', 'slug', 'rating', 'website_url', 'logo_url', 'categories', 'status'];
                 const missingFields = requiredFields.filter(field => !companion[field]);
 
                 if (missingFields.length === 0) {
