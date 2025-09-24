@@ -115,7 +115,7 @@
                 <button onclick="clearTestArea()" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);">Clear</button>
             </div>
             <div id="render-status" class="status loading">Klaar voor test...</div>
-            <div id="companions-test-container" class="companions-test-grid"></div>
+            <div id="companions-test-container" class="companions-grid companions-test-grid"></div>
         </section>
 
         <!-- Environment Variables Check -->
@@ -377,7 +377,7 @@
                 }
 
                 const companion = companions[0];
-                const requiredFields = ['name', 'slug', 'rating', 'website_url', 'logo_url', 'categories', 'status'];
+                const requiredFields = ['name', 'slug', 'rating', 'description', 'website_url', 'logo_url', 'categories', 'status'];
                 const missingFields = requiredFields.filter(field => !companion[field]);
 
                 if (missingFields.length === 0) {

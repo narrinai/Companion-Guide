@@ -54,8 +54,18 @@ class CompanionManager {
     if (!badges || badges.length === 0) return '';
 
     return badges.map(badge => {
-      const badgeClass = badge.toLowerCase().replace(' ', '-');
-      return `<span class="companion-badge ${badgeClass}">${badge}</span>`;
+      // Map badge types to the original styling
+      let badgeHtml = '';
+      if (badge.toLowerCase().includes('adult') || badge.toLowerCase().includes('nsfw')) {
+        badgeHtml = '<div class="product-badge">🔞 <span>Adult</span></div>';
+      } else if (badge.toLowerCase().includes('popular')) {
+        badgeHtml = '<div class="product-badge">🔥 <span>Popular</span></div>';
+      } else if (badge.toLowerCase().includes('new')) {
+        badgeHtml = '<div class="product-badge">✨ <span>New</span></div>';
+      } else {
+        badgeHtml = `<div class="product-badge">⭐ <span>${badge}</span></div>`;
+      }
+      return badgeHtml;
     }).join('');
   }
 
@@ -84,32 +94,40 @@ class CompanionManager {
   }
 
   generateCompanionCard(companion) {
-    const starRating = this.generateStarRating(companion.rating);
+    const logoUrl = companion.logo_url || companion.image_url || '/images/logos/default.png';
+    const reviewCountText = companion.review_count > 0 ? ` (${companion.review_count} reviews)` : '';
     const badges = this.generateBadges(companion.badges);
     const pricing = this.generatePricingHtml(companion.pricing_plans);
-    const logoUrl = companion.logo_url || companion.image_url; // Use logo_url or fallback to image_url
-    const reviewCountText = companion.review_count > 0 ? ` (${companion.review_count} reviews)` : '';
+
+    // Generate star rating using filled stars
+    const fullStars = Math.floor(companion.rating);
+    const starRating = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
 
     return `
-      <div class="companion-card" data-companion-id="${companion.id}">
-        <div class="companion-image">
-          <img src="${logoUrl}" alt="${companion.name}" loading="lazy">
-          ${badges}
-        </div>
-        <div class="companion-info">
-          <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
-          <div class="rating">
-            ${starRating}
-            <span class="rating-value">${companion.rating}/5${reviewCountText}</span>
-          </div>
-          <p class="description">${companion.short_description || 'AI companion platform'}</p>
-          ${pricing}
-          <div class="companion-actions">
-            <a href="${companion.website_url}" class="btn btn-primary" target="_blank" rel="noopener">Try ${companion.name}</a>
-            <a href="/companions/${companion.slug}" class="btn btn-secondary">Full Review</a>
+      <article class="companion-card" data-companion-id="${companion.id}">
+        ${badges}
+        <div class="card-header">
+          <img src="${logoUrl}" alt="${companion.name}" class="logo">
+          <div class="title-section">
+            <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
+            <div class="rating-line">
+              <span class="stars">${starRating}</span>
+              <span class="rating-score">${companion.rating}/5</span>
+              <span class="review-count">${reviewCountText}</span>
+            </div>
           </div>
         </div>
-      </div>
+        <p class="description">${companion.description || companion.short_description || 'AI companion platform'}</p>
+
+        <div class="pricing-section">
+          <div class="price-main">${pricing.replace('<p class="price">', '').replace('</p>', '')}</div>
+        </div>
+
+        <div class="card-actions">
+          <a href="/companions/${companion.slug}" class="btn-primary">Read Review</a>
+          <a href="${companion.affiliate_url || companion.website_url}" class="btn-secondary" target="_blank" rel="noopener">Visit Website</a>
+        </div>
+      </article>
     `;
   }
 
