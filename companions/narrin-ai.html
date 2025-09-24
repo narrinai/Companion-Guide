@@ -501,44 +501,6 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script>
-        // Load high-rated alternatives from Airtable
-        document.addEventListener('DOMContentLoaded', async function() {
-            try {
-                const response = await fetch('/.netlify/functions/get-companions');
-                const data = await response.json();
-
-                // Filter companions with rating 4.1+ and exclude current page
-                const highRatedCompanions = data.companions
-                    ?.filter(c => c.rating >= 4.1 && c.slug !== 'narrin-ai')
-                    ?.sort((a, b) => b.rating - a.rating)
-                    ?.slice(0, 3); // Top 3 alternatives
-
-                if (highRatedCompanions && highRatedCompanions.length > 0) {
-                    updateAlternatives(highRatedCompanions);
-                }
-            } catch (error) {
-                console.error('Error loading alternatives:', error);
-                // Keep static alternatives as fallback
-            }
-        });
-
-        function updateAlternatives(companions) {
-            const alternativesGrid = document.querySelector('.alternatives-grid');
-            if (!alternativesGrid || !Array.isArray(companions)) return;
-
-            const alternativesHTML = companions.map(companion => {
-                return `
-                    <a href="${companion.slug}" class="alternative">
-                        <img src="../images/logos/${companion.slug}.${companion.logo_url?.includes('.svg') ? 'svg' : 'png'}" alt="${companion.name}">
-                        <h3>${companion.name}</h3>
-                        <p>${companion.description?.split('.')[0] || 'Premium AI companion platform'} (${companion.rating}/5)</p>
-                    </a>
-                `;
-            }).join('');
-
-            alternativesGrid.innerHTML = alternativesHTML;
-        }
-    </script>
+    <script src="../js/alternatives.js"></script>
 </body>
 </html>
