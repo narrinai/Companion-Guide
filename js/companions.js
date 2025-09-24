@@ -53,20 +53,26 @@ class CompanionManager {
   generateBadges(badges) {
     if (!badges || badges.length === 0) return '';
 
-    return badges.map(badge => {
-      // Map badge types to the original styling
-      let badgeHtml = '';
+    // Show only the highest priority badge (same logic as generateCategoryBadges)
+    for (const badge of badges) {
       if (badge.toLowerCase().includes('adult') || badge.toLowerCase().includes('nsfw')) {
-        badgeHtml = '<div class="product-badge">🔞 <span>Adult</span></div>';
+        return '<div class="product-badge">🔞 <span>Adult</span></div>';
       } else if (badge.toLowerCase().includes('popular')) {
-        badgeHtml = '<div class="product-badge">🔥 <span>Popular</span></div>';
+        return '<div class="product-badge">🔥 <span>Popular</span></div>';
+      } else if (badge.toLowerCase().includes('premium')) {
+        return '<div class="product-badge">💎 <span>Premium</span></div>';
       } else if (badge.toLowerCase().includes('new')) {
-        badgeHtml = '<div class="product-badge">✨ <span>New</span></div>';
-      } else {
-        badgeHtml = `<div class="product-badge">⭐ <span>${badge}</span></div>`;
+        return '<div class="product-badge">✨ <span>New</span></div>';
+      } else if (badge.toLowerCase().includes('global')) {
+        return '<div class="product-badge">🌍 <span>Global</span></div>';
+      } else if (badge.toLowerCase().includes('character')) {
+        return '<div class="product-badge">🎭 <span>Characters</span></div>';
       }
-      return badgeHtml;
-    }).join('');
+    }
+
+    // If no special badges found, show the first badge
+    const firstBadge = badges[0];
+    return `<div class="product-badge">⭐ <span>${firstBadge}</span></div>`;
   }
 
   generateFeatureHighlights(features) {
