@@ -69,8 +69,68 @@
         </section>
 
         <!-- Companion Grid -->
-        <section class="category-grid" id="whatsapp-companions-container">
-            <!-- Dynamic companions will be loaded here -->
+        <section class="category-grid">
+            <!-- #1 Leader - Simone -->
+            <article class="companion-product-card leader">
+                <div class="product-badge">#1 🏆 Leader</div>
+                <div class="product-header">
+                    <img src="../images/logos/simone.png" alt="Simone logo" class="product-logo">
+                    <div class="product-title-section">
+                        <h3><a href="../companions/simone">Simone</a></h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-score">4.6/5</span>
+                            <span class="rating-count">(47 reviews)</span>
+                        </div>
+                        <p class="product-tagline">Your WhatsApp-based AI best friend with powerful tools</p>
+                    </div>
+                </div>
+                
+                <div class="product-content">
+                    <p class="product-description">Revolutionary WhatsApp-based AI companion that combines genuine friendship with powerful AI tools. Native integration means no separate app needed - just chat naturally in WhatsApp while accessing advanced features.</p>
+                    
+                    <div class="product-highlights compact">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">📱</span>
+                            <div>
+                                <strong>WhatsApp Native</strong>
+                                <p>No separate app needed</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🧠</span>
+                            <div>
+                                <strong>Memory System</strong>
+                                <p>Remembers all conversations</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🔍</span>
+                            <div>
+                                <strong>Web Search</strong>
+                                <p>Real-time information</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🎨</span>
+                            <div>
+                                <strong>AI Tools</strong>
+                                <p>Images, PDFs, audio</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-pricing">
+                        <div class="pricing-main">$18/month</div>
+                        <div class="pricing-sub">Free tier available</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="../companions/simone" class="btn-primary">Read Review</a>
+                        <a href="https://simone.app" class="btn-secondary" target="_blank">Visit Website</a>
+                    </div>
+                </div>
+            </article>
         </section>
 
         <!-- Category Insights -->
@@ -255,15 +315,6 @@
         </div>
     </footer>
 
-    <script src="../js/companions.js"></script>
-    <script>
-        // Initialize category companions when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.companionManager) {
-                window.companionManager.renderCategoryCompanions('whatsapp-companions-container', 'whatsapp');
-            }
-        });
-    </script>
     <script src="../script.js"></script>
 </body>
 </html>

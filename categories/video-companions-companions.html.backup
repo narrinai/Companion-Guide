@@ -69,8 +69,193 @@
         </section>
 
         <!-- Companion Grid -->
-        <section class="category-grid" id="video-companions-container">
-            <!-- Dynamic companions will be loaded here -->
+        <section class="category-grid">
+            <!-- #1 Secrets AI -->
+            <article class="companion-product-card leader">
+                <div class="product-badge">#1 🏆 Leader</div>
+                <div class="product-header">
+                    <img src="../images/logos/secrets-ai-review-companionguide.png" alt="Secrets AI logo" class="product-logo">
+                    <div class="product-title-section">
+                        <h3><a href="../companions/secrets-ai">Secrets AI</a></h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-score">4.8/5</span>
+                            <span class="rating-count">(62 reviews)</span>
+                        </div>
+                        <p class="product-tagline">#1 Realistic AI girlfriend with immersive video generation</p>
+                    </div>
+                </div>
+
+                <div class="product-content">
+                    <p class="product-description">Realistic AI girlfriend platform featuring 24/7 availability and 100+ fantasy scenarios with advanced video generation capabilities for immersive visual companion experiences.</p>
+
+                    <div class="product-highlights compact">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🎬</span>
+                            <div>
+                                <strong>Video Generation</strong>
+                                <p>Visual content creation</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">💖</span>
+                            <div>
+                                <strong>Realistic AI</strong>
+                                <p>Girlfriend experience</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🧠</span>
+                            <div>
+                                <strong>Memory System</strong>
+                                <p>Remembers you</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🎭</span>
+                            <div>
+                                <strong>100+ Fantasies</strong>
+                                <p>Video scenarios</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-pricing">
+                        <div class="pricing-main">Free Trial</div>
+                        <div class="pricing-sub">Premium $5.99/month</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="../companions/secrets-ai" class="btn-primary">Read Review</a>
+                        <a href="https://www.secrets.ai/browse?fpr=companionguide" class="btn-secondary" target="_blank">Visit Website</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- #2 DreamGF AI -->
+            <article class="companion-product-card">
+                <div class="product-badge">#2</div>
+                <div class="product-header">
+                    <img src="../images/logos/dreamgf-ai.svg" alt="DreamGF logo" class="product-logo">
+                    <div class="product-title-section">
+                        <h3><a href="../companions/dreamgf-ai">DreamGF AI</a></h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-score">4.5/5</span>
+                            <span class="rating-count">(93 reviews)</span>
+                        </div>
+                        <p class="product-tagline">AI girlfriend with advanced image and video generation</p>
+                    </div>
+                </div>
+
+                <div class="product-content">
+                    <p class="product-description">Premium AI girlfriend platform with sophisticated image generation and video capabilities. Create custom AI girlfriends with detailed visual customization and enjoy personalized video content.</p>
+
+                    <div class="product-highlights compact">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🎨</span>
+                            <div>
+                                <strong>Image Generation</strong>
+                                <p>Custom visuals</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🎬</span>
+                            <div>
+                                <strong>Video Content</strong>
+                                <p>Personalized videos</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">💬</span>
+                            <div>
+                                <strong>Voice Messages</strong>
+                                <p>Audio interactions</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🌟</span>
+                            <div>
+                                <strong>Premium Quality</strong>
+                                <p>High-end experience</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-pricing">
+                        <div class="pricing-main">Free Trial</div>
+                        <div class="pricing-sub">Premium $9.99/month</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="../companions/dreamgf-ai" class="btn-primary">Read Review</a>
+                        <a href="https://t.mbsrv2.com/388589/7845?popUnder=true&aff_sub5=SF_006OG000004lmDN" class="btn-secondary" target="_blank">Visit Website</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- #3 FantasyGF -->
+            <article class="companion-product-card">
+                <div class="product-badge">#3</div>
+                <div class="product-header">
+                    <img src="../images/logos/fantasygf-ai.png" alt="FantasyGF logo" class="product-logo">
+                    <div class="product-title-section">
+                        <h3><a href="../companions/fantasygf-ai">FantasyGF</a></h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-score">4.5/5</span>
+                            <span class="rating-count">(72 reviews)</span>
+                        </div>
+                        <p class="product-tagline">Virtual dating with video calls and kiss video generator</p>
+                    </div>
+                </div>
+
+                <div class="product-content">
+                    <p class="product-description">Revolutionary AI girlfriend platform featuring unique kiss video generator and voice calls with 24 voice options. Offers immersive video experiences for virtual dating and romantic interactions.</p>
+
+                    <div class="product-highlights compact">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">📹</span>
+                            <div>
+                                <strong>Kiss Videos</strong>
+                                <p>Unique generator</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">📞</span>
+                            <div>
+                                <strong>Voice Calls</strong>
+                                <p>24 voice options</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🏆</span>
+                            <div>
+                                <strong>XP System</strong>
+                                <p>Level up rewards</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🔒</span>
+                            <div>
+                                <strong>Anonymous</strong>
+                                <p>Private billing</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-pricing">
+                        <div class="pricing-main">Free</div>
+                        <div class="pricing-sub">Premium $12.99/month</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="../companions/fantasygf-ai" class="btn-primary">Read Review</a>
+                        <a href="https://fantasygf.com/create-ai-girl?via=53hyme" class="btn-secondary" target="_blank">Visit Website</a>
+                    </div>
+                </div>
+            </article>
+
         </section>
 
         <!-- Category Insights -->
@@ -281,15 +466,6 @@
         </div>
     </footer>
 
-    <script src="../js/companions.js"></script>
-    <script>
-        // Initialize category companions when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.companionManager) {
-                window.companionManager.renderCategoryCompanions('video-companions-container', 'video');
-            }
-        });
-    </script>
     <script src="../script.js"></script>
 </body>
 </html>

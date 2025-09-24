@@ -70,8 +70,130 @@
         </section>
 
         <!-- Companion Grid -->
-        <section class="category-grid" id="image-gen-companions-container">
-            <!-- Dynamic companions will be loaded here -->
+        <section class="category-grid">
+            <!-- #1 Leader - SoulGen AI -->
+            <article class="companion-product-card leader">
+                <div class="product-badge">#1 🏆 Leader</div>
+                <div class="product-header">
+                    <img src="../images/logos/soulgen-ai.svg" alt="SoulGen AI logo" class="product-logo">
+                    <div class="product-title-section">
+                        <h3><a href="../companions/soulgen-ai">SoulGen AI</a></h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-score">4.1/5</span>
+                            <span class="rating-count">(24 reviews)</span>
+                        </div>
+                        <p class="product-tagline">AI art generator with interactive chat feature</p>
+                    </div>
+                </div>
+                
+                <div class="product-content">
+                    <p class="product-description">Create your perfect AI soulmate with customizable appearance and personality. Features SoulChat for intimate conversations, voice/video calls, and personalized AI image generation with realistic and anime styles.</p>
+                    
+                    <div class="product-highlights compact">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">💬</span>
+                            <div>
+                                <strong>SoulChat</strong>
+                                <p>Intimate AI conversations</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">📞</span>
+                            <div>
+                                <strong>Voice & Video</strong>
+                                <p>AI calls & interactions</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🎨</span>
+                            <div>
+                                <strong>Custom AI Soulmate</strong>
+                                <p>Personalized appearance</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🖼️</span>
+                            <div>
+                                <strong>AI Art Generation</strong>
+                                <p>Realistic & anime styles</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-pricing">
+                        <div class="pricing-main">$12.99/month</div>
+                        <div class="pricing-sub">Annual plan $90.99/year</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="../companions/soulgen-ai" class="btn-primary">Read Review</a>
+                        <a href="https://www.soulgen.net/ai-chat" class="btn-secondary" target="_blank">Visit Website</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- #2 Promptchan AI -->
+            <article class="companion-product-card">
+                <div class="product-badge">#2 🎨 AI Art</div>
+                <div class="product-header">
+                    <img src="../images/logos/promptchan-ai.svg" alt="Promptchan AI logo" class="product-logo">
+                    <div class="product-title-section">
+                        <h3><a href="../companions/promptchan-ai">Promptchan AI</a></h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-score">3.8/5</span>
+                            <span class="rating-count">(21 reviews)</span>
+                        </div>
+                        <p class="product-tagline">Uncensored NSFW AI image and video generation</p>
+                    </div>
+                </div>
+                
+                <div class="product-content">
+                    <p class="product-description">Generate uncensored NSFW images and videos with multiple styles including hyperrealistic, anime, and fantasy. Features AI girlfriend chat and community gallery.</p>
+                    
+                    <div class="product-highlights compact">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🚫</span>
+                            <div>
+                                <strong>Uncensored</strong>
+                                <p>No content limits</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🎥</span>
+                            <div>
+                                <strong>Video Generation</strong>
+                                <p>Animated content</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">👥</span>
+                            <div>
+                                <strong>Community</strong>
+                                <p>20M+ images</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">💎</span>
+                            <div>
+                                <strong>Gems System</strong>
+                                <p>Flexible pricing</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-pricing">
+                        <div class="pricing-main">$5.99/month</div>
+                        <div class="pricing-sub">Pro plan $10.19/month</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="../companions/promptchan-ai" class="btn-primary">Read Review</a>
+                        <a href="https://promptchan.com" class="btn-secondary" target="_blank">Visit Website</a>
+                    </div>
+                </div>
+            </article>
         </section>
 
         <!-- Category Insights -->
@@ -285,15 +407,6 @@
         </div>
     </footer>
 
-    <script src="../js/companions.js"></script>
-    <script>
-        // Initialize category companions when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.companionManager) {
-                window.companionManager.renderCategoryCompanions('image-gen-companions-container', 'image-gen');
-            }
-        });
-    </script>
     <script src="../script.js"></script>
 </body>
 </html>

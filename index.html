@@ -51,7 +51,68 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/images/logo.svg">
     <link rel="stylesheet" href="style.css">
-    
+    <style>
+        /* Loading skeleton styles - matching site theme */
+        .companion-skeleton {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #333;
+            animation: shimmer 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .companion-skeleton::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        .skeleton-image {
+            width: 80px;
+            height: 80px;
+            background: #2d2d2d;
+            border-radius: 50%;
+            margin-bottom: 16px;
+        }
+
+        .skeleton-text {
+            background: #2d2d2d;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .skeleton-title {
+            height: 24px;
+            width: 65%;
+            margin-bottom: 8px;
+        }
+
+        .skeleton-description {
+            height: 16px;
+            width: 85%;
+            margin-bottom: 6px;
+        }
+
+        .skeleton-price {
+            height: 20px;
+            width: 45%;
+            margin-top: 16px;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    </style>
+
     <!-- mylead-verification: 3a6c6df6e7e6742f9c883e2a52e8db51 -->
     
     <!-- Google tag (gtag.js) -->
@@ -109,7 +170,31 @@
                 </div>
 
                 <div id="featured-companions-container" class="companions-grid">
-                    <!-- Dynamic featured companions will be loaded here -->
+                    <!-- Loading skeletons for better perceived performance -->
+                    <div class="companion-skeleton">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-description"></div>
+                        <div class="skeleton-text skeleton-price"></div>
+                    </div>
+                    <div class="companion-skeleton">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-description"></div>
+                        <div class="skeleton-text skeleton-price"></div>
+                    </div>
+                    <div class="companion-skeleton">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-description"></div>
+                        <div class="skeleton-text skeleton-price"></div>
+                    </div>
+                    <div class="companion-skeleton">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-description"></div>
+                        <div class="skeleton-text skeleton-price"></div>
+                    </div>
                 </div>
 
                 <div class="companions-grid" style="display: none;">
