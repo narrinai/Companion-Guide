@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('featured-companions')) {
         loadFeaturedCompanions();
     }
+
+    // Load and display featured companions on news page
+    if (document.getElementById('news-featured-companions')) {
+        loadNewsFeaturedCompanions();
+    }
 });
 
 // Load featured companions from JSON data
@@ -44,6 +49,104 @@ function displayFeaturedCompanions(companions) {
         </div>
     `).join('');
     
+    container.innerHTML = html;
+}
+
+// Load featured companions for news page from Airtable
+async function loadNewsFeaturedCompanions() {
+    try {
+        const response = await fetch('/netlify/functions/get-companions');
+        const companions = await response.json();
+
+        // Get only companions that are marked as featured in Airtable
+        const featured = companions
+            .filter(c => c.is_featured === true)
+            .sort((a, b) => b.rating - a.rating);
+
+        displayNewsFeaturedCompanions(featured);
+    } catch (error) {
+        console.error('Error loading companions:', error);
+        // Fallback to show error message
+        const container = document.getElementById('news-featured-companions');
+        if (container) {
+            container.innerHTML = '<p>Unable to load featured companions at this time.</p>';
+        }
+    }
+}
+
+// Display featured companions on news page
+function displayNewsFeaturedCompanions(companions) {
+    const container = document.getElementById('news-featured-companions');
+    if (!container) return;
+
+    const html = companions.map((companion, index) => {
+        const features = companion.features ? JSON.parse(companion.features) : [];
+        const pricingPlans = companion.pricing_plans ? JSON.parse(companion.pricing_plans) : [];
+        const freePlan = pricingPlans.find(p => p.price === 0);
+        const paidPlan = pricingPlans.find(p => p.price > 0);
+
+        const pricingText = freePlan && paidPlan
+            ? `Free`
+            : paidPlan
+            ? `$${paidPlan.price}${paidPlan.period ? '/' + paidPlan.period.replace('ly', '') : ''}`
+            : 'Contact for Pricing';
+
+        const pricingNote = freePlan && paidPlan
+            ? `Premium $${paidPlan.price}${paidPlan.period ? '/' + paidPlan.period.replace('ly', '') : ''}`
+            : '';
+
+        const getBadge = (idx) => {
+            switch(idx) {
+                case 0: return '🏆 Top Rated';
+                case 1: return '🏆 Leader';
+                case 2: return '⚡ Popular';
+                case 3: return '🌟 Featured';
+                default: return '';
+            }
+        };
+
+        const badge = getBadge(index);
+        const featuredClass = index < 4 ? 'featured' : '';
+
+        return `
+            <article class="companion-card ${featuredClass}">
+                ${badge ? `<div class="product-badge">${badge}</div>` : ''}
+                <div class="card-header">
+                    <img src="${companion.logo}" alt="${companion.name}" class="logo">
+                    <div class="title-section">
+                        <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
+                        <div class="rating-line">
+                            <span class="stars">${'★'.repeat(Math.floor(companion.rating))}${'☆'.repeat(5-Math.floor(companion.rating))}</span>
+                            <span class="rating-score">${companion.rating}/5</span>
+                            <span class="review-count">(${companion.review_count || 0} reviews)</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="description">${companion.description}</p>
+
+                <div class="feature-highlights">
+                    ${features.slice(0, 4).map(feature => `
+                        <div class="feature-item">
+                            <div class="feature-icon">${feature.icon}</div>
+                            <div class="feature-title">${feature.title}</div>
+                            <div class="feature-desc">${feature.description}</div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="pricing-section">
+                    <div class="price-main">${pricingText}</div>
+                    ${pricingNote ? `<div class="price-note">${pricingNote}</div>` : ''}
+                </div>
+
+                <div class="card-actions">
+                    <a href="/companions/${companion.slug}" class="btn-primary">Read Review</a>
+                    <a href="${companion.website}" class="btn-secondary" target="_blank">Visit Website</a>
+                </div>
+            </article>
+        `;
+    }).join('');
+
     container.innerHTML = html;
 }
 
