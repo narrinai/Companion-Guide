@@ -74,57 +74,57 @@
                     <div class="category-icon">🎭</div>
                     <h3>Roleplay & Character Chat</h3>
                     <p>Best AI platforms for roleplay and character chat experiences with interactive storytelling</p>
-                    <div class="category-stats">14 Platforms</div>
+                    <div class="category-stats" id="roleplaying-count">Loading...</div>
                 </a>
-                
+
                 <a href="/categories/wellness-companions" class="category-card">
                     <div class="category-icon">🧠</div>
                     <h3>Wellness</h3>
                     <p>AI companions focused on mental health, emotional support, and personal wellness</p>
-                    <div class="category-stats">2 Platforms</div>
+                    <div class="category-stats" id="wellness-count">Loading...</div>
                 </a>
-                
-                
+
+
                 <a href="/categories/learning-companions" class="category-card">
                     <div class="category-icon">📚</div>
                     <h3>Learning</h3>
                     <p>AI tutors and educational companions for skill development and academic support</p>
-                    <div class="category-stats">1 Platform</div>
+                    <div class="category-stats" id="learning-count">Loading...</div>
                 </a>
-                
+
                 <a href="/categories/ai-girlfriend-companions" class="category-card">
                     <div class="category-icon">💕</div>
                     <h3>AI Girlfriend/Boyfriend</h3>
                     <p>Best AI platforms for virtual romantic relationships and dating experiences</p>
-                    <div class="category-stats">12 Platforms</div>
+                    <div class="category-stats" id="ai-girlfriend-count">Loading...</div>
                 </a>
-                
+
                 <a href="/categories/whatsapp-companions-companions" class="category-card">
                     <div class="category-icon">📱</div>
                     <h3>WhatsApp-Only</h3>
                     <p>AI companions that integrate natively into WhatsApp - no separate apps needed</p>
-                    <div class="category-stats">1 Platform</div>
+                    <div class="category-stats" id="whatsapp-count">Loading...</div>
                 </a>
-                
+
                 <a href="/categories/adult-image-generation-companions" class="category-card">
                     <div class="category-icon">🎨</div>
                     <h3>Adult Image Generation</h3>
                     <p>Best AI platforms for creating NSFW art and adult visual content (18+ only)</p>
-                    <div class="category-stats">2 Platforms</div>
+                    <div class="category-stats" id="image-gen-count">Loading...</div>
                 </a>
-                
+
                 <a href="/categories/adult-content-uncensored-companions" class="category-card">
                     <div class="category-icon">🔞</div>
                     <h3>Adult Content & Uncensored</h3>
                     <p>Best uncensored AI platforms for adult content and mature conversations (18+ only)</p>
-                    <div class="category-stats">16 Platforms</div>
+                    <div class="category-stats" id="nsfw-count">Loading...</div>
                 </a>
 
                 <a href="/categories/video-companions-companions" class="category-card">
                     <div class="category-icon">🎬</div>
                     <h3>Video Companions</h3>
                     <p>AI companions with video chat and video generation capabilities for immersive experiences</p>
-                    <div class="category-stats">2 Platforms</div>
+                    <div class="category-stats" id="video-count">Loading...</div>
                 </a>
             </div>
         </section>
@@ -176,6 +176,15 @@
         </div>
     </footer>
 
+    <script src="js/companions.js"></script>
+    <script>
+        // Update category counts when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.companionManager) {
+                window.companionManager.updateCategoryCounts();
+            }
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

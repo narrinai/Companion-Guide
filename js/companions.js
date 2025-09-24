@@ -488,6 +488,58 @@ class CompanionManager {
     }
   }
 
+  async updateCategoryCounts() {
+    try {
+      // Fetch all companions to count by category
+      const allCompanions = await this.fetchCompanions({
+        sort: 'rating'
+      });
+
+      // Count companions per category
+      const categoryCounts = {
+        'roleplaying': 0,
+        'wellness': 0,
+        'learning': 0,
+        'ai-girlfriend': 0,
+        'whatsapp': 0,
+        'image-gen': 0,
+        'nsfw': 0,
+        'video': 0
+      };
+
+      allCompanions.forEach(companion => {
+        if (companion.categories && Array.isArray(companion.categories)) {
+          companion.categories.forEach(category => {
+            if (categoryCounts.hasOwnProperty(category)) {
+              categoryCounts[category]++;
+            }
+          });
+        }
+      });
+
+      // Update the DOM elements with counts
+      Object.keys(categoryCounts).forEach(category => {
+        const element = document.getElementById(`${category}-count`);
+        if (element) {
+          const count = categoryCounts[category];
+          const platformText = count === 1 ? 'Platform' : 'Platforms';
+          element.textContent = `${count} ${platformText}`;
+        }
+      });
+
+    } catch (error) {
+      console.error('Error updating category counts:', error);
+      // Fallback to show error state
+      const categoryIds = ['roleplaying-count', 'wellness-count', 'learning-count', 'ai-girlfriend-count', 'whatsapp-count', 'image-gen-count', 'nsfw-count', 'video-count'];
+      categoryIds.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.textContent = 'N/A';
+        }
+      });
+    }
+  }
+
   initializeFilters() {
     const sortSelect = document.getElementById('companion-sort');
     const categoryFilter = document.getElementById('category-filter');
