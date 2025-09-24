@@ -243,10 +243,43 @@ class CompanionManager {
     ).join('');
   }
 
+  generateCategoryBadges(companion, index) {
+    const badges = [];
+
+    // Always add ranking badge first
+    if (index === 0) {
+      badges.push('<div class="product-badge">#1 🏆 Leader</div>');
+    } else {
+      badges.push(`<div class="product-badge">#${index + 1}</div>`);
+    }
+
+    // Add additional badges from Airtable
+    if (companion.badges && Array.isArray(companion.badges)) {
+      companion.badges.forEach(badge => {
+        if (badge.toLowerCase().includes('adult') || badge.toLowerCase().includes('nsfw')) {
+          badges.push('<div class="product-badge">🔞 Adult</div>');
+        } else if (badge.toLowerCase().includes('popular')) {
+          badges.push('<div class="product-badge">🔥 Popular</div>');
+        } else if (badge.toLowerCase().includes('new')) {
+          badges.push('<div class="product-badge">✨ New</div>');
+        } else if (badge.toLowerCase().includes('premium')) {
+          badges.push('<div class="product-badge">💎 Premium</div>');
+        } else if (badge.toLowerCase().includes('global')) {
+          badges.push('<div class="product-badge">🌍 Global</div>');
+        } else if (badge.toLowerCase().includes('character')) {
+          badges.push('<div class="product-badge">🎭 Characters</div>');
+        } else if (badge) {
+          badges.push(`<div class="product-badge">⭐ ${badge}</div>`);
+        }
+      });
+    }
+
+    return `<div class="product-badges">${badges.join('')}</div>`;
+  }
+
   generateCategoryCompanionCard(companion, index) {
     const logoUrl = companion.logo_url || companion.image_url || '/images/logos/default.png';
     const reviewCountText = companion.review_count > 0 ? ` (${companion.review_count} reviews)` : '';
-    const badges = this.generateBadges(companion.badges);
     const pricing = this.generatePricingHtml(companion.pricing_plans);
 
     // Use slug from Airtable, fallback to 'unknown' if not present
@@ -256,13 +289,8 @@ class CompanionManager {
     const fullStars = Math.floor(companion.rating);
     const starRating = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
 
-    // Determine leader badge for #1 position
-    let badgeHtml = '';
-    if (index === 0) {
-      badgeHtml = '<div class="product-badge">#1 🏆 Leader</div>';
-    } else {
-      badgeHtml = `<div class="product-badge">#${index + 1}${badges ? ' ' + badges.replace('<div class="product-badge">', '').replace('</div>', '').replace(/🔞\s*<span>Adult<\/span>/, '🔞 Adult').replace(/🔥\s*<span>Popular<\/span>/, '🔥 Popular').replace(/✨\s*<span>New<\/span>/, '✨ New') : ''}</div>`;
-    }
+    // Generate badges
+    const badgeHtml = this.generateCategoryBadges(companion, index);
 
     // Add leader class for first item
     const cardClass = index === 0 ? 'companion-product-card leader' : 'companion-product-card';

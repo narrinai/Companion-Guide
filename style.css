@@ -2225,10 +2225,19 @@ footer {
     border-color: var(--accent-purple);
 }
 
-.product-badge {
+.product-badges {
     position: absolute;
     top: var(--space-4);
     right: var(--space-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    z-index: 1;
+    max-width: 200px;
+    justify-content: flex-end;
+}
+
+.product-badge {
     display: inline-block;
     background-color: var(--accent-blue);
     color: white;
@@ -2237,7 +2246,7 @@ footer {
     font-size: 0.75rem;
     font-weight: 600;
     margin-bottom: 0;
-    z-index: 1;
+    white-space: nowrap;
 }
 
 .companion-product-card.high-performer .product-badge {
@@ -3202,13 +3211,18 @@ footer {
         margin: var(--space-6) 0;
     }
     
-    .companion-card .product-badge {
+    .companion-card .product-badges {
         position: absolute;
         top: var(--space-3);
         right: var(--space-3);
+        max-width: 150px;
+        gap: var(--space-1);
+    }
+
+    .companion-card .product-badge {
         margin-bottom: 0;
-        font-size: 0.8rem;
-        padding: var(--space-2) var(--space-3);
+        font-size: 0.7rem;
+        padding: var(--space-1) var(--space-2);
         z-index: 10;
         line-height: 1;
     }
