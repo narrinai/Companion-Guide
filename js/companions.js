@@ -244,37 +244,46 @@ class CompanionManager {
   }
 
   generateCategoryBadges(companion, index) {
-    const badges = [];
+    // Priority order for badge selection
+    let selectedBadge = '';
 
-    // Always add ranking badge first
+    // #1 always gets Leader badge
     if (index === 0) {
-      badges.push('<div class="product-badge">#1 🏆 Leader</div>');
+      selectedBadge = '<div class="product-badge">#1 🏆 Leader</div>';
     } else {
-      badges.push(`<div class="product-badge">#${index + 1}</div>`);
-    }
+      // For other positions, check for special badges first, otherwise use ranking
+      let specialBadge = null;
 
-    // Add additional badges from Airtable
-    if (companion.badges && Array.isArray(companion.badges)) {
-      companion.badges.forEach(badge => {
-        if (badge.toLowerCase().includes('adult') || badge.toLowerCase().includes('nsfw')) {
-          badges.push('<div class="product-badge">🔞 Adult</div>');
-        } else if (badge.toLowerCase().includes('popular')) {
-          badges.push('<div class="product-badge">🔥 Popular</div>');
-        } else if (badge.toLowerCase().includes('new')) {
-          badges.push('<div class="product-badge">✨ New</div>');
-        } else if (badge.toLowerCase().includes('premium')) {
-          badges.push('<div class="product-badge">💎 Premium</div>');
-        } else if (badge.toLowerCase().includes('global')) {
-          badges.push('<div class="product-badge">🌍 Global</div>');
-        } else if (badge.toLowerCase().includes('character')) {
-          badges.push('<div class="product-badge">🎭 Characters</div>');
-        } else if (badge) {
-          badges.push(`<div class="product-badge">⭐ ${badge}</div>`);
+      if (companion.badges && Array.isArray(companion.badges)) {
+        // Priority order: Adult > Popular > Premium > New > Global > Characters > Other
+        for (const badge of companion.badges) {
+          if (badge.toLowerCase().includes('adult') || badge.toLowerCase().includes('nsfw')) {
+            specialBadge = '<div class="product-badge">🔞 Adult</div>';
+            break;
+          } else if (badge.toLowerCase().includes('popular')) {
+            specialBadge = '<div class="product-badge">🔥 Popular</div>';
+            break;
+          } else if (badge.toLowerCase().includes('premium')) {
+            specialBadge = '<div class="product-badge">💎 Premium</div>';
+            break;
+          } else if (badge.toLowerCase().includes('new')) {
+            specialBadge = '<div class="product-badge">✨ New</div>';
+            break;
+          } else if (badge.toLowerCase().includes('global')) {
+            specialBadge = '<div class="product-badge">🌍 Global</div>';
+            break;
+          } else if (badge.toLowerCase().includes('character')) {
+            specialBadge = '<div class="product-badge">🎭 Characters</div>';
+            break;
+          }
         }
-      });
+      }
+
+      // Use special badge if found, otherwise use ranking badge
+      selectedBadge = specialBadge || `<div class="product-badge">#${index + 1}</div>`;
     }
 
-    return `<div class="product-badges">${badges.join('')}</div>`;
+    return `<div class="product-badges">${selectedBadge}</div>`;
   }
 
   generateCategoryCompanionCard(companion, index) {
