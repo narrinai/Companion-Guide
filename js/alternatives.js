@@ -32,8 +32,8 @@ function updateAlternatives(companions) {
     if (!alternativesGrid || !Array.isArray(companions)) return;
 
     const alternativesHTML = companions.map(companion => {
-        // Determine image extension
-        const imageExtension = companion.logo_url?.includes('.svg') ? 'svg' : 'png';
+        // Use logo_url from Airtable if available, otherwise fallback to local path
+        const logoSrc = companion.logo_url || `../images/logos/${companion.slug}.png`;
 
         // Use first sentence of description or fallback
         const shortDescription = companion.description
@@ -42,7 +42,7 @@ function updateAlternatives(companions) {
 
         return `
             <a href="${companion.slug}" class="alternative">
-                <img src="../images/logos/${companion.slug}.${imageExtension}" alt="${companion.name}">
+                <img src="${logoSrc}" alt="${companion.name}">
                 <h3>${companion.name}</h3>
                 <p>${shortDescription} (${companion.rating}/5)</p>
             </a>
