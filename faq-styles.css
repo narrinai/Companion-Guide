@@ -1,0 +1,174 @@
+/* FAQ Section Styles with Accessibility and SEO Optimization */
+
+.faq-section {
+    background: var(--bg-secondary, #1a1a1a);
+    border-radius: 16px;
+    padding: 40px;
+    margin: 40px 0;
+    border: 1px solid var(--border-primary, #333);
+}
+
+.faq-section h2 {
+    color: var(--text-primary, white);
+    font-size: 2rem;
+    margin-bottom: 32px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.faq-container {
+    display: grid;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--bg-primary, #0a0a0a);
+    border: 1px solid var(--border-secondary, #2a2a2a);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.faq-item:hover {
+    border-color: var(--accent-primary, #4285f4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(66, 133, 244, 0.1);
+}
+
+.faq-question {
+    color: var(--text-primary, white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    line-height: 1.4;
+    position: relative;
+    padding-right: 30px;
+}
+
+.faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--accent-primary, #4285f4);
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question::after {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    color: var(--text-secondary, #a0a0a0);
+    line-height: 1.6;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding-top 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    padding-top: 8px;
+}
+
+.faq-answer p {
+    margin: 0;
+}
+
+.faq-answer a {
+    color: var(--accent-primary, #4285f4);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.faq-answer a:hover {
+    border-bottom-color: var(--accent-primary, #4285f4);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 24px 20px;
+        margin: 24px 0;
+        border-radius: 12px;
+    }
+
+    .faq-section h2 {
+        font-size: 1.6rem;
+        margin-bottom: 24px;
+    }
+
+    .faq-item {
+        padding: 20px;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+        padding-right: 25px;
+    }
+
+    .faq-question::after {
+        font-size: 1.3rem;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .faq-item {
+        border-width: 2px;
+    }
+
+    .faq-question {
+        font-weight: 700;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .faq-item,
+    .faq-question::after,
+    .faq-answer {
+        transition: none;
+    }
+
+    .faq-item:hover {
+        transform: none;
+    }
+}
+
+/* Focus States for Accessibility */
+.faq-item:focus,
+.faq-item:focus-visible {
+    outline: 2px solid var(--accent-primary, #4285f4);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .faq-section {
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
+    }
+
+    .faq-question::after {
+        display: none;
+    }
+
+    .faq-answer {
+        max-height: none !important;
+        padding-top: 8px !important;
+    }
+
+    .faq-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
