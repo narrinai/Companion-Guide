@@ -3296,6 +3296,13 @@ footer {
         gap: var(--space-6);
         text-align: center;
     }
+
+    /* Ensure footer is the last element on mobile */
+    footer {
+        margin-top: var(--space-12);
+        margin-bottom: 0;
+        order: 999;
+    }
     
     /* Category Pages Mobile */
     .category-stats {

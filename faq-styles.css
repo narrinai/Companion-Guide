@@ -73,8 +73,9 @@
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px;
+    max-height: 400px;
     padding-top: 8px;
+    overflow-y: auto;
 }
 
 .faq-answer p {
