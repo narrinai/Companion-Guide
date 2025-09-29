@@ -45,9 +45,47 @@ class DealsManager {
         this.init();
     }
 
-    init() {
+    async init() {
+        await this.loadCompanionData();
         this.renderDeals();
         this.attachEventListeners();
+    }
+
+    async loadCompanionData() {
+        // Wait for companionManager to be available
+        if (typeof window.companionManager === 'undefined') {
+            // Try to load companions.js if not available
+            await this.waitForCompanionManager();
+        }
+
+        try {
+            // Fetch companion data for each deal
+            for (const deal of this.deals) {
+                const companionData = await window.companionManager.fetchCompanionById(deal.companionId);
+                if (companionData) {
+                    this.companionsData.set(deal.companionId, companionData);
+                }
+            }
+        } catch (error) {
+            console.error('Error loading companion data for deals:', error);
+        }
+    }
+
+    async waitForCompanionManager() {
+        return new Promise((resolve) => {
+            const checkInterval = setInterval(() => {
+                if (typeof window.companionManager !== 'undefined') {
+                    clearInterval(checkInterval);
+                    resolve();
+                }
+            }, 100);
+
+            // Timeout after 5 seconds
+            setTimeout(() => {
+                clearInterval(checkInterval);
+                resolve();
+            }, 5000);
+        });
     }
 
     renderDeals() {
@@ -57,7 +95,8 @@ class DealsManager {
         dealsContainer.innerHTML = '';
 
         this.deals.forEach(deal => {
-            const dealCard = this.createDealCard(deal);
+            const companionData = this.companionsData.get(deal.companionId);
+            const dealCard = this.createDealCard(deal, companionData);
             dealsContainer.appendChild(dealCard);
         });
     }
