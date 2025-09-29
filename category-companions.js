@@ -16,8 +16,8 @@ class CategoryCompanions {
             const data = await response.json();
 
             if (data.companions) {
-                // Show all featured companions for category pages
-                this.companions = data.companions.filter(companion => companion.featured).slice(0, 12);
+                // Filter companions by current category page
+                this.companions = this.filterCompanionsByCategory(data.companions);
             } else {
                 console.warn('No companions data received, falling back to static data');
                 this.companions = this.getStaticCompanions();
@@ -27,6 +27,59 @@ class CategoryCompanions {
             // Fallback to static data
             this.companions = this.getStaticCompanions();
         }
+    }
+
+    filterCompanionsByCategory(companions) {
+        // Get current page URL to determine category
+        const currentPath = window.location.pathname;
+
+        // Map URL paths to Airtable category values
+        const categoryMapping = {
+            '/categories/adult-content-uncensored-companions': ['nsfw', 'adult', 'uncensored'],
+            '/categories/adult-image-generation-companions': ['image-gen', 'nsfw', 'adult'],
+            '/categories/ai-girlfriend-companions': ['ai-girlfriend', 'romance', 'dating'],
+            '/categories/roleplay-character-chat-companions': ['roleplaying', 'character', 'fantasy'],
+            '/categories/video-companions-companions': ['video', 'visual'],
+            '/categories/whatsapp-companions-companions': ['whatsapp', 'messaging'],
+            '/categories/wellness-companions': ['wellness', 'therapy', 'mental-health'],
+            '/categories/learning-companions': ['education', 'learning', 'productivity']
+        };
+
+        // Get categories for current page
+        const pagCategories = categoryMapping[currentPath] || [];
+
+        if (pagCategories.length === 0) {
+            // If no mapping found, show featured companions as fallback
+            console.warn('No category mapping found for', currentPath, 'showing featured companions');
+            return companions.filter(companion => companion.featured).slice(0, 12);
+        }
+
+        // Filter companions that have matching categories
+        const filteredCompanions = companions.filter(companion => {
+            if (!companion.categories || !Array.isArray(companion.categories)) {
+                return false;
+            }
+
+            // Check if companion has any of the page categories
+            return companion.categories.some(companionCategory =>
+                pagCategories.some(pageCategory =>
+                    companionCategory.toLowerCase().includes(pageCategory.toLowerCase()) ||
+                    pageCategory.toLowerCase().includes(companionCategory.toLowerCase())
+                )
+            );
+        });
+
+        console.log(`Found ${filteredCompanions.length} companions for categories:`, pagCategories);
+
+        // Sort by featured first, then by rating
+        filteredCompanions.sort((a, b) => {
+            if (a.featured && !b.featured) return -1;
+            if (!a.featured && b.featured) return 1;
+            return (b.rating || 0) - (a.rating || 0);
+        });
+
+        // Limit to 12 companions per category page
+        return filteredCompanions.slice(0, 12);
     }
 
     getStaticCompanions() {
