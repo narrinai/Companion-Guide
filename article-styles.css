@@ -1028,4 +1028,94 @@ body:has(.article-hero) .nav-menu {
     }
 }
 
+/* Table Styles for Responsive Layout */
+.comparison-table,
+.feature-comparison-table,
+.value-comparison {
+    width: 100%;
+    overflow-x: auto;
+    margin: var(--space-6) 0;
+}
+
+.comparison-table table,
+.feature-comparison-table table,
+.value-comparison table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-table th,
+.feature-comparison-table th,
+.value-comparison th,
+.comparison-table td,
+.feature-comparison-table td,
+.value-comparison td {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    border-bottom: 1px solid var(--border-primary);
+    word-wrap: break-word;
+    max-width: 200px;
+}
+
+.comparison-table th,
+.feature-comparison-table th,
+.value-comparison th {
+    background: var(--bg-tertiary);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.comparison-table tr:last-child td,
+.feature-comparison-table tr:last-child td,
+.value-comparison tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tr:hover,
+.feature-comparison-table tr:hover,
+.value-comparison tr:hover {
+    background: var(--bg-elevated);
+}
+
+/* Ensure tables don't break out of container */
+.article-content table {
+    max-width: 100%;
+    table-layout: fixed;
+}
+
+.article-content .comparison-table,
+.article-content .feature-comparison-table,
+.article-content .value-comparison {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile table adjustments */
+@media (max-width: 768px) {
+    .comparison-table table,
+    .feature-comparison-table table,
+    .value-comparison table {
+        font-size: 0.75rem;
+        min-width: 500px;
+    }
+
+    .comparison-table th,
+    .feature-comparison-table th,
+    .value-comparison th,
+    .comparison-table td,
+    .feature-comparison-table td,
+    .value-comparison td {
+        padding: var(--space-2) var(--space-3);
+        max-width: 120px;
+    }
+}
+
 /* Commented out media queries removed */

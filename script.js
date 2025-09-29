@@ -280,4 +280,33 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 3000);
         });
     }
+
+    // Reading progress bar functionality for article pages
+    const readingProgress = document.getElementById('reading-progress');
+    if (readingProgress) {
+        const articleContent = document.querySelector('.article-content');
+        if (articleContent) {
+            function updateReadingProgress() {
+                const articleRect = articleContent.getBoundingClientRect();
+                const articleHeight = articleContent.offsetHeight;
+                const viewportHeight = window.innerHeight;
+
+                // Calculate how much of the article has been scrolled through
+                const scrolled = Math.max(0, -articleRect.top);
+                const maxScroll = Math.max(0, articleHeight - viewportHeight);
+                const progress = maxScroll > 0 ? Math.min(100, (scrolled / maxScroll) * 100) : 0;
+
+                readingProgress.style.width = progress + '%';
+            }
+
+            // Update on scroll
+            window.addEventListener('scroll', updateReadingProgress);
+
+            // Update on resize
+            window.addEventListener('resize', updateReadingProgress);
+
+            // Initial update
+            updateReadingProgress();
+        }
+    }
 });
