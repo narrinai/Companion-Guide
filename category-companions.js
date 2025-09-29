@@ -30,7 +30,7 @@ class CategoryCompanions {
     }
 
     getStaticCompanions() {
-        // Fallback static data
+        // Fallback static data with proper feature structure
         return [
             {
                 name: 'Secrets AI',
@@ -39,7 +39,15 @@ class CategoryCompanions {
                 short_description: '#1 Realistic AI girlfriend website with video generation and 100+ fantasy scenarios.',
                 logo_url: '/images/logos/secrets-ai-review-companionguide.png',
                 affiliate_url: 'https://www.secrets.ai/browse?fpr=companionguide',
-                badges: ['Leader', 'Top Rated']
+                badges: ['Leader', 'Top Rated'],
+                features: [
+                    {icon: '💖', title: 'Realistic AI', description: 'Girlfriend experience'},
+                    {icon: '🎭', title: '100+ Fantasies', description: 'Interactive scenarios'},
+                    {icon: '🧠', title: 'Memory System', description: 'Remembers you'},
+                    {icon: '🎬', title: 'Video Generation', description: 'Visual content'}
+                ],
+                review_count: 62,
+                featured: true
             },
             {
                 name: 'Hammer AI',
@@ -48,7 +56,15 @@ class CategoryCompanions {
                 short_description: 'Unlimited free AI character chat platform supporting local and cloud models.',
                 logo_url: '/images/logos/hammerai.png',
                 affiliate_url: 'https://gumroad.com/a/748605075/zrsof',
-                badges: ['Leader', 'Featured']
+                badges: ['Leader', 'Featured'],
+                features: [
+                    {icon: '🆓', title: '100% Free', description: 'Unlimited access'},
+                    {icon: '🔒', title: 'Privacy First', description: 'Local models'},
+                    {icon: '🎭', title: 'Diverse Characters', description: 'Multiple categories'},
+                    {icon: '✍️', title: 'Creative Tools', description: 'Story generation'}
+                ],
+                review_count: 44,
+                featured: true
             }
         ];
     }
