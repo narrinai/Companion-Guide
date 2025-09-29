@@ -95,11 +95,9 @@ class CategoryCompanions {
                             const desc = feature.description || '';
                             return `
                                 <div class="feature-item">
-                                    <span class="feature-icon">${icon}</span>
-                                    <div class="feature-text">
-                                        <span class="feature-title">${title}</span>
-                                        <span class="feature-desc">${desc}</span>
-                                    </div>
+                                    <div class="feature-icon">${icon}</div>
+                                    <div class="feature-title">${title}</div>
+                                    <div class="feature-desc">${desc}</div>
                                 </div>
                             `;
                         }).join('')}
