@@ -1048,6 +1048,16 @@ main .companions-grid {
     font-weight: 700;
 }
 
+.pricing-tier li.feature-excluded::before {
+    content: "✗";
+    color: var(--accent-red);
+}
+
+.pricing-tier li.feature-excluded {
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
 .verdict {
     margin: var(--space-12) 0;
 }

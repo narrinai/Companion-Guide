@@ -229,14 +229,15 @@ class CompanionPageManager {
             }
 
             const featuresHtml = plan.features.map(feature => {
-                // Clean up the feature text - remove ✅ if present and add proper formatting
-                const cleanFeature = feature.replace(/^✅\s*/, '');
-                const hasFeature = !cleanFeature.includes('❌');
+                // Clean up the feature text - remove all ✅ and ❌ symbols since CSS will handle styling
+                let cleanFeature = feature.replace(/^✅\s*/, '').replace(/^❌\s*/, '');
+                const hasFeature = !feature.includes('❌');
 
+                // Add appropriate CSS class for styling
                 if (hasFeature) {
-                    return `<li>${cleanFeature}</li>`;
+                    return `<li class="feature-included">${cleanFeature}</li>`;
                 } else {
-                    return `<li>${cleanFeature}</li>`;
+                    return `<li class="feature-excluded">${cleanFeature}</li>`;
                 }
             }).join('');
 
