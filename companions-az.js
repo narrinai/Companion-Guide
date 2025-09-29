@@ -2,36 +2,15 @@
 class CompanionsAZ {
     constructor() {
         this.companions = [];
-        this.filteredCompanions = [];
-        this.currentFilter = 'all';
-        this.searchTerm = '';
 
         this.init();
     }
 
     async init() {
-        this.bindEvents();
         await this.loadCompanions();
         this.renderCompanions();
         this.updateStats();
         this.hideLoading();
-    }
-
-    bindEvents() {
-        // Status filter buttons
-        document.querySelectorAll('.status-filter').forEach(button => {
-            button.addEventListener('click', (e) => {
-                this.handleStatusFilter(e.target.dataset.status);
-            });
-        });
-
-        // Search input
-        const searchInput = document.getElementById('companion-search');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                this.handleSearch(e.target.value);
-            });
-        }
     }
 
     async loadCompanions() {
@@ -41,17 +20,14 @@ class CompanionsAZ {
 
             if (data.companions) {
                 this.companions = data.companions;
-                this.filteredCompanions = [...this.companions];
             } else {
                 console.warn('No companions data received, falling back to static data');
                 this.companions = this.getStaticCompanions();
-                this.filteredCompanions = [...this.companions];
             }
         } catch (error) {
             console.error('Error loading companions:', error);
             // Fallback to static data
             this.companions = this.getStaticCompanions();
-            this.filteredCompanions = [...this.companions];
         }
     }
 
@@ -94,53 +70,12 @@ class CompanionsAZ {
         ];
     }
 
-    handleStatusFilter(status) {
-        this.currentFilter = status;
-
-        // Update active button
-        document.querySelectorAll('.status-filter').forEach(button => {
-            button.classList.remove('active');
-        });
-        document.querySelector(`[data-status="${status}"]`).classList.add('active');
-
-        this.applyFilters();
-    }
-
-    handleSearch(searchTerm) {
-        this.searchTerm = searchTerm.toLowerCase().trim();
-        this.applyFilters();
-    }
-
-    applyFilters() {
-        let filtered = [...this.companions];
-
-        // Apply status filter
-        if (this.currentFilter !== 'all') {
-            const filterStatus = this.currentFilter === 'coming-soon' ? 'Coming Soon' :
-                               this.currentFilter === 'active' ? 'active' : this.currentFilter;
-            filtered = filtered.filter(companion => {
-                const status = companion.status || 'active';
-                return status.toLowerCase() === filterStatus.toLowerCase();
-            });
-        }
-
-        // Apply search filter
-        if (this.searchTerm) {
-            filtered = filtered.filter(companion =>
-                companion.name.toLowerCase().includes(this.searchTerm)
-            );
-        }
-
-        this.filteredCompanions = filtered;
-        this.renderCompanions();
-        this.updateStats();
-    }
 
     renderCompanions() {
         const container = document.getElementById('az-grid');
         const noResults = document.getElementById('no-results');
 
-        if (this.filteredCompanions.length === 0) {
+        if (this.companions.length === 0) {
             container.innerHTML = '';
             noResults.style.display = 'block';
             return;
@@ -149,7 +84,7 @@ class CompanionsAZ {
         }
 
         // Group companions by first letter
-        const grouped = this.groupByLetter(this.filteredCompanions);
+        const grouped = this.groupByLetter(this.companions);
 
         // Generate HTML
         const html = Object.keys(grouped).sort().map(letter => {
@@ -198,25 +133,25 @@ class CompanionsAZ {
         const averageRatingElement = document.getElementById('average-rating');
 
         if (totalElement) {
-            totalElement.textContent = this.filteredCompanions.length;
+            totalElement.textContent = this.companions.length;
         }
 
         if (letterCategoriesElement) {
-            const grouped = this.groupByLetter(this.filteredCompanions);
+            const grouped = this.groupByLetter(this.companions);
             letterCategoriesElement.textContent = Object.keys(grouped).length;
         }
 
         // Calculate free tiers percentage (mock data for now)
         if (freeTiersElement) {
-            const freePercentage = Math.round((this.filteredCompanions.length * 0.95)); // 95% mock
-            freeTiersElement.textContent = `${Math.round(freePercentage / this.filteredCompanions.length * 100)}%`;
+            const freePercentage = Math.round((this.companions.length * 0.95)); // 95% mock
+            freeTiersElement.textContent = `${Math.round(freePercentage / this.companions.length * 100)}%`;
         }
 
         // Calculate average rating (mock data for now)
         if (averageRatingElement) {
-            const avgRating = this.filteredCompanions.reduce((sum, companion) => {
+            const avgRating = this.companions.reduce((sum, companion) => {
                 return sum + (companion.rating || 4.2);
-            }, 0) / this.filteredCompanions.length;
+            }, 0) / this.companions.length;
             averageRatingElement.textContent = (avgRating || 4.2).toFixed(1);
         }
     }

@@ -4558,82 +4558,6 @@ footer {
     margin-bottom: var(--space-8);
 }
 
-.filter-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-    align-items: center;
-    justify-content: space-between;
-}
-
-.status-filters {
-    display: flex;
-    gap: var(--space-2);
-    background: var(--bg-secondary);
-    padding: var(--space-1);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-secondary);
-}
-
-.status-filter {
-    background: transparent;
-    color: var(--text-secondary);
-    border: none;
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-md);
-    font-size: 0.875rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-.status-filter:hover {
-    color: var(--text-primary);
-    background: var(--bg-tertiary);
-}
-
-.status-filter.active {
-    background: var(--accent-blue);
-    color: white;
-}
-
-.search-container {
-    position: relative;
-    min-width: 280px;
-    flex: 1;
-    max-width: 400px;
-}
-
-.search-container input {
-    width: 100%;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-secondary);
-    border-radius: var(--radius-lg);
-    padding: var(--space-3) var(--space-4) var(--space-3) 2.5rem;
-    font-size: 0.875rem;
-    color: var(--text-primary);
-    transition: all 0.2s ease;
-}
-
-.search-container input:focus {
-    outline: none;
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.search-container input::placeholder {
-    color: var(--text-muted);
-}
-
-.search-icon {
-    position: absolute;
-    left: var(--space-3);
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-    pointer-events: none;
-}
 
 .az-grid {
     display: grid;
@@ -4763,20 +4687,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .filter-controls {
-        flex-direction: column;
-        align-items: stretch;
-        gap: var(--space-3);
-    }
-
-    .status-filters {
-        justify-content: center;
-    }
-
-    .search-container {
-        min-width: 100%;
-        max-width: 100%;
-    }
 
     .az-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -4796,11 +4706,6 @@ footer {
     .az-column a {
         padding: var(--space-2) var(--space-3);
         font-size: 0.875rem;
-    }
-
-    .status-filter {
-        padding: var(--space-2) var(--space-3);
-        font-size: 0.8125rem;
     }
 }
 

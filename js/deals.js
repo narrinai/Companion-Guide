@@ -145,7 +145,7 @@ class DealsManager {
         const name = companionData?.name || companionData?.['Name'] || deal.companionId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
         const logo = companionData?.logo || companionData?.['Logo'] || `/images/logos/${deal.companionId}.png`;
         const rating = companionData?.rating || companionData?.['Rating'] || '4.0';
-        const reviewCount = companionData?.reviewCount || companionData?.['Review Count'] || '0';
+        const reviewCount = companionData?.review_count || companionData?.reviewCount || companionData?.['Review Count'] || companionData?.['review_count'] || '0';
         const reviewLink = `/companions/${deal.companionId}`;
 
         // Debug log to see what data we're getting
@@ -155,6 +155,7 @@ class DealsManager {
                 logo: logo,
                 rating: rating,
                 reviewCount: reviewCount,
+                review_count_field: companionData?.review_count,
                 rawData: companionData
             });
         }
