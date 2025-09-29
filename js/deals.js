@@ -4,7 +4,7 @@ class DealsManager {
         this.deals = [
             {
                 companionId: 'nectar-ai',
-                airtableSlug: 'selira-ai',
+                airtableSlug: 'nectar-ai',
                 displayName: 'Nectar AI',
                 badge: '🔥 50% OFF',
                 discountPercentage: 50,
@@ -52,9 +52,24 @@ class DealsManager {
     }
 
     async init() {
-        await this.loadCompanionData();
+        console.log('🎯 DealsManager init started');
+
+        // Always render deals first with fallback data
+        console.log('🎨 Rendering deals with fallback data...');
         this.renderDeals();
+
+        try {
+            // Try to load companion data in background
+            await this.loadCompanionData();
+            console.log('✅ Companion data loaded successfully, re-rendering...');
+            // Re-render with updated data
+            this.renderDeals();
+        } catch (error) {
+            console.error('❌ Error loading companion data, using fallback:', error);
+        }
+
         this.attachEventListeners();
+        console.log('✅ DealsManager init completed');
     }
 
     async loadCompanionData() {
@@ -151,9 +166,14 @@ class DealsManager {
     }
 
     renderDeals() {
+        console.log('🎨 Starting renderDeals...');
         const dealsContainer = document.querySelector('.deals-container');
-        if (!dealsContainer) return;
+        if (!dealsContainer) {
+            console.error('❌ Deals container not found');
+            return;
+        }
 
+        console.log(`✅ Found deals container, rendering ${this.deals.length} deals...`);
         dealsContainer.innerHTML = '';
 
         // Sort deals by discount percentage (descending), then by review score (descending)
@@ -187,8 +207,24 @@ class DealsManager {
         // Use displayName from deal if available, otherwise dynamic data, fallback to static data
         const name = deal.displayName || companionData?.name || companionData?.['Name'] || deal.companionId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
         const logo = companionData?.logo || companionData?.['Logo'] || `/images/logos/${deal.companionId}.png`;
-        const rating = companionData?.rating || companionData?.['Rating'] || '4.0';
-        const reviewCount = companionData?.review_count || companionData?.reviewCount || companionData?.['Review Count'] || companionData?.['review_count'] || '0';
+
+        // Use updated ratings from our knowledge or fallback
+        let rating = companionData?.rating || companionData?.['Rating'];
+        let reviewCount = companionData?.review_count || companionData?.reviewCount || companionData?.['Review Count'] || companionData?.['review_count'];
+
+        // Fallback values for each specific deal if Airtable data is not available
+        if (!rating) {
+            if (deal.companionId === 'nectar-ai') {
+                rating = '4.5';
+                reviewCount = reviewCount || '36';
+            } else if (deal.companionId === 'ourdream-ai') {
+                rating = '4.7';
+                reviewCount = reviewCount || '56';
+            } else {
+                rating = '4.0';
+                reviewCount = reviewCount || '0';
+            }
+        }
         const reviewLink = `/companions/${deal.companionId}`;
 
         // Debug log to see what data we're getting
@@ -346,13 +382,27 @@ class DealsManager {
 // Initialize deals manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
     if (document.querySelector('.deals-container')) {
-        // Initialize companion manager first if it doesn't exist
-        if (typeof window.companionManager === 'undefined') {
-            window.companionManager = new CompanionManager();
-        }
+        console.log('🎯 DOM loaded, initializing deals...');
 
-        // Then initialize deals manager
-        window.dealsManager = new DealsManager();
+        try {
+            // Initialize companion manager first if it doesn't exist
+            if (typeof window.companionManager === 'undefined') {
+                console.log('🔧 Creating CompanionManager...');
+                window.companionManager = new CompanionManager();
+            }
+
+            // Then initialize deals manager
+            console.log('🎯 Creating DealsManager...');
+            window.dealsManager = new DealsManager();
+        } catch (error) {
+            console.error('❌ Error initializing deals:', error);
+
+            // Fallback: render deals without dynamic data
+            const dealsContainer = document.querySelector('.deals-container');
+            if (dealsContainer) {
+                dealsContainer.innerHTML = '<p style="color: #666; text-align: center; padding: 2rem;">Deals loading failed, please refresh the page.</p>';
+            }
+        }
     }
 });
 
