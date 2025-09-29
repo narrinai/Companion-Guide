@@ -964,5 +964,19 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     </footer>
 
     <script src="../script.js"></script>
+    <script src="/js/companions.js"></script>
+    <script>
+        // Load featured companions in footer
+        document.addEventListener("DOMContentLoaded", async function() {
+            if (typeof window.companionManager === "undefined") {
+                window.companionManager = new CompanionManager();
+            }
+            try {
+                await window.companionManager.renderFooterFeaturedCompanions("featured-companions-footer");
+            } catch (error) {
+                console.error("Error loading footer featured companions:", error);
+            }
+        });
+    </script>
 </body>
 </html>

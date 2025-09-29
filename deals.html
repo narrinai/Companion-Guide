@@ -470,14 +470,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 </div>
                 <div class="footer-section">
                     <h4>Featured AI Companions</h4>
-                    <ul id="featured-companions-footer">
                         <!-- Dynamic content will be loaded here -->
-                        <li><a href="/companions/hammer-ai">Hammer AI</a></li>
-                        <li><a href="/companions/narrin-ai">Narrin AI</a></li>
-                        <li><a href="/companions/ourdream-ai">Ourdream AI</a></li>
-                        <li><a href="/companions/fantasygf-ai">FantasyGF</a></li>
-                        <li><a href="/companions/dreamgf-ai">DreamGF</a></li>
-                        <li><a href="/companions/secrets-ai">Secrets AI</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -503,5 +496,18 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     <script src="/script.js"></script>
     <script src="/js/companions.js"></script>
     <script src="/js/deals.js"></script>
+    <script>
+        // Load featured companions in footer
+        document.addEventListener("DOMContentLoaded", async function() {
+            if (typeof window.companionManager === "undefined") {
+                window.companionManager = new CompanionManager();
+            }
+            try {
+                await window.companionManager.renderFooterFeaturedCompanions("featured-companions-footer");
+            } catch (error) {
+                console.error("Error loading footer featured companions:", error);
+            }
+        });
+    </script>
 </body>
 </html>
