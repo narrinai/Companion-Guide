@@ -5,6 +5,7 @@ class DealsManager {
             {
                 companionId: 'nectar-ai',
                 badge: '🔥 50% OFF',
+                discountPercentage: 50,
                 description: 'Save 50% on Nectar AI\'s premium AI chat platform! Create your perfect AI chat companion with advanced personality crafting, romantic AI chat interactions, and engaging conversations. Experience unlimited AI chat with customizable companions.',
                 features: [
                     { icon: '💕', title: 'Romantic Chat', desc: 'AI chat love' },
@@ -24,6 +25,7 @@ class DealsManager {
             {
                 companionId: 'ourdream-ai',
                 badge: '🍂 50% OFF',
+                discountPercentage: 50,
                 description: '🍂 Fall Sale Special! Save 50% on OurDream AI\'s premium AI companion playground. Create unlimited AI characters, chat, generate images & videos with your personalized AI companions. More Chars • More Chat • More Pics!',
                 features: [
                     { icon: '🎭', title: 'Character Creation', desc: 'Unlimited AI companions' },
@@ -129,7 +131,23 @@ class DealsManager {
 
         dealsContainer.innerHTML = '';
 
-        this.deals.forEach(deal => {
+        // Sort deals by discount percentage (descending), then by review score (descending)
+        const sortedDeals = [...this.deals].sort((a, b) => {
+            // First sort by discount percentage (higher discounts first)
+            const discountDiff = (b.discountPercentage || 0) - (a.discountPercentage || 0);
+            if (discountDiff !== 0) return discountDiff;
+
+            // If discount is equal, sort by review score (higher ratings first)
+            const aCompanionData = this.companionsData.get(a.companionId);
+            const bCompanionData = this.companionsData.get(b.companionId);
+
+            const aRating = parseFloat(aCompanionData?.rating || aCompanionData?.['Rating'] || '0');
+            const bRating = parseFloat(bCompanionData?.rating || bCompanionData?.['Rating'] || '0');
+
+            return bRating - aRating;
+        });
+
+        sortedDeals.forEach(deal => {
             const companionData = this.companionsData.get(deal.companionId);
             const dealCard = this.createDealCard(deal, companionData);
             dealsContainer.appendChild(dealCard);
