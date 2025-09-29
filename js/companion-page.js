@@ -115,8 +115,8 @@ class CompanionPageManager {
         const companionName = this.getCompanionName();
         const reviewTitle = `${companionName} Review`;
 
-        // Update main H1 title
-        const heroTitle = document.querySelector('.companion-hero h1, .hero-title, h1');
+        // Update main H1 title (exclude header H1)
+        const heroTitle = document.querySelector('.companion-hero h1, .hero-title, main h1, .hero h1');
         if (heroTitle) {
             heroTitle.textContent = reviewTitle;
         }

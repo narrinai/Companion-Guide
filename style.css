@@ -4551,12 +4551,6 @@ footer {
     100% { transform: rotate(360deg); }
 }
 
-.az-header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-    margin-bottom: var(--space-8);
-}
 
 
 .az-grid {
