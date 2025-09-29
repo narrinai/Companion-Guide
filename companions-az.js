@@ -121,9 +121,56 @@ class CompanionsAZ {
         }, {});
     }
 
-    getLetterRange(letter, grouped) {
-        // Simply return the letter - we'll keep it simple and clear
-        return letter;
+    createSmartGroups(grouped) {
+        const letters = Object.keys(grouped).sort();
+        const groups = [];
+        let currentGroup = null;
+
+        letters.forEach(letter => {
+            const companions = grouped[letter];
+            const companionCount = companions.length;
+
+            // If current group doesn't exist or would be too big, start a new one
+            if (!currentGroup ||
+                (currentGroup.companions.length + companionCount > 8) ||
+                (currentGroup.companions.length >= 5 && companionCount >= 3)) {
+
+                // Save current group if it exists
+                if (currentGroup) {
+                    groups.push(currentGroup);
+                }
+
+                // Start new group
+                currentGroup = {
+                    letters: [letter],
+                    title: letter,
+                    companions: [...companions]
+                };
+            } else {
+                // Add to current group
+                currentGroup.letters.push(letter);
+                currentGroup.companions.push(...companions);
+
+                // Update title to show range
+                if (currentGroup.letters.length > 1) {
+                    const firstLetter = currentGroup.letters[0];
+                    const lastLetter = currentGroup.letters[currentGroup.letters.length - 1];
+                    currentGroup.title = firstLetter === lastLetter ? firstLetter : `${firstLetter} - ${lastLetter}`;
+                }
+            }
+        });
+
+        // Add the last group
+        if (currentGroup) {
+            groups.push(currentGroup);
+        }
+
+        // Sort companions within each group alphabetically
+        groups.forEach(group => {
+            group.companions.sort((a, b) => a.name.localeCompare(b.name));
+        });
+
+        return groups;
     }
 
 
@@ -139,7 +186,8 @@ class CompanionsAZ {
 
         if (letterCategoriesElement) {
             const grouped = this.groupByLetter(this.companions);
-            letterCategoriesElement.textContent = Object.keys(grouped).length;
+            const smartGroups = this.createSmartGroups(grouped);
+            letterCategoriesElement.textContent = smartGroups.length;
         }
 
         // Calculate free tiers percentage (mock data for now)
