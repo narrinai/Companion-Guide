@@ -27,6 +27,9 @@ class CompanionPageManager {
 
         // Update page elements
         this.updatePageContent();
+
+        // Update pricing if available
+        this.updatePricing();
     }
 
     async waitForCompanionManager() {
@@ -173,6 +176,109 @@ class CompanionPageManager {
             const description = `In-depth ${reviewTitle} covering features, pricing, and capabilities. ${this.companionData.description}`;
             metaDesc.setAttribute('content', description);
         }
+    }
+
+    updatePricing() {
+        if (!this.companionData?.pricing_plans) {
+            // No dynamic pricing data - add CTA buttons to existing static pricing tiers
+            this.addCtaToStaticPricing();
+            return;
+        }
+
+        let pricingPlans = this.companionData.pricing_plans;
+
+        // If pricing_plans is a string, try to parse it as JSON
+        if (typeof pricingPlans === 'string') {
+            try {
+                // Clean up the JSON string - remove line breaks and extra spaces
+                const cleanedJson = pricingPlans.replace(/\n\s*/g, '').trim();
+                pricingPlans = JSON.parse(cleanedJson);
+            } catch (e) {
+                console.warn('Failed to parse pricing_plans JSON:', e);
+                return;
+            }
+        }
+
+        if (!Array.isArray(pricingPlans) || pricingPlans.length === 0) return;
+
+        console.log('Updating pricing with data:', pricingPlans);
+
+        // Find the pricing section
+        const pricingSection = document.querySelector('.pricing .pricing-grid');
+        if (!pricingSection) return;
+
+        // Clear existing pricing tiers
+        pricingSection.innerHTML = '';
+
+        // Generate pricing tiers from Airtable data
+        pricingPlans.forEach((plan, index) => {
+            const tierDiv = document.createElement('div');
+            tierDiv.className = 'pricing-tier';
+
+            // Add featured class to second plan (usually most popular)
+            if (index === 1 || plan.name.toLowerCase().includes('premium')) {
+                tierDiv.classList.add('featured');
+            }
+
+            const price = plan.price === 0 ? 'Free' : `€${plan.price}`;
+            const period = plan.price === 0 ? '' : `/${plan.period}`;
+
+            let badgeHtml = '';
+            if (index === 1 || plan.name.toLowerCase().includes('premium')) {
+                badgeHtml = '<div class="tier-badge">MOST POPULAR</div>';
+            }
+
+            const featuresHtml = plan.features.map(feature => {
+                // Clean up the feature text - remove ✅ if present and add proper formatting
+                const cleanFeature = feature.replace(/^✅\s*/, '');
+                const hasFeature = !cleanFeature.includes('❌');
+
+                if (hasFeature) {
+                    return `<li>${cleanFeature}</li>`;
+                } else {
+                    return `<li>${cleanFeature}</li>`;
+                }
+            }).join('');
+
+            const websiteUrl = this.companionData.website_url || this.companionData.website || '#';
+
+            tierDiv.innerHTML = `
+                ${badgeHtml}
+                <h3>${plan.name}</h3>
+                <div class="price">${price} <span class="period">${period}</span></div>
+                <ul>
+                    ${featuresHtml}
+                </ul>
+                <a href="${websiteUrl}" class="cta-button primary" target="_blank" rel="noopener" style="margin-top: var(--space-4); width: 100%; text-align: center; display: inline-block; padding: var(--space-3) var(--space-4); background: var(--accent-primary); color: white; text-decoration: none; border-radius: var(--radius-md); font-weight: 600; transition: background 0.3s ease;">Visit Website →</a>
+            `;
+
+            pricingSection.appendChild(tierDiv);
+        });
+    }
+
+    addCtaToStaticPricing() {
+        // Add CTA buttons to existing static pricing tiers
+        const staticPricingTiers = document.querySelectorAll('.pricing-tier');
+        const websiteUrl = this.companionData?.website_url || this.companionData?.website || '#';
+
+        staticPricingTiers.forEach(tier => {
+            // Check if CTA button already exists
+            if (tier.querySelector('.cta-button, .pricing-cta')) {
+                return;
+            }
+
+            // Create CTA button
+            const ctaButton = document.createElement('a');
+            ctaButton.href = websiteUrl;
+            ctaButton.className = 'cta-button primary pricing-cta';
+            ctaButton.target = '_blank';
+            ctaButton.rel = 'noopener';
+            ctaButton.textContent = 'Visit Website →';
+            ctaButton.style.cssText = 'margin-top: var(--space-4); width: 100%; text-align: center; display: inline-block; padding: var(--space-3) var(--space-4); background: var(--accent-primary); color: white; text-decoration: none; border-radius: var(--radius-md); font-weight: 600; transition: background 0.3s ease;';
+
+            // Add button to the tier
+            tier.appendChild(ctaButton);
+        });
     }
 
     getCompanionName() {
