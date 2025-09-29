@@ -98,7 +98,7 @@ class CategoryCompanions {
                                     <span class="feature-icon">${icon}</span>
                                     <div class="feature-text">
                                         <span class="feature-title">${title}</span>
-                                        <span class="feature-description">${desc}</span>
+                                        <span class="feature-desc">${desc}</span>
                                     </div>
                                 </div>
                             `;
@@ -116,7 +116,11 @@ class CategoryCompanions {
 
                 const freePlan = plans.find(plan => plan.price === 0);
                 if (freePlan) {
-                    pricingInfo = '<div class="pricing-info">Free trial</div>';
+                    pricingInfo = `
+                        <div class="pricing-section">
+                            <div class="price-main">Free trial</div>
+                        </div>
+                    `;
                 }
             } catch (e) {
                 // Silent fallback
@@ -139,7 +143,7 @@ class CategoryCompanions {
                     <p class="description">${description}</p>
                     ${featureHighlights}
                     ${pricingInfo}
-                    <div class="action-buttons">
+                    <div class="card-actions">
                         <a href="/companions/${companion.slug}" class="btn-secondary">Read Review</a>
                         <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">Visit Website</a>
                     </div>
