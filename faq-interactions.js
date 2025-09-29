@@ -69,7 +69,16 @@ function toggleFAQ(item) {
         // Open FAQ
         item.classList.add('active');
         item.setAttribute('aria-expanded', 'true');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
+        // Calculate the actual content height including padding
+        const fullHeight = answer.scrollHeight + 20; // Add some padding
+        answer.style.maxHeight = fullHeight + 'px';
+
+        // Set to auto after animation completes to prevent any cutoff
+        setTimeout(() => {
+            if (item.classList.contains('active')) {
+                answer.style.maxHeight = 'none';
+            }
+        }, 300); // Match the CSS transition duration
     }
 
     // Track FAQ interaction for analytics (if analytics is available)
