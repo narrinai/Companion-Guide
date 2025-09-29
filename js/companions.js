@@ -547,13 +547,22 @@ class CompanionManager {
         }
       });
 
-      // Update the DOM elements with counts
+      // Update the DOM elements with counts (both categories page and index page)
       Object.keys(categoryCounts).forEach(category => {
+        // Categories page
         const element = document.getElementById(`${category}-count`);
         if (element) {
           const count = categoryCounts[category];
           const platformText = count === 1 ? 'Platform' : 'Platforms';
           element.textContent = `${count} ${platformText}`;
+        }
+
+        // Index page
+        const indexElement = document.getElementById(`${category}-count-index`);
+        if (indexElement) {
+          const count = categoryCounts[category];
+          const platformText = count === 1 ? 'Platform' : 'Platforms';
+          indexElement.textContent = `${count} ${platformText}`;
         }
       });
 
