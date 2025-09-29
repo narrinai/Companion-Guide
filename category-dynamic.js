@@ -41,30 +41,8 @@ class CategoryCompanions {
     }
 
     filterCompanionsByCategory(companions) {
-        // Category mapping for different page types
-        const categoryMappings = {
-            'adult-content-uncensored-companions': ['nsfw', 'ai-girlfriend', 'roleplaying'],
-            'roleplay-character-chat-companions': ['roleplaying', 'ai-girlfriend'],
-            'ai-girlfriend-companions': ['ai-girlfriend', 'nsfw'],
-            'free-ai-companions': [] // Show all for free category
-        };
-
-        const targetCategories = categoryMappings[this.categorySlug] || [];
-
-        if (targetCategories.length === 0) {
-            return companions.slice(0, 15); // Return first 15 if no specific category mapping
-        }
-
-        return companions.filter(companion => {
-            if (!companion.categories || companion.categories.length === 0) {
-                return false;
-            }
-
-            // Check if any of the companion's categories match our target categories
-            return companion.categories.some(cat =>
-                targetCategories.includes(cat.toLowerCase())
-            );
-        }).slice(0, 15); // Limit to 15 companions
+        // For now, show all companions (remove filtering temporarily to fix display issue)
+        return companions.slice(0, 15); // Show first 15 companions
     }
 
     getStaticCompanions() {
@@ -163,7 +141,7 @@ class CategoryCompanions {
     }
 
     getPricingString(pricingPlans) {
-        // Handle both string and array formats
+        // Handle JSON string format from Airtable
         let plans = [];
         if (typeof pricingPlans === 'string') {
             try {
@@ -200,7 +178,7 @@ class CategoryCompanions {
             return 'AI companion';
         }
 
-        // Handle both object and string array formats
+        // Handle features format from Airtable (objects with title field)
         let featureTexts = [];
         if (Array.isArray(features)) {
             featureTexts = features.map(f => {
@@ -209,8 +187,8 @@ class CategoryCompanions {
                 } else if (typeof f === 'string') {
                     return f;
                 }
-                return 'AI feature';
-            });
+                return '';
+            }).filter(Boolean);
         }
 
         if (featureTexts.length === 0) {
@@ -240,7 +218,7 @@ class CategoryCompanions {
             return 'AI conversations';
         }
 
-        // Handle features - extract text from objects if needed
+        // Handle features format from Airtable
         let featureTexts = [];
         if (Array.isArray(features)) {
             featureTexts = features.map(f => {
