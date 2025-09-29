@@ -653,7 +653,7 @@ class CompanionManager {
     }
   }
 
-  async renderFooterFeaturedCompanions(containerId, limit = 6) {
+  async renderFooterFeaturedCompanions(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -664,8 +664,7 @@ class CompanionManager {
       });
 
       const featuredCompanions = allCompanions
-        .filter(c => c.is_featured === true || c.is_featured === 'true' || c.featured === true || c.featured === 'true')
-        .slice(0, limit);
+        .filter(c => c.is_featured === true || c.is_featured === 'true' || c.featured === true || c.featured === 'true');
 
       if (featuredCompanions.length === 0) {
         console.log('No featured companions found for footer. Using fallback.');

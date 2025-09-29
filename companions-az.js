@@ -86,15 +86,16 @@ class CompanionsAZ {
         // Group companions by first letter
         const grouped = this.groupByLetter(this.companions);
 
-        // Generate HTML
-        const html = Object.keys(grouped).sort().map(letter => {
-            const companions = grouped[letter].sort((a, b) => a.name.localeCompare(b.name));
+        // Smart grouping to avoid single-item columns
+        const smartGroups = this.createSmartGroups(grouped);
 
+        // Generate HTML
+        const html = smartGroups.map(group => {
             return `
                 <div class="az-column">
-                    <h3>${this.getLetterRange(letter, grouped)}</h3>
+                    <h3>${group.title}</h3>
                     <ul>
-                        ${companions.map(companion => `
+                        ${group.companions.map(companion => `
                             <li>
                                 <a href="/companions/${companion.slug}">
                                     <span>${companion.name}</span>
