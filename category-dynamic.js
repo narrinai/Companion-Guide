@@ -43,10 +43,10 @@ class CategoryCompanions {
     filterCompanionsByCategory(companions) {
         // Category mapping for different page types
         const categoryMappings = {
-            'adult-content-uncensored-companions': ['Adult Content', 'NSFW', 'Uncensored'],
-            'roleplay-character-chat-companions': ['Roleplay', 'Character Chat', 'Gaming'],
-            'ai-girlfriend-companions': ['AI Girlfriend', 'Romance', 'Dating'],
-            'free-ai-companions': ['Free', 'Freemium']
+            'adult-content-uncensored-companions': ['nsfw', 'ai-girlfriend', 'roleplaying'],
+            'roleplay-character-chat-companions': ['roleplaying', 'ai-girlfriend'],
+            'ai-girlfriend-companions': ['ai-girlfriend', 'nsfw'],
+            'free-ai-companions': [] // Show all for free category
         };
 
         const targetCategories = categoryMappings[this.categorySlug] || [];
@@ -62,10 +62,7 @@ class CategoryCompanions {
 
             // Check if any of the companion's categories match our target categories
             return companion.categories.some(cat =>
-                targetCategories.some(target =>
-                    cat.toLowerCase().includes(target.toLowerCase()) ||
-                    target.toLowerCase().includes(cat.toLowerCase())
-                )
+                targetCategories.includes(cat.toLowerCase())
             );
         }).slice(0, 15); // Limit to 15 companions
     }
@@ -166,12 +163,24 @@ class CategoryCompanions {
     }
 
     getPricingString(pricingPlans) {
-        if (!pricingPlans || pricingPlans.length === 0) {
+        // Handle both string and array formats
+        let plans = [];
+        if (typeof pricingPlans === 'string') {
+            try {
+                plans = JSON.parse(pricingPlans);
+            } catch (e) {
+                return 'Free + Premium plans';
+            }
+        } else if (Array.isArray(pricingPlans)) {
+            plans = pricingPlans;
+        }
+
+        if (!plans || plans.length === 0) {
             return 'Free + Premium plans';
         }
 
-        const freePlan = pricingPlans.find(plan => plan.price === 0 || plan.name.toLowerCase().includes('free'));
-        const paidPlans = pricingPlans.filter(plan => plan.price > 0);
+        const freePlan = plans.find(plan => plan.price === 0 || plan.name.toLowerCase().includes('free'));
+        const paidPlans = plans.filter(plan => plan.price > 0);
 
         if (freePlan && paidPlans.length > 0) {
             const lowestPaid = Math.min(...paidPlans.map(plan => plan.price));
@@ -191,6 +200,23 @@ class CategoryCompanions {
             return 'AI companion';
         }
 
+        // Handle both object and string array formats
+        let featureTexts = [];
+        if (Array.isArray(features)) {
+            featureTexts = features.map(f => {
+                if (typeof f === 'object' && f.title) {
+                    return f.title;
+                } else if (typeof f === 'string') {
+                    return f;
+                }
+                return 'AI feature';
+            });
+        }
+
+        if (featureTexts.length === 0) {
+            return 'AI companion';
+        }
+
         // Priority features for adult content
         const priorityFeatures = [
             'uncensored', 'nsfw', 'adult', 'voice', 'video', 'image', 'free',
@@ -198,7 +224,7 @@ class CategoryCompanions {
         ];
 
         for (const priority of priorityFeatures) {
-            const feature = features.find(f =>
+            const feature = featureTexts.find(f =>
                 f.toLowerCase().includes(priority)
             );
             if (feature) {
@@ -206,7 +232,7 @@ class CategoryCompanions {
             }
         }
 
-        return features[0].length > 25 ? features[0].substring(0, 25) + '...' : features[0];
+        return featureTexts[0].length > 25 ? featureTexts[0].substring(0, 25) + '...' : featureTexts[0];
     }
 
     getBestFor(features, categories) {
@@ -214,8 +240,21 @@ class CategoryCompanions {
             return 'AI conversations';
         }
 
+        // Handle features - extract text from objects if needed
+        let featureTexts = [];
+        if (Array.isArray(features)) {
+            featureTexts = features.map(f => {
+                if (typeof f === 'object' && f.title) {
+                    return f.title;
+                } else if (typeof f === 'string') {
+                    return f;
+                }
+                return '';
+            }).filter(Boolean);
+        }
+
         // Combine features and categories for best matching
-        const allTags = [...(features || []), ...(categories || [])];
+        const allTags = [...featureTexts, ...(categories || [])];
         const tagString = allTags.join(' ').toLowerCase();
 
         // Define best-for mappings based on content
