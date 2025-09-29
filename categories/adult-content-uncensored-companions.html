@@ -89,117 +89,10 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         </section>
 
         <!-- Companion Grid -->
-        <section class="category-grid">
-            <div class="companion-card">
-                <div class="companion-header">
-                    <img src="/images/logos/secrets-ai-review-companionguide.png" alt="Secrets AI" class="companion-logo">
-                    <div class="companion-info">
-                        <h3>Secrets AI</h3>
-                        <div class="rating">★★★★★ 4.8/5</div>
-                        <div class="badges">
-                            <span class="badge">Leader</span>
-                            <span class="badge">Top Rated</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="companion-description">#1 Realistic AI girlfriend website with video generation and 100+ fantasy scenarios. Personal AI companion bonding for intimate virtual relationships.</p>
-                <div class="companion-actions">
-                    <a href="/companions/secrets-ai" class="btn-secondary">Read Review</a>
-                    <a href="https://www.secrets.ai/browse?fpr=companionguide" class="btn-primary" target="_blank" rel="noopener">Try Now</a>
-                </div>
-            </div>
-
-            <div class="companion-card">
-                <div class="companion-header">
-                    <img src="/images/logos/hammerai.png" alt="Hammer AI" class="companion-logo">
-                    <div class="companion-info">
-                        <h3>Hammer AI</h3>
-                        <div class="rating">★★★★★ 4.7/5</div>
-                        <div class="badges">
-                            <span class="badge">Leader</span>
-                            <span class="badge">Featured</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="companion-description">Unlimited free AI character chat platform supporting local and cloud models. Offers diverse character categories with privacy-focused interactions.</p>
-                <div class="companion-actions">
-                    <a href="/companions/hammer-ai" class="btn-secondary">Read Review</a>
-                    <a href="https://gumroad.com/a/748605075/zrsof" class="btn-primary" target="_blank" rel="noopener">Try Now</a>
-                </div>
-            </div>
-
-            <div class="companion-card">
-                <div class="companion-header">
-                    <img src="/images/screenshots/soulkyn-ai-review.png" alt="Soulkyn AI" class="companion-logo">
-                    <div class="companion-info">
-                        <h3>Soulkyn AI</h3>
-                        <div class="rating">★★★★★ 4.7/5</div>
-                        <div class="badges">
-                            <span class="badge">Popular</span>
-                            <span class="badge">Featured</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="companion-description">AI soul companion platform offering deep spiritual connections, emotional support, and meaningful conversations for personal growth.</p>
-                <div class="companion-actions">
-                    <a href="/companions/soulkyn-ai" class="btn-secondary">Read Review</a>
-                    <a href="https://soulkyn.com/?_go=companionguide" class="btn-primary" target="_blank" rel="noopener">Try Now</a>
-                </div>
-            </div>
-
-            <div class="companion-card">
-                <div class="companion-header">
-                    <img src="/images/logos/spicychat-ai.png" alt="SpicyChat AI" class="companion-logo">
-                    <div class="companion-info">
-                        <h3>SpicyChat AI</h3>
-                        <div class="rating">★★★★☆ 4.6/5</div>
-                        <div class="badges">
-                            <span class="badge">Adult</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="companion-description">Adult-oriented AI companion platform with uncensored chat and mature content for intimate conversations and roleplay scenarios.</p>
-                <div class="companion-actions">
-                    <a href="/companions/spicychat-ai" class="btn-secondary">Read Review</a>
-                    <a href="https://spicychat.ai?ref=njq1ogy" class="btn-primary" target="_blank" rel="noopener">Try Now</a>
-                </div>
-            </div>
-
-            <div class="companion-card">
-                <div class="companion-header">
-                    <img src="/images/logos/girlfriend-gpt.png" alt="GirlfriendGPT" class="companion-logo">
-                    <div class="companion-info">
-                        <h3>GirlfriendGPT</h3>
-                        <div class="rating">★★★★☆ 4.6/5</div>
-                        <div class="badges">
-                            <span class="badge">Featured</span>
-                            <span class="badge">Adult</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="companion-description">Uncensored AI companion platform for unrestricted fantasy interactions and NSFW conversations with 100+ character types.</p>
-                <div class="companion-actions">
-                    <a href="/companions/girlfriend-gpt" class="btn-secondary">Read Review</a>
-                    <a href="https://t.mbsrv2.com/388589/7477?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN" class="btn-primary" target="_blank" rel="noopener">Try Now</a>
-                </div>
-            </div>
-
-            <div class="companion-card">
-                <div class="companion-header">
-                    <img src="/images/logos/fantasygf-ai.png" alt="FantasyGF AI" class="companion-logo">
-                    <div class="companion-info">
-                        <h3>FantasyGF</h3>
-                        <div class="rating">★★★★☆ 4.5/5</div>
-                        <div class="badges">
-                            <span class="badge">Featured</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="companion-description">Experience virtual dating with customizable AI girlfriends featuring voice calls, kiss video generator, and XP reward system.</p>
-                <div class="companion-actions">
-                    <a href="/companions/fantasygf-ai" class="btn-secondary">Read Review</a>
-                    <a href="https://fantasygf.com/create-ai-girl?via=53hyme" class="btn-primary" target="_blank" rel="noopener">Try Now</a>
-                </div>
+        <section class="category-grid" id="nsfw-companions-container">
+            <div class="loading-state" id="companions-loading">
+                <div class="loading-spinner"></div>
+                <p>Loading companions...</p>
             </div>
         </section>
         <!-- Category Insights -->
@@ -502,6 +395,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 }
         </script>
     <script src="../script.js"></script>
+    <script src="/category-companions.js"></script>
     <script src="/faq-interactions.js"></script>
 </body>
 </html>
