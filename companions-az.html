@@ -86,121 +86,62 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             <p>Complete alphabetical directory of all AI companion platforms. Find any AI companion quickly by browsing our comprehensive A-Z list.</p>
         </section>
 
-        <section class="az-index">
-            <h2>All AI Companions A-Z</h2>
-            <div class="az-grid">
-                <div class="az-column">
-                    <h3>C</h3>
-                    <ul>
-                        <li><a href="/companions/candy-ai">Candy AI</a></li>
-                        <li><a href="/companions/caveduck">CaveDuck</a></li>
-                        <li><a href="/companions/chai-ai">Chai AI</a></li>
-                        <li><a href="/companions/character-ai">Character AI</a></li>
-                        <li><a href="/companions/cuties-ai">Cuties AI</a></li>
-                    </ul>
-                </li>
+        <!-- Loading State -->
+        <div id="loading-state" class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>Loading AI companions...</p>
+        </div>
 
-                <div class="az-column">
-                    <h3>D - F</h3>
-                    <ul>
-                        <li><a href="/companions/dreamgf-ai">DreamGF AI</a></li>
-                        <li><a href="/companions/fantasygf-ai">FantasyGF AI</a></li>
-                    </ul>
-                </li>
-
-                <div class="az-column">
-                    <h3>G - H</h3>
-                    <ul>
-                        <li><a href="/companions/girlfriend-gpt">Girlfriend GPT</a></li>
-                        <li><a href="/companions/hammer-ai">Hammer AI</a></li>
-                    </ul>
-                </li>
-
-                <div class="az-column">
-                    <h3>J</h3>
-                    <ul>
-                        <li><a href="/companions/janitor-ai">Janitor AI</a></li>
-                        <li><a href="/companions/joi-ai">Joi AI</a></li>
-                        <li><a href="/companions/joyland-ai">Joyland AI</a></li>
-                    </ul>
-                </li>
-
-                <div class="az-column">
-                    <h3>K - L</h3>
-                    <ul>
-                        <li><a href="/companions/kajiwoto-ai">Kajiwoto AI</a></li>
-                        <li><a href="/companions/kupid-ai">Kupid AI</a></li>
-                        <li><a href="/companions/lovescape">Lovescape</a></li>
-                    </ul>
-                </li>
-
-                <div class="az-column">
-                    <h3>M - N</h3>
-                    <ul>
-                        <li><a href="/companions/muah-ai">Muah AI</a></li>
-                        <li><a href="/companions/narrin-ai">Narrin AI</a></li>
-                        <li><a href="/companions/nectar-ai">Nectar AI</a></li>
-                        <li><a href="/companions/nomi-ai">Nomi AI</a></li>
-                    </ul>
-                </li>
-
-                <div class="az-column">
-                    <h3>O - P</h3>
-                    <ul>
-                        <li><a href="/companions/ourdream-ai">OurDream AI</a></li>
-                        <li><a href="/companions/promptchan-ai">PromptChan AI</a></li>
-                    </ul>
-                </li>
-
-                <div class="az-column">
-                    <h3>R</h3>
-                    <ul>
-                        <li><a href="/companions/replika">Replika</a></li>
-                    </ul>
-                </li>
-
-                <div class="az-column">
-                    <h3>S</h3>
-                    <ul>
-                        <li><a href="/companions/sakura-ai">Sakura AI</a></li>
-                        <li><a href="/companions/secrets-ai">Secrets AI</a></li>
-                        <li><a href="/companions/selira-ai">Selira AI</a></li>
-                        <li><a href="/companions/simone">Simone</a></li>
-                        <li><a href="/companions/soulgen-ai">SoulGen AI</a></li>
-                        <li><a href="/companions/spicychat-ai">SpicyChat AI</a></li>
-                        <li><a href="/companions/swipey-ai">Swipey AI</a></li>
-                    </ul>
-                </li>
-
-                <div class="az-column">
-                    <h3>T</h3>
-                    <ul>
-                        <li><a href="/companions/thotchat-ai">ThotChat AI</a></li>
-                    </ul>
-                </li>
-            </li>
+        <!-- A-Z Index Section -->
+        <section class="az-index" id="az-index" style="display: none;">
+            <div class="az-header">
+                <h2>All AI Companions A-Z</h2>
+                <div class="filter-controls">
+                    <div class="status-filters">
+                        <button class="status-filter active" data-status="all">All</button>
+                        <button class="status-filter" data-status="active">Active</button>
+                        <button class="status-filter" data-status="coming-soon">Coming Soon</button>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" id="companion-search" placeholder="Search companions..." autocomplete="off">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="m11.742 10.344 4.909 4.909-1.414 1.414-4.909-4.909a6.5 6.5 0 1 1 1.414-1.414ZM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div id="az-grid" class="az-grid">
+                <!-- Dynamic content will be loaded here -->
+            </div>
         </section>
 
-        <section class="directory-stats" style="background: var(--bg-secondary); border-radius: 12px; padding: 32px; margin: 40px 0;">
+        <!-- No Results State -->
+        <div id="no-results" class="no-results" style="display: none;">
+            <div class="no-results-icon">🔍</div>
+            <h3>No companions found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+
+        <section class="directory-stats" id="directory-stats" style="background: var(--bg-secondary); border-radius: 12px; padding: 32px; margin: 40px 0; display: none;">
             <h2>Directory Statistics</h2>
             <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 24px;">
                 <div class="stat-item" style="text-align: center;">
-                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 8px;">31</li>
-                    <div style="color: var(--text-secondary);">Total AI Companions</li>
-                </li>
+                    <div id="total-companions" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 8px;">0</div>
+                    <div style="color: var(--text-secondary);">Total AI Companions</div>
+                </div>
                 <div class="stat-item" style="text-align: center;">
-                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent-green); margin-bottom: 8px;">6</li>
-                    <div style="color: var(--text-secondary);">Letter Categories</li>
-                </li>
+                    <div id="letter-categories" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-green); margin-bottom: 8px;">0</div>
+                    <div style="color: var(--text-secondary);">Letter Categories</div>
+                </div>
                 <div class="stat-item" style="text-align: center;">
-                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent-purple); margin-bottom: 8px;">95%</li>
-                    <div style="color: var(--text-secondary);">Have Free Tiers</li>
-                </li>
+                    <div id="free-tiers-percent" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-purple); margin-bottom: 8px;">0%</div>
+                    <div style="color: var(--text-secondary);">Have Free Tiers</div>
+                </div>
                 <div class="stat-item" style="text-align: center;">
-                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent-orange); margin-bottom: 8px;">4.2</li>
-                    <div style="color: var(--text-secondary);">Average Rating</li>
-                </li>
-            </li>
+                    <div id="average-rating" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-orange); margin-bottom: 8px;">0.0</div>
+                    <div style="color: var(--text-secondary);">Average Rating</div>
+                </div>
+            </div>
         </section>
 
         <section class="quick-navigation" style="margin: 40px 0;">
@@ -261,5 +202,6 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     </footer>
 
     <script src="script.js"></script>
+    <script src="companions-az.js"></script>
 </body>
 </html>
