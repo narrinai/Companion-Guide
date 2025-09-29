@@ -163,7 +163,6 @@ class CompanionsAZ {
                             <li>
                                 <a href="/companions/${companion.slug}">
                                     <span>${companion.name}</span>
-                                    ${this.getStatusBadge(companion.status)}
                                 </a>
                             </li>
                         `).join('')}
@@ -191,14 +190,6 @@ class CompanionsAZ {
         return letter;
     }
 
-    getStatusBadge(status) {
-        if (!status || status === 'active') return '';
-
-        const statusClass = status.toLowerCase().replace(/\s+/g, '-');
-        const statusText = status === 'Coming Soon' ? 'Soon' : status;
-
-        return `<span class="companion-status ${statusClass}">${statusText}</span>`;
-    }
 
     updateStats() {
         const totalElement = document.getElementById('total-companions');
