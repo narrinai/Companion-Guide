@@ -187,30 +187,7 @@ class CompanionsAZ {
     }
 
     getLetterRange(letter, grouped) {
-        const letters = Object.keys(grouped).sort();
-        const currentIndex = letters.indexOf(letter);
-
-        // For single letters or small groups, just show the letter
-        if (grouped[letter].length <= 3 && letters.length > 10) {
-            // Try to group with adjacent letters
-            let rangeEnd = letter;
-            let totalCount = grouped[letter].length;
-
-            for (let i = currentIndex + 1; i < letters.length && totalCount < 6; i++) {
-                const nextLetter = letters[i];
-                if (grouped[nextLetter].length + totalCount <= 6) {
-                    rangeEnd = nextLetter;
-                    totalCount += grouped[nextLetter].length;
-                } else {
-                    break;
-                }
-            }
-
-            if (rangeEnd !== letter) {
-                return `${letter} - ${rangeEnd}`;
-            }
-        }
-
+        // Simply return the letter - we'll keep it simple and clear
         return letter;
     }
 
