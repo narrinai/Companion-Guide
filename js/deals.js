@@ -101,22 +101,35 @@ class DealsManager {
         });
     }
 
-    createDealCard(deal) {
+    createDealCard(deal, companionData) {
         const article = document.createElement('article');
         article.className = `deal-card${deal.featured ? ' featured' : ''}`;
-        article.setAttribute('data-deal-id', deal.id);
+        article.setAttribute('data-deal-id', deal.companionId);
+
+        // Use dynamic data if available, fallback to static data
+        const name = companionData?.name || deal.companionId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+        const logo = companionData?.logo || `/images/logos/${deal.companionId}.png`;
+        const rating = companionData?.rating || '4.0';
+        const reviewCount = companionData?.reviewCount || '0';
+        const reviewLink = `/companions/${deal.companionId}`;
+
+        // Generate star rating display
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 !== 0;
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        const starDisplay = '★'.repeat(fullStars) + (hasHalfStar ? '☆' : '') + '☆'.repeat(emptyStars);
 
         article.innerHTML = `
             <div class="deal-badge">${deal.badge}</div>
 
             <div class="deal-header">
-                <img src="${deal.logo}" alt="${deal.name} - AI companion platform special offer logo" class="deal-logo">
+                <img src="${logo}" alt="${name} - AI companion platform special offer logo" class="deal-logo">
                 <div class="deal-info">
-                    <h3 class="deal-title"><a href="${deal.links.review}" style="color: inherit; text-decoration: none;">${deal.name}</a></h3>
+                    <h3 class="deal-title"><a href="${reviewLink}" style="color: inherit; text-decoration: none;">${name}</a></h3>
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                        <span style="color: #ffa500;">★★★★${deal.rating >= 4.5 ? '★' : '☆'}</span>
-                        <span style="color: #fff; font-size: 0.95rem;">${deal.rating}/5</span>
-                        <span style="color: #666; font-size: 0.9rem;">(${deal.reviewCount} reviews)</span>
+                        <span style="color: #ffa500;">${starDisplay}</span>
+                        <span style="color: #fff; font-size: 0.95rem;">${rating}/5</span>
+                        <span style="color: #666; font-size: 0.9rem;">(${reviewCount} reviews)</span>
                     </div>
                 </div>
             </div>
@@ -130,7 +143,7 @@ class DealsManager {
                     <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">${deal.pricing.salePrice}</span>
                     <span style="color: #666; font-size: 0.85rem;">${deal.pricing.billingNote}</span>
                 </div>
-                ${deal.id === 'ourdream-ai' ? '<div style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Cancel anytime • No adult transaction in bank statement</div>' : ''}
+                ${deal.companionId === 'ourdream-ai' ? '<div style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Cancel anytime • No adult transaction in bank statement</div>' : ''}
             </div>
 
             <div class="deal-features">
@@ -145,9 +158,9 @@ class DealsManager {
 
             <div class="deal-cta">
                 <div style="display: flex; gap: 1rem;">
-                    <a href="${deal.links.review}" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
-                    <a href="${deal.links.affiliate}" class="deal-button" target="_blank">
-                        ${deal.id === 'ourdream-ai' ? 'Subscribe Now' : 'Claim Deal'}
+                    <a href="${reviewLink}" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
+                    <a href="${deal.affiliate}" class="deal-button" target="_blank">
+                        ${deal.cta}
                     </a>
                 </div>
             </div>
@@ -234,8 +247,14 @@ class DealsManager {
 }
 
 // Initialize deals manager when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     if (document.querySelector('.deals-container')) {
+        // Initialize companion manager first if it doesn't exist
+        if (typeof window.companionManager === 'undefined') {
+            window.companionManager = new CompanionManager();
+        }
+
+        // Then initialize deals manager
         window.dealsManager = new DealsManager();
     }
 });

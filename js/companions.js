@@ -28,6 +28,25 @@ class CompanionManager {
     }
   }
 
+  async fetchCompanionById(companionId) {
+    try {
+      // First try to find in cached companions
+      if (this.companions && this.companions.length > 0) {
+        const cached = this.companions.find(c => c.id === companionId || c.slug === companionId);
+        if (cached) return cached;
+      }
+
+      // If not cached, fetch all companions and search
+      const allCompanions = await this.fetchCompanions();
+      const companion = allCompanions.find(c => c.id === companionId || c.slug === companionId);
+
+      return companion || null;
+    } catch (error) {
+      console.error(`Error fetching companion ${companionId}:`, error);
+      return null;
+    }
+  }
+
   generateStarRating(rating) {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
