@@ -95,16 +95,6 @@ class DealsManager {
 
             <p class="deal-description">${deal.description}</p>
 
-            <div class="deal-features">
-                ${deal.features.map(feature => `
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">${feature.icon}</div>
-                        <div class="deal-feature-title">${feature.title}</div>
-                        <div class="deal-feature-desc">${feature.desc}</div>
-                    </div>
-                `).join('')}
-            </div>
-
             <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
                 <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">${deal.badge} - LIMITED TIME</div>
                 <div style="display: flex; align-items: baseline; gap: 1rem;">
@@ -113,6 +103,16 @@ class DealsManager {
                     <span style="color: #666; font-size: 0.85rem;">${deal.pricing.billingNote}</span>
                 </div>
                 ${deal.id === 'ourdream-ai' ? '<div style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Cancel anytime • No adult transaction in bank statement</div>' : ''}
+            </div>
+
+            <div class="deal-features">
+                ${deal.features.map(feature => `
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">${feature.icon}</div>
+                        <div class="deal-feature-title">${feature.title}</div>
+                        <div class="deal-feature-desc">${feature.desc}</div>
+                    </div>
+                `).join('')}
             </div>
 
             <div class="deal-cta">
