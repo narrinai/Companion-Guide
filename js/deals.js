@@ -54,16 +54,51 @@ class DealsManager {
     async loadCompanionData() {
         // Wait for companionManager to be available
         if (typeof window.companionManager === 'undefined') {
-            // Try to load companions.js if not available
             await this.waitForCompanionManager();
         }
 
         try {
+            // Check if fetchCompanionById method exists
+            if (!window.companionManager || typeof window.companionManager.fetchCompanionById !== 'function') {
+                console.warn('fetchCompanionById method not available, using fallback data');
+                return;
+            }
+
             // Fetch companion data for each deal
             for (const deal of this.deals) {
-                const companionData = await window.companionManager.fetchCompanionById(deal.companionId);
-                if (companionData) {
-                    this.companionsData.set(deal.companionId, companionData);
+                try {
+                    // Try different variations of the companion ID
+                    const companionIds = [
+                        deal.companionId,
+                        deal.companionId.replace('-', ''),
+                        deal.companionId.replace('-ai', ''),
+                        deal.companionId.replace('-', ' '),
+                        deal.companionId.charAt(0).toUpperCase() + deal.companionId.slice(1)
+                    ];
+
+                    let companionData = null;
+                    for (const id of companionIds) {
+                        try {
+                            companionData = await window.companionManager.fetchCompanionById(id);
+                            if (companionData) break;
+                        } catch (e) {
+                            // Try next variation
+                            continue;
+                        }
+                    }
+
+                    if (companionData) {
+                        this.companionsData.set(deal.companionId, companionData);
+                        console.log(`Loaded data for ${deal.companionId}:`, companionData);
+                    } else {
+                        console.warn(`No data found for companion: ${deal.companionId} (tried variations: ${companionIds.join(', ')})`);
+
+                        // Try to get all companions to see what's available
+                        const allCompanions = await window.companionManager.fetchCompanions();
+                        console.log('Available companions:', allCompanions.map(c => ({ id: c.id, slug: c.slug, name: c.name })));
+                    }
+                } catch (companionError) {
+                    console.error(`Error fetching companion ${deal.companionId}:`, companionError);
                 }
             }
         } catch (error) {
@@ -107,11 +142,22 @@ class DealsManager {
         article.setAttribute('data-deal-id', deal.companionId);
 
         // Use dynamic data if available, fallback to static data
-        const name = companionData?.name || deal.companionId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
-        const logo = companionData?.logo || `/images/logos/${deal.companionId}.png`;
-        const rating = companionData?.rating || '4.0';
-        const reviewCount = companionData?.reviewCount || '0';
+        const name = companionData?.name || companionData?.['Name'] || deal.companionId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+        const logo = companionData?.logo || companionData?.['Logo'] || `/images/logos/${deal.companionId}.png`;
+        const rating = companionData?.rating || companionData?.['Rating'] || '4.0';
+        const reviewCount = companionData?.reviewCount || companionData?.['Review Count'] || '0';
         const reviewLink = `/companions/${deal.companionId}`;
+
+        // Debug log to see what data we're getting
+        if (companionData) {
+            console.log(`Companion data for ${deal.companionId}:`, {
+                name: name,
+                logo: logo,
+                rating: rating,
+                reviewCount: reviewCount,
+                rawData: companionData
+            });
+        }
 
         // Generate star rating display
         const fullStars = Math.floor(rating);
@@ -172,7 +218,7 @@ class DealsManager {
     attachEventListeners() {
         // Track deal clicks for analytics
         document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('deal-button')) {
+            if (e.target && e.target.classList && e.target.classList.contains('deal-button')) {
                 const dealCard = e.target.closest('.deal-card');
                 if (dealCard) {
                     const dealId = dealCard.getAttribute('data-deal-id');
@@ -183,13 +229,13 @@ class DealsManager {
 
         // Add hover effects
         document.addEventListener('mouseenter', (e) => {
-            if (e.target.classList.contains('deal-card')) {
+            if (e.target && e.target.classList && e.target.classList.contains('deal-card')) {
                 this.animateDealCard(e.target, 'enter');
             }
         }, true);
 
         document.addEventListener('mouseleave', (e) => {
-            if (e.target.classList.contains('deal-card')) {
+            if (e.target && e.target.classList && e.target.classList.contains('deal-card')) {
                 this.animateDealCard(e.target, 'leave');
             }
         }, true);
