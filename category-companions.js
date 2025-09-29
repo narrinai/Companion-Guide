@@ -63,29 +63,87 @@ class CategoryCompanions {
             loadingState.style.display = 'none';
         }
 
-        const html = this.companions.map(companion => {
+        const html = this.companions.map((companion, index) => {
             const logoUrl = companion.logo_url || '/images/logos/default.png';
             const affiliateUrl = companion.affiliate_url || companion.website_url || '#';
             const rating = companion.rating || 4.0;
             const badges = companion.badges || [];
             const description = companion.short_description || companion.description || 'Premium AI companion for conversations';
+            const reviewCount = companion.review_count || 0;
+
+            // Generate product badge based on badges or default ranking
+            let productBadge = '';
+            if (badges.includes('Leader')) {
+                productBadge = `#${index + 1} Leader`;
+            } else if (badges.includes('Adult')) {
+                productBadge = '🔞 Adult';
+            } else if (badges.includes('Popular')) {
+                productBadge = '🔥 Popular';
+            } else if (badges.includes('Featured')) {
+                productBadge = '⭐ Featured';
+            }
+
+            // Extract features for feature highlights
+            const features = companion.features || [];
+            let featureHighlights = '';
+            if (features.length > 0) {
+                featureHighlights = `
+                    <div class="feature-highlights">
+                        ${features.slice(0, 4).map(feature => {
+                            const icon = feature.icon || '⭐';
+                            const title = feature.title || feature;
+                            const desc = feature.description || '';
+                            return `
+                                <div class="feature-item">
+                                    <span class="feature-icon">${icon}</span>
+                                    <div class="feature-text">
+                                        <span class="feature-title">${title}</span>
+                                        <span class="feature-description">${desc}</span>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            }
+
+            // Generate pricing info
+            let pricingInfo = '';
+            try {
+                const plans = typeof companion.pricing_plans === 'string'
+                    ? JSON.parse(companion.pricing_plans)
+                    : companion.pricing_plans || [];
+
+                const freePlan = plans.find(plan => plan.price === 0);
+                if (freePlan) {
+                    pricingInfo = '<div class="pricing-info">Free trial</div>';
+                }
+            } catch (e) {
+                // Silent fallback
+            }
 
             return `
-                <div class="companion-card">
-                    <div class="companion-header">
-                        <img src="${logoUrl}" alt="${companion.name}" class="companion-logo" onerror="this.src='/images/logos/default.png'">
-                        <div class="companion-info">
-                            <h3>${companion.name}</h3>
-                            <div class="rating">${'★'.repeat(Math.floor(rating))}${'☆'.repeat(5-Math.floor(rating))} ${rating}/5</div>
-                            ${badges.length > 0 ? `<div class="badges">${badges.slice(0, 2).map(badge => `<span class="badge">${badge}</span>`).join('')}</div>` : ''}
+                <article class="companion-card${companion.featured ? ' featured' : ''}">
+                    ${productBadge ? `<div class="product-badge">${productBadge}</div>` : ''}
+                    <div class="card-header">
+                        <img src="${logoUrl}" alt="${companion.name}" class="logo" onerror="this.src='/images/logos/default.png'">
+                        <div class="title-section">
+                            <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
+                            <div class="rating-line">
+                                <span class="stars">${'★'.repeat(Math.floor(rating))}${'☆'.repeat(5-Math.floor(rating))}</span>
+                                <span class="rating-score">${rating}/5</span>
+                                ${reviewCount > 0 ? `<span class="review-count">(${reviewCount} reviews)</span>` : ''}
+                            </div>
                         </div>
                     </div>
-                    <p class="companion-description">${description}</p>
-                    <div class="companion-actions">
+                    <p class="description">${description}</p>
+                    ${featureHighlights}
+                    ${pricingInfo}
+                    <div class="action-buttons">
                         <a href="/companions/${companion.slug}" class="btn-secondary">Read Review</a>
-                        <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">Try Now</a>
+                        <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">Visit Website</a>
                     </div>
-                </div>
+                </article>
             `;
         }).join('');
 
