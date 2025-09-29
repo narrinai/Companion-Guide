@@ -41,6 +41,9 @@ exports.handler = async (event, context) => {
 
     if (limit) {
       selectOptions.maxRecords = parseInt(limit);
+    } else {
+      // No limit specified - get all records (set to high number to bypass Airtable's default)
+      selectOptions.maxRecords = 1000;
     }
 
     const records = await base(process.env.AIRTABLE_TABLE_ID_CG)
