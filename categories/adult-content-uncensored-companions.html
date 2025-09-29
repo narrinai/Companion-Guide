@@ -56,6 +56,20 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
  alt=""/></noscript>
 <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="/faq-styles.css">
+    <style>
+        /* Reduce spacing between sections for better visual flow */
+        .category-hero-section {
+            margin-bottom: var(--space-8);
+        }
+
+        .category-grid {
+            margin-bottom: var(--space-8);
+        }
+
+        .category-insights {
+            margin: var(--space-8) 0;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -90,7 +104,10 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
         <!-- Companion Grid -->
         <section class="category-grid" id="nsfw-companions-container">
-            <!-- Dynamic companions will be loaded here -->
+            <div class="loading-state" id="companions-loading">
+                <div class="loading-spinner"></div>
+                <p>Loading companions...</p>
+            </div>
         </section>
         <!-- Category Insights -->
         <section class="category-insights">
@@ -131,102 +148,10 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Candy AI</strong></td>
-                            <td>4.7/5</td>
-                            <td>Free + $12.99/month</td>
-                            <td>AI girlfriend</td>
-                            <td>Mobile app support</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Hammer AI</strong></td>
-                            <td>4.7/5</td>
-                            <td>Free</td>
-                            <td>100% free uncensored</td>
-                            <td>Privacy-focused chat</td>
-                        </tr>
-                        <tr>
-                            <td><strong>FantasyGF</strong></td>
-                            <td>4.7/5</td>
-                            <td>Free + $12.99/month</td>
-                            <td>Voice calls & video gen</td>
-                            <td>Virtual dating</td>
-                        </tr>
-                        <tr>
-                            <td><strong>ThotChat AI</strong></td>
-                            <td>4.7/5</td>
-                            <td>Free + $9.99/month</td>
-                            <td>Uncensored chat</td>
-                            <td>Adult conversations</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Kupid AI</strong></td>
-                            <td>4.7/5</td>
-                            <td>Free + $13.99/month</td>
-                            <td>40+ customizations</td>
-                            <td>Custom AI girlfriends</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Swipey AI</strong></td>
-                            <td>4.7/5</td>
-                            <td>Free + $19.99/month</td>
-                            <td>NSFW chat & video</td>
-                            <td>Multi-platform support</td>
-                        </tr>
-                        <tr>
-                            <td><strong>GirlfriendGPT</strong></td>
-                            <td>4.4/5</td>
-                            <td>Free + $14.99/month</td>
-                            <td>Uncensored platform</td>
-                            <td>Fantasy interactions</td>
-                        </tr>
-                        <tr>
-                            <td><strong>JOI AI</strong></td>
-                            <td>4.4/5</td>
-                            <td>Free + $19.99/month</td>
-                            <td>Custom characters</td>
-                            <td>Zero judgment chat</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Cuties AI</strong></td>
-                            <td>4.3/5</td>
-                            <td>Free + $9.99/month</td>
-                            <td>NSFW AI girlfriend</td>
-                            <td>Realistic interactions</td>
-                        </tr>
-                        <tr>
-                            <td><strong>OurDream AI</strong></td>
-                            <td>4.3/5</td>
-                            <td>Free + $19.99/month</td>
-                            <td>AI playground</td>
-                            <td>Multimedia content</td>
-                        </tr>
-                        <tr>
-                            <td><strong>SpicyChat</strong></td>
-                            <td>4.0/5</td>
-                            <td>Free + $9.99/month</td>
-                            <td>Adult entertainment</td>
-                            <td>Mature conversations</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Selira.ai</strong></td>
-                            <td>3.8/5</td>
-                            <td>Free + $4.99/month</td>
-                            <td>Premium quality</td>
-                            <td>Emotional intelligence</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Janitor AI</strong></td>
-                            <td>3.6/5</td>
-                            <td>Free + API costs</td>
-                            <td>Uncensored RP</td>
-                            <td>Advanced roleplay</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Muah.AI</strong></td>
-                            <td>3.2/5</td>
-                            <td>Free + $9.99/month</td>
-                            <td>Voice & photos</td>
-                            <td>Multimedia interactions</td>
+                            <td colspan="5" class="loading-row">
+                                <div class="loading-spinner"></div>
+                                Loading comparison data...
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -392,6 +317,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 }
         </script>
     <script src="../script.js"></script>
+    <script src="/category-dynamic.js"></script>
     <script src="/faq-interactions.js"></script>
 </body>
 </html>
