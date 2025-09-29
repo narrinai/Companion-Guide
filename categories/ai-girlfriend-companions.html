@@ -88,8 +88,11 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         </section>
 
         <!-- Companion Grid -->
-        <section class="category-grid" id="ai-girlfriend-companions-container">
-            <!-- Dynamic companions will be loaded here -->
+        <section class="category-grid" id="nsfw-companions-container">
+            <div class="loading-state" id="companions-loading">
+                <div class="loading-spinner"></div>
+                <p>Loading companions...</p>
+            </div>
         </section>
 
         <!-- Category Insights -->
@@ -371,6 +374,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 }
         </script>
     <script src="../script.js"></script>
+    <script src="/category-companions.js"></script>
     <script src="/faq-interactions.js"></script>
 </body>
 <footer>
@@ -393,14 +397,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 </div>
                 <div class="footer-section">
                     <h4>Featured AI Companions</h4>
-                    <ul id="featured-companions-footer">
                         <!-- Dynamic content will be loaded here -->
-                        <li><a href="/companions/hammer-ai">Hammer AI</a></li>
-                        <li><a href="/companions/narrin-ai">Narrin AI</a></li>
-                        <li><a href="/companions/ourdream-ai">Ourdream AI</a></li>
-                        <li><a href="/companions/fantasygf-ai">FantasyGF</a></li>
-                        <li><a href="/companions/dreamgf-ai">DreamGF</a></li>
-                        <li><a href="/companions/secrets-ai">Secrets AI</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
