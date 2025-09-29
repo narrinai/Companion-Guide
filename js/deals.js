@@ -3,11 +3,7 @@ class DealsManager {
     constructor() {
         this.deals = [
             {
-                id: 'nectar-ai',
-                name: 'Nectar AI',
-                logo: '/images/logos/nectar-ai.png',
-                rating: '4.4',
-                reviewCount: '36',
+                companionId: 'nectar-ai',
                 badge: '🔥 50% OFF',
                 description: 'Save 50% on Nectar AI\'s premium AI chat platform! Create your perfect AI chat companion with advanced personality crafting, romantic AI chat interactions, and engaging conversations. Experience unlimited AI chat with customizable companions.',
                 features: [
@@ -21,18 +17,12 @@ class DealsManager {
                     salePrice: '$7.49/month',
                     billingNote: '(billed annually)'
                 },
-                links: {
-                    review: '/companions/nectar-ai',
-                    affiliate: 'https://trynectar.ai/?utm_source=affiliate&utm_medium=referral&utm_campaign=companionguide'
-                },
-                featured: true
+                affiliate: 'https://trynectar.ai/?utm_source=affiliate&utm_medium=referral&utm_campaign=companionguide',
+                featured: true,
+                cta: 'Claim Deal'
             },
             {
-                id: 'ourdream-ai',
-                name: 'OurDream AI',
-                logo: '/images/logos/ourdream-ai.png',
-                rating: '4.3',
-                reviewCount: '6',
+                companionId: 'ourdream-ai',
                 badge: '🍂 50% OFF',
                 description: '🍂 Fall Sale Special! Save 50% on OurDream AI\'s premium AI companion playground. Create unlimited AI characters, chat, generate images & videos with your personalized AI companions. More Chars • More Chat • More Pics!',
                 features: [
@@ -46,13 +36,12 @@ class DealsManager {
                     salePrice: '$19.99/month',
                     billingNote: '(50% off monthly • 75% off yearly)'
                 },
-                links: {
-                    review: '/companions/ourdream-ai',
-                    affiliate: 'https://t.mbsrv2.com/388589/7710?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN'
-                },
-                featured: true
+                affiliate: 'https://t.mbsrv2.com/388589/7710?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN',
+                featured: true,
+                cta: 'Subscribe Now'
             }
         ];
+        this.companionsData = new Map();
         this.init();
     }
 

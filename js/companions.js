@@ -525,7 +525,7 @@ class CompanionManager {
         sort: 'rating'
       });
 
-      // Count companions per category
+      // Count companions per category (mapping category names to expected IDs)
       const categoryCounts = {
         'roleplaying': 0,
         'wellness': 0,
@@ -537,11 +537,35 @@ class CompanionManager {
         'video': 0
       };
 
+      // Map category names from Airtable to our internal category keys
+      const categoryMapping = {
+        'roleplay': 'roleplaying',
+        'roleplay-character-chat': 'roleplaying',
+        'character-chat': 'roleplaying',
+        'wellness': 'wellness',
+        'mental-health': 'wellness',
+        'learning': 'learning',
+        'education': 'learning',
+        'ai-girlfriend': 'ai-girlfriend',
+        'girlfriend': 'ai-girlfriend',
+        'whatsapp': 'whatsapp',
+        'whatsapp-only': 'whatsapp',
+        'image-generation': 'image-gen',
+        'adult-image': 'image-gen',
+        'nsfw': 'nsfw',
+        'adult-content': 'nsfw',
+        'uncensored': 'nsfw',
+        'video': 'video',
+        'video-chat': 'video'
+      };
+
       allCompanions.forEach(companion => {
         if (companion.categories && Array.isArray(companion.categories)) {
           companion.categories.forEach(category => {
-            if (categoryCounts.hasOwnProperty(category)) {
-              categoryCounts[category]++;
+            // Use the mapping to convert category names to our internal keys
+            const mappedCategory = categoryMapping[category.toLowerCase()] || category.toLowerCase();
+            if (categoryCounts.hasOwnProperty(mappedCategory)) {
+              categoryCounts[mappedCategory]++;
             }
           });
         }
@@ -568,9 +592,18 @@ class CompanionManager {
 
     } catch (error) {
       console.error('Error updating category counts:', error);
-      // Fallback to show error state
+      // Fallback to show error state for both pages
       const categoryIds = ['roleplaying-count', 'wellness-count', 'learning-count', 'ai-girlfriend-count', 'whatsapp-count', 'image-gen-count', 'nsfw-count', 'video-count'];
+      const indexCategoryIds = ['roleplaying-count-index', 'wellness-count-index', 'learning-count-index', 'ai-girlfriend-count-index', 'whatsapp-count-index', 'image-gen-count-index', 'nsfw-count-index', 'video-count-index'];
+
       categoryIds.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.textContent = 'N/A';
+        }
+      });
+
+      indexCategoryIds.forEach(id => {
         const element = document.getElementById(id);
         if (element) {
           element.textContent = 'N/A';

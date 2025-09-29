@@ -1095,6 +1095,9 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             try {
                 // Load featured companions from Airtable (limit to 8 for homepage)
                 await window.companionManager.renderFeaturedCompanions('featured-companions-container', 8);
+
+                // Update category counts dynamically
+                await window.companionManager.updateCategoryCounts();
             } catch (error) {
                 console.error('Error loading featured companions:', error);
                 // Show error message in container
