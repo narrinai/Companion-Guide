@@ -652,6 +652,41 @@ class CompanionManager {
       });
     }
   }
+
+  async renderFooterFeaturedCompanions(containerId, limit = 6) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    try {
+      // Get all companions and filter for featured ones
+      const allCompanions = await this.fetchCompanions({
+        sort: 'rating'
+      });
+
+      const featuredCompanions = allCompanions
+        .filter(c => c.is_featured === true || c.is_featured === 'true' || c.featured === true || c.featured === 'true')
+        .slice(0, limit);
+
+      if (featuredCompanions.length === 0) {
+        console.log('No featured companions found for footer. Using fallback.');
+        return; // Keep static content as fallback
+      }
+
+      // Generate simple footer links for featured companions
+      const footerHTML = featuredCompanions.map(companion => {
+        const companionName = companion.name || companion.title || 'Unknown';
+        const companionSlug = companion.slug || companion.name?.toLowerCase().replace(/\s+/g, '-') || 'unknown';
+
+        return `<li><a href="/companions/${companionSlug}">${companionName}</a></li>`;
+      }).join('');
+
+      container.innerHTML = footerHTML;
+
+    } catch (error) {
+      console.error('Error loading footer featured companions:', error);
+      // Keep static content on error
+    }
+  }
 }
 
 window.companionManager = new CompanionManager();

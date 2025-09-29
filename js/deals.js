@@ -4,6 +4,8 @@ class DealsManager {
         this.deals = [
             {
                 companionId: 'nectar-ai',
+                airtableSlug: 'selira-ai',
+                displayName: 'Nectar AI',
                 badge: '🔥 50% OFF',
                 discountPercentage: 50,
                 description: 'Save 50% on Nectar AI\'s premium AI chat platform! Create your perfect AI chat companion with advanced personality crafting, romantic AI chat interactions, and engaging conversations. Experience unlimited AI chat with customizable companions.',
@@ -24,6 +26,8 @@ class DealsManager {
             },
             {
                 companionId: 'ourdream-ai',
+                airtableSlug: 'ourdream-ai',
+                displayName: 'OurDream AI',
                 badge: '🍂 50% OFF',
                 discountPercentage: 50,
                 description: '🍂 Fall Sale Special! Save 50% on OurDream AI\'s premium AI companion playground. Create unlimited AI characters, chat, generate images & videos with your personalized AI companions. More Chars • More Chat • More Pics!',
@@ -54,28 +58,36 @@ class DealsManager {
     }
 
     async loadCompanionData() {
+        console.log('🚀 Starting loadCompanionData for deals...');
+
         // Wait for companionManager to be available
         if (typeof window.companionManager === 'undefined') {
+            console.log('⏳ Waiting for companionManager...');
             await this.waitForCompanionManager();
         }
 
         try {
             // Check if fetchCompanionById method exists
             if (!window.companionManager || typeof window.companionManager.fetchCompanionById !== 'function') {
-                console.warn('fetchCompanionById method not available, using fallback data');
+                console.warn('❌ fetchCompanionById method not available, using fallback data');
                 return;
             }
+
+            console.log('✅ CompanionManager ready, fetching deal companion data...');
 
             // Fetch companion data for each deal
             for (const deal of this.deals) {
                 try {
+                    // Use airtableSlug if available, otherwise companionId
+                    const primaryId = deal.airtableSlug || deal.companionId;
+
                     // Try different variations of the companion ID
                     const companionIds = [
-                        deal.companionId,
-                        deal.companionId.replace('-', ''),
-                        deal.companionId.replace('-ai', ''),
-                        deal.companionId.replace('-', ' '),
-                        deal.companionId.charAt(0).toUpperCase() + deal.companionId.slice(1)
+                        primaryId,
+                        primaryId.replace('-', ''),
+                        primaryId.replace('-ai', ''),
+                        primaryId.replace('-', ' '),
+                        primaryId.charAt(0).toUpperCase() + primaryId.slice(1)
                     ];
 
                     let companionData = null;
@@ -91,13 +103,26 @@ class DealsManager {
 
                     if (companionData) {
                         this.companionsData.set(deal.companionId, companionData);
-                        console.log(`Loaded data for ${deal.companionId}:`, companionData);
+                        console.log(`✅ Loaded data for ${deal.companionId}:`, {
+                            name: companionData.name,
+                            rating: companionData.rating,
+                            review_count: companionData.review_count,
+                            reviewCount: companionData.reviewCount,
+                            'Review Count': companionData['Review Count'],
+                            allFields: Object.keys(companionData)
+                        });
                     } else {
-                        console.warn(`No data found for companion: ${deal.companionId} (tried variations: ${companionIds.join(', ')})`);
+                        console.warn(`❌ No data found for companion: ${deal.companionId} (tried variations: ${companionIds.join(', ')})`);
 
                         // Try to get all companions to see what's available
                         const allCompanions = await window.companionManager.fetchCompanions();
-                        console.log('Available companions:', allCompanions.map(c => ({ id: c.id, slug: c.slug, name: c.name })));
+                        console.log('Available companions in Airtable:', allCompanions.map(c => ({
+                            id: c.id,
+                            slug: c.slug,
+                            name: c.name,
+                            review_count: c.review_count,
+                            reviewCount: c.reviewCount
+                        })));
                     }
                 } catch (companionError) {
                     console.error(`Error fetching companion ${deal.companionId}:`, companionError);
@@ -159,8 +184,8 @@ class DealsManager {
         article.className = `deal-card${deal.featured ? ' featured' : ''}`;
         article.setAttribute('data-deal-id', deal.companionId);
 
-        // Use dynamic data if available, fallback to static data
-        const name = companionData?.name || companionData?.['Name'] || deal.companionId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+        // Use displayName from deal if available, otherwise dynamic data, fallback to static data
+        const name = deal.displayName || companionData?.name || companionData?.['Name'] || deal.companionId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
         const logo = companionData?.logo || companionData?.['Logo'] || `/images/logos/${deal.companionId}.png`;
         const rating = companionData?.rating || companionData?.['Rating'] || '4.0';
         const reviewCount = companionData?.review_count || companionData?.reviewCount || companionData?.['Review Count'] || companionData?.['review_count'] || '0';
@@ -168,14 +193,21 @@ class DealsManager {
 
         // Debug log to see what data we're getting
         if (companionData) {
-            console.log(`Companion data for ${deal.companionId}:`, {
+            console.log(`🎯 Creating deal card for ${deal.companionId}:`, {
                 name: name,
                 logo: logo,
                 rating: rating,
                 reviewCount: reviewCount,
                 review_count_field: companionData?.review_count,
-                rawData: companionData
+                allReviewFields: {
+                    review_count: companionData?.review_count,
+                    reviewCount: companionData?.reviewCount,
+                    'Review Count': companionData?.['Review Count'],
+                    'review_count': companionData?.['review_count']
+                }
             });
+        } else {
+            console.warn(`🔍 No companion data available for deal card ${deal.companionId}`);
         }
 
         // Generate star rating display
