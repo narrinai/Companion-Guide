@@ -61,12 +61,8 @@ exports.handler = async (event, context) => {
     if (data.pricing_plans && typeof data.pricing_plans === 'string' && data.pricing_plans.trim()) {
       recordData.pricing_plans = data.pricing_plans;
     }
-    if (data.pros && typeof data.pros === 'string' && data.pros.trim()) {
-      recordData.pros = data.pros;
-    }
-    if (data.cons && typeof data.cons === 'string' && data.cons.trim()) {
-      recordData.cons = data.cons;
-    }
+
+    // Note: pros and cons fields don't exist in Airtable - removed
 
     console.log('Creating record with fields:', Object.keys(recordData));
 

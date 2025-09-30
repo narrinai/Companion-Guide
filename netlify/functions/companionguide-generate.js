@@ -192,8 +192,6 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
   const result = {
     description: '',
     short_description: '',
-    pros: '',
-    cons: '',
     pricing_plans: []
   };
 
@@ -330,84 +328,9 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
 
   result.short_description = shortDesc;
 
-  // Extract and analyze features from all sources
-  const features = new Set();
-  const prosSet = new Set();
-  const consSet = new Set();
+  // Extract pricing information
 
-  // Feature detection
-  if (combinedText.includes('voice') || combinedText.includes('audio')) {
-    features.add('Voice interactions');
-    prosSet.add('Voice chat support');
-  }
-  if (combinedText.includes('image generat')) {
-    features.add('Image generation');
-    prosSet.add('AI image generation');
-  }
-  if (combinedText.includes('video')) {
-    features.add('Video content');
-    prosSet.add('Video support');
-  }
-  if (combinedText.includes('memory') || combinedText.includes('remember')) {
-    features.add('Advanced memory system');
-    prosSet.add('Remembers conversations');
-  }
-  if (combinedText.includes('personality') || combinedText.includes('custom')) {
-    features.add('Customizable personalities');
-    prosSet.add('Personality customization');
-  }
-  if (combinedText.includes('roleplay')) {
-    features.add('Roleplay scenarios');
-    prosSet.add('Roleplay support');
-  }
-  if (combinedText.includes('24/7') || combinedText.includes('always available')) {
-    prosSet.add('24/7 availability');
-  }
-  if (combinedText.includes('free')) {
-    prosSet.add('Free tier available');
-  }
-  if (combinedText.includes('realistic') || combinedText.includes('natural')) {
-    prosSet.add('Natural conversations');
-  }
-  if (combinedText.includes('easy') || combinedText.includes('user-friendly') || combinedText.includes('simple')) {
-    prosSet.add('Easy to use');
-  }
-  if (combinedText.includes('fast') || combinedText.includes('quick response')) {
-    prosSet.add('Fast responses');
-  }
-  if (combinedText.includes('mobile app') || combinedText.includes('ios') || combinedText.includes('android')) {
-    prosSet.add('Mobile app available');
-  }
-
-  // Cons detection
-  if (combinedText.includes('expensive') || combinedText.includes('costly')) {
-    consSet.add('Higher pricing');
-  }
-  if (combinedText.includes('limited free')) {
-    consSet.add('Limited free features');
-  }
-  if (combinedText.includes('no mobile app')) {
-    consSet.add('No mobile app');
-  }
-  if (combinedText.includes('web only')) {
-    consSet.add('Web-only platform');
-  }
-
-  // Add default pros/cons if none found
-  if (prosSet.size === 0) {
-    prosSet.add('AI-powered conversations');
-    prosSet.add('Personalized interactions');
-    prosSet.add('Easy to get started');
-  }
-  if (consSet.size === 0) {
-    consSet.add('Requires internet connection');
-    consSet.add('Premium features require subscription');
-  }
-
-  result.pros = Array.from(prosSet).join(', ');
-  result.cons = Array.from(consSet).join(', ');
-
-  // Extract pricing
+  // Extract pricing (pros/cons removed - not in Airtable)
   const allPrices = [];
   const priceMatches = combinedText.matchAll(/\$(\d+(?:\.\d{2})?)/g);
   for (const match of priceMatches) {
