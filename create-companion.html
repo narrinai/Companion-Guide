@@ -168,6 +168,9 @@
                 <div class="form-group">
                     <label for="website_url">Website URL *</label>
                     <input type="url" id="website_url" name="website_url" required>
+                    <button type="button" class="add-plan-btn" id="generateBtn" style="margin-top: 10px;">
+                        🤖 Generate Fields from URL
+                    </button>
                 </div>
 
                 <div class="form-group">
@@ -281,6 +284,7 @@
     <script>
         const form = document.getElementById('companionForm');
         const submitBtn = document.getElementById('submitBtn');
+        const generateBtn = document.getElementById('generateBtn');
         const messageDiv = document.getElementById('message');
 
         // Auto-generate slug from name
@@ -290,6 +294,83 @@
                 .replace(/[^a-z0-9\s-]/g, '')
                 .replace(/\s+/g, '-');
             document.getElementById('slug').value = slug;
+        });
+
+        // Generate fields from URL
+        generateBtn.addEventListener('click', async () => {
+            const websiteUrl = document.getElementById('website_url').value;
+
+            if (!websiteUrl) {
+                showMessage('Please enter a website URL first', 'error');
+                return;
+            }
+
+            generateBtn.disabled = true;
+            generateBtn.textContent = '🔄 Generating...';
+
+            try {
+                const response = await fetch('/.netlify/functions/generate-companion-info', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: websiteUrl })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Fill in the form fields
+                    if (result.description) {
+                        document.getElementById('description').value = result.description;
+                    }
+                    if (result.short_description) {
+                        document.getElementById('short_description').value = result.short_description;
+                    }
+                    if (result.key_features) {
+                        document.getElementById('key_features').value = result.key_features;
+                    }
+                    if (result.categories) {
+                        document.getElementById('categories').value = result.categories.join(', ');
+                    }
+                    if (result.badges) {
+                        document.getElementById('badges').value = result.badges.join(', ');
+                    }
+                    if (result.pricing_plans) {
+                        document.getElementById('pricing_plans').value = JSON.stringify(result.pricing_plans, null, 2);
+                    }
+                    if (result.benefits) {
+                        document.getElementById('benefits').value = JSON.stringify(result.benefits, null, 2);
+                    }
+                    if (result.pros) {
+                        document.getElementById('pros').value = result.pros;
+                    }
+                    if (result.cons) {
+                        document.getElementById('cons').value = result.cons;
+                    }
+                    if (result.best_for) {
+                        document.getElementById('best_for').value = result.best_for;
+                    }
+                    if (result.content_policy) {
+                        document.getElementById('content_policy').value = result.content_policy;
+                    }
+                    if (result.min_price !== undefined) {
+                        document.getElementById('min_price').value = result.min_price;
+                    }
+                    if (result.platform) {
+                        document.getElementById('platform').value = result.platform;
+                    }
+
+                    showMessage('✅ Successfully generated companion info!', 'success');
+                } else {
+                    showMessage(`❌ Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showMessage(`❌ Error: ${error.message}`, 'error');
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.textContent = '🤖 Generate Fields from URL';
+            }
         });
 
         function showMessage(text, type) {
