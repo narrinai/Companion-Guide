@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Create Companion - Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--surface);
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--background);
+            color: var(--text);
+            font-size: 16px;
+        }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-group small {
+            display: block;
+            margin-top: 4px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        .submit-btn {
+            background: var(--accent-purple);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            background: var(--accent-blue);
+        }
+        .submit-btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+        }
+        .message {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .pricing-plan-builder {
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .plan-item {
+            background: var(--background);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .add-plan-btn {
+            background: var(--accent-green);
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .remove-plan-btn {
+            background: #dc3545;
+            color: white;
+            padding: 6px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <h1><a href="/"><img src="/images/logo.svg" alt="Companion Guide" width="32" height="32">Companion Guide</a></h1>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="form-container">
+            <h1>Create New Companion</h1>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">Add a new AI companion to Airtable</p>
+
+            <div id="message" class="message"></div>
+
+            <form id="companionForm">
+                <!-- Basic Info -->
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="slug">Slug *</label>
+                    <input type="text" id="slug" name="slug" required>
+                    <small>URL-friendly name (e.g., "secret-share-ai")</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">Rating *</label>
+                    <input type="number" id="rating" name="rating" min="0" max="5" step="0.1" value="4.5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea id="description" name="description" required></textarea>
+                    <small>Full description for the review page</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="short_description">Short Description *</label>
+                    <input type="text" id="short_description" name="short_description" required>
+                    <small>Brief tagline shown in listings</small>
+                </div>
+
+                <!-- URLs -->
+                <div class="form-group">
+                    <label for="website_url">Website URL *</label>
+                    <input type="url" id="website_url" name="website_url" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="affiliate_url">Affiliate URL</label>
+                    <input type="url" id="affiliate_url" name="affiliate_url">
+                    <small>Leave empty to use website URL</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="image_url">Image URL *</label>
+                    <input type="text" id="image_url" name="image_url" value="../images/logos/" required>
+                    <small>Path to logo image (e.g., "../images/logos/companion-name.png")</small>
+                </div>
+
+                <!-- Categories & Platform -->
+                <div class="form-group">
+                    <label for="categories">Categories *</label>
+                    <input type="text" id="categories" name="categories" required>
+                    <small>Comma-separated (e.g., "Telegram, AI Girlfriend")</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="platform">Platform *</label>
+                    <input type="text" id="platform" name="platform" value="Web App/Browser" required>
+                    <small>e.g., "Web App/Browser", "Telegram Bot", "Mobile App"</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="badges">Badges</label>
+                    <input type="text" id="badges" name="badges">
+                    <small>Comma-separated (e.g., "New, Popular")</small>
+                </div>
+
+                <!-- Features -->
+                <div class="form-group">
+                    <label for="key_features">Key Features</label>
+                    <textarea id="key_features" name="key_features"></textarea>
+                    <small>Comma-separated list of main features</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="pros">Pros</label>
+                    <textarea id="pros" name="pros"></textarea>
+                    <small>Comma-separated list of advantages</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="cons">Cons</label>
+                    <textarea id="cons" name="cons"></textarea>
+                    <small>Comma-separated list of disadvantages</small>
+                </div>
+
+                <!-- Pricing -->
+                <div class="form-group">
+                    <label for="min_price">Minimum Price *</label>
+                    <input type="number" id="min_price" name="min_price" min="0" step="0.01" value="0" required>
+                    <small>Starting price (0 for free)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="pricing_plans">Pricing Plans (JSON)</label>
+                    <textarea id="pricing_plans" name="pricing_plans" style="font-family: monospace; min-height: 150px;"></textarea>
+                    <small>JSON array of pricing plans (optional)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="benefits">Benefits (JSON)</label>
+                    <textarea id="benefits" name="benefits" style="font-family: monospace;"></textarea>
+                    <small>JSON array of benefits with icon, title, description (optional)</small>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="form-group">
+                    <label for="best_for">Best For</label>
+                    <input type="text" id="best_for" name="best_for">
+                </div>
+
+                <div class="form-group">
+                    <label for="content_policy">Content Policy</label>
+                    <input type="text" id="content_policy" name="content_policy">
+                </div>
+
+                <!-- Checkboxes -->
+                <div class="form-group">
+                    <label>Options</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="featured" name="featured">
+                            Featured
+                        </label>
+                        <label>
+                            <input type="checkbox" id="is_free" name="is_free" checked>
+                            Free Version Available
+                        </label>
+                        <label>
+                            <input type="checkbox" id="is_ai_girlfriend" name="is_ai_girlfriend">
+                            AI Girlfriend
+                        </label>
+                        <label>
+                            <input type="checkbox" id="is_nsfw" name="is_nsfw">
+                            NSFW
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Create Companion</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const form = document.getElementById('companionForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageDiv = document.getElementById('message');
+
+        // Auto-generate slug from name
+        document.getElementById('name').addEventListener('input', (e) => {
+            const slug = e.target.value
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-');
+            document.getElementById('slug').value = slug;
+        });
+
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Creating...';
+
+            const formData = new FormData(form);
+            const data = {};
+
+            // Convert form data to object
+            for (let [key, value] of formData.entries()) {
+                if (key === 'categories' || key === 'badges') {
+                    data[key] = value.split(',').map(v => v.trim()).filter(v => v);
+                } else if (key === 'featured' || key === 'is_free' || key === 'is_ai_girlfriend' || key === 'is_nsfw') {
+                    data[key] = formData.get(key) === 'on';
+                } else if (key === 'rating' || key === 'min_price') {
+                    data[key] = parseFloat(value);
+                } else if (key === 'pricing_plans' || key === 'benefits') {
+                    // Try to parse JSON, keep as string if invalid
+                    if (value.trim()) {
+                        try {
+                            JSON.parse(value);
+                            data[key] = value;
+                        } catch (e) {
+                            showMessage(`Invalid JSON in ${key}`, 'error');
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Create Companion';
+                            return;
+                        }
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            // Set affiliate_url to website_url if empty
+            if (!data.affiliate_url) {
+                data.affiliate_url = data.website_url;
+            }
+
+            try {
+                const response = await fetch('/.netlify/functions/create-companion', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showMessage(`✅ Successfully created ${data.name}! Record ID: ${result.id}`, 'success');
+                    form.reset();
+                    document.getElementById('is_free').checked = true;
+                } else {
+                    showMessage(`❌ Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showMessage(`❌ Error: ${error.message}`, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Companion';
+            }
+        });
+    </script>
+</body>
+</html>
