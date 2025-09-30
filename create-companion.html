@@ -53,7 +53,7 @@
             width: auto;
             margin-right: 5px;
         }
-        .submit-btn {
+        .submit-btn, .generate-btn {
             background: var(--accent-purple);
             color: white;
             padding: 12px 30px;
@@ -64,10 +64,17 @@
             cursor: pointer;
             width: 100%;
         }
+        .generate-btn {
+            background: var(--accent-green);
+            margin-top: 10px;
+        }
         .submit-btn:hover {
             background: var(--accent-blue);
         }
-        .submit-btn:disabled {
+        .generate-btn:hover {
+            background: var(--accent-orange);
+        }
+        .submit-btn:disabled, .generate-btn:disabled {
             background: var(--text-muted);
             cursor: not-allowed;
         }
@@ -87,36 +94,10 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-        .pricing-plan-builder {
-            border: 1px solid var(--border);
-            padding: 15px;
-            border-radius: 4px;
-            margin-top: 10px;
-        }
-        .plan-item {
-            background: var(--background);
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-        }
-        .add-plan-btn {
-            background: var(--accent-green);
-            color: white;
-            padding: 8px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .auto-label {
+            color: var(--text-muted);
+            font-weight: normal;
             font-size: 14px;
-        }
-        .remove-plan-btn {
-            background: #dc3545;
-            color: white;
-            padding: 6px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            margin-top: 10px;
         }
     </style>
 </head>
@@ -135,7 +116,7 @@
             <div id="message" class="message"></div>
 
             <form id="companionForm">
-                <!-- Basic Info -->
+                <!-- Step 1: Basic Info -->
                 <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" id="name" name="name" required>
@@ -152,97 +133,49 @@
                     <input type="number" id="rating" name="rating" min="0" max="5" step="0.1" value="4.5" required>
                 </div>
 
+                <!-- Step 2: URLs for Research -->
                 <div class="form-group">
-                    <label for="description">Description *</label>
-                    <textarea id="description" name="description" required></textarea>
+                    <label for="urls">URLs for Research *</label>
+                    <textarea id="urls" name="urls" required style="min-height: 80px;"></textarea>
+                    <small>Enter one or more URLs (comma-separated). First URL = main website. Add pricing page, review pages, etc.</small>
+                    <button type="button" class="generate-btn" id="generateBtn">
+                        🤖 Generate Content from URLs
+                    </button>
+                </div>
+
+                <!-- Step 3: Auto-Generated Content -->
+                <div class="form-group">
+                    <label for="description">Description * <span class="auto-label">(auto-generated)</span></label>
+                    <textarea id="description" name="description" required style="min-height: 120px;"></textarea>
                     <small>Full description for the review page</small>
                 </div>
 
                 <div class="form-group">
-                    <label for="short_description">Short Description *</label>
+                    <label for="short_description">Short Description * <span class="auto-label">(auto-generated)</span></label>
                     <input type="text" id="short_description" name="short_description" required>
                     <small>Brief tagline shown in listings</small>
                 </div>
 
-                <!-- URLs -->
                 <div class="form-group">
-                    <label for="website_url">Website URL *</label>
-                    <input type="url" id="website_url" name="website_url" required>
-                    <button type="button" class="add-plan-btn" id="generateBtn" style="margin-top: 10px;">
-                        🤖 Generate Fields from URL
-                    </button>
-                </div>
-
-                <div class="form-group">
-                    <label for="affiliate_url">Affiliate URL</label>
-                    <input type="url" id="affiliate_url" name="affiliate_url">
-                    <small>Leave empty to use website URL</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="pricing_url">Pricing Page URL</label>
-                    <input type="url" id="pricing_url" name="pricing_url">
-                    <small>Optional: URL to pricing page for better pricing plan generation</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="image_url">Image URL *</label>
-                    <input type="text" id="image_url" name="image_url" value="../images/logos/" required>
-                    <small>Path to logo image (e.g., "../images/logos/companion-name.png")</small>
-                </div>
-
-                <!-- Categories & Platform -->
-                <div class="form-group">
-                    <label for="categories">Categories *</label>
-                    <input type="text" id="categories" name="categories" required>
-                    <small>Comma-separated (e.g., "Telegram, AI Girlfriend")</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="platform">Platform *</label>
-                    <input type="text" id="platform" name="platform" value="Web App/Browser" required>
-                    <small>e.g., "Web App/Browser", "Telegram Bot", "Mobile App"</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="badges">Badges</label>
-                    <input type="text" id="badges" name="badges">
-                    <small>Comma-separated (e.g., "New, Popular")</small>
-                </div>
-
-                <!-- Features -->
-                <div class="form-group">
-                    <label for="key_features">Key Features</label>
-                    <textarea id="key_features" name="key_features"></textarea>
-                    <small>Comma-separated list of main features</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="pros">Pros</label>
+                    <label for="pros">Pros <span class="auto-label">(auto-generated)</span></label>
                     <textarea id="pros" name="pros"></textarea>
                     <small>Comma-separated list of advantages</small>
                 </div>
 
                 <div class="form-group">
-                    <label for="cons">Cons</label>
+                    <label for="cons">Cons <span class="auto-label">(auto-generated)</span></label>
                     <textarea id="cons" name="cons"></textarea>
                     <small>Comma-separated list of disadvantages</small>
                 </div>
 
-                <!-- Pricing -->
+                <!-- Step 4: Pricing -->
                 <div class="form-group">
-                    <label for="pricing_plans">Pricing Plans (JSON)</label>
+                    <label for="pricing_plans">Pricing Plans (JSON) <span class="auto-label">(auto-generated)</span></label>
                     <textarea id="pricing_plans" name="pricing_plans" style="font-family: monospace; min-height: 150px;"></textarea>
-                    <small>JSON array of pricing plans (auto-generated or manual)</small>
+                    <small>JSON array of pricing plans</small>
                 </div>
 
-                <div class="form-group">
-                    <label for="benefits">Benefits (JSON)</label>
-                    <textarea id="benefits" name="benefits" style="font-family: monospace;"></textarea>
-                    <small>JSON array of benefits with icon, title, description (optional)</small>
-                </div>
-
-                <!-- Checkboxes -->
+                <!-- Step 5: Options -->
                 <div class="form-group">
                     <label>Options</label>
                     <div class="checkbox-group">
@@ -277,13 +210,23 @@
             document.getElementById('slug').value = slug;
         });
 
-        // Generate fields from URL
+        // Generate fields from URLs
         generateBtn.addEventListener('click', async () => {
-            const websiteUrl = document.getElementById('website_url').value;
-            const pricingUrl = document.getElementById('pricing_url').value;
+            const urlsInput = document.getElementById('urls').value;
 
-            if (!websiteUrl) {
-                showMessage('Please enter a website URL first', 'error');
+            if (!urlsInput.trim()) {
+                showMessage('Please enter at least one URL', 'error');
+                return;
+            }
+
+            // Parse URLs (comma-separated)
+            const urls = urlsInput
+                .split(',')
+                .map(url => url.trim())
+                .filter(url => url);
+
+            if (urls.length === 0) {
+                showMessage('Please enter valid URLs', 'error');
                 return;
             }
 
@@ -296,10 +239,7 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({
-                        url: websiteUrl,
-                        pricing_url: pricingUrl
-                    })
+                    body: JSON.stringify({ urls })
                 });
 
                 const result = await response.json();
@@ -312,29 +252,14 @@
                     if (result.short_description) {
                         document.getElementById('short_description').value = result.short_description;
                     }
-                    if (result.key_features) {
-                        document.getElementById('key_features').value = result.key_features;
-                    }
-                    if (result.categories) {
-                        document.getElementById('categories').value = result.categories.join(', ');
-                    }
-                    if (result.badges) {
-                        document.getElementById('badges').value = result.badges.join(', ');
-                    }
                     if (result.pricing_plans) {
                         document.getElementById('pricing_plans').value = JSON.stringify(result.pricing_plans, null, 2);
-                    }
-                    if (result.benefits) {
-                        document.getElementById('benefits').value = JSON.stringify(result.benefits, null, 2);
                     }
                     if (result.pros) {
                         document.getElementById('pros').value = result.pros;
                     }
                     if (result.cons) {
                         document.getElementById('cons').value = result.cons;
-                    }
-                    if (result.platform) {
-                        document.getElementById('platform').value = result.platform;
                     }
 
                     showMessage('✅ Successfully generated companion info!', 'success');
@@ -345,7 +270,7 @@
                 showMessage(`❌ Error: ${error.message}`, 'error');
             } finally {
                 generateBtn.disabled = false;
-                generateBtn.textContent = '🤖 Generate Fields from URL';
+                generateBtn.textContent = '🤖 Generate Content from URLs';
             }
         });
 
@@ -370,22 +295,27 @@
             const formData = new FormData(form);
             const data = {};
 
+            // Get first URL as website_url
+            const urlsInput = document.getElementById('urls').value;
+            const urls = urlsInput.split(',').map(url => url.trim()).filter(url => url);
+            data.website_url = urls[0] || '';
+            data.affiliate_url = urls[0] || '';
+
             // Convert form data to object
             for (let [key, value] of formData.entries()) {
-                if (key === 'categories' || key === 'badges') {
-                    data[key] = value.split(',').map(v => v.trim()).filter(v => v);
-                } else if (key === 'featured' || key === 'is_free') {
+                if (key === 'urls') continue; // Skip urls field, already handled
+
+                if (key === 'featured' || key === 'is_free') {
                     data[key] = formData.get(key) === 'on';
                 } else if (key === 'rating') {
                     data[key] = parseFloat(value);
-                } else if (key === 'pricing_plans' || key === 'benefits') {
-                    // Try to parse JSON, keep as string if invalid
+                } else if (key === 'pricing_plans') {
                     if (value.trim()) {
                         try {
                             JSON.parse(value);
                             data[key] = value;
                         } catch (e) {
-                            showMessage(`Invalid JSON in ${key}`, 'error');
+                            showMessage('Invalid JSON in pricing_plans', 'error');
                             submitBtn.disabled = false;
                             submitBtn.textContent = 'Create Companion';
                             return;
@@ -396,10 +326,8 @@
                 }
             }
 
-            // Set affiliate_url to website_url if empty
-            if (!data.affiliate_url) {
-                data.affiliate_url = data.website_url;
-            }
+            // Set default image_url
+            data.image_url = `../images/logos/${data.slug}.png`;
 
             try {
                 const response = await fetch('/.netlify/functions/create-companion', {
@@ -416,6 +344,7 @@
                     showMessage(`✅ Successfully created ${data.name}! Record ID: ${result.id}`, 'success');
                     form.reset();
                     document.getElementById('is_free').checked = true;
+                    document.getElementById('rating').value = '4.5';
                 } else {
                     showMessage(`❌ Error: ${result.error}`, 'error');
                 }

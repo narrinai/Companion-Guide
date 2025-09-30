@@ -9,42 +9,51 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { url, pricing_url } = JSON.parse(event.body);
+    const { urls } = JSON.parse(event.body);
 
-    if (!url) {
+    if (!urls || !Array.isArray(urls) || urls.length === 0) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'URL is required' })
+        body: JSON.stringify({ error: 'At least one URL is required' })
       };
     }
 
-    // Extract companion name from URL
-    const companionName = extractCompanionName(url);
+    console.log(`Processing ${urls.length} URLs...`);
 
-    // Fetch website content
-    const html = await fetchWebsite(url);
+    // Extract companion name from first URL
+    const companionName = extractCompanionName(urls[0]);
+    console.log(`Companion name: ${companionName}`);
 
-    // Fetch pricing page if provided
-    let pricingHtml = '';
-    if (pricing_url) {
+    // Fetch all URLs
+    const htmlContents = [];
+    for (const url of urls) {
       try {
-        pricingHtml = await fetchWebsite(pricing_url);
+        console.log(`Fetching: ${url}`);
+        const html = await fetchWebsite(url);
+        htmlContents.push({ url, html });
       } catch (error) {
-        console.log('Could not fetch pricing URL:', error.message);
+        console.log(`Failed to fetch ${url}:`, error.message);
       }
+    }
+
+    if (htmlContents.length === 0) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Could not fetch any of the provided URLs' })
+      };
     }
 
     // Search the web for additional information
     let searchResults = [];
     try {
       searchResults = await searchWeb(companionName);
-      console.log(`Found ${searchResults.length} search results for ${companionName}`);
+      console.log(`Found ${searchResults.length} search results`);
     } catch (error) {
-      console.log('Could not perform web search:', error.message);
+      console.log('Web search failed:', error.message);
     }
 
-    // Analyze the website with additional context
-    const analysis = await analyzeWebsite(html, url, pricingHtml, searchResults);
+    // Analyze all content
+    const analysis = await analyzeContent(htmlContents, searchResults, companionName);
 
     return {
       statusCode: 200,
@@ -52,7 +61,7 @@ exports.handler = async (event, context) => {
     };
 
   } catch (error) {
-    console.error('Error generating companion info:', error);
+    console.error('Error:', error);
     return {
       statusCode: 500,
       body: JSON.stringify({
@@ -72,7 +81,8 @@ function fetchWebsite(url) {
       path: urlObj.pathname + urlObj.search,
       method: 'GET',
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; CompanionGuideBot/1.0)'
+        'User-Agent': 'Mozilla/5.0 (compatible; CompanionGuideBot/1.0)',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
       }
     };
 
@@ -92,7 +102,7 @@ function fetchWebsite(url) {
       reject(error);
     });
 
-    req.setTimeout(10000, () => {
+    req.setTimeout(15000, () => {
       req.destroy();
       reject(new Error('Request timeout'));
     });
@@ -104,12 +114,10 @@ function fetchWebsite(url) {
 function extractCompanionName(url) {
   try {
     const urlObj = new URL(url);
-    // Remove common TLDs and www
     let name = urlObj.hostname
       .replace(/^www\./, '')
-      .replace(/\.(com|ai|io|net|org|app|gg|chat)$/, '');
+      .replace(/\.(com|ai|io|net|org|app|gg|chat|co|us)$/, '');
 
-    // Convert to readable format
     name = name
       .split(/[-.]/)
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -122,9 +130,8 @@ function extractCompanionName(url) {
 }
 
 async function searchWeb(query) {
-  return new Promise((resolve, reject) => {
-    // Using DuckDuckGo HTML search (no API key needed)
-    const searchQuery = encodeURIComponent(`${query} AI companion review features pricing`);
+  return new Promise((resolve) => {
+    const searchQuery = encodeURIComponent(`${query} AI companion chatbot features pricing review`);
     const options = {
       hostname: 'html.duckduckgo.com',
       port: 443,
@@ -144,21 +151,24 @@ async function searchWeb(query) {
 
       res.on('end', () => {
         try {
-          // Extract snippets from search results
           const results = [];
+          // Extract text from search results
           const snippetMatches = data.matchAll(/<a class="result__snippet"[^>]*>(.*?)<\/a>/gi);
 
           for (const match of snippetMatches) {
             const snippet = match[1]
               .replace(/<[^>]*>/g, '')
+              .replace(/&quot;/g, '"')
+              .replace(/&#x27;/g, "'")
+              .replace(/&amp;/g, '&')
               .replace(/&[^;]+;/g, ' ')
               .trim();
 
-            if (snippet.length > 20) {
+            if (snippet.length > 30) {
               results.push(snippet);
             }
 
-            if (results.length >= 5) break;
+            if (results.length >= 10) break;
           }
 
           resolve(results);
@@ -168,11 +178,8 @@ async function searchWeb(query) {
       });
     });
 
-    req.on('error', (error) => {
-      resolve([]); // Don't fail if search fails
-    });
-
-    req.setTimeout(5000, () => {
+    req.on('error', () => resolve([]));
+    req.setTimeout(10000, () => {
       req.destroy();
       resolve([]);
     });
@@ -181,244 +188,211 @@ async function searchWeb(query) {
   });
 }
 
-async function analyzeWebsite(html, url, pricingHtml = '', searchResults = []) {
-  // Simple HTML parsing to extract key information
+async function analyzeContent(htmlContents, searchResults, companionName) {
   const result = {
     description: '',
     short_description: '',
-    key_features: '',
-    categories: [],
-    badges: ['New'],
-    pricing_plans: null,
-    benefits: null,
     pros: '',
     cons: '',
-    platform: 'Web App/Browser'
+    pricing_plans: []
   };
 
-  // Extract title for short description
-  const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i);
-  if (titleMatch) {
-    let title = titleMatch[1]
-      .replace(/<[^>]*>/g, '') // Remove any HTML tags
-      .replace(/&[^;]+;/g, ' ') // Replace HTML entities
-      .trim();
-
-    // Clean up common title separators
-    title = title.split(/[|\-–—]/)[0].trim();
-    result.short_description = title;
-  }
-
-  // Extract meta description for full description
-  const metaDescMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["'](.*?)["']/i);
-  const ogDescMatch = html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["'](.*?)["']/i);
-
-  const description = metaDescMatch?.[1] || ogDescMatch?.[1] || '';
-  if (description) {
-    result.description = description
-      .replace(/<[^>]*>/g, '')
-      .replace(/&[^;]+;/g, ' ')
-      .trim();
-  }
-
-  // If no description found, try to extract from first paragraph
-  if (!result.description) {
-    const firstPMatch = html.match(/<p[^>]*>(.*?)<\/p>/i);
-    if (firstPMatch) {
-      result.description = firstPMatch[1]
-        .replace(/<[^>]*>/g, '')
-        .replace(/&[^;]+;/g, ' ')
-        .trim()
-        .substring(0, 300);
-    }
-  }
-
-  // Enhance description with search results
-  if (!result.description && searchResults.length > 0) {
-    result.description = searchResults[0];
-  }
-
-  // If we have search results, try to extract more features
-  const searchText = searchResults.join(' ').toLowerCase();
-  if (searchText.length > 0) {
-    // Extract additional features from search results
-    const additionalFeatures = [];
-
-    if (searchText.includes('voice') || searchText.includes('audio')) {
-      additionalFeatures.push('Voice interactions');
-    }
-    if (searchText.includes('image generat')) {
-      additionalFeatures.push('Image generation');
-    }
-    if (searchText.includes('video')) {
-      additionalFeatures.push('Video content');
-    }
-    if (searchText.includes('memory') || searchText.includes('remember')) {
-      additionalFeatures.push('Advanced memory');
-    }
-    if (searchText.includes('personality') || searchText.includes('custom')) {
-      additionalFeatures.push('Customizable personality');
-    }
-    if (searchText.includes('roleplay')) {
-      additionalFeatures.push('Roleplay scenarios');
-    }
-
-    if (additionalFeatures.length > 0) {
-      result.key_features = result.key_features + ', ' + additionalFeatures.join(', ');
-    }
-
-    // Try to find pricing info in search results
-    const priceMatches = searchText.match(/\$(\d+(?:\.\d{2})?)/g);
-    if (priceMatches && priceMatches.length > 0 && !pricingHtml) {
-      pricingHtml = searchText; // Use search results as pricing source
-    }
-  }
-
-  // Check for common keywords to determine categories (from HTML and search results)
-  const htmlLower = html.toLowerCase();
+  // Combine all HTML content
+  const allHtml = htmlContents.map(h => h.html).join('\n');
+  const htmlLower = allHtml.toLowerCase();
+  const searchText = searchResults.join(' ');
   const combinedText = (htmlLower + ' ' + searchText).toLowerCase();
 
-  if (combinedText.includes('telegram') || url.includes('t.me')) {
-    result.categories.push('Telegram');
-    result.platform = 'Telegram Bot';
+  // Extract short description from title
+  for (const { html } of htmlContents) {
+    const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i);
+    if (titleMatch && !result.short_description) {
+      let title = titleMatch[1]
+        .replace(/<[^>]*>/g, '')
+        .replace(/&[^;]+;/g, ' ')
+        .trim();
+
+      title = title.split(/[|\-–—]/)[0].trim();
+      if (title.length > 10) {
+        result.short_description = title;
+        break;
+      }
+    }
   }
-  if (combinedText.includes('roleplay') || combinedText.includes('character chat')) {
-    result.categories.push('Roleplay & Character Chat');
+
+  // Extract description from meta tags
+  for (const { html } of htmlContents) {
+    if (result.description) break;
+
+    const metaDescMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["'](.*?)["']/i);
+    const ogDescMatch = html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["'](.*?)["']/i);
+
+    const description = metaDescMatch?.[1] || ogDescMatch?.[1] || '';
+    if (description) {
+      result.description = description
+        .replace(/<[^>]*>/g, '')
+        .replace(/&[^;]+;/g, ' ')
+        .trim();
+    }
+  }
+
+  // Enhance description with content from paragraphs
+  if (!result.description || result.description.length < 100) {
+    const paragraphs = [];
+    for (const { html } of htmlContents) {
+      const pMatches = html.matchAll(/<p[^>]*>(.*?)<\/p>/gi);
+      for (const match of pMatches) {
+        const text = match[1]
+          .replace(/<[^>]*>/g, '')
+          .replace(/&[^;]+;/g, ' ')
+          .trim();
+
+        if (text.length > 50 && !text.toLowerCase().includes('cookie') && !text.toLowerCase().includes('privacy')) {
+          paragraphs.push(text);
+          if (paragraphs.length >= 3) break;
+        }
+      }
+      if (paragraphs.length >= 3) break;
+    }
+
+    if (paragraphs.length > 0) {
+      result.description = paragraphs.join(' ').substring(0, 500);
+    }
+  }
+
+  // Use search results as fallback or enhancement
+  if (!result.description && searchResults.length > 0) {
+    result.description = searchResults.slice(0, 3).join(' ').substring(0, 500);
+  } else if (searchResults.length > 0 && result.description.length < 200) {
+    result.description += ' ' + searchResults[0];
+  }
+
+  // Ensure description is comprehensive
+  if (result.description.length < 150 && searchResults.length > 0) {
+    result.description = `${companionName} is an AI companion platform. ${searchResults.slice(0, 2).join(' ')}`.substring(0, 500);
+  }
+
+  // Extract and analyze features from all sources
+  const features = new Set();
+  const prosSet = new Set();
+  const consSet = new Set();
+
+  // Feature detection
+  if (combinedText.includes('voice') || combinedText.includes('audio')) {
+    features.add('Voice interactions');
+    prosSet.add('Voice chat support');
   }
   if (combinedText.includes('image generat')) {
-    result.categories.push('Image Generation');
+    features.add('Image generation');
+    prosSet.add('AI image generation');
   }
   if (combinedText.includes('video')) {
-    result.categories.push('Video');
+    features.add('Video content');
+    prosSet.add('Video support');
   }
-  if (combinedText.includes('whatsapp')) {
-    result.categories.push('WhatsApp');
-    result.platform = 'WhatsApp Bot';
+  if (combinedText.includes('memory') || combinedText.includes('remember')) {
+    features.add('Advanced memory system');
+    prosSet.add('Remembers conversations');
   }
-  if (combinedText.includes('learning') || combinedText.includes('education')) {
-    result.categories.push('Learning');
+  if (combinedText.includes('personality') || combinedText.includes('custom')) {
+    features.add('Customizable personalities');
+    prosSet.add('Personality customization');
   }
-  if (combinedText.includes('wellness') || combinedText.includes('mental health')) {
-    result.categories.push('Wellness');
+  if (combinedText.includes('roleplay')) {
+    features.add('Roleplay scenarios');
+    prosSet.add('Roleplay support');
   }
-
-  // Default category if none found
-  if (result.categories.length === 0) {
-    result.categories.push('AI Companion');
+  if (combinedText.includes('24/7') || combinedText.includes('always available')) {
+    prosSet.add('24/7 availability');
   }
-
-  // Enhanced pros/cons from search results
-  if (searchText.length > 0) {
-    const prosKeywords = [];
-    const consKeywords = [];
-
-    if (searchText.includes('easy to use') || searchText.includes('user-friendly')) {
-      prosKeywords.push('User-friendly interface');
-    }
-    if (searchText.includes('realistic') || searchText.includes('natural')) {
-      prosKeywords.push('Realistic conversations');
-    }
-    if (searchText.includes('free') || searchText.includes('no cost')) {
-      prosKeywords.push('Free tier available');
-    }
-    if (searchText.includes('24/7') || searchText.includes('always available')) {
-      prosKeywords.push('24/7 availability');
-    }
-    if (searchText.includes('fast') || searchText.includes('quick response')) {
-      prosKeywords.push('Fast responses');
-    }
-
-    if (searchText.includes('expensive') || searchText.includes('pricey')) {
-      consKeywords.push('Higher pricing');
-    }
-    if (searchText.includes('limited free') || searchText.includes('restricted')) {
-      consKeywords.push('Limited free features');
-    }
-    if (searchText.includes('slow') || searchText.includes('laggy')) {
-      consKeywords.push('Occasional slow responses');
-    }
-
-    if (prosKeywords.length > 0) {
-      result.pros = prosKeywords.join(', ') + (result.pros ? ', ' + result.pros : '');
-    }
-    if (consKeywords.length > 0) {
-      result.cons = consKeywords.join(', ') + (result.cons ? ', ' + result.cons : '');
-    }
+  if (combinedText.includes('free')) {
+    prosSet.add('Free tier available');
+  }
+  if (combinedText.includes('realistic') || combinedText.includes('natural')) {
+    prosSet.add('Natural conversations');
+  }
+  if (combinedText.includes('easy') || combinedText.includes('user-friendly') || combinedText.includes('simple')) {
+    prosSet.add('Easy to use');
+  }
+  if (combinedText.includes('fast') || combinedText.includes('quick response')) {
+    prosSet.add('Fast responses');
+  }
+  if (combinedText.includes('mobile app') || combinedText.includes('ios') || combinedText.includes('android')) {
+    prosSet.add('Mobile app available');
   }
 
-  // Try to extract pricing information from pricing page or main page
-  const pricingContent = pricingHtml || html;
-  const priceMatches = pricingContent.match(/\$(\d+(?:\.\d{2})?)/g);
+  // Cons detection
+  if (combinedText.includes('expensive') || combinedText.includes('costly')) {
+    consSet.add('Higher pricing');
+  }
+  if (combinedText.includes('limited free')) {
+    consSet.add('Limited free features');
+  }
+  if (combinedText.includes('no mobile app')) {
+    consSet.add('No mobile app');
+  }
+  if (combinedText.includes('web only')) {
+    consSet.add('Web-only platform');
+  }
 
-  if (priceMatches && priceMatches.length > 0) {
-    const prices = priceMatches.map(p => parseFloat(p.replace('$', ''))).filter(p => p > 0);
-    const uniquePrices = [...new Set(prices)].sort((a, b) => a - b);
+  // Add default pros/cons if none found
+  if (prosSet.size === 0) {
+    prosSet.add('AI-powered conversations');
+    prosSet.add('Personalized interactions');
+    prosSet.add('Easy to get started');
+  }
+  if (consSet.size === 0) {
+    consSet.add('Requires internet connection');
+    consSet.add('Premium features require subscription');
+  }
 
-    const plans = [];
+  result.pros = Array.from(prosSet).join(', ');
+  result.cons = Array.from(consSet).join(', ');
 
-    // Add free plan if mentioned
-    if (htmlLower.includes('free') || htmlLower.includes('no credit card')) {
-      plans.push({
-        name: "Free Plan",
-        price: 0,
-        period: "free",
-        features: [
-          "✅ Basic access",
-          "✅ Limited messages",
-          "❌ Premium features"
-        ]
-      });
+  // Extract pricing
+  const allPrices = [];
+  const priceMatches = combinedText.matchAll(/\$(\d+(?:\.\d{2})?)/g);
+  for (const match of priceMatches) {
+    const price = parseFloat(match[1]);
+    if (price > 0 && price < 1000) {
+      allPrices.push(price);
     }
+  }
 
-    // Add pricing tiers based on found prices
-    uniquePrices.slice(0, 3).forEach((price, index) => {
-      const tierNames = ["Starter", "Premium", "Pro"];
-      plans.push({
-        name: `${tierNames[index] || 'Premium'} Plan`,
-        price: price,
-        period: "monthly",
-        features: [
-          "✅ Unlimited messages",
-          "✅ Premium features",
-          "✅ Priority support"
-        ]
-      });
+  const uniquePrices = [...new Set(allPrices)].sort((a, b) => a - b);
+
+  // Build pricing plans
+  const plans = [];
+
+  if (combinedText.includes('free') || combinedText.includes('no cost') || combinedText.includes('$0')) {
+    plans.push({
+      name: "Free Plan",
+      price: 0,
+      period: "free",
+      features: [
+        "✅ Basic AI chat",
+        "✅ Limited messages",
+        "❌ Premium features"
+      ]
     });
-
-    if (plans.length > 0) {
-      result.pricing_plans = plans;
-    }
   }
 
-  // Generate basic benefits
-  result.benefits = [
-    {
-      icon: "💬",
-      title: "AI Conversations",
-      description: "Natural chat interactions"
-    },
-    {
-      icon: "🔒",
-      title: "Privacy",
-      description: "Secure conversations"
-    },
-    {
-      icon: "⚡",
-      title: "Fast Responses",
-      description: "Quick AI replies"
-    }
-  ];
+  uniquePrices.slice(0, 3).forEach((price, index) => {
+    const tierNames = ["Basic", "Premium", "Pro"];
+    plans.push({
+      name: `${tierNames[index] || 'Premium'} Plan`,
+      price: price,
+      period: "monthly",
+      features: [
+        "✅ Unlimited messages",
+        "✅ Premium AI features",
+        "✅ Priority support"
+      ]
+    });
+  });
 
-  // Set basic features, pros, cons
-  result.key_features = "AI chat, Personalized conversations, Memory system";
-  result.pros = "Easy to use, Good AI responses, Accessible platform";
-  result.cons = "Limited free tier, Requires account";
-
-  // Add AI-specific improvements based on URL domain
-  if (url.includes('telegram') || url.includes('t.me')) {
-    result.benefits[0].icon = "📱";
-    result.benefits[0].title = "Telegram Integration";
-    result.benefits[0].description = "Direct messaging convenience";
+  if (plans.length > 0) {
+    result.pricing_plans = plans;
   }
 
   return result;

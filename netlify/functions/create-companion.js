@@ -30,10 +30,7 @@ exports.handler = async (event, context) => {
       website_url: data.website_url,
       affiliate_url: data.affiliate_url || data.website_url,
       image_url: data.image_url,
-      categories: data.categories || [],
-      badges: data.badges || [],
       featured: data.featured || false,
-      platform: data.platform,
       status: 'Active',
       is_free: data.is_free !== undefined ? data.is_free : true,
       created_date: new Date().toISOString(),
@@ -43,12 +40,6 @@ exports.handler = async (event, context) => {
     // Add optional fields if provided
     if (data.pricing_plans) {
       recordData.pricing_plans = data.pricing_plans;
-    }
-    if (data.benefits) {
-      recordData.benefits = data.benefits;
-    }
-    if (data.key_features) {
-      recordData.key_features = data.key_features;
     }
     if (data.pros) {
       recordData.pros = data.pros;
