@@ -37,34 +37,24 @@ exports.handler = async (event, context) => {
 
     const table = base(process.env.AIRTABLE_TABLE_ID_CG);
 
-    // Prepare record data - MINIMAL VERSION - only absolute essentials
+    // Prepare record data - USE CORRECT AIRTABLE FIELD NAMES
     const recordData = {
       name: data.name,
       slug: data.slug,
       description: data.description,
-      short_description: data.short_description,
-      website_url: data.website_url
+      tagline: data.short_description, // Airtable field is 'tagline' not 'short_description'
+      website_url: data.website_url,
+      logo_url: data.image_url, // Airtable field is 'logo_url' not 'image_url'
+      status: 'Active'
     };
 
-    // Add optional fields one by one, with validation
+    // Add optional fields
     if (data.rating) {
       recordData.rating = parseFloat(data.rating);
     }
 
-    if (data.affiliate_url) {
-      recordData.affiliate_url = data.affiliate_url;
-    }
-
-    if (data.image_url) {
-      recordData.image_url = data.image_url;
-    }
-
     if (data.featured !== undefined) {
-      recordData.featured = data.featured;
-    }
-
-    if (data.is_free !== undefined) {
-      recordData.is_free = data.is_free;
+      recordData.is_featured = data.featured; // Airtable field is 'is_featured' not 'featured'
     }
 
     // Add text fields only if they have content
