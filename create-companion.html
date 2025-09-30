@@ -180,6 +180,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="pricing_url">Pricing Page URL</label>
+                    <input type="url" id="pricing_url" name="pricing_url">
+                    <small>Optional: URL to pricing page for better pricing plan generation</small>
+                </div>
+
+                <div class="form-group">
                     <label for="image_url">Image URL *</label>
                     <input type="text" id="image_url" name="image_url" value="../images/logos/" required>
                     <small>Path to logo image (e.g., "../images/logos/companion-name.png")</small>
@@ -225,32 +231,15 @@
 
                 <!-- Pricing -->
                 <div class="form-group">
-                    <label for="min_price">Minimum Price *</label>
-                    <input type="number" id="min_price" name="min_price" min="0" step="0.01" value="0" required>
-                    <small>Starting price (0 for free)</small>
-                </div>
-
-                <div class="form-group">
                     <label for="pricing_plans">Pricing Plans (JSON)</label>
                     <textarea id="pricing_plans" name="pricing_plans" style="font-family: monospace; min-height: 150px;"></textarea>
-                    <small>JSON array of pricing plans (optional)</small>
+                    <small>JSON array of pricing plans (auto-generated or manual)</small>
                 </div>
 
                 <div class="form-group">
                     <label for="benefits">Benefits (JSON)</label>
                     <textarea id="benefits" name="benefits" style="font-family: monospace;"></textarea>
                     <small>JSON array of benefits with icon, title, description (optional)</small>
-                </div>
-
-                <!-- Additional Info -->
-                <div class="form-group">
-                    <label for="best_for">Best For</label>
-                    <input type="text" id="best_for" name="best_for">
-                </div>
-
-                <div class="form-group">
-                    <label for="content_policy">Content Policy</label>
-                    <input type="text" id="content_policy" name="content_policy">
                 </div>
 
                 <!-- Checkboxes -->
@@ -264,14 +253,6 @@
                         <label>
                             <input type="checkbox" id="is_free" name="is_free" checked>
                             Free Version Available
-                        </label>
-                        <label>
-                            <input type="checkbox" id="is_ai_girlfriend" name="is_ai_girlfriend">
-                            AI Girlfriend
-                        </label>
-                        <label>
-                            <input type="checkbox" id="is_nsfw" name="is_nsfw">
-                            NSFW
                         </label>
                     </div>
                 </div>
@@ -299,6 +280,7 @@
         // Generate fields from URL
         generateBtn.addEventListener('click', async () => {
             const websiteUrl = document.getElementById('website_url').value;
+            const pricingUrl = document.getElementById('pricing_url').value;
 
             if (!websiteUrl) {
                 showMessage('Please enter a website URL first', 'error');
@@ -314,7 +296,10 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ url: websiteUrl })
+                    body: JSON.stringify({
+                        url: websiteUrl,
+                        pricing_url: pricingUrl
+                    })
                 });
 
                 const result = await response.json();
@@ -347,15 +332,6 @@
                     }
                     if (result.cons) {
                         document.getElementById('cons').value = result.cons;
-                    }
-                    if (result.best_for) {
-                        document.getElementById('best_for').value = result.best_for;
-                    }
-                    if (result.content_policy) {
-                        document.getElementById('content_policy').value = result.content_policy;
-                    }
-                    if (result.min_price !== undefined) {
-                        document.getElementById('min_price').value = result.min_price;
                     }
                     if (result.platform) {
                         document.getElementById('platform').value = result.platform;
@@ -398,9 +374,9 @@
             for (let [key, value] of formData.entries()) {
                 if (key === 'categories' || key === 'badges') {
                     data[key] = value.split(',').map(v => v.trim()).filter(v => v);
-                } else if (key === 'featured' || key === 'is_free' || key === 'is_ai_girlfriend' || key === 'is_nsfw') {
+                } else if (key === 'featured' || key === 'is_free') {
                     data[key] = formData.get(key) === 'on';
-                } else if (key === 'rating' || key === 'min_price') {
+                } else if (key === 'rating') {
                     data[key] = parseFloat(value);
                 } else if (key === 'pricing_plans' || key === 'benefits') {
                     // Try to parse JSON, keep as string if invalid

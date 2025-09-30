@@ -35,10 +35,7 @@ exports.handler = async (event, context) => {
       featured: data.featured || false,
       platform: data.platform,
       status: 'Active',
-      is_ai_girlfriend: data.is_ai_girlfriend || false,
-      is_nsfw: data.is_nsfw || false,
       is_free: data.is_free !== undefined ? data.is_free : true,
-      min_price: data.min_price || 0,
       created_date: new Date().toISOString(),
       updated_date: new Date().toISOString()
     };
@@ -58,12 +55,6 @@ exports.handler = async (event, context) => {
     }
     if (data.cons) {
       recordData.cons = data.cons;
-    }
-    if (data.best_for) {
-      recordData.best_for = data.best_for;
-    }
-    if (data.content_policy) {
-      recordData.content_policy = data.content_policy;
     }
 
     // Create record in Airtable

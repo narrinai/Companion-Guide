@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { url } = JSON.parse(event.body);
+    const { url, pricing_url } = JSON.parse(event.body);
 
     if (!url) {
       return {
@@ -21,8 +21,18 @@ exports.handler = async (event, context) => {
     // Fetch website content
     const html = await fetchWebsite(url);
 
-    // Use Claude to analyze the website
-    const analysis = await analyzeWebsite(html, url);
+    // Fetch pricing page if provided
+    let pricingHtml = '';
+    if (pricing_url) {
+      try {
+        pricingHtml = await fetchWebsite(pricing_url);
+      } catch (error) {
+        console.log('Could not fetch pricing URL:', error.message);
+      }
+    }
+
+    // Analyze the website
+    const analysis = await analyzeWebsite(html, url, pricingHtml);
 
     return {
       statusCode: 200,
@@ -79,7 +89,7 @@ function fetchWebsite(url) {
   });
 }
 
-async function analyzeWebsite(html, url) {
+async function analyzeWebsite(html, url, pricingHtml = '') {
   // Simple HTML parsing to extract key information
   const result = {
     description: '',
@@ -91,23 +101,44 @@ async function analyzeWebsite(html, url) {
     benefits: null,
     pros: '',
     cons: '',
-    best_for: '',
-    content_policy: '',
-    min_price: 0,
     platform: 'Web App/Browser'
   };
 
-  // Extract title
+  // Extract title for short description
   const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i);
   if (titleMatch) {
-    const title = titleMatch[1].replace(/[<>]/g, '').trim();
+    let title = titleMatch[1]
+      .replace(/<[^>]*>/g, '') // Remove any HTML tags
+      .replace(/&[^;]+;/g, ' ') // Replace HTML entities
+      .trim();
+
+    // Clean up common title separators
+    title = title.split(/[|\-–—]/)[0].trim();
     result.short_description = title;
   }
 
-  // Extract meta description
+  // Extract meta description for full description
   const metaDescMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["'](.*?)["']/i);
-  if (metaDescMatch) {
-    result.description = metaDescMatch[1].trim();
+  const ogDescMatch = html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["'](.*?)["']/i);
+
+  const description = metaDescMatch?.[1] || ogDescMatch?.[1] || '';
+  if (description) {
+    result.description = description
+      .replace(/<[^>]*>/g, '')
+      .replace(/&[^;]+;/g, ' ')
+      .trim();
+  }
+
+  // If no description found, try to extract from first paragraph
+  if (!result.description) {
+    const firstPMatch = html.match(/<p[^>]*>(.*?)<\/p>/i);
+    if (firstPMatch) {
+      result.description = firstPMatch[1]
+        .replace(/<[^>]*>/g, '')
+        .replace(/&[^;]+;/g, ' ')
+        .trim()
+        .substring(0, 300);
+    }
   }
 
   // Check for common keywords to determine categories
@@ -117,14 +148,8 @@ async function analyzeWebsite(html, url) {
     result.categories.push('Telegram');
     result.platform = 'Telegram Bot';
   }
-  if (htmlLower.includes('girlfriend') || htmlLower.includes('dating')) {
-    result.categories.push('AI Girlfriend');
-  }
   if (htmlLower.includes('roleplay') || htmlLower.includes('character')) {
     result.categories.push('Roleplay & Character Chat');
-  }
-  if (htmlLower.includes('nsfw') || htmlLower.includes('adult') || htmlLower.includes('18+')) {
-    result.categories.push('NSFW');
   }
   if (htmlLower.includes('image') && htmlLower.includes('generat')) {
     result.categories.push('Image Generation');
@@ -142,22 +167,19 @@ async function analyzeWebsite(html, url) {
     result.categories.push('AI Companion');
   }
 
-  // Try to extract pricing information
-  const priceMatches = html.match(/\$(\d+(?:\.\d{2})?)/g);
-  if (priceMatches && priceMatches.length > 0) {
-    const prices = priceMatches.map(p => parseFloat(p.replace('$', '')));
-    result.min_price = Math.min(...prices);
-  }
+  // Try to extract pricing information from pricing page or main page
+  const pricingContent = pricingHtml || html;
+  const priceMatches = pricingContent.match(/\$(\d+(?:\.\d{2})?)/g);
 
-  // Check for free tier
-  if (htmlLower.includes('free') || htmlLower.includes('no credit card')) {
-    result.min_price = 0;
-  }
-
-  // Generate basic pricing plans structure if prices found
   if (priceMatches && priceMatches.length > 0) {
-    result.pricing_plans = [
-      {
+    const prices = priceMatches.map(p => parseFloat(p.replace('$', ''))).filter(p => p > 0);
+    const uniquePrices = [...new Set(prices)].sort((a, b) => a - b);
+
+    const plans = [];
+
+    // Add free plan if mentioned
+    if (htmlLower.includes('free') || htmlLower.includes('no credit card')) {
+      plans.push({
         name: "Free Plan",
         price: 0,
         period: "free",
@@ -166,18 +188,27 @@ async function analyzeWebsite(html, url) {
           "✅ Limited messages",
           "❌ Premium features"
         ]
-      },
-      {
-        name: "Premium Plan",
-        price: result.min_price > 0 ? result.min_price : 9.99,
+      });
+    }
+
+    // Add pricing tiers based on found prices
+    uniquePrices.slice(0, 3).forEach((price, index) => {
+      const tierNames = ["Starter", "Premium", "Pro"];
+      plans.push({
+        name: `${tierNames[index] || 'Premium'} Plan`,
+        price: price,
         period: "monthly",
         features: [
           "✅ Unlimited messages",
           "✅ Premium features",
           "✅ Priority support"
         ]
-      }
-    ];
+      });
+    });
+
+    if (plans.length > 0) {
+      result.pricing_plans = plans;
+    }
   }
 
   // Generate basic benefits
@@ -203,15 +234,12 @@ async function analyzeWebsite(html, url) {
   result.key_features = "AI chat, Personalized conversations, Memory system";
   result.pros = "Easy to use, Good AI responses, Accessible platform";
   result.cons = "Limited free tier, Requires account";
-  result.best_for = "AI companion experiences";
-  result.content_policy = "AI companion interactions";
 
   // Add AI-specific improvements based on URL domain
   if (url.includes('telegram') || url.includes('t.me')) {
     result.benefits[0].icon = "📱";
     result.benefits[0].title = "Telegram Integration";
     result.benefits[0].description = "Direct messaging convenience";
-    result.best_for = "Telegram-based AI conversations";
   }
 
   return result;
