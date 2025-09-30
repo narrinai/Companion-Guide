@@ -13,6 +13,23 @@ exports.handler = async (event, context) => {
     // Parse request body
     const data = JSON.parse(event.body);
 
+    console.log('Received data:', {
+      name: data.name,
+      slug: data.slug,
+      hasDescription: !!data.description,
+      hasPricingPlans: !!data.pricing_plans
+    });
+
+    // Validate required fields
+    if (!data.name || !data.slug || !data.description || !data.short_description || !data.website_url) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          error: 'Missing required fields: name, slug, description, short_description, website_url'
+        })
+      };
+    }
+
     // Configure Airtable
     const base = new Airtable({
       apiKey: process.env.AIRTABLE_TOKEN_CG
@@ -20,11 +37,11 @@ exports.handler = async (event, context) => {
 
     const table = base(process.env.AIRTABLE_TABLE_ID_CG);
 
-    // Prepare record data
+    // Prepare record data - only include fields that exist in Airtable
     const recordData = {
       name: data.name,
       slug: data.slug,
-      rating: data.rating,
+      rating: data.rating || 4.5,
       description: data.description,
       short_description: data.short_description,
       website_url: data.website_url,
@@ -32,21 +49,21 @@ exports.handler = async (event, context) => {
       image_url: data.image_url,
       featured: data.featured || false,
       status: 'Active',
-      is_free: data.is_free !== undefined ? data.is_free : true,
-      created_date: new Date().toISOString(),
-      updated_date: new Date().toISOString()
+      is_free: data.is_free !== undefined ? data.is_free : true
     };
 
-    // Add optional fields if provided
-    if (data.pricing_plans) {
+    // Add optional fields only if they have content
+    if (data.pricing_plans && data.pricing_plans.trim()) {
       recordData.pricing_plans = data.pricing_plans;
     }
-    if (data.pros) {
+    if (data.pros && data.pros.trim()) {
       recordData.pros = data.pros;
     }
-    if (data.cons) {
+    if (data.cons && data.cons.trim()) {
       recordData.cons = data.cons;
     }
+
+    console.log('Creating record with fields:', Object.keys(recordData));
 
     // Create record in Airtable
     const record = await table.create(recordData);
@@ -62,11 +79,18 @@ exports.handler = async (event, context) => {
 
   } catch (error) {
     console.error('Error creating companion:', error);
+    console.error('Error details:', {
+      message: error.message,
+      statusCode: error.statusCode,
+      error: error.error
+    });
 
+    // Return more detailed error info
     return {
       statusCode: 500,
       body: JSON.stringify({
-        error: error.message || 'Failed to create companion'
+        error: error.message || 'Failed to create companion',
+        details: error.error || error.statusCode || 'Unknown error'
       })
     };
   }
