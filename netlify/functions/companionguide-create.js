@@ -37,29 +37,44 @@ exports.handler = async (event, context) => {
 
     const table = base(process.env.AIRTABLE_TABLE_ID_CG);
 
-    // Prepare record data - only include fields that exist in Airtable
+    // Prepare record data - MINIMAL VERSION - only absolute essentials
     const recordData = {
       name: data.name,
       slug: data.slug,
-      rating: data.rating || 4.5,
       description: data.description,
       short_description: data.short_description,
-      website_url: data.website_url,
-      affiliate_url: data.affiliate_url || data.website_url,
-      image_url: data.image_url,
-      featured: data.featured || false,
-      status: 'Active',
-      is_free: data.is_free !== undefined ? data.is_free : true
+      website_url: data.website_url
     };
 
-    // Add optional fields only if they have content
-    if (data.pricing_plans && data.pricing_plans.trim()) {
+    // Add optional fields one by one, with validation
+    if (data.rating) {
+      recordData.rating = parseFloat(data.rating);
+    }
+
+    if (data.affiliate_url) {
+      recordData.affiliate_url = data.affiliate_url;
+    }
+
+    if (data.image_url) {
+      recordData.image_url = data.image_url;
+    }
+
+    if (data.featured !== undefined) {
+      recordData.featured = data.featured;
+    }
+
+    if (data.is_free !== undefined) {
+      recordData.is_free = data.is_free;
+    }
+
+    // Add text fields only if they have content
+    if (data.pricing_plans && typeof data.pricing_plans === 'string' && data.pricing_plans.trim()) {
       recordData.pricing_plans = data.pricing_plans;
     }
-    if (data.pros && data.pros.trim()) {
+    if (data.pros && typeof data.pros === 'string' && data.pros.trim()) {
       recordData.pros = data.pros;
     }
-    if (data.cons && data.cons.trim()) {
+    if (data.cons && typeof data.cons === 'string' && data.cons.trim()) {
       recordData.cons = data.cons;
     }
 
