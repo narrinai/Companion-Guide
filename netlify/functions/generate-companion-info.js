@@ -203,74 +203,108 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
   const searchText = searchResults.join(' ');
   const combinedText = (htmlLower + ' ' + searchText).toLowerCase();
 
-  // Extract short description from title
+  // Extract features and key information for better descriptions
+  const featuresFound = [];
+  const keywordsFound = new Set();
+
+  if (combinedText.includes('telegram')) keywordsFound.add('Telegram-based');
+  if (combinedText.includes('voice') || combinedText.includes('audio')) {
+    keywordsFound.add('voice interactions');
+    featuresFound.push('voice chat');
+  }
+  if (combinedText.includes('image generat')) {
+    keywordsFound.add('image generation');
+    featuresFound.push('AI image generation');
+  }
+  if (combinedText.includes('video')) {
+    keywordsFound.add('video generation');
+    featuresFound.push('video content');
+  }
+  if (combinedText.includes('memory') || combinedText.includes('remember')) {
+    keywordsFound.add('advanced memory');
+    featuresFound.push('memory system');
+  }
+  if (combinedText.includes('roleplay') || combinedText.includes('character')) {
+    keywordsFound.add('roleplay scenarios');
+    featuresFound.push('character roleplay');
+  }
+  if (combinedText.includes('personality') || combinedText.includes('custom')) {
+    keywordsFound.add('customizable personalities');
+    featuresFound.push('personality customization');
+  }
+  if (combinedText.includes('nsfw') || combinedText.includes('adult') || combinedText.includes('18+')) {
+    keywordsFound.add('NSFW content');
+  }
+  if (combinedText.includes('girlfriend') || combinedText.includes('dating')) {
+    keywordsFound.add('AI girlfriend');
+  }
+  if (combinedText.includes('wellness') || combinedText.includes('mental health')) {
+    keywordsFound.add('emotional support');
+  }
+  if (combinedText.includes('story') || combinedText.includes('narrative')) {
+    keywordsFound.add('storytelling');
+    featuresFound.push('interactive stories');
+  }
+
+  // Build comprehensive description (single sentence, 30-40 words)
+  const descParts = [];
+  descParts.push(`${companionName} is an AI companion platform`);
+
+  if (keywordsFound.size > 0) {
+    const features = Array.from(keywordsFound).slice(0, 4).join(', ');
+    descParts.push(`offering ${features}`);
+  }
+
+  // Add purpose/benefit
+  if (combinedText.includes('personal growth') || combinedText.includes('wellness')) {
+    descParts.push('for personal growth and emotional wellness');
+  } else if (combinedText.includes('girlfriend') || combinedText.includes('romance')) {
+    descParts.push('for intimate virtual relationships and companionship');
+  } else if (combinedText.includes('roleplay') || combinedText.includes('character')) {
+    descParts.push('for immersive character interactions and roleplay experiences');
+  } else {
+    descParts.push('for personalized AI conversations and meaningful connections');
+  }
+
+  result.description = descParts.join(' ') + '.';
+
+  // Build short description (2 sentences, 25-35 words total)
+  let shortDesc = '';
+
+  // Extract title for first part
   for (const { html } of htmlContents) {
     const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i);
-    if (titleMatch && !result.short_description) {
+    if (titleMatch && !shortDesc) {
       let title = titleMatch[1]
         .replace(/<[^>]*>/g, '')
         .replace(/&[^;]+;/g, ' ')
         .trim();
-
       title = title.split(/[|\-–—]/)[0].trim();
-      if (title.length > 10) {
-        result.short_description = title;
+      if (title.length > 10 && title.length < 80) {
+        shortDesc = title;
         break;
       }
     }
   }
 
-  // Extract description from meta tags
-  for (const { html } of htmlContents) {
-    if (result.description) break;
-
-    const metaDescMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["'](.*?)["']/i);
-    const ogDescMatch = html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["'](.*?)["']/i);
-
-    const description = metaDescMatch?.[1] || ogDescMatch?.[1] || '';
-    if (description) {
-      result.description = description
-        .replace(/<[^>]*>/g, '')
-        .replace(/&[^;]+;/g, ' ')
-        .trim();
+  // If no good title, build one
+  if (!shortDesc) {
+    if (combinedText.includes('girlfriend')) {
+      shortDesc = `AI girlfriend platform with ${featuresFound.slice(0, 2).join(' and ')}`;
+    } else {
+      shortDesc = `AI companion platform featuring ${featuresFound.slice(0, 2).join(' and ')}`;
     }
   }
 
-  // Enhance description with content from paragraphs
-  if (!result.description || result.description.length < 100) {
-    const paragraphs = [];
-    for (const { html } of htmlContents) {
-      const pMatches = html.matchAll(/<p[^>]*>(.*?)<\/p>/gi);
-      for (const match of pMatches) {
-        const text = match[1]
-          .replace(/<[^>]*>/g, '')
-          .replace(/&[^;]+;/g, ' ')
-          .trim();
-
-        if (text.length > 50 && !text.toLowerCase().includes('cookie') && !text.toLowerCase().includes('privacy')) {
-          paragraphs.push(text);
-          if (paragraphs.length >= 3) break;
-        }
-      }
-      if (paragraphs.length >= 3) break;
-    }
-
-    if (paragraphs.length > 0) {
-      result.description = paragraphs.join(' ').substring(0, 500);
-    }
+  // Add second sentence with key features
+  const keyFeatures = Array.from(keywordsFound).slice(0, 3).join(', ');
+  if (keyFeatures) {
+    shortDesc += `. Features ${keyFeatures} for enhanced AI interactions`;
+  } else {
+    shortDesc += `. Personalized AI companion for meaningful conversations and connections`;
   }
 
-  // Use search results as fallback or enhancement
-  if (!result.description && searchResults.length > 0) {
-    result.description = searchResults.slice(0, 3).join(' ').substring(0, 500);
-  } else if (searchResults.length > 0 && result.description.length < 200) {
-    result.description += ' ' + searchResults[0];
-  }
-
-  // Ensure description is comprehensive
-  if (result.description.length < 150 && searchResults.length > 0) {
-    result.description = `${companionName} is an AI companion platform. ${searchResults.slice(0, 2).join(' ')}`.substring(0, 500);
-  }
+  result.short_description = shortDesc + '.';
 
   // Extract and analyze features from all sources
   const features = new Set();
@@ -361,33 +395,109 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
 
   const uniquePrices = [...new Set(allPrices)].sort((a, b) => a - b);
 
-  // Build pricing plans
+  // Build comprehensive pricing plans with detailed features
   const plans = [];
+  const planEmojis = ["🔨", "🥉", "🥈", "🥇"];
+  const tierNames = ["Free", "Starter", "Premium", "Ultimate"];
 
-  if (combinedText.includes('free') || combinedText.includes('no cost') || combinedText.includes('$0')) {
+  // Extract detailed features from content
+  const detectedFeatures = {
+    hasUnlimited: combinedText.includes('unlimited'),
+    hasVoice: combinedText.includes('voice') || combinedText.includes('audio'),
+    hasImage: combinedText.includes('image generat'),
+    hasVideo: combinedText.includes('video'),
+    hasMemory: combinedText.includes('memory') || combinedText.includes('remember'),
+    hasRoleplay: combinedText.includes('roleplay') || combinedText.includes('character'),
+    hasCustomization: combinedText.includes('custom') || combinedText.includes('personality'),
+    hasNoAds: combinedText.includes('no ads') || combinedText.includes('ad-free'),
+    hasPriority: combinedText.includes('priority'),
+    hasSupport: combinedText.includes('support') || combinedText.includes('help'),
+    hasMultipleModels: combinedText.includes('model') || combinedText.includes('llm'),
+    hasAPI: combinedText.includes('api'),
+    hasCommunity: combinedText.includes('discord') || combinedText.includes('community')
+  };
+
+  // Free plan
+  if (combinedText.includes('free') || uniquePrices.length > 0) {
+    const freeFeatures = [
+      "✅ Basic AI conversations",
+      "✅ Limited messages per day",
+      detectedFeatures.hasMemory ? "✅ Basic memory system" : "✅ Standard AI responses",
+      detectedFeatures.hasRoleplay ? "✅ Basic character interactions" : "✅ Core features access",
+    ];
+
+    if (detectedFeatures.hasNoAds) freeFeatures.push("✅ No advertisements");
+    if (detectedFeatures.hasCommunity) freeFeatures.push("✅ Community access");
+
+    freeFeatures.push("❌ Unlimited messaging");
+    freeFeatures.push("❌ Premium AI models");
+    if (detectedFeatures.hasImage) freeFeatures.push("❌ Image generation");
+    if (detectedFeatures.hasVideo) freeFeatures.push("❌ Video generation");
+
     plans.push({
-      name: "Free Plan",
+      name: `${tierNames[0]} ${planEmojis[0]}`,
       price: 0,
       period: "free",
-      features: [
-        "✅ Basic AI chat",
-        "✅ Limited messages",
-        "❌ Premium features"
-      ]
+      features: freeFeatures
     });
   }
 
+  // Build paid plans based on detected prices
   uniquePrices.slice(0, 3).forEach((price, index) => {
-    const tierNames = ["Basic", "Premium", "Pro"];
+    const planIndex = index + 1;
+    const features = [];
+
+    // Core features
+    features.push("✅ Unlimited conversations");
+    if (detectedFeatures.hasRoleplay) features.push("✅ Unlimited characters");
+
+    // AI features
+    if (detectedFeatures.hasMemory) {
+      features.push(planIndex >= 2 ? "✅ Enhanced memory system" : "✅ Advanced memory system");
+    }
+    if (detectedFeatures.hasMultipleModels) {
+      features.push(`✅ Access to ${planIndex >= 2 ? 'premium' : 'multiple'} AI models`);
+    }
+
+    // Content generation
+    if (detectedFeatures.hasImage) {
+      const limit = planIndex === 1 ? "20 images/hour" : planIndex === 2 ? "50 images/hour" : "Unlimited images";
+      features.push(`✅ Image generation: ${limit}`);
+    }
+    if (detectedFeatures.hasVideo) {
+      features.push(`✅ Video generation${planIndex >= 2 ? ': Enhanced' : ''}`);
+    }
+    if (detectedFeatures.hasVoice) {
+      const limit = planIndex === 1 ? "40 messages/day" : planIndex === 2 ? "100 messages/day" : "Unlimited";
+      features.push(`✅ Voice/audio messages: ${limit}`);
+    }
+
+    // Platform features
+    if (detectedFeatures.hasNoAds) features.push("✅ Ad-free experience");
+    if (detectedFeatures.hasCustomization) {
+      features.push(`✅ ${planIndex >= 2 ? 'Advanced' : 'Full'} customization`);
+    }
+    if (detectedFeatures.hasPriority && planIndex >= 2) {
+      features.push("✅ Priority response times");
+    }
+
+    // Community & support
+    if (detectedFeatures.hasCommunity) features.push("✅ Private community access");
+    if (detectedFeatures.hasSupport && planIndex >= 2) {
+      features.push(`✅ ${planIndex === 3 ? '24/7' : 'Priority'} support`);
+    }
+
+    // Premium features for higher tiers
+    if (planIndex >= 2) {
+      features.push("✅ Early access to new features");
+      if (detectedFeatures.hasAPI && planIndex === 3) features.push("✅ API access");
+    }
+
     plans.push({
-      name: `${tierNames[index] || 'Premium'} Plan`,
-      price: price,
+      name: `${tierNames[planIndex]} ${planEmojis[planIndex]}`,
+      price: Math.round(price),
       period: "monthly",
-      features: [
-        "✅ Unlimited messages",
-        "✅ Premium AI features",
-        "✅ Priority support"
-      ]
+      features: features
     });
   });
 
