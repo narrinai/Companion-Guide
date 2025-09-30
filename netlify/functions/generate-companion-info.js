@@ -246,10 +246,10 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     featuresFound.push('interactive stories');
   }
 
-  // Build comprehensive description from all sources
+  // Build description (25-30 words, factual, third person)
   let description = '';
 
-  // Try to get from meta description first
+  // Try meta description first
   for (const { html } of htmlContents) {
     const metaDescMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["'](.*?)["']/i);
     const ogDescMatch = html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["'](.*?)["']/i);
@@ -264,91 +264,68 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     }
   }
 
-  // Enhance with paragraphs if meta description is too short or missing
-  if (!description || description.length < 100) {
-    const paragraphs = [];
-    for (const { html } of htmlContents) {
-      const pMatches = html.matchAll(/<p[^>]*>(.*?)<\/p>/gi);
-      for (const match of pMatches) {
-        const text = match[1]
-          .replace(/<[^>]*>/g, '')
-          .replace(/&[^;]+;/g, ' ')
-          .trim();
+  // If no meta or too long, build concise description
+  if (!description || description.length > 200) {
+    const features = Array.from(keywordsFound).slice(0, 3);
+    const featureText = features.length > 0 ? features.join(', ') : 'AI conversations';
 
-        if (text.length > 80 && !text.toLowerCase().includes('cookie') && !text.toLowerCase().includes('privacy')) {
-          paragraphs.push(text);
-          if (paragraphs.length >= 2) break;
-        }
-      }
-      if (paragraphs.length >= 2) break;
-    }
-
-    if (paragraphs.length > 0) {
-      description = paragraphs.join(' ');
-    }
-  }
-
-  // Use search results if still no good description
-  if (!description || description.length < 100) {
-    if (searchResults.length > 0) {
-      description = searchResults.slice(0, 2).join(' ');
+    // Build third-person description
+    if (combinedText.includes('telegram')) {
+      description = `Telegram-based AI companion bot with ${featureText}. Offers encrypted messaging and personalized chat experiences.`;
+    } else if (combinedText.includes('girlfriend')) {
+      description = `AI girlfriend platform featuring ${featureText}. Provides virtual companionship with personalized interactions.`;
+    } else if (combinedText.includes('roleplay') || combinedText.includes('character')) {
+      description = `AI character chat platform supporting ${featureText}. Offers diverse character interactions and immersive roleplay scenarios.`;
     } else {
-      // Fallback: build from detected features
-      const featureList = Array.from(keywordsFound).slice(0, 4).join(', ');
-      description = `${companionName} offers ${featureList || 'AI-powered conversations'} for personalized virtual companionship and meaningful interactions.`;
+      description = `AI companion platform with ${featureText}. Provides personalized conversations and meaningful virtual interactions.`;
     }
   }
 
-  // Ensure reasonable length
-  if (description.length > 500) {
-    description = description.substring(0, 500).trim();
-    // Try to end at a sentence
+  // Trim to reasonable length (keep under 200 chars, ~25-30 words)
+  if (description.length > 200) {
+    description = description.substring(0, 200).trim();
     const lastPeriod = description.lastIndexOf('.');
-    if (lastPeriod > 200) {
+    if (lastPeriod > 100) {
       description = description.substring(0, lastPeriod + 1);
     }
   }
 
   result.description = description;
 
-  // Build short description - extract title and enhance
+  // Build short description (10-15 words, very concise)
   let shortDesc = '';
+  const topFeatures = Array.from(keywordsFound).slice(0, 3);
 
-  // Get title from first URL
-  for (const { html } of htmlContents) {
-    const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i);
-    if (titleMatch) {
-      let title = titleMatch[1]
-        .replace(/<[^>]*>/g, '')
-        .replace(/&[^;]+;/g, ' ')
-        .trim();
+  // Build ultra-concise description
+  if (combinedText.includes('girlfriend')) {
+    const nsfw = combinedText.includes('nsfw') || combinedText.includes('adult') ? 'NSFW ' : '';
+    const features = [];
+    if (combinedText.includes('uncensored')) features.push('uncensored chat');
+    if (hasImage) features.push('images');
+    if (hasVoice) features.push('voice messages');
+    if (hasVideo) features.push('video');
 
-      // Clean up title (remove site name, separators)
-      title = title.split(/[|\-–—]/)[0].trim();
-
-      if (title.length > 10) {
-        shortDesc = title;
-        break;
-      }
-    }
-  }
-
-  // Fallback: create short description from features
-  if (!shortDesc) {
-    const topFeatures = Array.from(keywordsFound).slice(0, 3);
-    if (topFeatures.length > 0) {
-      shortDesc = `AI companion platform with ${topFeatures.join(', ')}`;
+    if (features.length > 0) {
+      shortDesc = `${nsfw}AI girlfriend with ${features.join(', ')}`;
     } else {
-      shortDesc = `${companionName} - AI-powered virtual companion for personalized conversations`;
+      shortDesc = `${nsfw}AI girlfriend for virtual companionship`;
+    }
+  } else if (combinedText.includes('telegram')) {
+    shortDesc = `Telegram AI companion bot with private encrypted messaging`;
+  } else if (combinedText.includes('roleplay') || combinedText.includes('character')) {
+    shortDesc = `AI character chat with roleplay scenarios and customization`;
+  } else {
+    // Generic companion
+    if (topFeatures.length > 0) {
+      shortDesc = `AI companion platform with ${topFeatures.slice(0, 2).join(' and ')}`;
+    } else {
+      shortDesc = `AI-powered virtual companion for personalized conversations`;
     }
   }
 
-  // Limit length and add period if needed
-  if (shortDesc.length > 200) {
-    shortDesc = shortDesc.substring(0, 200).trim();
-  }
-  if (!shortDesc.endsWith('.')) {
-    shortDesc += '.';
+  // Ensure it's concise (max 100 chars, ~10-15 words)
+  if (shortDesc.length > 100) {
+    shortDesc = shortDesc.substring(0, 100).trim();
   }
 
   result.short_description = shortDesc;
