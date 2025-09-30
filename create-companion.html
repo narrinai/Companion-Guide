@@ -234,7 +234,7 @@
             generateBtn.textContent = '🔄 Generating...';
 
             try {
-                const response = await fetch('/.netlify/functions/generate-companion-info', {
+                const response = await fetch('/.netlify/functions/companionguide-generate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -330,7 +330,7 @@
             data.image_url = `../images/logos/${data.slug}.png`;
 
             try {
-                const response = await fetch('/.netlify/functions/create-companion', {
+                const response = await fetch('/.netlify/functions/companionguide-create', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
