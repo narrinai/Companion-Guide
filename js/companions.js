@@ -1,6 +1,6 @@
 class CompanionManager {
   constructor() {
-    this.apiBaseUrl = '/.netlify/functions';
+    this.apiBaseUrl = '/.netlify/functions/companionguide';
     this.companions = [];
   }
 
@@ -12,7 +12,7 @@ class CompanionManager {
       if (options.sort) params.append('sort', options.sort);
       if (options.limit) params.append('limit', options.limit);
 
-      const url = `${this.apiBaseUrl}/get-companions${params.toString() ? '?' + params.toString() : ''}`;
+      const url = `${this.apiBaseUrl}-get${params.toString() ? '?' + params.toString() : ''}`;
       const response = await fetch(url);
 
       if (!response.ok) {
