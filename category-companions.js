@@ -150,18 +150,32 @@ class CategoryCompanions {
         const isFree = pricingPlans.length > 0 && pricingPlans.some(p => p.price === 0);
         const hasMemory = features.some(f => f.title && (f.title.toLowerCase().includes('memory') || f.title.toLowerCase().includes('remember')));
 
-        // Determine best for based on features
-        if (isFree) return 'Budget users';
-        if (hasVideo && hasImageGen) return 'Multimedia experiences';
-        if (hasVideo) return 'Interactive dating';
-        if (hasImageGen) return 'Visual customization';
-        if (hasVoice) return 'Voice interactions';
-        if (hasMemory) return 'Deep connections';
-        if (categories.includes('nsfw')) return 'Adult content';
-        if (categories.includes('wellness')) return 'Emotional support';
-        if (categories.includes('roleplaying')) return 'Roleplay scenarios';
+        // Determine best for based on features - prioritize unique combinations
+        if (hasVideo && hasImageGen) return 'Multimedia lovers';
+        if (hasVideo && hasVoice) return 'Immersive experiences';
+        if (hasImageGen && hasVoice) return 'Multi-sensory dating';
+        if (hasMemory && hasVoice) return 'Personal connections';
 
-        return 'General use';
+        // Secondary combinations
+        if (hasVideo) return 'Visual experiences';
+        if (hasImageGen) return 'Creative customization';
+        if (hasVoice) return 'Conversational intimacy';
+        if (hasMemory) return 'Long-term relationships';
+
+        // Category-based
+        if (categories.includes('nsfw') && categories.includes('roleplaying')) return 'Fantasy exploration';
+        if (categories.includes('nsfw')) return 'Mature audiences';
+        if (categories.includes('wellness')) return 'Emotional wellness';
+        if (categories.includes('roleplaying')) return 'Story enthusiasts';
+        if (categories.includes('ai-girlfriend')) return 'Romance seekers';
+
+        // Price-based (lowest priority)
+        if (isFree) return 'Budget-conscious users';
+
+        // Fallback based on companion name/features
+        if (features.length > 2) return 'Feature-rich experience';
+
+        return 'Casual users';
     }
 
     getKeyFeature(companion) {
