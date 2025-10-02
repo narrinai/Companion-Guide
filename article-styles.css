@@ -1,5 +1,12 @@
 /* Modern Article Design Styles */
 
+/* Prevent horizontal scroll on mobile */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
 /* Reset and override existing styles */
 .article-hero * {
     box-sizing: border-box;
@@ -408,6 +415,8 @@ body:has(.article-hero) .nav-menu {
 /* Main Article Layout */
 .article-main {
     padding: var(--space-12) 0;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .article-layout {
@@ -416,6 +425,8 @@ body:has(.article-hero) .nav-menu {
     gap: var(--space-12);
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* Table of Contents Sidebar */
@@ -1015,6 +1026,7 @@ body:has(.article-hero) .nav-menu {
     .article-layout {
         grid-template-columns: 1fr;
         gap: var(--space-8);
+        padding: 0 var(--space-4);
     }
 
     .toc-sidebar {
@@ -1025,6 +1037,60 @@ body:has(.article-hero) .nav-menu {
     .article-content {
         order: 2;
         max-width: none;
+        overflow-x: hidden;
+    }
+
+    .article-content * {
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+
+    /* Ensure all containers respect mobile width */
+    .content-section,
+    .platform-card,
+    .feature-showcase,
+    .comparison-vs,
+    .vs-grid,
+    .improvement-list,
+    .tech-features,
+    .nsfw-platforms,
+    .alternatives-overview,
+    .comparison-quick,
+    .matrix-grid,
+    .rec-card,
+    .recommendation-cards,
+    .insights-grid,
+    .final-recommendations,
+    .summary-points {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Make grids stack on mobile */
+    .feature-showcase,
+    .tech-features .tech-row,
+    .insights-grid,
+    .summary-points,
+    .recommendation-boxes {
+        grid-template-columns: 1fr !important;
+    }
+
+    .recommendation-cards {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .matrix-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-3);
+    }
+
+    /* Fix text overflow */
+    h1, h2, h3, h4, h5, h6, p, li, td, th {
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 }
 
