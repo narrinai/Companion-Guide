@@ -200,6 +200,28 @@ class CategoryCompanions {
         return 'AI chat';
     }
 
+    generateStarRating(rating) {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.3; // Show half star for .3 and above
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+        let starsHtml = '';
+
+        for (let i = 0; i < fullStars; i++) {
+            starsHtml += '<span class="star-filled">★</span>';
+        }
+
+        if (hasHalfStar) {
+            starsHtml += '<span class="star-half">★</span>';
+        }
+
+        for (let i = 0; i < emptyStars; i++) {
+            starsHtml += '<span class="star-empty">☆</span>';
+        }
+
+        return starsHtml;
+    }
+
     renderComparisonTable() {
         const tableBody = document.querySelector('.comparison-table tbody');
         if (!tableBody) {
@@ -339,7 +361,7 @@ class CategoryCompanions {
                         <div class="title-section">
                             <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
                             <div class="rating-line">
-                                <span class="stars">${'★'.repeat(Math.floor(rating))}${'☆'.repeat(5-Math.floor(rating))}</span>
+                                <span class="stars">${this.generateStarRating(rating)}</span>
                                 <span class="rating-score">${rating}/5</span>
                                 ${reviewCount > 0 ? `<span class="review-count">(${reviewCount} reviews)</span>` : ''}
                             </div>
