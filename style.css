@@ -2306,25 +2306,13 @@ footer {
     align-items: center;
 }
 
-/* Half star styling */
+/* Half star styling - using gradient for half-filled effect */
 .star-half {
-    position: relative;
+    background: linear-gradient(90deg, var(--accent-orange) 50%, rgba(255, 140, 0, 0.3) 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     display: inline-block;
-    color: var(--accent-orange);
-}
-
-.star-half::before {
-    content: '★';
-    position: absolute;
-    left: 0;
-    width: 50%;
-    overflow: hidden;
-    color: var(--accent-orange);
-}
-
-.star-half::after {
-    content: '★';
-    color: rgba(255, 140, 0, 0.3);
 }
 
 .star-filled {
