@@ -34,9 +34,10 @@ class CategoryCompanions {
         const currentPath = window.location.pathname;
 
         // Map URL paths to Airtable category values
+        // For image-gen we need STRICT matching (must have image-gen tag)
         const categoryMapping = {
             '/categories/adult-content-uncensored-companions': ['nsfw', 'adult', 'uncensored'],
-            '/categories/adult-image-generation-companions': ['image-gen', 'nsfw', 'adult'],
+            '/categories/adult-image-generation-companions': ['image-gen'], // Only show companions with image-gen tag
             '/categories/ai-girlfriend-companions': ['ai-girlfriend', 'romance', 'dating'],
             '/categories/roleplay-character-chat-companions': ['roleplaying', 'character', 'fantasy'],
             '/categories/video-companions-companions': ['video', 'visual'],
@@ -46,9 +47,9 @@ class CategoryCompanions {
         };
 
         // Get categories for current page
-        const pagCategories = categoryMapping[currentPath] || [];
+        const pageCategories = categoryMapping[currentPath] || [];
 
-        if (pagCategories.length === 0) {
+        if (pageCategories.length === 0) {
             // If no mapping found, show featured companions as fallback
             console.warn('No category mapping found for', currentPath, 'showing featured companions');
             return companions.filter(companion => companion.featured).slice(0, 12);
@@ -62,14 +63,14 @@ class CategoryCompanions {
 
             // Check if companion has any of the page categories
             return companion.categories.some(companionCategory =>
-                pagCategories.some(pageCategory =>
+                pageCategories.some(pageCategory =>
                     companionCategory.toLowerCase().includes(pageCategory.toLowerCase()) ||
                     pageCategory.toLowerCase().includes(companionCategory.toLowerCase())
                 )
             );
         });
 
-        console.log(`Found ${filteredCompanions.length} companions for categories:`, pagCategories);
+        console.log(`Found ${filteredCompanions.length} companions for categories:`, pageCategories);
 
         // Sort by featured first, then by rating
         filteredCompanions.sort((a, b) => {
