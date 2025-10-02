@@ -63,9 +63,7 @@ exports.handler = async (event, context) => {
       recordData.is_featured = data.featured; // Airtable field is 'is_featured' not 'featured'
     }
 
-    if (data.is_free !== undefined) {
-      recordData.is_free = data.is_free;
-    }
+    // Note: is_free field doesn't exist in Airtable - removed
 
     // Add text fields only if they have content
     if (data.pricing_plans && typeof data.pricing_plans === 'string' && data.pricing_plans.trim()) {
