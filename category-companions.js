@@ -200,10 +200,11 @@ class CategoryCompanions {
             const pricing = this.getPricingText(companion);
             const keyFeature = this.getKeyFeature(companion);
             const bestFor = this.generateBestFor(companion);
+            const slug = companion.slug || 'unknown';
 
             return `
                 <tr>
-                    <td><strong>${companion.name}</strong></td>
+                    <td><strong><a href="/companions/${slug}">${companion.name}</a></strong></td>
                     <td>${companion.rating}/5</td>
                     <td>${pricing}</td>
                     <td>${keyFeature}</td>
