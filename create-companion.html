@@ -283,7 +283,6 @@
             const urlsInput = document.getElementById('urls').value;
             const urls = urlsInput.split(',').map(url => url.trim()).filter(url => url);
             data.website_url = urls[0] || '';
-            data.affiliate_url = urls[0] || '';
 
             // Convert form data to object
             for (let [key, value] of formData.entries()) {
