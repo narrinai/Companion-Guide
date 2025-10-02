@@ -129,11 +129,25 @@ class CategoryCompanions {
         const features = companion.features || [];
         const categories = companion.categories || [];
 
+        // Parse pricing_plans if it's a string
+        let pricingPlans = [];
+        if (companion.pricing_plans) {
+            if (typeof companion.pricing_plans === 'string') {
+                try {
+                    pricingPlans = JSON.parse(companion.pricing_plans);
+                } catch (e) {
+                    pricingPlans = [];
+                }
+            } else if (Array.isArray(companion.pricing_plans)) {
+                pricingPlans = companion.pricing_plans;
+            }
+        }
+
         // Check for specific features
         const hasImageGen = categories.includes('image-gen');
         const hasVideo = categories.includes('video');
         const hasVoice = features.some(f => f.title && f.title.toLowerCase().includes('voice'));
-        const isFree = companion.pricing_plans && companion.pricing_plans.some(p => p.price === 0);
+        const isFree = pricingPlans.length > 0 && pricingPlans.some(p => p.price === 0);
         const hasMemory = features.some(f => f.title && (f.title.toLowerCase().includes('memory') || f.title.toLowerCase().includes('remember')));
 
         // Determine best for based on features
