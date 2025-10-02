@@ -12,7 +12,7 @@ class CategoryCompanions {
 
     async loadCompanions() {
         try {
-            const response = await fetch('/.netlify/functions/get-companions');
+            const response = await fetch('/.netlify/functions/companionguide-get');
             const data = await response.json();
 
             if (data.companions) {
