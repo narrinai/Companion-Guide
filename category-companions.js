@@ -168,7 +168,18 @@ class CategoryCompanions {
 
     renderComparisonTable() {
         const tableBody = document.querySelector('.comparison-table tbody');
-        if (!tableBody) return;
+        if (!tableBody) {
+            console.log('Comparison table tbody not found');
+            return;
+        }
+
+        if (!this.companions || this.companions.length === 0) {
+            console.log('No companions data available for table');
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Loading...</td></tr>';
+            return;
+        }
+
+        console.log(`Rendering comparison table with ${this.companions.length} companions`);
 
         // Generate table rows from companions data
         const tableRows = this.companions.map(companion => {
@@ -188,6 +199,7 @@ class CategoryCompanions {
         }).join('');
 
         tableBody.innerHTML = tableRows;
+        console.log('Comparison table rendered successfully');
     }
 
     getPricingText(companion) {
