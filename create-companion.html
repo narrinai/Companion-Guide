@@ -165,6 +165,12 @@
                     <small>JSON array of pricing plans</small>
                 </div>
 
+                <div class="form-group">
+                    <label for="features">Features (JSON) <span class="auto-label">(auto-generated)</span></label>
+                    <textarea id="features" name="features" style="font-family: monospace; min-height: 150px;"></textarea>
+                    <small>JSON array format: [{"icon":"🌍","title":"Multilingual","description":"5+ languages"}]</small>
+                </div>
+
                 <!-- Step 5: Options -->
                 <div class="form-group">
                     <label>Options</label>
@@ -245,6 +251,9 @@
                     if (result.pricing_plans) {
                         document.getElementById('pricing_plans').value = JSON.stringify(result.pricing_plans, null, 2);
                     }
+                    if (result.features) {
+                        document.getElementById('features').value = JSON.stringify(result.features, null, 2);
+                    }
 
                     showMessage('✅ Successfully generated companion info!', 'success');
                 } else {
@@ -292,13 +301,13 @@
                     data[key] = formData.get(key) === 'on';
                 } else if (key === 'rating') {
                     data[key] = parseFloat(value);
-                } else if (key === 'pricing_plans') {
+                } else if (key === 'pricing_plans' || key === 'features') {
                     if (value.trim()) {
                         try {
                             JSON.parse(value);
                             data[key] = value;
                         } catch (e) {
-                            showMessage('Invalid JSON in pricing_plans', 'error');
+                            showMessage(`Invalid JSON in ${key}`, 'error');
                             submitBtn.disabled = false;
                             submitBtn.textContent = 'Create Companion';
                             return;
