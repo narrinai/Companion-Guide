@@ -51,9 +51,15 @@ class CategoryCompanions {
         const pageCategories = categoryMapping[currentPath] || [];
 
         if (pageCategories.length === 0) {
-            // If no mapping found, show featured companions as fallback
-            console.warn('No category mapping found for', currentPath, 'showing featured companions');
-            return companions.filter(companion => companion.featured).slice(0, 12);
+            // If no mapping found, show all companions sorted by featured and rating
+            console.warn('No category mapping found for', currentPath, 'showing all companions');
+            const sorted = [...companions];
+            sorted.sort((a, b) => {
+                if (a.featured && !b.featured) return -1;
+                if (!a.featured && b.featured) return 1;
+                return (b.rating || 0) - (a.rating || 0);
+            });
+            return sorted;
         }
 
         // Filter companions that have matching categories
@@ -80,8 +86,8 @@ class CategoryCompanions {
             return (b.rating || 0) - (a.rating || 0);
         });
 
-        // Limit to 12 companions per category page
-        return filteredCompanions.slice(0, 12);
+        // Return all companions (no limit)
+        return filteredCompanions;
     }
 
     getStaticCompanions() {
