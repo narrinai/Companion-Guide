@@ -13,12 +13,18 @@ exports.handler = async (event, context) => {
     // Parse request body
     const data = JSON.parse(event.body);
 
-    console.log('Received data:', {
+    console.log('Received data:', JSON.stringify({
       name: data.name,
       slug: data.slug,
-      hasDescription: !!data.description,
+      description: data.description?.substring(0, 50),
+      short_description: data.short_description,
+      website_url: data.website_url,
+      image_url: data.image_url,
+      rating: data.rating,
+      featured: data.featured,
+      is_free: data.is_free,
       hasPricingPlans: !!data.pricing_plans
-    });
+    }, null, 2));
 
     // Validate required fields
     if (!data.name || !data.slug || !data.description || !data.short_description || !data.website_url) {
@@ -68,10 +74,12 @@ exports.handler = async (event, context) => {
 
     // Note: pros and cons fields don't exist in Airtable - removed
 
-    console.log('Creating record with fields:', Object.keys(recordData));
+    console.log('Creating record with data:', JSON.stringify(recordData, null, 2));
 
     // Create record in Airtable
     const record = await table.create(recordData);
+
+    console.log('Successfully created record:', record.id);
 
     return {
       statusCode: 200,
