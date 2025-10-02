@@ -291,6 +291,15 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
 
   result.description = description;
 
+  // Detect features FIRST (before building short description)
+  const hasVoice = combinedText.includes('voice') || combinedText.includes('audio');
+  const hasImage = combinedText.includes('image generat');
+  const hasVideo = combinedText.includes('video');
+  const hasMemory = combinedText.includes('memory') || combinedText.includes('remember');
+  const hasRoleplay = combinedText.includes('roleplay') || combinedText.includes('character');
+  const hasCustom = combinedText.includes('custom') || combinedText.includes('personality');
+  const hasCommunity = combinedText.includes('discord') || combinedText.includes('community');
+
   // Build short description (10-15 words, very concise)
   let shortDesc = '';
   const topFeatures = Array.from(keywordsFound).slice(0, 3);
@@ -345,15 +354,6 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
 
   // Build pricing plans based on detected prices
   const plans = [];
-
-  // Detect features
-  const hasVoice = combinedText.includes('voice') || combinedText.includes('audio');
-  const hasImage = combinedText.includes('image generat');
-  const hasVideo = combinedText.includes('video');
-  const hasMemory = combinedText.includes('memory') || combinedText.includes('remember');
-  const hasRoleplay = combinedText.includes('roleplay') || combinedText.includes('character');
-  const hasCustom = combinedText.includes('custom') || combinedText.includes('personality');
-  const hasCommunity = combinedText.includes('discord') || combinedText.includes('community');
 
   // Add free plan if mentioned
   if (combinedText.includes('free') || combinedText.includes('no cost') || uniquePrices.length > 0) {
