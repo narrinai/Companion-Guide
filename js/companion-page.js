@@ -131,10 +131,11 @@ class CompanionPageManager {
     updateHeroSection() {
         const companionName = this.getCompanionName();
 
-        // Update logo alt text
+        // Update logo - check multiple possible field names
         const logo = document.querySelector('.companion-logo, .hero img');
-        if (logo && this.companionData.logo) {
-            logo.src = this.companionData.logo;
+        const logoUrl = this.companionData.logo_url || this.companionData.logo || this.companionData['logo_url'];
+        if (logo && logoUrl) {
+            logo.src = logoUrl;
             logo.alt = `${companionName} logo`;
         }
 

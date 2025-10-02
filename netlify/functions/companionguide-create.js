@@ -74,6 +74,11 @@ exports.handler = async (event, context) => {
       recordData.features = data.features;
     }
 
+    // Add categories (Airtable expects array for multiselect field)
+    if (data.categories && Array.isArray(data.categories) && data.categories.length > 0) {
+      recordData.categories = data.categories;
+    }
+
     // Note: pros and cons fields don't exist in Airtable - removed
 
     console.log('Creating record with data:', JSON.stringify(recordData, null, 2));

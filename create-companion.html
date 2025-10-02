@@ -172,6 +172,50 @@
                 </div>
 
                 <!-- Step 5: Options -->
+                <!-- Step 6: Categories/Tags -->
+                <div class="form-group">
+                    <label for="categories">Categories (Tags)</label>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px;">
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="category" value="ai-girlfriend">
+                            AI Girlfriend
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="category" value="nsfw">
+                            NSFW/Adult
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="category" value="roleplaying">
+                            Roleplay
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="category" value="image-gen">
+                            Image Generation
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="category" value="video">
+                            Video
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="category" value="voice">
+                            Voice
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="category" value="wellness">
+                            Wellness
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="category" value="whatsapp">
+                            WhatsApp
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="category" value="telegram">
+                            Telegram
+                        </label>
+                    </div>
+                    <small>Select all categories that apply</small>
+                </div>
+
                 <div class="form-group">
                     <label>Options</label>
                     <div class="checkbox-group">
@@ -293,9 +337,17 @@
             const urls = urlsInput.split(',').map(url => url.trim()).filter(url => url);
             data.website_url = urls[0] || '';
 
+            // Collect categories from checkboxes
+            const categories = [];
+            const categoryCheckboxes = document.querySelectorAll('input[name="category"]:checked');
+            categoryCheckboxes.forEach(checkbox => {
+                categories.push(checkbox.value);
+            });
+
             // Convert form data to object
             for (let [key, value] of formData.entries()) {
                 if (key === 'urls') continue; // Skip urls field, already handled
+                if (key === 'category') continue; // Skip category checkboxes, already handled above
 
                 if (key === 'featured' || key === 'is_free') {
                     data[key] = formData.get(key) === 'on';
@@ -316,6 +368,11 @@
                 } else {
                     data[key] = value;
                 }
+            }
+
+            // Add categories array
+            if (categories.length > 0) {
+                data.categories = categories;
             }
 
             // Set default image_url
