@@ -8,6 +8,7 @@ class CategoryCompanions {
     async init() {
         await this.loadCompanions();
         this.renderCompanionGrid();
+        this.renderComparisonTable();
     }
 
     async loadCompanions() {
@@ -121,6 +122,95 @@ class CategoryCompanions {
                 featured: true
             }
         ];
+    }
+
+    generateBestFor(companion) {
+        // Generate "Best For" based on companion's features and categories
+        const features = companion.features || [];
+        const categories = companion.categories || [];
+
+        // Check for specific features
+        const hasImageGen = categories.includes('image-gen');
+        const hasVideo = categories.includes('video');
+        const hasVoice = features.some(f => f.title && f.title.toLowerCase().includes('voice'));
+        const isFree = companion.pricing_plans && companion.pricing_plans.some(p => p.price === 0);
+        const hasMemory = features.some(f => f.title && (f.title.toLowerCase().includes('memory') || f.title.toLowerCase().includes('remember')));
+
+        // Determine best for based on features
+        if (isFree) return 'Budget users';
+        if (hasVideo && hasImageGen) return 'Multimedia experiences';
+        if (hasVideo) return 'Interactive dating';
+        if (hasImageGen) return 'Visual customization';
+        if (hasVoice) return 'Voice interactions';
+        if (hasMemory) return 'Deep connections';
+        if (categories.includes('nsfw')) return 'Adult content';
+        if (categories.includes('wellness')) return 'Emotional support';
+        if (categories.includes('roleplaying')) return 'Roleplay scenarios';
+
+        return 'General use';
+    }
+
+    getKeyFeature(companion) {
+        // Extract the most prominent key feature
+        const features = companion.features || [];
+        const categories = companion.categories || [];
+
+        if (features.length > 0 && features[0].title) {
+            return features[0].title;
+        }
+
+        if (categories.includes('image-gen')) return 'Image generation';
+        if (categories.includes('video')) return 'Video calls';
+        if (categories.includes('nsfw')) return 'Uncensored chat';
+
+        return 'AI chat';
+    }
+
+    renderComparisonTable() {
+        const tableBody = document.querySelector('.comparison-table tbody');
+        if (!tableBody) return;
+
+        // Generate table rows from companions data
+        const tableRows = this.companions.map(companion => {
+            const pricing = this.getPricingText(companion);
+            const keyFeature = this.getKeyFeature(companion);
+            const bestFor = this.generateBestFor(companion);
+
+            return `
+                <tr>
+                    <td><strong>${companion.name}</strong></td>
+                    <td>${companion.rating}/5</td>
+                    <td>${pricing}</td>
+                    <td>${keyFeature}</td>
+                    <td>${bestFor}</td>
+                </tr>
+            `;
+        }).join('');
+
+        tableBody.innerHTML = tableRows;
+    }
+
+    getPricingText(companion) {
+        if (!companion.pricing_plans || companion.pricing_plans.length === 0) {
+            return 'Free';
+        }
+
+        const plans = typeof companion.pricing_plans === 'string'
+            ? JSON.parse(companion.pricing_plans)
+            : companion.pricing_plans;
+
+        const lowestPrice = Math.min(...plans.map(plan => parseFloat(plan.price || 0)));
+
+        if (lowestPrice === 0) {
+            const paidPlans = plans.filter(p => parseFloat(p.price || 0) > 0);
+            if (paidPlans.length > 0) {
+                const lowestPaid = Math.min(...paidPlans.map(p => parseFloat(p.price)));
+                return `Free + $${lowestPaid.toFixed(2)}/month`;
+            }
+            return 'Free';
+        }
+
+        return `$${lowestPrice.toFixed(2)}/month`;
     }
 
     renderCompanionGrid() {
