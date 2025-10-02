@@ -491,7 +491,7 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
       });
     }
 
-    if (combinedText.includes('private') || combinedText.includes('encrypt')) {
+    if (features.length < 3 && (combinedText.includes('private') || combinedText.includes('encrypt'))) {
       features.push({
         icon: "🔒",
         title: "Private",
@@ -499,7 +499,7 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
       });
     }
 
-    if (combinedText.includes('mobile') || combinedText.includes('app')) {
+    if (features.length < 3 && (combinedText.includes('mobile') || combinedText.includes('app'))) {
       features.push({
         icon: "📱",
         title: "Mobile App",
@@ -508,7 +508,7 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     }
   }
 
-  // Ensure we have at least 3-4 features
+  // Ensure we have at least 3 features
   if (features.length === 0) {
     features.push(
       {
@@ -529,7 +529,8 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     );
   }
 
-  result.features = features;
+  // Limit to maximum 4 features
+  result.features = features.slice(0, 4);
 
   return result;
 }
