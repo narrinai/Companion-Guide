@@ -48,28 +48,28 @@ class CompanionHeaderManager {
   }
 
   /**
-   * Generate star rating HTML
+   * Generate star rating HTML with half stars
    */
   generateStarRating(rating) {
     const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
+    const hasHalfStar = rating % 1 >= 0.3; // Show half star for .3 and above
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
     let starsHtml = '';
 
     // Full stars
     for (let i = 0; i < fullStars; i++) {
-      starsHtml += '★';
+      starsHtml += '<span class="star-filled">★</span>';
     }
 
     // Half star
     if (hasHalfStar) {
-      starsHtml += '☆';
+      starsHtml += '<span class="star-half">★</span>';
     }
 
     // Empty stars
     for (let i = 0; i < emptyStars; i++) {
-      starsHtml += '☆';
+      starsHtml += '<span class="star-empty">☆</span>';
     }
 
     return starsHtml;

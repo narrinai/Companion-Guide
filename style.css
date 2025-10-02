@@ -2302,6 +2302,37 @@ footer {
 .stars {
     color: var(--accent-orange);
     font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Half star styling */
+.star-half {
+    position: relative;
+    display: inline-block;
+    color: var(--accent-orange);
+}
+
+.star-half::before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+    color: var(--accent-orange);
+}
+
+.star-half::after {
+    content: '★';
+    color: rgba(255, 140, 0, 0.3);
+}
+
+.star-filled {
+    color: var(--accent-orange);
+}
+
+.star-empty {
+    color: rgba(255, 140, 0, 0.3);
 }
 
 .rating-score {

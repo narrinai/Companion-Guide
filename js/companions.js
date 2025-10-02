@@ -49,21 +49,21 @@ class CompanionManager {
 
   generateStarRating(rating) {
     const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
+    const hasHalfStar = rating % 1 >= 0.3; // Show half star for .3 and above
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
     let starsHtml = '';
 
     for (let i = 0; i < fullStars; i++) {
-      starsHtml += '<span class="star filled">★</span>';
+      starsHtml += '<span class="star-filled">★</span>';
     }
 
     if (hasHalfStar) {
-      starsHtml += '<span class="star half">☆</span>';
+      starsHtml += '<span class="star-half">★</span>';
     }
 
     for (let i = 0; i < emptyStars; i++) {
-      starsHtml += '<span class="star">☆</span>';
+      starsHtml += '<span class="star-empty">☆</span>';
     }
 
     return starsHtml;
@@ -166,9 +166,8 @@ class CompanionManager {
     // Use slug from Airtable, fallback to 'unknown' if not present
     const slug = companion.slug || 'unknown';
 
-    // Generate star rating using filled stars
-    const fullStars = Math.floor(companion.rating);
-    const starRating = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+    // Generate star rating with half stars
+    const starRating = this.generateStarRating(companion.rating);
 
     return `
       <article class="companion-card" data-companion-id="${companion.id}">
@@ -306,9 +305,8 @@ class CompanionManager {
     // Use slug from Airtable, fallback to 'unknown' if not present
     const slug = companion.slug || 'unknown';
 
-    // Generate star rating using filled stars
-    const fullStars = Math.floor(companion.rating);
-    const starRating = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+    // Generate star rating with half stars
+    const starRating = this.generateStarRating(companion.rating);
 
     // Generate badges
     const badgeHtml = this.generateCategoryBadges(companion, index);
