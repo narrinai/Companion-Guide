@@ -19,7 +19,27 @@
                 image_url: "../images/logos/test-companion.png",
                 rating: 4.5,
                 featured: false,
-                is_free: true
+                is_free: true,
+                pricing_plans: [
+                    {
+                        name: "Free",
+                        price: 0,
+                        billing_period: "forever",
+                        features: ["Basic chat", "Limited messages"]
+                    },
+                    {
+                        name: "Premium",
+                        price: 9.99,
+                        billing_period: "monthly",
+                        features: ["Unlimited messages", "Advanced AI", "Priority support"]
+                    }
+                ],
+                features: [
+                    "AI-powered conversations",
+                    "Multiple character personalities",
+                    "Image generation",
+                    "Voice chat support"
+                ]
             };
 
             try {
