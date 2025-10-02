@@ -192,7 +192,8 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
   const result = {
     description: '',
     short_description: '',
-    pricing_plans: []
+    pricing_plans: [],
+    features: []
   };
 
   // Combine all HTML content
@@ -412,6 +413,123 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
   if (plans.length > 0) {
     result.pricing_plans = plans;
   }
+
+  // Build features array in the required format
+  const features = [];
+
+  if (hasVoice) {
+    features.push({
+      icon: "🎤",
+      title: "Voice Chat",
+      description: "AI voice messages"
+    });
+  }
+
+  if (hasImage) {
+    features.push({
+      icon: "🎨",
+      title: "AI Art",
+      description: "Image generation"
+    });
+  }
+
+  if (hasVideo) {
+    features.push({
+      icon: "🎬",
+      title: "Video Content",
+      description: "AI-generated videos"
+    });
+  }
+
+  if (hasMemory) {
+    features.push({
+      icon: "🧠",
+      title: "Memory System",
+      description: "Remembers context"
+    });
+  }
+
+  if (hasRoleplay) {
+    features.push({
+      icon: "🎭",
+      title: "Roleplay",
+      description: "Character scenarios"
+    });
+  }
+
+  if (hasCustom) {
+    features.push({
+      icon: "⚙️",
+      title: "Customization",
+      description: "Personalized AI"
+    });
+  }
+
+  if (combinedText.includes('multilingual') || combinedText.includes('language')) {
+    features.push({
+      icon: "🌍",
+      title: "Multilingual",
+      description: "Multiple languages"
+    });
+  }
+
+  if (hasCommunity) {
+    features.push({
+      icon: "👥",
+      title: "Community",
+      description: "Discord & forums"
+    });
+  }
+
+  // Add generic features if we don't have enough specific ones
+  if (features.length < 3) {
+    if (combinedText.includes('24/7') || combinedText.includes('always available')) {
+      features.push({
+        icon: "⏰",
+        title: "24/7 Available",
+        description: "Always online"
+      });
+    }
+
+    if (combinedText.includes('private') || combinedText.includes('encrypt')) {
+      features.push({
+        icon: "🔒",
+        title: "Private",
+        description: "Secure conversations"
+      });
+    }
+
+    if (combinedText.includes('mobile') || combinedText.includes('app')) {
+      features.push({
+        icon: "📱",
+        title: "Mobile App",
+        description: "iOS & Android"
+      });
+    }
+  }
+
+  // Ensure we have at least 3-4 features
+  if (features.length === 0) {
+    features.push(
+      {
+        icon: "💬",
+        title: "AI Chat",
+        description: "Natural conversations"
+      },
+      {
+        icon: "💕",
+        title: "Personalized",
+        description: "Custom companions"
+      },
+      {
+        icon: "🎯",
+        title: "Smart AI",
+        description: "Advanced models"
+      }
+    );
+  }
+
+  result.features = features;
 
   return result;
 }
