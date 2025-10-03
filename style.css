@@ -311,13 +311,13 @@ main {
 .category-tag {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-6);
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-4);
     background-color: var(--accent-blue);
     color: white;
     border-radius: var(--radius-md);
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     text-decoration: none;
     transition: all 0.2s ease;
     white-space: nowrap;
@@ -3167,8 +3167,8 @@ footer {
     }
 
     .category-tag {
-        font-size: 0.8rem;
-        padding: var(--space-2) var(--space-4);
+        font-size: 0.7rem;
+        padding: var(--space-1) var(--space-3);
     }
 
     /* Mobile companion hero optimization */
