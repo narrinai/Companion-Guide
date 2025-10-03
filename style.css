@@ -295,6 +295,40 @@ main {
     line-height: 1.7;
 }
 
+/* Category Tags Section */
+.category-tags-section {
+    margin: var(--space-8) 0 var(--space-6) 0;
+}
+
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+    align-items: center;
+}
+
+.category-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    background-color: var(--accent-blue);
+    color: white;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.category-tag:hover {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
 /* A-Z Index */
 .az-index {
     background-color: var(--bg-surface);
@@ -3120,6 +3154,21 @@ footer {
     
     .hero {
         padding: var(--space-2) 0;
+    }
+
+    /* Category Tags Mobile */
+    .category-tags-section {
+        margin: var(--space-6) 0 var(--space-4) 0;
+    }
+
+    .category-tags {
+        gap: var(--space-2);
+        padding: 0 var(--space-2);
+    }
+
+    .category-tag {
+        font-size: 0.8rem;
+        padding: var(--space-2) var(--space-4);
     }
 
     /* Mobile companion hero optimization */
