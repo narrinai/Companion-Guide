@@ -117,6 +117,16 @@ exports.handler = async (event, context) => {
       };
     });
 
+    // Secondary sort by review_count when ratings are equal
+    companions.sort((a, b) => {
+      // First sort by rating (descending)
+      if (b.rating !== a.rating) {
+        return b.rating - a.rating;
+      }
+      // If ratings are equal, sort by review_count (descending)
+      return b.review_count - a.review_count;
+    });
+
     return {
       statusCode: 200,
       headers: {
