@@ -253,13 +253,14 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     </footer>
 
     <script src="script.js"></script>
+    <script src="/js/meta-form-tracking.js"></script>
     <script>
         // Simple form handling with Netlify native forms
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             const button = e.target.querySelector('button[type="submit"]');
             button.textContent = 'Sending...';
             button.disabled = true;
-            
+
             // Netlify will handle the form submission and redirect
             // The form will be submitted normally without JavaScript intervention
         });

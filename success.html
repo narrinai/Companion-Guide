@@ -29,6 +29,14 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1384707780100464');
 fbq('track', 'PageView');
+
+// Track Lead conversion on success page
+fbq('track', 'Lead', {
+    content_name: 'Contact Form Success',
+    status: 'completed'
+});
+
+console.log('Meta Pixel: Lead conversion tracked (Contact Form Success)');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"

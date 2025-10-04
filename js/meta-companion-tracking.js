@@ -1,6 +1,6 @@
 /**
- * Meta Pixel - Companion External Link Tracking
- * Tracks when users click on external companion website links
+ * Meta Pixel - Comprehensive Tracking
+ * Tracks ViewContent, external link clicks, and other conversion events
  */
 
 (function() {
@@ -14,11 +14,114 @@
     }
 
     function initCompanionTracking() {
+        // Track ViewContent for companion detail pages
+        trackViewContent();
+
         // Track all external companion links
         trackCompanionLinks();
 
+        // Track search events if search functionality exists
+        trackSearchEvents();
+
         // Set up mutation observer for dynamically loaded content
         observeDynamicContent();
+    }
+
+    /**
+     * Track ViewContent Standard Event
+     * Fires when user views a companion detail page
+     */
+    function trackViewContent() {
+        // Check if we're on a companion detail page
+        const pathMatch = window.location.pathname.match(/\/companions\/([^\/]+)/);
+
+        if (pathMatch) {
+            const companionSlug = pathMatch[1];
+            const companionName = extractCompanionNameFromPage();
+
+            // Try to extract category from page content
+            let category = 'AI Companion';
+            const categoryBadge = document.querySelector('.product-badge, .category-badge');
+            if (categoryBadge) {
+                category = categoryBadge.textContent.trim();
+            }
+
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'ViewContent', {
+                    content_name: companionName,
+                    content_category: category,
+                    content_ids: [companionSlug],
+                    content_type: 'product'
+                });
+
+                console.log('Meta Pixel: ViewContent tracked', {
+                    content_name: companionName,
+                    content_category: category,
+                    content_ids: [companionSlug]
+                });
+            }
+        }
+
+        // Track ViewContent for news/guide articles
+        const newsMatch = window.location.pathname.match(/\/news\/([^\/]+)/);
+        if (newsMatch) {
+            const articleSlug = newsMatch[1];
+            const articleTitle = document.querySelector('h1')?.textContent.trim() || articleSlug;
+
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'ViewContent', {
+                    content_name: articleTitle,
+                    content_category: 'Article',
+                    content_ids: [articleSlug],
+                    content_type: 'article'
+                });
+
+                console.log('Meta Pixel: ViewContent (Article) tracked', {
+                    content_name: articleTitle,
+                    content_ids: [articleSlug]
+                });
+            }
+        }
+    }
+
+    /**
+     * Extract companion name from page title or heading
+     */
+    function extractCompanionNameFromPage() {
+        // Try h1 first
+        const h1 = document.querySelector('h1');
+        if (h1) {
+            return h1.textContent.trim().split('-')[0].trim();
+        }
+
+        // Fallback to title tag
+        const title = document.title;
+        return title.split('-')[0].trim();
+    }
+
+    /**
+     * Track Search Standard Event
+     * Fires when user performs a search
+     */
+    function trackSearchEvents() {
+        const searchInputs = document.querySelectorAll('input[type="search"], input[name*="search"], input[id*="search"]');
+
+        searchInputs.forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.trim() !== '') {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Search', {
+                            search_string: this.value.trim(),
+                            content_category: 'AI Companion'
+                        });
+
+                        console.log('Meta Pixel: Search tracked', {
+                            search_string: this.value.trim()
+                        });
+                    }
+                }
+            });
+        });
     }
 
     function trackCompanionLinks() {
