@@ -30,6 +30,8 @@
             'a[href*="companions"][target="_blank"]'
         );
 
+        let newLinksCount = 0;
+
         companionLinks.forEach(link => {
             // Skip if already tracked
             if (link.dataset.metaTracked) return;
@@ -55,9 +57,13 @@
 
             // Mark as tracked
             link.dataset.metaTracked = 'true';
+            newLinksCount++;
         });
 
-        console.log(`Meta Companion Tracking: ${companionLinks.length} links initialized`);
+        // Only log if new links were added
+        if (newLinksCount > 0) {
+            console.log(`Meta Companion Tracking: ${newLinksCount} new links initialized`);
+        }
     }
 
     function extractCompanionData(linkElement) {
