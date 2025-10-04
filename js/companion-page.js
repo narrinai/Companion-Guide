@@ -221,7 +221,7 @@ class CompanionPageManager {
                 tierDiv.classList.add('featured');
             }
 
-            const price = plan.price === 0 ? 'Free' : `€${plan.price}`;
+            const price = plan.price === 0 ? 'Free' : `$${plan.price}`;
             const period = plan.price === 0 ? '' : `/${plan.period}`;
 
             let badgeHtml = '';
