@@ -19,11 +19,12 @@ The event tracks the following data:
 
 ```javascript
 {
-  companion_name: string,      // Name of the companion (e.g., "Secrets AI")
+  companion_name: string,      // Name of the companion or domain (e.g., "Secrets AI" or "secrets.ai")
   companion_url: string,       // Full URL of the external link
   page_location: string,       // Path where the click occurred (e.g., "/companions/secrets-ai")
   button_type: string,         // Button text (e.g., "Visit Website")
-  companion_slug: string       // Companion slug ID (e.g., "secrets-ai")
+  companion_slug: string,      // Companion slug ID (e.g., "secrets-ai")
+  link_type: string           // Type: "companion_page", "companion_card", "domain_link", or "external_link"
 }
 ```
 
@@ -34,11 +35,10 @@ The event tracks the following data:
 - Loaded on: All HTML pages (automatically added before `</body>`)
 
 #### 2. Tracked Elements
-The script automatically tracks clicks on:
-- Links with class `.btn-secondary` and `target="_blank"`
-- Links with class `.platform-btn` and `target="_blank"`
-- Links with class `.cta-button` and `target="_blank"`
-- Any links containing "companions" in href with `target="_blank"`
+The script automatically tracks clicks on **ALL external links**:
+- Any link with `target="_blank"` and `href` starting with "http"
+- This includes companion website links, affiliate links, and any other external links
+- Works with both static and dynamically loaded content
 
 #### 3. How It Works
 
