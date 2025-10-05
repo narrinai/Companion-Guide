@@ -431,10 +431,10 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     <img src="/images/logos/nectar-ai.png" alt="Nectar AI - AI companion platform special offer logo" class="deal-logo">
                     <div class="deal-info">
                         <h3 class="deal-title"><a href="/companions/nectar-ai" style="color: inherit; text-decoration: none;">Nectar AI</a></h3>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <span style="color: #ffa500;">★★★★☆</span>
-                            <span style="color: #fff; font-size: 0.95rem;">4.5/5</span>
-                            <span style="color: #666; font-size: 0.9rem;">(36 reviews)</span>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;" data-rating-slug="nectar-ai">
+                            <span class="rating-stars">★★★★☆</span>
+                            <span class="rating-score" style="color: #fff; font-size: 0.95rem;">4.5/5</span>
+                            <span class="rating-count" style="color: #666; font-size: 0.9rem;">(36 reviews)</span>
                         </div>
                     </div>
                 </div>
@@ -491,10 +491,10 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     <img src="/images/logos/ourdream-ai.png" alt="OurDream AI - AI companion platform special offer logo" class="deal-logo">
                     <div class="deal-info">
                         <h3 class="deal-title"><a href="/companions/ourdream-ai" style="color: inherit; text-decoration: none;">OurDream AI</a></h3>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <span style="color: #ffa500;">★★★★★</span>
-                            <span style="color: #fff; font-size: 0.95rem;">4.7/5</span>
-                            <span style="color: #666; font-size: 0.9rem;">(56 reviews)</span>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;" data-rating-slug="ourdream-ai">
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-score" style="color: #fff; font-size: 0.95rem;">4.7/5</span>
+                            <span class="rating-count" style="color: #666; font-size: 0.9rem;">(56 reviews)</span>
                         </div>
                     </div>
                 </div>
@@ -615,17 +615,62 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     <script src="/script.js"></script>
     <script src="/js/companions.js"></script>
     <script>
-        // Load featured companions in footer
+        // Load featured companions in footer and update ratings
         document.addEventListener("DOMContentLoaded", async function() {
             if (typeof window.companionManager === "undefined") {
                 window.companionManager = new CompanionManager();
             }
             try {
                 await window.companionManager.renderFooterFeaturedCompanions("featured-companions-footer");
+
+                // Load dynamic ratings for deals
+                await loadDealRatings();
             } catch (error) {
                 console.error("Error loading footer featured companions:", error);
             }
         });
+
+        // Function to load ratings from Airtable for deals
+        async function loadDealRatings() {
+            try {
+                // Fetch all companions
+                const companions = await window.companionManager.fetchCompanions({
+                    sort: 'rating'
+                });
+
+                // Find all rating elements with data-rating-slug attribute
+                const ratingElements = document.querySelectorAll('[data-rating-slug]');
+
+                ratingElements.forEach(ratingElement => {
+                    const slug = ratingElement.getAttribute('data-rating-slug');
+                    const companion = companions.find(c => c.slug === slug);
+
+                    if (companion) {
+                        // Update stars
+                        const starsElement = ratingElement.querySelector('.rating-stars');
+                        if (starsElement) {
+                            starsElement.innerHTML = window.companionManager.generateStarRating(companion.rating);
+                            starsElement.style.color = '#ffa500';
+                        }
+
+                        // Update rating score
+                        const scoreElement = ratingElement.querySelector('.rating-score');
+                        if (scoreElement) {
+                            scoreElement.textContent = `${companion.rating}/5`;
+                        }
+
+                        // Update review count
+                        const countElement = ratingElement.querySelector('.rating-count');
+                        if (countElement && companion.review_count) {
+                            countElement.textContent = `(${companion.review_count} reviews)`;
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading deal ratings:', error);
+                // Keep static ratings on error
+            }
+        }
     </script>
     <script src="/js/meta-companion-tracking.js"></script>
 </body>
