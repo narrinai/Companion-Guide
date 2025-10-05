@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Essential",
+    "price": 5.99,
+    "period": "monthly",
+    "features": [
+      "✅ Unlimited Conversations",
+      "✅ Multiple Languages",
+      "✅ No Blurred Images",
+      "✅ Ad-Free Experience",
+      "✅ Priority Support",
+      "✅ Dick Battle Arena Access",
+      "✅ 3 Free Penis Ratings",
+      "✅ 3 Free Dick Battle Arena Duels"
+    ]
+  },
+  {
+    "name": "Plus",
+    "price": 12.99,
+    "period": "monthly",
+    "features": [
+      "✅ Everything in Essential",
+      "✅ Faster Rendering Speed",
+      "✅ Skip Chat Queue",
+      "✅ Media Priority Queue",
+      "✅ Enhanced Media Quality",
+      "✅ 5 Free Penis Ratings",
+      "✅ 5 Free Dick Battle Arena Duels"
+    ]
+  },
+  {
+    "name": "Premium",
+    "price": 25.99,
+    "period": "monthly",
+    "features": [
+      "✅ Everything in Plus",
+      "✅ Advanced AI Engines",
+      "✅ Extended Chat History",
+      "✅ Ultimate Priority Queue",
+      "✅ Early Access to New Characters",
+      "✅ Priority Access to New Features",
+      "✅ 10 Free Penis Ratings",
+      "✅ 10 Free Dick Battle Arena Duels"
+    ]
+  }
+]
