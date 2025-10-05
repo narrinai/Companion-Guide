@@ -179,11 +179,13 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         <!-- Category Tags -->
         <section class="category-tags-section">
             <div class="category-tags">
+                <a href="#" class="featured-companion-tag" data-companion-left>Loading...</a>
                 <a href="/categories/video-companions-companions" class="category-tag">🎬 Video</a>
                 <a href="/categories/roleplay-character-chat-companions" class="category-tag">🎭 Roleplay</a>
                 <a href="/categories/ai-girlfriend-companions" class="category-tag">💕 AI Girlfriend</a>
                 <a href="/categories/adult-content-uncensored-companions" class="category-tag">🔞 NSFW</a>
                 <a href="/categories/adult-image-generation-companions" class="category-tag">🎨 Image Gen</a>
+                <a href="#" class="featured-companion-tag" data-companion-right>Loading...</a>
             </div>
         </section>
 
@@ -1136,6 +1138,9 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
                 // Load featured companions in footer
                 await window.companionManager.renderFooterFeaturedCompanions('featured-companions-footer');
+
+                // Load featured companion tags
+                await loadFeaturedCompanionTags();
             } catch (error) {
                 console.error('Error loading featured companions:', error);
                 // Show error message in container
@@ -1151,6 +1156,37 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 }
             }
         });
+
+        // Load two random featured companions for the category tags
+        async function loadFeaturedCompanionTags() {
+            try {
+                const companions = await window.companionManager.getFeaturedCompanions();
+
+                // Get two random companions
+                const shuffled = companions.sort(() => 0.5 - Math.random());
+                const selectedCompanions = shuffled.slice(0, 2);
+
+                const leftTag = document.querySelector('[data-companion-left]');
+                const rightTag = document.querySelector('[data-companion-right]');
+
+                if (selectedCompanions[0]) {
+                    const companion1 = selectedCompanions[0];
+                    leftTag.href = `/companions/${companion1.slug}`;
+                    leftTag.textContent = companion1.name;
+                }
+
+                if (selectedCompanions[1]) {
+                    const companion2 = selectedCompanions[1];
+                    rightTag.href = `/companions/${companion2.slug}`;
+                    rightTag.textContent = companion2.name;
+                }
+            } catch (error) {
+                console.error('Error loading featured companion tags:', error);
+                // Hide the tags if there's an error
+                document.querySelector('[data-companion-left]')?.remove();
+                document.querySelector('[data-companion-right]')?.remove();
+            }
+        }
     </script>
     <script src="/faq-interactions.js"></script>
 </body>

@@ -329,6 +329,29 @@ main {
     box-shadow: var(--shadow-md);
 }
 
+.featured-companion-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-4);
+    background-color: transparent;
+    color: var(--accent-blue);
+    border: 2px solid var(--accent-blue);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.featured-companion-tag:hover {
+    background-color: var(--accent-blue);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
 /* A-Z Index */
 .az-index {
     background-color: var(--bg-surface);
