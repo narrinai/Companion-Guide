@@ -38,6 +38,26 @@
     font-size: 0.9rem;
 }
 
+.cookie-banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cookie-banner-reject {
+    color: #999;
+    font-size: 0.875rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.cookie-banner-reject:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
 .cookie-banner-close {
     background: #4a9eff;
     color: white;
@@ -65,6 +85,10 @@
     }
 
     .cookie-banner-content {
+        font-size: 0.8125rem;
+    }
+
+    .cookie-banner-reject {
         font-size: 0.8125rem;
     }
 
