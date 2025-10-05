@@ -1,0 +1,75 @@
+/* Simple Cookie Banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    max-width: 400px;
+    background: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cookie-banner.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cookie-banner-content {
+    flex: 1;
+    color: #ccc;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.cookie-banner-content strong {
+    color: #fff;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+}
+
+.cookie-banner-close {
+    background: #4a9eff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+}
+
+.cookie-banner-close:hover {
+    background: #3a8eef;
+}
+
+@media (max-width: 768px) {
+    .cookie-banner {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        padding: 14px 16px;
+        max-width: none;
+    }
+
+    .cookie-banner-content {
+        font-size: 0.8125rem;
+    }
+
+    .cookie-banner-close {
+        padding: 6px 12px;
+        font-size: 0.8125rem;
+    }
+}
