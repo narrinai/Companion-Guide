@@ -179,13 +179,15 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         <!-- Category Tags -->
         <section class="category-tags-section">
             <div class="category-tags">
-                <a href="#" class="featured-companion-tag" data-companion-left>Loading...</a>
+                <a href="#" class="featured-companion-tag" data-companion-index="0">Loading...</a>
+                <a href="#" class="featured-companion-tag" data-companion-index="1">Loading...</a>
                 <a href="/categories/video-companions-companions" class="category-tag">🎬 Video</a>
                 <a href="/categories/roleplay-character-chat-companions" class="category-tag">🎭 Roleplay</a>
                 <a href="/categories/ai-girlfriend-companions" class="category-tag">💕 AI Girlfriend</a>
                 <a href="/categories/adult-content-uncensored-companions" class="category-tag">🔞 NSFW</a>
                 <a href="/categories/adult-image-generation-companions" class="category-tag">🎨 Image Gen</a>
-                <a href="#" class="featured-companion-tag" data-companion-right>Loading...</a>
+                <a href="#" class="featured-companion-tag" data-companion-index="2">Loading...</a>
+                <a href="#" class="featured-companion-tag" data-companion-index="3">Loading...</a>
             </div>
         </section>
 
@@ -1157,7 +1159,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             }
         });
 
-        // Load two random featured companions for the category tags (v2)
+        // Load four random featured companions for the category tags (v3)
         async function loadFeaturedCompanionTags() {
             try {
                 console.log('Loading featured companion tags...'); // Debug
@@ -1175,29 +1177,28 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 // If no featured companions, use top rated ones
                 const companionsToUse = featuredCompanions.length > 0 ? featuredCompanions : allCompanions;
 
-                // Get two random companions
+                // Get four random companions
                 const shuffled = [...companionsToUse].sort(() => 0.5 - Math.random());
-                const selectedCompanions = shuffled.slice(0, 2);
+                const selectedCompanions = shuffled.slice(0, 4);
 
-                const leftTag = document.querySelector('[data-companion-left]');
-                const rightTag = document.querySelector('[data-companion-right]');
+                // Get all companion tags by index
+                const companionTags = document.querySelectorAll('[data-companion-index]');
 
-                if (selectedCompanions[0] && leftTag) {
-                    const companion1 = selectedCompanions[0];
-                    leftTag.href = `/companions/${companion1.slug}`;
-                    leftTag.textContent = companion1.name;
-                }
-
-                if (selectedCompanions[1] && rightTag) {
-                    const companion2 = selectedCompanions[1];
-                    rightTag.href = `/companions/${companion2.slug}`;
-                    rightTag.textContent = companion2.name;
-                }
+                // Fill each tag with a companion
+                companionTags.forEach((tag, index) => {
+                    if (selectedCompanions[index]) {
+                        const companion = selectedCompanions[index];
+                        tag.href = `/companions/${companion.slug}`;
+                        tag.textContent = companion.name;
+                    } else {
+                        // If not enough companions, hide the tag
+                        tag.remove();
+                    }
+                });
             } catch (error) {
                 console.error('Error loading featured companion tags:', error);
-                // Hide the tags if there's an error
-                document.querySelector('[data-companion-left]')?.remove();
-                document.querySelector('[data-companion-right]')?.remove();
+                // Hide all tags if there's an error
+                document.querySelectorAll('[data-companion-index]').forEach(tag => tag.remove());
             }
         }
     </script>
