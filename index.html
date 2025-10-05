@@ -1157,25 +1157,38 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             }
         });
 
-        // Load two random featured companions for the category tags
+        // Load two random featured companions for the category tags (v2)
         async function loadFeaturedCompanionTags() {
             try {
-                const companions = await window.companionManager.getFeaturedCompanions();
+                console.log('Loading featured companion tags...'); // Debug
+                // Fetch all companions
+                const allCompanions = await window.companionManager.fetchCompanions({
+                    sort: 'rating'
+                });
+                console.log('Fetched companions:', allCompanions.length); // Debug
+
+                // Filter for featured companions
+                const featuredCompanions = allCompanions.filter(c =>
+                    c.featured === true || c.featured === 'true' || c.is_featured === true || c.is_featured === 'true'
+                );
+
+                // If no featured companions, use top rated ones
+                const companionsToUse = featuredCompanions.length > 0 ? featuredCompanions : allCompanions;
 
                 // Get two random companions
-                const shuffled = companions.sort(() => 0.5 - Math.random());
+                const shuffled = [...companionsToUse].sort(() => 0.5 - Math.random());
                 const selectedCompanions = shuffled.slice(0, 2);
 
                 const leftTag = document.querySelector('[data-companion-left]');
                 const rightTag = document.querySelector('[data-companion-right]');
 
-                if (selectedCompanions[0]) {
+                if (selectedCompanions[0] && leftTag) {
                     const companion1 = selectedCompanions[0];
                     leftTag.href = `/companions/${companion1.slug}`;
                     leftTag.textContent = companion1.name;
                 }
 
-                if (selectedCompanions[1]) {
+                if (selectedCompanions[1] && rightTag) {
                     const companion2 = selectedCompanions[1];
                     rightTag.href = `/companions/${companion2.slug}`;
                     rightTag.textContent = companion2.name;
