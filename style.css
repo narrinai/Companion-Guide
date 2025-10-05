@@ -333,7 +333,7 @@ main {
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
-    padding: var(--space-2) var(--space-4);
+    padding: calc(var(--space-2) - 2px) var(--space-4);
     background-color: transparent;
     color: var(--accent-blue);
     border: 2px solid var(--accent-blue);
@@ -343,6 +343,7 @@ main {
     text-decoration: none;
     transition: all 0.2s ease;
     white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .featured-companion-tag:hover {
