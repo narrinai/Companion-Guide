@@ -48,11 +48,12 @@ class CompanionManager {
   }
 
   generateStarRating(rating) {
-    // Convert /10 rating to /5 stars for display
-    // Rating is stored as 0-10 in Airtable, but we show 5 stars
-    const starsRating = rating / 2; // 9.2/10 → 4.6/5 stars
+    // Rating is stored as 0-10 in Airtable (e.g., 9.6)
+    // Convert to 0-5 scale for star display (9.6/10 → 4.8/5 stars → ★★★★★)
+    // Updated: 2025-10-07 to fix /10 rating display
+    const starsRating = rating / 2; // 9.6/10 → 4.8/5 stars
     const fullStars = Math.floor(starsRating);
-    const hasHalfStar = starsRating % 1 >= 0.3; // Show half star for .3 and above
+    const hasHalfStar = (starsRating % 1) >= 0.3; // Show half star for .3 and above
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
     let starsHtml = '';
