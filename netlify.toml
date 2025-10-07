@@ -80,6 +80,24 @@
   to = "/companions/crushon-ai"
   status = 301
 
+# Companion pages should serve their HTML files (not redirect to index)
+[[redirects]]
+  from = "/companions/*"
+  to = "/companions/:splat.html"
+  status = 200
+
+# News pages should serve their HTML files
+[[redirects]]
+  from = "/news/*"
+  to = "/news/:splat.html"
+  status = 200
+
+# Category pages should serve their HTML files
+[[redirects]]
+  from = "/categories/*"
+  to = "/categories/:splat.html"
+  status = 200
+
 # 404 page redirect
 [[redirects]]
   from = "/*"
