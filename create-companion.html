@@ -111,29 +111,7 @@
     <main class="container">
         <div class="form-container">
             <h1>Create New Companion</h1>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">Add a new AI companion to Airtable</p>
-
-            <div style="background: var(--accent-blue); background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; padding: 20px; margin-bottom: 30px;">
-                <h3 style="margin-top: 0; color: var(--accent-purple); font-size: 18px;">📝 After Creating in Airtable</h3>
-                <p style="margin: 10px 0; color: var(--text); line-height: 1.6;">
-                    Once you create a companion in Airtable, you must also create a dedicated HTML page:
-                </p>
-                <ol style="margin: 10px 0; padding-left: 20px; color: var(--text); line-height: 1.8;">
-                    <li>Create a new file: <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px; font-family: monospace;">companions/{slug}.html</code></li>
-                    <li>Copy the structure from <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px; font-family: monospace;">companions/secrets-ai.html</code></li>
-                    <li><strong>Use the EXACT same structure</strong> with mix of static and dynamic content:</li>
-                </ol>
-                <ul style="margin: 10px 0 10px 40px; padding: 0; color: var(--text-muted); line-height: 1.8; list-style: disc;">
-                    <li><strong>Dynamic</strong> (loaded from Airtable): name, logo, rating, website URL, alternatives</li>
-                    <li><strong>Static</strong> (hardcoded): pricing tiers, descriptions, pros/cons, reviews, FAQ</li>
-                </ul>
-                <p style="margin: 10px 0 0; color: var(--text); line-height: 1.6;">
-                    ⚠️ <strong>Important:</strong> Include all required scripts at the bottom:
-                    <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px; font-family: monospace;">companion-page.js</code>,
-                    <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px; font-family: monospace;">alternatives.js</code>,
-                    <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px; font-family: monospace;">companions.js</code>
-                </p>
-            </div>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">Add a new AI companion to Airtable and automatically generate the HTML page</p>
 
             <div id="message" class="message"></div>
 
@@ -252,7 +230,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn" id="submitBtn">Create Companion</button>
+                <button type="submit" class="submit-btn" id="submitBtn">Create Companion & Generate Page</button>
             </form>
         </div>
     </main>
@@ -345,11 +323,40 @@
             }
         }
 
+        async function generateCompanionPage(companionData, airtableResult) {
+            // Call Netlify function to generate HTML page
+            const response = await fetch('/.netlify/functions/generate-companion-page', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    slug: companionData.slug,
+                    name: companionData.name,
+                    rating: companionData.rating,
+                    description: companionData.description,
+                    short_description: companionData.short_description,
+                    pricing_plans: companionData.pricing_plans,
+                    features: companionData.features,
+                    categories: companionData.categories,
+                    website_url: companionData.website_url,
+                    airtable_id: airtableResult.id
+                })
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Failed to generate page');
+            }
+
+            return await response.json();
+        }
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Creating...';
+            submitBtn.textContent = 'Creating in Airtable...';
 
             const formData = new FormData(form);
             const data = {};
@@ -412,7 +419,18 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    showMessage(`✅ Successfully created ${data.name}! Record ID: ${result.id}`, 'success');
+                    // Step 1: Successfully created in Airtable
+                    submitBtn.textContent = 'Generating HTML page...';
+                    showMessage(`✅ Created ${data.name} in Airtable! Now generating HTML page...`, 'success');
+
+                    // Step 2: Generate HTML page using Claude
+                    try {
+                        await generateCompanionPage(data, result);
+                        showMessage(`✅ Successfully created ${data.name} and generated HTML page at companions/${data.slug}.html!`, 'success');
+                    } catch (pageError) {
+                        showMessage(`⚠️ Created ${data.name} in Airtable, but page generation failed: ${pageError.message}`, 'error');
+                    }
+
                     form.reset();
                     document.getElementById('is_free').checked = true;
                     document.getElementById('rating').value = '4.5';
@@ -426,7 +444,7 @@
                 showMessage(`❌ Error: ${error.message}`, 'error');
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Create Companion';
+                submitBtn.textContent = 'Create Companion & Generate Page';
             }
         });
     </script>
