@@ -75,6 +75,11 @@
   to = "/companions/narrin-ai"
   status = 301
 
+[[redirects]]
+  from = "/crushon-ai"
+  to = "/companions/crushon-ai"
+  status = 301
+
 # 404 page redirect
 [[redirects]]
   from = "/*"
