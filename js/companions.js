@@ -203,10 +203,13 @@ class CompanionManager {
     if (!container) return;
 
     try {
-      // Get all companions first, then filter for featured ones
-      const allCompanions = await this.fetchCompanions({
-        sort: 'rating'
-      });
+      // Use cached companions if available, otherwise fetch
+      let allCompanions = this.companions;
+      if (!allCompanions || allCompanions.length === 0) {
+        allCompanions = await this.fetchCompanions({
+          sort: 'rating'
+        });
+      }
 
       console.log('Total companions loaded:', allCompanions.length); // Debug
       console.log('Featured companions found:', allCompanions.filter(c => c.featured).length); // Debug
@@ -536,10 +539,13 @@ class CompanionManager {
 
   async updateCategoryCounts() {
     try {
-      // Fetch all companions to count by category
-      const allCompanions = await this.fetchCompanions({
-        sort: 'rating'
-      });
+      // Use cached companions if available, otherwise fetch
+      let allCompanions = this.companions;
+      if (!allCompanions || allCompanions.length === 0) {
+        allCompanions = await this.fetchCompanions({
+          sort: 'rating'
+        });
+      }
 
       // Count companions per category (mapping category names to expected IDs)
       const categoryCounts = {
@@ -655,10 +661,13 @@ class CompanionManager {
     if (!container) return;
 
     try {
-      // Get all companions and filter for featured ones
-      const allCompanions = await this.fetchCompanions({
-        sort: 'rating'
-      });
+      // Use cached companions if available, otherwise fetch
+      let allCompanions = this.companions;
+      if (!allCompanions || allCompanions.length === 0) {
+        allCompanions = await this.fetchCompanions({
+          sort: 'rating'
+        });
+      }
 
       const featuredCompanions = allCompanions
         .filter(c => c.is_featured === true || c.is_featured === 'true' || c.featured === true || c.featured === 'true');

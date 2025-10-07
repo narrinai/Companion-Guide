@@ -50,6 +50,8 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/images/logo.svg">
+    <link rel="preconnect" href="/.netlify">
+    <link rel="dns-prefetch" href="/.netlify">
     <link rel="stylesheet" href="style.css">
     <style>
         /* Loading skeleton styles - matching site theme */
@@ -734,9 +736,20 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     <script src="js/companions.js?v=20251007"></script>
     <script src="/js/meta-companion-tracking.js?v=20251007"></script>
     <script>
+        // Prefetch companions data ASAP - start before DOMContentLoaded
+        let companionsDataPromise = null;
+        if (window.companionManager) {
+            companionsDataPromise = window.companionManager.fetchCompanions({ sort: 'rating' });
+        }
+
         // Initialize dynamic companions when the page loads
         document.addEventListener('DOMContentLoaded', async function() {
             try {
+                // Wait for prefetched data if available
+                if (companionsDataPromise) {
+                    await companionsDataPromise;
+                }
+
                 // Load featured companions from Airtable (limit to 8 for homepage)
                 await window.companionManager.renderFeaturedCompanions('featured-companions-container', 8);
 
