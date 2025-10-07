@@ -48,8 +48,11 @@ class CompanionManager {
   }
 
   generateStarRating(rating) {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.3; // Show half star for .3 and above
+    // Convert /10 rating to /5 stars for display
+    // Rating is stored as 0-10 in Airtable, but we show 5 stars
+    const starsRating = rating / 2; // 9.2/10 → 4.6/5 stars
+    const fullStars = Math.floor(starsRating);
+    const hasHalfStar = starsRating % 1 >= 0.3; // Show half star for .3 and above
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
     let starsHtml = '';
@@ -178,7 +181,7 @@ class CompanionManager {
             <h3><a href="/companions/${slug}">${companion.name}</a></h3>
             <div class="rating-line">
               <span class="stars">${starRating}</span>
-              <span class="rating-score">${companion.rating}/5</span>
+              <span class="rating-score">${companion.rating}/10</span>
               <span class="review-count">${reviewCountText}</span>
             </div>
           </div>
@@ -323,7 +326,7 @@ class CompanionManager {
             <h3><a href="../companions/${slug}">${companion.name}</a></h3>
             <div class="product-rating">
               <span class="stars">${starRating}</span>
-              <span class="rating-score">${companion.rating}/5</span>
+              <span class="rating-score">${companion.rating}/10</span>
               <span class="rating-count">${reviewCountText}</span>
             </div>
             <p class="product-tagline">${companion.short_description || 'AI companion platform'}</p>

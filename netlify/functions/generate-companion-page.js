@@ -40,8 +40,9 @@ IMPORTANT INSTRUCTIONS:
 2. Keep all the same JavaScript includes at the bottom
 3. Replace "Secrets AI" with "${name}" throughout
 4. Replace "secrets-ai" slug with "${slug}"
-5. Use rating: ${rating}/5
-6. Generate unique, engaging content based on this data:
+5. Use rating: ${rating}/10 (display as 5 stars visually, but text shows /10)
+6. IMPORTANT: Use "bestRating": "10" in structured data (NOT "5")
+7. Generate unique, engaging content based on this data:
    - Description: ${description || 'AI companion platform'}
    - Short description: ${short_description || 'Premium AI companion'}
    - Categories: ${categories?.join(', ') || 'ai-girlfriend'}
