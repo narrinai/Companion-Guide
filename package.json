@@ -6,7 +6,8 @@
     "@anthropic-ai/sdk": "^0.32.1",
     "airtable": "^0.12.2",
     "jsdom": "^27.0.0",
-    "nodemailer": "^6.9.0"
+    "nodemailer": "^6.9.0",
+    "puppeteer": "^21.5.0"
   },
   "devDependencies": {
     "@netlify/functions": "^2.0.0",
@@ -15,6 +16,8 @@
   "scripts": {
     "build": "echo 'Static site - no build step required'",
     "dev": "netlify dev",
-    "populate-airtable": "node populate-airtable.js"
+    "populate-airtable": "node populate-airtable.js",
+    "screenshot": "node screenshot-companions.js",
+    "screenshot:single": "node screenshot-companions.js --single"
   }
 }
