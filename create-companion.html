@@ -130,7 +130,7 @@
 
                 <div class="form-group">
                     <label for="rating">Rating *</label>
-                    <input type="number" id="rating" name="rating" min="0" max="10" step="0.1" value="4.5" required>
+                    <input type="number" id="rating" name="rating" min="0" max="10" step="0.1" value="8.0" required>
                     <small>Rating out of 10 (e.g., 8.5 for 8.5/10)</small>
                 </div>
 
@@ -447,7 +447,7 @@
 
                     form.reset();
                     document.getElementById('is_free').checked = true;
-                    document.getElementById('rating').value = '4.5';
+                    document.getElementById('rating').value = '8.0';
                 } else {
                     // Show detailed error
                     console.error('Full error response:', result);
