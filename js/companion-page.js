@@ -152,13 +152,13 @@ class CompanionPageManager {
         const ratingElement = document.querySelector('.rating');
         if (ratingElement) {
             const rating = parseFloat(this.companionData.rating);
-            // Convert /10 rating to /5 stars for display
-            const starsRating = rating / 2; // 9.2/10 → 4.6/5 stars
-            const fullStars = Math.floor(starsRating);
-            const hasHalfStar = starsRating % 1 !== 0;
-            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            // Rating is 0-10 in Airtable, show as 5 stars max
+            // 9.6 → 5 stars, 8.0 → 4 stars, etc.
+            const stars = Math.round(rating / 2);
+            const fullStars = Math.min(5, stars);
+            const emptyStars = 5 - fullStars;
 
-            const starDisplay = '★'.repeat(fullStars) + (hasHalfStar ? '☆' : '') + '☆'.repeat(emptyStars);
+            const starDisplay = '★'.repeat(fullStars) + '☆'.repeat(emptyStars);
             ratingElement.textContent = `${starDisplay} ${rating}/10`;
         }
     }
