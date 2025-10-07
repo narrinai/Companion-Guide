@@ -275,13 +275,19 @@
             generateBtn.textContent = '🔄 Generating...';
 
             try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
+
                 const response = await fetch('/.netlify/functions/companionguide-generate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ urls })
+                    body: JSON.stringify({ urls }),
+                    signal: controller.signal
                 });
+
+                clearTimeout(timeoutId);
 
                 const result = await response.json();
 
@@ -305,7 +311,14 @@
                     showMessage(`❌ Error: ${result.error}`, 'error');
                 }
             } catch (error) {
-                showMessage(`❌ Error: ${error.message}`, 'error');
+                if (error.name === 'AbortError') {
+                    showMessage('❌ Request timed out. Please try again.', 'error');
+                } else if (error.message.includes('Failed to fetch') || error.message.includes('network')) {
+                    showMessage('❌ Network error. Please check your connection and try again.', 'error');
+                } else {
+                    showMessage(`❌ Error: ${error.message}`, 'error');
+                }
+                console.error('Generation error:', error);
             } finally {
                 generateBtn.disabled = false;
                 generateBtn.textContent = '🤖 Generate Content from URLs';
