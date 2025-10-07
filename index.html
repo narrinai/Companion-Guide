@@ -145,6 +145,17 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
  alt=""/></noscript>
 <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="/faq-styles.css">
+    <script>
+        // Load icon sprite sheet
+        fetch('/icons.svg')
+            .then(r => r.text())
+            .then(svg => {
+                const div = document.createElement('div');
+                div.style.display = 'none';
+                div.innerHTML = svg;
+                document.body.insertBefore(div, document.body.firstChild);
+            });
+    </script>
 </head>
 <body>
     <header>
@@ -183,11 +194,11 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             <div class="category-tags">
                 <a href="#" class="featured-companion-tag" data-companion-index="0">Loading...</a>
                 <a href="#" class="featured-companion-tag" data-companion-index="1">Loading...</a>
-                <a href="/categories/video-companions-companions" class="category-tag">🎬 Video</a>
-                <a href="/categories/roleplay-character-chat-companions" class="category-tag">🎭 Roleplay</a>
-                <a href="/categories/ai-girlfriend-companions" class="category-tag">💕 AI Girlfriend</a>
-                <a href="/categories/adult-content-uncensored-companions" class="category-tag">🔞 NSFW</a>
-                <a href="/categories/adult-image-generation-companions" class="category-tag">🎨 Image Gen</a>
+                <a href="/categories/video-companions-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-video"/></svg> Video</a>
+                <a href="/categories/roleplay-character-chat-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-roleplay"/></svg> Roleplay</a>
+                <a href="/categories/ai-girlfriend-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-girlfriend"/></svg> AI Girlfriend</a>
+                <a href="/categories/adult-content-uncensored-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-adult"/></svg> NSFW</a>
+                <a href="/categories/adult-image-generation-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-image-gen"/></svg> Image Gen</a>
                 <a href="#" class="featured-companion-tag" data-companion-index="2">Loading...</a>
                 <a href="#" class="featured-companion-tag" data-companion-index="3">Loading...</a>
             </div>
@@ -448,55 +459,55 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         <!-- Categories Section -->
         <section class="categories-overview">
             <div class="section-header">
-                <h2>🎯 Explore AI Character Platforms by Category</h2>
+                <h2><svg class="icon icon-md"><use href="#icon-target"/></svg> Explore AI Character Platforms by Category</h2>
                 <p>Find AI companion platforms tailored to your specific needs</p>
             </div>
 
             <div class="categories-grid">
                 <a href="/categories/roleplay-character-chat-companions" class="category-card">
-                    <div class="category-icon">🎭</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-roleplay"/></svg></div>
                     <h3>Roleplay & Character Chat</h3>
                     <p>Best AI platforms for roleplay and character chat experiences</p>
                     <div class="category-stats" id="roleplaying-count-index">Loading...</div>
                 </a>
                 <a href="/categories/ai-girlfriend-companions" class="category-card">
-                    <div class="category-icon">💕</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-girlfriend"/></svg></div>
                     <h3>AI Girlfriend</h3>
                     <p>Best AI platforms for virtual romantic relationships</p>
                     <div class="category-stats" id="ai-girlfriend-count-index">Loading...</div>
                 </a>
                 <a href="/categories/wellness-companions" class="category-card">
-                    <div class="category-icon">🧠</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-wellness"/></svg></div>
                     <h3>Wellness & Mental Health</h3>
                     <p>AI companions focused on mental health and emotional support</p>
                     <div class="category-stats" id="wellness-count-index">Loading...</div>
                 </a>
                 <a href="/categories/whatsapp-companions-companions" class="category-card">
-                    <div class="category-icon">📱</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-whatsapp"/></svg></div>
                     <h3>WhatsApp-Only AI</h3>
                     <p>AI companions that work exclusively within WhatsApp</p>
                     <div class="category-stats" id="whatsapp-count-index">Loading...</div>
                 </a>
                 <a href="/categories/adult-image-generation-companions" class="category-card">
-                    <div class="category-icon">🎨</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-image-gen"/></svg></div>
                     <h3>Adult Image Generation</h3>
                     <p>Best AI platforms for creating NSFW art and visual content</p>
                     <div class="category-stats" id="image-gen-count-index">Loading...</div>
                 </a>
                 <a href="/categories/adult-content-uncensored-companions" class="category-card">
-                    <div class="category-icon">🔞</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
                     <h3>Adult Content & Uncensored</h3>
                     <p>Best uncensored AI platforms for adult content</p>
                     <div class="category-stats" id="nsfw-count-index">Loading...</div>
                 </a>
                 <a href="/categories/learning-companions" class="category-card">
-                    <div class="category-icon">📚</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-learning"/></svg></div>
                     <h3>Learning & Education</h3>
                     <p>AI tutors and educational companions</p>
                     <div class="category-stats" id="learning-count-index">Loading...</div>
                 </a>
                 <a href="/categories/video-companions-companions" class="category-card">
-                    <div class="category-icon">🎬</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-video"/></svg></div>
                     <h3>Video Companions</h3>
                     <p>AI companions with video chat and video generation capabilities</p>
                     <div class="category-stats" id="video-count-index">Loading...</div>

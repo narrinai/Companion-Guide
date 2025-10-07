@@ -4833,4 +4833,56 @@ footer {
     border-width: 2px;
 }
 
+/* Icon System */
+.icon {
+    display: inline-block;
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: middle;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.icon-sm {
+    width: 1em;
+    height: 1em;
+}
+
+.icon-md {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.icon-lg {
+    width: 2em;
+    height: 2em;
+}
+
+.icon-xl {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+/* Category icon colors */
+.category-icon .icon {
+    color: var(--accent-blue);
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.feature-icon .icon {
+    color: var(--accent-blue);
+    width: 1.25em;
+    height: 1.25em;
+}
+
+.product-badge .icon {
+    width: 1.125em;
+    height: 1.125em;
+    margin-right: 0.25rem;
+}
+
 /* Force Netlify Deploy Sun Sep 29 12:40:00 CEST 2025 */
