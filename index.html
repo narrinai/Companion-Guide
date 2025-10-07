@@ -761,17 +761,19 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     await companionsDataPromise;
                 }
 
-                // Load featured companions from Airtable (limit to 8 for homepage)
-                await window.companionManager.renderFeaturedCompanions('featured-companions-container', 8);
+                // Load companion tags first (they're most visible/above fold)
+                // Run in parallel with featured companions for better performance
+                const tagsPromise = loadFeaturedCompanionTags();
+                const featuredPromise = window.companionManager.renderFeaturedCompanions('featured-companions-container', 8);
 
-                // Update category counts dynamically
+                // Wait for both to complete
+                await Promise.all([tagsPromise, featuredPromise]);
+
+                // Update category counts dynamically (less critical, can wait)
                 await window.companionManager.updateCategoryCounts();
 
-                // Load featured companions in footer
+                // Load featured companions in footer (least critical)
                 await window.companionManager.renderFooterFeaturedCompanions('featured-companions-footer');
-
-                // Load featured companion tags
-                await loadFeaturedCompanionTags();
             } catch (error) {
                 console.error('Error loading featured companions:', error);
                 // Show error message in container
@@ -788,15 +790,22 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             }
         });
 
-        // Load four random featured companions for the category tags (v3)
+        // Load four random featured companions for the category tags (v4 - optimized)
         async function loadFeaturedCompanionTags() {
             try {
                 console.log('Loading featured companion tags...'); // Debug
-                // Fetch all companions
-                const allCompanions = await window.companionManager.fetchCompanions({
-                    sort: 'rating'
-                });
-                console.log('Fetched companions:', allCompanions.length); // Debug
+
+                // Use cached companions from companionManager instead of fetching again
+                let allCompanions = window.companionManager.companions;
+
+                // If no cache yet, fetch (but this should rarely happen due to prefetch)
+                if (!allCompanions || allCompanions.length === 0) {
+                    allCompanions = await window.companionManager.fetchCompanions({
+                        sort: 'rating'
+                    });
+                }
+
+                console.log('Using cached companions:', allCompanions.length); // Debug
 
                 // Filter for featured companions
                 const featuredCompanions = allCompanions.filter(c =>
