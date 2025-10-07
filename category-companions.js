@@ -201,18 +201,17 @@ class CategoryCompanions {
     }
 
     generateStarRating(rating) {
-        const fullStars = Math.floor(rating);
-        const hasHalfStar = rating % 1 >= 0.3; // Show half star for .3 and above
-        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        // Rating is stored as 0-10 in Airtable (e.g., 9.6)
+        // We always show exactly 5 stars visually, rating text shows X/10
+        // Simple 1:1 mapping rounded: 9.6 → 5 stars, 8.0 → 4 stars, 6.0 → 3 stars
+        const stars = Math.round(rating / 2); // 9.6 → 5, 8.0 → 4, 7.0 → 4, 6.0 → 3
+        const fullStars = Math.min(5, stars); // Cap at 5 stars max
+        const emptyStars = 5 - fullStars;
 
         let starsHtml = '';
 
         for (let i = 0; i < fullStars; i++) {
             starsHtml += '<span class="star-filled">★</span>';
-        }
-
-        if (hasHalfStar) {
-            starsHtml += '<span class="star-half">★</span>';
         }
 
         for (let i = 0; i < emptyStars; i++) {
@@ -247,7 +246,7 @@ class CategoryCompanions {
             return `
                 <tr>
                     <td><strong><a href="/companions/${slug}">${companion.name}</a></strong></td>
-                    <td>${companion.rating.toFixed(1)}/5</td>
+                    <td>${companion.rating.toFixed(1)}/10</td>
                     <td>${pricing}</td>
                     <td>${keyFeature}</td>
                     <td>${bestFor}</td>
@@ -362,7 +361,7 @@ class CategoryCompanions {
                             <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
                             <div class="rating-line">
                                 <span class="stars">${this.generateStarRating(rating)}</span>
-                                <span class="rating-score">${rating.toFixed(1)}/5</span>
+                                <span class="rating-score">${rating.toFixed(1)}/10</span>
                                 ${reviewCount > 0 ? `<span class="review-count">(${reviewCount} reviews)</span>` : ''}
                             </div>
                         </div>
