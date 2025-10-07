@@ -1185,3 +1185,103 @@ body:has(.article-hero) .nav-menu {
 }
 
 /* Commented out media queries removed */
+
+/* Compact Pricing Tables for Articles */
+.pricing-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-4);
+    margin: var(--space-5) 0;
+    max-width: 900px;
+}
+
+.pricing-tier,
+.pricing-plan {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pricing-tier:hover,
+.pricing-plan:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-tier.featured,
+.pricing-plan.featured {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+}
+
+.pricing-tier h3,
+.pricing-tier h4,
+.pricing-plan h3,
+.pricing-plan h4 {
+    margin: 0 0 var(--space-2) 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.pricing-tier .price,
+.pricing-plan .price {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin: var(--space-2) 0 var(--space-4) 0;
+}
+
+.pricing-tier .price .period,
+.pricing-plan .price .period {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+}
+
+.pricing-tier ul,
+.pricing-plan ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.pricing-tier ul li,
+.pricing-plan ul li {
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border-primary);
+    color: var(--text-secondary);
+}
+
+.pricing-tier ul li:last-child,
+.pricing-plan ul li:last-child {
+    border-bottom: none;
+}
+
+.tier-badge {
+    position: absolute;
+    top: -12px;
+    right: var(--space-4);
+    background: var(--accent-primary);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .pricing-table {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .pricing-tier,
+    .pricing-plan {
+        padding: var(--space-3);
+    }
+}
