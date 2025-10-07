@@ -247,7 +247,7 @@ class CategoryCompanions {
             return `
                 <tr>
                     <td><strong><a href="/companions/${slug}">${companion.name}</a></strong></td>
-                    <td>${companion.rating}/5</td>
+                    <td>${companion.rating.toFixed(1)}/5</td>
                     <td>${pricing}</td>
                     <td>${keyFeature}</td>
                     <td>${bestFor}</td>
@@ -362,7 +362,7 @@ class CategoryCompanions {
                             <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
                             <div class="rating-line">
                                 <span class="stars">${this.generateStarRating(rating)}</span>
-                                <span class="rating-score">${rating}/5</span>
+                                <span class="rating-score">${rating.toFixed(1)}/5</span>
                                 ${reviewCount > 0 ? `<span class="review-count">(${reviewCount} reviews)</span>` : ''}
                             </div>
                         </div>
