@@ -204,6 +204,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     <a href="#" class="featured-companion-tag" data-companion-index="1">Loading...</a>
                     <a href="#" class="featured-companion-tag" data-companion-index="2">Loading...</a>
                     <a href="#" class="featured-companion-tag" data-companion-index="3">Loading...</a>
+                    <a href="#" class="featured-companion-tag" data-companion-index="4">Loading...</a>
+                    <a href="#" class="featured-companion-tag" data-companion-index="5">Loading...</a>
                 </div>
             </div>
         </section>
@@ -828,9 +830,9 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 // If no featured companions, use top rated ones
                 const companionsToUse = featuredCompanions.length > 0 ? featuredCompanions : allCompanions;
 
-                // Get four random companions
+                // Get six random companions (changed from 4 to 6)
                 const shuffled = [...companionsToUse].sort(() => 0.5 - Math.random());
-                const selectedCompanions = shuffled.slice(0, 4);
+                const selectedCompanions = shuffled.slice(0, 6);
 
                 // Get all companion tags by index
                 const companionTags = document.querySelectorAll('[data-companion-index]');
@@ -840,7 +842,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     if (selectedCompanions[index]) {
                         const companion = selectedCompanions[index];
                         tag.href = `/companions/${companion.slug}`;
-                        tag.textContent = companion.name;
+                        // Add rating to the button text
+                        tag.textContent = `${companion.rating}/10 ${companion.name}`;
                     } else {
                         // If not enough companions, hide the tag
                         tag.remove();
