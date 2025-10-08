@@ -157,8 +157,9 @@ exports.handler = async (event, context) => {
     }
 
     // Check for required API keys
-    if (!process.env.OPENAI_API_KEY) {
-      throw new Error('OPENAI_API_KEY not configured');
+    const openaiKey = process.env.OPENAI_API_KEY_COMPANIONGUIDE || process.env.OPENAI_API_KEY;
+    if (!openaiKey) {
+      throw new Error('OPENAI_API_KEY_COMPANIONGUIDE or OPENAI_API_KEY not configured');
     }
     if (!process.env.GITHUB_TOKEN_COMPANIONGUIDE) {
       throw new Error('GITHUB_TOKEN_COMPANIONGUIDE not configured');
@@ -212,7 +213,7 @@ Generate the COMPLETE HTML page now:`;
 
     // Call OpenAI to generate the page
     console.log('Calling OpenAI API...');
-    let generatedHTML = await generateWithOpenAI(prompt, process.env.OPENAI_API_KEY);
+    let generatedHTML = await generateWithOpenAI(prompt, openaiKey);
 
     // Clean up any markdown code blocks
     generatedHTML = generatedHTML.replace(/```html\n?/g, '').replace(/```\n?$/g, '').trim();
