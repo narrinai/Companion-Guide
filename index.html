@@ -856,11 +856,11 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     // Add ALL featured companions with their ratings
                     sortedCompanions.forEach((companion, index) => {
                         const tag = document.createElement('a');
-                        tag.href = `/companions/${companion.slug}.html`;
+                        tag.href = `/companions/${companion.slug}`;
                         tag.className = 'featured-companion-tag';
                         tag.textContent = `${companion.rating}/10 ${companion.name}`;
                         companionTagsContainer.appendChild(tag);
-                        console.log(`Added companion tag: ${companion.rating}/10 ${companion.name} -> /companions/${companion.slug}.html`); // Debug
+                        console.log(`Added companion tag: ${companion.rating}/10 ${companion.name}`); // Debug
                     });
                 } else {
                     console.warn('No featured companions found or container missing');
