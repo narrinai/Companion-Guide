@@ -40,8 +40,8 @@ class CategoryCompanions {
             '/categories/adult-content-uncensored-companions': ['nsfw', 'adult', 'uncensored'],
             '/categories/adult-image-generation-companions': ['image-gen'], // Only show companions with image-gen tag
             '/categories/ai-girlfriend-companions': ['ai-girlfriend', 'romance', 'dating'],
-            '/categories/ai-porn-companions': ['porn'],
-            '/categories/hentai-ai-companions': ['hentai'],
+            '/categories/ai-porn-chat-platforms': ['porn'],
+            '/categories/hentai-ai-chat-platforms': ['hentai'],
             '/categories/roleplay-character-chat-companions': ['roleplaying', 'character', 'fantasy'],
             '/categories/video-companions-companions': ['video', 'visual'],
             '/categories/whatsapp-companions-companions': ['whatsapp', 'messaging'],
