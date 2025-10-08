@@ -342,11 +342,24 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
 
   // Extract pricing (pros/cons removed - not in Airtable)
   const allPrices = [];
-  const priceMatches = combinedText.matchAll(/\$(\d+(?:\.\d{2})?)/g);
-  for (const match of priceMatches) {
-    const price = parseFloat(match[1]);
-    if (price > 0 && price < 1000) {
-      allPrices.push(price);
+
+  // Multiple patterns to catch different price formats
+  const pricePatterns = [
+    /\$(\d+(?:\.\d{2})?)/g,                    // $19.99
+    /(\d+(?:\.\d{2})?)\s*(?:USD|usd|\$)/g,     // 19.99 USD or 19.99$
+    /price[:\s]+(\d+(?:\.\d{2})?)/gi,          // price: 19.99
+    /(\d+(?:\.\d{2})?)\s*\/\s*month/gi,        // 19.99/month
+    /(\d+(?:\.\d{2})?)\s*per\s+month/gi,       // 19.99 per month
+    /monthly[:\s]+(\d+(?:\.\d{2})?)/gi,        // monthly: 19.99
+  ];
+
+  for (const pattern of pricePatterns) {
+    const matches = combinedText.matchAll(pattern);
+    for (const match of matches) {
+      const price = parseFloat(match[1]);
+      if (price > 0 && price < 1000) {
+        allPrices.push(price);
+      }
     }
   }
 
@@ -377,8 +390,28 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     });
   }
 
+  // Try to detect plan names from the HTML
+  const detectedPlanNames = [];
+  const planNamePatterns = [
+    /(?:plan|tier|package)[:\s]*([a-z]+)/gi,
+    /(basic|starter|standard|premium|pro|plus|elite|ultimate|deluxe)\s+(?:plan|tier|package)/gi,
+  ];
+
+  for (const pattern of planNamePatterns) {
+    const matches = combinedText.matchAll(pattern);
+    for (const match of matches) {
+      const name = match[1].trim();
+      if (name.length > 2 && name.length < 20) {
+        detectedPlanNames.push(name.charAt(0).toUpperCase() + name.slice(1).toLowerCase());
+      }
+    }
+  }
+
   // Add paid plans for each detected price
-  const tierNames = ["Basic", "Premium", "Pro", "Ultimate"];
+  const tierNames = detectedPlanNames.length > 0
+    ? detectedPlanNames
+    : ["Basic", "Premium", "Pro", "Ultimate"];
+
   uniquePrices.slice(0, 4).forEach((price, index) => {
     const features = [];
 
