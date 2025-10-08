@@ -445,7 +445,7 @@
                 if (response.ok) {
                     // Check if page was generated automatically by the backend
                     if (result.pageGenerated) {
-                        showMessage(`✅ Successfully created ${data.name} in Airtable and generated HTML page at companions/${data.slug}.html!`, 'success');
+                        showMessage(`✅ Successfully created ${data.name} in Airtable and generated page at /companions/${data.slug}!`, 'success');
                     } else if (result.pageError) {
                         showMessage(`⚠️ Created ${data.name} in Airtable (ID: ${result.id}), but page generation failed: ${result.pageError}`, 'warning');
                     } else {
