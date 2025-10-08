@@ -2129,6 +2129,16 @@ footer {
     margin-bottom: var(--space-12);
 }
 
+.category-hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
 .category-hero {
     text-align: center;
     padding: var(--space-16) 0 var(--space-12) 0;
