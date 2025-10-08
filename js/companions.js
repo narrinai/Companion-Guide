@@ -556,7 +556,9 @@ class CompanionManager {
         'whatsapp': 0,
         'image-gen': 0,
         'nsfw': 0,
-        'video': 0
+        'video': 0,
+        'porn': 0,
+        'hentai': 0
       };
 
       // Map category names from Airtable to our internal category keys
@@ -578,7 +580,9 @@ class CompanionManager {
         'adult-content': 'nsfw',
         'uncensored': 'nsfw',
         'video': 'video',
-        'video-chat': 'video'
+        'video-chat': 'video',
+        'porn': 'porn',
+        'hentai': 'hentai'
       };
 
       allCompanions.forEach(companion => {
@@ -615,8 +619,8 @@ class CompanionManager {
     } catch (error) {
       console.error('Error updating category counts:', error);
       // Fallback to show error state for both pages
-      const categoryIds = ['roleplaying-count', 'wellness-count', 'learning-count', 'ai-girlfriend-count', 'whatsapp-count', 'image-gen-count', 'nsfw-count', 'video-count'];
-      const indexCategoryIds = ['roleplaying-count-index', 'wellness-count-index', 'learning-count-index', 'ai-girlfriend-count-index', 'whatsapp-count-index', 'image-gen-count-index', 'nsfw-count-index', 'video-count-index'];
+      const categoryIds = ['roleplaying-count', 'wellness-count', 'learning-count', 'ai-girlfriend-count', 'whatsapp-count', 'image-gen-count', 'nsfw-count', 'video-count', 'porn-count', 'hentai-count'];
+      const indexCategoryIds = ['roleplaying-count-index', 'wellness-count-index', 'learning-count-index', 'ai-girlfriend-count-index', 'whatsapp-count-index', 'image-gen-count-index', 'nsfw-count-index', 'video-count-index', 'porn-count-index', 'hentai-count-index'];
 
       categoryIds.forEach(id => {
         const element = document.getElementById(id);
