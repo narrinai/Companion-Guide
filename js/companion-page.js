@@ -112,6 +112,12 @@ class CompanionPageManager {
 
         // Update meta tags
         this.updateMetaTags();
+
+        // Update all external links with website_url from Airtable
+        this.updateExternalLinks();
+
+        // Update structured data schema with website_url
+        this.updateStructuredData();
     }
 
     updatePageTitle() {
@@ -299,6 +305,72 @@ class CompanionPageManager {
                this.companionData?.title ||
                this.companionData?.['Title'] ||
                this.companionId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    updateExternalLinks() {
+        if (!this.companionData?.website_url) {
+            console.warn('No website_url found in companion data');
+            return;
+        }
+
+        const websiteUrl = this.companionData.website_url;
+        console.log(`Updating all external links to: ${websiteUrl}`);
+
+        // Find and update all external "Visit Website" links
+        // Target links in hero section, CTA sections, and pricing
+        const externalLinkSelectors = [
+            '.platform-btn', // Hero section button
+            '.cta-button.primary', // CTA section buttons
+            '.btn-secondary[target="_blank"]', // Companion listing "Visit Website" buttons
+            'a[href*="http"][target="_blank"]:not(.social-link):not(.review-link)' // Generic external links
+        ];
+
+        externalLinkSelectors.forEach(selector => {
+            const links = document.querySelectorAll(selector);
+            links.forEach(link => {
+                // Only update links that look like external affiliate/website links
+                // Skip internal links, social links, and specific external content links
+                const href = link.getAttribute('href');
+                const text = link.textContent.trim();
+
+                // Check if this is likely a "Visit Website" type link
+                if (text.includes('Visit Website') ||
+                    text.includes('Try') ||
+                    text.includes('Get Started') ||
+                    link.classList.contains('platform-btn') ||
+                    link.classList.contains('cta-button')) {
+
+                    console.log(`Updating link: ${href} -> ${websiteUrl}`);
+                    link.setAttribute('href', websiteUrl);
+                }
+            });
+        });
+    }
+
+    updateStructuredData() {
+        if (!this.companionData?.website_url) return;
+
+        const websiteUrl = this.companionData.website_url;
+
+        // Find and update JSON-LD structured data
+        const scripts = document.querySelectorAll('script[type="application/ld+json"]');
+
+        scripts.forEach(script => {
+            try {
+                const data = JSON.parse(script.textContent);
+
+                // Update Review schema url
+                if (data['@type'] === 'Review' && data.itemReviewed) {
+                    if (data.itemReviewed.url) {
+                        data.itemReviewed.url = websiteUrl;
+                        script.textContent = JSON.stringify(data, null, 2);
+                        console.log('Updated structured data schema with website_url');
+                    }
+                }
+            } catch (e) {
+                console.warn('Failed to parse structured data:', e);
+            }
+        });
     }
 
     // Method to manually update companion data (for testing)
