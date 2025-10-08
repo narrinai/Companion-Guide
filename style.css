@@ -2131,7 +2131,7 @@ footer {
 
 /* Category Pages G2-Style */
 .category-hero-section {
-    padding: var(--space-8) 0 var(--space-12) 0;
+    padding: var(--space-8) var(--space-6) var(--space-12) var(--space-6);
     background-color: var(--bg-secondary);
     border-radius: var(--radius-2xl);
     margin-bottom: var(--space-12);
@@ -2141,10 +2141,13 @@ footer {
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
     margin-bottom: var(--space-4);
+    margin-left: 0;
+    padding-left: 0;
     color: var(--text-primary);
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    text-align: left;
 }
 
 .category-hero {
