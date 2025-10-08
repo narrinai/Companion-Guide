@@ -160,8 +160,8 @@ exports.handler = async (event, context) => {
     if (!process.env.OPENAI_API_KEY) {
       throw new Error('OPENAI_API_KEY not configured');
     }
-    if (!process.env.GITHUB_TOKEN) {
-      throw new Error('GITHUB_TOKEN not configured');
+    if (!process.env.GITHUB_TOKEN_COMPANIONGUIDE) {
+      throw new Error('GITHUB_TOKEN_COMPANIONGUIDE not configured');
     }
 
     console.log(`Generating companion page for: ${name} (${slug})`);
@@ -219,7 +219,7 @@ Generate the COMPLETE HTML page now:`;
 
     // Upload to GitHub
     console.log('Uploading to GitHub...');
-    await uploadToGitHub(slug, generatedHTML, process.env.GITHUB_TOKEN);
+    await uploadToGitHub(slug, generatedHTML, process.env.GITHUB_TOKEN_COMPANIONGUIDE);
 
     console.log(`Successfully generated and uploaded page for ${name}`);
 
