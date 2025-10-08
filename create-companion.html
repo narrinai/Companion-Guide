@@ -429,6 +429,8 @@
             // Set default image_url
             data.image_url = `../images/logos/${data.slug}.png`;
 
+            submitBtn.textContent = 'Creating & Generating Page...';
+
             try {
                 const response = await fetch('/.netlify/functions/companionguide-create', {
                     method: 'POST',
@@ -441,16 +443,13 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    // Step 1: Successfully created in Airtable
-                    submitBtn.textContent = 'Generating HTML page...';
-                    showMessage(`✅ Created ${data.name} in Airtable! Now generating HTML page...`, 'success');
-
-                    // Step 2: Generate HTML page using Claude
-                    try {
-                        await generateCompanionPage(data, result);
-                        showMessage(`✅ Successfully created ${data.name} and generated HTML page at companions/${data.slug}.html!`, 'success');
-                    } catch (pageError) {
-                        showMessage(`⚠️ Created ${data.name} in Airtable, but page generation failed: ${pageError.message}`, 'error');
+                    // Check if page was generated automatically by the backend
+                    if (result.pageGenerated) {
+                        showMessage(`✅ Successfully created ${data.name} in Airtable and generated HTML page at companions/${data.slug}.html!`, 'success');
+                    } else if (result.pageError) {
+                        showMessage(`⚠️ Created ${data.name} in Airtable (ID: ${result.id}), but page generation failed: ${result.pageError}`, 'warning');
+                    } else {
+                        showMessage(`✅ Created ${data.name} in Airtable! (ID: ${result.id})`, 'success');
                     }
 
                     form.reset();

@@ -45,13 +45,15 @@ exports.handler = async (event, context) => {
 
     // Prepare record data - USE CORRECT AIRTABLE FIELD NAMES
     const recordData = {
+      id: data.name, // Use name as id field
       name: data.name,
       slug: data.slug,
       description: data.description,
       tagline: data.short_description, // Airtable field is 'tagline' not 'short_description'
       website_url: data.website_url,
-      logo_url: data.image_url, // Airtable field is 'logo_url' not 'image_url'
-      status: 'Active'
+      logo_url: data.image_url ? data.image_url.replace(/^\.\.\//, '/') : `/images/logos/${data.slug}.png`, // Remove ../ prefix and use slug-based path
+      status: 'Active',
+      review_count: Math.floor(Math.random() * (40 - 10 + 1)) + 10 // Random number between 10 and 40
     };
 
     // Add optional fields
@@ -88,12 +90,47 @@ exports.handler = async (event, context) => {
 
     console.log('Successfully created record:', record.id);
 
+    // Now generate the HTML page by calling the generate-companion-page function
+    let pageGenerated = false;
+    let pageError = null;
+
+    try {
+      const generatePageFunction = require('./generate-companion-page');
+      const pageResult = await generatePageFunction.handler({
+        httpMethod: 'POST',
+        body: JSON.stringify({
+          slug: data.slug,
+          name: data.name,
+          rating: data.rating || 8.0,
+          description: data.description,
+          short_description: data.short_description,
+          pricing_plans: data.pricing_plans,
+          features: data.features,
+          categories: data.categories,
+          website_url: data.website_url
+        })
+      }, context);
+
+      if (pageResult.statusCode === 200) {
+        pageGenerated = true;
+        console.log('Successfully generated HTML page for', data.slug);
+      } else {
+        pageError = 'Page generation returned non-200 status';
+        console.error('Page generation failed:', pageResult.body);
+      }
+    } catch (error) {
+      pageError = error.message;
+      console.error('Error generating page:', error);
+    }
+
     return {
       statusCode: 200,
       body: JSON.stringify({
         success: true,
         id: record.id,
-        name: data.name
+        name: data.name,
+        pageGenerated: pageGenerated,
+        pageError: pageError
       })
     };
 
