@@ -841,30 +841,30 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     c.featured === true || c.featured === 'true' || c.is_featured === true || c.is_featured === 'true'
                 );
 
-                // If no featured companions, use top rated ones
-                const companionsToUse = featuredCompanions.length > 0 ? featuredCompanions : allCompanions;
+                console.log('Found featured companions:', featuredCompanions.length); // Debug
 
-                // Get six random companions (changed from 4 to 6)
-                const shuffled = [...companionsToUse].sort(() => 0.5 - Math.random());
-                const selectedCompanions = shuffled.slice(0, 6);
+                // Sort by rating (highest first)
+                const sortedCompanions = featuredCompanions.sort((a, b) => (b.rating || 0) - (a.rating || 0));
 
-                // Get all companion tags by index
-                const companionTags = document.querySelectorAll('[data-companion-index]');
+                // Get the companion tags container
+                const companionTagsContainer = document.querySelector('.companion-tags');
 
-                // Fill each tag with a companion
-                companionTags.forEach((tag, index) => {
-                    if (selectedCompanions[index]) {
-                        const companion = selectedCompanions[index];
-                        const url = `/companions/${companion.slug}`;
-                        tag.setAttribute('href', url);
-                        // Add rating to the button text
+                if (companionTagsContainer && sortedCompanions.length > 0) {
+                    // Clear existing placeholder tags
+                    companionTagsContainer.innerHTML = '';
+
+                    // Add ALL featured companions with their ratings
+                    sortedCompanions.forEach((companion, index) => {
+                        const tag = document.createElement('a');
+                        tag.href = `/companions/${companion.slug}`;
+                        tag.className = 'featured-companion-tag';
                         tag.textContent = `${companion.rating}/10 ${companion.name}`;
-                        console.log(`Set companion tag ${index} to:`, url); // Debug
-                    } else {
-                        // If not enough companions, hide the tag
-                        tag.remove();
-                    }
-                });
+                        companionTagsContainer.appendChild(tag);
+                        console.log(`Added companion tag: ${companion.rating}/10 ${companion.name}`); // Debug
+                    });
+                } else {
+                    console.warn('No featured companions found or container missing');
+                }
             } catch (error) {
                 console.error('Error loading featured companion tags:', error);
                 // Hide all tags if there's an error
