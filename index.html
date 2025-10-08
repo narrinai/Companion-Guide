@@ -841,9 +841,11 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 companionTags.forEach((tag, index) => {
                     if (selectedCompanions[index]) {
                         const companion = selectedCompanions[index];
-                        tag.href = `/companions/${companion.slug}`;
+                        const url = `/companions/${companion.slug}`;
+                        tag.setAttribute('href', url);
                         // Add rating to the button text
                         tag.textContent = `${companion.rating}/10 ${companion.name}`;
+                        console.log(`Set companion tag ${index} to:`, url); // Debug
                     } else {
                         // If not enough companions, hide the tag
                         tag.remove();
