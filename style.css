@@ -360,11 +360,19 @@ main {
     box-sizing: border-box;
 }
 
+.featured-companion-tag .rating-score {
+    color: var(--accent-blue);
+}
+
 .featured-companion-tag:hover {
     background-color: var(--accent-blue);
     color: white;
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
+}
+
+.featured-companion-tag:hover .rating-score {
+    color: white;
 }
 
 /* A-Z Index */
