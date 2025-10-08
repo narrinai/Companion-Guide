@@ -370,10 +370,31 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
     <script src="js/companions.js"></script>
     <script>
-        // Update category counts when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+        // Update category counts and sort cards when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
             if (window.companionManager) {
-                window.companionManager.updateCategoryCounts();
+                await window.companionManager.updateCategoryCounts();
+
+                // Sort category cards by companion count (highest first)
+                const grid = document.querySelector('.categories-grid');
+                if (grid) {
+                    const cards = Array.from(grid.querySelectorAll('.category-card'));
+
+                    // Sort cards by the count in their stats element
+                    cards.sort((a, b) => {
+                        const aStats = a.querySelector('.category-stats');
+                        const bStats = b.querySelector('.category-stats');
+
+                        // Extract number from text like "5 Platforms" or "Loading..."
+                        const aCount = parseInt(aStats?.textContent.match(/\d+/)?.[0] || '0');
+                        const bCount = parseInt(bStats?.textContent.match(/\d+/)?.[0] || '0');
+
+                        return bCount - aCount; // Sort descending
+                    });
+
+                    // Re-append cards in sorted order
+                    cards.forEach(card => grid.appendChild(card));
+                }
             }
         });
     </script>
