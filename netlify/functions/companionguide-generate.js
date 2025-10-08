@@ -353,23 +353,31 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     /monthly[:\s]+(\d+(?:\.\d{2})?)/gi,        // monthly: 19.99
   ];
 
-  for (const pattern of pricePatterns) {
-    const matches = combinedText.matchAll(pattern);
-    for (const match of matches) {
-      const price = parseFloat(match[1]);
-      if (price > 0 && price < 1000) {
-        allPrices.push(price);
+  // Search in both lowercase combined text AND original HTML for better detection
+  const textsToSearch = [combinedText, allHtml];
+
+  for (const text of textsToSearch) {
+    for (const pattern of pricePatterns) {
+      const matches = text.matchAll(pattern);
+      for (const match of matches) {
+        const price = parseFloat(match[1]);
+        if (price > 0 && price < 1000) {
+          allPrices.push(price);
+        }
       }
     }
   }
 
   const uniquePrices = [...new Set(allPrices)].sort((a, b) => a - b);
 
+  console.log(`Found ${allPrices.length} prices: ${allPrices.join(', ')}`);
+  console.log(`Unique prices: ${uniquePrices.join(', ')}`);
+
   // Build pricing plans based on detected prices
   const plans = [];
 
-  // Add free plan if mentioned
-  if (combinedText.includes('free') || combinedText.includes('no cost') || uniquePrices.length > 0) {
+  // Add free plan if mentioned (but only if we also found paid prices)
+  if ((combinedText.includes('free') || combinedText.includes('no cost')) && uniquePrices.length > 0) {
     const freeFeatures = [
       "✅ Basic AI chat",
       "✅ Limited daily messages",
