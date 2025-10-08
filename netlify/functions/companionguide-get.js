@@ -103,6 +103,7 @@ exports.handler = async (event, context) => {
         rating: fields.rating || 0,
         description: fields.description || '',
         short_description: fields.short_description || '',
+        tagline: fields.tagline || fields.short_description || '',
         website_url: fields.website_url || '',
         affiliate_url: fields.affiliate_url || fields.website_url || '',
         logo_url: fields.logo_url || fields.image_url || '/images/logos/default.png',

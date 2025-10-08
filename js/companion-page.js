@@ -139,6 +139,13 @@ class CompanionPageManager {
             logo.alt = `${companionName} logo`;
         }
 
+        // Update tagline from Airtable if available
+        const taglineElement = document.querySelector('.companion-hero .tagline, .hero-text .tagline, .tagline');
+        const tagline = this.companionData.tagline || this.companionData.short_description;
+        if (taglineElement && tagline) {
+            taglineElement.textContent = tagline;
+        }
+
         // Update any "What is [Platform]?" headings
         const whatIsHeading = document.querySelector('h2');
         if (whatIsHeading && whatIsHeading.textContent.includes('What is')) {
