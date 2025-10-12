@@ -159,7 +159,13 @@ class ArticleCompanionDataLoader {
                     <h3>${plan.name}</h3>
                     <div class="price">${price}<span class="period">${period}</span></div>
                     <ul>
-                        ${plan.features.map(feature => `<li>${feature}</li>`).join('')}
+                        ${plan.features.map(feature => {
+                            // Check if feature starts with ❌ (excluded feature)
+                            const isExcluded = feature.startsWith('❌');
+                            const cleanFeature = isExcluded ? feature.substring(1).trim() : feature;
+                            const className = isExcluded ? ' class="feature-excluded"' : '';
+                            return `<li${className}>${cleanFeature}</li>`;
+                        }).join('')}
                     </ul>
                 </div>
             `;
