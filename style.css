@@ -467,6 +467,12 @@ main {
     margin: var(--space-16) 0;
 }
 
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}
+
 /* Section Headers */
 .section-header {
     display: flex;

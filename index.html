@@ -215,117 +215,121 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             </div>
         </section>
 
-        <!-- Featured Companions Section -->
-        <section id="companions" class="companions-section">
-            <div class="section-header">
-                <div>
-                    <h2>Top AI Chat & Companion Platforms</h2>
-                    <p>Discover the most popular and highest-rated AI chat platforms and AI companions</p>
-                </div>
-                <a href="/companions" class="view-all-link">→</a>
+        <!-- Two Column Layout: Companions & Topics -->
+        <div class="main-layout">
+            <!-- Left Column: Companions & Categories -->
+            <div class="left-column">
+                <section id="companions" class="companions-section">
+                    <div class="section-header">
+                        <div>
+                            <h2>Top AI Chat & Companion Platforms</h2>
+                            <p>Discover the most popular and highest-rated AI chat platforms and AI companions</p>
+                        </div>
+                        <a href="/companions" class="view-all-link">→</a>
+                    </div>
+
+                    <div id="featured-companions-container" class="companions-grid">
+                        <!-- Loading skeletons for better perceived performance -->
+                        <div class="companion-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text skeleton-title"></div>
+                            <div class="skeleton-text skeleton-description"></div>
+                            <div class="skeleton-text skeleton-price"></div>
+                        </div>
+                        <div class="companion-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text skeleton-title"></div>
+                            <div class="skeleton-text skeleton-description"></div>
+                            <div class="skeleton-text skeleton-price"></div>
+                        </div>
+                        <div class="companion-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text skeleton-title"></div>
+                            <div class="skeleton-text skeleton-description"></div>
+                            <div class="skeleton-text skeleton-price"></div>
+                        </div>
+                        <div class="companion-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text skeleton-title"></div>
+                            <div class="skeleton-text skeleton-description"></div>
+                            <div class="skeleton-text skeleton-price"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Categories Section -->
+                <section class="categories-overview">
+                    <div class="section-header">
+                        <h2><svg class="icon icon-md"><use href="#icon-target"/></svg> Explore AI Character Platforms by Category</h2>
+                        <p>Find AI companion platforms tailored to your specific needs</p>
+                    </div>
+
+                    <div class="categories-grid">
+                        <a href="/categories/roleplay-character-chat-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-roleplay"/></svg></div>
+                            <h3>Roleplay & Character Chat</h3>
+                            <p>Best AI platforms for roleplay and character chat experiences</p>
+                            <div class="category-stats" id="roleplaying-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/ai-girlfriend-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-girlfriend"/></svg></div>
+                            <h3>AI Girlfriend</h3>
+                            <p>Best AI platforms for virtual romantic relationships</p>
+                            <div class="category-stats" id="ai-girlfriend-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/wellness-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-wellness"/></svg></div>
+                            <h3>Wellness & Mental Health</h3>
+                            <p>AI companions focused on mental health and emotional support</p>
+                            <div class="category-stats" id="wellness-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/whatsapp-companions-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-whatsapp"/></svg></div>
+                            <h3>WhatsApp-Only AI</h3>
+                            <p>AI companions that work exclusively within WhatsApp</p>
+                            <div class="category-stats" id="whatsapp-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/adult-image-generation-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-image-gen"/></svg></div>
+                            <h3>Adult Image Generation</h3>
+                            <p>Best AI platforms for creating NSFW art and visual content</p>
+                            <div class="category-stats" id="image-gen-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/adult-content-uncensored-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
+                            <h3>Adult Content & Uncensored</h3>
+                            <p>Best uncensored AI platforms for adult content</p>
+                            <div class="category-stats" id="nsfw-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/learning-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-learning"/></svg></div>
+                            <h3>Learning & Education</h3>
+                            <p>AI tutors and educational companions</p>
+                            <div class="category-stats" id="learning-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/video-companions-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-video"/></svg></div>
+                            <h3>Video Companions</h3>
+                            <p>AI companions with video chat and video generation capabilities</p>
+                            <div class="category-stats" id="video-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/ai-porn-chat-platforms" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
+                            <h3>AI Porn Platforms</h3>
+                            <p>Advanced AI platforms for photorealistic adult content generation</p>
+                            <div class="category-stats" id="porn-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/hentai-ai-chat-platforms" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
+                            <h3>Hentai AI Platforms</h3>
+                            <p>Specialized AI generators for anime and manga-style adult content</p>
+                            <div class="category-stats" id="hentai-count-index">Loading...</div>
+                        </a>
+                    </div>
+                </section>
             </div>
 
-            <div id="featured-companions-container" class="companions-grid">
-                <!-- Loading skeletons for better perceived performance -->
-                <div class="companion-skeleton">
-                    <div class="skeleton-image"></div>
-                    <div class="skeleton-text skeleton-title"></div>
-                    <div class="skeleton-text skeleton-description"></div>
-                    <div class="skeleton-text skeleton-price"></div>
-                </div>
-                <div class="companion-skeleton">
-                    <div class="skeleton-image"></div>
-                    <div class="skeleton-text skeleton-title"></div>
-                    <div class="skeleton-text skeleton-description"></div>
-                    <div class="skeleton-text skeleton-price"></div>
-                </div>
-                <div class="companion-skeleton">
-                    <div class="skeleton-image"></div>
-                    <div class="skeleton-text skeleton-title"></div>
-                    <div class="skeleton-text skeleton-description"></div>
-                    <div class="skeleton-text skeleton-price"></div>
-                </div>
-                <div class="companion-skeleton">
-                    <div class="skeleton-image"></div>
-                    <div class="skeleton-text skeleton-title"></div>
-                    <div class="skeleton-text skeleton-description"></div>
-                    <div class="skeleton-text skeleton-price"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Categories Section -->
-        <section class="categories-overview">
-            <div class="section-header">
-                <h2><svg class="icon icon-md"><use href="#icon-target"/></svg> Explore AI Character Platforms by Category</h2>
-                <p>Find AI companion platforms tailored to your specific needs</p>
-            </div>
-
-            <div class="categories-grid">
-                <a href="/categories/roleplay-character-chat-companions" class="category-card">
-                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-roleplay"/></svg></div>
-                    <h3>Roleplay & Character Chat</h3>
-                    <p>Best AI platforms for roleplay and character chat experiences</p>
-                    <div class="category-stats" id="roleplaying-count-index">Loading...</div>
-                </a>
-                <a href="/categories/ai-girlfriend-companions" class="category-card">
-                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-girlfriend"/></svg></div>
-                    <h3>AI Girlfriend</h3>
-                    <p>Best AI platforms for virtual romantic relationships</p>
-                    <div class="category-stats" id="ai-girlfriend-count-index">Loading...</div>
-                </a>
-                <a href="/categories/wellness-companions" class="category-card">
-                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-wellness"/></svg></div>
-                    <h3>Wellness & Mental Health</h3>
-                    <p>AI companions focused on mental health and emotional support</p>
-                    <div class="category-stats" id="wellness-count-index">Loading...</div>
-                </a>
-                <a href="/categories/whatsapp-companions-companions" class="category-card">
-                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-whatsapp"/></svg></div>
-                    <h3>WhatsApp-Only AI</h3>
-                    <p>AI companions that work exclusively within WhatsApp</p>
-                    <div class="category-stats" id="whatsapp-count-index">Loading...</div>
-                </a>
-                <a href="/categories/adult-image-generation-companions" class="category-card">
-                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-image-gen"/></svg></div>
-                    <h3>Adult Image Generation</h3>
-                    <p>Best AI platforms for creating NSFW art and visual content</p>
-                    <div class="category-stats" id="image-gen-count-index">Loading...</div>
-                </a>
-                <a href="/categories/adult-content-uncensored-companions" class="category-card">
-                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
-                    <h3>Adult Content & Uncensored</h3>
-                    <p>Best uncensored AI platforms for adult content</p>
-                    <div class="category-stats" id="nsfw-count-index">Loading...</div>
-                </a>
-                <a href="/categories/learning-companions" class="category-card">
-                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-learning"/></svg></div>
-                    <h3>Learning & Education</h3>
-                    <p>AI tutors and educational companions</p>
-                    <div class="category-stats" id="learning-count-index">Loading...</div>
-                </a>
-                <a href="/categories/video-companions-companions" class="category-card">
-                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-video"/></svg></div>
-                    <h3>Video Companions</h3>
-                    <p>AI companions with video chat and video generation capabilities</p>
-                    <div class="category-stats" id="video-count-index">Loading...</div>
-                </a>
-                <a href="/categories/ai-porn-chat-platforms" class="category-card">
-                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
-                    <h3>AI Porn Platforms</h3>
-                    <p>Advanced AI platforms for photorealistic adult content generation</p>
-                    <div class="category-stats" id="porn-count-index">Loading...</div>
-                </a>
-                <a href="/categories/hentai-ai-chat-platforms" class="category-card">
-                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
-                    <h3>Hentai AI Platforms</h3>
-                    <p>Specialized AI generators for anime and manga-style adult content</p>
-                    <div class="category-stats" id="hentai-count-index">Loading...</div>
-                </a>
-            </div>
-        </section>
-
-        <!-- News Section -->
+            <!-- Right Column: News -->
         <aside id="topics" class="topics-section">
             <div class="section-header">
                 <h2>Latest AI Companion News</h2>
@@ -541,6 +545,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 <a href="/news" class="btn"><span>View All News</span> →</a>
             </div>
         </aside>
+        </div>
     </main>
 
     <!-- More AI Companions Coming Soon Section -->
