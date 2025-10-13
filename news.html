@@ -524,81 +524,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             }
 
             try {
-                // Load featured companions for news page content
-                const companions = await window.companionManager.fetchCompanions({
-                    sort: 'rating'
-                });
-
-                // Filter only featured companions
-                const featured = companions.filter(c => c.featured === true || c.featured === 'true');
-                console.log('Featured companions loaded:', featured.length);
-
-                // Render in news page
-                const newsContainer = document.getElementById('news-featured-companions');
-                if (newsContainer && featured.length > 0) {
-                    const html = featured.slice(0, 6).map((companion, index) => {
-                        const features = companion.features || [];
-                        const pricingPlans = typeof companion.pricing_plans === 'string'
-                            ? JSON.parse(companion.pricing_plans)
-                            : companion.pricing_plans || [];
-                        const freePlan = pricingPlans.find(p => p.price === 0);
-                        const paidPlan = pricingPlans.find(p => p.price > 0);
-
-                        const pricingText = freePlan && paidPlan
-                            ? 'Free'
-                            : paidPlan
-                            ? `$${paidPlan.price}${paidPlan.period ? '/' + paidPlan.period.replace('ly', '') : ''}`
-                            : 'Contact for Pricing';
-
-                        const pricingNote = freePlan && paidPlan
-                            ? `Premium $${paidPlan.price}${paidPlan.period ? '/' + paidPlan.period.replace('ly', '') : ''}`
-                            : '';
-
-                        const badges = ['🏆 Top Rated', '🏆 Leader', '⚡ Popular', '🌟 Featured', '', ''];
-                        const badge = badges[index] || '';
-                        const featuredClass = index < 4 ? 'featured' : '';
-
-                        return `
-                            <article class="companion-card ${featuredClass}">
-                                ${badge ? `<div class="product-badge">${badge}</div>` : ''}
-                                <div class="card-header">
-                                    <img src="${companion.logo_url}" alt="${companion.name}" class="logo">
-                                    <div class="title-section">
-                                        <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
-                                        <div class="rating-line">
-                                            <span class="stars">${'★'.repeat(Math.floor(companion.rating))}${'☆'.repeat(5-Math.floor(companion.rating))}</span>
-                                            <span class="rating-score">${companion.rating}/5</span>
-                                            <span class="review-count">(${companion.review_count || 0} reviews)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="description">${companion.description}</p>
-
-                                <div class="feature-highlights">
-                                    ${features.slice(0, 4).map(feature => `
-                                        <div class="feature-item">
-                                            <div class="feature-icon">${feature.icon}</div>
-                                            <div class="feature-title">${feature.title}</div>
-                                            <div class="feature-desc">${feature.description}</div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-
-                                <div class="pricing-section">
-                                    <div class="price-main">${pricingText}</div>
-                                    ${pricingNote ? `<div class="price-note">${pricingNote}</div>` : ''}
-                                </div>
-
-                                <div class="card-actions">
-                                    <a href="/companions/${companion.slug}" class="btn-primary">Read Review</a>
-                                    <a href="${companion.website_url}" class="btn-secondary" target="_blank">Visit Website</a>
-                                </div>
-                            </article>
-                        `;
-                    }).join('');
-
-                    newsContainer.innerHTML = html;
-                }
+                // Use the built-in renderFeaturedCompanions method for news page
+                await window.companionManager.renderFeaturedCompanions('news-featured-companions', 6);
 
                 // Load featured companions in footer
                 await window.companionManager.renderFooterFeaturedCompanions("featured-companions-footer");
@@ -607,7 +534,6 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             }
         });
     </script>
-    <script src="script.js"></script>
     <script src="/js/meta-companion-tracking.js"></script>
 </body>
 </html>

@@ -10,14 +10,11 @@
   "devDependencies": {
     "@netlify/functions": "^2.0.0",
     "netlify-cli": "^17.10.1",
-    "puppeteer": "^21.5.0",
     "jsdom": "^27.0.0"
   },
   "scripts": {
     "build": "echo 'Static site - no build step required'",
     "dev": "netlify dev",
-    "populate-airtable": "node populate-airtable.js",
-    "screenshot": "node screenshot-companions.js",
-    "screenshot:single": "node screenshot-companions.js --single"
+    "populate-airtable": "node populate-airtable.js"
   }
 }
