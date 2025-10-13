@@ -4,12 +4,13 @@
   # Build settings (for static site)
   publish = "."
   functions = "netlify/functions"
+  command = "echo 'No build required'"
 
   # Ignore unnecessary files during deployment
   ignore = "node_modules/**"
 
-  # Disable secrets scanning for this static site
-  environment = { NODE_VERSION = "18", SECRETS_SCAN_ENABLED = "false" }
+  # Disable secrets scanning and install only production dependencies
+  environment = { NODE_VERSION = "18", SECRETS_SCAN_ENABLED = "false", NPM_FLAGS = "--production", NODE_ENV = "production" }
 
 # Headers for security and performance
 [[headers]]
@@ -107,17 +108,9 @@
   to = "/index.html"
   status = 200
   
-# Form handling (if needed for future contact forms)
+# Skip asset processing for faster deploys (we serve pre-optimized assets)
 [build.processing]
-  skip_processing = false
-[build.processing.css]
-  bundle = true
-  minify = false
-[build.processing.js]
-  bundle = true
-  minify = true
-[build.processing.html]
-  pretty_urls = true
+  skip_processing = true
 
 # Contact form redirects
 [[redirects]]
