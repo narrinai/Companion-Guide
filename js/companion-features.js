@@ -97,11 +97,12 @@ class CompanionFeaturesManager {
 
     // Generate HTML for each feature
     const featuresHTML = featureList.map(feature => {
-      const iconId = this.getIconId(feature.icon);
+      // Use emoji directly instead of trying to map to SVG icons
+      const iconDisplay = feature.icon || '⭐';
 
       return `
         <div class="highlight-item">
-          <strong><svg class="icon icon-sm"><use href="#${iconId}"/></svg> ${feature.title}:</strong>
+          <strong><span style="font-size: 1.2em; margin-right: 0.5em;">${iconDisplay}</span> ${feature.title}:</strong>
           <span>${feature.description}</span>
         </div>
       `;
