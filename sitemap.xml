@@ -1,613 +1,688 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+
   <!-- Main Pages -->
   <url>
     <loc>https://companionguide.ai/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/companions</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions-az</loc>
-    <lastmod>2025-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/social-media-templates</loc>
-    <lastmod>2025-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/categories</loc>
-    <lastmod>2025-10-02</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/deals</loc>
-    <lastmod>2025-10-02</lastmod>
-    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/news</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/deals</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/contact</loc>
-    <lastmod>2025-09-18</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Category Pages -->
+  <!-- Category Pages -->
   <url>
-    <loc>https://companionguide.ai/categories/wellness-companions</loc>
-    <lastmod>2025-10-02</lastmod>
+    <loc>https://companionguide.ai/categories/adult-content-uncensored-companions</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://companionguide.ai/categories/learning-companions</loc>
-    <lastmod>2025-10-02</lastmod>
+    <loc>https://companionguide.ai/categories/adult-content-uncensored</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/adult-image-generation-companions</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/adult-image-generation</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/categories/ai-girlfriend-companions</loc>
-    <lastmod>2025-10-02</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://companionguide.ai/categories/roleplay-character-chat-companions</loc>
-    <lastmod>2025-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/categories/adult-content-uncensored-companions</loc>
-    <lastmod>2025-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/categories/adult-image-generation-companions</loc>
-    <lastmod>2025-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/categories/whatsapp-companions-companions</loc>
-    <lastmod>2025-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/categories/video-companions-companions</loc>
-    <lastmod>2025-10-02</lastmod>
+    <loc>https://companionguide.ai/categories/ai-girlfriend</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/categories/ai-porn-chat-platforms</loc>
-    <lastmod>2025-10-08</lastmod>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/entertainment</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/categories/hentai-ai-chat-platforms</loc>
-    <lastmod>2025-10-08</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Companion Review Pages -->
   <url>
-    <loc>https://companionguide.ai/companions/narrin-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://companionguide.ai/categories/learning-companions</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://companionguide.ai/companions/simone</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://companionguide.ai/categories/learning</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://companionguide.ai/companions/character-ai</loc>
-    <lastmod>2025-09-12</lastmod>
+    <loc>https://companionguide.ai/categories/nsfw</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/productivity</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/roleplay-character-chat-companions</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/roleplay-character-chat</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/video-companions-companions</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/video-companions</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/wellness-companions</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/wellness</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/whatsapp-companions-companions</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/whatsapp-companions</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Companion Pages -->
+  <url>
+    <loc>https://companionguide.ai/companions/aviosa-ai</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://companionguide.ai/companions/replika</loc>
-    <lastmod>2025-09-12</lastmod>
+    <loc>https://companionguide.ai/companions/candy-ai</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/dreamgf-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/fantasygf-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
+
   <url>
     <loc>https://companionguide.ai/companions/caveduck</loc>
-    <lastmod>2025-09-10</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://companionguide.ai/companions/chai-ai</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/character-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/companions/crushon-ai</loc>
-    <lastmod>2025-10-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/janitor-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/joyland-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/nomi-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/spicychat-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/candy-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/soulgen-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/promptchan-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/muah-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/nectar-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/sakura-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/companions/kajiwoto-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  <url>
-    <loc>https://companionguide.ai/companions/selira-ai</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <!-- Missing Companion Pages -->
-  <url>
-    <loc>https://companionguide.ai/companions/hammer-ai</loc>
-    <lastmod>2025-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/thotchat-ai</loc>
-    <lastmod>2025-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/girlfriend-gpt</loc>
-    <lastmod>2025-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/ourdream-ai</loc>
-    <lastmod>2025-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/swipey-ai</loc>
-    <lastmod>2025-09-13</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/kupid-ai</loc>
-    <lastmod>2025-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/secrets-ai</loc>
-    <lastmod>2025-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/companions/cuties-ai</loc>
-    <lastmod>2025-09-18</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://companionguide.ai/companions/joi-ai</loc>
-    <lastmod>2025-09-18</lastmod>
+    <loc>https://companionguide.ai/companions/dream-companion</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/lovescape</loc>
-    <lastmod>2025-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/companions/dreamgf-ai</loc>
-    <lastmod>2025-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/promptchan-ai</loc>
-    <lastmod>2025-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/soulgen-ai</loc>
-    <lastmod>2025-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/soulkyn-ai</loc>
-    <lastmod>2025-09-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/companions/junipero-ai</loc>
-    <lastmod>2025-09-24</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/companions/dunia-ai</loc>
-    <lastmod>2025-10-02</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://companionguide.ai/companions/stories-ai</loc>
-    <lastmod>2025-10-02</lastmod>
+    <loc>https://companionguide.ai/companions/ehentai-ai</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/fantasy-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/fantasygf-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/girlfriend-gpt</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/hammer-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/janitor-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/joi-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/joyland-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/junipero-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/kajiwoto-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/kupid-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/lovescape</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/muah-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/narrin-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/nectar-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/nomi-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/ourdream-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/promptchan-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/replika</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/sakura-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/companions/secret-share-ai</loc>
-    <lastmod>2025-10-02</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://companionguide.ai/companions/aviosa-ai</loc>
-    <lastmod>2025-10-02</lastmod>
+    <loc>https://companionguide.ai/companions/secrets-ai</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/selira-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/simone</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/soulgen-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/soulkyn-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/spicychat-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/stories-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/swipey-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/companions/thotchat-ai</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- News Articles -->
   <url>
-    <loc>https://companionguide.ai/news/soulgen-ai-adult-image-generation-guide-2025</loc>
-    <lastmod>2025-09-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/ai-sex-chat-comprehensive-guide-2025</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/fantasygf-ai-complete-guide-2025</loc>
-    <lastmod>2025-09-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/character-ai-complete-guide-2025</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/news/replika-ai-comprehensive-review-2025</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/news/ai-companion-voice-technology-breakthrough</loc>
-    <lastmod>2025-09-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/news/best-ai-companion-wellness-platforms</loc>
-    <lastmod>2025-09-02</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/news/replika-ftc-deceptive-marketing-complaint</loc>
-    <lastmod>2025-08-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://companionguide.ai/news/ai-chatbot-teen-suicide-lawsuit</loc>
-    <lastmod>2024-10-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/news/nomi-ai-memory-advancement</loc>
-    <lastmod>2024-09-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/news/ai-companion-addiction-concerns</loc>
-    <lastmod>2024-08-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/news/ai-companion-safety-guidelines</loc>
-    <lastmod>2024-08-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://companionguide.ai/news/ai-companion-market-120m-revenue</loc>
-    <lastmod>2025-08-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/hammer-ai-complete-review-2025</loc>
-    <lastmod>2025-09-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/dreamgf-ai-complete-review-2025</loc>
-    <lastmod>2025-09-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/comprehensive-ai-chat-market-guide-2025</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- New Alternative Guides -->
-  <url>
-    <loc>https://companionguide.ai/news/replika-ai-alternatives-complete-guide-2025</loc>
-    <lastmod>2025-09-24</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/character-ai-alternatives-complete-guide-2025</loc>
-    <lastmod>2025-09-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/crushon-ai-alternatives-complete-guide-2025</loc>
-    <lastmod>2025-10-07</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/candy-ai-alternatives-complete-guide-2025</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/spicychat-ai-complete-guide-2025</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/news/ai-chatbots-software-update-loneliness</loc>
-    <lastmod>2025-10-02</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/news/ai-chatbots-not-just-lonely-men</loc>
-    <lastmod>2025-10-02</lastmod>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/ai-chatbots-software-update-loneliness</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/ai-companion-addiction-concerns</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/ai-companion-market-120m-revenue</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/ai-companion-safety-guidelines</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/ai-companion-voice-technology-breakthrough</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/ai-sex-chat-comprehensive-guide-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/best-ai-companion-wellness-platforms</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/candy-ai-alternatives-complete-guide-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/character-ai-alternatives-complete-guide-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/character-ai-complete-guide-2025</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/news/character-ai-gives-up-agi-bleeding-money</loc>
-    <lastmod>2025-10-02</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://companionguide.ai/news/replika-ai-sexually-harassing-users</loc>
-    <lastmod>2025-10-02</lastmod>
+    <loc>https://companionguide.ai/news/comprehensive-ai-chat-market-guide-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/crushon-ai-alternatives-complete-guide-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/dreamgf-ai-complete-review-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/fantasygf-ai-complete-guide-2025-new</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/fantasygf-ai-complete-guide-2025</loc>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/news/free-ai-chat-no-signup-guide-2025</loc>
-    <lastmod>2025-10-02</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/hammer-ai-complete-review-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/nomi-ai-comprehensive-review-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/nomi-ai-memory-advancement</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/replika-ai-alternatives-complete-guide-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/replika-ai-comprehensive-review-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/replika-ai-sexually-harassing-users</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/replika-ftc-deceptive-marketing-complaint</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/soulgen-ai-adult-image-generation-guide-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/news/soulkyn-ai-alternatives-complete-guide-2025</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://companionguide.ai/news/spicychat-ai-alternatives-complete-guide-2025</loc>
-    <lastmod>2025-10-12</lastmod>
+    <lastmod>2025-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/news/spicychat-ai-complete-guide-2025</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
