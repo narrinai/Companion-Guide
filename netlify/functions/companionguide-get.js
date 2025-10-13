@@ -17,8 +17,18 @@ exports.handler = async (event, context) => {
     const base = new Airtable({apiKey: process.env.AIRTABLE_TOKEN_CG})
       .base(process.env.AIRTABLE_BASE_ID_CG);
 
-    const { filter, category, sort, limit, order, featured } = event.queryStringParameters || {};
-    console.log('Query parameters:', { filter, category, sort, limit, order, featured });
+    const { filter, category, sort, limit, order, featured, table } = event.queryStringParameters || {};
+    console.log('Query parameters:', { filter, category, sort, limit, order, featured, table });
+
+    // Determine which table to use
+    const tableId = table === 'Articles' ? process.env.AIRTABLE_ARTICLES_TABLE_ID_CG : process.env.AIRTABLE_TABLE_ID_CG;
+    const tableName = table === 'Articles' ? 'Articles' : 'Companions';
+
+    if (!tableId) {
+      throw new Error(`Table ID not configured for: ${tableName}`);
+    }
+
+    console.log('Using table:', tableName);
 
     let filterByFormula = '{status} = "Active"';
 
@@ -34,10 +44,13 @@ exports.handler = async (event, context) => {
       console.log('Filtering for featured companions only');
     }
 
+    // Different default sort for Articles vs Companions
+    const defaultSortField = tableName === 'Articles' ? 'featured_order' : 'rating';
+
     const selectOptions = {
       filterByFormula,
       sort: [
-        { field: sort || 'rating', direction: 'desc' }
+        { field: sort || defaultSortField, direction: 'desc' }
       ]
     };
 
@@ -51,11 +64,12 @@ exports.handler = async (event, context) => {
       selectOptions.maxRecords = 1000;
     }
 
-    const records = await base(process.env.AIRTABLE_TABLE_ID_CG)
+    const records = await base(tableId)
       .select(selectOptions)
       .all();
 
-    const companions = records.map(record => {
+    // Map records differently based on table type
+    const items = records.map(record => {
       const fields = record.fields;
       let pricingPlans = [];
 
@@ -101,37 +115,59 @@ exports.handler = async (event, context) => {
         }
       }
 
-      return {
-        id: record.id,
-        name: fields.name || 'Unknown',
-        slug: fields.slug || 'unknown',
-        rating: fields.rating || 0,
-        description: fields.description || '',
-        short_description: fields.short_description || '',
-        tagline: fields.tagline || fields.short_description || '',
-        website_url: fields.website_url || '',
-        affiliate_url: fields.affiliate_url || fields.website_url || '',
-        logo_url: fields.logo_url || fields.image_url || '/images/logos/default.png',
-        image_url: fields.image_url || fields.logo_url || '/images/logos/default.png',
-        categories: categories,
-        badges: badges,
-        features: features,
-        pricing_plans: pricingPlans,
-        featured: !!fields.is_featured, // Convert checkbox to boolean
-        status: fields.status || 'active',
-        review_count: parseInt(fields.review_count) || 0
-      };
+      // Return different structure based on table type
+      if (tableName === 'Articles') {
+        return {
+          id: record.id,
+          title: fields.title || 'Untitled',
+          short_title: fields.short_title || fields.title || 'Untitled',
+          slug: fields.slug || 'untitled',
+          featured: !!fields.is_featured,
+          featured_order: parseInt(fields.featured_order) || 999,
+          status: fields.status || 'Active'
+        };
+      } else {
+        // Companions table
+        return {
+          id: record.id,
+          name: fields.name || 'Unknown',
+          slug: fields.slug || 'unknown',
+          rating: fields.rating || 0,
+          description: fields.description || '',
+          short_description: fields.short_description || '',
+          tagline: fields.tagline || fields.short_description || '',
+          website_url: fields.website_url || '',
+          affiliate_url: fields.affiliate_url || fields.website_url || '',
+          logo_url: fields.logo_url || fields.image_url || '/images/logos/default.png',
+          image_url: fields.image_url || fields.logo_url || '/images/logos/default.png',
+          categories: categories,
+          badges: badges,
+          features: features,
+          pricing_plans: pricingPlans,
+          featured: !!fields.is_featured, // Convert checkbox to boolean
+          status: fields.status || 'active',
+          review_count: parseInt(fields.review_count) || 0
+        };
+      }
     });
 
-    // Secondary sort by review_count when ratings are equal
-    companions.sort((a, b) => {
-      // First sort by rating (descending)
-      if (b.rating !== a.rating) {
-        return b.rating - a.rating;
-      }
-      // If ratings are equal, sort by review_count (descending)
-      return b.review_count - a.review_count;
-    });
+    // Sort based on table type
+    if (tableName === 'Articles') {
+      items.sort((a, b) => a.featured_order - b.featured_order);
+    } else {
+      // Secondary sort by review_count when ratings are equal
+      items.sort((a, b) => {
+        // First sort by rating (descending)
+        if (b.rating !== a.rating) {
+          return b.rating - a.rating;
+        }
+        // If ratings are equal, sort by review_count (descending)
+        return b.review_count - a.review_count;
+      });
+    }
+
+    // Return different response key based on table type
+    const responseKey = tableName === 'Articles' ? 'articles' : 'companions';
 
     return {
       statusCode: 200,
@@ -142,8 +178,8 @@ exports.handler = async (event, context) => {
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
       },
       body: JSON.stringify({
-        companions,
-        total: companions.length
+        [responseKey]: items,
+        total: items.length
       })
     };
 
