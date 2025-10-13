@@ -89,12 +89,19 @@ class CompanionHeaderManager {
     const rating = parseFloat(companion.rating).toFixed(1);
 
     // Update the rating display
-    ratingElement.innerHTML = `${stars} ${rating}/5`;
+    ratingElement.innerHTML = `${stars} ${rating}/10`;
 
     // Add a class to indicate it was dynamically loaded
     ratingElement.classList.add('dynamic-rating');
 
-    console.log(`Updated rating for ${companion.name}: ${rating}/5`);
+    // Also update verdict section rating if it exists
+    const verdictRating = document.querySelector('.dynamic-rating-verdict');
+    if (verdictRating) {
+      verdictRating.textContent = rating;
+      console.log(`Updated verdict rating to ${rating}/10`);
+    }
+
+    console.log(`Updated rating for ${companion.name}: ${rating}/10`);
   }
 
   /**
