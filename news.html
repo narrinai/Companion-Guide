@@ -525,7 +525,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
             try {
                 // Use the built-in renderFeaturedCompanions method for news page
-                await window.companionManager.renderFeaturedCompanions('news-featured-companions', 6);
+                // Show all featured companions (increase limit to show all is_featured items from Airtable)
+                await window.companionManager.renderFeaturedCompanions('news-featured-companions', 20);
 
                 // Load featured companions in footer
                 await window.companionManager.renderFooterFeaturedCompanions("featured-companions-footer");
