@@ -17,8 +17,8 @@ exports.handler = async (event, context) => {
     const base = new Airtable({apiKey: process.env.AIRTABLE_TOKEN_CG})
       .base(process.env.AIRTABLE_BASE_ID_CG);
 
-    const { filter, category, sort, limit, order } = event.queryStringParameters || {};
-    console.log('Query parameters:', { filter, category, sort, limit, order });
+    const { filter, category, sort, limit, order, featured } = event.queryStringParameters || {};
+    console.log('Query parameters:', { filter, category, sort, limit, order, featured });
 
     let filterByFormula = '{status} = "Active"';
 
@@ -27,6 +27,11 @@ exports.handler = async (event, context) => {
       console.log('Category filtering requested for:', category);
       // Remove category from server-side filtering temporarily to debug
       // filterByFormula += ` AND FIND("${category}", {categories}) > 0`;
+    }
+
+    if (featured === 'true') {
+      filterByFormula += ' AND {is_featured} = 1';
+      console.log('Filtering for featured companions only');
     }
 
     const selectOptions = {

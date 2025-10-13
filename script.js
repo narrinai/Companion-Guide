@@ -55,13 +55,16 @@ function displayFeaturedCompanions(companions) {
 // Load featured companions for news page from Airtable
 async function loadNewsFeaturedCompanions() {
     try {
-        const response = await fetch('/.netlify/functions/get-companions');
+        const response = await fetch('/.netlify/functions/companionguide-get?featured=true&sort=rating&limit=6');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
 
-        // Get only companions that are marked as featured in Airtable
-        const featured = data.companions
-            .filter(c => c.featured === true)
-            .sort((a, b) => b.rating - a.rating);
+        // Data already comes filtered and sorted from the API
+        const featured = data.companions || [];
 
         displayNewsFeaturedCompanions(featured);
     } catch (error) {
