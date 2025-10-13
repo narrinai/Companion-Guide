@@ -1,0 +1,20 @@
+# Files to ignore during Netlify deployment
+node_modules/
+.git/
+.netlify/
+*.md
+*.sh
+*.json
+!package.json
+!netlify.toml
+!airtable_import.json
+.DS_Store
+*.backup
+*_backup*
+generate-*.js
+populate-*.js
+update-*.js
+screenshot-*.js
+fix-*.sh
+test-*.html
+llms.txt
