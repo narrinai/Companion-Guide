@@ -7,7 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load and display featured companions on news page
     if (document.getElementById('news-featured-companions')) {
-        loadNewsFeaturedCompanions();
+        // Use CompanionManager if available, otherwise fallback to legacy method
+        if (typeof window.companionManager !== 'undefined') {
+            console.log('Using CompanionManager for news featured companions');
+            loadNewsFeaturedCompanionsFromManager();
+        } else {
+            console.log('Using legacy method for news featured companions');
+            loadNewsFeaturedCompanions();
+        }
     }
 });
 
@@ -52,19 +59,52 @@ function displayFeaturedCompanions(companions) {
     container.innerHTML = html;
 }
 
-// Load featured companions for news page from Airtable
+// Load featured companions using CompanionManager
+async function loadNewsFeaturedCompanionsFromManager() {
+    try {
+        const companions = await window.companionManager.fetchCompanions({
+            sort: 'rating',
+            limit: 6
+        });
+
+        // Filter only featured companions
+        const featured = companions.filter(c => c.featured === true || c.featured === 'true');
+        console.log('Featured companions loaded via CompanionManager:', featured.length);
+
+        displayNewsFeaturedCompanions(featured);
+    } catch (error) {
+        console.error('Error loading companions via CompanionManager:', error);
+        const container = document.getElementById('news-featured-companions');
+        if (container) {
+            container.innerHTML = '<p>Unable to load featured companions at this time.</p>';
+        }
+    }
+}
+
+// Load featured companions for news page from Airtable (legacy fallback)
 async function loadNewsFeaturedCompanions() {
     try {
-        const response = await fetch('/.netlify/functions/companionguide-get?featured=true&sort=rating&limit=6');
+        const url = '/.netlify/functions/companionguide-get?featured=true&sort=rating&limit=6';
+        console.log('Fetching from:', url);
+
+        const response = await fetch(url);
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
 
         if (!response.ok) {
+            const text = await response.text();
+            console.error('Error response body:', text);
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
+        const text = await response.text();
+        console.log('Response text:', text.substring(0, 200)); // Log first 200 chars
+
+        const data = JSON.parse(text);
 
         // Data already comes filtered and sorted from the API
         const featured = data.companions || [];
+        console.log('Featured companions loaded:', featured.length);
 
         displayNewsFeaturedCompanions(featured);
     } catch (error) {
