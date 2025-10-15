@@ -162,7 +162,17 @@ class ArticleCompanionDataLoader {
                         ${plan.features.map(feature => {
                             // Check if feature starts with ❌ (excluded feature)
                             const isExcluded = feature.startsWith('❌');
-                            const cleanFeature = isExcluded ? feature.substring(1).trim() : feature;
+                            // Check if feature starts with ✅ or ✓ (included feature with emoji)
+                            const hasCheckmark = feature.startsWith('✅') || feature.startsWith('✓');
+
+                            // Remove emoji if present
+                            let cleanFeature = feature;
+                            if (isExcluded) {
+                                cleanFeature = feature.substring(1).trim();
+                            } else if (hasCheckmark) {
+                                cleanFeature = feature.substring(1).trim();
+                            }
+
                             const className = isExcluded ? ' class="feature-excluded"' : '';
                             return `<li${className}>${cleanFeature}</li>`;
                         }).join('')}
