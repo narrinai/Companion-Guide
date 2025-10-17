@@ -1887,64 +1887,14 @@
     "short_description": "Premium AI girlfriend platform with voice notes and real-time calls",
     "features": [
       {
-        "icon": "♾️",
-        "title": "Unlimited Messaging",
-        "description": "Chat endlessly with your AI partner"
-      },
-      {
-        "icon": "🌈",
-        "title": "Unlimited Character Creation",
-        "description": "Create as many AI partners as you want"
-      },
-      {
-        "icon": "📸",
-        "title": "Image Generation",
-        "description": "Context-aware images from your AI partner"
-      },
-      {
-        "icon": "🔊",
-        "title": "Message Narration",
-        "description": "Hear your messages read aloud"
-      },
-      {
         "icon": "⚙️",
-        "title": "Multiple AI Engines",
-        "description": "Pro, Ultra, and Max tier engines"
+        "title": "Customization",
+        "description": "Personalized AI"
       },
       {
-        "icon": "🗨️",
-        "title": "Realistic Conversations",
-        "description": "Natural texting and roleplay modes"
-      },
-      {
-        "icon": "🗣️",
-        "title": "Voice Notes",
-        "description": "Send and receive voice messages"
-      },
-      {
-        "icon": "🧠",
-        "title": "Cutting-edge AI",
-        "description": "Latest AI models and technology"
-      },
-      {
-        "icon": "❤️‍🔥",
-        "title": "Hearts System",
-        "description": "100-300 monthly hearts for premium features"
-      },
-      {
-        "icon": "📞",
-        "title": "Real-time Phone Calls",
-        "description": "Actually call your AI partner"
-      },
-      {
-        "icon": "🎙️",
-        "title": "Voice Cloning",
-        "description": "Customize your partner's voice"
-      },
-      {
-        "icon": "🔒",
-        "title": "Privacy & Security",
-        "description": "End-to-end encryption for all conversations"
+        "icon": "📱",
+        "title": "Mobile App",
+        "description": "iOS & Android"
       }
     ],
     "affiliate_url": "https://secretdesires.ai",
