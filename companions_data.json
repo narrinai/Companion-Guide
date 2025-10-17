@@ -1836,40 +1836,48 @@
     ],
     "pricing_plans": [
       {
+        "name": "Basic",
+        "price": 11,
+        "period": "monthly",
+        "features": [
+          "Unlimited messages",
+          "Premium AI models",
+          "Customization"
+        ]
+      },
+      {
+        "name": "Premium",
+        "price": 12,
+        "period": "monthly",
+        "features": [
+          "Unlimited messages",
+          "Premium AI models",
+          "Customization",
+          "Priority support"
+        ]
+      },
+      {
         "name": "Pro",
-        "price": 7.99,
+        "price": 13,
+        "period": "monthly",
         "features": [
-          "♾️ Unlimited Messaging",
-          "🌈 Unlimited Character Creation",
-          "📸 Image Generation",
-          "🔊 Message Narration",
-          "⚙️ Unlimited Pro Engine Usage",
-          "🗨️ Realistic Messaging",
-          "❌ Voice Notes",
-          "❌ Cutting-edge Engines",
-          "❌ Monthly 100 Hearts",
-          "❌ Real-time Phone Calls"
+          "Unlimited messages",
+          "Premium AI models",
+          "Customization",
+          "Priority support",
+          "Early access"
         ]
       },
       {
-        "name": "Ultra",
-        "price": 13.99,
+        "name": "Ultimate",
+        "price": 14,
+        "period": "monthly",
         "features": [
-          "🔥 Everything in Pro Tier",
-          "⚙️ Unlimited Ultra Engine Usage",
-          "🧠 Cutting-edge Engines",
-          "❤️‍🔥 Monthly 200 Hearts",
-          "❌ Monthly 300 Hearts"
-        ]
-      },
-      {
-        "name": "Max",
-        "price": 19.99,
-        "features": [
-          "🔥 Everything in Ultra Tier",
-          "⚙️ Unlimited Max Engine Usage",
-          "🧠 Cutting-edge Engines",
-          "❤️‍🔥 Monthly 300 Hearts"
+          "Unlimited messages",
+          "Premium AI models",
+          "Customization",
+          "Priority support",
+          "Early access"
         ]
       }
     ],
