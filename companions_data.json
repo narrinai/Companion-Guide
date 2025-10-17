@@ -1821,5 +1821,126 @@
     "affiliate_url": "https://t.mbsrv2.com/388589/7797?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
     "website_url": "https://t.mbsrv2.com/388589/7797?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN",
     "image_url": "../images/logos/thotchat.webp"
+  },
+  {
+    "slug": "secret-desires-ai",
+    "featured": true,
+    "categories": [
+      "ai-girlfriend",
+      "nsfw",
+      "image-gen"
+    ],
+    "badges": [
+      "Featured",
+      "Popular"
+    ],
+    "pricing_plans": [
+      {
+        "name": "Pro",
+        "price": 7.99,
+        "features": [
+          "♾️ Unlimited Messaging",
+          "🌈 Unlimited Character Creation",
+          "📸 Image Generation",
+          "🔊 Message Narration",
+          "⚙️ Unlimited Pro Engine Usage",
+          "🗨️ Realistic Messaging",
+          "❌ Voice Notes",
+          "❌ Cutting-edge Engines",
+          "❌ Monthly 100 Hearts",
+          "❌ Real-time Phone Calls"
+        ]
+      },
+      {
+        "name": "Ultra",
+        "price": 13.99,
+        "features": [
+          "🔥 Everything in Pro Tier",
+          "⚙️ Unlimited Ultra Engine Usage",
+          "🧠 Cutting-edge Engines",
+          "❤️‍🔥 Monthly 200 Hearts",
+          "❌ Monthly 300 Hearts"
+        ]
+      },
+      {
+        "name": "Max",
+        "price": 19.99,
+        "features": [
+          "🔥 Everything in Ultra Tier",
+          "⚙️ Unlimited Max Engine Usage",
+          "🧠 Cutting-edge Engines",
+          "❤️‍🔥 Monthly 300 Hearts"
+        ]
+      }
+    ],
+    "name": "Secret Desires AI",
+    "rating": 4.4,
+    "description": "In-depth Secret Desires AI review covering features, pricing, and capabilities. Discover the AI girlfriend platform with unlimited messaging, cutting-edge engines, voice notes, and real-time phone calls for intimate AI relationships.",
+    "short_description": "Premium AI girlfriend platform with voice notes and real-time calls",
+    "features": [
+      {
+        "icon": "♾️",
+        "title": "Unlimited Messaging",
+        "description": "Chat endlessly with your AI partner"
+      },
+      {
+        "icon": "🌈",
+        "title": "Unlimited Character Creation",
+        "description": "Create as many AI partners as you want"
+      },
+      {
+        "icon": "📸",
+        "title": "Image Generation",
+        "description": "Context-aware images from your AI partner"
+      },
+      {
+        "icon": "🔊",
+        "title": "Message Narration",
+        "description": "Hear your messages read aloud"
+      },
+      {
+        "icon": "⚙️",
+        "title": "Multiple AI Engines",
+        "description": "Pro, Ultra, and Max tier engines"
+      },
+      {
+        "icon": "🗨️",
+        "title": "Realistic Conversations",
+        "description": "Natural texting and roleplay modes"
+      },
+      {
+        "icon": "🗣️",
+        "title": "Voice Notes",
+        "description": "Send and receive voice messages"
+      },
+      {
+        "icon": "🧠",
+        "title": "Cutting-edge AI",
+        "description": "Latest AI models and technology"
+      },
+      {
+        "icon": "❤️‍🔥",
+        "title": "Hearts System",
+        "description": "100-300 monthly hearts for premium features"
+      },
+      {
+        "icon": "📞",
+        "title": "Real-time Phone Calls",
+        "description": "Actually call your AI partner"
+      },
+      {
+        "icon": "🎙️",
+        "title": "Voice Cloning",
+        "description": "Customize your partner's voice"
+      },
+      {
+        "icon": "🔒",
+        "title": "Privacy & Security",
+        "description": "End-to-end encryption for all conversations"
+      }
+    ],
+    "affiliate_url": "https://secretdesires.ai",
+    "website_url": "https://secretdesires.ai",
+    "image_url": "../images/logos/secret-desires-ai.png"
   }
 ]
