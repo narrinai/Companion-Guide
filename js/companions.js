@@ -553,6 +553,7 @@ class CompanionManager {
         'wellness': 0,
         'learning': 0,
         'ai-girlfriend': 0,
+        'ai-boyfriend': 0,
         'whatsapp': 0,
         'image-gen': 0,
         'nsfw': 0,
@@ -572,6 +573,8 @@ class CompanionManager {
         'education': 'learning',
         'ai-girlfriend': 'ai-girlfriend',
         'girlfriend': 'ai-girlfriend',
+        'ai-boyfriend': 'ai-boyfriend',
+        'boyfriend': 'ai-boyfriend',
         'whatsapp': 'whatsapp',
         'whatsapp-only': 'whatsapp',
         'image-generation': 'image-gen',
@@ -619,8 +622,8 @@ class CompanionManager {
     } catch (error) {
       console.error('Error updating category counts:', error);
       // Fallback to show error state for both pages
-      const categoryIds = ['roleplaying-count', 'wellness-count', 'learning-count', 'ai-girlfriend-count', 'whatsapp-count', 'image-gen-count', 'nsfw-count', 'video-count', 'porn-count', 'hentai-count'];
-      const indexCategoryIds = ['roleplaying-count-index', 'wellness-count-index', 'learning-count-index', 'ai-girlfriend-count-index', 'whatsapp-count-index', 'image-gen-count-index', 'nsfw-count-index', 'video-count-index', 'porn-count-index', 'hentai-count-index'];
+      const categoryIds = ['roleplaying-count', 'wellness-count', 'learning-count', 'ai-girlfriend-count', 'ai-boyfriend-count', 'whatsapp-count', 'image-gen-count', 'nsfw-count', 'video-count', 'porn-count', 'hentai-count'];
+      const indexCategoryIds = ['roleplaying-count-index', 'wellness-count-index', 'learning-count-index', 'ai-girlfriend-count-index', 'ai-boyfriend-count-index', 'whatsapp-count-index', 'image-gen-count-index', 'nsfw-count-index', 'video-count-index', 'porn-count-index', 'hentai-count-index'];
 
       categoryIds.forEach(id => {
         const element = document.getElementById(id);
