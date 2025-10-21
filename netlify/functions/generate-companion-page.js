@@ -56,6 +56,7 @@ exports.handler = async (event, context) => {
     }
 
     // Generate the HTML content following EXACT Secrets AI structure
+    console.log('Generating HTML content...');
     const htmlContent = generateCompanionHTML({
       slug,
       name,
@@ -68,8 +69,12 @@ exports.handler = async (event, context) => {
       website_url: website_url || 'https://example.com'
     });
 
+    console.log(`Generated HTML content: ${htmlContent.length} characters`);
+
     // Write file locally
     const filePath = path.join(process.cwd(), 'companions', `${slug}.html`);
+    console.log(`Writing to file: ${filePath}`);
+
     await fs.writeFile(filePath, htmlContent, 'utf8');
 
     console.log(`Successfully generated page at: ${filePath}`);
@@ -102,14 +107,28 @@ function generateCompanionHTML(data) {
   // Generate stars display
   const starsHTML = '★★★★★';
 
-  // Generate pricing summary for Quick Facts
-  const pricingSummary = pricing_plans && pricing_plans.length > 0
-    ? `Free tier available, premium plans from $${Math.min(...pricing_plans.filter(p => p.price > 0).map(p => p.price))}/month`
+  // Generate pricing summary for Quick Facts with safe null checks
+  const pricingSummary = pricing_plans && Array.isArray(pricing_plans) && pricing_plans.length > 0
+    ? (() => {
+        const paidPlans = pricing_plans.filter(p => p && p.price && p.price > 0);
+        if (paidPlans.length > 0) {
+          const minPrice = Math.min(...paidPlans.map(p => p.price));
+          return `Free tier available, premium plans from $${minPrice}/month`;
+        }
+        return 'Pricing information available on website';
+      })()
     : 'Pricing information available on website';
 
   // Determine pricing for FAQ
-  const pricingFAQ = pricing_plans && pricing_plans.length > 0
-    ? `Free trial + $${Math.min(...pricing_plans.filter(p => p.price > 0).map(p => p.price))}/month`
+  const pricingFAQ = pricing_plans && Array.isArray(pricing_plans) && pricing_plans.length > 0
+    ? (() => {
+        const paidPlans = pricing_plans.filter(p => p && p.price && p.price > 0);
+        if (paidPlans.length > 0) {
+          const minPrice = Math.min(...paidPlans.map(p => p.price));
+          return `Free trial + $${minPrice}/month`;
+        }
+        return 'Visit website for pricing';
+      })()
     : 'Visit website for pricing';
 
   // Generate categories for meta tags
@@ -152,22 +171,27 @@ function generateCompanionHTML(data) {
                     <span>Available 24/7 on web and mobile</span>
                 </div>`;
 
-  // Generate pricing HTML (EXACT same structure as Secrets AI)
-  const pricingHTML = pricing_plans && pricing_plans.length > 0
+  // Generate pricing HTML (EXACT same structure as Secrets AI) with safe null checks
+  const pricingHTML = pricing_plans && Array.isArray(pricing_plans) && pricing_plans.length > 0
     ? pricing_plans.map((plan, index) => {
+        if (!plan) return '';
+
         const isMostPopular = index === Math.floor(pricing_plans.length / 2);
         const isBestValue = index === pricing_plans.length - 1 && pricing_plans.length > 2;
+        const planName = plan.name || `Plan ${index + 1}`;
+        const planPrice = plan.price !== undefined ? plan.price : 0;
+        const planFeatures = Array.isArray(plan.features) ? plan.features : [];
 
         return `
                 <div class="pricing-tier${isMostPopular ? ' featured' : ''}">
                     ${isMostPopular ? '<div class="tier-badge">MOST POPULAR</div>' : ''}
                     ${isBestValue ? '<div class="tier-badge">BEST VALUE</div>' : ''}
-                    <h3>${plan.name}</h3>
-                    <div class="price">${plan.price === 0 ? 'Free' : `$${plan.price}`} <span class="period">${plan.price === 0 ? '' : '/month'}</span></div>
-                    ${plan.price === 0 ? '<p style="color: var(--accent-green); font-size: 0.875rem; margin-bottom: var(--space-4); font-weight: 600;">CURRENT PLAN</p>' : '<p style="color: var(--accent-purple); font-size: 0.875rem; margin-bottom: var(--space-4); font-weight: 600;">BILLED MONTHLY</p>'}
+                    <h3>${planName}</h3>
+                    <div class="price">${planPrice === 0 ? 'Free' : `$${planPrice}`} <span class="period">${planPrice === 0 ? '' : '/month'}</span></div>
+                    ${planPrice === 0 ? '<p style="color: var(--accent-green); font-size: 0.875rem; margin-bottom: var(--space-4); font-weight: 600;">CURRENT PLAN</p>' : '<p style="color: var(--accent-purple); font-size: 0.875rem; margin-bottom: var(--space-4); font-weight: 600;">BILLED MONTHLY</p>'}
                     <p>${plan.description || 'Enhanced AI companion experience'}</p>
                     <ul>
-                        ${plan.features.map(f => `<li>${f}</li>`).join('')}
+                        ${planFeatures.map(f => `<li>${f}</li>`).join('')}
                     </ul>
                 </div>`;
       }).join('')
@@ -176,9 +200,9 @@ function generateCompanionHTML(data) {
                     <p>Check the official website for current pricing plans and features.</p>
                 </div>`;
 
-  // Generate pros (8-10 items)
-  const pros = features && features.length > 0
-    ? features.map(f => f.title + (f.description ? ` - ${f.description.toLowerCase()}` : '')).slice(0, 9)
+  // Generate pros (8-10 items) with safe null checks
+  const pros = features && Array.isArray(features) && features.length > 0
+    ? features.map(f => (f && f.title ? (f.title + (f.description ? ` - ${f.description.toLowerCase()}` : '')) : '')).filter(p => p).slice(0, 9)
     : [
         'Advanced AI technology',
         'Personalized experiences',
