@@ -23,24 +23,36 @@ exports.handler = async (event, context) => {
 
     console.log(`Generating companion page for: ${name} (${slug})`);
 
-    // Parse pricing plans and features from JSON strings
+    // Parse pricing plans and features from JSON strings OR arrays
     let pricingData = [];
     let featuresData = [];
 
     try {
-      if (pricing_plans && typeof pricing_plans === 'string') {
-        pricingData = JSON.parse(pricing_plans);
+      if (pricing_plans) {
+        if (typeof pricing_plans === 'string') {
+          pricingData = JSON.parse(pricing_plans);
+        } else if (Array.isArray(pricing_plans)) {
+          pricingData = pricing_plans;
+        }
       }
+      console.log(`Parsed ${pricingData.length} pricing plans`);
     } catch (e) {
-      console.log('Error parsing pricing_plans:', e.message);
+      console.error('Error parsing pricing_plans:', e.message);
+      console.error('pricing_plans value:', pricing_plans);
     }
 
     try {
-      if (features && typeof features === 'string') {
-        featuresData = JSON.parse(features);
+      if (features) {
+        if (typeof features === 'string') {
+          featuresData = JSON.parse(features);
+        } else if (Array.isArray(features)) {
+          featuresData = features;
+        }
       }
+      console.log(`Parsed ${featuresData.length} features`);
     } catch (e) {
-      console.log('Error parsing features:', e.message);
+      console.error('Error parsing features:', e.message);
+      console.error('features value:', features);
     }
 
     // Generate the HTML content following EXACT Secrets AI structure
