@@ -301,6 +301,16 @@ header .nav-menu {
 }
 
 /* Companion logo */
+.cotm-logo-link {
+    display: inline-block;
+    flex-shrink: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cotm-logo-link:hover {
+    opacity: 0.8;
+}
+
 .cotm-companion-logo {
     height: 52px;
     width: auto;
@@ -309,7 +319,7 @@ header .nav-menu {
     object-fit: contain;
     border: none;
     box-shadow: none;
-    flex-shrink: 0;
+    display: block;
 }
 
 .cotm-rating-container {
