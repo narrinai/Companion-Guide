@@ -365,18 +365,23 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     }
   }
 
-  console.log(`Found ${pricingSections.length} pricing sections`);
+  console.log(`Found ${pricingSections.length} pricing sections in HTML`);
+  if (pricingSections.length > 0) {
+    console.log(`First pricing section length: ${pricingSections[0].length} chars`);
+  }
 
   // If we found pricing sections, extract from those, otherwise use full text
   const textsToSearch = pricingSections.length > 0 ? pricingSections : [allHtml, combinedText];
+  console.log(`Searching ${textsToSearch.length} text sources for prices`);
 
-  // Enhanced price patterns with context
+  // Enhanced price patterns with context - more permissive
   const pricePatterns = [
-    /\$(\d+(?:\.\d{2})?)\s*(?:\/|per)?\s*(?:mo|month|monthly)?/gi,  // $19.99/mo
-    /(\d+(?:\.\d{2})?)\s*(?:USD|usd|\$)\s*(?:\/|per)?\s*(?:mo|month)?/gi, // 19.99 USD/mo
-    /(?:price|cost|pay|from)[:\s]+\$?(\d+(?:\.\d{2})?)/gi,         // price: $19.99
-    /(\d+(?:\.\d{2})?)\s*\/\s*(?:month|mo)/gi,                      // 19.99/month
-    /(\d+(?:\.\d{2})?)\s*per\s+month/gi,                            // 19.99 per month
+    /\$\s*(\d+(?:\.\d{1,2})?)/gi,                                   // $19.99 or $19
+    /(\d+(?:\.\d{1,2})?)\s*(?:USD|usd)/gi,                          // 19.99 USD
+    /(?:price|cost|pay|from|starting at)[:\s]+\$?\s*(\d+(?:\.\d{1,2})?)/gi, // price: $19.99
+    /(\d+(?:\.\d{1,2})?)\s*\/\s*(?:month|mo)/gi,                    // 19.99/month
+    /(\d+(?:\.\d{1,2})?)\s*per\s+month/gi,                          // 19.99 per month
+    /(\d+(?:\.\d{1,2})?)\s*\/\s*mo/gi,                              // 19/mo
   ];
 
   for (const text of textsToSearch) {
@@ -389,20 +394,23 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
       for (const match of matches) {
         const price = parseFloat(match[1]);
 
-        // Filter out unrealistic prices
-        if (price >= 1 && price <= 500) {
-          // Get context around the price (50 chars before and after)
-          const startIdx = Math.max(0, match.index - 50);
-          const endIdx = Math.min(cleanText.length, match.index + match[0].length + 50);
+        // Filter out unrealistic prices (more permissive range)
+        if (price >= 0.99 && price <= 999) {
+          // Get context around the price (100 chars before and after for better context)
+          const startIdx = Math.max(0, match.index - 100);
+          const endIdx = Math.min(cleanText.length, match.index + match[0].length + 100);
           const context = cleanText.substring(startIdx, endIdx).toLowerCase();
 
-          // Skip prices that seem unrelated to subscriptions
-          const skipKeywords = ['year', 'lifetime', 'one-time', 'credit', 'token', 'coin'];
+          // Skip prices that seem unrelated to subscriptions (more permissive)
+          const skipKeywords = ['yearly', 'annual', 'one-time purchase', 'token pack'];
           const shouldSkip = skipKeywords.some(keyword => context.includes(keyword));
 
           if (!shouldSkip) {
             allPrices.push(price);
             pricingContext.set(price, context);
+            console.log(`Found price: $${price} (context: "${context.substring(0, 60)}...")`);
+          } else {
+            console.log(`Skipped price: $${price} (matched skip keyword)`);
           }
         }
       }
@@ -411,8 +419,9 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
 
   const uniquePrices = [...new Set(allPrices)].sort((a, b) => a - b);
 
-  console.log(`Found ${allPrices.length} prices: ${allPrices.join(', ')}`);
-  console.log(`Unique prices: ${uniquePrices.join(', ')}`);
+  console.log(`Found ${allPrices.length} total price matches`);
+  console.log(`All prices: ${allPrices.join(', ')}`);
+  console.log(`Unique prices after dedup: ${uniquePrices.join(', ')}`);
 
   // Build pricing plans based on detected prices
   const plans = [];
@@ -585,6 +594,19 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
 
   // Prioritize and limit to 6 most relevant features
   result.features = features.slice(0, 6);
+
+  // Final logging
+  console.log('=== FINAL RESULT ===');
+  console.log(`Description: ${result.description.substring(0, 100)}...`);
+  console.log(`Short description: ${result.short_description}`);
+  console.log(`Pricing plans: ${result.pricing_plans ? result.pricing_plans.length : 0} plans`);
+  console.log(`Features: ${result.features ? result.features.length : 0} features`);
+  if (result.pricing_plans && result.pricing_plans.length > 0) {
+    console.log(`Sample plan: ${result.pricing_plans[0].name} - $${result.pricing_plans[0].price}`);
+  }
+  if (result.features && result.features.length > 0) {
+    console.log(`Sample feature: ${result.features[0].title}`);
+  }
 
   return result;
 }
