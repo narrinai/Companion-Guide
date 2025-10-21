@@ -162,21 +162,15 @@
 
                 <!-- Step 4: Pricing -->
                 <div class="form-group">
-                    <label for="pricing_plans">Pricing Plans <span class="auto-label">(auto-generated)</span></label>
-                    <textarea id="pricing_plans" name="pricing_plans" style="min-height: 150px;"></textarea>
-                    <div style="display: flex; gap: 10px; margin-top: 5px;">
-                        <small style="flex: 1;">Plain text pricing info - click convert when ready</small>
-                        <button type="button" class="convert-btn" onclick="convertPricingToJSON()" style="padding: 5px 15px; font-size: 0.875rem;">Convert to JSON</button>
-                    </div>
+                    <label for="pricing_plans">Pricing Plans (JSON) <span class="auto-label">(auto-generated)</span></label>
+                    <textarea id="pricing_plans" name="pricing_plans" style="font-family: monospace; min-height: 150px;"></textarea>
+                    <small>JSON array of pricing plans</small>
                 </div>
 
                 <div class="form-group">
-                    <label for="features">Features <span class="auto-label">(auto-generated)</span></label>
-                    <textarea id="features" name="features" style="min-height: 150px;"></textarea>
-                    <div style="display: flex; gap: 10px; margin-top: 5px;">
-                        <small style="flex: 1;">Plain text features - click convert when ready</small>
-                        <button type="button" class="convert-btn" onclick="convertFeaturesToJSON()" style="padding: 5px 15px; font-size: 0.875rem;">Convert to JSON</button>
-                    </div>
+                    <label for="features">Features (JSON) <span class="auto-label">(auto-generated)</span></label>
+                    <textarea id="features" name="features" style="font-family: monospace; min-height: 150px;"></textarea>
+                    <small>JSON array format: [{"icon":"🌍","title":"Multilingual","description":"5+ languages"}]</small>
                 </div>
 
                 <!-- Step 5: Options -->
@@ -313,9 +307,6 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    // Store the raw data for later conversion
-                    window.generatedData = result;
-
                     // Fill in the form fields
                     if (result.description) {
                         document.getElementById('description').value = result.description;
@@ -323,29 +314,14 @@
                     if (result.short_description) {
                         document.getElementById('short_description').value = result.short_description;
                     }
-
-                    // Convert pricing_plans to readable text
-                    if (result.pricing_plans && result.pricing_plans.length > 0) {
-                        const pricingText = result.pricing_plans.map(plan => {
-                            const features = plan.features ? plan.features.join('\n  ') : '';
-                            return `${plan.name} - $${plan.price}/month\n  ${features}`;
-                        }).join('\n\n');
-                        document.getElementById('pricing_plans').value = pricingText;
-                    } else {
-                        document.getElementById('pricing_plans').value = 'No pricing information found. Please add manually.';
+                    if (result.pricing_plans) {
+                        document.getElementById('pricing_plans').value = JSON.stringify(result.pricing_plans, null, 2);
+                    }
+                    if (result.features) {
+                        document.getElementById('features').value = JSON.stringify(result.features, null, 2);
                     }
 
-                    // Convert features to readable text
-                    if (result.features && result.features.length > 0) {
-                        const featuresText = result.features.map(f =>
-                            `${f.icon} ${f.title}: ${f.description}`
-                        ).join('\n');
-                        document.getElementById('features').value = featuresText;
-                    } else {
-                        document.getElementById('features').value = 'No features detected. Please add manually.';
-                    }
-
-                    showMessage('✅ Successfully generated companion info! Review and click "Convert to JSON" when ready.', 'success');
+                    showMessage('✅ Successfully generated companion info!', 'success');
                 } else {
                     showMessage(`❌ Error: ${result.error}`, 'error');
                 }
@@ -499,51 +475,6 @@
                 submitBtn.textContent = 'Create Companion & Generate Page';
             }
         });
-
-        // Conversion functions
-        function convertPricingToJSON() {
-            const textarea = document.getElementById('pricing_plans');
-            const currentValue = textarea.value.trim();
-
-            // If already JSON, do nothing
-            try {
-                JSON.parse(currentValue);
-                showMessage('Already in JSON format!', 'success');
-                return;
-            } catch (e) {
-                // Not JSON, proceed with conversion
-            }
-
-            // Use stored data if available
-            if (window.generatedData && window.generatedData.pricing_plans) {
-                textarea.value = JSON.stringify(window.generatedData.pricing_plans, null, 2);
-                showMessage('✅ Converted to JSON format', 'success');
-            } else {
-                showMessage('⚠️ No generated data found. Please generate content first or manually format as JSON.', 'warning');
-            }
-        }
-
-        function convertFeaturesToJSON() {
-            const textarea = document.getElementById('features');
-            const currentValue = textarea.value.trim();
-
-            // If already JSON, do nothing
-            try {
-                JSON.parse(currentValue);
-                showMessage('Already in JSON format!', 'success');
-                return;
-            } catch (e) {
-                // Not JSON, proceed with conversion
-            }
-
-            // Use stored data if available
-            if (window.generatedData && window.generatedData.features) {
-                textarea.value = JSON.stringify(window.generatedData.features, null, 2);
-                showMessage('✅ Converted to JSON format', 'success');
-            } else {
-                showMessage('⚠️ No generated data found. Please generate content first or manually format as JSON.', 'warning');
-            }
-        }
     </script>
     <script src="/js/meta-companion-tracking.js"></script>
 </body>
