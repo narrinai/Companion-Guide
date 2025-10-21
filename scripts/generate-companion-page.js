@@ -133,43 +133,16 @@ function parseFeatures(featuresData) {
 
 /**
  * Generate pricing section HTML
+ * Now returns an empty pricing-grid that will be populated dynamically by companion-page.js
  */
 function generatePricingHTML(plans) {
-    if (!plans || plans.length === 0) {
-        return `
-            <div class="pricing-tier">
-                <h3>Visit Website for Pricing</h3>
-                <p>Check the official website for current pricing plans and features</p>
-            </div>
-        `;
-    }
-
-    return plans.map((plan, index) => {
-        const isFeatured = plan.featured || index === Math.floor(plans.length / 2);
-        const badge = plan.badge || (isFeatured ? 'MOST POPULAR' : index === plans.length - 1 ? 'BEST VALUE' : '');
-
-        let featuresHTML = '';
-        if (plan.features && Array.isArray(plan.features)) {
-            featuresHTML = plan.features.map(feature => {
-                const included = feature.included !== false;
-                const prefix = included ? '' : '❌ ';
-                return `<li>${prefix}${feature.name || feature}</li>`;
-            }).join('\n                        ');
-        }
-
-        return `
-                <div class="pricing-tier${isFeatured ? ' featured' : ''}">
-                    ${badge ? `<div class="tier-badge">${badge}</div>` : ''}
-                    <h3>${plan.name}</h3>
-                    <div class="price">${plan.price} ${plan.period ? `<span class="period">/${plan.period}</span>` : ''}</div>
-                    ${plan.billing_note ? `<p style="color: var(--accent-purple); font-size: 0.875rem; margin-bottom: var(--space-4); font-weight: 600;">${plan.billing_note}</p>` : ''}
-                    ${plan.original_price ? `<p style="color: var(--text-muted); font-size: 0.875rem; text-decoration: line-through;">${plan.original_price}</p>` : ''}
-                    ${plan.description ? `<p>${plan.description}</p>` : ''}
-                    <ul>
-                        ${featuresHTML}
-                    </ul>
+    // Return empty pricing grid - will be populated by companion-page.js from Airtable
+    // This ensures pricing is always up-to-date from Airtable
+    return `
+                <!-- Pricing will be dynamically loaded from Airtable by companion-page.js -->
+                <div class="pricing-loading" style="text-align: center; padding: var(--space-8);">
+                    <p style="color: var(--text-muted);">Loading pricing information...</p>
                 </div>`;
-    }).join('\n\n');
 }
 
 /**
@@ -306,7 +279,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 <body>
     <header>
         <nav class="container">
-            <h1><a href="/"><img src="/images/logo.svg" alt="Companion Guide" width="32" height="32">Companion Guide</a></h1>
+            <h1><a href="/"><img src="${logo_url}" alt="${name}" width="32" height="32">${name}</a></h1>
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -314,8 +287,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             </div>
             <ul class="nav-menu">
                 <div class="mobile-menu-logo">
-                    <img src="/images/logo.svg" alt="Companion Guide" width="48" height="48">
-                    <span>Companion Guide</span>
+                    <img src="${logo_url}" alt="${name}" width="48" height="48">
+                    <span>${name}</span>
                 </div>                <li><a href="/">Home</a></li>
                 <li><a href="/companions" class="active">Companions</a></li>
                 <li><a href="/categories">Categories</a></li>

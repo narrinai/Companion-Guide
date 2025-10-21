@@ -231,17 +231,25 @@ class CompanionPageManager {
             const tierDiv = document.createElement('div');
             tierDiv.className = 'pricing-tier';
 
-            // Add featured class to second plan (usually most popular)
-            if (index === 1 || plan.name.toLowerCase().includes('premium')) {
+            // Handle both numeric prices and "Free" string
+            const isFree = plan.price === 0 || plan.price === 'Free' || plan.price === 'free';
+            const price = isFree ? 'Free' : `$${plan.price}`;
+            const period = isFree ? '' : (plan.period ? `/${plan.period}` : '');
+
+            // Determine if this should be featured (middle tier, or "Premium" named)
+            const isFeatured = (index === Math.floor(pricingPlans.length / 2)) ||
+                              plan.name.toLowerCase().includes('premium');
+
+            if (isFeatured) {
                 tierDiv.classList.add('featured');
             }
 
-            const price = plan.price === 0 ? 'Free' : `$${plan.price}`;
-            const period = plan.price === 0 ? '' : `/${plan.period}`;
-
+            // Add badge based on plan type
             let badgeHtml = '';
-            if (index === 1 || plan.name.toLowerCase().includes('premium')) {
+            if (isFeatured) {
                 badgeHtml = '<div class="tier-badge">MOST POPULAR</div>';
+            } else if (index === pricingPlans.length - 1 && !isFree) {
+                badgeHtml = '<div class="tier-badge">BEST VALUE</div>';
             }
 
             const featuresHtml = plan.features.map(feature => {

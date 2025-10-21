@@ -31,5 +31,14 @@
 /reviews/* /companions/:splat.html 301
 /platform/* /companions/:splat.html 301
 
+# Clean URLs for companions (remove .html extension)
+/companions/* /companions/:splat.html 200
+
+# Clean URLs for news articles (remove .html extension)
+/news/* /news/:splat.html 200
+
+# Clean URLs for categories (remove .html extension)
+/categories/* /categories/:splat.html 200
+
 # Catch-all for missing pages (404 -> homepage with helpful message)
 /* /index.html 200
