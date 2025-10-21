@@ -201,7 +201,6 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     <a href="/categories/ai-porn-chat-platforms" class="category-tag"><svg class="icon icon-sm"><use href="#icon-porn"/></svg> AI Porn</a>
                     <a href="/categories/hentai-ai-chat-platforms" class="category-tag"><svg class="icon icon-sm"><use href="#icon-adult"/></svg> Hentai AI</a>
                     <a href="/categories/video-companions-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-video"/></svg> Video</a>
-                    <a href="/categories/wellness-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-wellness"/></svg> Wellness</a>
                     <a href="/categories/whatsapp-companions-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-whatsapp"/></svg> WhatsApp</a>
                 </div>
                 <div class="companion-tags">
@@ -331,6 +330,37 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
             <!-- Right Column: News -->
         <aside id="topics" class="topics-section">
+            <!-- Companion of the Month Award -->
+            <div class="cotm-award-card">
+                <div class="cotm-laurel-left">
+                    <svg viewBox="0 0 50 60" class="laurel-svg">
+                        <path d="M10,10 Q15,15 10,20 M10,20 Q15,25 10,30 M10,30 Q15,35 10,40 M10,40 Q15,45 10,50" stroke="currentColor" fill="none" stroke-width="2.5"/>
+                    </svg>
+                </div>
+                <div class="cotm-laurel-right">
+                    <svg viewBox="0 0 50 60" class="laurel-svg">
+                        <path d="M40,10 Q35,15 40,20 M40,20 Q35,25 40,30 M40,30 Q35,35 40,40 M40,40 Q35,45 40,50" stroke="currentColor" fill="none" stroke-width="2.5"/>
+                    </svg>
+                </div>
+                <div class="cotm-award-content">
+                    <h3 class="cotm-title">Companion of the Month</h3>
+                    <div class="cotm-header-row">
+                        <img src="/images/logos/dream-companion-review.svg" alt="Dream Companion" class="cotm-companion-logo">
+                        <div class="cotm-rating-container">
+                            <div class="cotm-stars">★★★★★</div>
+                            <div class="cotm-rating" id="cotm-rating">
+                                <span class="cotm-rating-score">-</span>
+                                <span class="cotm-rating-label">/10</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cotm-buttons">
+                        <a href="#" id="cotm-website-link" class="cotm-website-button" target="_blank" rel="noopener">Visit Website</a>
+                        <a href="/companions/dream-companion" class="cotm-review-button">Review</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="section-header">
                 <h2>Latest AI Companion News</h2>
                 <p>Stay updated with the latest news and insights from the AI companion industry</p>
@@ -825,10 +855,11 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 // Load companion tags first (they're most visible/above fold)
                 // Run in parallel with featured companions for better performance
                 const tagsPromise = loadFeaturedCompanionTags();
+                const cotmPromise = loadCompanionOfTheMonthRating();
                 const featuredPromise = window.companionManager.renderFeaturedCompanions('featured-companions-container', 8);
 
-                // Wait for both to complete
-                await Promise.all([tagsPromise, featuredPromise]);
+                // Wait for all to complete
+                await Promise.all([tagsPromise, cotmPromise, featuredPromise]);
 
                 // Update category counts dynamically (less critical, can wait)
                 await window.companionManager.updateCategoryCounts();
@@ -850,6 +881,66 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 }
             }
         });
+
+        // Generate star rating (same as companion cards)
+        function generateStarRating(rating) {
+            const stars = Math.round(rating / 2);
+            const fullStars = Math.min(5, stars);
+            const emptyStars = 5 - fullStars;
+
+            let starsHtml = '';
+            for (let i = 0; i < fullStars; i++) {
+                starsHtml += '<span class="star-filled">★</span>';
+            }
+            for (let i = 0; i < emptyStars; i++) {
+                starsHtml += '<span class="star-empty">☆</span>';
+            }
+            return starsHtml;
+        }
+
+        // Load Companion of the Month rating and website URL
+        async function loadCompanionOfTheMonthRating() {
+            try {
+                // Use cached companions from companionManager
+                let allCompanions = window.companionManager.companions;
+
+                // If no cache yet, fetch
+                if (!allCompanions || allCompanions.length === 0) {
+                    allCompanions = await window.companionManager.fetchCompanions({
+                        sort: 'rating'
+                    });
+                }
+
+                // Find Dream Companion
+                const dreamCompanion = allCompanions.find(c => c.slug === 'dream-companion');
+
+                if (dreamCompanion) {
+                    // Update rating
+                    if (dreamCompanion.rating) {
+                        const ratingElement = document.querySelector('.cotm-rating-score');
+                        if (ratingElement) {
+                            ratingElement.textContent = dreamCompanion.rating;
+                        }
+
+                        // Update stars
+                        const starsElement = document.querySelector('.cotm-stars');
+                        if (starsElement) {
+                            starsElement.innerHTML = generateStarRating(dreamCompanion.rating);
+                        }
+                    }
+
+                    // Update website URL
+                    if (dreamCompanion.website_url) {
+                        const websiteLink = document.getElementById('cotm-website-link');
+                        if (websiteLink) {
+                            websiteLink.href = dreamCompanion.website_url;
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading Companion of the Month rating:', error);
+            }
+        }
 
         // Load four random featured companions for the category tags (v4 - optimized)
         async function loadFeaturedCompanionTags() {

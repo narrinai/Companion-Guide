@@ -246,6 +246,224 @@ header .nav-menu {
     }
 }
 
+/* Companion of the Month Award Card */
+.cotm-award-card {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 1.5px solid rgba(59, 130, 246, 0.3);
+    border-radius: 10px;
+    padding: 1rem 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Laurel wreaths on sides */
+.cotm-laurel-left,
+.cotm-laurel-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 70%;
+    width: 30px;
+    color: rgba(59, 130, 246, 0.35);
+    opacity: 0.7;
+}
+
+.cotm-laurel-left {
+    left: 2px;
+}
+
+.cotm-laurel-right {
+    right: 2px;
+}
+
+.laurel-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Award content */
+.cotm-award-content {
+    position: relative;
+    z-index: 1;
+}
+
+.cotm-header-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.65rem;
+    padding: 0.5rem 0.65rem;
+    background: rgba(59, 130, 246, 0.06);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 6px;
+}
+
+/* Companion logo */
+.cotm-companion-logo {
+    height: 52px;
+    width: auto;
+    max-width: 120px;
+    border-radius: 6px;
+    object-fit: contain;
+    border: none;
+    box-shadow: none;
+    flex-shrink: 0;
+}
+
+.cotm-rating-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.cotm-stars {
+    color: var(--accent-orange);
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    letter-spacing: 0.1rem;
+}
+
+.cotm-stars .star-filled {
+    color: var(--accent-orange);
+}
+
+.cotm-stars .star-empty {
+    color: rgba(255, 140, 0, 0.3);
+}
+
+.cotm-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem 0;
+    text-transform: none;
+    text-align: center;
+}
+
+.cotm-rating {
+    display: flex;
+    align-items: baseline;
+    gap: 0.15rem;
+}
+
+.cotm-rating-score {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+.cotm-rating-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.cotm-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.65rem;
+}
+
+.cotm-website-button,
+.cotm-review-button {
+    flex: 1;
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.cotm-website-button {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: 1px solid rgba(59, 130, 246, 0.5);
+}
+
+.cotm-website-button:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.cotm-review-button {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.cotm-review-button:hover {
+    background: rgba(59, 130, 246, 0.25);
+    border-color: rgba(59, 130, 246, 0.6);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* Mobile: More compact */
+@media (max-width: 768px) {
+    .cotm-award-card {
+        padding: 0.85rem 0.75rem;
+    }
+
+    .cotm-laurel-left,
+    .cotm-laurel-right {
+        width: 24px;
+        opacity: 0.5;
+    }
+
+    .cotm-header-row {
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding: 0.4rem 0.5rem;
+    }
+
+    .cotm-companion-logo {
+        height: 42px;
+        max-width: 95px;
+    }
+
+    .cotm-rating-container {
+        gap: 0.4rem;
+    }
+
+    .cotm-stars {
+        font-size: 0.9rem;
+        letter-spacing: 0.05rem;
+    }
+
+    .cotm-title {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .cotm-rating-score {
+        font-size: 1rem;
+    }
+
+    .cotm-rating-label {
+        font-size: 0.75rem;
+    }
+
+    .cotm-buttons {
+        gap: 0.4rem;
+        margin-top: 0.5rem;
+    }
+
+    .cotm-website-button,
+    .cotm-review-button {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+    }
+}
+
 header nav a:not(h1 a) {
     color: #ccc !important;
     font-weight: 500 !important;
@@ -4563,18 +4781,27 @@ footer {
         flex-direction: column;
     }
 
-    .main-layout { order: 1; }
-    .categories-overview { order: 2; }
-    .coming-soon-section { order: 3; }
-
-    /* Within main-layout: companions first, then news */
+    /* Mobile layout order */
     .main-layout {
         display: flex;
         flex-direction: column;
     }
 
+    /* Remove grid structure, make all children direct flex items */
+    .left-column,
+    .topics-section {
+        display: contents;
+    }
+
+    /* Order everything in the main-layout */
     .companions-section { order: 1; }
-    .topics-section { order: 2; }
+    .cotm-award-card { order: 2; }
+    .categories-overview { order: 3; }
+
+    /* All news items come after */
+    .topics-section > *:not(.cotm-award-card) {
+        order: 4;
+    }
 }
 
 @media (max-width: 480px) {
