@@ -422,11 +422,18 @@ body:has(.article-hero) .nav-menu {
 .article-layout {
     display: grid;
     grid-template-columns: 280px 1fr;
-    gap: var(--space-12);
-    max-width: 1200px;
+    gap: var(--space-8);
+    max-width: 1400px;
     margin: 0 auto;
     width: 100%;
+    padding: 0 var(--space-4);
     overflow-x: hidden;
+}
+
+@media (min-width: 1200px) {
+    .article-layout {
+        padding: 0 var(--space-6);
+    }
 }
 
 /* Table of Contents Sidebar */
@@ -531,7 +538,9 @@ body:has(.article-hero) .nav-menu {
 
 /* Article Content */
 .article-content {
-    max-width: 700px;
+    max-width: 100%;
+    width: 100%;
+    min-width: 0;
 }
 
 /* Key Takeaways */
@@ -1450,13 +1459,17 @@ body:has(.article-hero) .nav-menu {
 /* Fix Table Checkmarks and Text Overlap */
 .comparison-table-wrapper {
     overflow-x: auto;
+    overflow-y: visible;
     margin: var(--space-6) 0;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
 }
 
 .comparison-table {
     width: 100%;
     min-width: 800px;
+    table-layout: auto;
 }
 
 .comparison-table td,
@@ -1481,6 +1494,14 @@ body:has(.article-hero) .nav-menu {
 }
 
 @media (max-width: 768px) {
+    .comparison-table-wrapper {
+        margin-left: calc(-1 * var(--space-4));
+        margin-right: calc(-1 * var(--space-4));
+        padding: 0 var(--space-4);
+        width: calc(100% + 2 * var(--space-4));
+        max-width: none;
+    }
+
     .comparison-table {
         min-width: 600px;
         font-size: 0.8rem;
@@ -1518,6 +1539,19 @@ body:has(.article-hero) .nav-menu {
 .platform-review {
     margin: var(--space-8) 0;
     scroll-margin-top: 100px;
+}
+
+.platform-cta,
+.card-actions {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
 }
 
 .platform-header {
@@ -1608,5 +1642,34 @@ body:has(.article-hero) .nav-menu {
     .article-content li {
         margin-bottom: var(--space-2);
         line-height: 1.6;
+    }
+
+    /* Fix button widths on mobile */
+    .platform-cta,
+    .card-actions,
+    .summary-actions {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .platform-cta .btn-primary,
+    .platform-cta .btn-secondary,
+    .card-actions .btn-primary,
+    .card-actions .btn-secondary {
+        width: 100%;
+        text-align: center;
+        padding: var(--space-3) var(--space-4);
+        font-size: 0.9rem;
+    }
+
+    /* Ensure CTAs stack properly */
+    .cta-buttons {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .cta-buttons .btn-primary,
+    .cta-buttons .btn-secondary {
+        width: 100%;
     }
 }
