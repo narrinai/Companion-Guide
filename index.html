@@ -356,7 +356,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     </div>
                     <div class="cotm-buttons">
                         <a href="/companions/dream-companion" class="cotm-review-button">Read Review</a>
-                        <a href="#" id="cotm-website-link" class="cotm-website-button" target="_blank" rel="noopener">Visit Website</a>
+                        <a href="https://www.mydreamcompanion.com/?deal=companionguide" id="cotm-website-link" class="cotm-website-button" target="_blank" rel="noopener">Visit Website</a>
                     </div>
                 </div>
             </div>
@@ -914,6 +914,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 // Find Dream Companion
                 const dreamCompanion = allCompanions.find(c => c.slug === 'dream-companion');
 
+                console.log('Dream Companion data:', dreamCompanion);
+
                 if (dreamCompanion) {
                     // Update rating
                     if (dreamCompanion.rating) {
@@ -930,12 +932,21 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     }
 
                     // Update website URL
-                    if (dreamCompanion.website_url) {
+                    console.log('Dream Companion website_url:', dreamCompanion.website_url);
+                    if (dreamCompanion.website_url && dreamCompanion.website_url !== '#' && dreamCompanion.website_url.startsWith('http')) {
                         const websiteLink = document.getElementById('cotm-website-link');
                         if (websiteLink) {
+                            console.log('Updating COTM website link from', websiteLink.href, 'to:', dreamCompanion.website_url);
                             websiteLink.href = dreamCompanion.website_url;
+                            console.log('COTM link updated successfully');
+                        } else {
+                            console.error('COTM website link element not found');
                         }
+                    } else {
+                        console.warn('Dream Companion website_url not valid, keeping fallback URL. Value:', dreamCompanion.website_url);
                     }
+                } else {
+                    console.error('Dream Companion not found in companions list');
                 }
             } catch (error) {
                 console.error('Error loading Companion of the Month rating:', error);
