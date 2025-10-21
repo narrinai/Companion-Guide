@@ -31,6 +31,8 @@ exports.handler = async (event, context) => {
       try {
         console.log(`Fetching ${i + 1}/${urls.length}: ${url}`);
         const html = await fetchWebsite(url);
+        console.log(`Successfully fetched ${url}: ${html.length} characters`);
+        console.log(`First 200 chars: ${html.substring(0, 200)}`);
         htmlContents.push({ url, html });
 
         // Add delay between requests (2 seconds) to avoid rate limiting and allow proper loading
@@ -39,9 +41,12 @@ exports.handler = async (event, context) => {
           await new Promise(resolve => setTimeout(resolve, 2000));
         }
       } catch (error) {
-        console.log(`Failed to fetch ${url}:`, error.message);
+        console.error(`Failed to fetch ${url}:`, error.message);
+        console.error('Full error:', error);
       }
     }
+
+    console.log(`Total URLs fetched: ${htmlContents.length}/${urls.length}`);
 
     if (htmlContents.length === 0) {
       return {
@@ -252,26 +257,51 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     featuresFound.push('interactive stories');
   }
 
-  // Build description (25-30 words, factual, third person)
+  // Build description (25-30 words, factual, third person) - ALWAYS use meta description if available
   let description = '';
 
-  // Try meta description first
+  // PRIORITY 1: Try meta description first - this is the platform's own description
   for (const { html } of htmlContents) {
     const metaDescMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["'](.*?)["']/i);
     const ogDescMatch = html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["'](.*?)["']/i);
 
     const desc = metaDescMatch?.[1] || ogDescMatch?.[1] || '';
-    if (desc && desc.length > 50) {
+    if (desc && desc.length > 30) { // Lower threshold to accept more meta descriptions
       description = desc
         .replace(/<[^>]*>/g, '')
         .replace(/&[^;]+;/g, ' ')
+        .replace(/\s+/g, ' ')
         .trim();
+
+      // Clean up common junk
+      description = description
+        .replace(/^(Chat with|Talk to|Meet|Discover|Experience)\s+/i, '')
+        .trim();
+
+      console.log(`Using meta description: "${description}"`);
       break;
     }
   }
 
-  // If no meta or too long, build concise description
-  if (!description || description.length > 200) {
+  // PRIORITY 2: Try to extract from H1 or first paragraph
+  if (!description) {
+    for (const { html } of htmlContents) {
+      // Try h1 + first paragraph
+      const h1Match = html.match(/<h1[^>]*>(.*?)<\/h1>[\s\S]{0,500}?<p[^>]*>(.*?)<\/p>/i);
+      if (h1Match) {
+        const h1 = h1Match[1].replace(/<[^>]*>/g, '').trim();
+        const p = h1Match[2].replace(/<[^>]*>/g, '').trim();
+        if (p.length > 50) {
+          description = `${h1}. ${p}`;
+          console.log(`Using H1 + paragraph: "${description}"`);
+          break;
+        }
+      }
+    }
+  }
+
+  // PRIORITY 3: Only build generic if nothing found
+  if (!description) {
     const features = Array.from(keywordsFound).slice(0, 3);
     const featureText = features.length > 0 ? features.join(', ') : 'AI conversations';
 
@@ -285,11 +315,12 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     } else {
       description = `AI companion platform with ${featureText}. Provides personalized conversations and meaningful virtual interactions.`;
     }
+    console.log(`Using generic description: "${description}"`);
   }
 
-  // Trim to reasonable length (keep under 200 chars, ~25-30 words)
-  if (description.length > 200) {
-    description = description.substring(0, 200).trim();
+  // Trim to reasonable length (keep under 250 chars, ~30-40 words)
+  if (description.length > 250) {
+    description = description.substring(0, 250).trim();
     const lastPeriod = description.lastIndexOf('.');
     if (lastPeriod > 100) {
       description = description.substring(0, lastPeriod + 1);
@@ -307,34 +338,94 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
   const hasCustom = combinedText.includes('custom') || combinedText.includes('personality');
   const hasCommunity = combinedText.includes('discord') || combinedText.includes('community');
 
-  // Build short description (10-15 words, very concise)
+  // Build short description (10-15 words, very concise) - Extract from actual content
   let shortDesc = '';
-  const topFeatures = Array.from(keywordsFound).slice(0, 3);
 
-  // Build ultra-concise description
-  if (combinedText.includes('girlfriend')) {
-    const nsfw = combinedText.includes('nsfw') || combinedText.includes('adult') ? 'NSFW ' : '';
-    const features = [];
-    if (combinedText.includes('uncensored')) features.push('uncensored chat');
-    if (hasImage) features.push('images');
-    if (hasVoice) features.push('voice messages');
-    if (hasVideo) features.push('video');
-
-    if (features.length > 0) {
-      shortDesc = `${nsfw}AI girlfriend with ${features.join(', ')}`;
-    } else {
-      shortDesc = `${nsfw}AI girlfriend for virtual companionship`;
+  // PRIORITY 1: Try to extract tagline from title or H1
+  for (const { html } of htmlContents) {
+    // Look for common tagline patterns in title
+    const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i);
+    if (titleMatch) {
+      const title = titleMatch[1].replace(/<[^>]*>/g, '').trim();
+      // Extract tagline after " - " or " | "
+      const parts = title.split(/\s+[-|]\s+/);
+      if (parts.length > 1 && parts[1].length > 10 && parts[1].length < 80) {
+        shortDesc = parts[1].trim();
+        console.log(`Using tagline from title: "${shortDesc}"`);
+        break;
+      }
     }
-  } else if (combinedText.includes('telegram')) {
-    shortDesc = `Telegram AI companion bot with private encrypted messaging`;
-  } else if (combinedText.includes('roleplay') || combinedText.includes('character')) {
-    shortDesc = `AI character chat with roleplay scenarios and customization`;
-  } else {
-    // Generic companion
-    if (topFeatures.length > 0) {
-      shortDesc = `AI companion platform with ${topFeatures.slice(0, 2).join(' and ')}`;
+  }
+
+  // PRIORITY 2: Look for hero/subtitle text
+  if (!shortDesc) {
+    for (const { html } of htmlContents) {
+      // Look for common hero subtitle patterns
+      const heroPatterns = [
+        /<(?:h2|p)[^>]*class=["'][^"']*(?:subtitle|tagline|hero-text|description)[^"']*["'][^>]*>(.*?)<\/(?:h2|p)>/i,
+        /<(?:div|span)[^>]*class=["'][^"']*(?:subtitle|tagline)[^"']*["'][^>]*>(.*?)<\/(?:div|span)>/i,
+      ];
+
+      for (const pattern of heroPatterns) {
+        const match = html.match(pattern);
+        if (match) {
+          const text = match[1].replace(/<[^>]*>/g, '').trim();
+          if (text.length > 10 && text.length < 100) {
+            shortDesc = text;
+            console.log(`Using hero subtitle: "${shortDesc}"`);
+            break;
+          }
+        }
+      }
+      if (shortDesc) break;
+    }
+  }
+
+  // PRIORITY 3: Build from detected features if nothing found
+  if (!shortDesc) {
+    const topFeatures = Array.from(keywordsFound).slice(0, 3);
+
+    // Build ultra-concise description based on what we detected
+    if (combinedText.includes('girlfriend')) {
+      const nsfw = combinedText.includes('nsfw') || combinedText.includes('adult') ? 'NSFW ' : '';
+      const features = [];
+      if (combinedText.includes('uncensored')) features.push('uncensored chat');
+      if (hasImage) features.push('images');
+      if (hasVoice) features.push('voice messages');
+      if (hasVideo) features.push('video');
+
+      if (features.length > 0) {
+        shortDesc = `${nsfw}AI girlfriend with ${features.join(', ')}`;
+      } else {
+        shortDesc = `${nsfw}AI girlfriend for virtual companionship`;
+      }
+    } else if (combinedText.includes('telegram')) {
+      shortDesc = `Telegram AI companion bot with private encrypted messaging`;
+    } else if (combinedText.includes('roleplay') || combinedText.includes('character')) {
+      shortDesc = `AI character chat with roleplay scenarios and customization`;
     } else {
-      shortDesc = `AI-powered virtual companion for personalized conversations`;
+      // Generic companion
+      if (topFeatures.length > 0) {
+        shortDesc = `AI companion platform with ${topFeatures.slice(0, 2).join(' and ')}`;
+      } else {
+        shortDesc = `AI-powered virtual companion for personalized conversations`;
+      }
+    }
+    console.log(`Using generic short description: "${shortDesc}"`);
+  }
+
+  // Clean and trim
+  shortDesc = shortDesc
+    .replace(/\s+/g, ' ')
+    .replace(/^(Chat with|Talk to|Meet|Discover|Experience)\s+/i, '')
+    .trim();
+
+  // Ensure reasonable length (max 100 chars)
+  if (shortDesc.length > 100) {
+    shortDesc = shortDesc.substring(0, 100).trim();
+    const lastSpace = shortDesc.lastIndexOf(' ');
+    if (lastSpace > 50) {
+      shortDesc = shortDesc.substring(0, lastSpace);
     }
   }
 
