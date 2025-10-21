@@ -4782,6 +4782,16 @@ footer {
     }
 
     /* Mobile layout order */
+    main.container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Order sections in main container */
+    .hero { order: 1; }
+    .category-tags-section { order: 2; }
+    .main-layout { order: 3; }
+
     .main-layout {
         display: flex;
         flex-direction: column;
@@ -4794,8 +4804,8 @@ footer {
     }
 
     /* Order everything in the main-layout */
-    .companions-section { order: 1; }
-    .cotm-award-card { order: 2; }
+    .cotm-award-card { order: 1; }
+    .companions-section { order: 2; }
     .categories-overview { order: 3; }
 
     /* All news items come after */
