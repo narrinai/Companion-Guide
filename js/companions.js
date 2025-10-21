@@ -74,23 +74,23 @@ class CompanionManager {
     // Show only the highest priority badge (same logic as generateCategoryBadges)
     for (const badge of badges) {
       if (badge.toLowerCase().includes('adult') || badge.toLowerCase().includes('nsfw')) {
-        return '<div class="product-badge"><svg class="icon"><use href="#icon-adult"/></svg> <span>Adult</span></div>';
+        return '<div class="product-badge"><svg class="icon"><use href="#icon-adult"/></svg>Adult</div>';
       } else if (badge.toLowerCase().includes('popular')) {
-        return '<div class="product-badge"><svg class="icon"><use href="#icon-popular"/></svg> <span>Popular</span></div>';
+        return '<div class="product-badge"><svg class="icon"><use href="#icon-popular"/></svg>Popular</div>';
       } else if (badge.toLowerCase().includes('premium')) {
-        return '<div class="product-badge"><svg class="icon"><use href="#icon-premium"/></svg> <span>Premium</span></div>';
+        return '<div class="product-badge"><svg class="icon"><use href="#icon-premium"/></svg>Premium</div>';
       } else if (badge.toLowerCase().includes('new')) {
-        return '<div class="product-badge"><svg class="icon"><use href="#icon-new"/></svg> <span>New</span></div>';
+        return '<div class="product-badge"><svg class="icon"><use href="#icon-new"/></svg>New</div>';
       } else if (badge.toLowerCase().includes('global')) {
-        return '<div class="product-badge"><svg class="icon"><use href="#icon-global"/></svg> <span>Global</span></div>';
+        return '<div class="product-badge"><svg class="icon"><use href="#icon-global"/></svg>Global</div>';
       } else if (badge.toLowerCase().includes('character')) {
-        return '<div class="product-badge"><svg class="icon"><use href="#icon-characters"/></svg> <span>Characters</span></div>';
+        return '<div class="product-badge"><svg class="icon"><use href="#icon-characters"/></svg>Characters</div>';
       }
     }
 
-    // If no special badges found, show the first badge
+    // If no special badges found, show the first badge without icon
     const firstBadge = badges[0];
-    return `<div class="product-badge"><svg class="icon"><use href="#icon-new"/></svg> <span>${firstBadge}</span></div>`;
+    return `<div class="product-badge">${firstBadge}</div>`;
   }
 
   generateFeatureHighlights(features) {
@@ -272,7 +272,7 @@ class CompanionManager {
   generateCategoryBadges(companion, index) {
     // #1 always gets Leader badge
     if (index === 0) {
-      return '<div class="product-badge">#1 <svg class="icon"><use href="#icon-leader"/></svg> Leader</div>';
+      return '<div class="product-badge"><svg class="icon"><use href="#icon-leader"/></svg>Leader</div>';
     }
 
     // For other positions, check for special badges first, otherwise use ranking
@@ -280,17 +280,17 @@ class CompanionManager {
       // Priority order: Adult > Popular > Premium > New > Global > Characters > Other
       for (const badge of companion.badges) {
         if (badge.toLowerCase().includes('adult') || badge.toLowerCase().includes('nsfw')) {
-          return '<div class="product-badge"><svg class="icon"><use href="#icon-adult"/></svg> Adult</div>';
+          return '<div class="product-badge"><svg class="icon"><use href="#icon-adult"/></svg>Adult</div>';
         } else if (badge.toLowerCase().includes('popular')) {
-          return '<div class="product-badge"><svg class="icon"><use href="#icon-popular"/></svg> Popular</div>';
+          return '<div class="product-badge"><svg class="icon"><use href="#icon-popular"/></svg>Popular</div>';
         } else if (badge.toLowerCase().includes('premium')) {
-          return '<div class="product-badge"><svg class="icon"><use href="#icon-premium"/></svg> Premium</div>';
+          return '<div class="product-badge"><svg class="icon"><use href="#icon-premium"/></svg>Premium</div>';
         } else if (badge.toLowerCase().includes('new')) {
-          return '<div class="product-badge"><svg class="icon"><use href="#icon-new"/></svg> New</div>';
+          return '<div class="product-badge"><svg class="icon"><use href="#icon-new"/></svg>New</div>';
         } else if (badge.toLowerCase().includes('global')) {
-          return '<div class="product-badge"><svg class="icon"><use href="#icon-global"/></svg> Global</div>';
+          return '<div class="product-badge"><svg class="icon"><use href="#icon-global"/></svg>Global</div>';
         } else if (badge.toLowerCase().includes('character')) {
-          return '<div class="product-badge"><svg class="icon"><use href="#icon-characters"/></svg> Characters</div>';
+          return '<div class="product-badge"><svg class="icon"><use href="#icon-characters"/></svg>Characters</div>';
         }
       }
     }

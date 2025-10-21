@@ -24,13 +24,20 @@ exports.handler = async (event, context) => {
     const companionName = extractCompanionName(urls[0]);
     console.log(`Companion name: ${companionName}`);
 
-    // Fetch all URLs
+    // Fetch all URLs with delays between requests
     const htmlContents = [];
-    for (const url of urls) {
+    for (let i = 0; i < urls.length; i++) {
+      const url = urls[i];
       try {
-        console.log(`Fetching: ${url}`);
+        console.log(`Fetching ${i + 1}/${urls.length}: ${url}`);
         const html = await fetchWebsite(url);
         htmlContents.push({ url, html });
+
+        // Add delay between requests (2 seconds) to avoid rate limiting and allow proper loading
+        if (i < urls.length - 1) {
+          console.log('Waiting 2 seconds before next request...');
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        }
       } catch (error) {
         console.log(`Failed to fetch ${url}:`, error.message);
       }
@@ -102,7 +109,7 @@ function fetchWebsite(url) {
       reject(error);
     });
 
-    req.setTimeout(15000, () => {
+    req.setTimeout(30000, () => {
       req.destroy();
       reject(new Error('Request timeout'));
     });
@@ -338,31 +345,65 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
 
   result.short_description = shortDesc;
 
-  // Extract pricing information
-
-  // Extract pricing (pros/cons removed - not in Airtable)
+  // Extract pricing information with improved context-aware parsing
   const allPrices = [];
+  const pricingContext = new Map(); // Store context around each price
 
-  // Multiple patterns to catch different price formats
-  const pricePatterns = [
-    /\$(\d+(?:\.\d{2})?)/g,                    // $19.99
-    /(\d+(?:\.\d{2})?)\s*(?:USD|usd|\$)/g,     // 19.99 USD or 19.99$
-    /price[:\s]+(\d+(?:\.\d{2})?)/gi,          // price: 19.99
-    /(\d+(?:\.\d{2})?)\s*\/\s*month/gi,        // 19.99/month
-    /(\d+(?:\.\d{2})?)\s*per\s+month/gi,       // 19.99 per month
-    /monthly[:\s]+(\d+(?:\.\d{2})?)/gi,        // monthly: 19.99
+  // Extract pricing sections from HTML
+  const pricingSections = [];
+
+  // Look for common pricing section patterns
+  const pricingSectionPatterns = [
+    /<(?:div|section)[^>]*(?:class|id)=["'][^"']*(?:pric|plan|tier|subscription|package)[^"']*["'][^>]*>[\s\S]{0,2000}?<\/(?:div|section)>/gi,
+    /<table[^>]*(?:class|id)=["'][^"']*pric[^"']*["'][^>]*>[\s\S]{0,2000}?<\/table>/gi,
   ];
 
-  // Search in both lowercase combined text AND original HTML for better detection
-  const textsToSearch = [combinedText, allHtml];
+  for (const pattern of pricingSectionPatterns) {
+    const matches = allHtml.matchAll(pattern);
+    for (const match of matches) {
+      pricingSections.push(match[0]);
+    }
+  }
+
+  console.log(`Found ${pricingSections.length} pricing sections`);
+
+  // If we found pricing sections, extract from those, otherwise use full text
+  const textsToSearch = pricingSections.length > 0 ? pricingSections : [allHtml, combinedText];
+
+  // Enhanced price patterns with context
+  const pricePatterns = [
+    /\$(\d+(?:\.\d{2})?)\s*(?:\/|per)?\s*(?:mo|month|monthly)?/gi,  // $19.99/mo
+    /(\d+(?:\.\d{2})?)\s*(?:USD|usd|\$)\s*(?:\/|per)?\s*(?:mo|month)?/gi, // 19.99 USD/mo
+    /(?:price|cost|pay|from)[:\s]+\$?(\d+(?:\.\d{2})?)/gi,         // price: $19.99
+    /(\d+(?:\.\d{2})?)\s*\/\s*(?:month|mo)/gi,                      // 19.99/month
+    /(\d+(?:\.\d{2})?)\s*per\s+month/gi,                            // 19.99 per month
+  ];
 
   for (const text of textsToSearch) {
+    // Remove HTML tags but keep structure
+    const cleanText = text.replace(/<script[\s\S]*?<\/script>/gi, '')
+                          .replace(/<style[\s\S]*?<\/style>/gi, '');
+
     for (const pattern of pricePatterns) {
-      const matches = text.matchAll(pattern);
+      const matches = cleanText.matchAll(pattern);
       for (const match of matches) {
         const price = parseFloat(match[1]);
-        if (price > 0 && price < 1000) {
-          allPrices.push(price);
+
+        // Filter out unrealistic prices
+        if (price >= 1 && price <= 500) {
+          // Get context around the price (50 chars before and after)
+          const startIdx = Math.max(0, match.index - 50);
+          const endIdx = Math.min(cleanText.length, match.index + match[0].length + 50);
+          const context = cleanText.substring(startIdx, endIdx).toLowerCase();
+
+          // Skip prices that seem unrelated to subscriptions
+          const skipKeywords = ['year', 'lifetime', 'one-time', 'credit', 'token', 'coin'];
+          const shouldSkip = skipKeywords.some(keyword => context.includes(keyword));
+
+          if (!shouldSkip) {
+            allPrices.push(price);
+            pricingContext.set(price, context);
+          }
         }
       }
     }
@@ -398,22 +439,48 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     });
   }
 
-  // Try to detect plan names from the HTML
+  // Try to detect plan names from the HTML with improved matching
   const detectedPlanNames = [];
-  const planNamePatterns = [
-    /(?:plan|tier|package)[:\s]*([a-z]+)/gi,
-    /(basic|starter|standard|premium|pro|plus|elite|ultimate|deluxe)\s+(?:plan|tier|package)/gi,
-  ];
+  const planNameSet = new Set();
 
-  for (const pattern of planNamePatterns) {
-    const matches = combinedText.matchAll(pattern);
-    for (const match of matches) {
-      const name = match[1].trim();
-      if (name.length > 2 && name.length < 20) {
-        detectedPlanNames.push(name.charAt(0).toUpperCase() + name.slice(1).toLowerCase());
+  // Look for plan names in pricing sections first
+  const planSearchTexts = pricingSections.length > 0 ? pricingSections : [allHtml];
+
+  for (const text of planSearchTexts) {
+    // Remove HTML but keep text structure
+    const cleanText = text.replace(/<[^>]+>/g, ' ')
+                         .replace(/&[^;]+;/g, ' ')
+                         .replace(/\s+/g, ' ');
+
+    // Enhanced plan name patterns
+    const planNamePatterns = [
+      /(basic|starter|standard|premium|pro|plus|elite|ultimate|deluxe|enterprise)\s+(?:plan|tier|package|subscription)?/gi,
+      /(?:plan|tier|package)[:\s]+([a-z]{3,15})/gi,
+      /<h[1-6][^>]*>([^<]{3,20}(?:plan|tier|package))<\/h[1-6]>/gi,
+    ];
+
+    for (const pattern of planNamePatterns) {
+      const matches = cleanText.matchAll(pattern);
+      for (const match of matches) {
+        let name = match[1].trim();
+
+        // Clean up the name
+        name = name.replace(/\s+(?:plan|tier|package|subscription)$/i, '').trim();
+
+        if (name.length >= 3 && name.length <= 15 && !planNameSet.has(name.toLowerCase())) {
+          const formattedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+          // Only add if it's a reasonable plan name
+          if (!/\d{3,}/.test(formattedName) && !/[^a-zA-Z\s]/.test(formattedName)) {
+            planNameSet.add(name.toLowerCase());
+            detectedPlanNames.push(formattedName);
+          }
+        }
       }
     }
   }
+
+  console.log(`Detected plan names: ${detectedPlanNames.join(', ')}`);
 
   // Add paid plans for each detected price
   const tierNames = detectedPlanNames.length > 0
@@ -455,123 +522,69 @@ async function analyzeContent(htmlContents, searchResults, companionName) {
     result.pricing_plans = plans;
   }
 
-  // Build features array in the required format
+  // Build features array with improved detection
   const features = [];
+  const featureKeywords = new Map();
 
-  if (hasVoice) {
-    features.push({
-      icon: "🎤",
-      title: "Voice Chat",
-      description: "AI voice messages"
-    });
-  }
+  // Scan for feature-related sections in HTML
+  const featureSections = [];
+  const featureSectionPatterns = [
+    /<(?:div|section|ul)[^>]*(?:class|id)=["'][^"']*(?:feature|benefit|capability|highlight)[^"']*["'][^>]*>[\s\S]{0,1500}?<\/(?:div|section|ul)>/gi,
+  ];
 
-  if (hasImage) {
-    features.push({
-      icon: "🎨",
-      title: "AI Art",
-      description: "Image generation"
-    });
-  }
-
-  if (hasVideo) {
-    features.push({
-      icon: "🎬",
-      title: "Video Content",
-      description: "AI-generated videos"
-    });
-  }
-
-  if (hasMemory) {
-    features.push({
-      icon: "🧠",
-      title: "Memory System",
-      description: "Remembers context"
-    });
-  }
-
-  if (hasRoleplay) {
-    features.push({
-      icon: "🎭",
-      title: "Roleplay",
-      description: "Character scenarios"
-    });
-  }
-
-  if (hasCustom) {
-    features.push({
-      icon: "⚙️",
-      title: "Customization",
-      description: "Personalized AI"
-    });
-  }
-
-  if (combinedText.includes('multilingual') || combinedText.includes('language')) {
-    features.push({
-      icon: "🌍",
-      title: "Multilingual",
-      description: "Multiple languages"
-    });
-  }
-
-  if (hasCommunity) {
-    features.push({
-      icon: "👥",
-      title: "Community",
-      description: "Discord & forums"
-    });
-  }
-
-  // Add generic features if we don't have enough specific ones
-  if (features.length < 3) {
-    if (combinedText.includes('24/7') || combinedText.includes('always available')) {
-      features.push({
-        icon: "⏰",
-        title: "24/7 Available",
-        description: "Always online"
-      });
+  for (const pattern of featureSectionPatterns) {
+    const matches = allHtml.matchAll(pattern);
+    for (const match of matches) {
+      featureSections.push(match[0]);
     }
+  }
 
-    if (features.length < 3 && (combinedText.includes('private') || combinedText.includes('encrypt'))) {
-      features.push({
-        icon: "🔒",
-        title: "Private",
-        description: "Secure conversations"
-      });
-    }
+  const featureSearchText = featureSections.length > 0
+    ? featureSections.join(' ')
+    : combinedText;
 
-    if (features.length < 3 && (combinedText.includes('mobile') || combinedText.includes('app'))) {
+  // Enhanced feature detection with frequency tracking
+  const featureTests = [
+    { test: () => hasVoice || /voice|audio|speak|talk/i.test(featureSearchText), icon: "🎤", title: "Voice Chat", desc: "AI voice messages" },
+    { test: () => hasImage || /image generat|photo|picture|visual|art/i.test(featureSearchText), icon: "🎨", title: "AI Art", desc: "Image generation" },
+    { test: () => hasVideo || /video|cam|stream/i.test(featureSearchText), icon: "🎬", title: "Video Content", desc: "AI-generated videos" },
+    { test: () => hasMemory || /memory|remember|context|history/i.test(featureSearchText), icon: "🧠", title: "Memory System", desc: "Remembers context" },
+    { test: () => hasRoleplay || /roleplay|role-play|scenario|character/i.test(featureSearchText), icon: "🎭", title: "Roleplay", desc: "Character scenarios" },
+    { test: () => hasCustom || /customiz|personali|tailor|configure/i.test(featureSearchText), icon: "⚙️", title: "Customization", desc: "Personalized AI" },
+    { test: () => /multilingual|multi-language|languages|translation/i.test(featureSearchText), icon: "🌍", title: "Multilingual", desc: "Multiple languages" },
+    { test: () => hasCommunity || /community|discord|forum/i.test(featureSearchText), icon: "👥", title: "Community", desc: "Discord & forums" },
+    { test: () => /24\/7|always available|anytime|any time/i.test(featureSearchText), icon: "⏰", title: "24/7 Available", desc: "Always online" },
+    { test: () => /privat|secure|encrypt|anonymous|confidential/i.test(featureSearchText), icon: "🔒", title: "Private", desc: "Secure conversations" },
+    { test: () => /mobile|app|ios|android|smartphone/i.test(featureSearchText), icon: "📱", title: "Mobile App", desc: "iOS & Android" },
+    { test: () => /unlimited|no limit|infinite/i.test(featureSearchText), icon: "∞", title: "Unlimited", desc: "No message limits" },
+    { test: () => /nsfw|adult|18\+|mature|uncensored/i.test(featureSearchText), icon: "🔞", title: "NSFW", desc: "Adult content allowed" },
+    { test: () => /emotion|empathy|feeling|mood/i.test(featureSearchText), icon: "❤️", title: "Emotional AI", desc: "Empathetic responses" },
+  ];
+
+  // Test each feature and add if detected
+  for (const { test, icon, title, desc } of featureTests) {
+    if (test()) {
       features.push({
-        icon: "📱",
-        title: "Mobile App",
-        description: "iOS & Android"
+        icon: icon,
+        title: title,
+        description: desc
       });
     }
   }
 
-  // Ensure we have at least 3 features
+  console.log(`Detected ${features.length} features from content`);
+
+  // If we still don't have enough features, add defaults
   if (features.length === 0) {
     features.push(
-      {
-        icon: "💬",
-        title: "AI Chat",
-        description: "Natural conversations"
-      },
-      {
-        icon: "💕",
-        title: "Personalized",
-        description: "Custom companions"
-      },
-      {
-        icon: "🎯",
-        title: "Smart AI",
-        description: "Advanced models"
-      }
+      { icon: "💬", title: "AI Chat", description: "Natural conversations" },
+      { icon: "💕", title: "Personalized", description: "Custom companions" },
+      { icon: "🎯", title: "Smart AI", description: "Advanced models" }
     );
   }
 
-  // Limit to maximum 4 features
-  result.features = features.slice(0, 4);
+  // Prioritize and limit to 6 most relevant features
+  result.features = features.slice(0, 6);
 
   return result;
 }

@@ -138,7 +138,8 @@
                 <div class="form-group">
                     <label for="urls">URLs for Research *</label>
                     <textarea id="urls" name="urls" required style="min-height: 80px;"></textarea>
-                    <small>Enter one or more URLs (comma-separated). First URL = main website. Add pricing page, review pages, etc.</small>
+                    <small>Enter one or more URLs (comma-separated). First URL = main website. Add pricing page, review pages, etc.<br>
+                    <strong>Note:</strong> Generation takes 1-2 minutes as we carefully analyze each URL. Please be patient!</small>
                     <button type="button" class="generate-btn" id="generateBtn">
                         🤖 Generate Content from URLs
                     </button>
@@ -284,7 +285,13 @@
 
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
+                // Increased timeout to 120 seconds to account for:
+                // - Delays between URL fetches (2s each)
+                // - Processing time for each URL (up to 30s each)
+                // - Analysis and generation time
+                const timeoutId = setTimeout(() => controller.abort(), 120000);
+
+                showMessage('⏳ Fetching and analyzing URLs... This may take 1-2 minutes.', 'success');
 
                 const response = await fetch('/.netlify/functions/companionguide-generate', {
                     method: 'POST',
