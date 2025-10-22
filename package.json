@@ -3,19 +3,23 @@
   "version": "1.0.0",
   "description": "AI Companion Reviews website",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.32.1",
     "airtable": "^0.12.2",
     "nodemailer": "^6.9.0",
     "openai": "^6.6.0"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.67.0",
     "@netlify/functions": "^2.0.0",
-    "jsdom": "^27.0.0",
+    "jsdom": "^27.0.1",
     "netlify-cli": "^17.10.1"
   },
   "scripts": {
     "build": "echo 'Static site - no build step required'",
     "dev": "netlify dev",
-    "populate-airtable": "node populate-airtable.js"
+    "populate-airtable": "node populate-airtable.js",
+    "translate:companions": "node scripts/translate-companion-pages.js",
+    "translate:test": "node scripts/translate-companion-pages.js --file=character-ai --dry-run",
+    "translate:single": "node scripts/translate-companion-pages.js --file",
+    "translate:force": "node scripts/translate-companion-pages.js --force"
   }
 }
