@@ -190,6 +190,10 @@ class CompanionManager {
           <div class="price-main">${pricing.replace('<p class="price">', '').replace('</p>', '')}</div>
         </div>
 
+        ${companion.best_for ? `<div class="best-for-section">
+          <span class="best-for-label">Best for:</span> ${companion.best_for}
+        </div>` : ''}
+
         <div class="card-actions">
           <a href="/companions/${slug}" class="btn-primary">Read Review</a>
           <a href="${companion.website_url}" class="btn-secondary" target="_blank" rel="noopener">Visit Website</a>
