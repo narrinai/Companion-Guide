@@ -273,3 +273,22 @@
 # Functions configuration
 [functions]
   directory = "netlify/functions"
+# Dutch individual companion pages - use English HTML with ?lang=nl parameter
+[[redirects]]
+  from = "/nl/companions/:slug"
+  to = "/companions/:slug?lang=nl"
+  status = 200
+  force = false
+
+# Dutch individual category pages - use English HTML with ?lang=nl parameter  
+[[redirects]]
+  from = "/nl/categories/:slug"
+  to = "/categories/:slug?lang=nl"
+  status = 200
+  force = false
+
+# Keep main Dutch pages as separate HTML files
+# /nl/ -> nl/index.html
+# /nl/companions -> nl/companions.html (overview)
+# /nl/categories -> nl/categories.html (overview)
+# etc.

@@ -5,12 +5,13 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
     "airtable": "^0.12.2",
-    "nodemailer": "^6.9.0"
+    "nodemailer": "^6.9.0",
+    "openai": "^6.6.0"
   },
   "devDependencies": {
     "@netlify/functions": "^2.0.0",
-    "netlify-cli": "^17.10.1",
-    "jsdom": "^27.0.0"
+    "jsdom": "^27.0.0",
+    "netlify-cli": "^17.10.1"
   },
   "scripts": {
     "build": "echo 'Static site - no build step required'",

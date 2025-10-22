@@ -13,13 +13,23 @@ class I18n {
   }
 
   /**
-   * Detect language from URL path
+   * Detect language from URL path or query parameter
    * Examples:
    *   /nl/companions/secrets-ai -> 'nl'
    *   /companions/secrets-ai -> 'en' (default)
+   *   /companions/secrets-ai?lang=nl -> 'nl'
    *   /es/categories/ai-girlfriends -> 'es'
    */
   detectLanguage() {
+    // First check for ?lang=xx query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+
+    if (langParam && this.supportedLanguages.includes(langParam)) {
+      return langParam;
+    }
+
+    // Then check URL path
     const pathParts = window.location.pathname.split('/').filter(p => p);
 
     // Check if first part of URL is a supported language code
