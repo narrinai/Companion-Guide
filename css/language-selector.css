@@ -10,6 +10,11 @@
     display: inline-block;
 }
 
+/* Hide language switcher */
+.language-switcher {
+    display: none !important;
+}
+
 .current-language {
     background: transparent;
     border: none;

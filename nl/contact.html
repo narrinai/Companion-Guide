@@ -103,118 +103,118 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         <section class="contact-content">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h2>Contact Information</h2>
+                    <h2 data-i18n="contact.contactInformation">Contactinformatie</h2>
                     <div class="contact-details">
                         <div class="contact-item">
                             <div class="contact-icon">⏰</div>
                             <div class="contact-text">
-                                <h3>Response Time</h3>
-                                <p>Within 24-48 hours</p>
+                                <h3 data-i18n="contact.responseTime">Reactietijd</h3>
+                                <p data-i18n="contact.responseTimeValue">Binnen 24-48 uur</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon">🌍</div>
                             <div class="contact-text">
-                                <h3>Coverage</h3>
-                                <p>Global AI companion platforms</p>
+                                <h3 data-i18n="contact.coverage">Bereik</h3>
+                                <p data-i18n="contact.coverageValue">Wereldwijde AI companion platforms</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="contact-reasons">
-                        <h3>What can we help you with?</h3>
+                        <h3 data-i18n="contact.helpWith">Waarmee kunnen we je helpen?</h3>
                         <ul>
-                            <li>Platform reviews and recommendations</li>
-                            <li>Partnership and collaboration opportunities</li>
-                            <li>Content suggestions and feedback</li>
-                            <li>Technical questions about AI companions</li>
-                            <li>Media inquiries and interviews</li>
+                            <li data-i18n="contact.helpReasons.0">Platform beoordelingen en aanbevelingen</li>
+                            <li data-i18n="contact.helpReasons.1">Partnerschap en samenwerkingsmogelijkheden</li>
+                            <li data-i18n="contact.helpReasons.2">Content suggesties en feedback</li>
+                            <li data-i18n="contact.helpReasons.3">Technische vragen over AI companions</li>
+                            <li data-i18n="contact.helpReasons.4">Media vragen en interviews</li>
                         </ul>
                     </div>
 
                 </div>
 
                 <div class="contact-form-section">
-                    <h2>Send us a Message</h2>
+                    <h2 data-i18n="contact.sendMessage">Stuur ons een bericht</h2>
                     <form class="contact-form" id="contactForm" name="contact" method="POST" action="/success" netlify netlify-honeypot="bot-field">
                         <input type="hidden" name="bot-field" />
                         <input type="hidden" name="form-name" value="contact" />
-                        
+
                         <div class="form-group">
-                            <label for="name">Full Name</label>
+                            <label for="name" data-i18n="contact.fullName">Volledige naam</label>
                             <input type="text" id="name" name="name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email Address</label>
+                            <label for="email" data-i18n="contact.emailAddress">E-mailadres</label>
                             <input type="email" id="email" name="email" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="company">Company/Organization (Optional)</label>
+                            <label for="company" data-i18n="contact.company">Bedrijf/Organisatie (Optioneel)</label>
                             <input type="text" id="company" name="company">
                         </div>
 
                         <div class="form-group">
-                            <label for="subject">Subject</label>
+                            <label for="subject" data-i18n="contact.subject">Onderwerp</label>
                             <select id="subject" name="subject" required>
-                                <option value="">Select a subject</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="review-request">Review Request</option>
-                                <option value="partnership">Partnership Opportunity</option>
-                                <option value="feedback">Feedback & Suggestions</option>
-                                <option value="media">Media Inquiry</option>
-                                <option value="technical">Technical Question</option>
-                                <option value="other">Other</option>
+                                <option value="" data-i18n="contact.selectSubject">Selecteer een onderwerp</option>
+                                <option value="general" data-i18n="contact.generalInquiry">Algemene vraag</option>
+                                <option value="review-request" data-i18n="contact.reviewRequest">Review verzoek</option>
+                                <option value="partnership" data-i18n="contact.partnership">Samenwerkingsmogelijkheid</option>
+                                <option value="feedback" data-i18n="contact.feedback">Feedback & Suggesties</option>
+                                <option value="media" data-i18n="contact.mediaInquiry">Media vraag</option>
+                                <option value="technical" data-i18n="contact.technicalQuestion">Technische vraag</option>
+                                <option value="other" data-i18n="contact.other">Anders</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="6" required placeholder="Tell us more about your inquiry..."></textarea>
+                            <label for="message" data-i18n="contact.message">Bericht</label>
+                            <textarea id="message" name="message" rows="6" required data-i18n-placeholder="contact.messagePlaceholder" placeholder="Vertel ons meer over je vraag..."></textarea>
                         </div>
 
                         <div class="form-group checkbox-group">
                             <input type="checkbox" id="newsletter" name="newsletter" value="yes">
-                            <label for="newsletter">Subscribe to our newsletter for AI companion updates and insights</label>
+                            <label for="newsletter" data-i18n="contact.newsletter">Abonneer op onze nieuwsbrief voor AI companion updates en inzichten</label>
                         </div>
 
-                        <button type="submit" class="btn-primary">Send Message</button>
+                        <button type="submit" class="btn-primary" data-i18n="contact.sendButton">Verstuur bericht</button>
                     </form>
 
                     <div class="form-success" id="formSuccess" style="display: none;">
                         <div class="success-icon">✅</div>
-                        <h3>Message Sent Successfully!</h3>
-                        <p>Thank you for reaching out. We'll get back to you within 24-48 hours.</p>
+                        <h3 data-i18n="contact.successTitle">Bericht succesvol verzonden!</h3>
+                        <p data-i18n="contact.successMessage">Bedankt voor je bericht. We nemen binnen 24-48 uur contact met je op.</p>
                     </div>
 
                     <div class="form-error" id="formError" style="display: none;">
                         <div class="error-icon">❌</div>
-                        <h3>Something went wrong</h3>
-                        <p>Please try again later</p>
+                        <h3 data-i18n="contact.errorTitle">Er ging iets mis</h3>
+                        <p data-i18n="contact.errorMessage">Probeer het later opnieuw</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="faq-section">
-            <h2>Frequently Asked Questions</h2>
+            <h2 data-i18n="contact.faqTitle">Veelgestelde Vragen</h2>
             <div class="faq-grid">
                 <div class="faq-item">
-                    <h3>How do you select platforms to review?</h3>
-                    <p>We evaluate AI companion platforms based on user popularity, feature innovation, and community feedback. We prioritize platforms that offer unique value to users.</p>
+                    <h3 data-i18n="contact.faq1Question">Hoe selecteren jullie platforms om te beoordelen?</h3>
+                    <p data-i18n="contact.faq1Answer">We evalueren AI companion platforms op basis van gebruikerspopulariteit, functie-innovatie en community feedback. We geven prioriteit aan platforms die unieke waarde bieden aan gebruikers.</p>
                 </div>
                 <div class="faq-item">
-                    <h3>Can I request a review of a specific platform?</h3>
-                    <p>Absolutely! Use the contact form above with the subject "Review Request" and tell us about the platform you'd like us to review.</p>
+                    <h3 data-i18n="contact.faq2Question">Kan ik een review van een specifiek platform aanvragen?</h3>
+                    <p data-i18n="contact.faq2Answer">Absoluut! Gebruik het contactformulier hierboven met het onderwerp 'Review verzoek' en vertel ons over het platform dat je beoordeeld wilt zien.</p>
                 </div>
                 <div class="faq-item">
-                    <h3>Do you offer partnership opportunities?</h3>
-                    <p>Yes, we're open to partnerships with AI companion platforms, developers, and industry experts. Contact us with your partnership proposal.</p>
+                    <h3 data-i18n="contact.faq3Question">Bieden jullie samenwerkingsmogelijkheden aan?</h3>
+                    <p data-i18n="contact.faq3Answer">Ja, we staan open voor samenwerkingen met AI companion platforms, ontwikkelaars en industrie-experts. Neem contact met ons op met je samenwerkingsvoorstel.</p>
                 </div>
                 <div class="faq-item">
-                    <h3>How often do you update your reviews?</h3>
-                    <p>We regularly update our reviews to reflect platform changes, new features, and evolving user experiences. Major updates are reviewed quarterly.</p>
+                    <h3 data-i18n="contact.faq4Question">Hoe vaak updaten jullie de reviews?</h3>
+                    <p data-i18n="contact.faq4Answer">We updaten onze reviews regelmatig om platformwijzigingen, nieuwe functies en veranderende gebruikerservaringen te weerspiegelen. Grote updates worden per kwartaal beoordeeld.</p>
                 </div>
             </div>
         </section>

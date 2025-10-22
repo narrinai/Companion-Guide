@@ -257,6 +257,16 @@ class I18n {
       }
     }
 
+    // Translate placeholders
+    const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholderElements.forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      const translation = this.t(key);
+      if (translation && translation !== key) {
+        el.setAttribute('placeholder', translation);
+      }
+    });
+
     console.log(`✅ Applied translations to ${elements.length} elements`);
   }
 
