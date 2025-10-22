@@ -22,7 +22,7 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-
+    
     # Performance headers
     Cache-Control = "public, max-age=300"
 
@@ -32,7 +32,7 @@
   [headers.values]
     Cache-Control = "public, max-age=300"
 
-# Cache headers for assets
+# Cache headers for assets  
 [[headers]]
   for = "/images/*"
   [headers.values]
@@ -48,67 +48,7 @@
   [headers.values]
     Cache-Control = "public, max-age=300"
 
-################################################################################
-# DUTCH (NL) LANGUAGE REDIRECTS - MUST BE FIRST!
-################################################################################
-
-# Dutch homepage
-[[redirects]]
-  from = "/nl"
-  to = "/nl/index.html"
-  status = 200
-
-# Dutch individual companion pages -> English HTML with ?lang=nl parameter
-# CRITICAL: These must come BEFORE the main page redirects!
-[[redirects]]
-  from = "/nl/companions/:slug"
-  to = "/companions/:slug.html?lang=nl"
-  status = 200
-  force = true
-
-# Dutch individual category pages -> English HTML with ?lang=nl parameter
-[[redirects]]
-  from = "/nl/categories/:slug"
-  to = "/categories/:slug.html?lang=nl"
-  status = 200
-  force = true
-
-# Dutch main overview pages -> Dutch HTML files
-[[redirects]]
-  from = "/nl/companions"
-  to = "/nl/companions.html"
-  status = 200
-
-[[redirects]]
-  from = "/nl/categories"
-  to = "/nl/categories.html"
-  status = 200
-
-[[redirects]]
-  from = "/nl/deals"
-  to = "/nl/deals.html"
-  status = 200
-
-[[redirects]]
-  from = "/nl/news"
-  to = "/nl/news.html"
-  status = 200
-
-[[redirects]]
-  from = "/nl/contact"
-  to = "/nl/contact.html"
-  status = 200
-
-# Dutch news articles (if any exist)
-[[redirects]]
-  from = "/nl/news/*"
-  to = "/nl/news/:splat.html"
-  status = 200
-
-################################################################################
-# PRETTY URL REDIRECTS (301 permanent)
-################################################################################
-
+# Pretty URL redirects (without .html extensions)
 [[redirects]]
   from = "/ai-girlfriends"
   to = "/categories/ai-girlfriends"
@@ -144,33 +84,43 @@
   to = "/companions/crushon-ai"
   status = 301
 
-################################################################################
-# ENGLISH (DEFAULT) LANGUAGE REDIRECTS
-################################################################################
-
-# English companion pages should serve their HTML files
+# Language-specific redirects for Dutch (nl)
 [[redirects]]
-  from = "/companions/*"
-  to = "/companions/:splat.html"
+  from = "/nl"
+  to = "/nl/index.html"
   status = 200
 
-# English news pages should serve their HTML files
+# Dutch individual companion pages - redirect to English with ?lang=nl parameter
 [[redirects]]
-  from = "/news/*"
-  to = "/news/:splat.html"
+  from = "/nl/companions/:slug"
+  to = "/companions/:slug?lang=nl"
+  status = 200
+  force = true
+
+# Dutch individual category pages - redirect to English with ?lang=nl parameter
+[[redirects]]
+  from = "/nl/categories/:slug"
+  to = "/categories/:slug?lang=nl"
+  status = 200
+  force = true
+
+# Dutch main pages (companions overview, categories overview, etc.)
+[[redirects]]
+  from = "/nl/companions"
+  to = "/nl/companions.html"
   status = 200
 
-# English category pages should serve their HTML files
 [[redirects]]
-  from = "/categories/*"
-  to = "/categories/:splat.html"
+  from = "/nl/categories"
+  to = "/nl/categories.html"
   status = 200
 
-################################################################################
-# OTHER LANGUAGE REDIRECTS (Future: ES, DE, FR, IT, PT, PL)
-################################################################################
+[[redirects]]
+  from = "/nl/news/*"
+  to = "/nl/news/:splat.html"
+  status = 200
 
-# Spanish (es)
+# Language-specific redirects for Spanish (es)
 [[redirects]]
   from = "/es"
   to = "/es/index.html"
@@ -191,7 +141,7 @@
   to = "/es/news/:splat.html"
   status = 200
 
-# German (de)
+# Language-specific redirects for German (de)
 [[redirects]]
   from = "/de"
   to = "/de/index.html"
@@ -212,7 +162,7 @@
   to = "/de/news/:splat.html"
   status = 200
 
-# French (fr)
+# Language-specific redirects for French (fr)
 [[redirects]]
   from = "/fr"
   to = "/fr/index.html"
@@ -233,7 +183,7 @@
   to = "/fr/news/:splat.html"
   status = 200
 
-# Italian (it)
+# Language-specific redirects for Italian (it)
 [[redirects]]
   from = "/it"
   to = "/it/index.html"
@@ -254,7 +204,7 @@
   to = "/it/news/:splat.html"
   status = 200
 
-# Portuguese (pt)
+# Language-specific redirects for Portuguese (pt)
 [[redirects]]
   from = "/pt"
   to = "/pt/index.html"
@@ -275,7 +225,7 @@
   to = "/pt/news/:splat.html"
   status = 200
 
-# Polish (pl)
+# Language-specific redirects for Polish (pl)
 [[redirects]]
   from = "/pl"
   to = "/pl/index.html"
@@ -296,9 +246,33 @@
   to = "/pl/news/:splat.html"
   status = 200
 
-################################################################################
-# UTILITY REDIRECTS
-################################################################################
+# English (default) companion pages should serve their HTML files
+[[redirects]]
+  from = "/companions/*"
+  to = "/companions/:splat.html"
+  status = 200
+
+# English news pages should serve their HTML files
+[[redirects]]
+  from = "/news/*"
+  to = "/news/:splat.html"
+  status = 200
+
+# English category pages should serve their HTML files
+[[redirects]]
+  from = "/categories/*"
+  to = "/categories/:splat.html"
+  status = 200
+
+# 404 page redirect
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  
+# Skip asset processing for faster deploys (we serve pre-optimized assets)
+[build.processing]
+  skip_processing = true
 
 # Contact form redirects
 [[redirects]]
@@ -310,24 +284,6 @@
   from = "/review-submitted"
   to = "/review-success.html"
   status = 302
-
-################################################################################
-# 404 FALLBACK (MUST BE LAST!)
-################################################################################
-
-# 404 page redirect - catches all unmatched routes
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-################################################################################
-# BUILD CONFIGURATION
-################################################################################
-
-# Skip asset processing for faster deploys (we serve pre-optimized assets)
-[build.processing]
-  skip_processing = true
 
 # Functions configuration
 [functions]
