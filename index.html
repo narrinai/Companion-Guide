@@ -171,13 +171,30 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     <img src="/images/logo.svg" alt="CompanionGuide.ai - Your trusted AI companion platform reviews" width="48" height="48">
                     <span>CompanionGuide.ai</span>
                 </div>
-                <li><a href="/">Home</a></li>
-                <li><a href="/companions">Companions</a></li>
-                <li><a href="/categories">Categories</a></li>
-                <li><a href="/news">News & Insights</a></li>
-                <li><a href="/deals">Deals</a></li>
+                <li><a href="/" data-i18n="nav.home">Home</a></li>
+                <li><a href="/companions" data-i18n="nav.companions">Companions</a></li>
+                <li><a href="/categories" data-i18n="nav.categories">Categories</a></li>
+                <li><a href="/news" data-i18n="nav.news">News & Insights</a></li>
+                <li><a href="/deals" data-i18n="nav.deals">Deals</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
+
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button id="lang-toggle" class="lang-current">
+                    🇬🇧 EN
+                </button>
+                <div class="lang-dropdown" id="lang-dropdown" style="display: none;">
+                    <a href="/" class="lang-option active">🇬🇧 English</a>
+                    <a href="/nl/" class="lang-option">🇳🇱 Nederlands</a>
+                    <a href="/es/" class="lang-option">🇪🇸 Español</a>
+                    <a href="/de/" class="lang-option">🇩🇪 Deutsch</a>
+                    <a href="/fr/" class="lang-option">🇫🇷 Français</a>
+                    <a href="/it/" class="lang-option">🇮🇹 Italiano</a>
+                    <a href="/pt/" class="lang-option">🇵🇹 Português</a>
+                    <a href="/pl/" class="lang-option">🇵🇱 Polski</a>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -834,6 +851,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         </div>
     </footer>
 
+    <!-- Load i18n first -->
+    <script src="/js/i18n.js"></script>
     <script src="script.js?v=20251007"></script>
     <script src="js/companions.js?v=20251007"></script>
     <script src="/js/meta-companion-tracking.js?v=20251007"></script>
@@ -1005,6 +1024,24 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 // Hide all tags if there's an error
                 document.querySelectorAll('[data-companion-index]').forEach(tag => tag.remove());
             }
+        }
+
+        // Language switcher functionality
+        const langToggle = document.getElementById('lang-toggle');
+        const langDropdown = document.getElementById('lang-dropdown');
+
+        if (langToggle && langDropdown) {
+            langToggle.addEventListener('click', () => {
+                const isVisible = langDropdown.style.display === 'block';
+                langDropdown.style.display = isVisible ? 'none' : 'block';
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.language-switcher')) {
+                    langDropdown.style.display = 'none';
+                }
+            });
         }
     </script>
     <script src="/faq-interactions.js"></script>

@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CompanionGuide.ai | Beste AI Companions & Chat Reviews</title>
     <meta name="description" content="Expert reviews van 30+ AI chat platforms. Vergelijk AI girlfriends, roleplay bots en companion apps. Vind jouw perfecte AI chat ervaring met onpartijdige analyses.">
-
-    <!-- Canonical and hreflang -->
+    <meta name="keywords" content="AI chat, AI companion, AI girlfriend, AI chatbot, virtual companion, Character.AI, Replika, AI assistant, companion guide, AI chat platform, AI reviews, virtual girlfriend, free AI chat">
+    <meta name="author" content="Companion Guide">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://companionguide.ai/nl/">
     <link rel="alternate" hreflang="en" href="https://companionguide.ai/">
     <link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/">
@@ -17,47 +18,169 @@
     <meta property="og:url" content="https://companionguide.ai/nl/">
     <meta property="og:title" content="CompanionGuide.ai | Beste AI Companions & Chat Reviews">
     <meta property="og:description" content="Je complete gids voor AI chat platforms en AI companions. Reviews, gidsen en het laatste AI chat nieuws.">
+    <meta property="og:image" content="https://companionguide.ai/images/og-image.jpg">
+    <meta property="og:site_name" content="Companion Guide">
     <meta property="og:locale" content="nl_NL">
     <meta property="og:locale:alternate" content="en_US">
 
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/style.css">
-
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1295735388354002');
-    fbq('track', 'PageView');
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://companionguide.ai/nl/">
+    <meta property="twitter:title" content="CompanionGuide.ai | Beste AI Companions & Chat Reviews">
+    <meta property="twitter:description" content="Je complete gids voor AI chat platforms en AI companions. Reviews, gidsen en het laatste nieuws.">
+    <meta property="twitter:image" content="https://companionguide.ai/images/twitter-card.jpg">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Companion Guide",
+      "url": "https://companionguide.ai",
+      "description": "Your complete guide to AI chat platforms, AI companions and virtual assistants",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://companionguide.ai/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Companion Guide",
+        "url": "https://companionguide.ai"
+      }
+    }
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1295735388354002&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+    
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo.svg">
+    <link rel="preconnect" href="/.netlify">
+    <link rel="dns-prefetch" href="/.netlify">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Loading skeleton styles - matching site theme */
+        .companion-skeleton {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #333;
+            animation: shimmer 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
 
+        .companion-skeleton::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        .skeleton-image {
+            width: 80px;
+            height: 80px;
+            background: #2d2d2d;
+            border-radius: 50%;
+            margin-bottom: 16px;
+        }
+
+        .skeleton-text {
+            background: #2d2d2d;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .skeleton-title {
+            height: 24px;
+            width: 65%;
+            margin-bottom: 8px;
+        }
+
+        .skeleton-description {
+            height: 16px;
+            width: 85%;
+            margin-bottom: 6px;
+        }
+
+        .skeleton-price {
+            height: 20px;
+            width: 45%;
+            margin-top: 16px;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    </style>
+
+    <!-- mylead-verification: 3a6c6df6e7e6742f9c883e2a52e8db51 -->
+    
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MD3ZB0JDNZ"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNT274T4LT"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-MD3ZB0JDNZ');
+
+      gtag('config', 'G-NNT274T4LT');
+    </script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1384707780100464');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
+ alt=""/></noscript>
+<!-- End Meta Pixel Code -->
+    <link rel="stylesheet" href="/faq-styles.css">
+    <script>
+        // Load icon sprite sheet
+        fetch('/icons.svg')
+            .then(r => r.text())
+            .then(svg => {
+                const div = document.createElement('div');
+                div.style.display = 'none';
+                div.innerHTML = svg;
+                document.body.insertBefore(div, document.body.firstChild);
+            });
     </script>
 </head>
 <body>
-    <nav class="primary-nav">
-        <div class="nav-container">
-            <h1><a href="/nl/"><img src="/images/logo.svg" alt="CompanionGuide.ai logo" width="32" height="32">CompanionGuide.ai</a></h1>
-            <ul>
-                <li><a href="/nl/" data-i18n="nav.home">Home</a></li>
-                <li><a href="/nl/categories/ai-girlfriends" data-i18n="nav.categories">Categorieën</a></li>
-                <li><a href="/nl/news/best-ai-girlfriend-companions-2025" data-i18n="nav.news">Nieuws</a></li>
+    <header>
+        <nav class="container">
+            <h1><a href="/"><img src="/images/logo.svg" alt="CompanionGuide.ai - AI companion reviews and guides logo" width="32" height="32">CompanionGuide.ai</a></h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <div class="mobile-menu-logo">
+                    <img src="/images/logo.svg" alt="CompanionGuide.ai - Your trusted AI companion platform reviews" width="48" height="48">
+                    <span>CompanionGuide.ai</span>
+                </div>
+                <li><a href="/" data-i18n="nav.home">Home</a></li>
+                <li><a href="/companions" data-i18n="nav.companions">Companions</a></li>
+                <li><a href="/categories" data-i18n="nav.categories">Categories</a></li>
+                <li><a href="/news" data-i18n="nav.news">News & Insights</a></li>
+                <li><a href="/deals" data-i18n="nav.deals">Deals</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
 
             <!-- Language Switcher -->
@@ -76,75 +199,836 @@
                     <a href="/pl/" class="lang-option">🇵🇱 Polski</a>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <main class="container">
+        <!-- Hero Section -->
         <section class="hero">
-            <h1 data-i18n="hero.title">Vind je Perfecte AI Companion</h1>
-            <p data-i18n="hero.subtitle">Uitgebreide reviews en vergelijkingen van AI chat platforms, AI girlfriends en character companions</p>
+            <h1>AI Chat & Companion Platform Guide</h1>
+            <p>Discover the best AI chat platforms and AI companions. Expert reviews, guides, and the latest AI chat and companion news.</p>
         </section>
 
+        <!-- Category Tags -->
+        <section class="category-tags-section">
+            <div class="category-tags-wrapper">
+                <div class="category-tags">
+                    <a href="/categories/roleplay-character-chat-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-roleplay"/></svg> Roleplay</a>
+                    <a href="/categories/ai-girlfriend-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-girlfriend"/></svg> AI Girlfriend</a>
+                    <a href="/categories/ai-boyfriend-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-boyfriend"/></svg> AI Boyfriend</a>
+                    <a href="/categories/adult-content-uncensored-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-adult"/></svg> NSFW</a>
+                    <a href="/categories/adult-image-generation-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-image-gen"/></svg> Image Gen</a>
+                    <a href="/categories/ai-porn-chat-platforms" class="category-tag"><svg class="icon icon-sm"><use href="#icon-porn"/></svg> AI Porn</a>
+                    <a href="/categories/hentai-ai-chat-platforms" class="category-tag"><svg class="icon icon-sm"><use href="#icon-adult"/></svg> Hentai AI</a>
+                    <a href="/categories/video-companions-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-video"/></svg> Video</a>
+                    <a href="/categories/whatsapp-companions-companions" class="category-tag"><svg class="icon icon-sm"><use href="#icon-whatsapp"/></svg> WhatsApp</a>
+                </div>
+                <div class="companion-tags">
+                    <a href="#" class="featured-companion-tag" data-companion-index="0">Loading...</a>
+                    <a href="#" class="featured-companion-tag" data-companion-index="1">Loading...</a>
+                    <a href="#" class="featured-companion-tag" data-companion-index="2">Loading...</a>
+                    <a href="#" class="featured-companion-tag" data-companion-index="3">Loading...</a>
+                    <a href="#" class="featured-companion-tag" data-companion-index="4">Loading...</a>
+                    <a href="#" class="featured-companion-tag" data-companion-index="5">Loading...</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Two Column Layout: Companions & Topics -->
         <div class="main-layout">
+            <!-- Left Column: Companions & Categories -->
             <div class="left-column">
-                <section class="companions-section">
-                    <h2 data-i18n="sections.bestPlatforms">Beste AI Chat & Companion Platforms</h2>
-                    <div id="featured-companions" class="companions-grid">
-                        <!-- Companion cards will be loaded here by JavaScript -->
-                        <div class="loading">Laden...</div>
+                <section id="companions" class="companions-section">
+                    <div class="section-header">
+                        <div>
+                            <h2>Best AI Chat & Companion Platforms</h2>
+                            <p>Discover the most popular and highest-rated AI chat platforms and AI companions</p>
+                        </div>
+                        <a href="/companions" class="view-all-link">→</a>
+                    </div>
+
+                    <div id="featured-companions-container" class="companions-grid">
+                        <!-- Loading skeletons for better perceived performance -->
+                        <div class="companion-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text skeleton-title"></div>
+                            <div class="skeleton-text skeleton-description"></div>
+                            <div class="skeleton-text skeleton-price"></div>
+                        </div>
+                        <div class="companion-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text skeleton-title"></div>
+                            <div class="skeleton-text skeleton-description"></div>
+                            <div class="skeleton-text skeleton-price"></div>
+                        </div>
+                        <div class="companion-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text skeleton-title"></div>
+                            <div class="skeleton-text skeleton-description"></div>
+                            <div class="skeleton-text skeleton-price"></div>
+                        </div>
+                        <div class="companion-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text skeleton-title"></div>
+                            <div class="skeleton-text skeleton-description"></div>
+                            <div class="skeleton-text skeleton-price"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Categories Section -->
+                <section class="categories-overview">
+                    <div class="section-header">
+                        <h2><svg class="icon icon-md"><use href="#icon-target"/></svg> Explore AI Character Platforms by Category</h2>
+                        <p>Find AI companion platforms tailored to your specific needs</p>
+                    </div>
+
+                    <div class="categories-grid">
+                        <a href="/categories/roleplay-character-chat-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-roleplay"/></svg></div>
+                            <h3>Roleplay & Character Chat</h3>
+                            <p>Best AI platforms for roleplay and character chat experiences</p>
+                            <div class="category-stats" id="roleplaying-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/ai-girlfriend-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-girlfriend"/></svg></div>
+                            <h3>AI Girlfriend</h3>
+                            <p>Best AI platforms for virtual romantic relationships</p>
+                            <div class="category-stats" id="ai-girlfriend-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/ai-boyfriend-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-boyfriend"/></svg></div>
+                            <h3>AI Boyfriend</h3>
+                            <p>Top AI boyfriend platforms for male companions</p>
+                            <div class="category-stats" id="ai-boyfriend-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/whatsapp-companions-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-whatsapp"/></svg></div>
+                            <h3>WhatsApp-Only AI</h3>
+                            <p>AI companions that work exclusively within WhatsApp</p>
+                            <div class="category-stats" id="whatsapp-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/adult-image-generation-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-image-gen"/></svg></div>
+                            <h3>Adult Image Generation</h3>
+                            <p>Best AI platforms for creating NSFW art and visual content</p>
+                            <div class="category-stats" id="image-gen-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/adult-content-uncensored-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
+                            <h3>Adult Content & Uncensored</h3>
+                            <p>Best uncensored AI platforms for adult content</p>
+                            <div class="category-stats" id="nsfw-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/learning-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-learning"/></svg></div>
+                            <h3>Learning & Education</h3>
+                            <p>AI tutors and educational companions</p>
+                            <div class="category-stats" id="learning-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/video-companions-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-video"/></svg></div>
+                            <h3>Video Companions</h3>
+                            <p>AI companions with video chat and video generation capabilities</p>
+                            <div class="category-stats" id="video-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/ai-porn-chat-platforms" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-porn"/></svg></div>
+                            <h3>AI Porn Platforms</h3>
+                            <p>Advanced AI platforms for photorealistic adult content generation</p>
+                            <div class="category-stats" id="porn-count-index">Loading...</div>
+                        </a>
+                        <a href="/categories/hentai-ai-chat-platforms" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
+                            <h3>Hentai AI Platforms</h3>
+                            <p>Specialized AI generators for anime and manga-style adult content</p>
+                            <div class="category-stats" id="hentai-count-index">Loading...</div>
+                        </a>
                     </div>
                 </section>
             </div>
+
+            <!-- Right Column: News -->
+        <aside id="topics" class="topics-section">
+            <!-- Companion of the Month Award -->
+            <div class="cotm-award-card">
+                <div class="cotm-laurel-left">
+                    <svg viewBox="0 0 50 60" class="laurel-svg">
+                        <path d="M10,10 Q15,15 10,20 M10,20 Q15,25 10,30 M10,30 Q15,35 10,40 M10,40 Q15,45 10,50" stroke="currentColor" fill="none" stroke-width="2.5"/>
+                    </svg>
+                </div>
+                <div class="cotm-laurel-right">
+                    <svg viewBox="0 0 50 60" class="laurel-svg">
+                        <path d="M40,10 Q35,15 40,20 M40,20 Q35,25 40,30 M40,30 Q35,35 40,40 M40,40 Q35,45 40,50" stroke="currentColor" fill="none" stroke-width="2.5"/>
+                    </svg>
+                </div>
+                <div class="cotm-award-content">
+                    <h3 class="cotm-title">Companion of the Month</h3>
+                    <div class="cotm-header-row">
+                        <a href="/companions/dream-companion" class="cotm-logo-link">
+                            <img src="/images/logos/dream-companion-review.svg" alt="Dream Companion" class="cotm-companion-logo">
+                        </a>
+                        <div class="cotm-rating-container">
+                            <div class="cotm-stars">★★★★★</div>
+                            <div class="cotm-rating" id="cotm-rating">
+                                <span class="cotm-rating-score">-</span>
+                                <span class="cotm-rating-label">/10</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cotm-buttons">
+                        <a href="/companions/dream-companion" class="cotm-review-button">Read Review</a>
+                        <a href="https://www.mydreamcompanion.com/?deal=companionguide" id="cotm-website-link" class="cotm-website-button" target="_blank" rel="noopener">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Latest AI Companion News</h2>
+                <p>Stay updated with the latest news and insights from the AI companion industry</p>
+                <a href="/news" class="view-all-link">→</a>
+            </div>
+
+            <div class="news-grid">
+                <article class="news-card featured">
+                    <div class="news-badge">Latest</div>
+                    <div class="news-source">CompanionGuide.ai</div>
+                    <h3><a href="/news/best-ai-girlfriend-companions-2025">Best AI Girlfriend Companions 2025 - Top 10 Reviewed & Ranked</a></h3>
+                    <p>Discover the top 10 AI girlfriend companions in 2025. Comprehensive reviews, feature comparisons, pricing analysis, and expert recommendations for finding your perfect AI girlfriend with realistic conversations, image generation, and voice features.</p>
+                    <div class="news-meta">
+                        <span class="date">Oct 21, 2025</span>
+                        <span class="category">Ultimate Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/california-ai-chatbot-regulation-2025">California Regulates AI Chatbots: Senate Bill 243 Protects Children (2025)</a></h3>
+                    <p>California passes Senate Bill 243, becoming first U.S. state to regulate AI companion chatbots. New safety protocols protect children and vulnerable users. Expert reactions inside.</p>
+                    <div class="news-meta">
+                        <span class="date">Oct 14, 2025</span>
+                        <span class="category">Industry News</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/spicychat-ai-alternatives-complete-guide-2025">Best Spicychat AI Alternatives 2025: Complete NSFW AI Companion Guide with Roleplay & Character Chat</a></h3>
+                    <p>Discover the top Spicychat AI alternatives in 2025. Comprehensive comparison of uncensored AI companions including Secrets AI, OurDream AI, Hammer AI, and more with NSFW features, roleplay, and character customization. Find your perfect AI partner with verified ratings.</p>
+                    <div class="news-meta">
+                        <span class="date">Oct 12, 2025</span>
+                        <span class="category">Platform Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/crushon-ai-alternatives-complete-guide-2025">Best Crushon AI Alternatives 2025: Complete NSFW AI Companion Guide with Roleplay & Character Chat</a></h3>
+                    <p>Discover the top Crushon AI alternatives in 2025. Comprehensive comparison of uncensored AI companions including Spicy Chat, Character AI, Candy AI, and more with NSFW features, roleplay, and character customization.</p>
+                    <div class="news-meta">
+                        <span class="date">Oct 7, 2025</span>
+                        <span class="category">Platform Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/soulkyn-ai-alternatives-complete-guide-2025">Best Soulkyn AI Alternatives 2025: Complete AI Companion Guide with Video & NSFW Features</a></h3>
+                    <p>Discover the top Soulkyn AI alternatives in 2025. Comprehensive comparison of AI companions including Secrets AI, OurDream AI, SpicyChat, and more with video generation, NSFW features, and intimate relationships.</p>
+                    <div class="news-meta">
+                        <span class="date">Oct 3, 2025</span>
+                        <span class="category">Platform Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/free-ai-chat-no-signup-guide-2025">Free AI Chat - No Signup Required: Complete Guide 2025</a></h3>
+                    <p>Discover the best free AI chat platforms without signup requirements. Complete guide covering free sex chat, roleplay AI chatbots, AI girlfriends, uncensored conversations - all with minimal barriers to entry.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 30, 2025</span>
+                        <span class="category">Complete Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/spicychat-ai-complete-guide-2025">SpicyChat AI Complete Guide 2025: Best AI Sex Chat Platform Review & Features</a></h3>
+                    <p>Ultimate SpicyChat AI guide 2025: Complete review of the best AI sex chat platform. Uncensored NSFW features, pricing, character creation & alternatives. Expert 8-week analysis of this leading adult AI platform.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 28, 2025</span>
+                        <span class="category">Complete Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/replika-ai-alternatives-complete-guide-2025">Best Replika AI Alternatives in 2025 - Complete Emotional AI Companion Guide</a></h3>
+                    <p>Seeking alternatives to Replika AI? Discover platforms focused on emotional support, mental wellness, and genuine companionship. From specialized therapy AI to productivity-focused companions, find your perfect emotional AI partner.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 24, 2025</span>
+                        <span class="category">Alternatives Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/character-ai-alternatives-complete-guide-2025">Best Character AI Alternatives in 2025 - Complete Roleplay Platform Guide</a></h3>
+                    <p>Looking beyond Character.AI? Discover the best alternatives for roleplay, storytelling, and uncensored conversations. From NSFW-friendly platforms to advanced AI companions, find your perfect roleplay partner.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 23, 2025</span>
+                        <span class="category">Alternatives Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/candy-ai-alternatives-complete-guide-2025">Best Candy AI Alternatives in 2025 - Complete Platform Comparison Guide</a></h3>
+                    <p>Discover the best Candy AI alternatives in 2025. Comprehensive comparison of AI girlfriend platforms including DreamGF, Secrets AI, FantasyGF, and more with features, pricing, and user reviews.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 22, 2025</span>
+                        <span class="category">Alternatives Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/comprehensive-ai-chat-market-guide-2025">Complete AI Chat Guide 2025: Market Overview, Categories & Best Platforms</a></h3>
+                    <p>The definitive guide to the AI chat market in 2025. Explore every category from AI girlfriends to roleplay companions, with comprehensive platform reviews, market analysis, and expert recommendations for finding your perfect AI chat experience.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 19, 2025</span>
+                        <span class="category">Market Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/dreamgf-ai-complete-review-2025">DreamGF AI Deep Dive: 6 Weeks Testing the Premium AI Girlfriend Platform - Advanced Image Generation & Voice Messages Review (2025)</a></h3>
+                    <p>After 6 weeks of intensive testing, everything about DreamGF AI - why it's the best premium AI girlfriend platform available, advanced image generation, voice messages, and whether it justifies its premium pricing as the ultimate virtual companion experience.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 17, 2025</span>
+                        <span class="category">Complete Guide</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/hammer-ai-complete-review-2025">My Complete Hammer AI Experience After 4 Weeks - The Ultimate Free AI Chat Platform Review (2025)</a></h3>
+                    <p>After 4 weeks of intensive testing, everything about Hammer AI - why it's the best free AI chat platform available, how it handles spicy conversations, privacy features, and whether it lives up to the hype as a truly free uncensored AI companion.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 16, 2025</span>
+                        <span class="category">Complete Guide</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/soulgen-ai-adult-image-generation-guide-2025">SoulGen AI Review & The Rise of Adult Image Generation - Complete Industry Guide (2025)</a></h3>
+                    <p>The adult AI image generation market has exploded into a $2.8B industry in 2025, with SoulGen AI leading the charge. From text-to-image NSFW generation to AI companion chat with visual elements - everything about this revolutionary technology.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 15, 2025</span>
+                        <span class="category">Industry Analysis</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/ai-sex-chat-comprehensive-guide-2025">The Complete Guide to AI Sex Chat & NSFW AI Platforms - Market Analysis & Platform Reviews (2025)</a></h3>
+                    <p>The AI sex chat industry has exploded into a $120M market in 2025. From free sex chat bots to premium NSFW AI platforms, everything you need to know about this booming industry - the best platforms, safety considerations, and future trends.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 14, 2025</span>
+                        <span class="category">Market Analysis</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/fantasygf-ai-complete-guide-2025">My Complete FantasyGF Experience After 6 Weeks - The Ultimate User Guide (2025)</a></h3>
+                    <p>After 6 weeks of deep diving into FantasyGF, everything from virtual dating features to voice calls, video generation, and the XP reward system. The most comprehensive user guide for virtual relationships.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 15, 2025</span>
+                        <span class="category">Complete Guide</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/character-ai-complete-guide-2025">My Complete Character.AI Experience After 2 Months - The Ultimate User Guide (2025)</a></h3>
+                    <p>After 2 months of deep diving into Character.AI, everything from hidden features to community secrets, conversation evolution, and whether this free platform is worth your time. Most detailed guide available.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 14, 2025</span>
+                        <span class="category">Complete Guide</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/replika-ai-comprehensive-review-2025">My Brutally Honest Replika AI Review After 7 Weeks - The Complete Guide (2025)</a></h3>
+                    <p>Comprehensive Replika AI review after 7 weeks daily usage. Everything about features, pricing, emotional impact, privacy concerns, and alternatives. Real user experience.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 12, 2025</span>
+                        <span class="category">Review</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/best-ai-companion-wellness-platforms">Best AI Companion Wellness Platforms for Mental Health Support</a></h3>
+                    <p>Comprehensive review of AI companion platforms focused on wellness and mental health, featuring Narrin.AI and other therapeutic-focused solutions.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 2, 2025</span>
+                        <span class="category">Wellness Guide</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/women-ai-boyfriends-chatgpt-upgrade">Women with AI 'boyfriends' mourn lost love after ChatGPT upgrade</a></h3>
+                    <p>AI companion platform users express frustration as software updates change the personality and behavior of their virtual partners.</p>
+                    <div class="news-meta">
+                        <span class="date">Aug 14, 2025</span>
+                        <span class="category">User Impact</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/ai-companion-voice-technology-breakthrough">Major Voice Technology Breakthrough Transforms AI Companion Interactions</a></h3>
+                    <p>Revolutionary voice synthesis technology enables ultra-realistic conversations with AI companions, marking a significant leap forward in human-AI interaction quality.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 5, 2025</span>
+                        <span class="category">Industry News</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/character-ai-gives-up-agi-bleeding-money">Character.AI Gives Up on AGI While Fighting to Stop Bleeding Money</a></h3>
+                    <p>Character.AI shifts strategy away from AGI research to focus on profitability in the competitive AI companion platform market.</p>
+                    <div class="news-meta">
+                        <span class="date">Sep 1, 2025</span>
+                        <span class="category">Business Strategy</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/replika-ftc-deceptive-marketing-complaint">AI App Replika Accused of Deceptive Marketing</a></h3>
+                    <p>Federal Trade Commission complaint alleges deceptive marketing practices by popular AI companion app.</p>
+                    <div class="news-meta">
+                        <span class="date">Aug 28, 2025</span>
+                        <span class="category">Legal</span>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">Companion Guide</div>
+                    <h3><a href="/news/ai-companion-market-120m-revenue">AI companion apps on track to pull in $120M in 2025</a></h3>
+                    <p>The AI companion platform market continues its explosive growth, with revenue projections reaching $120 million by the end of 2025.</p>
+                    <div class="news-meta">
+                        <span class="date">Aug 12, 2025</span>
+                        <span class="category">Market Analysis</span>
+                    </div>
+                </article>
+            </div>
+
+            <div class="topics-cta">
+                <a href="/news" class="btn"><span>View All News</span> →</a>
+            </div>
+        </aside>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>CompanionGuide.ai</h3>
-                <p data-i18n="footer.tagline">Je betrouwbare gids voor AI companions en chat platforms</p>
-            </div>
-            <div class="footer-section">
-                <h4 data-i18n="footer.categories">Categorieën</h4>
-                <ul>
-                    <li><a href="/nl/categories/ai-girlfriends">AI Girlfriends</a></li>
-                    <li><a href="/nl/categories/character-chat">Character Chat</a></li>
-                    <li><a href="/nl/categories/roleplay-character-chat-companions">Roleplay</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4 data-i18n="footer.company">Bedrijf</h4>
-                <ul>
-                    <li><a href="/nl/about" data-i18n="footer.aboutUs">Over Ons</a></li>
-                    <li><a href="/nl/contact" data-i18n="footer.contact">Contact</a></li>
-                    <li><a href="/nl/privacy" data-i18n="footer.privacy">Privacybeleid</a></li>
-                </ul>
+    <!-- More AI Companions Coming Soon Section -->
+    <section class="coming-soon-section">
+        <div class="container">
+            <div class="coming-soon-card">
+                <h2>More AI Companions Coming Soon</h2>
+                <p>We're actively reviewing new AI companion platforms</p>
+                <div class="coming-soon-description">
+                    <p>Our team is continuously testing and reviewing new AI companion platforms. Check back regularly for updates as we add more companions with various features and capabilities.</p>
+                </div>
+                <div class="coming-soon-actions">
+                    <a href="/contact" class="btn-secondary">Suggest a Platform</a>
+                    <a href="/categories" class="btn-primary">Browse Categories →</a>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 CompanionGuide.ai. <span data-i18n="footer.allRightsReserved">Alle rechten voorbehouden</span>.</p>
+    </section>
+
+    
+        <!-- FAQ Section with Structured Data -->
+        <section class="faq-section" id="faq">
+            <h2>AI Companion Platform FAQs</h2>
+            <div class="faq-container">
+                
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="faq-question" itemprop="name">What are AI companions?</h3>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text">AI companions are artificial intelligence-powered chatbots designed to simulate human conversation and emotional connections. They use advanced language models to provide personalized interactions, emotional support, and various forms of digital companionship.</p>
+                    </div>
+                </div>
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="faq-question" itemprop="name">Are AI companions safe to use?</h3>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text">Reputable AI companion platforms implement security measures and content moderation. However, users should review privacy policies, avoid sharing sensitive personal information, and use platforms from established companies with good safety records.</p>
+                    </div>
+                </div>
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="faq-question" itemprop="name">How much do AI companions cost?</h3>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text">AI companion pricing varies widely. Free tiers are available on most platforms, while premium subscriptions range from $4.99 to $19.99 per month. Popular platforms like <a href="/companions/character-ai">Character.AI</a>+ cost $9.99/month, while specialized platforms may charge more.</p>
+                    </div>
+                </div>
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="faq-question" itemprop="name">What's the difference between AI companions and ChatGPT?</h3>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text">AI companions focus on emotional connection and relationship-building with persistent memory, while ChatGPT is designed for general assistance and information. AI companions maintain personality consistency and remember previous conversations.</p>
+                    </div>
+                </div>
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="faq-question" itemprop="name">Can AI companions remember our conversations?</h3>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text">Yes, most modern AI companions feature memory systems that retain conversation history, personal details, and relationship dynamics across multiple sessions. This creates continuity and more meaningful interactions over time.</p>
+                    </div>
+                </div>
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="faq-question" itemprop="name">Are there free AI companions available?</h3>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text">Yes, many platforms offer free tiers including <a href="/companions/character-ai">Character.AI</a>, <a href="/companions/replika">Replika</a> (limited), <a href="/companions/candy-ai">Candy AI</a>, and <a href="/companions/fantasygf-ai">FantasyGF</a>. These typically include basic chat features with optional premium upgrades for enhanced capabilities.</p>
+                    </div>
+                </div>
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="faq-question" itemprop="name">What devices support AI companions?</h3>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text">Most AI companions work on web browsers, smartphones (iOS/Android apps), and tablets. Popular platforms like <a href="/companions/replika">Replika</a>, <a href="/companions/character-ai">Character.AI</a>, and <a href="/companions/candy-ai">Candy AI</a> offer cross-platform synchronization.</p>
+                    </div>
+                </div>
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="faq-question" itemprop="name">How do I choose the right AI companion?</h3>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text">Consider your primary use case: <a href="/companions/character-ai">Character.AI</a> for variety and education, <a href="/companions/replika">Replika</a> for emotional support, adult platforms for mature content, or specialized companions for specific needs like language learning or wellness.</p>
+                    </div>
+                </div>
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="faq-question" itemprop="name">Are AI companions suitable for children?</h3>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text">Most AI companion platforms require users to be 18+ or 13+ with parental consent. Platforms like <a href="/companions/character-ai">Character.AI</a> have content moderation for younger users, but parents should review platform policies and monitor usage.</p>
+                    </div>
+                </div>
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="faq-question" itemprop="name">What are the most popular AI companion platforms in 2025?</h3>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text">Top platforms include <a href="/companions/character-ai">Character.AI</a> (free, variety), <a href="/companions/replika">Replika</a> (emotional support), <a href="/companions/candy-ai">Candy AI</a> (AI girlfriend), <a href="/companions/fantasygf-ai">FantasyGF</a> (interactive dating), and specialized platforms like <a href="/companions/hammer-ai">Hammer AI</a> (privacy-focused) and <a href="/companions/narrin-ai">Narrin.AI</a> (wellness).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Schema Markup -->
+        <script type="application/ld+json">
+        {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are AI companions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI companions are artificial intelligence-powered chatbots designed to simulate human conversation and emotional connections. They use advanced language models to provide personalized interactions, emotional support, and various forms of digital companionship."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are AI companions safe to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reputable AI companion platforms implement security measures and content moderation. However, users should review privacy policies, avoid sharing sensitive personal information, and use platforms from established companies with good safety records."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do AI companions cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI companion pricing varies widely. Free tiers are available on most platforms, while premium subscriptions range from $4.99 to $19.99 per month. Popular platforms like Character.AI+ cost $9.99/month, while specialized platforms may charge more."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between AI companions and ChatGPT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI companions focus on emotional connection and relationship-building with persistent memory, while ChatGPT is designed for general assistance and information. AI companions maintain personality consistency and remember previous conversations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI companions remember our conversations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, most modern AI companions feature memory systems that retain conversation history, personal details, and relationship dynamics across multiple sessions. This creates continuity and more meaningful interactions over time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there free AI companions available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, many platforms offer free tiers including Character.AI, Replika (limited), Candy AI, and FantasyGF. These typically include basic chat features with optional premium upgrades for enhanced capabilities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What devices support AI companions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most AI companions work on web browsers, smartphones (iOS/Android apps), and tablets. Popular platforms like Replika, Character.AI, and Candy AI offer cross-platform synchronization."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I choose the right AI companion?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Consider your primary use case: Character.AI for variety and education, Replika for emotional support, adult platforms for mature content, or specialized companions for specific needs like language learning or wellness."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are AI companions suitable for children?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most AI companion platforms require users to be 18+ or 13+ with parental consent. Platforms like Character.AI have content moderation for younger users, but parents should review platform policies and monitor usage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the most popular AI companion platforms in 2025?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Top platforms include Character.AI (free, variety), Replika (emotional support), Candy AI (AI girlfriend), FantasyGF (interactive dating), and specialized platforms like Hammer AI (privacy-focused) and Narrin.AI (wellness)."
+      }
+    }
+  ]
+}
+        </script>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Companion Guide</h4>
+                    <p>Your trusted source for AI companion reviews and guides</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/companions">Companions</a></li>
+                        <li><a href="/categories">Categories</a></li>
+                        <li><a href="/news">News & Insights</a></li>
+                        <li><a href="/companions-az">Companions A-Z</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Featured AI Companions</h4>
+                    <ul id="featured-companions-footer">
+                        <!-- Dynamic content will be loaded here -->
+                        <li><a href="/companions/hammer-ai">Hammer AI</a></li>
+                        <li><a href="/companions/narrin-ai">Narrin AI</a></li>
+                        <li><a href="/companions/ourdream-ai">Ourdream AI</a></li>
+                        <li><a href="/companions/fantasygf-ai">FantasyGF</a></li>
+                        <li><a href="/companions/dreamgf-ai">DreamGF</a></li>
+                        <li><a href="/companions/secrets-ai">Secrets AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Featured Guides</h4>
+                    <ul>
+                        <li><a href="/news/best-ai-girlfriend-companions-2025">Best AI Girlfriend Companions 2025</a></li>
+                        <li><a href="/news/dreamgf-ai-alternatives-complete-guide-2025">DreamGF AI Alternatives Guide</a></li>
+                        <li><a href="/news/crushon-ai-alternatives-complete-guide-2025">Crushon AI Alternatives Guide</a></li>
+                        <li><a href="/news/spicychat-ai-alternatives-complete-guide-2025">Spicychat AI Alternatives Guide</a></li>
+                        <li><a href="/news/soulkyn-ai-alternatives-complete-guide-2025">Soulkyn AI Alternatives Guide</a></li>
+                        <li><a href="/news/hammer-ai-complete-review-2025">Hammer AI Complete Review</a></li>
+                        <li><a href="/news/character-ai-alternatives-complete-guide-2025">Character AI Alternatives Guide</a></li>
+                        <li><a href="/news/dreamgf-ai-complete-review-2025">DreamGF AI Complete Guide</a></li>
+                        <li><a href="/news/replika-ai-comprehensive-review-2025">Replika AI Comprehensive Review</a></li>
+                        <li><a href="/news/candy-ai-alternatives-complete-guide-2025">Candy AI Alternatives Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Companion Guide. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Load i18n first, then companions -->
+    <!-- Load i18n first -->
     <script src="/js/i18n.js"></script>
-    <script src="/js/companions.js"></script>
+    <script src="script.js?v=20251007"></script>
+    <script src="js/companions.js?v=20251007"></script>
+    <script src="/js/meta-companion-tracking.js?v=20251007"></script>
+    <script src="/js/ga-external-tracking.js?v=20251017"></script>
     <script>
-        // Initialize companion manager and load featured companions
-        window.companionManager = new CompanionManager();
+        // Prefetch companions data ASAP - start before DOMContentLoaded
+        let companionsDataPromise = null;
+        if (window.companionManager) {
+            companionsDataPromise = window.companionManager.fetchCompanions({ sort: 'rating' });
+        }
 
-        // Wait for i18n to initialize before loading companions
-        window.addEventListener('DOMContentLoaded', async () => {
-            // Wait for i18n to be ready
-            if (window.i18n && !window.i18n.initialized) {
-                await window.i18n.init();
+        // Initialize dynamic companions when the page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                // Wait for prefetched data if available
+                if (companionsDataPromise) {
+                    await companionsDataPromise;
+                }
+
+                // Load companion tags first (they're most visible/above fold)
+                // Run in parallel with featured companions for better performance
+                const tagsPromise = loadFeaturedCompanionTags();
+                const cotmPromise = loadCompanionOfTheMonthRating();
+                const featuredPromise = window.companionManager.renderFeaturedCompanions('featured-companions-container', 8);
+
+                // Wait for all to complete
+                await Promise.all([tagsPromise, cotmPromise, featuredPromise]);
+
+                // Update category counts dynamically (less critical, can wait)
+                await window.companionManager.updateCategoryCounts();
+
+                // Load featured companions in footer (least critical)
+                await window.companionManager.renderFooterFeaturedCompanions('featured-companions-footer');
+            } catch (error) {
+                console.error('Error loading featured companions:', error);
+                // Show error message in container
+                const container = document.getElementById('featured-companions-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; color: #666;">
+                            <div style="font-size: 32px; margin-bottom: 15px;">⚠️</div>
+                            <h3>Unable to Load Featured Companions</h3>
+                            <p>There was an error loading the companion data. Please try again later.</p>
+                        </div>
+                    `;
+                }
             }
-
-            // Now load companions with language parameter
-            await window.companionManager.renderFeaturedCompanions('featured-companions', 6);
-
-            console.log('✅ Dutch homepage loaded with i18n');
         });
+
+        // Generate star rating (same as companion cards)
+        function generateStarRating(rating) {
+            const stars = Math.round(rating / 2);
+            const fullStars = Math.min(5, stars);
+            const emptyStars = 5 - fullStars;
+
+            let starsHtml = '';
+            for (let i = 0; i < fullStars; i++) {
+                starsHtml += '<span class="star-filled">★</span>';
+            }
+            for (let i = 0; i < emptyStars; i++) {
+                starsHtml += '<span class="star-empty">☆</span>';
+            }
+            return starsHtml;
+        }
+
+        // Load Companion of the Month rating and website URL
+        async function loadCompanionOfTheMonthRating() {
+            try {
+                // Use cached companions from companionManager
+                let allCompanions = window.companionManager.companions;
+
+                // If no cache yet, fetch
+                if (!allCompanions || allCompanions.length === 0) {
+                    allCompanions = await window.companionManager.fetchCompanions({
+                        sort: 'rating'
+                    });
+                }
+
+                // Find Dream Companion
+                const dreamCompanion = allCompanions.find(c => c.slug === 'dream-companion');
+
+                console.log('Dream Companion data:', dreamCompanion);
+
+                if (dreamCompanion) {
+                    // Update rating
+                    if (dreamCompanion.rating) {
+                        const ratingElement = document.querySelector('.cotm-rating-score');
+                        if (ratingElement) {
+                            ratingElement.textContent = dreamCompanion.rating;
+                        }
+
+                        // Update stars
+                        const starsElement = document.querySelector('.cotm-stars');
+                        if (starsElement) {
+                            starsElement.innerHTML = generateStarRating(dreamCompanion.rating);
+                        }
+                    }
+
+                    // Update website URL
+                    console.log('Dream Companion website_url:', dreamCompanion.website_url);
+                    if (dreamCompanion.website_url && dreamCompanion.website_url !== '#' && dreamCompanion.website_url.startsWith('http')) {
+                        const websiteLink = document.getElementById('cotm-website-link');
+                        if (websiteLink) {
+                            console.log('Updating COTM website link from', websiteLink.href, 'to:', dreamCompanion.website_url);
+                            websiteLink.href = dreamCompanion.website_url;
+                            console.log('COTM link updated successfully');
+                        } else {
+                            console.error('COTM website link element not found');
+                        }
+                    } else {
+                        console.warn('Dream Companion website_url not valid, keeping fallback URL. Value:', dreamCompanion.website_url);
+                    }
+                } else {
+                    console.error('Dream Companion not found in companions list');
+                }
+            } catch (error) {
+                console.error('Error loading Companion of the Month rating:', error);
+            }
+        }
+
+        // Load four random featured companions for the category tags (v4 - optimized)
+        async function loadFeaturedCompanionTags() {
+            try {
+                console.log('Loading featured companion tags...'); // Debug
+
+                // Use cached companions from companionManager instead of fetching again
+                let allCompanions = window.companionManager.companions;
+
+                // If no cache yet, fetch (but this should rarely happen due to prefetch)
+                if (!allCompanions || allCompanions.length === 0) {
+                    allCompanions = await window.companionManager.fetchCompanions({
+                        sort: 'rating'
+                    });
+                }
+
+                console.log('Using cached companions:', allCompanions.length); // Debug
+
+                // Filter for featured companions
+                const featuredCompanions = allCompanions.filter(c =>
+                    c.featured === true || c.featured === 'true' || c.is_featured === true || c.is_featured === 'true'
+                );
+
+                console.log('Found featured companions:', featuredCompanions.length); // Debug
+
+                // Sort by rating (highest first)
+                const sortedCompanions = featuredCompanions.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+                // Get the companion tags container
+                const companionTagsContainer = document.querySelector('.companion-tags');
+
+                if (companionTagsContainer && sortedCompanions.length > 0) {
+                    // Clear existing placeholder tags
+                    companionTagsContainer.innerHTML = '';
+
+                    // Add ALL featured companions with their ratings
+                    sortedCompanions.forEach((companion, index) => {
+                        const tag = document.createElement('a');
+                        tag.href = `/companions/${companion.slug}`;
+                        tag.className = 'featured-companion-tag';
+                        tag.innerHTML = `<span class="rating-score">${companion.rating}/10</span> ${companion.name}`;
+                        companionTagsContainer.appendChild(tag);
+                        console.log(`Added companion tag: ${companion.rating}/10 ${companion.name}`); // Debug
+                    });
+                } else {
+                    console.warn('No featured companions found or container missing');
+                }
+            } catch (error) {
+                console.error('Error loading featured companion tags:', error);
+                // Hide all tags if there's an error
+                document.querySelectorAll('[data-companion-index]').forEach(tag => tag.remove());
+            }
+        }
 
         // Language switcher functionality
         const langToggle = document.getElementById('lang-toggle');
@@ -164,5 +1048,6 @@
             });
         }
     </script>
+    <script src="/faq-interactions.js"></script>
 </body>
 </html>
