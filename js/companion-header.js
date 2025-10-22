@@ -24,11 +24,20 @@ class CompanionHeaderManager {
   }
 
   /**
-   * Fetch companion data from Airtable
+   * Fetch companion data from Airtable with language parameter
    */
   async fetchCompanionData(slug) {
     try {
-      const response = await fetch(`${this.apiBaseUrl}/get-companions`);
+      // Get language parameter from URL or i18n
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || (window.i18n ? window.i18n.currentLang : 'en');
+
+      // Build API URL with language parameter
+      const apiUrl = lang && lang !== 'en'
+        ? `${this.apiBaseUrl}/companionguide-get?lang=${lang}`
+        : `${this.apiBaseUrl}/companionguide-get`;
+
+      const response = await fetch(apiUrl);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -76,7 +85,7 @@ class CompanionHeaderManager {
   }
 
   /**
-   * Update the rating display in the page header
+   * Update the rating display and tagline in the page header
    */
   updateRatingDisplay(companion) {
     const ratingElement = document.querySelector('.rating');
@@ -93,6 +102,13 @@ class CompanionHeaderManager {
 
     // Add a class to indicate it was dynamically loaded
     ratingElement.classList.add('dynamic-rating');
+
+    // Update tagline with translated content from Airtable
+    const taglineElement = document.querySelector('.tagline');
+    if (taglineElement && companion.tagline) {
+      taglineElement.textContent = companion.tagline;
+      console.log(`Updated tagline to: ${companion.tagline}`);
+    }
 
     // Also update verdict section rating if it exists
     const verdictRating = document.querySelector('.dynamic-rating-verdict');
