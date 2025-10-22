@@ -132,8 +132,16 @@ class CompanionManager {
   }
 
   generatePricingHtml(pricingPlans) {
+    // Get translations if available
+    const freeTrial = window.i18n && window.i18n.initialized
+      ? window.i18n.t('companionCard.freeTrial')
+      : 'Free trial';
+    const fromPrice = window.i18n && window.i18n.initialized
+      ? window.i18n.t('companionCard.fromPrice')
+      : 'From';
+
     if (!pricingPlans) {
-      return 'Free trial';
+      return freeTrial;
     }
 
     // Handle if pricingPlans is a string (JSON)
@@ -142,33 +150,53 @@ class CompanionManager {
       try {
         plans = JSON.parse(pricingPlans);
       } catch (e) {
-        return 'Free trial';
+        return freeTrial;
       }
     }
 
     // Ensure plans is an array and has items
     if (!Array.isArray(plans) || plans.length === 0) {
-      return 'Free trial';
+      return freeTrial;
     }
 
     const lowestPrice = Math.min(...plans.map(plan => parseFloat(plan.price || 0)));
 
     // Show "Free trial" if lowest price is 0, otherwise show "From $X/month"
     if (lowestPrice === 0) {
-      return 'Free trial';
+      return freeTrial;
     } else {
-      return `From $${lowestPrice}/month`;
+      return `${fromPrice} $${lowestPrice}/month`;
     }
   }
 
   generateCompanionCard(companion) {
     const logoUrl = companion.logo_url || companion.image_url || '/images/logos/default.png';
-    const reviewCountText = companion.review_count > 0 ? ` (${companion.review_count} reviews)` : '';
+
+    // Get translations if available
+    const reviewsText = window.i18n && window.i18n.initialized
+      ? window.i18n.t('companionCard.reviews')
+      : 'reviews';
+    const bestForLabel = window.i18n && window.i18n.initialized
+      ? window.i18n.t('companionCard.bestFor')
+      : 'Best for:';
+    const readReview = window.i18n && window.i18n.initialized
+      ? window.i18n.t('companionCard.readReview')
+      : 'Read Review';
+    const visitWebsite = window.i18n && window.i18n.initialized
+      ? window.i18n.t('companionCard.visitWebsite')
+      : 'Visit Website';
+
+    const reviewCountText = companion.review_count > 0 ? ` (${companion.review_count} ${reviewsText})` : '';
     const badges = this.generateBadges(companion.badges);
     const pricing = this.generatePricingHtml(companion.pricing_plans);
 
     // Use slug from Airtable, fallback to 'unknown' if not present
     const slug = companion.slug || 'unknown';
+
+    // Generate companion URL with proper language prefix
+    const companionUrl = window.i18n && window.i18n.initialized
+      ? window.i18n.getCompanionUrl(slug)
+      : `/companions/${slug}`;
 
     // Generate star rating with half stars
     const starRating = this.generateStarRating(companion.rating);
@@ -185,7 +213,7 @@ class CompanionManager {
         <div class="card-header">
           <img src="${logoUrl}" alt="${companion.name}" class="logo">
           <div class="title-section">
-            <h3><a href="/companions/${slug}">${companion.name}</a></h3>
+            <h3><a href="${companionUrl}">${companion.name}</a></h3>
             <div class="rating-line">
               <span class="stars">${starRating}</span>
               <span class="rating-score">${companion.rating}/10</span>
@@ -202,12 +230,12 @@ class CompanionManager {
         </div>
 
         ${bestFor ? `<div class="best-for-section">
-          <span class="best-for-label">Best for:</span> ${bestFor}
+          <span class="best-for-label">${bestForLabel}</span> ${bestFor}
         </div>` : ''}
 
         <div class="card-actions">
-          <a href="/companions/${slug}" class="btn-primary">Read Review</a>
-          <a href="${companion.website_url}" class="btn-secondary" target="_blank" rel="noopener">Visit Website</a>
+          <a href="${companionUrl}" class="btn-primary">${readReview}</a>
+          <a href="${companion.website_url}" class="btn-secondary" target="_blank" rel="noopener">${visitWebsite}</a>
         </div>
       </article>
     `;
