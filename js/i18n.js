@@ -236,6 +236,27 @@ class I18n {
       }
     });
 
+    // Translate meta title
+    const titleElement = document.querySelector('[data-i18n-title]');
+    if (titleElement) {
+      const key = titleElement.getAttribute('data-i18n-title');
+      const translation = this.t(key);
+      if (translation && translation !== key) {
+        titleElement.textContent = translation;
+        document.title = translation;
+      }
+    }
+
+    // Translate meta description
+    const metaDesc = document.querySelector('[data-i18n-meta]');
+    if (metaDesc) {
+      const key = metaDesc.getAttribute('data-i18n-meta');
+      const translation = this.t(key);
+      if (translation && translation !== key) {
+        metaDesc.setAttribute('content', translation);
+      }
+    }
+
     console.log(`✅ Applied translations to ${elements.length} elements`);
   }
 
