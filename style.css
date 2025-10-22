@@ -5268,6 +5268,11 @@ footer {
     font-weight: 600;
 }
 
+/* Hide language switcher */
+.language-switcher {
+    display: none !important;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     .language-switcher {
