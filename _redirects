@@ -1,44 +1,79 @@
-# Netlify redirects file for SEO and user experience
+# Netlify _redirects file - HIGHEST PRIORITY
+# First match wins! Dutch redirects MUST be first!
 
-# Redirect Portuguese URLs to main site (Portuguese version removed)
-/pt/* / 301
-/pt / 301
+################################################################################
+# DUTCH (NL) LANGUAGE REDIRECTS - CRITICAL: MUST BE FIRST!
+################################################################################
 
-# Redirect removed categories to main categories page
-/ai-girlfriends /categories 301
-/character-chat /categories 301
-/categories/ai-girlfriends /categories 301
-/categories/character-chat /categories 301
-/productivity /categories/productivity-bots.html 301
-/therapy /categories/therapy-bots.html 301
+# Dutch individual companion pages -> English HTML with ?lang=nl
+/nl/companions/character-ai       /companions/character-ai.html?lang=nl        200!
+/nl/companions/replika            /companions/replika.html?lang=nl             200!
+/nl/companions/crushon-ai         /companions/crushon-ai.html?lang=nl          200!
+/nl/companions/janitor-ai         /companions/janitor-ai.html?lang=nl          200!
+/nl/companions/candy-ai           /companions/candy-ai.html?lang=nl            200!
+/nl/companions/nomi-ai            /companions/nomi-ai.html?lang=nl             200!
+/nl/companions/chai-ai            /companions/chai-ai.html?lang=nl             200!
+/nl/companions/spicychat-ai       /companions/spicychat-ai.html?lang=nl        200!
+/nl/companions/dreamgf-ai         /companions/dreamgf-ai.html?lang=nl          200!
+/nl/companions/joyland-ai         /companions/joyland-ai.html?lang=nl          200!
+/nl/companions/muah-ai            /companions/muah-ai.html?lang=nl             200!
+/nl/companions/soulkyn-ai         /companions/soulkyn-ai.html?lang=nl          200!
+/nl/companions/secretshare-ai     /companions/secret-share-ai.html?lang=nl     200!
+/nl/companions/hammer-ai          /companions/hammer-ai.html?lang=nl           200!
+/nl/companions/dunia-ai           /companions/dunia-ai.html?lang=nl            200!
+/nl/companions/junipero-ai        /companions/junipero-ai.html?lang=nl         200!
+/nl/companions/*                  /companions/:splat.html?lang=nl              200!
 
-# Character redirects (short URLs)
-/character-ai /companions/character-ai.html 301
-/replika /companions/replika.html 301
-/janitor-ai /companions/janitor-ai.html 301
-/crushon-ai /companions/crushon-ai.html 301
-/chai /companions/chai.html 301
-/claude /companions/claude.html 301
+# Dutch individual category pages -> English HTML with ?lang=nl
+/nl/categories/roleplay-character-chat  /categories/roleplay-character-chat.html?lang=nl  200!
+/nl/categories/ai-girlfriend            /categories/ai-girlfriend.html?lang=nl            200!
+/nl/categories/nsfw                     /categories/nsfw.html?lang=nl                     200!
+/nl/categories/*                        /categories/:splat.html?lang=nl                   200!
 
-# Common misspellings and variations
-/characterai /companions/character-ai.html 301
-/character.ai /companions/character-ai.html 301
-/janitorai /companions/janitor-ai.html 301
-/crushon /companions/crushon-ai.html 301
+# Dutch main overview pages -> Dutch HTML files
+/nl                                     /nl/index.html                                    200
+/nl/companions                          /nl/companions.html                               200
+/nl/categories                          /nl/categories.html                               200
+/nl/deals                               /nl/deals.html                                    200
+/nl/news                                /nl/news.html                                     200
+/nl/contact                             /nl/contact.html                                  200
+/nl/news/*                              /nl/news/:splat.html                              200
 
-# Legacy URL patterns (if migrating from another platform)
-/review/* /companions/:splat.html 301
-/reviews/* /companions/:splat.html 301
-/platform/* /companions/:splat.html 301
+################################################################################
+# PRETTY URL REDIRECTS
+################################################################################
 
-# Clean URLs for companions (remove .html extension)
-/companions/* /companions/:splat.html 200
+/ai-girlfriends                         /categories/ai-girlfriend.html                    301
+/character-chat                         /categories/roleplay-character-chat.html          301
+/character-ai                           /companions/character-ai.html                     301
+/replika                                /companions/replika.html                          301
+/janitor-ai                             /companions/janitor-ai.html                       301
+/crushon-ai                             /companions/crushon-ai.html                       301
+/chai                                   /companions/chai-ai.html                          301
 
-# Clean URLs for news articles (remove .html extension)
-/news/* /news/:splat.html 200
+# Common misspellings
+/characterai                            /companions/character-ai.html                     301
+/character.ai                           /companions/character-ai.html                     301
+/janitorai                              /companions/janitor-ai.html                       301
+/crushon                                /companions/crushon-ai.html                       301
 
-# Clean URLs for categories (remove .html extension)
-/categories/* /categories/:splat.html 200
+################################################################################
+# ENGLISH (DEFAULT) CLEAN URLs
+################################################################################
 
-# Catch-all for missing pages (404 -> homepage with helpful message)
-/* /index.html 200
+/companions/*                           /companions/:splat.html                           200
+/news/*                                 /news/:splat.html                                 200
+/categories/*                           /categories/:splat.html                           200
+
+################################################################################
+# UTILITY REDIRECTS
+################################################################################
+
+/contact-success                        /success.html                                     302
+/review-submitted                       /review-success.html                              302
+
+################################################################################
+# 404 FALLBACK
+################################################################################
+
+/*                                      /index.html                                       200
