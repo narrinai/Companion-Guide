@@ -168,6 +168,12 @@ class CompanionManager {
     // Generate star rating with half stars
     const starRating = this.generateStarRating(companion.rating);
 
+    // Debug: Log best_for field
+    const bestFor = companion.best_for || companion.Best_for || companion['Best for'];
+    if (bestFor) {
+      console.log(`${companion.name} best_for:`, bestFor);
+    }
+
     return `
       <article class="companion-card" data-companion-id="${companion.id}">
         ${badges}
@@ -190,8 +196,8 @@ class CompanionManager {
           <div class="price-main">${pricing.replace('<p class="price">', '').replace('</p>', '')}</div>
         </div>
 
-        ${companion.best_for ? `<div class="best-for-section">
-          <span class="best-for-label">Best for:</span> ${companion.best_for}
+        ${bestFor ? `<div class="best-for-section">
+          <span class="best-for-label">Best for:</span> ${bestFor}
         </div>` : ''}
 
         <div class="card-actions">
