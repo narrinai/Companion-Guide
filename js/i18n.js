@@ -125,35 +125,39 @@ class I18n {
   }
 
   /**
-   * Get companion URL with proper language prefix
+   * Get companion URL with proper language parameter
    * @param {string} slug - Companion slug (e.g., "secrets-ai")
-   * @returns {string} Full URL with language prefix if needed
+   * @returns {string} Full URL with language parameter if needed
    */
   getCompanionUrl(slug) {
     if (this.currentLang === 'en') {
       return `/companions/${slug}`;
     }
-    return `/${this.currentLang}/companions/${slug}`;
+    // Use query parameter instead of URL prefix
+    // This way we use the same English HTML file with i18n translations applied
+    return `/companions/${slug}?lang=${this.currentLang}`;
   }
 
   /**
-   * Get category URL with proper language prefix
+   * Get category URL with proper language parameter
    */
   getCategoryUrl(slug) {
     if (this.currentLang === 'en') {
       return `/categories/${slug}`;
     }
-    return `/${this.currentLang}/categories/${slug}`;
+    // Use query parameter instead of URL prefix
+    return `/categories/${slug}?lang=${this.currentLang}`;
   }
 
   /**
-   * Get news article URL with proper language prefix
+   * Get news article URL with proper language parameter
    */
   getNewsUrl(slug) {
     if (this.currentLang === 'en') {
       return `/news/${slug}`;
     }
-    return `/${this.currentLang}/news/${slug}`;
+    // Use query parameter instead of URL prefix
+    return `/news/${slug}?lang=${this.currentLang}`;
   }
 
   /**
