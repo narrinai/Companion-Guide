@@ -146,7 +146,8 @@ exports.handler = async (event, context) => {
           pricing_plans: pricingPlans,
           featured: !!fields.is_featured, // Convert checkbox to boolean
           status: fields.status || 'active',
-          review_count: parseInt(fields.review_count) || 0
+          review_count: parseInt(fields.review_count) || 0,
+          best_for: fields.best_for || ''
         };
       }
     });
