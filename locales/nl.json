@@ -91,7 +91,11 @@
   "companions": {
     "title": "Beste AI Chat Platforms & Companions Gerangschikt op Beoordeling",
     "subtitle": "Volledige rangschikking van AI chat platforms en AI companion platforms gebaseerd op gebruikersbeoordelingen, functies en prestaties. Vind het perfecte AI chat platform of AI companion voor jouw specifieke behoeften en voorkeuren.",
-    "comingSoon": "Meer AI Companions Binnenkort Beschikbaar"
+    "comingSoon": "Meer AI Companions Binnenkort Beschikbaar",
+    "comingSoonDesc": "We beoordelen actief nieuwe AI companion platforms",
+    "comingSoonText": "Ons team test en beoordeelt voortdurend nieuwe AI companion platforms. Kom regelmatig terug voor updates terwijl we meer companions toevoegen met verschillende functies en mogelijkheden.",
+    "suggestPlatform": "Stel een Platform Voor",
+    "browseCategories": "Bekijk Categorieën"
   },
   "categoriesPage": {
     "title": "AI Companion Platform Categorieën",
