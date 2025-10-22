@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "language": "nl",
+    "name": "Nederlands",
+    "direction": "ltr",
+    "locale": "nl-NL"
+  },
+  "nav": {
+    "home": "Home",
+    "companions": "Companions",
+    "categories": "Categorieën",
+    "news": "Nieuws",
+    "deals": "Deals",
+    "about": "Over"
+  },
+  "hero": {
+    "title": "Vind je Perfecte AI Companion",
+    "subtitle": "Uitgebreide reviews en vergelijkingen van AI chat platforms, AI girlfriends en character companions",
+    "cta": "Ontdek Companions"
+  },
+  "sections": {
+    "bestPlatforms": "Beste AI Chat & Companion Platforms",
+    "categories": "Categorieën",
+    "latestNews": "Laatste Nieuws & Gidsen",
+    "companionOfMonth": "Companion van de Maand",
+    "featuredGuides": "Uitgelichte Gidsen"
+  },
+  "companionCard": {
+    "readReview": "Lees Review",
+    "visitWebsite": "Bezoek Website",
+    "freeTrial": "Gratis proefperiode",
+    "bestFor": "Beste voor",
+    "reviews": "reviews",
+    "review": "review",
+    "rating": "Beoordeling"
+  },
+  "pricing": {
+    "free": "Gratis",
+    "from": "Vanaf",
+    "perMonth": "/maand",
+    "perYear": "/jaar",
+    "startingAt": "Vanaf"
+  },
+  "footer": {
+    "tagline": "Je betrouwbare gids voor AI companions en chat platforms",
+    "categories": "Categorieën",
+    "resources": "Bronnen",
+    "company": "Bedrijf",
+    "aboutUs": "Over Ons",
+    "contact": "Contact",
+    "privacy": "Privacybeleid",
+    "terms": "Servicevoorwaarden",
+    "allRightsReserved": "Alle rechten voorbehouden"
+  },
+  "badges": {
+    "popular": "Populair",
+    "new": "Nieuw",
+    "featured": "Uitgelicht",
+    "topRated": "Hoogst Gewaardeerd",
+    "leader": "Leider",
+    "bestValue": "Beste Prijs",
+    "trending": "Trending"
+  },
+  "categories": {
+    "aiGirlfriends": "AI Girlfriends",
+    "characterChat": "Character Chat",
+    "companionApps": "Companion Apps",
+    "nsfwAi": "NSFW AI",
+    "roleplay": "Roleplay",
+    "imageGeneration": "Afbeelding Generatie",
+    "videoGeneration": "Video Generatie",
+    "voiceChat": "Spraakchat"
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Fout",
+    "tryAgain": "Probeer opnieuw",
+    "learnMore": "Lees meer",
+    "readMore": "Lees meer",
+    "showMore": "Toon meer",
+    "showLess": "Toon minder",
+    "search": "Zoeken",
+    "filter": "Filteren",
+    "sort": "Sorteren",
+    "all": "Alles"
+  }
+}

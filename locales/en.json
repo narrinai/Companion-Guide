@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "language": "en",
+    "name": "English",
+    "direction": "ltr",
+    "locale": "en-US"
+  },
+  "nav": {
+    "home": "Home",
+    "companions": "Companions",
+    "categories": "Categories",
+    "news": "News",
+    "deals": "Deals",
+    "about": "About"
+  },
+  "hero": {
+    "title": "Find Your Perfect AI Companion",
+    "subtitle": "Comprehensive reviews and comparisons of AI chat platforms, AI girlfriends, and character companions",
+    "cta": "Explore Companions"
+  },
+  "sections": {
+    "bestPlatforms": "Best AI Chat & Companion Platforms",
+    "categories": "Browse by Category",
+    "latestNews": "Latest News & Guides",
+    "companionOfMonth": "Companion of the Month",
+    "featuredGuides": "Featured Guides"
+  },
+  "companionCard": {
+    "readReview": "Read Review",
+    "visitWebsite": "Visit Website",
+    "freeTrial": "Free trial",
+    "bestFor": "Best for",
+    "reviews": "reviews",
+    "review": "review",
+    "rating": "Rating"
+  },
+  "pricing": {
+    "free": "Free",
+    "from": "From",
+    "perMonth": "/month",
+    "perYear": "/year",
+    "startingAt": "Starting at"
+  },
+  "footer": {
+    "tagline": "Your trusted guide to AI companions and chat platforms",
+    "categories": "Categories",
+    "resources": "Resources",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "allRightsReserved": "All rights reserved"
+  },
+  "badges": {
+    "popular": "Popular",
+    "new": "New",
+    "featured": "Featured",
+    "topRated": "Top Rated",
+    "leader": "Leader",
+    "bestValue": "Best Value",
+    "trending": "Trending"
+  },
+  "categories": {
+    "aiGirlfriends": "AI Girlfriends",
+    "characterChat": "Character Chat",
+    "companionApps": "Companion Apps",
+    "nsfwAi": "NSFW AI",
+    "roleplay": "Roleplay",
+    "imageGeneration": "Image Generation",
+    "videoGeneration": "Video Generation",
+    "voiceChat": "Voice Chat"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "tryAgain": "Try again",
+    "learnMore": "Learn more",
+    "readMore": "Read more",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "all": "All"
+  }
+}

@@ -84,19 +84,166 @@
   to = "/companions/crushon-ai"
   status = 301
 
-# Companion pages should serve their HTML files (not redirect to index)
+# Language-specific redirects for Dutch (nl)
+[[redirects]]
+  from = "/nl"
+  to = "/nl/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/nl/companions/*"
+  to = "/nl/companions/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/nl/categories/*"
+  to = "/nl/categories/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/nl/news/*"
+  to = "/nl/news/:splat.html"
+  status = 200
+
+# Language-specific redirects for Spanish (es)
+[[redirects]]
+  from = "/es"
+  to = "/es/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/es/companions/*"
+  to = "/es/companions/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/es/categories/*"
+  to = "/es/categories/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/es/news/*"
+  to = "/es/news/:splat.html"
+  status = 200
+
+# Language-specific redirects for German (de)
+[[redirects]]
+  from = "/de"
+  to = "/de/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/de/companions/*"
+  to = "/de/companions/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/de/categories/*"
+  to = "/de/categories/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/de/news/*"
+  to = "/de/news/:splat.html"
+  status = 200
+
+# Language-specific redirects for French (fr)
+[[redirects]]
+  from = "/fr"
+  to = "/fr/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/fr/companions/*"
+  to = "/fr/companions/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/fr/categories/*"
+  to = "/fr/categories/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/fr/news/*"
+  to = "/fr/news/:splat.html"
+  status = 200
+
+# Language-specific redirects for Italian (it)
+[[redirects]]
+  from = "/it"
+  to = "/it/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/it/companions/*"
+  to = "/it/companions/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/it/categories/*"
+  to = "/it/categories/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/it/news/*"
+  to = "/it/news/:splat.html"
+  status = 200
+
+# Language-specific redirects for Portuguese (pt)
+[[redirects]]
+  from = "/pt"
+  to = "/pt/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pt/companions/*"
+  to = "/pt/companions/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/pt/categories/*"
+  to = "/pt/categories/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/pt/news/*"
+  to = "/pt/news/:splat.html"
+  status = 200
+
+# Language-specific redirects for Polish (pl)
+[[redirects]]
+  from = "/pl"
+  to = "/pl/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pl/companions/*"
+  to = "/pl/companions/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/pl/categories/*"
+  to = "/pl/categories/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/pl/news/*"
+  to = "/pl/news/:splat.html"
+  status = 200
+
+# English (default) companion pages should serve their HTML files
 [[redirects]]
   from = "/companions/*"
   to = "/companions/:splat.html"
   status = 200
 
-# News pages should serve their HTML files
+# English news pages should serve their HTML files
 [[redirects]]
   from = "/news/*"
   to = "/news/:splat.html"
   status = 200
 
-# Category pages should serve their HTML files
+# English category pages should serve their HTML files
 [[redirects]]
   from = "/categories/*"
   to = "/categories/:splat.html"

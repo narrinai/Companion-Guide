@@ -12,6 +12,11 @@ class CompanionManager {
       if (options.sort) params.append('sort', options.sort);
       if (options.limit) params.append('limit', options.limit);
 
+      // Add language parameter if i18n is available and initialized
+      if (window.i18n && window.i18n.initialized && window.i18n.currentLang) {
+        params.append('lang', window.i18n.currentLang);
+      }
+
       const url = `${this.apiBaseUrl}-get${params.toString() ? '?' + params.toString() : ''}`;
       const response = await fetch(url);
 

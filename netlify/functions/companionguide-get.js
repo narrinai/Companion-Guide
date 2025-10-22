@@ -17,8 +17,8 @@ exports.handler = async (event, context) => {
     const base = new Airtable({apiKey: process.env.AIRTABLE_TOKEN_CG})
       .base(process.env.AIRTABLE_BASE_ID_CG);
 
-    const { filter, category, sort, limit, order, featured, table } = event.queryStringParameters || {};
-    console.log('Query parameters:', { filter, category, sort, limit, order, featured, table });
+    const { filter, category, sort, limit, order, featured, table, lang, slug } = event.queryStringParameters || {};
+    console.log('Query parameters:', { filter, category, sort, limit, order, featured, table, lang, slug });
 
     // Determine which table to use
     const tableId = table === 'Articles' ? process.env.AIRTABLE_ARTICLES_TABLE_ID_CG : process.env.AIRTABLE_TABLE_ID_CG;
@@ -165,6 +165,66 @@ exports.handler = async (event, context) => {
         // If ratings are equal, sort by review_count (descending)
         return b.review_count - a.review_count;
       });
+    }
+
+    // Apply translations if language is specified and not English
+    if (lang && lang !== 'en' && tableName === 'Companions') {
+      console.log(`Fetching translations for language: ${lang}`);
+
+      try {
+        // Check if translations table is configured
+        if (!process.env.AIRTABLE_TRANSLATIONS_TABLE_ID_CG) {
+          console.warn('AIRTABLE_TRANSLATIONS_TABLE_ID_CG not configured, skipping translations');
+        } else {
+          const translationsTableId = process.env.AIRTABLE_TRANSLATIONS_TABLE_ID_CG;
+
+          // Fetch all translations for this language
+          const translationsFormula = `{language} = "${lang}"`;
+          const translationRecords = await base(translationsTableId)
+            .select({
+              filterByFormula: translationsFormula,
+              maxRecords: 1000
+            })
+            .all();
+
+          console.log(`Found ${translationRecords.length} translations for ${lang}`);
+
+          // Create a map of companion ID to translation
+          const translationMap = new Map();
+          translationRecords.forEach(record => {
+            const fields = record.fields;
+            // companion field is a linked record, so it's an array of record IDs
+            if (fields.companion && fields.companion.length > 0) {
+              const companionId = fields.companion[0];
+              translationMap.set(companionId, {
+                description: fields.description || '',
+                best_for: fields.best_for || '',
+                tagline: fields.tagline || '',
+                meta_title: fields.meta_title || '',
+                meta_description: fields.meta_description || ''
+              });
+            }
+          });
+
+          // Apply translations to items
+          items.forEach(item => {
+            const translation = translationMap.get(item.id);
+            if (translation) {
+              // Override with translated content
+              if (translation.description) item.description = translation.description;
+              if (translation.best_for) item.best_for = translation.best_for;
+              if (translation.tagline) item.tagline = translation.tagline;
+              if (translation.meta_title) item.meta_title = translation.meta_title;
+              if (translation.meta_description) item.meta_description = translation.meta_description;
+
+              console.log(`Applied translation for: ${item.name} (${lang})`);
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching translations:', error);
+        // Continue without translations rather than failing
+      }
     }
 
     // Return different response key based on table type
