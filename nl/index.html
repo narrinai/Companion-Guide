@@ -862,16 +862,35 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     <script src="/js/meta-companion-tracking.js?v=20251007"></script>
     <script src="/js/ga-external-tracking.js?v=20251017"></script>
     <script>
-        // Prefetch companions data ASAP - start before DOMContentLoaded
+        // Prefetch companions data ASAP - but wait for i18n first!
         let companionsDataPromise = null;
-        if (window.companionManager) {
-            companionsDataPromise = window.companionManager.fetchCompanions({ sort: 'rating' });
+
+        async function prefetchCompanionsWithLang() {
+            // Wait for i18n to initialize first
+            if (window.i18n && !window.i18n.initialized) {
+                await new Promise(resolve => {
+                    const checkInit = setInterval(() => {
+                        if (window.i18n && window.i18n.initialized) {
+                            clearInterval(checkInit);
+                            resolve();
+                        }
+                    }, 50); // Check every 50ms
+                });
+            }
+
+            // Now fetch companions with proper language
+            if (window.companionManager) {
+                return window.companionManager.fetchCompanions({ sort: 'rating' });
+            }
         }
+
+        // Start prefetch
+        companionsDataPromise = prefetchCompanionsWithLang();
 
         // Initialize dynamic companions when the page loads
         document.addEventListener('DOMContentLoaded', async function() {
             try {
-                // Wait for prefetched data if available
+                // Wait for prefetched data
                 if (companionsDataPromise) {
                     await companionsDataPromise;
                 }
