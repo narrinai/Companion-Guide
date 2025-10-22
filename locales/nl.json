@@ -11,7 +11,8 @@
     "categories": "Categorieën",
     "news": "Nieuws",
     "deals": "Deals",
-    "about": "Over"
+    "about": "Over",
+    "contact": "Contact"
   },
   "hero": {
     "title": "Vind je Perfecte AI Companion",
@@ -84,5 +85,28 @@
     "filter": "Filteren",
     "sort": "Sorteren",
     "all": "Alles"
+  },
+  "companions": {
+    "title": "Beste AI Chat Platforms & Companions Gerangschikt op Beoordeling",
+    "subtitle": "Volledige rangschikking van AI chat platforms en AI companion platforms gebaseerd op gebruikersbeoordelingen, functies en prestaties. Vind het perfecte AI chat platform of AI companion voor jouw specifieke behoeften en voorkeuren."
+  },
+  "categoriesPage": {
+    "title": "AI Companion Platform Categorieën",
+    "subtitle": "Ontdek de beste AI companion platforms georganiseerd per categorie en gebruiksdoel. Vind het perfecte platformtype voor jouw specifieke behoeften en voorkeuren."
+  },
+  "deals": {
+    "title": "AI Chat & Companion Platform Deals",
+    "subtitle": "Bespaar flink op premium AI chat platforms en AI companion abonnementen met exclusieve deals en kortingscodes voor de beste AI chat ervaringen"
+  },
+  "news": {
+    "title": "AI Chat & Companion Platform Nieuws",
+    "subtitle": "Blijf op de hoogte van de laatste ontwikkelingen in AI chat platforms en AI companion platforms, industrie analyse en markttrends"
+  },
+  "contact": {
+    "title": "Neem Contact Op",
+    "subtitle": "Heb je een vraag, suggestie of wil je met ons samenwerken? We horen graag van je!"
+  },
+  "faq": {
+    "title": "Veelgestelde Vragen over AI Companion Platforms"
   }
 }
