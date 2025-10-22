@@ -16,7 +16,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://companionguide.ai/nl/contact">
-    <meta property="og:title" content="Contact - Companion Guide">
+    <meta property="og:title" content="Contact Us - Companion Guide">
     <meta property="og:description" content="Get in touch with Companion Guide for questions, suggestions, or partnership opportunities.">
     <meta property="og:image" content="https://companionguide.ai/images/contact-og.jpg">
     <meta property="og:site_name" content="Companion Guide">
@@ -73,20 +73,31 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     <img src="/images/logo.svg" alt="Companion Guide - Best AI Chat platform reviews" width="48" height="48">
                     <span>CompanionGuide.ai</span>
                 </div>
-                <li><a href="/nl/" data-i18n="nav.home">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/nl/companions" data-i18n="nav.companions">Companions</a></li>
                 <li><a href="/nl/categories" data-i18n="nav.categories">Categorieën</a></li>
                 <li><a href="/nl/news" data-i18n="nav.news">Nieuws</a></li>
                 <li><a href="/nl/contact" class="active" data-i18n="nav.contact">Contact</a></li>
             </ul>
+
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button id="lang-toggle" class="lang-current">
+                    🇳🇱 NL
+                </button>
+                <div class="lang-dropdown" id="lang-dropdown" style="display: none;">
+                    <a href="/contact" class="lang-option">🇬🇧 English</a>
+                    <a href="/nl/contact" class="lang-option active">🇳🇱 Nederlands</a>
+                </div>
+            </div>
         </nav>
         <div class="nav-menu-overlay" onclick="toggleMenu()"></div>
     </header>
 
     <main class="container">
         <section class="hero">
-            <h1>Get in Touch</h1>
-            <p>Add your companion, ask questions, add suggestions, or explore partnership opportunities?<br>We'd love to hear from you.</p>
+            <h1 data-i18n="contact.title">Neem Contact Op</h1>
+            <p data-i18n="contact.subtitle">Heb je een vraag, suggestie of wil je met ons samenwerken? We horen graag van je!</p>
         </section>
 
         <section class="contact-content">
@@ -145,7 +156,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                         </div>
 
                         <div class="form-group">
-                            <label for="subject" data-i18n="contact.form.subject">Onderwerp</label>
+                            <label for="subject">Subject</label>
                             <select id="subject" name="subject" required>
                                 <option value="">Select a subject</option>
                                 <option value="general">General Inquiry</option>
@@ -159,7 +170,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                         </div>
 
                         <div class="form-group">
-                            <label for="message" data-i18n="contact.form.message">Bericht</label>
+                            <label for="message">Message</label>
                             <textarea id="message" name="message" rows="6" required placeholder="Tell us more about your inquiry..."></textarea>
                         </div>
 
@@ -214,17 +225,17 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Companion Guide</h4>
-                    <p data-i18n="footer.tagline">Je betrouwbare gids voor AI companions en chat platforms</p>
+                    <p>Your trusted source for AI companion reviews and guides</p>
                 </div>
                 <div class="footer-section">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="/nl/" data-i18n="nav.home">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="/nl/companions" data-i18n="nav.companions">Companions</a></li>
                         <li><a href="/nl/categories" data-i18n="nav.categories">Categorieën</a></li>
                         <li><a href="/nl/news" data-i18n="nav.news">Nieuws</a></li>
                         <li><a href="/companions-az">Companions A-Z</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/nl/contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -237,25 +248,26 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 <div class="footer-section">
                     <h4>Featured Guides</h4>
                     <ul>
-                        <li><a href="/news/crushon-ai-alternatives-complete-guide-2025">Crushon AI Alternatives Guide</a></li>
-                        <li><a href="/news/soulkyn-ai-alternatives-complete-guide-2025">Soulkyn AI Alternatives Guide</a></li>
-                        <li><a href="/news/spicychat-ai-complete-guide-2025">SpicyChat AI Complete Guide</a></li>
-                        <li><a href="/news/hammer-ai-complete-review-2025">Hammer AI Complete Review</a></li>
-                        <li><a href="/news/soulgen-ai-adult-image-generation-guide-2025">SoulGen AI Complete Guide</a></li>
-                        <li><a href="/news/character-ai-alternatives-complete-guide-2025">Character AI Alternatives Guide</a></li>
-                        <li><a href="/news/dreamgf-ai-complete-review-2025">DreamGF AI Complete Guide</a></li>
-                        <li><a href="/news/replika-ai-comprehensive-review-2025">Replika AI Comprehensive Review</a></li>
-                        <li><a href="/news/nomi-ai-comprehensive-review-2025">Nomi AI Comprehensive Review</a></li>
-                        <li><a href="/news/candy-ai-alternatives-complete-guide-2025">Candy AI Alternatives Guide</a></li>
+                        <li><a href="/nl/news/crushon-ai-alternatives-complete-guide-2025">Crushon AI Alternatives Guide</a></li>
+                        <li><a href="/nl/news/soulkyn-ai-alternatives-complete-guide-2025">Soulkyn AI Alternatives Guide</a></li>
+                        <li><a href="/nl/news/spicychat-ai-complete-guide-2025">SpicyChat AI Complete Guide</a></li>
+                        <li><a href="/nl/news/hammer-ai-complete-review-2025">Hammer AI Complete Review</a></li>
+                        <li><a href="/nl/news/soulgen-ai-adult-image-generation-guide-2025">SoulGen AI Complete Guide</a></li>
+                        <li><a href="/nl/news/character-ai-alternatives-complete-guide-2025">Character AI Alternatives Guide</a></li>
+                        <li><a href="/nl/news/dreamgf-ai-complete-review-2025">DreamGF AI Complete Guide</a></li>
+                        <li><a href="/nl/news/replika-ai-comprehensive-review-2025">Replika AI Comprehensive Review</a></li>
+                        <li><a href="/nl/news/nomi-ai-comprehensive-review-2025">Nomi AI Comprehensive Review</a></li>
+                        <li><a href="/nl/news/candy-ai-alternatives-complete-guide-2025">Candy AI Alternatives Guide</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-i18n="footer.copyright"><p>&copy; 2025 Companion Guide. All rights reserved.</p>copy; 2025 Companion Guide. Alle rechten voorbehouden.</p>
+                <p>&copy; 2025 Companion Guide. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <script src="/js/i18n.js"></script>
     <script src="/script.js"></script>
     <script src="/js/meta-form-tracking.js"></script>
     <script>
@@ -284,5 +296,28 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         });
     </script>
     <script src="/js/meta-companion-tracking.js"></script>
+
+    <script>
+        // Language switcher
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('lang-toggle');
+            const langDropdown = document.getElementById('lang-dropdown');
+
+            if (langToggle && langDropdown) {
+                langToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isVisible = langDropdown.style.display === 'block';
+                    langDropdown.style.display = isVisible ? 'none' : 'block';
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.language-switcher')) {
+                        langDropdown.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
