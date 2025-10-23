@@ -221,6 +221,8 @@
     "title": "Perguntas Frequentes sobre Plataformas de Companion de IA"
   },
   "categoryPages": {
+    "home": "Início",
+    "loading": "Carregando companions...",
     "roleplay": {
       "title": "Melhores Companions de Roleplay & Chat de Personagens",
       "description": "Descubra as melhores plataformas de IA para experiências de roleplay e chat de personagens. Essas plataformas se destacam em narrativa interativa, conversas criativas e interações imersivas de personagens para entretenimento e expressão criativa.",

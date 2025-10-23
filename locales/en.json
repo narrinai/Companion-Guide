@@ -92,9 +92,50 @@
     "keyFeatures": "Key Features",
     "overview": "Overview",
     "features": "Features",
+    "pros": "Pros",
+    "cons": "Cons",
     "prosAndCons": "Pros and Cons",
     "userExperience": "User Experience",
     "alternatives": "Alternatives",
     "faq": "Frequently Asked Questions"
+  },
+  "categoryPages": {
+    "home": "Home",
+    "loading": "Loading companions...",
+    "roleplay": {
+      "title": "Best Roleplay & Character Chat Companions",
+      "description": "Explore the best AI platforms for roleplay and character chat experiences. These platforms excel at interactive storytelling, creative conversations, and immersive character interactions for entertainment and creative expression.",
+      "breadcrumb": "Roleplay & Character Chat AI Platforms",
+      "insightsTitle": "Roleplay & Character Chat AI Platform Insights",
+      "comparisonTitle": "Roleplay & Character Chat Platform Comparison",
+      "metaTitle": "Best Roleplay & Character AI Chat Platforms 2025",
+      "metaDescription": "Top roleplay and character AI chat platforms 2025. Interactive storytelling, creative conversations, immersive experiences. Compare 14 reviewed platforms.",
+      "insights": {
+        "characterVariety": {
+          "title": "Character Variety",
+          "text": "These platforms excel at offering diverse character libraries from fictional universes, historical figures, and original creations for immersive roleplay."
+        },
+        "storytelling": {
+          "title": "Interactive Storytelling",
+          "text": "Focus on narrative-driven experiences where users can actively participate in and influence story development through character interactions."
+        },
+        "expression": {
+          "title": "Creative Expression",
+          "text": "Platforms encourage creative writing, character development, and imaginative scenarios for entertainment and artistic expression."
+        },
+        "community": {
+          "title": "Community Features",
+          "text": "Strong community aspects including character sharing, collaborative storytelling, and user-generated content creation."
+        }
+      },
+      "comparison": {
+        "platform": "Platform",
+        "rating": "Rating",
+        "pricing": "Pricing",
+        "keyFeature": "Key Feature",
+        "bestFor": "Best For"
+      },
+      "faqTitle": "AI Roleplay & Character Chat FAQs"
+    }
   }
 }

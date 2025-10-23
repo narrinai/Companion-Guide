@@ -223,12 +223,22 @@ class I18n {
       const key = el.getAttribute('data-i18n');
       let translation = this.t(key);
 
+      // Don't replace if translation is the same as key (missing translation)
+      if (translation === key) {
+        console.warn(`Skipping missing translation for: ${key}`);
+        return;
+      }
+
       // Special handling for companion.whatIs - extract companion name from current text
       if (key === 'companion.whatIs' && el.textContent) {
-        const match = el.textContent.match(/What is (.+?)\?/);
+        // Match "What is CompanionName?" pattern
+        const match = el.textContent.match(/What is ([^?]+)\?/);
         if (match && match[1]) {
-          const companionName = match[1];
-          translation = translation.replace('{name}', companionName);
+          const companionName = match[1].trim();
+          // Only replace if the name isn't a placeholder
+          if (companionName && companionName !== '{name}') {
+            translation = translation.replace('{name}', companionName);
+          }
         }
       }
 
