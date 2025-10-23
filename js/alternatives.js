@@ -5,7 +5,18 @@ document.addEventListener('DOMContentLoaded', async function() {
     const currentSlug = currentPath.split('/').pop().replace('.html', '');
 
     try {
-        const response = await fetch('/.netlify/functions/companionguide-get');
+        // Detect language from URL path (e.g., /nl/companions/secrets-ai)
+        const pathParts = window.location.pathname.split('/').filter(p => p);
+        const lang = (pathParts[0] === 'nl' || pathParts[0] === 'es' || pathParts[0] === 'de')
+            ? pathParts[0]
+            : (window.i18n ? window.i18n.currentLang : 'en');
+
+        // Build API URL with language parameter
+        const apiUrl = lang && lang !== 'en'
+            ? `/.netlify/functions/companionguide-get?lang=${lang}`
+            : '/.netlify/functions/companionguide-get';
+
+        const response = await fetch(apiUrl);
         const data = await response.json();
 
         // First, find the current companion to get its categories
@@ -76,8 +87,9 @@ function updateAlternatives(companions) {
         // Use logo_url from Airtable if available, otherwise fallback to local path
         const logoSrc = companion.logo_url || `../images/logos/${companion.slug}.png`;
 
-        // Use short_description if available, otherwise first sentence of description
-        const shortDescription = companion.short_description ||
+        // Use tagline if available (includes translated content), otherwise short_description or description
+        const shortDescription = companion.tagline ||
+            companion.short_description ||
             (companion.description ? companion.description.split('.')[0].trim() : 'Premium AI companion platform');
 
         return `

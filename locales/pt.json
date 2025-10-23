@@ -1,0 +1,297 @@
+{
+  "meta": {
+    "language": "pt",
+    "name": "Português",
+    "direction": "ltr",
+    "locale": "pt-BR"
+  },
+  "nav": {
+    "home": "Início",
+    "companions": "Companions",
+    "categories": "Categorias",
+    "news": "Notícias",
+    "deals": "Ofertas",
+    "about": "Sobre",
+    "contact": "Contato"
+  },
+  "hero": {
+    "title": "Encontre Seu Companion de IA Perfeito",
+    "subtitle": "Análises abrangentes e comparações de plataformas de chat de IA, AI girlfriends e character companions",
+    "cta": "Descobrir Companions"
+  },
+  "sections": {
+    "bestPlatforms": "Melhores Plataformas de Chat & Companion de IA",
+    "categories": "Categorias",
+    "latestNews": "Últimas Notícias & Guias",
+    "companionOfMonth": "Companion do Mês",
+    "featuredGuides": "Guias em Destaque"
+  },
+  "companionCard": {
+    "readReview": "Ler Análise",
+    "visitWebsite": "Visitar Site",
+    "freeTrial": "Teste gratuito",
+    "fromPrice": "A partir de",
+    "bestFor": "Melhor para:",
+    "reviews": "avaliações",
+    "review": "avaliação",
+    "rating": "Classificação"
+  },
+  "companion": {
+    "keyFeatures": "Principais Recursos",
+    "pros": "Vantagens",
+    "cons": "Desvantagens",
+    "overview": "Visão Geral",
+    "whatIs": "O que é",
+    "pricing": "Preços",
+    "verdict": "Nossa Opinião",
+    "alternatives": "Alternativas Semelhantes",
+    "faqs": "Perguntas Frequentes",
+    "reviews": "👥 Avaliações Mais Recentes",
+    "faqHeading": "Perguntas Frequentes",
+    "pricingLabel": "Preços",
+    "bestForLabel": "Melhor para",
+    "platformLabel": "Plataforma",
+    "contentPolicyLabel": "Política de Conteúdo",
+    "freeTrialLabel": "Teste Gratuito",
+    "ratingLabel": "Classificação",
+    "freeWithPremium": "Grátis com Premium",
+    "webAndMobileApps": "Web & Apps Móveis",
+    "familyFriendly": "Família (filtrado)",
+    "unfiltered": "Sem filtro",
+    "moderate": "Moderadamente filtrado"
+  },
+  "reviewForm": {
+    "sectionTitle": "Compartilhe sua experiência com {companion}",
+    "yourName": "Seu Nome",
+    "yourNamePlaceholder": "Digite seu nome",
+    "rating": "Classificação",
+    "reviewTitle": "Título da Avaliação",
+    "reviewTitlePlaceholder": "Resuma sua experiência em uma linha",
+    "yourReview": "Sua Avaliação",
+    "yourReviewPlaceholder": "Compartilhe sua experiência detalhada com esta plataforma...",
+    "usageDuration": "Por quanto tempo você usou esta plataforma?",
+    "submitButton": "Enviar Avaliação",
+    "durationSelect": "Selecione a duração...",
+    "durationLessThanWeek": "Menos de uma semana",
+    "duration1to4Weeks": "1-4 semanas",
+    "duration1to3Months": "1-3 meses",
+    "duration3to6Months": "3-6 meses",
+    "duration6MonthsPlus": "6+ meses"
+  },
+  "pricing": {
+    "free": "Grátis",
+    "from": "A partir de",
+    "perMonth": "/mês",
+    "perYear": "/ano",
+    "startingAt": "A partir de",
+    "visitWebsite": "Visitar Site"
+  },
+  "footer": {
+    "tagline": "Seu guia confiável para companions de IA e plataformas de chat",
+    "categories": "Categorias",
+    "resources": "Recursos",
+    "company": "Empresa",
+    "aboutUs": "Sobre Nós",
+    "contact": "Contato",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Serviço",
+    "allRightsReserved": "Todos os direitos reservados"
+  },
+  "badges": {
+    "popular": "Popular",
+    "new": "Novo",
+    "featured": "Destaque",
+    "topRated": "Mais Avaliado",
+    "leader": "Líder",
+    "bestValue": "Melhor Custo-Benefício",
+    "trending": "Em Alta"
+  },
+  "categories": {
+    "title": "Categorias de Plataformas de Companion de IA",
+    "subtitle": "Descubra as melhores plataformas de companion de IA organizadas por categoria e caso de uso. Encontre o tipo de plataforma perfeito para suas necessidades e preferências específicas.",
+    "aiGirlfriends": "AI Girlfriends",
+    "characterChat": "Chat de Personagens",
+    "companionApps": "Apps de Companion",
+    "nsfwAi": "IA NSFW",
+    "roleplay": "Roleplay",
+    "imageGeneration": "Geração de Imagens",
+    "videoGeneration": "Geração de Vídeos",
+    "voiceChat": "Chat de Voz"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "tryAgain": "Tente novamente",
+    "learnMore": "Saiba mais",
+    "readMore": "Leia mais",
+    "showMore": "Mostrar mais",
+    "showLess": "Mostrar menos",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "all": "Todos"
+  },
+  "companions": {
+    "title": "Melhores Plataformas de Chat de IA & Companions Classificados por Avaliação",
+    "subtitle": "Classificação completa de plataformas de chat de IA e plataformas de companion de IA baseada em avaliações de usuários, recursos e desempenho. Encontre a plataforma de chat de IA ou companion de IA perfeito para suas necessidades e preferências específicas.",
+    "comingSoon": "Mais Companions de IA em Breve",
+    "comingSoonDesc": "Estamos revisando ativamente novas plataformas de companion de IA",
+    "comingSoonText": "Nossa equipe está continuamente testando e revisando novas plataformas de companion de IA. Volte regularmente para atualizações à medida que adicionamos mais companions com diversos recursos e capacidades.",
+    "suggestPlatform": "Sugerir uma Plataforma",
+    "browseCategories": "Navegar por Categorias"
+  },
+  "categoriesPage": {
+    "title": "Categorias de Plataformas de Companion de IA",
+    "subtitle": "Descubra as melhores plataformas de companion de IA organizadas por categoria e caso de uso. Encontre o tipo de plataforma perfeito para suas necessidades e preferências específicas."
+  },
+  "deals": {
+    "title": "Ofertas de Plataformas de Chat & Companion de IA",
+    "subtitle": "Economize muito em assinaturas premium de plataformas de chat de IA e companion de IA com ofertas exclusivas e códigos de desconto para as melhores experiências de chat de IA",
+    "readReview": "Ler Análise",
+    "viewDeal": "Ver Oferta",
+    "limitedTime": "TEMPO LIMITADO",
+    "bestValue": "MELHOR VALOR",
+    "off": "DESCONTO",
+    "was": "era",
+    "billedAnnually": "cobrado anualmente",
+    "billedMonthly": "cobrado mensalmente",
+    "cancelAnytime": "Cancele a qualquer momento",
+    "howDealsWork": "Como Funcionam Nossas Ofertas de Chat de IA",
+    "howDealsWorkText": "Trabalhamos diretamente com plataformas de chat de IA e serviços de companion de IA para oferecer descontos exclusivos em assinaturas premium de chat de IA. Todas as ofertas de chat de IA são verificadas e atualizadas regularmente. Basta clicar em uma oferta para ativar o desconto da plataforma de chat de IA - os preços serão ajustados automaticamente no checkout.",
+    "noteTitle": "Nota:",
+    "noteText": "Ofertas e descontos podem mudar e ter disponibilidade limitada. Recomendamos agir rapidamente em ofertas que lhe interessam. Todos os preços mostrados são em USD, salvo indicação em contrário.",
+    "moreDealsTitle": "Mais Ofertas de Chat de IA em Breve!",
+    "moreDealsText": "Estamos continuamente negociando novas ofertas com as principais plataformas de chat de IA e serviços de companion de IA. Volte regularmente para novos descontos de chat de IA em plataformas como DreamGF AI, Candy AI, FantasyGF e mais serviços premium de chat de IA. Adicione esta página aos favoritos para se manter atualizado sobre as últimas ofertas e promoções de plataformas de chat de IA."
+  },
+  "news": {
+    "title": "Notícias de Plataformas de Chat & Companion de IA",
+    "subtitle": "Fique atualizado com os últimos desenvolvimentos em plataformas de chat de IA e plataformas de companion de IA, análises da indústria e tendências de mercado"
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "subtitle": "Tem uma pergunta, sugestão ou quer colaborar conosco? Adoraríamos ouvir de você!",
+    "contactInformation": "Informações de Contato",
+    "responseTime": "Tempo de Resposta",
+    "responseTimeValue": "Dentro de 24-48 horas",
+    "coverage": "Cobertura",
+    "coverageValue": "Plataformas de companion de IA globais",
+    "helpWith": "Como podemos ajudá-lo?",
+    "helpReasons": [
+      "Análises e recomendações de plataformas",
+      "Oportunidades de parceria e colaboração",
+      "Sugestões de conteúdo e feedback",
+      "Perguntas técnicas sobre companions de IA",
+      "Consultas de mídia e entrevistas"
+    ],
+    "sendMessage": "Envie-nos uma mensagem",
+    "fullName": "Nome completo",
+    "emailAddress": "Endereço de e-mail",
+    "company": "Empresa/Organização (Opcional)",
+    "subject": "Assunto",
+    "selectSubject": "Selecione um assunto",
+    "generalInquiry": "Consulta geral",
+    "reviewRequest": "Solicitação de análise",
+    "partnership": "Oportunidade de parceria",
+    "feedback": "Feedback & Sugestões",
+    "mediaInquiry": "Consulta de mídia",
+    "technicalQuestion": "Pergunta técnica",
+    "other": "Outro",
+    "message": "Mensagem",
+    "messagePlaceholder": "Conte-nos mais sobre sua consulta...",
+    "newsletter": "Inscreva-se em nossa newsletter para atualizações e insights sobre companions de IA",
+    "sendButton": "Enviar mensagem",
+    "successTitle": "Mensagem enviada com sucesso!",
+    "successMessage": "Obrigado por sua mensagem. Entraremos em contato dentro de 24-48 horas.",
+    "errorTitle": "Algo deu errado",
+    "errorMessage": "Tente novamente mais tarde",
+    "faqTitle": "Perguntas Frequentes",
+    "faq1Question": "Como vocês selecionam plataformas para revisar?",
+    "faq1Answer": "Avaliamos plataformas de companion de IA com base na popularidade do usuário, inovação de recursos e feedback da comunidade. Priorizamos plataformas que oferecem valor único aos usuários.",
+    "faq2Question": "Posso solicitar uma análise de uma plataforma específica?",
+    "faq2Answer": "Absolutamente! Use o formulário de contato acima com o assunto 'Solicitação de análise' e conte-nos sobre a plataforma que você gostaria de ver analisada.",
+    "faq3Question": "Vocês oferecem oportunidades de parceria?",
+    "faq3Answer": "Sim, estamos abertos a parcerias com plataformas de companion de IA, desenvolvedores e especialistas do setor. Entre em contato conosco com sua proposta de parceria.",
+    "faq4Question": "Com que frequência vocês atualizam as análises?",
+    "faq4Answer": "Atualizamos nossas análises regularmente para refletir mudanças nas plataformas, novos recursos e experiências de usuário em evolução. Grandes atualizações são revisadas trimestralmente."
+  },
+  "faq": {
+    "title": "Perguntas Frequentes sobre Plataformas de Companion de IA"
+  },
+  "categoryPages": {
+    "roleplay": {
+      "title": "Melhores Companions de Roleplay & Chat de Personagens",
+      "description": "Descubra as melhores plataformas de IA para experiências de roleplay e chat de personagens. Essas plataformas se destacam em narrativa interativa, conversas criativas e interações imersivas de personagens para entretenimento e expressão criativa.",
+      "breadcrumb": "Plataformas de IA de Roleplay & Chat de Personagens",
+      "insightsTitle": "Insights de Plataformas de IA de Roleplay & Chat de Personagens",
+      "comparisonTitle": "Comparação de Plataformas de Roleplay & Chat de Personagens",
+      "metaTitle": "Melhores Plataformas de Chat de IA de Roleplay & Personagens 2025",
+      "metaDescription": "Principais plataformas de chat de IA de roleplay e personagens 2025. Narrativa interativa, conversas criativas e experiências imersivas. Compare 14 plataformas revisadas.",
+      "insights": {
+        "characterVariety": {
+          "title": "Variedade de Personagens",
+          "text": "Essas plataformas se destacam em oferecer bibliotecas diversas de personagens de universos fictícios, figuras históricas e criações originais para roleplay imersivo."
+        },
+        "storytelling": {
+          "title": "Narrativa Interativa",
+          "text": "Foco em experiências baseadas em narrativas onde os usuários podem participar ativamente e influenciar o desenvolvimento da história através de interações com personagens."
+        },
+        "expression": {
+          "title": "Expressão Criativa",
+          "text": "As plataformas incentivam a escrita criativa, desenvolvimento de personagens e cenários imaginativos para entretenimento e expressão artística."
+        },
+        "community": {
+          "title": "Recursos de Comunidade",
+          "text": "Fortes aspectos comunitários incluindo compartilhamento de personagens, narrativa colaborativa e criação de conteúdo gerado pelos usuários."
+        }
+      },
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Classificação",
+        "pricing": "Preços",
+        "keyFeature": "Recurso Principal",
+        "bestFor": "Melhor Para"
+      },
+      "faqTitle": "Perguntas Frequentes sobre IA de Roleplay & Chat de Personagens",
+      "faqs": {
+        "q1": {
+          "question": "Quais são as melhores plataformas de IA de roleplay em 2025?",
+          "answer": "As principais plataformas de IA de roleplay incluem Character.AI (gratuito, maior variedade), Janitor AI (sem censura), Kajiwoto (personalizável) e Chai AI (focado em mobile). Cada uma oferece recursos únicos de criação de personagens e roleplay."
+        },
+        "q2": {
+          "question": "Existem plataformas gratuitas de IA de roleplay?",
+          "answer": "Sim, Character.AI oferece roleplay totalmente gratuito com milhões de personagens, enquanto plataformas como Janitor AI, Chai AI e Kajiwoto fornecem planos gratuitos com recursos premium opcionais."
+        },
+        "q3": {
+          "question": "Posso criar meus próprios personagens de IA para roleplay?",
+          "answer": "A maioria das plataformas suporta criação de personagens. Character.AI oferece ferramentas abrangentes de criação, Kajiwoto fornece personalização avançada, e Janitor AI permite programação detalhada de personalidade para cenários de roleplay."
+        },
+        "q4": {
+          "question": "Qual plataforma é melhor para roleplay sem censura?",
+          "answer": "Janitor AI lidera em roleplay sem censura sem restrições de conteúdo, seguido por plataformas como Kajiwoto e plataformas especializadas em roleplay adulto. Character.AI tem políticas de moderação de conteúdo."
+        },
+        "q5": {
+          "question": "Como os personagens de IA de roleplay lembram das histórias?",
+          "answer": "Plataformas avançadas usam sistemas de memória para rastrear narrativas de roleplay, relacionamentos entre personagens e progressão da história. Character.AI e Kajiwoto se destacam em manter a continuidade de roleplay a longo prazo."
+        },
+        "q6": {
+          "question": "Que tipos de cenários de roleplay estão disponíveis?",
+          "answer": "As plataformas oferecem cenários diversos: aventuras de fantasia, figuras históricas, personagens de anime, personagens originais, roleplay educacional, cenários terapêuticos e roleplay orientado para adultos, dependendo das políticas da plataforma."
+        },
+        "q7": {
+          "question": "Os personagens de IA podem participar de roleplay em grupo?",
+          "answer": "Algumas plataformas suportam interações com múltiplos personagens. Character.AI oferece 'Salas' para conversas em grupo, enquanto outras plataformas podem suportar interações personagem a personagem dentro das histórias."
+        },
+        "q8": {
+          "question": "Qual plataforma tem o melhor aplicativo móvel para roleplay?",
+          "answer": "Chai AI é projetado especificamente para experiências de roleplay móvel, enquanto Character.AI oferece um aplicativo móvel funcional. Muitos usuários preferem versões web para sessões de roleplay mais longas."
+        },
+        "q9": {
+          "question": "Quão realistas são as conversas de roleplay com IA?",
+          "answer": "O roleplay de IA moderno pode ser altamente envolvente, com personagens mantendo personalidades consistentes, lembrando detalhes da trama e se adaptando às preferências do usuário. A qualidade varia por plataforma e criação de personagem."
+        }
+      }
+    },
+    "loading": "Carregando companions...",
+    "home": "Início"
+  }
+}

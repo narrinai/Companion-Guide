@@ -36,12 +36,55 @@
     "review": "review",
     "rating": "Beoordeling"
   },
+  "companion": {
+    "keyFeatures": "Belangrijkste Functies",
+    "pros": "Voordelen",
+    "cons": "Nadelen",
+    "overview": "Overzicht",
+    "whatIs": "Wat is",
+    "pricing": "Prijzen",
+    "verdict": "Ons Oordeel",
+    "alternatives": "Vergelijkbare Alternatieven",
+    "faqs": "Veelgestelde Vragen",
+    "reviews": "👥 Meest Recente Reviews",
+    "faqHeading": "Veelgestelde Vragen",
+    "pricingLabel": "Prijzen",
+    "bestForLabel": "Beste voor",
+    "platformLabel": "Platform",
+    "contentPolicyLabel": "Inhoudbeleid",
+    "freeTrialLabel": "Gratis Proefperiode",
+    "ratingLabel": "Beoordeling",
+    "freeWithPremium": "Gratis met Premium",
+    "webAndMobileApps": "Web & Mobiele Apps",
+    "familyFriendly": "Gezinsvriendelijk (gefilterd)",
+    "unfiltered": "Ongefilterd",
+    "moderate": "Gematigd gefilterd"
+  },
+  "reviewForm": {
+    "sectionTitle": "Deel je ervaring met {companion}",
+    "yourName": "Jouw Naam",
+    "yourNamePlaceholder": "Vul je naam in",
+    "rating": "Beoordeling",
+    "reviewTitle": "Review Titel",
+    "reviewTitlePlaceholder": "Vat je ervaring samen in één regel",
+    "yourReview": "Jouw Review",
+    "yourReviewPlaceholder": "Deel je gedetailleerde ervaring met dit platform...",
+    "usageDuration": "Hoe lang heb je dit platform gebruikt?",
+    "submitButton": "Review Verzenden",
+    "durationSelect": "Selecteer duur...",
+    "durationLessThanWeek": "Minder dan een week",
+    "duration1to4Weeks": "1-4 weken",
+    "duration1to3Months": "1-3 maanden",
+    "duration3to6Months": "3-6 maanden",
+    "duration6MonthsPlus": "6+ maanden"
+  },
   "pricing": {
     "free": "Gratis",
     "from": "Vanaf",
     "perMonth": "/maand",
     "perYear": "/jaar",
-    "startingAt": "Vanaf"
+    "startingAt": "Vanaf",
+    "visitWebsite": "Bezoek Website"
   },
   "footer": {
     "tagline": "Je betrouwbare gids voor AI companions en chat platforms",
@@ -182,7 +225,71 @@
       "insightsTitle": "Roleplay & Character Chat AI Platform Inzichten",
       "comparisonTitle": "Roleplay & Character Chat Platform Vergelijking",
       "metaTitle": "Beste Roleplay & Character AI Chat Platforms 2025",
-      "metaDescription": "Top roleplay en character AI chat platforms 2025. Interactieve storytelling, creatieve gesprekken en meeslepende ervaringen. Vergelijk 14 gereviewed platforms."
+      "metaDescription": "Top roleplay en character AI chat platforms 2025. Interactieve storytelling, creatieve gesprekken en meeslepende ervaringen. Vergelijk 14 gereviewed platforms.",
+      "insights": {
+        "characterVariety": {
+          "title": "Karaktervariëteit",
+          "text": "Deze platforms excelleren in het aanbieden van diverse karakterbibliotheken uit fictieve universums, historische figuren en originele creaties voor meeslepende roleplay."
+        },
+        "storytelling": {
+          "title": "Interactieve Storytelling",
+          "text": "Focus op verhaalgedreven ervaringen waarbij gebruikers actief kunnen deelnemen aan en invloed kunnen uitoefenen op verhaalsontwikkeling door karakterinteracties."
+        },
+        "expression": {
+          "title": "Creatieve Expressie",
+          "text": "Platforms moedigen creatief schrijven, karakterontwikkeling en fantasierijke scenario's aan voor entertainment en artistieke expressie."
+        },
+        "community": {
+          "title": "Community Functies",
+          "text": "Sterke community-aspecten inclusief het delen van karakters, gezamenlijke storytelling en door gebruikers gegenereerde contentcreatie."
+        }
+      },
+      "comparison": {
+        "platform": "Platform",
+        "rating": "Beoordeling",
+        "pricing": "Prijzen",
+        "keyFeature": "Belangrijkste Functie",
+        "bestFor": "Beste Voor"
+      },
+      "faqTitle": "AI Roleplay & Character Chat FAQ's",
+      "faqs": {
+        "q1": {
+          "question": "Wat zijn de beste AI roleplay platforms in 2025?",
+          "answer": "Top AI roleplay platforms zijn Character.AI (gratis, grootste variëteit), Janitor AI (ongecensureerd), Kajiwoto (aanpasbaar), en Chai AI (mobiel-gericht). Elk biedt unieke mogelijkheden voor karaktercreatie en roleplay."
+        },
+        "q2": {
+          "question": "Zijn er gratis AI roleplay platforms?",
+          "answer": "Ja, Character.AI biedt volledig gratis roleplay met miljoenen karakters, terwijl platforms zoals Janitor AI, Chai AI, en Kajiwoto gratis tiers bieden met optionele premium functies."
+        },
+        "q3": {
+          "question": "Kan ik mijn eigen AI roleplay karakters maken?",
+          "answer": "De meeste platforms ondersteunen karaktercreatie. Character.AI biedt uitgebreide creatietools, Kajiwoto biedt geavanceerde aanpassingsmogelijkheden, en Janitor AI maakt gedetailleerde persoonlijkheidsprogrammering mogelijk voor roleplay scenario's."
+        },
+        "q4": {
+          "question": "Welk platform is het beste voor ongecensureerde roleplay?",
+          "answer": "Janitor AI leidt in ongecensureerde roleplay zonder contentbeperkingen, gevolgd door platforms zoals Kajiwoto en gespecialiseerde adult roleplay platforms. Character.AI heeft contentmoderatie beleid."
+        },
+        "q5": {
+          "question": "Hoe onthouden AI roleplay karakters verhaallijnen?",
+          "answer": "Geavanceerde platforms gebruiken geheugensystemen om roleplay verhalen, karakterrelaties en verhaalprogessie bij te houden. Character.AI en Kajiwoto excelleren in het behouden van langetermijn roleplay continuïteit."
+        },
+        "q6": {
+          "question": "Welke types roleplay scenario's zijn beschikbaar?",
+          "answer": "Platforms bieden diverse scenario's: fantasy avonturen, historische figuren, anime karakters, originele karakters, educatieve roleplay, therapeutische scenario's, en adult-gerichte roleplay afhankelijk van platformbeleid."
+        },
+        "q7": {
+          "question": "Kunnen AI karakters deelnemen aan groep roleplay?",
+          "answer": "Sommige platforms ondersteunen multi-karakter interacties. Character.AI biedt 'Rooms' voor groepsgesprekken, terwijl andere platforms karakter-tot-karakter interacties binnen verhaallijnen kunnen ondersteunen."
+        },
+        "q8": {
+          "question": "Welk platform heeft de beste mobiele app voor roleplay?",
+          "answer": "Chai AI is specifiek ontworpen voor mobiele roleplay ervaringen, terwijl Character.AI een functionele mobiele app biedt. Veel gebruikers geven de voorkeur aan webversies voor langere roleplay sessies."
+        },
+        "q9": {
+          "question": "Hoe realistisch zijn AI roleplay gesprekken?",
+          "answer": "Moderne AI roleplay kan zeer boeiend zijn waarbij karakters consistente persoonlijkheden behouden, plotdetails onthouden en zich aanpassen aan gebruikersvoorkeuren. Kwaliteit varieert per platform en karaktercreatie."
+        }
+      }
     },
     "loading": "Companions laden...",
     "home": "Home"

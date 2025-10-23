@@ -5,24 +5,8 @@
 # DUTCH (NL) LANGUAGE REDIRECTS - CRITICAL: MUST BE FIRST!
 ################################################################################
 
-# Dutch individual companion pages -> English HTML with ?lang=nl
-/nl/companions/character-ai       /companions/character-ai.html?lang=nl        200!
-/nl/companions/replika            /companions/replika.html?lang=nl             200!
-/nl/companions/crushon-ai         /companions/crushon-ai.html?lang=nl          200!
-/nl/companions/janitor-ai         /companions/janitor-ai.html?lang=nl          200!
-/nl/companions/candy-ai           /companions/candy-ai.html?lang=nl            200!
-/nl/companions/nomi-ai            /companions/nomi-ai.html?lang=nl             200!
-/nl/companions/chai-ai            /companions/chai-ai.html?lang=nl             200!
-/nl/companions/spicychat-ai       /companions/spicychat-ai.html?lang=nl        200!
-/nl/companions/dreamgf-ai         /companions/dreamgf-ai.html?lang=nl          200!
-/nl/companions/joyland-ai         /companions/joyland-ai.html?lang=nl          200!
-/nl/companions/muah-ai            /companions/muah-ai.html?lang=nl             200!
-/nl/companions/soulkyn-ai         /companions/soulkyn-ai.html?lang=nl          200!
-/nl/companions/secretshare-ai     /companions/secret-share-ai.html?lang=nl     200!
-/nl/companions/hammer-ai          /companions/hammer-ai.html?lang=nl           200!
-/nl/companions/dunia-ai           /companions/dunia-ai.html?lang=nl            200!
-/nl/companions/junipero-ai        /companions/junipero-ai.html?lang=nl         200!
-/nl/companions/*                  /companions/:splat.html?lang=nl              200!
+# Dutch individual companion pages -> Dutch HTML files (no parameters!)
+/nl/companions/*                  /nl/companions/:splat.html                   200!
 
 # Dutch individual category pages -> English HTML with ?lang=nl
 /nl/categories/roleplay-character-chat  /categories/roleplay-character-chat.html?lang=nl  200!

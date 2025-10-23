@@ -201,7 +201,17 @@ exports.handler = async (event, context) => {
                 best_for: fields.best_for || '',
                 tagline: fields.tagline || '',
                 meta_title: fields.meta_title || '',
-                meta_description: fields.meta_description || ''
+                meta_description: fields.meta_description || '',
+                body_text: fields.body_text || '',
+                features: fields.features || '',
+                pros_cons: fields.pros_cons || '',
+                pricing_plans: fields.pricing_plans || '',
+                my_verdict: fields.my_verdict || '',
+                faq: fields.faq || '',
+                hero_specs: fields.hero_specs || '',
+                ready_to_try: fields.ready_to_try || fields.ready_try || '',
+                review_form_text: fields.review_form_text || '',
+                verdict_subtitle: fields.verdict_subtitle || ''
               });
             }
           });
@@ -216,6 +226,16 @@ exports.handler = async (event, context) => {
               if (translation.tagline) item.tagline = translation.tagline;
               if (translation.meta_title) item.meta_title = translation.meta_title;
               if (translation.meta_description) item.meta_description = translation.meta_description;
+              if (translation.body_text) item.body_text = translation.body_text;
+              if (translation.features) item.features = translation.features;
+              if (translation.pros_cons) item.pros_cons = translation.pros_cons;
+              if (translation.pricing_plans) item.pricing_plans = translation.pricing_plans;
+              if (translation.my_verdict) item.my_verdict = translation.my_verdict;
+              if (translation.faq) item.faq = translation.faq;
+              if (translation.hero_specs) item.hero_specs = translation.hero_specs;
+              if (translation.ready_to_try) item.ready_to_try = translation.ready_to_try;
+              if (translation.review_form_text) item.review_form_text = translation.review_form_text;
+              if (translation.verdict_subtitle) item.verdict_subtitle = translation.verdict_subtitle;
 
               console.log(`Applied translation for: ${item.name} (${lang})`);
             }

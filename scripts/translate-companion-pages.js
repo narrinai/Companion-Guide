@@ -37,8 +37,10 @@ const CONFIG = {
   singleFile: process.argv.find(arg => arg.startsWith('--file='))?.split('=')[1] || null,
 
   // Claude API settings
-  claudeModel: 'claude-3-5-sonnet-20241022',
+  claudeModel: 'claude-3-5-sonnet-20241022', // Latest Sonnet model
   maxTokens: 4096,
+  retryAttempts: 3,
+  retryDelay: 2000, // 2 seconds between retries
 
   // Elements to skip (contain dynamic/technical content)
   skipSelectors: [
@@ -189,28 +191,43 @@ async function translateContent(items, sourceLang, targetLang) {
     // Create translation prompt
     const prompt = createTranslationPrompt(batch, sourceLang, targetLang);
 
-    try {
-      const message = await anthropic.messages.create({
-        model: CONFIG.claudeModel,
-        max_tokens: CONFIG.maxTokens,
-        messages: [{
-          role: 'user',
-          content: prompt
-        }]
-      });
+    let success = false;
+    let attempt = 0;
 
-      const translatedText = message.content[0].text;
-      const translations = parseTranslationResponse(translatedText, batch.length);
-      results.push(...translations);
+    while (!success && attempt < CONFIG.retryAttempts) {
+      try {
+        attempt++;
 
-      // Small delay between batches to respect rate limits
-      if (i < batches.length - 1) {
-        await new Promise(resolve => setTimeout(resolve, 500));
+        const message = await anthropic.messages.create({
+          model: CONFIG.claudeModel,
+          max_tokens: CONFIG.maxTokens,
+          messages: [{
+            role: 'user',
+            content: prompt
+          }]
+        });
+
+        const translatedText = message.content[0].text;
+        const translations = parseTranslationResponse(translatedText, batch.length);
+        results.push(...translations);
+        success = true;
+
+        // Small delay between batches to respect rate limits
+        if (i < batches.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+      } catch (error) {
+        const errorMsg = error.message || JSON.stringify(error);
+
+        if (attempt < CONFIG.retryAttempts) {
+          console.log(`   ⏳ Retry ${attempt}/${CONFIG.retryAttempts} after ${CONFIG.retryDelay}ms...`);
+          await new Promise(resolve => setTimeout(resolve, CONFIG.retryDelay));
+        } else {
+          console.error(`   ❌ Error translating batch ${i + 1} after ${CONFIG.retryAttempts} attempts:`, errorMsg);
+          // Return originals on error
+          results.push(...batch.map(item => item.original));
+        }
       }
-    } catch (error) {
-      console.error(`   ❌ Error translating batch ${i + 1}:`, error.message);
-      // Return originals on error
-      results.push(...batch.map(item => item.original));
     }
   }
 
@@ -262,9 +279,12 @@ function parseTranslationResponse(response, expectedCount) {
   const translations = [];
 
   for (const line of lines) {
-    const match = line.match(/^\d+\.\s*(.+)$/);
+    const match = line.match(/^\d+\.\s*(?:\[[\w\s]+\]\s*)?(.+)$/);
     if (match) {
-      translations.push(match[1].trim());
+      // Remove any remaining [tag] prefixes
+      let translation = match[1].trim();
+      translation = translation.replace(/^\[[\w\s]+\]\s*/, '');
+      translations.push(translation);
     }
   }
 
