@@ -83,12 +83,13 @@ def restructure_page(filepath):
 def main():
     os.chdir('/Users/sebastiaansmits/Documents/AI-Companion-Reviews')
 
-    # Process all *-companions.html files in categories/
-    for filepath in glob.glob('categories/*-companions.html'):
-        try:
-            restructure_page(filepath)
-        except Exception as e:
-            print(f"  ❌ Error processing {filepath}: {e}")
+    # Process all *-companions.html files in categories/, nl/categories/, and pt/categories/
+    for directory in ['categories', 'nl/categories', 'pt/categories']:
+        for filepath in glob.glob(f'{directory}/*-companions.html'):
+            try:
+                restructure_page(filepath)
+            except Exception as e:
+                print(f"  ❌ Error processing {filepath}: {e}")
 
     print("\n✅ All category companion pages restructured!")
 
