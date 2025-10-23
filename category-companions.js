@@ -1,4 +1,4 @@
-// Simple Category Companions Grid Loader
+// Optimized Category Companions Grid Loader with Caching
 class CategoryCompanions {
     constructor() {
         this.companions = [];
@@ -13,6 +13,13 @@ class CategoryCompanions {
 
     async loadCompanions() {
         try {
+            // Check if data is already cached globally
+            if (window.companionsCache && window.companionsCache.data) {
+                console.log('Using cached companions data');
+                this.companions = this.filterCompanionsByCategory(window.companionsCache.data);
+                return;
+            }
+
             // Build URL with language parameter if i18n is available
             const params = new URLSearchParams();
             if (window.i18n && window.i18n.currentLang) {
@@ -20,10 +27,18 @@ class CategoryCompanions {
             }
 
             const url = `/.netlify/functions/companionguide-get${params.toString() ? '?' + params.toString() : ''}`;
+
+            // Start loading immediately (no waiting for other scripts)
             const response = await fetch(url);
             const data = await response.json();
 
             if (data.companions) {
+                // Cache the data globally for reuse
+                window.companionsCache = {
+                    data: data.companions,
+                    timestamp: Date.now()
+                };
+
                 // Filter companions by current category page
                 this.companions = this.filterCompanionsByCategory(data.companions);
             } else {
@@ -428,14 +443,22 @@ class CategoryCompanions {
     }
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', async () => {
-    // Always wait for and re-initialize i18n to ensure correct language is detected
-    if (window.i18n) {
-        console.log('Initializing i18n for category page...');
-        await window.i18n.init();
-        console.log(`i18n initialized with language: ${window.i18n.currentLang}`);
-    }
+// Initialize when DOM is loaded - optimized for speed
+document.addEventListener('DOMContentLoaded', () => {
+    // Start loading companions immediately, don't wait for i18n
+    // i18n will auto-initialize in parallel and translations will be applied separately
+    const initCompanions = async () => {
+        // Quick check if i18n exists but not initialized
+        if (window.i18n && !window.i18n.initialized) {
+            // Don't await - let it initialize in parallel
+            window.i18n.init().then(() => {
+                console.log(`i18n initialized with language: ${window.i18n.currentLang}`);
+            });
+        }
 
-    new CategoryCompanions();
+        // Start loading companions immediately
+        new CategoryCompanions();
+    };
+
+    initCompanions();
 });
