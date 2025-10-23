@@ -254,10 +254,30 @@ document.querySelectorAll('a[target="_blank"]').forEach(link => {
 function toggleMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-    
+
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
 }
+
+// Language switcher functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const langToggle = document.getElementById('lang-toggle');
+    const langDropdown = document.getElementById('lang-dropdown');
+
+    if (langToggle && langDropdown) {
+        langToggle.addEventListener('click', () => {
+            const isVisible = langDropdown.style.display === 'block';
+            langDropdown.style.display = isVisible ? 'none' : 'block';
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.language-switcher')) {
+                langDropdown.style.display = 'none';
+            }
+        });
+    }
+});
 
 // Utility function to format ratings
 function formatRating(rating) {

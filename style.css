@@ -5208,6 +5208,7 @@ footer {
     position: relative;
     display: inline-block;
     margin-left: var(--space-4);
+    z-index: 1001;
 }
 
 .lang-current {
@@ -5277,6 +5278,12 @@ footer {
 @media (max-width: 768px) {
     .language-switcher {
         margin-left: auto;
+        order: 2;
+    }
+
+    .hamburger {
+        order: 3;
+        margin-left: var(--space-3);
     }
 
     .lang-dropdown {

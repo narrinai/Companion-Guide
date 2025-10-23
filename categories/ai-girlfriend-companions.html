@@ -60,13 +60,17 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 <body>
     <header>
         <nav class="container">
-            <h1><a href="/"><img src="/images/logo.svg" alt="Companion Guide - AI companion reviews and guides logo" width="32" height="32">Companion Guide</a></h1>
+            <h1><a href="/"><img src="/images/logo.svg" alt="Companion Guide - AI companion reviews and guides logo" width="32" height="32">CompanionGuide.ai</a></h1>
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul class="nav-menu">
+                <div class="mobile-menu-logo">
+                    <img src="/images/logo.svg" alt="Companion Guide" width="48" height="48">
+                    <span>CompanionGuide.ai</span>
+                </div>
                 <li><a href="/">Home</a></li>
                 <li><a href="/companions">Companions</a></li>
                 <li><a href="/categories">Categories</a></li>
@@ -309,8 +313,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
   ]
 }
         </script>
-    <script src="../js/i18n.js?v=20251022"></script>
-    <script src="../script.js?v=20251007"></script>
+    <script src="/js/i18n.js?v=20251022"></script>
+    <script src="/script.js?v=20251007"></script>
     <script src="/js/companions.js?v=20251007"></script>
     <script src="/category-companions.js?v=20251007"></script>
     <script src="/faq-interactions.js?v=20251007"></script>
@@ -329,8 +333,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         });
     </script>
     <script src="/js/meta-companion-tracking.js?v=20251007"></script>
-</body>
-<footer>
+
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -376,3 +380,27 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             </div>
         </div>
     </footer>
+
+    <script src="/js/i18n.js?v=20251023"></script>
+    <script src="/script.js?v=20251023"></script>
+    <script src="/js/companions.js?v=20251023"></script>
+    <script src="/category-companions.js?v=20251023"></script>
+    <script src="/faq-interactions.js?v=20251023"></script>
+    <script src="/js/faq-dynamic-ratings.js?v=20251023"></script>
+    <script>
+        // Load featured companions in footer
+        document.addEventListener("DOMContentLoaded", async function() {
+            if (typeof window.companionManager === "undefined") {
+                window.companionManager = new CompanionManager();
+            }
+            try {
+                await window.companionManager.renderFooterFeaturedCompanions("featured-companions-footer");
+            } catch (error) {
+                console.error("Error loading footer featured companions:", error);
+            }
+        });
+    </script>
+    <script src="/js/meta-companion-tracking.js?v=20251023"></script>
+    <script src="/js/ga-external-tracking.js?v=20251023"></script>
+</body>
+</html>
