@@ -2026,6 +2026,12 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             // Prevent auto-scroll by ensuring we start at top
             window.scrollTo(0, 0);
 
+            // Wait for i18n to initialize if it exists
+            if (window.i18n && !window.i18n.initialized) {
+                console.log('Waiting for i18n to initialize...');
+                await window.i18n.init();
+            }
+
             try {
                 // Use the progressive loading method
                 await window.companionManager.renderAllCompanions('companions-container', 'rating');

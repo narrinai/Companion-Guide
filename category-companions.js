@@ -416,6 +416,12 @@ class CategoryCompanions {
 }
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Wait for i18n to initialize if it exists
+    if (window.i18n && !window.i18n.initialized) {
+        console.log('Waiting for i18n to initialize...');
+        await window.i18n.init();
+    }
+
     new CategoryCompanions();
 });
