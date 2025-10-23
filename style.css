@@ -180,7 +180,7 @@ header nav h1 a:hover {
 header .nav-menu {
     display: flex !important;
     list-style: none !important;
-    gap: 1.25rem !important;
+    gap: 0.75rem !important;
     margin: 0 !important;
     padding: 0 !important;
     visibility: visible !important;
@@ -5224,7 +5224,7 @@ footer {
 .language-switcher {
     position: relative;
     display: inline-block;
-    margin-left: var(--space-4);
+    margin-left: 0.75rem;
     z-index: 1001;
 }
 
