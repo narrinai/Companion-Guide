@@ -221,7 +221,16 @@ class I18n {
 
     elements.forEach(el => {
       const key = el.getAttribute('data-i18n');
-      const translation = this.t(key);
+      let translation = this.t(key);
+
+      // Special handling for companion.whatIs - extract companion name from current text
+      if (key === 'companion.whatIs' && el.textContent) {
+        const match = el.textContent.match(/What is (.+?)\?/);
+        if (match && match[1]) {
+          const companionName = match[1];
+          translation = translation.replace('{name}', companionName);
+        }
+      }
 
       // Replace text content but preserve child elements
       if (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) {

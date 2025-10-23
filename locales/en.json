@@ -84,5 +84,17 @@
     "filter": "Filter",
     "sort": "Sort",
     "all": "All"
+  },
+  "companion": {
+    "whatIs": "What is {name}?",
+    "reviews": "👥 Most Recent User Reviews",
+    "pricing": "Pricing",
+    "keyFeatures": "Key Features",
+    "overview": "Overview",
+    "features": "Features",
+    "prosAndCons": "Pros and Cons",
+    "userExperience": "User Experience",
+    "alternatives": "Alternatives",
+    "faq": "Frequently Asked Questions"
   }
 }
