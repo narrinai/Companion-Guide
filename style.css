@@ -180,7 +180,7 @@ header nav h1 a:hover {
 header .nav-menu {
     display: flex !important;
     list-style: none !important;
-    gap: 2rem !important;
+    gap: 1.25rem !important;
     margin: 0 !important;
     padding: 0 !important;
     visibility: visible !important;
