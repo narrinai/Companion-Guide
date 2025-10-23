@@ -336,7 +336,20 @@ class CategoryCompanions {
             }
 
             // Extract features for feature highlights
-            const features = companion.features || [];
+            let features = companion.features || [];
+            // Parse features if it's a JSON string
+            if (typeof features === 'string') {
+                try {
+                    features = JSON.parse(features);
+                } catch (e) {
+                    features = [];
+                }
+            }
+            // Ensure features is an array
+            if (!Array.isArray(features)) {
+                features = [];
+            }
+
             let featureHighlights = '';
             if (features.length > 0) {
                 featureHighlights = `
