@@ -177,11 +177,11 @@ class I18n {
     return [
       { code: 'en', name: 'English', flag: '🇬🇧' },
       { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
+      { code: 'pt', name: 'Português', flag: '🇧🇷' },
       { code: 'es', name: 'Español', flag: '🇪🇸' },
       { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
       { code: 'fr', name: 'Français', flag: '🇫🇷' },
       { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-      { code: 'pt', name: 'Português', flag: '🇵🇹' },
       { code: 'pl', name: 'Polski', flag: '🇵🇱' }
     ];
   }
