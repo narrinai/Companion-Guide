@@ -2019,13 +2019,19 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     <script src="script.js?v=20251007"></script>
     <script src="js/companions.js?v=20251007"></script>
     <script>
-        // Load companions progressively when page loads
+        // Prefetch companions data ASAP - start before DOMContentLoaded for faster loading
+        let companionsDataPromise;
+        if (window.companionManager) {
+            companionsDataPromise = window.companionManager.fetchCompanions({ sort: 'rating' });
+        }
+
+        // Load companions when page loads
         document.addEventListener('DOMContentLoaded', async function() {
             // Prevent auto-scroll by ensuring we start at top
             window.scrollTo(0, 0);
 
             try {
-                // Use the progressive loading method
+                // Render all companions (uses cached data from prefetch)
                 await window.companionManager.renderAllCompanions('companions-container', 'rating');
             } catch (error) {
                 console.error('Error loading companions:', error);
