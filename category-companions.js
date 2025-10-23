@@ -417,10 +417,11 @@ class CategoryCompanions {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
-    // Wait for i18n to initialize if it exists
-    if (window.i18n && !window.i18n.initialized) {
-        console.log('Waiting for i18n to initialize...');
+    // Always wait for and re-initialize i18n to ensure correct language is detected
+    if (window.i18n) {
+        console.log('Initializing i18n for category page...');
         await window.i18n.init();
+        console.log(`i18n initialized with language: ${window.i18n.currentLang}`);
     }
 
     new CategoryCompanions();

@@ -58,18 +58,18 @@
   to = "/nl/index.html"
   status = 200
 
-# Dutch individual companion pages -> English HTML with ?lang=nl parameter
+# Dutch individual companion pages -> Dutch HTML files
 # CRITICAL: These must come BEFORE the main page redirects!
 [[redirects]]
   from = "/nl/companions/:slug"
-  to = "/companions/:slug.html?lang=nl"
+  to = "/nl/companions/:slug.html"
   status = 200
   force = true
 
-# Dutch individual category pages -> English HTML with ?lang=nl parameter
+# Dutch individual category pages -> Dutch HTML files
 [[redirects]]
   from = "/nl/categories/:slug"
-  to = "/categories/:slug.html?lang=nl"
+  to = "/nl/categories/:slug.html"
   status = 200
   force = true
 
@@ -261,13 +261,25 @@
   status = 200
 
 [[redirects]]
-  from = "/pt/companions/*"
-  to = "/pt/companions/:splat.html"
+  from = "/pt/companions/:slug"
+  to = "/pt/companions/:slug.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/pt/categories/:slug"
+  to = "/pt/categories/:slug.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/pt/companions"
+  to = "/pt/companions.html"
   status = 200
 
 [[redirects]]
-  from = "/pt/categories/*"
-  to = "/pt/categories/:splat.html"
+  from = "/pt/categories"
+  to = "/pt/categories.html"
   status = 200
 
 [[redirects]]
