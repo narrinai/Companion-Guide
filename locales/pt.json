@@ -296,5 +296,50 @@
     },
     "loading": "Carregando companions...",
     "home": "Início"
+  },
+  "companionsPage": {
+    "faq": {
+      "title": "Perguntas Frequentes sobre Plataformas de Companion de IA",
+      "q1": {
+        "question": "Como escolho a plataforma de companion de IA certa?",
+        "answer": "Considere suas necessidades: chat casual vs. companheirismo profundo, tipo de personalidade desejada, recursos específicos (geração de imagens, voz, vídeo), orçamento e preocupações com privacidade. Nossa tabela de comparação ajuda você a comparar recursos, preços e classificações."
+      },
+      "q2": {
+        "question": "Quais são as plataformas de companion de IA mais bem avaliadas em 2025?",
+        "answer": "As plataformas de maior classificação incluem Secrets AI (4.8/5), Hammer AI (4.7/5), DreamGF (4.6/5) e Candy AI (4.5/5). Cada uma se destaca em diferentes áreas - Secrets AI em realismo, Hammer AI em privacidade e recursos gratuitos, DreamGF em customização e Candy AI em geração de imagens."
+      },
+      "q3": {
+        "question": "Quais companions de IA oferecem acesso totalmente gratuito?",
+        "answer": "Hammer AI oferece uso totalmente gratuito e ilimitado com modelos locais. Character.AI tem um plano gratuito robusto com funcionalidade central. Outras plataformas como Replika e Anima oferecem níveis gratuitos com funcionalidade limitada."
+      },
+      "q4": {
+        "question": "Como funcionam os sistemas de memória dos companions de IA?",
+        "answer": "Companions de IA usam diferentes abordagens de memória: alguns mantêm memória de conversa de curto prazo, enquanto plataformas avançadas armazenam memórias de longo prazo sobre suas preferências, relacionamentos e conversas passadas. Plataformas premium como Replika e Romantic AI oferecem sistemas de memória persistente que fazem interações parecerem mais pessoais ao longo do tempo."
+      },
+      "q5": {
+        "question": "Quais são os custos médios das plataformas de companion de IA?",
+        "answer": "Os preços variam amplamente: Gratuito (Hammer AI, Character.AI tier gratuito), $5-10/mês (planos básicos), $15-25/mês (planos padrão com mais recursos), $30-50/mês (planos premium com recursos avançados). Assinaturas anuais geralmente oferecem 20-30% de desconto."
+      },
+      "q6": {
+        "question": "Quais companions de IA funcionam melhor em dispositivos móveis?",
+        "answer": "Replika, Anima e Character.AI têm aplicativos móveis nativos excelentes para iOS e Android. Secret AI e Romantic AI também oferecem experiências móveis otimizadas. A maioria das plataformas modernas são mobile-first ou têm designs web responsivos."
+      },
+      "q7": {
+        "question": "Existem companions de IA especialmente para profissionais?",
+        "answer": "Sim! Companions focados em produtividade como Claude (Anthropic), ChatGPT (OpenAI) e Simone oferecem assistência profissional, ajuda com código, análise de documentos e integração de fluxo de trabalho. Algumas plataformas de companion também oferecem modos profissionais para coaching ou suporte de bem-estar."
+      },
+      "q8": {
+        "question": "Quão realistas são as conversas modernas de companions de IA?",
+        "answer": "As plataformas modernas de companion de IA alcançaram um realismo impressionante. Plataformas de ponta usam modelos de linguagem grandes (LLMs) que entendem contexto, nuances emocionais e mantêm personalidades consistentes. A qualidade varia - plataformas premium como Secrets AI e DreamGF oferecem conversas muito realistas que parecem naturais e envolventes."
+      },
+      "q9": {
+        "question": "Quais medidas de segurança as plataformas de companion de IA implementam?",
+        "answer": "Plataformas respeitáveis usam criptografia end-to-end, armazenamento seguro de dados e políticas de privacidade transparentes. Muitas oferecem processamento local (como Hammer AI) para privacidade máxima. Sempre revise as políticas de privacidade e procure por plataformas com reputações estabelecidas e medidas de proteção de dados claras."
+      },
+      "q10": {
+        "question": "Posso usar várias plataformas de companion de IA simultaneamente?",
+        "answer": "Absolutamente! Muitos usuários usam diferentes plataformas para diferentes propósitos - uma para conversas casuais, outra para tarefas profissionais, outra para companheirismo romântico. Cada plataforma tem pontos fortes únicos. Apenas esteja atento aos custos de assinatura se usar vários serviços premium."
+      }
+    }
   }
 }
