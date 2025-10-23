@@ -5268,9 +5268,9 @@ footer {
     font-weight: 600;
 }
 
-/* Hide language switcher */
+/* Show language switcher */
 .language-switcher {
-    display: none !important;
+    display: inline-block;
 }
 
 /* Mobile responsiveness */

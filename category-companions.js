@@ -376,6 +376,12 @@ class CategoryCompanions {
                 // Silent fallback
             }
 
+            // Generate "Best for" section
+            const bestFor = companion.best_for || companion.Best_for || companion['Best for'] || this.generateBestFor(companion);
+            const bestForLabel = window.i18n && window.i18n.initialized
+                ? window.i18n.t('companionCard.bestFor')
+                : 'Best for:';
+
             return `
                 <article class="companion-card${companion.featured ? ' featured' : ''}">
                     ${productBadge ? `<div class="product-badge">${productBadge}</div>` : ''}
@@ -393,6 +399,9 @@ class CategoryCompanions {
                     <p class="description">${description}</p>
                     ${featureHighlights}
                     ${pricingInfo}
+                    ${bestFor ? `<div class="best-for-section">
+                        <span class="best-for-label">${bestForLabel}</span> ${bestFor}
+                    </div>` : ''}
                     <div class="card-actions">
                         <a href="${companionUrl}" class="btn-secondary">Read Review</a>
                         <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">Visit Website</a>
