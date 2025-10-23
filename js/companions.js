@@ -538,70 +538,23 @@ class CompanionManager {
     if (!container) return;
 
     try {
-      // First load: Get first 12 companions for fast initial render
-      console.log('Loading initial 12 companions...'); // Debug
-      const initialCompanions = await this.fetchCompanions({
-        sort: sortBy,
-        limit: 12
+      // Load all companions at once - API is fast enough
+      const allCompanions = await this.fetchCompanions({
+        sort: sortBy
       });
 
-      console.log('Loaded initial companions:', initialCompanions.length); // Debug
-
-      if (initialCompanions.length === 0) {
+      if (allCompanions.length === 0) {
         container.innerHTML = '<p>No companions available.</p>';
         return;
       }
 
-      // Render initial companions immediately
-      container.innerHTML = initialCompanions.map(companion =>
+      // Render all companions immediately
+      container.innerHTML = allCompanions.map(companion =>
         this.generateCompanionCard(companion)
       ).join('');
 
-      console.log('Rendered initial companions'); // Debug
-
-      // Add loading indicator for remaining companions
-      const loadingIndicator = document.createElement('div');
-      loadingIndicator.id = 'loading-more';
-      loadingIndicator.innerHTML = `
-        <div style="text-align: center; padding: 40px 20px; color: #666;">
-          <div style="font-size: 24px; margin-bottom: 10px;">⏳</div>
-          <p>Loading more companions...</p>
-        </div>
-      `;
-      container.appendChild(loadingIndicator);
-
-      // Load remaining companions
-      setTimeout(async () => {
-        try {
-          const allCompanions = await this.fetchCompanions({
-            sort: sortBy
-          });
-
-          const remainingCompanions = allCompanions.slice(12);
-
-          if (remainingCompanions.length > 0) {
-            const remainingHtml = remainingCompanions.map(companion =>
-              this.generateCompanionCard(companion)
-            ).join('');
-
-            // Remove loading indicator and add remaining companions
-            loadingIndicator.remove();
-            container.insertAdjacentHTML('beforeend', remainingHtml);
-          } else {
-            loadingIndicator.remove();
-          }
-        } catch (error) {
-          console.error('Error loading remaining companions:', error);
-          loadingIndicator.innerHTML = `
-            <div style="text-align: center; padding: 20px; color: #999;">
-              <p>Some companions could not be loaded.</p>
-            </div>
-          `;
-        }
-      }, 500); // Small delay to show the first batch loading
-
     } catch (error) {
-      console.error('Error loading initial companions:', error);
+      console.error('Error loading companions:', error);
       container.innerHTML = `
         <div style="text-align: center; padding: 60px 20px; color: #666;">
           <div style="font-size: 48px; margin-bottom: 20px;">❌</div>
