@@ -58,7 +58,7 @@
   to = "/nl/index.html"
   status = 200
 
-# Dutch individual companion pages -> Dutch HTML files
+# Dutch individual companion pages -> Dutch HTML files (with data-i18n attributes)
 # CRITICAL: These must come BEFORE the main page redirects!
 [[redirects]]
   from = "/nl/companions/:slug"
@@ -66,7 +66,7 @@
   status = 200
   force = true
 
-# Dutch individual category pages -> Dutch HTML files
+# Dutch individual category pages -> Dutch HTML files (with data-i18n attributes)
 [[redirects]]
   from = "/nl/categories/:slug"
   to = "/nl/categories/:slug.html"

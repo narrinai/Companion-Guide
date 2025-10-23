@@ -136,6 +136,11 @@
         "bestFor": "Best For"
       },
       "faqTitle": "AI Roleplay & Character Chat FAQs"
+    },
+    "video": {
+      "title": "Best Video AI Companions",
+      "description": "Experience the next level of AI companionship with video capabilities. These platforms offer video chat, AI-generated videos, and immersive visual experiences that bring your AI companions to life. From virtual dating with video calls to personalized video messages, discover platforms that go beyond text and voice.",
+      "breadcrumb": "Video AI Companions"
     }
   }
 }

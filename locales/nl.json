@@ -295,6 +295,11 @@
       }
     },
     "loading": "Companions laden...",
-    "home": "Home"
+    "home": "Home",
+    "video": {
+      "title": "Beste Video AI Companions",
+      "description": "Ervaar het volgende niveau van AI companionship met videomogelijkheden. Deze platforms bieden videochat, AI-gegenereerde video's en meeslepende visuele ervaringen die je AI companions tot leven brengen. Van virtueel daten met videogesprekken tot gepersonaliseerde videoberichten, ontdek platforms die verder gaan dan tekst en spraak.",
+      "breadcrumb": "Video AI Companions"
+    }
   }
 }
