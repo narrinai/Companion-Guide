@@ -3448,12 +3448,12 @@ footer {
     }
 
     .mobile-menu-logo img {
-        width: 48px;
-        height: 48px;
+        width: 32px;
+        height: 32px;
     }
 
     .mobile-menu-logo span {
-        font-size: 1.5rem;
+        font-size: 1.125rem;
         font-weight: 600;
         color: var(--text-primary);
     }
@@ -5239,8 +5239,8 @@ footer {
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-md);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    min-width: 180px;
-    z-index: 1000;
+    min-width: 60px;
+    z-index: 99999;
     overflow: hidden;
 }
 

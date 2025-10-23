@@ -91,9 +91,9 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     🇳🇱 NL
                 </button>
                 <div class="lang-dropdown" id="lang-dropdown" style="display: none;">
-                    <a href="/categories/roleplay-character-chat-companions" class="lang-option">🇬🇧 EN</a>
-                    <a href="/nl/categories/roleplay-character-chat-companions" class="lang-option active">🇳🇱 NL</a>
-                    <a href="/pt/categories/roleplay-character-chat-companions" class="lang-option">🇧🇷 PT</a>
+                    <a href="/categories/roleplay-character-chat-companions" class="lang-option">🇬🇧</a>
+                    <a href="/nl/categories/roleplay-character-chat-companions" class="lang-option active">🇳🇱</a>
+                    <a href="/pt/categories/roleplay-character-chat-companions" class="lang-option">🇧🇷</a>
                 </div>
             </div>
         </nav>
@@ -319,26 +319,6 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
   ]
 }
         </script>
-    <script src="../js/i18n.js?v=20251022"></script>
-    <script src="../script.js?v=20251007"></script>
-    <script src="/js/companions.js?v=20251007"></script>
-    <script src="/category-companions.js?v=20251007"></script>
-    <script src="/faq-interactions.js?v=20251007"></script>
-    <script src="/js/faq-dynamic-ratings.js?v=20251017"></script>
-    <script>
-        // Load featured companions in footer
-        document.addEventListener("DOMContentLoaded", async function() {
-            if (typeof window.companionManager === "undefined") {
-                window.companionManager = new CompanionManager();
-            }
-            try {
-                await window.companionManager.renderFooterFeaturedCompanions("featured-companions-footer");
-            } catch (error) {
-                console.error("Error loading footer featured companions:", error);
-            }
-        });
-    </script>
-    <script src="/js/meta-companion-tracking.js?v=20251007"></script>
 
     <footer>
         <div class="container">
