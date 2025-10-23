@@ -189,6 +189,23 @@ header .nav-menu {
 
 /* On mobile, override the desktop nav-menu styling */
 @media (max-width: 768px) {
+    /* Make logo smaller on mobile */
+    header nav h1 {
+        font-size: 1.1rem !important;
+    }
+
+    header nav h1 a {
+        gap: 0.35rem !important;
+    }
+
+    header nav h1 img,
+    header nav h1 svg {
+        width: 28px !important;
+        height: 28px !important;
+        max-width: 28px !important;
+        max-height: 28px !important;
+    }
+
     header .nav-menu {
         position: fixed !important;
         top: 0 !important;

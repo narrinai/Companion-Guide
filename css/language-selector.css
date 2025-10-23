@@ -68,7 +68,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     min-width: 200px;
-    z-index: 1000;
+    z-index: 9999999;
     display: none;
     margin-top: 4px;
 }
@@ -133,6 +133,24 @@
     .current-language {
         padding: 6px 10px;
         font-size: 13px;
+    }
+
+    /* Mobile: Only show flag, hide text and arrow */
+    .current-language .lang-code {
+        display: none;
+    }
+
+    .current-language .arrow {
+        display: none;
+    }
+
+    .current-language {
+        padding: 6px 8px;
+        gap: 0;
+    }
+
+    .current-language .flag {
+        font-size: 20px;
     }
 }
 
