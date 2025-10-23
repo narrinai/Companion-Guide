@@ -13,7 +13,14 @@ class CategoryCompanions {
 
     async loadCompanions() {
         try {
-            const response = await fetch('/.netlify/functions/companionguide-get');
+            // Build URL with language parameter if i18n is available
+            const params = new URLSearchParams();
+            if (window.i18n && window.i18n.currentLang) {
+                params.append('lang', window.i18n.currentLang);
+            }
+
+            const url = `/.netlify/functions/companionguide-get${params.toString() ? '?' + params.toString() : ''}`;
+            const response = await fetch(url);
             const data = await response.json();
 
             if (data.companions) {
@@ -32,7 +39,10 @@ class CategoryCompanions {
 
     filterCompanionsByCategory(companions) {
         // Get current page URL to determine category
-        const currentPath = window.location.pathname;
+        let currentPath = window.location.pathname;
+
+        // Remove language prefix (/nl/ or /pt/) to get the base category path
+        currentPath = currentPath.replace(/^\/(nl|pt)\//, '/');
 
         // Map URL paths to Airtable category values
         // For image-gen we need STRICT matching (must have image-gen tag)
@@ -246,9 +256,14 @@ class CategoryCompanions {
             const bestFor = this.generateBestFor(companion);
             const slug = companion.slug || 'unknown';
 
+            // Generate companion URL with proper language prefix
+            const companionUrl = window.i18n && window.i18n.initialized
+                ? window.i18n.getCompanionUrl(slug)
+                : `/companions/${slug}`;
+
             return `
                 <tr>
-                    <td><strong><a href="/companions/${slug}">${companion.name}</a></strong></td>
+                    <td><strong><a href="${companionUrl}">${companion.name}</a></strong></td>
                     <td>${companion.rating.toFixed(1)}/10</td>
                     <td>${pricing}</td>
                     <td>${keyFeature}</td>
@@ -301,6 +316,12 @@ class CategoryCompanions {
             const badges = companion.badges || [];
             const description = companion.short_description || companion.description || 'Premium AI companion for conversations';
             const reviewCount = companion.review_count || 0;
+            const slug = companion.slug || 'unknown';
+
+            // Generate companion URL with proper language prefix
+            const companionUrl = window.i18n && window.i18n.initialized
+                ? window.i18n.getCompanionUrl(slug)
+                : `/companions/${slug}`;
 
             // Generate product badge based on badges or default ranking
             let productBadge = '';
@@ -361,7 +382,7 @@ class CategoryCompanions {
                     <div class="card-header">
                         <img src="${logoUrl}" alt="${companion.name}" class="logo" onerror="this.src='/images/logos/default.png'">
                         <div class="title-section">
-                            <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
+                            <h3><a href="${companionUrl}">${companion.name}</a></h3>
                             <div class="rating-line">
                                 <span class="stars">${this.generateStarRating(rating)}</span>
                                 <span class="rating-score">${rating.toFixed(1)}/10</span>
@@ -373,7 +394,7 @@ class CategoryCompanions {
                     ${featureHighlights}
                     ${pricingInfo}
                     <div class="card-actions">
-                        <a href="/companions/${companion.slug}" class="btn-secondary">Read Review</a>
+                        <a href="${companionUrl}" class="btn-secondary">Read Review</a>
                         <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">Visit Website</a>
                     </div>
                 </article>
