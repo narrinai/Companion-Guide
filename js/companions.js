@@ -2,6 +2,8 @@ class CompanionManager {
   constructor() {
     this.apiBaseUrl = '/.netlify/functions/companionguide';
     this.companions = [];
+    this.cache = {}; // Cache for different query combinations
+    this.pendingRequests = {}; // Prevent duplicate simultaneous requests
   }
 
   async fetchCompanions(options = {}) {
@@ -17,16 +19,46 @@ class CompanionManager {
         params.append('lang', window.i18n.currentLang);
       }
 
-      const url = `${this.apiBaseUrl}-get${params.toString() ? '?' + params.toString() : ''}`;
-      const response = await fetch(url);
+      const queryString = params.toString();
+      const cacheKey = queryString || 'default';
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      // Return cached data if available
+      if (this.cache[cacheKey]) {
+        this.companions = this.cache[cacheKey];
+        return this.companions;
       }
 
-      const data = await response.json();
-      this.companions = data.companions || [];
-      return this.companions;
+      // If there's already a pending request for this query, wait for it
+      if (this.pendingRequests[cacheKey]) {
+        return await this.pendingRequests[cacheKey];
+      }
+
+      // Create the request promise and store it
+      const requestPromise = (async () => {
+        const url = `${this.apiBaseUrl}-get${queryString ? '?' + queryString : ''}`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const companions = data.companions || [];
+
+        // Cache the result
+        this.cache[cacheKey] = companions;
+        this.companions = companions;
+
+        // Clear the pending request
+        delete this.pendingRequests[cacheKey];
+
+        return companions;
+      })();
+
+      // Store the pending request
+      this.pendingRequests[cacheKey] = requestPromise;
+
+      return await requestPromise;
     } catch (error) {
       console.error('Error fetching companions:', error);
       return [];
