@@ -73,7 +73,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 </div>
                 <li><a href="/nl/">Home</a></div>
                 <li><a href="/nl/companions">Companions</a></div>
-                <li><a href="/categories" class="active">Categories</a></div>
+                <li><a href="/nl/categories" class="active">Categories</a></div>
                 <li><a href="/nl/news">News & Insights</a></div>
                 <li><a href="/nl/deals">Deals</a></div>
                 <li><a href="/nl/contact">Contact</a></div>
@@ -101,14 +101,14 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
         <section class="categories-overview">
             <div class="categories-grid">
-                <a href="/categories/roleplay-character-chat-companions" class="category-card">
+                <a href="/nl/categories/roleplay-character-chat-companions" class="category-card">
                     <div class="category-icon">🎭</div>
                     <h3>Roleplay & Character Chat</h3>
                     <p>Best AI platforms for roleplay and character chat experiences with interactive storytelling</p>
                     <div class="category-stats" id="roleplaying-count">Loading...</div>
                 </a>
 
-                <a href="/categories/wellness-companions" class="category-card">
+                <a href="/nl/categories/wellness-companions" class="category-card">
                     <div class="category-icon">🧠</div>
                     <h3>Wellness</h3>
                     <p>AI companions focused on mental health, emotional support, and personal wellness</p>
@@ -116,63 +116,63 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 </a>
 
 
-                <a href="/categories/learning-companions" class="category-card">
+                <a href="/nl/categories/learning-companions" class="category-card">
                     <div class="category-icon">📚</div>
                     <h3>Learning</h3>
                     <p>AI tutors and educational companions for skill development and academic support</p>
                     <div class="category-stats" id="learning-count">Loading...</div>
                 </a>
 
-                <a href="/categories/ai-girlfriend-companions" class="category-card">
+                <a href="/nl/categories/ai-girlfriend-companions" class="category-card">
                     <div class="category-icon">💕</div>
                     <h3>AI Girlfriend</h3>
                     <p>Best AI platforms for virtual romantic relationships and dating experiences</p>
                     <div class="category-stats" id="ai-girlfriend-count">Loading...</div>
                 </a>
 
-                <a href="/categories/ai-boyfriend-companions" class="category-card">
+                <a href="/nl/categories/ai-boyfriend-companions" class="category-card">
                     <div class="category-icon">💙</div>
                     <h3>AI Boyfriend</h3>
                     <p>Top AI boyfriend platforms for virtual romantic relationships and male companions</p>
                     <div class="category-stats" id="ai-boyfriend-count">Loading...</div>
                 </a>
 
-                <a href="/categories/whatsapp-companions-companions" class="category-card">
+                <a href="/nl/categories/whatsapp-companions-companions" class="category-card">
                     <div class="category-icon">📱</div>
                     <h3>WhatsApp-Only</h3>
                     <p>AI companions that integrate natively into WhatsApp - no separate apps needed</p>
                     <div class="category-stats" id="whatsapp-count">Loading...</div>
                 </a>
 
-                <a href="/categories/adult-image-generation-companions" class="category-card">
+                <a href="/nl/categories/adult-image-generation-companions" class="category-card">
                     <div class="category-icon">🎨</div>
                     <h3>Adult Image Generation</h3>
                     <p>Best AI platforms for creating NSFW art and adult visual content (18+ only)</p>
                     <div class="category-stats" id="image-gen-count">Loading...</div>
                 </a>
 
-                <a href="/categories/adult-content-uncensored-companions" class="category-card">
+                <a href="/nl/categories/adult-content-uncensored-companions" class="category-card">
                     <div class="category-icon">🔞</div>
                     <h3>Adult Content & Uncensored</h3>
                     <p>Best uncensored AI platforms for adult content and mature conversations (18+ only)</p>
                     <div class="category-stats" id="nsfw-count">Loading...</div>
                 </a>
 
-                <a href="/categories/video-companions-companions" class="category-card">
+                <a href="/nl/categories/video-companions-companions" class="category-card">
                     <div class="category-icon">🎬</div>
                     <h3>Video Companions</h3>
                     <p>AI companions with video chat and video generation capabilities for immersive experiences</p>
                     <div class="category-stats" id="video-count">Loading...</div>
                 </a>
 
-                <a href="/categories/ai-porn-chat-platforms" class="category-card">
+                <a href="/nl/categories/ai-porn-chat-platforms" class="category-card">
                     <div class="category-icon">🔥</div>
                     <h3>AI Porn Platforms</h3>
                     <p>Advanced AI platforms for photorealistic adult content generation and interactive experiences (18+ only)</p>
                     <div class="category-stats" id="porn-count">Loading...</div>
                 </a>
 
-                <a href="/categories/hentai-ai-chat-platforms" class="category-card">
+                <a href="/nl/categories/hentai-ai-chat-platforms" class="category-card">
                     <div class="category-icon">🎌</div>
                     <h3>Hentai AI Platforms</h3>
                     <p>Specialized AI generators for anime and manga-style adult content in multiple art styles (18+ only)</p>
@@ -388,10 +388,17 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         </div>
     </footer>
 
-    <script src="js/companions.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/js/companions.js"></script>
     <script>
         // Update category counts and sort cards when page loads
         document.addEventListener('DOMContentLoaded', async function() {
+            // Wait for i18n to initialize if it exists
+            if (window.i18n && !window.i18n.initialized) {
+                console.log('Waiting for i18n to initialize...');
+                await window.i18n.init();
+            }
+
             if (window.companionManager) {
                 await window.companionManager.updateCategoryCounts();
 
@@ -418,7 +425,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             }
         });
     </script>
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
     <script src="/faq-interactions.js"></script>
     <script>
         // Load featured companions in footer
