@@ -24,7 +24,10 @@
     "categories": "Categorias",
     "latestNews": "Últimas Notícias & Guias",
     "companionOfMonth": "Companion do Mês",
-    "featuredGuides": "Guias em Destaque"
+    "featuredGuides": "Guias em Destaque",
+    "latestNewsDescription": "Fique atualizado com as últimas notícias e insights da indústria de companions de IA",
+    "explorePlatformsTitle": "Descubra Plataformas de IA por Categoria",
+    "explorePlatformsDescription": "Encontre plataformas de companion de IA adequadas às suas necessidades específicas"
   },
   "companionCard": {
     "readReview": "Ler Análise",

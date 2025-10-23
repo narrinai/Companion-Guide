@@ -24,7 +24,10 @@
     "categories": "Categorieën",
     "latestNews": "Laatste Nieuws & Gidsen",
     "companionOfMonth": "Companion van de Maand",
-    "featuredGuides": "Uitgelichte Gidsen"
+    "featuredGuides": "Uitgelichte Gidsen",
+    "latestNewsDescription": "Blijf op de hoogte van het laatste nieuws en inzichten uit de AI companion industrie",
+    "explorePlatformsTitle": "Ontdek AI Platforms per Categorie",
+    "explorePlatformsDescription": "Vind AI companion platforms die passen bij jouw specifieke behoeften"
   },
   "companionCard": {
     "readReview": "Lees Review",
