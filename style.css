@@ -5257,7 +5257,7 @@ footer {
     border-radius: var(--radius-md);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     min-width: 60px;
-    z-index: 99999;
+    z-index: 9999999;
     overflow: hidden;
 }
 
