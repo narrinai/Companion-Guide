@@ -78,17 +78,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+});
 
-    // Wait for i18n to initialize, then update nav
-    const checkI18n = setInterval(() => {
-        if (window.i18n && window.i18n.initialized) {
-            clearInterval(checkI18n);
-            updateNavigationLinks();
-        }
-    }, 100);
-
-    // Timeout after 5 seconds
-    setTimeout(() => {
-        clearInterval(checkI18n);
-    }, 5000);
+// Listen for i18n translations applied event
+window.addEventListener('i18nTranslationsApplied', function(event) {
+    console.log('i18n translations applied, updating navigation...');
+    updateNavigationLinks();
 });

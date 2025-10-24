@@ -287,6 +287,11 @@ class I18n {
     });
 
     console.log(`✅ Applied translations to ${elements.length} elements`);
+
+    // Dispatch custom event for other scripts to react to
+    window.dispatchEvent(new CustomEvent('i18nTranslationsApplied', {
+      detail: { language: this.currentLang }
+    }));
   }
 
   /**
