@@ -170,7 +170,15 @@
   },
   "news": {
     "title": "Notícias de Plataformas de Chat & Companion de IA",
-    "subtitle": "Fique atualizado com os últimos desenvolvimentos em plataformas de chat de IA e plataformas de companion de IA, análises da indústria e tendências de mercado"
+    "subtitle": "Fique atualizado com os últimos desenvolvimentos em plataformas de chat de IA e plataformas de companion de IA, análises da indústria e tendências de mercado",
+    "latestNews": "Últimas Notícias de Plataformas de Chat & Companion de IA",
+    "recentDevelopments": "Desenvolvimentos recentes e atualizações da indústria",
+    "keyFindings": "🔍 Principais Descobertas da Indústria",
+    "keyFindingsDesc": "Insights importantes sobre o desenvolvimento de plataformas de companion de IA",
+    "marketAnalysis": "📊 Análise de Mercado & Tendências",
+    "marketAnalysisDesc": "Principais insights da indústria de plataformas de companion de IA",
+    "featuredCompanions": "🌟 Companions de IA em Destaque",
+    "featuredCompanionsDesc": "Descubra nossas plataformas de companion de IA mais bem avaliadas"
   },
   "contact": {
     "title": "Entre em Contato",

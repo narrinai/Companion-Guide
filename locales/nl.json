@@ -170,7 +170,15 @@
   },
   "news": {
     "title": "AI Chat & Companion Platform Nieuws",
-    "subtitle": "Blijf op de hoogte van de laatste ontwikkelingen in AI chat platforms en AI companion platforms, industrie analyse en markttrends"
+    "subtitle": "Blijf op de hoogte van de laatste ontwikkelingen in AI chat platforms en AI companion platforms, industrie analyse en markttrends",
+    "latestNews": "Laatste AI Chat & Companion Platform Nieuws",
+    "recentDevelopments": "Recente ontwikkelingen en industrie updates",
+    "keyFindings": "🔍 Belangrijkste Industrie Bevindingen",
+    "keyFindingsDesc": "Belangrijke inzichten over de ontwikkeling van AI companion platforms",
+    "marketAnalysis": "📊 Marktanalyse & Trends",
+    "marketAnalysisDesc": "Belangrijke inzichten uit de AI companion platform industrie",
+    "featuredCompanions": "🌟 Uitgelichte AI Companions",
+    "featuredCompanionsDesc": "Ontdek onze best beoordeelde AI companion platforms"
   },
   "contact": {
     "title": "Neem Contact Op",
