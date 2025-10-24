@@ -5296,12 +5296,14 @@ footer {
     .language-switcher {
         margin-left: auto;
         order: 2;
+        z-index: 99999999 !important;
     }
 
     .lang-current {
         padding: var(--space-2) var(--space-3);
         font-size: 0.875rem;
         min-width: auto;
+        z-index: 99999999 !important;
     }
 
     .hamburger {
@@ -5313,6 +5315,8 @@ footer {
         right: 0;
         left: auto;
         min-width: 50px;
+        z-index: 99999999 !important;
+        position: fixed !important;
     }
 
     .lang-option {

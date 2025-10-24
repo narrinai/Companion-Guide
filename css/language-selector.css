@@ -128,6 +128,8 @@
         right: auto;
         left: 0;
         min-width: 180px;
+        z-index: 99999999 !important;
+        position: fixed !important;
     }
 
     .current-language {
