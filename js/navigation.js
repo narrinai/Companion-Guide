@@ -42,17 +42,23 @@ function updateNavigationLinks() {
     const navLinks = document.querySelectorAll('.nav-menu li a');
     navLinks.forEach(link => {
         const originalText = link.textContent.trim();
+        const currentHref = link.getAttribute('href');
 
-        // Find matching nav item
+        // Find matching nav item by text OR by href pattern
         for (const [original, config] of Object.entries(navItems)) {
-            if (originalText === original || originalText === window.i18n.t(config.key)) {
+            const textMatches = originalText === original || originalText === window.i18n.t(config.key);
+
+            // Also match by href pattern (e.g., /companions or /pt/companions or /nl/companions)
+            const hrefPattern = config.href.replace(/^\/(pt|nl)/, ''); // Remove lang prefix for matching
+            const currentHrefPattern = currentHref.replace(/^\/(pt|nl)/, '');
+            const hrefMatches = currentHrefPattern === hrefPattern || currentHref === config.href;
+
+            if (textMatches || hrefMatches) {
                 // Update text with translation
                 link.textContent = window.i18n.t(config.key);
 
-                // Update href if not active page
-                if (!link.classList.contains('active')) {
-                    link.setAttribute('href', config.href);
-                }
+                // ALWAYS update href to match language (even for active links)
+                link.setAttribute('href', config.href);
                 break;
             }
         }
