@@ -5260,7 +5260,7 @@ footer {
     border-radius: var(--radius-md);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     min-width: 60px;
-    z-index: 9999999;
+    z-index: 1000000;
     overflow: hidden;
 }
 
@@ -5299,7 +5299,7 @@ footer {
     .language-switcher {
         margin-left: auto;
         order: 2;
-        z-index: 1050;
+        z-index: 1000000;
         position: relative;
     }
 
@@ -5307,7 +5307,7 @@ footer {
         padding: var(--space-2) var(--space-3);
         font-size: 0.875rem;
         min-width: auto;
-        z-index: 1050;
+        z-index: 1000000;
         position: relative;
     }
 
@@ -5321,7 +5321,7 @@ footer {
         right: 0;
         left: auto;
         min-width: 120px;
-        z-index: 1051;
+        z-index: 1000001;
         position: absolute;
     }
 
