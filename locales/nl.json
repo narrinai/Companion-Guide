@@ -61,7 +61,9 @@
     "webAndMobileApps": "Web & Mobiele Apps",
     "familyFriendly": "Gezinsvriendelijk (gefilterd)",
     "unfiltered": "Ongefilterd",
-    "moderate": "Gematigd gefilterd"
+    "moderate": "Gematigd gefilterd",
+    "readyToTry": "Klaar om {name} te Ervaren?",
+    "ctaDescription": "Ontdek realistische AI girlfriend ervaringen met 100+ fantasiescenario's"
   },
   "reviewForm": {
     "sectionTitle": "Deel je ervaring met {companion}",

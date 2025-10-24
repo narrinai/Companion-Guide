@@ -33,6 +33,16 @@ class CompanionPageManager {
 
         // Load and update my_verdict for translated pages (PT/NL)
         await this.loadAndUpdateVerdict();
+
+        // Translate CTA section (wait for i18n to be ready)
+        if (window.i18n && window.i18n.initialized) {
+            this.translateCTASection();
+        } else {
+            // Listen for i18n event
+            window.addEventListener('i18nTranslationsApplied', () => {
+                this.translateCTASection();
+            }, { once: true });
+        }
     }
 
     async waitForCompanionManager() {
@@ -517,6 +527,76 @@ class CompanionPageManager {
         }
 
         console.log('✅ Updated verdict and personal experience sections');
+    }
+
+    /**
+     * Translate CTA (Call to Action) section for PT/NL pages
+     */
+    translateCTASection() {
+        // Check if i18n is available and initialized
+        if (!window.i18n || !window.i18n.initialized) {
+            console.log('i18n not ready, skipping CTA translation');
+            return;
+        }
+
+        // Only translate for PT/NL pages
+        if (window.i18n.currentLang === 'en') {
+            return;
+        }
+
+        // Find CTA section
+        const ctaSection = document.querySelector('.cta-section');
+        if (!ctaSection) {
+            console.log('CTA section not found');
+            return;
+        }
+
+        // Get companion name from page
+        const companionName = this.companionData?.name || this.extractCompanionNameFromPage();
+
+        // Translate heading
+        const heading = ctaSection.querySelector('h2');
+        if (heading) {
+            const translatedHeading = window.i18n.t('companion.readyToTry', { name: companionName });
+            heading.textContent = translatedHeading;
+        }
+
+        // Translate description
+        const description = ctaSection.querySelector('p');
+        if (description) {
+            description.textContent = window.i18n.t('companion.ctaDescription');
+        }
+
+        // Translate button text
+        const button = ctaSection.querySelector('.cta-button');
+        if (button) {
+            button.textContent = window.i18n.t('companionCard.visitWebsite') + ' →';
+        }
+
+        console.log('✅ Translated CTA section');
+    }
+
+    /**
+     * Extract companion name from page title or h1
+     */
+    extractCompanionNameFromPage() {
+        // Try to get from page title first
+        const titleMatch = document.title.match(/^([^-]+)/);
+        if (titleMatch) {
+            return titleMatch[1].trim();
+        }
+
+        // Try to get from h1
+        const h1 = document.querySelector('h1');
+        if (h1) {
+            return h1.textContent.trim();
+        }
+
+        // Fallback: capitalize the slug
+        return this.companionId
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
     }
 }
 
