@@ -5241,6 +5241,9 @@ footer {
     display: flex;
     align-items: center;
     gap: var(--space-2);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 .lang-current:hover {
@@ -5296,27 +5299,30 @@ footer {
     .language-switcher {
         margin-left: auto;
         order: 2;
-        z-index: 99999999 !important;
+        z-index: 1050;
+        position: relative;
     }
 
     .lang-current {
         padding: var(--space-2) var(--space-3);
         font-size: 0.875rem;
         min-width: auto;
-        z-index: 99999999 !important;
+        z-index: 1050;
+        position: relative;
     }
 
     .hamburger {
         order: 3;
         margin-left: var(--space-3);
+        z-index: 1000;
     }
 
     .lang-dropdown {
         right: 0;
         left: auto;
-        min-width: 50px;
-        z-index: 99999999 !important;
-        position: fixed !important;
+        min-width: 120px;
+        z-index: 1051;
+        position: absolute;
     }
 
     .lang-option {

@@ -259,23 +259,34 @@ function toggleMenu() {
     navMenu.classList.toggle('active');
 }
 
-// Language switcher functionality
+// Language switcher functionality - optimized for mobile
 document.addEventListener('DOMContentLoaded', function() {
     const langToggle = document.getElementById('lang-toggle');
     const langDropdown = document.getElementById('lang-dropdown');
 
     if (langToggle && langDropdown) {
-        langToggle.addEventListener('click', () => {
+        // Toggle function
+        const toggleDropdown = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             const isVisible = langDropdown.style.display === 'block';
             langDropdown.style.display = isVisible ? 'none' : 'block';
-        });
+            console.log('Language dropdown toggled:', langDropdown.style.display);
+        };
+
+        // Add both click and touchstart for better mobile support
+        langToggle.addEventListener('click', toggleDropdown);
+        langToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
 
         // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
+        const closeDropdown = (e) => {
             if (!e.target.closest('.language-switcher')) {
                 langDropdown.style.display = 'none';
             }
-        });
+        };
+
+        document.addEventListener('click', closeDropdown);
+        document.addEventListener('touchstart', closeDropdown);
     }
 });
 
