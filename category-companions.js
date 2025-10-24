@@ -296,22 +296,40 @@ class CategoryCompanions {
             return 'Free';
         }
 
-        const plans = typeof companion.pricing_plans === 'string'
-            ? JSON.parse(companion.pricing_plans)
-            : companion.pricing_plans;
+        try {
+            let plans = companion.pricing_plans;
 
-        const lowestPrice = Math.min(...plans.map(plan => parseFloat(plan.price || 0)));
-
-        if (lowestPrice === 0) {
-            const paidPlans = plans.filter(p => parseFloat(p.price || 0) > 0);
-            if (paidPlans.length > 0) {
-                const lowestPaid = Math.min(...paidPlans.map(p => parseFloat(p.price)));
-                return `Free + $${lowestPaid.toFixed(2)}/month`;
+            // Parse if string
+            if (typeof plans === 'string') {
+                try {
+                    plans = JSON.parse(plans);
+                } catch (e) {
+                    console.error('Failed to parse pricing_plans:', e);
+                    return 'Free';
+                }
             }
+
+            // Ensure it's an array
+            if (!Array.isArray(plans) || plans.length === 0) {
+                return 'Free';
+            }
+
+            const lowestPrice = Math.min(...plans.map(plan => parseFloat(plan.price || 0)));
+
+            if (lowestPrice === 0) {
+                const paidPlans = plans.filter(p => parseFloat(p.price || 0) > 0);
+                if (paidPlans.length > 0) {
+                    const lowestPaid = Math.min(...paidPlans.map(p => parseFloat(p.price)));
+                    return `Free + $${lowestPaid.toFixed(2)}/month`;
+                }
+                return 'Free';
+            }
+
+            return `$${lowestPrice.toFixed(2)}/month`;
+        } catch (error) {
+            console.error('Error getting pricing text:', error);
             return 'Free';
         }
-
-        return `$${lowestPrice.toFixed(2)}/month`;
     }
 
     renderCompanionGrid() {
