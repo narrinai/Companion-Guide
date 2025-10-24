@@ -265,6 +265,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const langDropdown = document.getElementById('lang-dropdown');
 
     if (langToggle && langDropdown) {
+        // Detect current language from URL and update button text
+        const currentPath = window.location.pathname;
+        let currentLang = 'EN';
+        let currentFlag = '🇬🇧';
+
+        if (currentPath.startsWith('/nl/') || currentPath === '/nl') {
+            currentLang = 'NL';
+            currentFlag = '🇳🇱';
+        } else if (currentPath.startsWith('/pt/') || currentPath === '/pt') {
+            currentLang = 'PT';
+            currentFlag = '🇧🇷';
+        }
+
+        // Update button text to show current language
+        langToggle.textContent = `${currentFlag} ${currentLang}`;
+        console.log('Language selector initialized:', currentLang);
+
         // Toggle function
         const toggleDropdown = (e) => {
             e.preventDefault();
