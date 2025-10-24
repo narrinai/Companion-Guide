@@ -61,7 +61,9 @@
     "webAndMobileApps": "Web & Apps Móveis",
     "familyFriendly": "Família (filtrado)",
     "unfiltered": "Sem filtro",
-    "moderate": "Moderadamente filtrado"
+    "moderate": "Moderadamente filtrado",
+    "readyToTry": "Pronto para Experimentar {name}?",
+    "ctaDescription": "Descubra experiências realistas com namoradas de IA e mais de 100 cenários de fantasia"
   },
   "reviewForm": {
     "sectionTitle": "Compartilhe sua experiência com {companion}",
@@ -348,6 +350,81 @@
       "description": "Experimente o próximo nível de companheirismo de IA com capacidades de vídeo. Estas plataformas oferecem videochat, vídeos gerados por IA e experiências visuais imersivas que trazem seus companions de IA à vida. De namoro virtual com chamadas de vídeo a mensagens de vídeo personalizadas, descubra plataformas que vão além de texto e voz.",
       "breadcrumb": "Companions de IA com Vídeo"
     },
+    "hentai": {
+      "title": "Melhores Companions de IA Hentai",
+      "description": "Explore plataformas de IA especializadas em conteúdo adulto de estilo anime e mangá. Esses geradores de hentai aproveitam IA avançada para criar ilustrações de alta qualidade em estilo japonês, desde anime tradicional até estilos 2.5D modernos, para públicos maiores de 18 anos.",
+      "breadcrumb": "Plataformas de IA Hentai",
+      "insightsTitle": "Insights de Plataformas de IA Hentai",
+      "comparisonTitle": "Comparação de Plataformas de IA Hentai",
+      "insights": {
+        "animeStyles": {
+          "title": "Estilos de Arte Anime",
+          "text": "Modelos de IA avançados treinados especificamente em arte anime e mangá, produzindo hentai autêntico em estilo japonês em vários estilos, desde estética anime clássica até moderna."
+        },
+        "multipleStyles": {
+          "title": "Múltiplos Estilos de Arte",
+          "text": "Escolha entre anime tradicional, mangá, 2.5D, chibi, anime realista e estilos híbridos personalizados. Muitas plataformas suportam movimentos artísticos de anime específicos e estilos de artistas populares."
+        },
+        "uncensored": {
+          "title": "Conteúdo Sem Censura",
+          "text": "Ao contrário do hentai japonês tradicional, a maioria das plataformas de IA ocidentais oferece geração de conteúdo totalmente sem censura com liberdade criativa completa e sem restrições."
+        },
+        "characterCreation": {
+          "title": "Criação de Personagens",
+          "text": "Projete personagens de anime personalizados com controle detalhado sobre aparência, roupas, expressões, poses e cenários. Salve e reutilize seus designs de personagens favoritos."
+        }
+      },
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Classificação",
+        "pricing": "Preços",
+        "keyFeature": "Recurso Principal",
+        "bestFor": "Melhor Para"
+      },
+      "faqTitle": "Perguntas Frequentes sobre IA Hentai",
+      "faqs": {
+        "q1": {
+          "question": "Quais são os melhores geradores de hentai de IA em 2025?",
+          "answer": "Os principais geradores de hentai de IA em 2025 incluem plataformas especializadas treinadas em estilos de arte anime e mangá, oferecendo múltiplas estéticas artísticas japonesas, personalização de personagens e saídas sem censura de alta qualidade. As principais plataformas apresentam modelos específicos de anime que entendem terminologia e convenções visuais de anime."
+        },
+        "q2": {
+          "question": "Quanto custam as plataformas de hentai de IA?",
+          "answer": "As plataformas de hentai de IA geralmente variam de $9,99 a $24,99 por mês. Os planos de entrada oferecem gerações limitadas com estilos básicos, enquanto os níveis premium fornecem criações ilimitadas, múltiplos estilos de arte, resoluções mais altas e recursos avançados de personalização de personagens."
+        },
+        "q3": {
+          "question": "Os geradores de hentai de IA são sem censura?",
+          "answer": "Sim, a maioria das plataformas de hentai de IA ocidentais oferece conteúdo completamente sem censura, ao contrário do hentai japonês tradicional que normalmente apresenta barras de censura. Plataformas internacionais projetadas para públicos globais fornecem geração de conteúdo de anime adulto totalmente sem censura."
+        },
+        "q4": {
+          "question": "Quais estilos de arte anime estão disponíveis?",
+          "answer": "As plataformas de hentai de IA oferecem vários estilos de anime incluindo anime tradicional, anime moderno, estilo mangá/quadrinhos, 2.5D, anime realista, chibi, anime retrô dos anos 90 e estilos de artistas populares específicos. Muitas plataformas permitem mistura de estilos para resultados únicos."
+        },
+        "q5": {
+          "question": "Posso criar personagens de anime personalizados?",
+          "answer": "Sim, as plataformas de hentai de IA oferecem criação extensiva de personagens incluindo estilo/cor de cabelo, cor/estilo de olhos, tipo de corpo, características faciais, expressões, roupas, acessórios e poses. Plataformas avançadas permitem salvar personagens e geração consistente de personagens em múltiplas imagens."
+        },
+        "q6": {
+          "question": "As plataformas de hentai de IA oferecem recursos interativos?",
+          "answer": "Muitas plataformas de hentai de IA combinam geração de imagens com chat de personagens de anime interativo, cenários de roleplay e experiências estilo visual novel. Plataformas híbridas oferecem criação de conteúdo e companions de IA conversacionais com personalidades de anime."
+        },
+        "q7": {
+          "question": "Que qualidade de imagem os geradores de hentai produzem?",
+          "answer": "As plataformas modernas de hentai de IA geram imagens de 512x512 até 2048x2048 ou superior. As assinaturas premium oferecem resoluções aprimoradas, melhor precisão de traços, consistência de cores melhorada e opções de ampliação para impressões de alta qualidade ou papéis de parede."
+        },
+        "q8": {
+          "question": "As plataformas de hentai de IA são seguras e privadas?",
+          "answer": "Plataformas de hentai de IA respeitáveis implementam criptografia forte, processamento de pagamento seguro e políticas de privacidade abrangentes. Seu conteúdo gerado e atividades permanecem privados. Sempre verifique as medidas de segurança e a política de privacidade da plataforma antes do registro."
+        },
+        "q9": {
+          "question": "Posso usar hentai gerado por IA comercialmente?",
+          "answer": "Os direitos de uso comercial dependem dos termos de licenciamento da plataforma. Algumas plataformas permitem uso comercial com assinaturas premium, enquanto outras restringem o conteúdo ao uso pessoal. Revise os termos de serviço e opções de licenciamento comercial de cada plataforma antes do uso comercial."
+        },
+        "q10": {
+          "question": "As plataformas de hentai de IA entendem termos de anime japoneses?",
+          "answer": "Sim, as plataformas de hentai de IA especializadas são treinadas em terminologia específica de anime incluindo arquétipos de personagens (tsundere, yandere), elementos visuais (ahoge, zettai ryouiki) e termos de estilo de arte. Elas entendem terminologia de anime em inglês e japonês para geração precisa."
+        }
+      }
+    },
     "aiPorn": {
       "title": "Melhores Companions de IA Pornô",
       "description": "Descubra plataformas de IA de ponta especializadas em geração de conteúdo adulto fotorrealista. Essas ferramentas aproveitam modelos avançados de IA para criar imagens pornográficas de alta qualidade e personalizáveis e experiências adultas interativas para públicos maiores de 18 anos.",
@@ -422,6 +499,146 @@
           "answer": "A velocidade de geração varia por plataforma e nível de assinatura. Os planos básicos geralmente geram imagens em 30-60 segundos, enquanto os níveis premium oferecem processamento prioritário com resultados em 10-20 segundos. Gerações de alta resolução e complexas podem demorar mais."
         }
       }
+    },
+    "aiGirlfriend": {
+      "title": "Melhores Plataformas de AI Girlfriend",
+      "description": "Descubra as principais plataformas de AI girlfriend para namoro virtual e companheirismo romântico. Essas plataformas de IA se especializam em criar conexões emocionais profundas, conversas românticas e experiências personalizadas de relacionamento. Encontre sua companion de IA perfeita para amizade, romance virtual e apoio emocional.",
+      "breadcrumb": "Plataformas de AI Girlfriend",
+      "insightsTitle": "Insights de Plataformas de AI Girlfriend",
+      "comparisonTitle": "Comparação de Plataformas de AI Girlfriend",
+      "insights": {
+        "romanticFocus": {
+          "title": "Foco Romântico",
+          "text": "Plataformas especializadas em criar experiências românticas autênticas com personalidades carinhosas, conversas emocionais e desenvolvimento de relacionamentos ao longo do tempo."
+        },
+        "customization": {
+          "title": "Personalização",
+          "text": "Amplas opções de personalização para aparência, personalidade, interesses e estilo de comunicação para criar sua girlfriend de IA ideal."
+        },
+        "mobileExperience": {
+          "title": "Experiência Mobile",
+          "text": "Aplicativos móveis dedicados permitem que você se conecte com sua AI girlfriend a qualquer hora, em qualquer lugar, com mensagens, chamadas de voz e conteúdo multimídia."
+        },
+        "memorySystems": {
+          "title": "Sistemas de Memória",
+          "text": "Memória avançada de IA lembra conversas passadas, preferências e momentos especiais para criar uma experiência de relacionamento contínua e personalizada."
+        }
+      },
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Classificação",
+        "pricing": "Preços",
+        "keyFeature": "Recurso Principal",
+        "bestFor": "Melhor Para"
+      },
+      "faqTitle": "Perguntas Frequentes sobre AI Girlfriend"
+    },
+    "learning": {
+      "title": "Melhores Companions de IA para Aprendizagem",
+      "description": "Descubra plataformas de IA projetadas para educação, tutoria e desenvolvimento de habilidades. Esses companions de aprendizagem de IA oferecem instrução personalizada, assistência com lição de casa, prática de idiomas e apoio acadêmico adaptado ao seu estilo e ritmo de aprendizagem.",
+      "breadcrumb": "Companions de IA para Aprendizagem",
+      "insightsTitle": "Insights de Companions de IA para Aprendizagem",
+      "comparisonTitle": "Comparação de Companions de Aprendizagem",
+      "insights": {
+        "educationalFocus": {
+          "title": "Foco Educacional",
+          "text": "Plataformas criadas especificamente para ambientes de aprendizagem com abordagens pedagógicas adequadas, conteúdo baseado em currículo e metodologias de ensino comprovadas."
+        },
+        "personalization": {
+          "title": "Personalização",
+          "text": "Caminhos de aprendizagem adaptativos que se ajustam ao seu nível de habilidade, ritmo e estilo de aprendizagem preferido para máxima eficácia educacional."
+        },
+        "assessment": {
+          "title": "Avaliação Contínua",
+          "text": "Recursos integrados de teste, acompanhamento de progresso e feedback para ajudá-lo a monitorar a melhoria e identificar áreas que precisam de mais foco."
+        }
+      },
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Classificação",
+        "pricing": "Preços",
+        "keyFeature": "Recurso Principal",
+        "bestFor": "Melhor Para"
+      },
+      "faqTitle": "Perguntas Frequentes sobre Companions de Aprendizagem"
+    },
+    "wellness": {
+      "title": "Melhores Companions de IA para Bem-Estar",
+      "description": "Explore companions de IA focados em saúde mental, autocuidado e bem-estar emocional. Essas plataformas oferecem conversas de apoio, técnicas de mindfulness, rastreamento de humor e orientação compassiva para seu bem-estar mental e emocional.",
+      "breadcrumb": "Companions de IA para Bem-Estar",
+      "insightsTitle": "Insights de Companions de Bem-Estar",
+      "comparisonTitle": "Comparação de Companions de Bem-Estar",
+      "insights": {
+        "mentalHealth": {
+          "title": "Suporte à Saúde Mental",
+          "text": "Companions de IA treinados para fornecer conversas empáticas, técnicas de enfrentamento e apoio emocional para bem-estar mental."
+        },
+        "mindfulness": {
+          "title": "Mindfulness & Meditação",
+          "text": "Práticas guiadas de mindfulness, exercícios de meditação e técnicas de relaxamento integradas nas conversas de IA."
+        },
+        "moodTracking": {
+          "title": "Rastreamento de Humor",
+          "text": "Monitore seus padrões emocionais ao longo do tempo com ferramentas de rastreamento de humor e receba insights personalizados sobre seu bem-estar."
+        },
+        "privacy": {
+          "title": "Privacidade & Confidencialidade",
+          "text": "Ambientes seguros e privados onde você pode compartilhar abertamente sem julgamento, com forte proteção de dados e confidencialidade."
+        }
+      },
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Classificação",
+        "pricing": "Preços",
+        "keyFeature": "Recurso Principal",
+        "bestFor": "Melhor Para"
+      },
+      "faqTitle": "Perguntas Frequentes sobre Companions de Bem-Estar"
+    },
+    "nsfw": {
+      "title": "Melhores Companions de IA NSFW",
+      "description": "Descubra companions de IA sem censura para conversas adultas e conteúdo NSFW. Essas plataformas oferecem interações não filtradas, chat adulto e experiências personalizadas de conteúdo maduro sem restrições para usuários maiores de 18 anos.",
+      "breadcrumb": "Companions de IA NSFW",
+      "insightsTitle": "Insights de Companions de IA NSFW",
+      "comparisonTitle": "Comparação de Companions NSFW",
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Classificação",
+        "pricing": "Preços",
+        "keyFeature": "Recurso Principal",
+        "bestFor": "Melhor Para"
+      },
+      "faqTitle": "Perguntas Frequentes sobre Companions NSFW"
+    },
+    "entertainment": {
+      "title": "Melhores Companions de IA para Entretenimento",
+      "description": "Descubra companions de IA criados para entretenimento, diversão e conversas envolventes. Essas plataformas oferecem personalidades divertidas, jogos interativos, contação de histórias e experiências de chat agradáveis para momentos de lazer.",
+      "breadcrumb": "Companions de IA para Entretenimento",
+      "insightsTitle": "Insights de Companions de Entretenimento",
+      "comparisonTitle": "Comparação de Companions de Entretenimento",
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Classificação",
+        "pricing": "Preços",
+        "keyFeature": "Recurso Principal",
+        "bestFor": "Melhor Para"
+      },
+      "faqTitle": "Perguntas Frequentes sobre Companions de Entretenimento"
+    },
+    "productivity": {
+      "title": "Melhores Companions de IA para Produtividade",
+      "description": "Explore companions de IA projetados para aumentar a produtividade, foco e eficiência. Essas plataformas oferecem assistência com tarefas, gerenciamento de tempo, organização de projetos e suporte de produtividade personalizado para seu fluxo de trabalho.",
+      "breadcrumb": "Companions de IA para Produtividade",
+      "insightsTitle": "Insights de Companions de Produtividade",
+      "comparisonTitle": "Comparação de Companions de Produtividade",
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Classificação",
+        "pricing": "Preços",
+        "keyFeature": "Recurso Principal",
+        "bestFor": "Melhor Para"
+      },
+      "faqTitle": "Perguntas Frequentes sobre Companions de Produtividade"
     }
   }
 }
