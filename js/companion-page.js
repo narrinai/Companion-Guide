@@ -505,15 +505,15 @@ class CompanionPageManager {
             }
         }
 
-        // Update verdict section
+        // IMPORTANT: Replace verdict section content (clears English, adds translation)
         const verdictTextDiv = verdictSection.querySelector('.verdict-text');
-        if (verdictTextDiv && verdictHtml) {
-            verdictTextDiv.innerHTML = verdictHtml;
+        if (verdictTextDiv) {
+            verdictTextDiv.innerHTML = verdictHtml || ''; // Replace completely
         }
 
-        // Update or create personal experience section
-        if (personalExpHtml && personalExpSection) {
-            personalExpSection.innerHTML = personalExpHtml;
+        // IMPORTANT: Replace personal experience section (clears English, adds translation)
+        if (personalExpSection) {
+            personalExpSection.innerHTML = personalExpHtml || ''; // Replace completely, even if empty
         }
 
         console.log('✅ Updated verdict and personal experience sections');
