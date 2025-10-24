@@ -5299,16 +5299,16 @@ footer {
     .language-switcher {
         margin-left: auto;
         order: 2;
-        z-index: 1000000;
-        position: relative;
+        z-index: 1000000 !important;
+        position: relative !important;
     }
 
     .lang-current {
         padding: var(--space-2) var(--space-3);
         font-size: 0.875rem;
         min-width: auto;
-        z-index: 1000000;
-        position: relative;
+        z-index: 1000000 !important;
+        position: relative !important;
     }
 
     .hamburger {
@@ -5318,11 +5318,12 @@ footer {
     }
 
     .lang-dropdown {
-        right: 0;
-        left: auto;
-        min-width: 120px;
-        z-index: 1000001;
-        position: absolute;
+        right: 0 !important;
+        left: auto !important;
+        min-width: 120px !important;
+        z-index: 1000001 !important;
+        position: fixed !important;
+        top: 70px !important;
     }
 
     .lang-option {
