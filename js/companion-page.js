@@ -30,6 +30,9 @@ class CompanionPageManager {
 
         // Update pricing if available
         this.updatePricing();
+
+        // Load and update my_verdict for translated pages (PT/NL)
+        await this.loadAndUpdateVerdict();
     }
 
     async waitForCompanionManager() {
@@ -385,6 +388,83 @@ class CompanionPageManager {
     updateCompanionData(data) {
         this.companionData = data;
         this.updatePageContent();
+    }
+
+    /**
+     * Load and update my_verdict content from Airtable for translated pages
+     */
+    async loadAndUpdateVerdict() {
+        // Detect language from URL path
+        const path = window.location.pathname;
+        const langMatch = path.match(/^\/(pt|nl)\//);
+
+        // Only load for PT or NL pages
+        if (!langMatch) {
+            console.log('English page - skipping verdict translation');
+            return;
+        }
+
+        const language = langMatch[1];
+        console.log(`Loading ${language.toUpperCase()} verdict for: ${this.companionId}`);
+
+        try {
+            // Fetch translation from Netlify function
+            const response = await fetch(`/.netlify/functions/get-translations?slug=${this.companionId}&lang=${language}`);
+
+            if (!response.ok) {
+                console.warn(`Failed to fetch ${language} translation:`, response.status);
+                return;
+            }
+
+            const data = await response.json();
+
+            if (!data.my_verdict) {
+                console.warn(`No my_verdict found for ${this.companionId} in ${language}`);
+                return;
+            }
+
+            // Update the verdict section with translated content
+            this.updateVerdictSection(data.my_verdict);
+            console.log(`✅ Updated verdict section with ${language.toUpperCase()} translation`);
+
+        } catch (error) {
+            console.error('Error loading verdict translation:', error);
+        }
+    }
+
+    /**
+     * Update the verdict section with translated content
+     */
+    updateVerdictSection(verdictText) {
+        const verdictTextDiv = document.querySelector('.verdict-text');
+
+        if (!verdictTextDiv) {
+            console.warn('Verdict section not found on page');
+            return;
+        }
+
+        // Convert plain text to HTML paragraphs
+        const paragraphs = verdictText.split(/\n\n+/);
+        let html = '';
+
+        for (const paragraph of paragraphs) {
+            const trimmed = paragraph.trim();
+            if (!trimmed) continue;
+
+            // Check if it looks like a heading (short, no periods, not a bullet)
+            if (trimmed.length < 100 && !trimmed.includes('.') && !trimmed.startsWith('-')) {
+                html += `<h3>${trimmed}</h3>\n`;
+            } else if (trimmed.startsWith('-')) {
+                // Bullet point
+                html += `<p>${trimmed}</p>\n`;
+            } else {
+                // Regular paragraph
+                html += `<p>${trimmed}</p>\n\n`;
+            }
+        }
+
+        // Update the content
+        verdictTextDiv.innerHTML = html;
     }
 }
 
