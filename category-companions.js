@@ -160,8 +160,21 @@ class CategoryCompanions {
 
     generateBestFor(companion) {
         // Generate "Best For" based on companion's features and categories
-        const features = companion.features || [];
         const categories = companion.categories || [];
+
+        // Parse features if it's a string
+        let features = [];
+        if (companion.features) {
+            if (typeof companion.features === 'string') {
+                try {
+                    features = JSON.parse(companion.features);
+                } catch (e) {
+                    features = [];
+                }
+            } else if (Array.isArray(companion.features)) {
+                features = companion.features;
+            }
+        }
 
         // Parse pricing_plans if it's a string
         let pricingPlans = [];
