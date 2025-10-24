@@ -227,8 +227,21 @@ class CategoryCompanions {
 
     getKeyFeature(companion) {
         // Extract the most prominent key feature
-        const features = companion.features || [];
         const categories = companion.categories || [];
+
+        // Parse features if it's a string
+        let features = [];
+        if (companion.features) {
+            if (typeof companion.features === 'string') {
+                try {
+                    features = JSON.parse(companion.features);
+                } catch (e) {
+                    features = [];
+                }
+            } else if (Array.isArray(companion.features)) {
+                features = companion.features;
+            }
+        }
 
         if (features.length > 0 && features[0].title) {
             return features[0].title;
@@ -278,30 +291,40 @@ class CategoryCompanions {
         console.log(`Rendering comparison table with ${this.companions.length} companions`);
 
         // Generate table rows from companions data
-        const tableRows = this.companions.map(companion => {
-            const pricing = this.getPricingText(companion);
-            const keyFeature = this.getKeyFeature(companion);
-            const bestFor = this.generateBestFor(companion);
-            const slug = companion.slug || 'unknown';
+        try {
+            const tableRows = this.companions.map(companion => {
+                try {
+                    const pricing = this.getPricingText(companion);
+                    const keyFeature = this.getKeyFeature(companion);
+                    const bestFor = this.generateBestFor(companion);
+                    const slug = companion.slug || 'unknown';
 
-            // Generate companion URL with proper language prefix
-            const companionUrl = window.i18n && window.i18n.initialized
-                ? window.i18n.getCompanionUrl(slug)
-                : `/companions/${slug}`;
+                    // Generate companion URL with proper language prefix
+                    const companionUrl = window.i18n && window.i18n.initialized
+                        ? window.i18n.getCompanionUrl(slug)
+                        : `/companions/${slug}`;
 
-            return `
-                <tr>
-                    <td><strong><a href="${companionUrl}">${companion.name}</a></strong></td>
-                    <td>${companion.rating.toFixed(1)}/10</td>
-                    <td>${pricing}</td>
-                    <td>${keyFeature}</td>
-                    <td>${bestFor}</td>
-                </tr>
-            `;
-        }).join('');
+                    return `
+                        <tr>
+                            <td><strong><a href="${companionUrl}">${companion.name}</a></strong></td>
+                            <td>${companion.rating.toFixed(1)}/10</td>
+                            <td>${pricing}</td>
+                            <td>${keyFeature}</td>
+                            <td>${bestFor}</td>
+                        </tr>
+                    `;
+                } catch (error) {
+                    console.error(`Error rendering row for companion ${companion.name}:`, error);
+                    return ''; // Skip this companion
+                }
+            }).join('');
 
-        tableBody.innerHTML = tableRows;
-        console.log('Comparison table rendered successfully');
+            tableBody.innerHTML = tableRows;
+            console.log('Comparison table rendered successfully');
+        } catch (error) {
+            console.error('Error rendering comparison table:', error);
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px; color: red;">Error rendering table. Check console for details.</td></tr>';
+        }
     }
 
     getPricingText(companion) {
