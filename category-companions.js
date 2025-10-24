@@ -252,13 +252,13 @@ class CategoryCompanions {
     renderComparisonTable() {
         const tableBody = document.querySelector('.comparison-table tbody');
         if (!tableBody) {
-            console.log('Comparison table tbody not found');
+            console.error('Comparison table tbody not found - table may not exist on this page');
             return;
         }
 
         if (!this.companions || this.companions.length === 0) {
-            console.log('No companions data available for table');
-            tableBody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Loading...</td></tr>';
+            console.warn('No companions data available for comparison table');
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px;">No companions found for this category</td></tr>';
             return;
         }
 
