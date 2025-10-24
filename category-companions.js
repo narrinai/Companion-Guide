@@ -412,9 +412,12 @@ class CategoryCompanions {
 
                 const freePlan = plans.find(plan => plan.price === 0);
                 if (freePlan) {
+                    const freeTrialText = window.i18n && window.i18n.initialized
+                        ? window.i18n.t('companionCard.freeTrial')
+                        : 'Free trial';
                     pricingInfo = `
                         <div class="pricing-section">
-                            <div class="price-main">Free trial</div>
+                            <div class="price-main">${freeTrialText}</div>
                         </div>
                     `;
                 }
@@ -428,6 +431,20 @@ class CategoryCompanions {
                 ? window.i18n.t('companionCard.bestFor')
                 : 'Best for:';
 
+            // Get i18n translations for card text
+            const readReviewText = window.i18n && window.i18n.initialized
+                ? window.i18n.t('companionCard.readReview')
+                : 'Read Review';
+            const visitWebsiteText = window.i18n && window.i18n.initialized
+                ? window.i18n.t('companionCard.visitWebsite')
+                : 'Visit Website';
+            const reviewsText = window.i18n && window.i18n.initialized
+                ? window.i18n.t('companionCard.reviews')
+                : 'reviews';
+            const freeTrialText = window.i18n && window.i18n.initialized
+                ? window.i18n.t('companionCard.freeTrial')
+                : 'Free trial';
+
             return `
                 <article class="companion-card${companion.featured ? ' featured' : ''}">
                     ${productBadge ? `<div class="product-badge">${productBadge}</div>` : ''}
@@ -438,7 +455,7 @@ class CategoryCompanions {
                             <div class="rating-line">
                                 <span class="stars">${this.generateStarRating(rating)}</span>
                                 <span class="rating-score">${rating.toFixed(1)}/10</span>
-                                ${reviewCount > 0 ? `<span class="review-count">(${reviewCount} reviews)</span>` : ''}
+                                ${reviewCount > 0 ? `<span class="review-count">(${reviewCount} ${reviewsText})</span>` : ''}
                             </div>
                         </div>
                     </div>
@@ -449,8 +466,8 @@ class CategoryCompanions {
                         <span class="best-for-label">${bestForLabel}</span> ${bestFor}
                     </div>` : ''}
                     <div class="card-actions">
-                        <a href="${companionUrl}" class="btn-secondary">Read Review</a>
-                        <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">Visit Website</a>
+                        <a href="${companionUrl}" class="btn-secondary">${readReviewText}</a>
+                        <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">${visitWebsiteText}</a>
                     </div>
                 </article>
             `;
