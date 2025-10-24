@@ -347,6 +347,39 @@
       "title": "Melhores Companions de IA com Vídeo",
       "description": "Experimente o próximo nível de companheirismo de IA com capacidades de vídeo. Estas plataformas oferecem videochat, vídeos gerados por IA e experiências visuais imersivas que trazem seus companions de IA à vida. De namoro virtual com chamadas de vídeo a mensagens de vídeo personalizadas, descubra plataformas que vão além de texto e voz.",
       "breadcrumb": "Companions de IA com Vídeo"
+    },
+    "aiPorn": {
+      "title": "Melhores Companions de IA Pornô",
+      "description": "Descubra plataformas de IA de ponta especializadas em geração de conteúdo adulto fotorrealista. Essas ferramentas aproveitam modelos avançados de IA para criar imagens pornográficas de alta qualidade e personalizáveis e experiências adultas interativas para públicos maiores de 18 anos.",
+      "breadcrumb": "Plataformas de IA Pornô",
+      "insightsTitle": "Insights de Plataformas de IA Pornô",
+      "comparisonTitle": "Comparação de Plataformas de IA Pornô",
+      "insights": {
+        "photorealistic": {
+          "title": "Geração Fotorrealista",
+          "text": "Modelos de IA de última geração produzem imagens adultas incrivelmente realistas com texturas detalhadas, poses naturais e resultados realistas que rivalizam com fotografia profissional."
+        },
+        "customization": {
+          "title": "Personalização Completa",
+          "text": "Personalize cada aspecto incluindo aparência, etnia, tipo de corpo, poses, cenários, iluminação e fundos para criar sua visão perfeita."
+        },
+        "privacy": {
+          "title": "Privacidade Completa",
+          "text": "Criptografia avançada e protocolos de privacidade garantem que seu conteúdo gerado e atividades permaneçam completamente confidenciais e seguros."
+        },
+        "technology": {
+          "title": "Tecnologia de IA Inteligente",
+          "text": "IA avançada entende prompts complexos e entrega resultados precisos, com melhorias contínuas através de aprendizado de máquina."
+        }
+      },
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Classificação",
+        "pricing": "Preços",
+        "keyFeature": "Recurso Principal",
+        "bestFor": "Melhor Para"
+      },
+      "faqTitle": "Perguntas Frequentes sobre IA Pornô"
     }
   }
 }
