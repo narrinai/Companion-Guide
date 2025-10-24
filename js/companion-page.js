@@ -163,6 +163,12 @@ class CompanionPageManager {
     }
 
     updateRating() {
+        // Skip rating update for PT/NL pages - use hardcoded HTML rating
+        const path = window.location.pathname;
+        if (path.match(/^\/(pt|nl)\//)) {
+            return;
+        }
+
         if (!this.companionData.rating) return;
 
         const ratingElement = document.querySelector('.rating');
@@ -436,35 +442,81 @@ class CompanionPageManager {
      * Update the verdict section with translated content
      */
     updateVerdictSection(verdictText) {
-        const verdictTextDiv = document.querySelector('.verdict-text');
+        // Find both verdict and personal-experience sections
+        const verdictSection = document.querySelector('.verdict, section.verdict');
+        const personalExpSection = document.querySelector('.personal-experience, section.personal-experience');
 
-        if (!verdictTextDiv) {
+        if (!verdictSection) {
             console.warn('Verdict section not found on page');
             return;
         }
 
-        // Convert plain text to HTML paragraphs
-        const paragraphs = verdictText.split(/\n\n+/);
-        let html = '';
+        // Split the my_verdict content into lines
+        const lines = verdictText.split('\n');
+        let verdictHtml = '';
+        let personalExpHtml = '';
+        let inPersonalExp = false;
+        let prosHtml = '';
+        let inPros = false;
 
-        for (const paragraph of paragraphs) {
-            const trimmed = paragraph.trim();
-            if (!trimmed) continue;
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
 
-            // Check if it looks like a heading (short, no periods, not a bullet)
-            if (trimmed.length < 100 && !trimmed.includes('.') && !trimmed.startsWith('-')) {
-                html += `<h3>${trimmed}</h3>\n`;
-            } else if (trimmed.startsWith('-')) {
-                // Bullet point
-                html += `<p>${trimmed}</p>\n`;
+            // Check if we're entering personal experience section
+            if (line.includes('My ') && line.includes('Week') && line.includes('Experience')) {
+                inPersonalExp = true;
+                personalExpHtml += `<h2>${line}</h2>\n`;
+                continue;
+            }
+
+            // Check if we're in pros section
+            if (line.toLowerCase().includes('what genuinely impressed') ||
+                line.toLowerCase().includes('what impressed me') ||
+                line.toLowerCase().includes('companion.pros')) {
+                inPros = true;
+                continue;
+            }
+
+            // Build HTML based on current section
+            if (inPersonalExp) {
+                // Check for headings (H3 and H4)
+                if (line.length < 100 && line.match(/^(Week \d+|Day \d+|The |When |How |My |A |An |During |After |Before |Final |Month |Today )/i)) {
+                    // Determine if H3 or H4
+                    if (line.startsWith('Week ') || line.includes('Experience') || line.length < 50) {
+                        personalExpHtml += `<h3>${line}</h3>\n`;
+                    } else {
+                        personalExpHtml += `<h4>${line}</h4>\n`;
+                    }
+                } else if (line.startsWith('-')) {
+                    personalExpHtml += `<li>${line.substring(1).trim()}</li>\n`;
+                } else {
+                    personalExpHtml += `<p>${line}</p>\n`;
+                }
+            } else if (inPros) {
+                prosHtml += `<li>${line}</li>\n`;
             } else {
-                // Regular paragraph
-                html += `<p>${trimmed}</p>\n\n`;
+                // Verdict section
+                if (line.length < 100 && !line.includes('.') && !line.startsWith('-')) {
+                    verdictHtml += `<h3>${line}</h3>\n`;
+                } else {
+                    verdictHtml += `<p>${line}</p>\n`;
+                }
             }
         }
 
-        // Update the content
-        verdictTextDiv.innerHTML = html;
+        // Update verdict section
+        const verdictTextDiv = verdictSection.querySelector('.verdict-text');
+        if (verdictTextDiv && verdictHtml) {
+            verdictTextDiv.innerHTML = verdictHtml;
+        }
+
+        // Update or create personal experience section
+        if (personalExpHtml && personalExpSection) {
+            personalExpSection.innerHTML = personalExpHtml;
+        }
+
+        console.log('✅ Updated verdict and personal experience sections');
     }
 }
 
