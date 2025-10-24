@@ -181,7 +181,8 @@ class CategoryCompanions {
         if (companion.pricing_plans) {
             if (typeof companion.pricing_plans === 'string') {
                 try {
-                    pricingPlans = JSON.parse(companion.pricing_plans);
+                    const parsed = JSON.parse(companion.pricing_plans);
+                    pricingPlans = Array.isArray(parsed) ? parsed : [];
                 } catch (e) {
                     pricingPlans = [];
                 }
@@ -194,7 +195,7 @@ class CategoryCompanions {
         const hasImageGen = categories.includes('image-gen');
         const hasVideo = categories.includes('video');
         const hasVoice = features.some(f => f.title && f.title.toLowerCase().includes('voice'));
-        const isFree = pricingPlans.length > 0 && pricingPlans.some(p => p.price === 0);
+        const isFree = Array.isArray(pricingPlans) && pricingPlans.length > 0 && pricingPlans.some(p => p.price === 0);
         const hasMemory = features.some(f => f.title && (f.title.toLowerCase().includes('memory') || f.title.toLowerCase().includes('remember')));
 
         // Determine best for based on features - prioritize unique combinations
