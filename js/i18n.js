@@ -135,7 +135,7 @@ class I18n {
     }
     // Use query parameter instead of URL prefix
     // This way we use the same English HTML file with i18n translations applied
-    return `/companions/${slug}?lang=${this.currentLang}`;
+    return `/${this.currentLang}/companions/${slug}`;
   }
 
   /**
@@ -146,7 +146,7 @@ class I18n {
       return `/categories/${slug}`;
     }
     // Use query parameter instead of URL prefix
-    return `/categories/${slug}?lang=${this.currentLang}`;
+    return `/${this.currentLang}/categories/${slug}`;
   }
 
   /**
@@ -157,7 +157,7 @@ class I18n {
       return `/news/${slug}`;
     }
     // Use query parameter instead of URL prefix
-    return `/news/${slug}?lang=${this.currentLang}`;
+    return `/${this.currentLang}/news/${slug}`;
   }
 
   /**
