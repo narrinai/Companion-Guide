@@ -42,31 +42,10 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // First, find the companion by slug
-    const companionRecords = await base(process.env.AIRTABLE_TABLE_ID_CG)
-      .select({
-        filterByFormula: `{slug} = "${slug}"`,
-        maxRecords: 1
-      })
-      .all();
-
-    if (companionRecords.length === 0) {
-      return {
-        statusCode: 404,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ error: 'Companion not found' })
-      };
-    }
-
-    const companionRecordId = companionRecords[0].id;
-
-    // Get translation for this companion in the specified language
+    // Query translation directly by slug (from lookup field) and language
     const translationRecords = await base(process.env.AIRTABLE_TRANSLATIONS_TABLE_ID_CG)
       .select({
-        filterByFormula: `AND({language} = "${lang}", FIND("${companionRecordId}", ARRAYJOIN({companion})))`,
+        filterByFormula: `AND({language} = "${lang}", FIND("${slug}", ARRAYJOIN({slug (from companion)})))`,
         maxRecords: 1
       })
       .all();
