@@ -189,9 +189,21 @@ header .nav-menu {
 
 /* On mobile, override the desktop nav-menu styling */
 @media (max-width: 768px) {
+    /* Make nav container wrap properly */
+    header nav,
+    header nav.container {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 1rem 1.5rem !important;
+    }
+
     /* Make logo smaller on mobile */
     header nav h1 {
         font-size: 1.1rem !important;
+        order: 1;
+        flex: 0 0 auto;
     }
 
     header nav h1 a {
@@ -5299,7 +5311,7 @@ footer {
     .language-switcher {
         margin-left: auto;
         order: 2;
-        z-index: 1000000 !important;
+        z-index: 10000000 !important;
         position: relative !important;
     }
 
@@ -5307,21 +5319,21 @@ footer {
         padding: var(--space-2) var(--space-3);
         font-size: 0.875rem;
         min-width: auto;
-        z-index: 1000000 !important;
+        z-index: 10000000 !important;
         position: relative !important;
     }
 
     .hamburger {
         order: 3;
         margin-left: var(--space-3);
-        z-index: 1000;
+        z-index: 9999999 !important;
     }
 
     .lang-dropdown {
         right: 0 !important;
         left: auto !important;
         min-width: 120px !important;
-        z-index: 1000001 !important;
+        z-index: 10000001 !important;
         position: fixed !important;
         top: 70px !important;
     }
