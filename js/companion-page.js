@@ -606,11 +606,14 @@ class CompanionPageManager {
      * Render features from Airtable with translation support
      */
     renderFeatures() {
+        console.log('🎨 renderFeatures() called');
         const container = document.getElementById('dynamic-features');
         if (!container) {
-            console.log('Dynamic features container not found');
+            console.warn('⚠️ Dynamic features container not found');
             return;
         }
+
+        console.log('✅ Container found:', container);
 
         // Default fallback features for Dream Companion
         const fallbackFeatures = [
@@ -623,6 +626,7 @@ class CompanionPageManager {
         let features = null;
 
         if (this.companionData) {
+            console.log('📦 Companion data available:', this.companionData);
             // Get current language
             const currentLang = window.i18n && window.i18n.initialized ? window.i18n.language : 'en';
 
@@ -632,27 +636,32 @@ class CompanionPageManager {
             // If we're on a translated page (PT/NL), try to get translated features
             if (currentLang !== 'en' && this.companionData[`features_${currentLang}`]) {
                 features = this.companionData[`features_${currentLang}`];
+                console.log(`🌍 Using ${currentLang} features`);
             }
 
             // Parse features if it's a string
             if (typeof features === 'string') {
                 try {
                     features = JSON.parse(features);
+                    console.log('✅ Parsed features from string');
                 } catch (e) {
-                    console.error('Failed to parse features:', e);
+                    console.error('❌ Failed to parse features:', e);
                     features = null;
                 }
             }
 
             // Check if features is valid array
             if (!Array.isArray(features) || features.length === 0) {
+                console.log('⚠️ Features not valid array or empty');
                 features = null;
             }
+        } else {
+            console.log('⚠️ No companion data available');
         }
 
         // Use fallback if no features from Airtable
         if (!features) {
-            console.log('Using fallback features');
+            console.log('💾 Using fallback features');
             features = fallbackFeatures;
         }
 
@@ -665,7 +674,8 @@ class CompanionPageManager {
         `).join('');
 
         container.innerHTML = featuresHtml;
-        console.log(`✅ Rendered ${features.length} features`);
+        console.log(`✅ Rendered ${features.length} features to container`);
+        console.log('📄 HTML:', featuresHtml.substring(0, 200) + '...');
     }
 }
 
