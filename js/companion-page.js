@@ -31,6 +31,9 @@ class CompanionPageManager {
         // Update pricing if available
         this.updatePricing();
 
+        // Render features from Airtable
+        this.renderFeatures();
+
         // Load and update my_verdict for translated pages (PT/NL)
         await this.loadAndUpdateVerdict();
 
@@ -597,6 +600,60 @@ class CompanionPageManager {
             .split('-')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ');
+    }
+
+    /**
+     * Render features from Airtable with translation support
+     */
+    renderFeatures() {
+        const container = document.getElementById('dynamic-features');
+        if (!container) {
+            console.log('Dynamic features container not found');
+            return;
+        }
+
+        if (!this.companionData) {
+            console.warn('No companion data available for features');
+            return;
+        }
+
+        // Get current language
+        const currentLang = window.i18n && window.i18n.initialized ? window.i18n.language : 'en';
+
+        // Get features - check for translated version first
+        let features = this.companionData.features;
+
+        // If we're on a translated page (PT/NL), try to get translated features
+        if (currentLang !== 'en' && this.companionData[`features_${currentLang}`]) {
+            features = this.companionData[`features_${currentLang}`];
+        }
+
+        // Parse features if it's a string
+        if (typeof features === 'string') {
+            try {
+                features = JSON.parse(features);
+            } catch (e) {
+                console.error('Failed to parse features:', e);
+                return;
+            }
+        }
+
+        // Ensure features is an array
+        if (!Array.isArray(features) || features.length === 0) {
+            console.warn('No features available');
+            return;
+        }
+
+        // Render feature cards
+        const featuresHtml = features.map(feature => `
+            <div class="highlight-item">
+                <strong>${feature.icon ? feature.icon + ' ' : ''}${feature.title}:</strong>
+                <span>${feature.description || feature.text || ''}</span>
+            </div>
+        `).join('');
+
+        container.innerHTML = featuresHtml;
+        console.log(`✅ Rendered ${features.length} features in ${currentLang}`);
     }
 }
 
