@@ -351,18 +351,30 @@ class CategoryCompanions {
                 return 'Free';
             }
 
-            const lowestPrice = Math.min(...plans.map(plan => parseFloat(plan.price || 0)));
+            // Extract currency symbol from first plan with a price
+            const firstPlanWithPrice = plans.find(p => p.price && p.price.toString().trim());
+            const currencySymbol = firstPlanWithPrice && firstPlanWithPrice.price ?
+                (firstPlanWithPrice.price.toString().match(/[$€£¥₹]/)?.[0] || '$') : '$';
+
+            // Helper to parse price (strip non-numeric except decimal point)
+            const parsePrice = (priceStr) => {
+                if (!priceStr) return 0;
+                const cleaned = priceStr.toString().replace(/[^0-9.]/g, '');
+                return parseFloat(cleaned) || 0;
+            };
+
+            const lowestPrice = Math.min(...plans.map(plan => parsePrice(plan.price)));
 
             if (lowestPrice === 0) {
-                const paidPlans = plans.filter(p => parseFloat(p.price || 0) > 0);
+                const paidPlans = plans.filter(p => parsePrice(p.price) > 0);
                 if (paidPlans.length > 0) {
-                    const lowestPaid = Math.min(...paidPlans.map(p => parseFloat(p.price)));
-                    return `Free + $${lowestPaid.toFixed(2)}/month`;
+                    const lowestPaid = Math.min(...paidPlans.map(p => parsePrice(p.price)));
+                    return `Free + ${currencySymbol}${lowestPaid.toFixed(2)}/month`;
                 }
                 return 'Free';
             }
 
-            return `$${lowestPrice.toFixed(2)}/month`;
+            return `${currencySymbol}${lowestPrice.toFixed(2)}/month`;
         } catch (error) {
             console.error('Error getting pricing text:', error);
             return 'Free';

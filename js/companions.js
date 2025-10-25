@@ -191,13 +191,21 @@ class CompanionManager {
       return freeTrial;
     }
 
-    const lowestPrice = Math.min(...plans.map(plan => parseFloat(plan.price || 0)));
+    // Helper to parse price (handle both numbers and strings with currency symbols)
+    const parsePrice = (priceValue) => {
+      if (!priceValue) return 0;
+      if (typeof priceValue === 'number') return priceValue;
+      const cleaned = priceValue.toString().replace(/[^0-9.]/g, '');
+      return parseFloat(cleaned) || 0;
+    };
+
+    const lowestPrice = Math.min(...plans.map(plan => parsePrice(plan.price)));
 
     // Show "Free trial" if lowest price is 0, otherwise show "From $X/month"
     if (lowestPrice === 0) {
       return freeTrial;
     } else {
-      return `${fromPrice} $${lowestPrice}/month`;
+      return `${fromPrice} $${lowestPrice.toFixed(2)}/month`;
     }
   }
 
