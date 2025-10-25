@@ -612,36 +612,48 @@ class CompanionPageManager {
             return;
         }
 
-        if (!this.companionData) {
-            console.warn('No companion data available for features');
-            return;
-        }
+        // Default fallback features for Dream Companion
+        const fallbackFeatures = [
+            {icon: "💬", title: "Imaginative AI Chat", description: "Captivating conversations that spark imagination"},
+            {icon: "🖼️", title: "Realistic Images", description: "Precise visuals bringing fantasies to life"},
+            {icon: "🎨", title: "Consistent Characters", description: "Well-crafted personalities that stay true"},
+            {icon: "🧠", title: "Long-Term Memory", description: "Remembers preferences and past interactions"}
+        ];
 
-        // Get current language
-        const currentLang = window.i18n && window.i18n.initialized ? window.i18n.language : 'en';
+        let features = null;
 
-        // Get features - check for translated version first
-        let features = this.companionData.features;
+        if (this.companionData) {
+            // Get current language
+            const currentLang = window.i18n && window.i18n.initialized ? window.i18n.language : 'en';
 
-        // If we're on a translated page (PT/NL), try to get translated features
-        if (currentLang !== 'en' && this.companionData[`features_${currentLang}`]) {
-            features = this.companionData[`features_${currentLang}`];
-        }
+            // Get features - check for translated version first
+            features = this.companionData.features;
 
-        // Parse features if it's a string
-        if (typeof features === 'string') {
-            try {
-                features = JSON.parse(features);
-            } catch (e) {
-                console.error('Failed to parse features:', e);
-                return;
+            // If we're on a translated page (PT/NL), try to get translated features
+            if (currentLang !== 'en' && this.companionData[`features_${currentLang}`]) {
+                features = this.companionData[`features_${currentLang}`];
+            }
+
+            // Parse features if it's a string
+            if (typeof features === 'string') {
+                try {
+                    features = JSON.parse(features);
+                } catch (e) {
+                    console.error('Failed to parse features:', e);
+                    features = null;
+                }
+            }
+
+            // Check if features is valid array
+            if (!Array.isArray(features) || features.length === 0) {
+                features = null;
             }
         }
 
-        // Ensure features is an array
-        if (!Array.isArray(features) || features.length === 0) {
-            console.warn('No features available');
-            return;
+        // Use fallback if no features from Airtable
+        if (!features) {
+            console.log('Using fallback features');
+            features = fallbackFeatures;
         }
 
         // Render feature cards
@@ -653,7 +665,7 @@ class CompanionPageManager {
         `).join('');
 
         container.innerHTML = featuresHtml;
-        console.log(`✅ Rendered ${features.length} features in ${currentLang}`);
+        console.log(`✅ Rendered ${features.length} features`);
     }
 }
 
