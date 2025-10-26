@@ -627,19 +627,11 @@ class CompanionPageManager {
 
         if (this.companionData) {
             console.log('📦 Companion data available:', this.companionData);
-            // Get current language
-            const currentLang = window.i18n && window.i18n.initialized ? window.i18n.language : 'en';
 
-            // Get features - check for translated version first
+            // Get features - API already returns translated version based on language
             features = this.companionData.features;
 
-            // If we're on a translated page (PT/NL), try to get translated features
-            if (currentLang !== 'en' && this.companionData[`features_${currentLang}`]) {
-                features = this.companionData[`features_${currentLang}`];
-                console.log(`🌍 Using ${currentLang} features`);
-            }
-
-            // Parse features if it's a string
+            // Parse features if it's a string (shouldn't be needed, but safety check)
             if (typeof features === 'string') {
                 try {
                     features = JSON.parse(features);

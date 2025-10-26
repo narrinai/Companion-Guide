@@ -230,9 +230,39 @@ exports.handler = async (event, context) => {
               if (translation.meta_title) item.meta_title = translation.meta_title;
               if (translation.meta_description) item.meta_description = translation.meta_description;
               if (translation.body_text) item.body_text = translation.body_text;
-              if (translation.features) item.features = translation.features;
+
+              // Parse features from translation if available
+              if (translation.features) {
+                try {
+                  // If it's a string, parse it as JSON
+                  if (typeof translation.features === 'string') {
+                    item.features = JSON.parse(translation.features);
+                  } else {
+                    item.features = translation.features;
+                  }
+                } catch (e) {
+                  console.error(`Error parsing translated features for ${item.name} (${lang}):`, e);
+                  // Keep original features if translation parsing fails
+                }
+              }
+
               if (translation.pros_cons) item.pros_cons = translation.pros_cons;
-              if (translation.pricing_plans) item.pricing_plans = translation.pricing_plans;
+
+              // Parse pricing_plans from translation if available
+              if (translation.pricing_plans) {
+                try {
+                  // If it's a string, parse it as JSON
+                  if (typeof translation.pricing_plans === 'string') {
+                    item.pricing_plans = JSON.parse(translation.pricing_plans);
+                  } else {
+                    item.pricing_plans = translation.pricing_plans;
+                  }
+                } catch (e) {
+                  console.error(`Error parsing translated pricing_plans for ${item.name} (${lang}):`, e);
+                  // Keep original pricing_plans if translation parsing fails
+                }
+              }
+
               if (translation.my_verdict) item.my_verdict = translation.my_verdict;
               if (translation.faq) item.faq = translation.faq;
               if (translation.hero_specs) item.hero_specs = translation.hero_specs;
