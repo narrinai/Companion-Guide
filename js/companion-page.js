@@ -270,6 +270,17 @@ class CompanionPageManager {
         // Update any "What is [Platform]?" headings with multi-language support
         const whatIsHeading = document.querySelector('h2[data-i18n="companion.whatIs"], .overview h2');
         if (whatIsHeading) {
+            // Skip if heading already has correct format (i18n.js already processed it)
+            const currentText = whatIsHeading.textContent.trim();
+            const hasCorrectFormat = currentText.includes(companionName) &&
+                                    (currentText.startsWith('What is') ||
+                                     currentText.startsWith('Wat is') ||
+                                     currentText.startsWith('O que é'));
+
+            if (hasCorrectFormat) {
+                return; // i18n.js already handled this
+            }
+
             // Detect language from URL
             const path = window.location.pathname;
             const langMatch = path.match(/^\/(pt|nl)\//);
