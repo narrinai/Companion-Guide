@@ -22,12 +22,67 @@ if (!TRANSLATIONS_TABLE_ID) {
 }
 
 /**
- * Fix pricing plan text to preserve English terms
+ * Fix pricing plan text - translate general terms but preserve tech terms
  */
 function fixPricingPlanText(text, lang) {
   if (!text) return text;
 
   let fixed = text;
+
+  // First translate general terms to NL/PT
+  if (lang === 'nl') {
+    // Plan names
+    fixed = fixed.replace(/\bFree\s+Tier\b/gi, 'Gratis Tier');
+    fixed = fixed.replace(/\bFree\s+Plan\b/gi, 'Gratis Plan');
+    fixed = fixed.replace(/\bFree\s+Trial\b/gi, 'Gratis Proefversie');
+    fixed = fixed.replace(/\bFree\b(?!\s+(Dream\s+)?Coins)/gi, 'Gratis');
+    fixed = fixed.replace(/\bBasic\s+Plan\b/gi, 'Basis Plan');
+    fixed = fixed.replace(/\bPremium\s+Plan\b/gi, 'Premium Plan');
+    fixed = fixed.replace(/\bUltimate\s+Plan\b/gi, 'Ultimate Plan');
+    fixed = fixed.replace(/\bMonthly\b/gi, 'Maandelijks');
+    fixed = fixed.replace(/\bYearly\b/gi, 'Jaarlijks');
+    fixed = fixed.replace(/\bAnnual\b/gi, 'Jaarlijks');
+
+    // Features - general terms
+    fixed = fixed.replace(/\bUnlimited\b(?!\s+messages)/gi, 'Onbeperkt');
+    fixed = fixed.replace(/\bLimited\b(?!\s+(text\s+)?messages)/gi, 'Beperkt');
+    fixed = fixed.replace(/\bCreate\b/gi, 'Maak');
+    fixed = fixed.replace(/\byour\s+own\b/gi, 'je eigen');
+    fixed = fixed.replace(/\bMore\b/gi, 'Meer');
+    fixed = fixed.replace(/\bUltra\s+fast\b/gi, 'Ultra snel');
+    fixed = fixed.replace(/\bPriority\b/gi, 'Prioriteit');
+    fixed = fixed.replace(/\bBilled\s+yearly?\s+at\b/gi, 'Jaarlijks gefactureerd op');
+    fixed = fixed.replace(/\bper\s+year\b/gi, 'per jaar');
+    fixed = fixed.replace(/\bper\s+month\b/gi, 'per maand');
+    fixed = fixed.replace(/\bmonth\b/gi, 'maand');
+    fixed = fixed.replace(/\byear\b/gi, 'jaar');
+  } else if (lang === 'pt') {
+    // Plan names
+    fixed = fixed.replace(/\bFree\s+Tier\b/gi, 'Nível Gratuito');
+    fixed = fixed.replace(/\bFree\s+Plan\b/gi, 'Plano Gratuito');
+    fixed = fixed.replace(/\bFree\s+Trial\b/gi, 'Teste Gratuito');
+    fixed = fixed.replace(/\bFree\b(?!\s+(Dream\s+)?Coins)/gi, 'Grátis');
+    fixed = fixed.replace(/\bBasic\s+Plan\b/gi, 'Plano Básico');
+    fixed = fixed.replace(/\bPremium\s+Plan\b/gi, 'Plano Premium');
+    fixed = fixed.replace(/\bUltimate\s+Plan\b/gi, 'Plano Ultimate');
+    fixed = fixed.replace(/\bMonthly\b/gi, 'Mensal');
+    fixed = fixed.replace(/\bYearly\b/gi, 'Anual');
+    fixed = fixed.replace(/\bAnnual\b/gi, 'Anual');
+
+    // Features - general terms
+    fixed = fixed.replace(/\bUnlimited\b(?!\s+messages)/gi, 'Ilimitado');
+    fixed = fixed.replace(/\bLimited\b(?!\s+(text\s+)?messages)/gi, 'Limitado');
+    fixed = fixed.replace(/\bCreate\b/gi, 'Criar');
+    fixed = fixed.replace(/\byour\s+own\b/gi, 'seus próprios');
+    fixed = fixed.replace(/\bMore\b/gi, 'Mais');
+    fixed = fixed.replace(/\bUltra\s+fast\b/gi, 'Ultra rápido');
+    fixed = fixed.replace(/\bPriority\b/gi, 'Prioritário');
+    fixed = fixed.replace(/\bBilled\s+yearly?\s+at\b/gi, 'Cobrado anualmente em');
+    fixed = fixed.replace(/\bper\s+year\b/gi, 'por ano');
+    fixed = fixed.replace(/\bper\s+month\b/gi, 'por mês');
+    fixed = fixed.replace(/\bmonth\b/gi, 'mês');
+    fixed = fixed.replace(/\byear\b/gi, 'ano');
+  }
 
   // Keep these terms in English for both NL and PT
   const replacements = [
