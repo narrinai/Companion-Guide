@@ -34,8 +34,11 @@ class CompanionPageManager {
         // Render features from Airtable
         this.renderFeatures();
 
-        // Load and update my_verdict for translated pages (PT/NL)
-        await this.loadAndUpdateVerdict();
+        // Load and update translated content for PT/NL pages
+        await this.loadAndUpdateTranslations();
+
+        // Update quick-facts with hero_specs from Airtable (PT/NL)
+        this.updateQuickFactsFromHeroSpecs();
 
         // Protect quick-facts paragraphs from translation
         this.protectFactContent();
@@ -52,25 +55,86 @@ class CompanionPageManager {
     }
 
     /**
-     * Protect quick-facts paragraph content from being translated
-     * The headers are translated, but the content stays in English (companion-specific data)
+     * Update quick-facts paragraphs with hero_specs from Airtable
+     * Only runs on non-English pages (NL/PT)
+     */
+    updateQuickFactsFromHeroSpecs() {
+        // Only run for non-English pages
+        if (!window.i18n || window.i18n.currentLang === 'en') {
+            return;
+        }
+
+        // Check if companion data has hero_specs
+        if (!this.companionData || !this.companionData.hero_specs) {
+            console.log('⚠️ No hero_specs available for translation');
+            return;
+        }
+
+        try {
+            // Parse hero_specs (comes as JSON string from Airtable)
+            let heroSpecs;
+            if (typeof this.companionData.hero_specs === 'string') {
+                heroSpecs = JSON.parse(this.companionData.hero_specs);
+            } else {
+                heroSpecs = this.companionData.hero_specs;
+            }
+
+            console.log('📊 Updating quick-facts with hero_specs:', heroSpecs);
+
+            // Update each fact paragraph based on its header
+            const facts = document.querySelectorAll('.quick-facts .fact');
+            facts.forEach(fact => {
+                const header = fact.querySelector('h3');
+                const paragraph = fact.querySelector('p');
+
+                if (!header || !paragraph) return;
+
+                const headerKey = header.getAttribute('data-i18n');
+
+                // Map data-i18n keys to hero_specs keys
+                let heroSpecKey = null;
+                if (headerKey === 'companion.pricingLabel') {
+                    heroSpecKey = 'pricing';
+                } else if (headerKey === 'companion.bestForLabel') {
+                    heroSpecKey = 'best_for';
+                } else if (headerKey === 'companion.platformLabel') {
+                    heroSpecKey = 'platform';
+                } else if (headerKey === 'companion.contentPolicyLabel') {
+                    heroSpecKey = 'content_policy';
+                }
+
+                // Update paragraph with translated text if available
+                if (heroSpecKey && heroSpecs[heroSpecKey]) {
+                    paragraph.textContent = heroSpecs[heroSpecKey];
+                    console.log(`✅ Updated ${heroSpecKey}: ${heroSpecs[heroSpecKey]}`);
+                }
+            });
+
+        } catch (error) {
+            console.error('❌ Error parsing hero_specs:', error);
+        }
+    }
+
+    /**
+     * Protect quick-facts paragraph content from translation by i18n
+     * After updateQuickFactsFromHeroSpecs() has set the content
      */
     protectFactContent() {
         const factParagraphs = document.querySelectorAll('.quick-facts .fact p');
 
-        // Store original English content
+        // Store current content (from hero_specs or original English)
         const originalContent = new Map();
         factParagraphs.forEach(p => {
             originalContent.set(p, p.textContent.trim());
         });
 
-        // Use MutationObserver to watch for changes and restore original content
+        // Use MutationObserver to watch for changes and restore content
         const observer = new MutationObserver(() => {
             factParagraphs.forEach(p => {
                 const original = originalContent.get(p);
                 if (original && p.textContent.trim() !== original) {
                     p.textContent = original;
-                    console.log('✅ Protected fact content from translation');
+                    console.log('✅ Protected fact content from unwanted changes');
                 }
             });
         });
@@ -80,7 +144,7 @@ class CompanionPageManager {
             observer.observe(p, { childList: true, characterData: true, subtree: true });
         });
 
-        console.log(`🛡️ Protected ${factParagraphs.length} fact paragraphs from translation`);
+        console.log(`🛡️ Protected ${factParagraphs.length} fact paragraphs`);
     }
 
     async waitForCompanionManager() {
@@ -203,10 +267,25 @@ class CompanionPageManager {
             taglineElement.textContent = tagline;
         }
 
-        // Update any "What is [Platform]?" headings
-        const whatIsHeading = document.querySelector('h2');
-        if (whatIsHeading && whatIsHeading.textContent.includes('What is')) {
-            whatIsHeading.textContent = `What is ${companionName}?`;
+        // Update any "What is [Platform]?" headings with multi-language support
+        const whatIsHeading = document.querySelector('h2[data-i18n="companion.whatIs"], .overview h2');
+        if (whatIsHeading) {
+            // Detect language from URL
+            const path = window.location.pathname;
+            const langMatch = path.match(/^\/(pt|nl)\//);
+
+            if (langMatch) {
+                const lang = langMatch[1];
+                // Use translated "What is" text
+                if (lang === 'nl') {
+                    whatIsHeading.textContent = `Wat is ${companionName}?`;
+                } else if (lang === 'pt') {
+                    whatIsHeading.textContent = `O que é ${companionName}?`;
+                }
+            } else {
+                // English
+                whatIsHeading.textContent = `What is ${companionName}?`;
+            }
         }
     }
 
@@ -445,21 +524,21 @@ class CompanionPageManager {
     }
 
     /**
-     * Load and update my_verdict content from Airtable for translated pages
+     * Load and update translated content (verdict, tagline, body description) from Airtable for PT/NL pages
      */
-    async loadAndUpdateVerdict() {
+    async loadAndUpdateTranslations() {
         // Detect language from URL path
         const path = window.location.pathname;
         const langMatch = path.match(/^\/(pt|nl)\//);
 
         // Only load for PT or NL pages
         if (!langMatch) {
-            console.log('English page - skipping verdict translation');
+            console.log('English page - skipping translations');
             return;
         }
 
         const language = langMatch[1];
-        console.log(`Loading ${language.toUpperCase()} verdict for: ${this.companionId}`);
+        console.log(`Loading ${language.toUpperCase()} translations for: ${this.companionId}`);
 
         try {
             // Fetch translation from Netlify function
@@ -472,18 +551,74 @@ class CompanionPageManager {
 
             const data = await response.json();
 
-            if (!data.my_verdict) {
-                console.warn(`No my_verdict found for ${this.companionId} in ${language}`);
-                return;
+            // Update tagline/subtitle if available
+            if (data.tagline) {
+                const taglineElement = document.querySelector('.companion-hero .tagline, .hero-text .tagline, .tagline');
+                if (taglineElement) {
+                    taglineElement.textContent = data.tagline;
+                    console.log(`✅ Updated tagline with ${language.toUpperCase()} translation`);
+                }
             }
 
-            // Update the verdict section with translated content
-            this.updateVerdictSection(data.my_verdict);
-            console.log(`✅ Updated verdict section with ${language.toUpperCase()} translation`);
+            // Update body description (overview paragraphs) if available
+            if (data.body_description || data.description) {
+                const bodyDesc = data.body_description || data.description;
+                this.updateBodyDescription(bodyDesc);
+                console.log(`✅ Updated body description with ${language.toUpperCase()} translation`);
+            }
+
+            // Update verdict section if available
+            if (data.my_verdict) {
+                this.updateVerdictSection(data.my_verdict);
+                console.log(`✅ Updated verdict section with ${language.toUpperCase()} translation`);
+            } else {
+                console.warn(`No my_verdict found for ${this.companionId} in ${language}`);
+            }
 
         } catch (error) {
-            console.error('Error loading verdict translation:', error);
+            console.error('Error loading translations:', error);
         }
+    }
+
+    /**
+     * Update body description (overview section paragraphs) with translated content
+     */
+    updateBodyDescription(bodyDescText) {
+        // Find the overview section
+        const overviewSection = document.querySelector('.overview, section.overview');
+        if (!overviewSection) {
+            console.warn('Overview section not found');
+            return;
+        }
+
+        // Split body description into paragraphs (separated by double newlines or single newlines)
+        const paragraphs = bodyDescText.split(/\n\n|\n/).filter(p => p.trim().length > 0);
+
+        // Find existing paragraph elements (skip the h2 title)
+        const existingParagraphs = overviewSection.querySelectorAll('p');
+
+        // Update existing paragraphs or add new ones
+        paragraphs.forEach((paraText, index) => {
+            const text = paraText.trim();
+            if (!text) return;
+
+            if (existingParagraphs[index]) {
+                // Update existing paragraph
+                existingParagraphs[index].textContent = text;
+            } else {
+                // Create new paragraph before the features container
+                const p = document.createElement('p');
+                p.textContent = text;
+
+                // Insert before #dynamic-features if it exists
+                const featuresContainer = overviewSection.querySelector('#dynamic-features');
+                if (featuresContainer) {
+                    overviewSection.insertBefore(p, featuresContainer);
+                } else {
+                    overviewSection.appendChild(p);
+                }
+            }
+        });
     }
 
     /**
