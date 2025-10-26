@@ -63,6 +63,37 @@ exports.handler = async (event, context) => {
 
     const fields = translationRecords[0].fields;
 
+    // Parse JSON fields if they're strings
+    let features = fields.features;
+    if (typeof features === 'string') {
+      try {
+        features = JSON.parse(features);
+      } catch (e) {
+        console.error('Error parsing features:', e);
+        features = null;
+      }
+    }
+
+    let pricing_plans = fields.pricing_plans;
+    if (typeof pricing_plans === 'string') {
+      try {
+        pricing_plans = JSON.parse(pricing_plans);
+      } catch (e) {
+        console.error('Error parsing pricing_plans:', e);
+        pricing_plans = null;
+      }
+    }
+
+    let hero_specs = fields.hero_specs;
+    if (typeof hero_specs === 'string') {
+      try {
+        hero_specs = JSON.parse(hero_specs);
+      } catch (e) {
+        console.error('Error parsing hero_specs:', e);
+        hero_specs = null;
+      }
+    }
+
     return {
       statusCode: 200,
       headers: {
@@ -72,6 +103,12 @@ exports.handler = async (event, context) => {
       },
       body: JSON.stringify({
         my_verdict: fields.my_verdict || '',
+        tagline: fields.tagline || '',
+        body_description: fields.body_text || fields.description || '',
+        description: fields.description || '',
+        features: features,
+        pricing_plans: pricing_plans,
+        hero_specs: hero_specs,
         language: fields.language || lang
       })
     };
