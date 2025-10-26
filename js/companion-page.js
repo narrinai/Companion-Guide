@@ -37,6 +37,9 @@ class CompanionPageManager {
         // Load and update my_verdict for translated pages (PT/NL)
         await this.loadAndUpdateVerdict();
 
+        // Protect quick-facts paragraphs from translation
+        this.protectFactContent();
+
         // Translate CTA section (wait for i18n to be ready)
         if (window.i18n && window.i18n.initialized) {
             this.translateCTASection();
@@ -46,6 +49,38 @@ class CompanionPageManager {
                 this.translateCTASection();
             }, { once: true });
         }
+    }
+
+    /**
+     * Protect quick-facts paragraph content from being translated
+     * The headers are translated, but the content stays in English (companion-specific data)
+     */
+    protectFactContent() {
+        const factParagraphs = document.querySelectorAll('.quick-facts .fact p');
+
+        // Store original English content
+        const originalContent = new Map();
+        factParagraphs.forEach(p => {
+            originalContent.set(p, p.textContent.trim());
+        });
+
+        // Use MutationObserver to watch for changes and restore original content
+        const observer = new MutationObserver(() => {
+            factParagraphs.forEach(p => {
+                const original = originalContent.get(p);
+                if (original && p.textContent.trim() !== original) {
+                    p.textContent = original;
+                    console.log('✅ Protected fact content from translation');
+                }
+            });
+        });
+
+        // Observe each paragraph for text changes
+        factParagraphs.forEach(p => {
+            observer.observe(p, { childList: true, characterData: true, subtree: true });
+        });
+
+        console.log(`🛡️ Protected ${factParagraphs.length} fact paragraphs from translation`);
     }
 
     async waitForCompanionManager() {

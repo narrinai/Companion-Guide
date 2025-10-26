@@ -217,7 +217,7 @@ class I18n {
    * Usage: <button data-i18n="companionCard.readReview">Read Review</button>
    */
   applyTranslations() {
-    const elements = document.querySelectorAll('[data-i18n]');
+    const elements = document.querySelectorAll('[data-i18n]:not([data-i18n-skip])');
 
     elements.forEach(el => {
       const key = el.getAttribute('data-i18n');
@@ -226,6 +226,11 @@ class I18n {
       // Don't replace if translation is the same as key (missing translation)
       if (translation === key) {
         console.warn(`Skipping missing translation for: ${key}`);
+        return;
+      }
+
+      // Skip elements marked with data-i18n-skip
+      if (el.hasAttribute('data-i18n-skip')) {
         return;
       }
 
