@@ -266,17 +266,22 @@ class CompanionHeaderManager {
 
       if (!pricingGrid || !Array.isArray(plans)) return;
 
-      const pricingHTML = plans.map(plan => `
-        <div class="pricing-tier${plan.badge ? ' popular' : ''}">
-          ${plan.badge ? `<div class="badge">${plan.badge}</div>` : ''}
-          <h3>${plan.name}</h3>
-          <div class="price">${plan.price} <span class="period">${plan.period || ''}</span></div>
-          ${plan.description ? `<p>${plan.description}</p>` : ''}
-          <ul>
-            ${plan.features.map(feature => `<li>${feature}</li>`).join('')}
-          </ul>
-        </div>
-      `).join('');
+      const pricingHTML = plans.map(plan => {
+        // Safety check for features (could be undefined or missing)
+        const features = plan.features || [];
+
+        return `
+          <div class="pricing-tier${plan.badge ? ' popular' : ''}">
+            ${plan.badge ? `<div class="badge">${plan.badge}</div>` : ''}
+            <h3>${plan.name}</h3>
+            <div class="price">${plan.price} <span class="period">${plan.period || ''}</span></div>
+            ${plan.description ? `<p>${plan.description}</p>` : ''}
+            <ul>
+              ${features.map(feature => `<li>${feature}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }).join('');
 
       pricingGrid.innerHTML = pricingHTML;
       console.log(`✅ Updated pricing (${plans.length} plans)`);
