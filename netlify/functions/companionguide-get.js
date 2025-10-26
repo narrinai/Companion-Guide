@@ -21,8 +21,12 @@ exports.handler = async (event, context) => {
     console.log('Query parameters:', { filter, category, sort, limit, order, featured, table, lang, slug });
 
     // Determine which table to use
-    const tableId = table === 'Articles' ? process.env.AIRTABLE_ARTICLES_TABLE_ID_CG : process.env.AIRTABLE_TABLE_ID_CG;
-    const tableName = table === 'Articles' ? 'Articles' : 'Companions';
+    // NOTE: Companion data now lives in Companion_Translations table
+    // We always fetch EN language as the base, then apply translations if lang != 'en'
+    const tableId = table === 'Articles'
+      ? process.env.AIRTABLE_ARTICLES_TABLE_ID_CG
+      : process.env.AIRTABLE_TRANSLATIONS_TABLE_ID_CG; // Use translations table (has all companion data)
+    const tableName = table === 'Articles' ? 'Articles' : 'Companion_Translations';
 
     if (!tableId) {
       throw new Error(`Table ID not configured for: ${tableName}`);
@@ -30,7 +34,10 @@ exports.handler = async (event, context) => {
 
     console.log('Using table:', tableName);
 
-    let filterByFormula = '{status} = "Active"';
+    // For Companion_Translations, always filter by English first
+    let filterByFormula = tableName === 'Companion_Translations'
+      ? 'AND({status} = "Active", {language} = "en")'
+      : '{status} = "Active"';
 
     if (category) {
       // Simple category filtering - let client side handle filtering for now
@@ -127,12 +134,17 @@ exports.handler = async (event, context) => {
           status: fields.status || 'Active'
         };
       } else {
-        // Companions table
+        // Companion_Translations table - fields from linked 'companion' record come as arrays
+        const companionId = fields.companion && fields.companion.length > 0 ? fields.companion[0] : record.id;
+        const name = (fields['name (from companion)'] && fields['name (from companion)'][0]) || fields.name || 'Unknown';
+        const slug = (fields['slug (from companion)'] && fields['slug (from companion)'][0]) || fields.slug || 'unknown';
+        const rating = (fields['rating (from companion)'] && fields['rating (from companion)'][0]) || fields.rating || 0;
+
         return {
-          id: record.id,
-          name: fields.name || 'Unknown',
-          slug: fields.slug || 'unknown',
-          rating: fields.rating || 0,
+          id: companionId, // Use the linked companion ID for consistency
+          name: name,
+          slug: slug,
+          rating: rating,
           description: fields.description || '',
           short_description: fields.short_description || '',
           tagline: fields.tagline || fields.short_description || '',
@@ -149,8 +161,10 @@ exports.handler = async (event, context) => {
           review_count: parseInt(fields.review_count) || 0,
           best_for: fields.best_for || '',
           my_verdict: fields.my_verdict || '',
-          nl_my_verdict: fields.nl_my_verdict || '',
-          pt_my_verdict: fields.pt_my_verdict || ''
+          hero_specs: fields.hero_specs || '',
+          body_text: fields.body_text || '',
+          faq: fields.faq || '',
+          ready_to_try: fields.ready_to_try || fields.ready_try || ''
         };
       }
     });
@@ -171,109 +185,102 @@ exports.handler = async (event, context) => {
     }
 
     // Apply translations if language is specified and not English
-    if (lang && lang !== 'en' && tableName === 'Companions') {
+    // NOTE: With new Companion_Translations table structure, we simply re-fetch with the target language
+    if (lang && lang !== 'en' && tableName === 'Companion_Translations') {
       console.log(`Fetching translations for language: ${lang}`);
 
       try {
-        // Check if translations table is configured
-        if (!process.env.AIRTABLE_TRANSLATIONS_TABLE_ID_CG) {
-          console.warn('AIRTABLE_TRANSLATIONS_TABLE_ID_CG not configured, skipping translations');
-        } else {
-          const translationsTableId = process.env.AIRTABLE_TRANSLATIONS_TABLE_ID_CG;
+        // Fetch translated versions - use same filter but with target language
+        const translationsFormula = `AND({status} = "Active", {language} = "${lang}")`;
+        const translationRecords = await base(tableId)
+          .select({
+            filterByFormula: translationsFormula,
+            maxRecords: 1000
+          })
+          .all();
 
-          // Fetch all translations for this language
-          const translationsFormula = `{language} = "${lang}"`;
-          const translationRecords = await base(translationsTableId)
-            .select({
-              filterByFormula: translationsFormula,
-              maxRecords: 1000
-            })
-            .all();
+        console.log(`Found ${translationRecords.length} translations for ${lang}`);
 
-          console.log(`Found ${translationRecords.length} translations for ${lang}`);
+        // Create a map of companion ID to translation
+        const translationMap = new Map();
+        translationRecords.forEach(record => {
+          const fields = record.fields;
+          // companion field is a linked record, so it's an array of record IDs
+          const companionId = fields.companion && fields.companion.length > 0 ? fields.companion[0] : record.id;
 
-          // Create a map of companion ID to translation
-          const translationMap = new Map();
-          translationRecords.forEach(record => {
-            const fields = record.fields;
-            // companion field is a linked record, so it's an array of record IDs
-            if (fields.companion && fields.companion.length > 0) {
-              const companionId = fields.companion[0];
-              translationMap.set(companionId, {
-                description: fields.description || '',
-                best_for: fields.best_for || '',
-                tagline: fields.tagline || '',
-                meta_title: fields.meta_title || '',
-                meta_description: fields.meta_description || '',
-                body_text: fields.body_text || '',
-                features: fields.features || '',
-                pros_cons: fields.pros_cons || '',
-                pricing_plans: fields.pricing_plans || '',
-                my_verdict: fields.my_verdict || '',
-                faq: fields.faq || '',
-                hero_specs: fields.hero_specs || '',
-                ready_to_try: fields.ready_to_try || fields.ready_try || '',
-                review_form_text: fields.review_form_text || '',
-                verdict_subtitle: fields.verdict_subtitle || ''
-              });
-            }
+          translationMap.set(companionId, {
+            description: fields.description || '',
+            best_for: fields.best_for || '',
+            tagline: fields.tagline || '',
+            meta_title: fields.meta_title || '',
+            meta_description: fields.meta_description || '',
+            body_text: fields.body_text || '',
+            features: fields.features || '',
+            pros_cons: fields.pros_cons || '',
+            pricing_plans: fields.pricing_plans || '',
+            my_verdict: fields.my_verdict || '',
+            faq: fields.faq || '',
+            hero_specs: fields.hero_specs || '',
+            ready_to_try: fields.ready_to_try || fields.ready_try || '',
+            review_form_text: fields.review_form_text || '',
+            verdict_subtitle: fields.verdict_subtitle || ''
           });
+        });
 
-          // Apply translations to items
-          items.forEach(item => {
-            const translation = translationMap.get(item.id);
-            if (translation) {
-              // Override with translated content
-              if (translation.description) item.description = translation.description;
-              if (translation.best_for) item.best_for = translation.best_for;
-              if (translation.tagline) item.tagline = translation.tagline;
-              if (translation.meta_title) item.meta_title = translation.meta_title;
-              if (translation.meta_description) item.meta_description = translation.meta_description;
-              if (translation.body_text) item.body_text = translation.body_text;
+        // Apply translations to items
+        items.forEach(item => {
+          const translation = translationMap.get(item.id);
+          if (translation) {
+            // Override with translated content
+            if (translation.description) item.description = translation.description;
+            if (translation.best_for) item.best_for = translation.best_for;
+            if (translation.tagline) item.tagline = translation.tagline;
+            if (translation.meta_title) item.meta_title = translation.meta_title;
+            if (translation.meta_description) item.meta_description = translation.meta_description;
+            if (translation.body_text) item.body_text = translation.body_text;
 
-              // Parse features from translation if available
-              if (translation.features) {
-                try {
-                  // If it's a string, parse it as JSON
-                  if (typeof translation.features === 'string') {
-                    item.features = JSON.parse(translation.features);
-                  } else {
-                    item.features = translation.features;
-                  }
-                } catch (e) {
-                  console.error(`Error parsing translated features for ${item.name} (${lang}):`, e);
-                  // Keep original features if translation parsing fails
+            // Parse features from translation if available
+            if (translation.features) {
+              try {
+                // If it's a string, parse it as JSON
+                if (typeof translation.features === 'string') {
+                  item.features = JSON.parse(translation.features);
+                } else {
+                  item.features = translation.features;
                 }
+              } catch (e) {
+                console.error(`Error parsing translated features for ${item.name} (${lang}):`, e);
+                // Keep original features if translation parsing fails
               }
-
-              if (translation.pros_cons) item.pros_cons = translation.pros_cons;
-
-              // Parse pricing_plans from translation if available
-              if (translation.pricing_plans) {
-                try {
-                  // If it's a string, parse it as JSON
-                  if (typeof translation.pricing_plans === 'string') {
-                    item.pricing_plans = JSON.parse(translation.pricing_plans);
-                  } else {
-                    item.pricing_plans = translation.pricing_plans;
-                  }
-                } catch (e) {
-                  console.error(`Error parsing translated pricing_plans for ${item.name} (${lang}):`, e);
-                  // Keep original pricing_plans if translation parsing fails
-                }
-              }
-
-              if (translation.my_verdict) item.my_verdict = translation.my_verdict;
-              if (translation.faq) item.faq = translation.faq;
-              if (translation.hero_specs) item.hero_specs = translation.hero_specs;
-              if (translation.ready_to_try) item.ready_to_try = translation.ready_to_try;
-              if (translation.review_form_text) item.review_form_text = translation.review_form_text;
-              if (translation.verdict_subtitle) item.verdict_subtitle = translation.verdict_subtitle;
-
-              console.log(`Applied translation for: ${item.name} (${lang})`);
             }
-          });
-        }
+
+            if (translation.pros_cons) item.pros_cons = translation.pros_cons;
+
+            // Parse pricing_plans from translation if available
+            if (translation.pricing_plans) {
+              try {
+                // If it's a string, parse it as JSON
+                if (typeof translation.pricing_plans === 'string') {
+                  item.pricing_plans = JSON.parse(translation.pricing_plans);
+                } else {
+                  item.pricing_plans = translation.pricing_plans;
+                }
+              } catch (e) {
+                console.error(`Error parsing translated pricing_plans for ${item.name} (${lang}):`, e);
+                // Keep original pricing_plans if translation parsing fails
+              }
+            }
+
+            if (translation.my_verdict) item.my_verdict = translation.my_verdict;
+            if (translation.faq) item.faq = translation.faq;
+            if (translation.hero_specs) item.hero_specs = translation.hero_specs;
+            if (translation.ready_to_try) item.ready_to_try = translation.ready_to_try;
+            if (translation.review_form_text) item.review_form_text = translation.review_form_text;
+            if (translation.verdict_subtitle) item.verdict_subtitle = translation.verdict_subtitle;
+
+            console.log(`Applied translation for: ${item.name} (${lang})`);
+          }
+        });
       } catch (error) {
         console.error('Error fetching translations:', error);
         // Continue without translations rather than failing
