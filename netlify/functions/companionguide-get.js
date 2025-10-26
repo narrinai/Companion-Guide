@@ -236,8 +236,8 @@ exports.handler = async (event, context) => {
       console.log(`Fetching translations for language: ${lang}`);
 
       try {
-        // Fetch translated versions - use same filter but with target language
-        const translationsFormula = `AND({status} = "Active", {language} = "${lang}")`;
+        // Fetch translated versions - filter by language only (no status field in Companion_Translations)
+        const translationsFormula = `{language} = "${lang}"`;
         const translationRecords = await base(tableId)
           .select({
             filterByFormula: translationsFormula,
