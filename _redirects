@@ -6,22 +6,42 @@
 ################################################################################
 
 # Dutch individual companion pages -> Dutch HTML files (no parameters!)
-/nl/companions/*                  /nl/companions/:splat.html                   200!
+/nl/companions/*                        /nl/companions/:splat.html                        200!
 
-# Dutch individual category pages -> English HTML with ?lang=nl
-/nl/categories/roleplay-character-chat  /categories/roleplay-character-chat.html?lang=nl  200!
-/nl/categories/ai-girlfriend            /categories/ai-girlfriend.html?lang=nl            200!
-/nl/categories/nsfw                     /categories/nsfw.html?lang=nl                     200!
-/nl/categories/*                        /categories/:splat.html?lang=nl                   200!
+# Dutch main categories overview page (MUST BE BEFORE wildcard!)
+/nl/categories                          /nl/categories.html                               200!
+
+# Dutch individual category pages -> Dutch HTML files (no ?lang needed!)
+/nl/categories/*                        /nl/categories/:splat.html                        200!
 
 # Dutch main overview pages -> Dutch HTML files
-/nl                                     /nl/index.html                                    200
-/nl/companions                          /nl/companions.html                               200
-/nl/categories                          /nl/categories.html                               200
-/nl/deals                               /nl/deals.html                                    200
-/nl/news                                /nl/news.html                                     200
-/nl/contact                             /nl/contact.html                                  200
-/nl/news/*                              /nl/news/:splat.html                              200
+/nl                                     /nl/index.html                                    200!
+/nl/companions                          /nl/companions.html                               200!
+/nl/deals                               /nl/deals.html                                    200!
+/nl/news                                /nl/news.html                                     200!
+/nl/contact                             /nl/contact.html                                  200!
+/nl/news/*                              /nl/news/:splat.html                              200!
+
+################################################################################
+# PORTUGUESE (PT) LANGUAGE REDIRECTS
+################################################################################
+
+# Portuguese individual companion pages -> Portuguese HTML files
+/pt/companions/*                        /pt/companions/:splat.html                        200!
+
+# Portuguese main categories overview page (MUST BE BEFORE wildcard!)
+/pt/categories                          /pt/categories.html                               200!
+
+# Portuguese individual category pages -> Portuguese HTML files
+/pt/categories/*                        /pt/categories/:splat.html                        200!
+
+# Portuguese main overview pages -> Portuguese HTML files
+/pt                                     /pt/index.html                                    200!
+/pt/companions                          /pt/companions.html                               200!
+/pt/deals                               /pt/deals.html                                    200!
+/pt/news                                /pt/news.html                                     200!
+/pt/contact                             /pt/contact.html                                  200!
+/pt/news/*                              /pt/news/:splat.html                              200!
 
 ################################################################################
 # PRETTY URL REDIRECTS
