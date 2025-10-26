@@ -141,6 +141,61 @@
       "title": "Best Video AI Companions",
       "description": "Experience the next level of AI companionship with video capabilities. These platforms offer video chat, AI-generated videos, and immersive visual experiences that bring your AI companions to life. From virtual dating with video calls to personalized video messages, discover platforms that go beyond text and voice.",
       "breadcrumb": "Video AI Companions"
+    },
+    "adultContentUncensored": {
+      "title": "Best Adult Content & Uncensored Companions",
+      "description": "Explore the best uncensored NSFW AI platforms for adult content and mature conversations (18+ only). These platforms offer complete creative freedom for mature conversations, AI sexting, and erotic chat experiences without content restrictions.",
+      "breadcrumb": "Adult Content & Uncensored AI Platforms"
+    },
+    "adultImageGen": {
+      "title": "Best AI Platforms for Adult Image Generation",
+      "description": "Best AI platforms for creating NSFW art and adult visual content (18+ only). These platforms offer advanced adult image generation, NSFW content creation, and erotic art tools using cutting-edge generative AI.",
+      "breadcrumb": "AI Adult Image Generation Platforms"
+    },
+    "aiBoyfriend": {
+      "title": "Best AI Boyfriend Platforms",
+      "description": "Top AI boyfriend platforms for virtual romantic relationships and male companions. These platforms offer personalized virtual dating experiences, romantic conversations, and emotional connections with customizable AI partners.",
+      "breadcrumb": "AI Boyfriend Platforms"
+    },
+    "aiGirlfriend": {
+      "title": "Best AI Girlfriend Platforms",
+      "description": "Discover the best AI platforms for virtual romantic relationships. These platforms offer personalized virtual dating experiences, romantic conversations, and emotional connections with customizable AI partners.",
+      "breadcrumb": "AI Girlfriend Platforms"
+    },
+    "hentaiAI": {
+      "title": "Best Hentai AI Platforms",
+      "description": "Specialized AI generators for anime and manga-style adult content in multiple art styles (18+ only). These platforms offer high-quality hentai creation, NSFW anime generation, and manga-style erotic art tools.",
+      "breadcrumb": "Hentai AI Platforms"
+    },
+    "learning": {
+      "title": "Best AI Tutors & Educational Companions",
+      "description": "AI tutors and educational companions for skill development and academic support. These platforms offer personalized learning assistance, adaptive tutoring, and interactive educational tools.",
+      "breadcrumb": "AI Tutors & Educational Companions"
+    },
+    "roleplayCharacterChat": {
+      "title": "Best Roleplay & Character Chat Companions",
+      "description": "Explore the best AI platforms for roleplay and character chat experiences. These platforms excel at interactive storytelling, creative conversations, and immersive character interactions for entertainment and creative expression.",
+      "breadcrumb": "Roleplay & Character Chat AI Platforms"
+    },
+    "videoCompanions": {
+      "title": "Best Video AI Companions",
+      "description": "AI companions with video chat and video generation capabilities for immersive experiences. Discover platforms that go beyond text and voice with video capabilities.",
+      "breadcrumb": "Video AI Companions"
+    },
+    "wellness": {
+      "title": "Best AI Wellness Companions",
+      "description": "AI companions focused on mental health, emotional well-being, and personal support. These platforms offer empathetic conversations, mindfulness tools, and wellness guidance.",
+      "breadcrumb": "AI Wellness Companions"
+    },
+    "whatsappOnly": {
+      "title": "Best WhatsApp-Native AI Companions",
+      "description": "AI companions that integrate natively into WhatsApp - no separate apps needed. Chat directly with AI in your favorite messaging app.",
+      "breadcrumb": "WhatsApp-Native AI Companions"
+    },
+    "aiPorn": {
+      "title": "Best AI Porn Platforms",
+      "description": "Advanced AI platforms for photorealistic adult content generation and interactive experiences (18+ only). High-quality AI porn creation and interactive adult chat.",
+      "breadcrumb": "AI Porn Platforms"
     }
   }
 }
