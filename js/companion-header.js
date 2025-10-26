@@ -62,8 +62,10 @@ class CompanionHeaderManager {
    * Generate star rating HTML with half stars
    */
   generateStarRating(rating) {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.3; // Show half star for .3 and above
+    // Rating is 0-10, convert to 0-5 stars
+    const ratingOutOf5 = rating / 2;
+    const fullStars = Math.floor(ratingOutOf5);
+    const hasHalfStar = (ratingOutOf5 % 1) >= 0.3; // Show half star for .3 and above
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
     let starsHtml = '';
