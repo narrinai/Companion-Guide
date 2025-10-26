@@ -34,9 +34,9 @@ exports.handler = async (event, context) => {
 
     console.log('Using table:', tableName);
 
-    // For Companion_Translations, always filter by English first
+    // For Companion_Translations, filter by language only (no status field)
     let filterByFormula = tableName === 'Companion_Translations'
-      ? 'AND({status} = "Active", {language} = "en")'
+      ? '{language} = "en"'
       : '{status} = "Active"';
 
     if (category) {
@@ -47,8 +47,13 @@ exports.handler = async (event, context) => {
     }
 
     if (featured === 'true') {
-      filterByFormula += ' AND {is_featured} = 1';
-      console.log('Filtering for featured companions only');
+      // Note: is_featured might not exist in Companion_Translations
+      if (tableName === 'Companion_Translations') {
+        console.log('Featured filtering not supported for Companion_Translations table');
+      } else {
+        filterByFormula += ' AND {is_featured} = 1';
+        console.log('Filtering for featured companions only');
+      }
     }
 
     // Different default sort for Articles vs Companions
