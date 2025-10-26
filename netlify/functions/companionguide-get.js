@@ -52,7 +52,10 @@ exports.handler = async (event, context) => {
     }
 
     // Different default sort for Articles vs Companions
-    const defaultSortField = tableName === 'Articles' ? 'featured_order' : 'rating';
+    // For Companion_Translations, use lookup field name "rating (from companion)"
+    const defaultSortField = tableName === 'Articles'
+      ? 'featured_order'
+      : (tableName === 'Companion_Translations' ? 'rating (from companion)' : 'rating');
 
     const selectOptions = {
       filterByFormula,
