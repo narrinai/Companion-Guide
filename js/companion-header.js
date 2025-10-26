@@ -113,13 +113,23 @@ class CompanionHeaderManager {
     }
 
     // Update "What is X?" heading with companion name
+    // Skip for NL/PT pages - companion-page.js handles this
+    const path = window.location.pathname;
+    const isTranslatedPage = path.match(/^\/(pt|nl)\//);
+
+    if (!isTranslatedPage) {
+      const overviewSection = document.querySelector('.overview, section.overview');
+      if (overviewSection) {
+        const whatIsHeading = overviewSection.querySelector('h2[data-i18n="companion.whatIs"]');
+        if (whatIsHeading) {
+          const whatIsText = window.i18n ? window.i18n.t('companion.whatIs') : 'What is';
+          whatIsHeading.textContent = `${whatIsText} ${companion.name}?`;
+        }
+      }
+    }
+
     const overviewSection = document.querySelector('.overview, section.overview');
     if (overviewSection) {
-      const whatIsHeading = overviewSection.querySelector('h2[data-i18n="companion.whatIs"]');
-      if (whatIsHeading) {
-        const whatIsText = window.i18n ? window.i18n.t('companion.whatIs') : 'What is';
-        whatIsHeading.textContent = `${whatIsText} ${companion.name}?`;
-      }
 
       // Update entire body_text section (paragraphs + features grid)
       if (companion.body_text) {
