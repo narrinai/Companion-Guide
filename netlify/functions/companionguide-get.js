@@ -62,10 +62,16 @@ exports.handler = async (event, context) => {
       ? 'featured_order'
       : (tableName === 'Companion_Translations' ? 'rating (from companion)' : 'rating');
 
+    // Map sort parameter to correct field name for Companion_Translations
+    let sortField = sort || defaultSortField;
+    if (tableName === 'Companion_Translations' && sort === 'rating') {
+      sortField = 'rating (from companion)';
+    }
+
     const selectOptions = {
       filterByFormula,
       sort: [
-        { field: sort || defaultSortField, direction: 'desc' }
+        { field: sortField, direction: 'desc' }
       ]
     };
 
