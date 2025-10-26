@@ -768,6 +768,55 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     <script src="/script.js"></script>
     <script src="/js/companions.js"></script>
     <script>
+        // Language switcher functionality - optimized for mobile
+        (function() {
+            const langToggle = document.getElementById('lang-toggle');
+            const langDropdown = document.getElementById('lang-dropdown');
+
+            if (langToggle && langDropdown) {
+                // Detect current language from URL and update button text
+                const currentPath = window.location.pathname;
+                let currentLang = 'EN';
+                let currentFlag = '🇬🇧';
+
+                if (currentPath.startsWith('/nl/') || currentPath === '/nl') {
+                    currentLang = 'NL';
+                    currentFlag = '🇳🇱';
+                } else if (currentPath.startsWith('/pt/') || currentPath === '/pt') {
+                    currentLang = 'PT';
+                    currentFlag = '🇧🇷';
+                }
+
+                // Update button text to show current language
+                langToggle.textContent = `${currentFlag} ${currentLang}`;
+                console.log('Language selector initialized:', currentLang);
+
+                // Toggle function
+                const toggleDropdown = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isVisible = langDropdown.style.display === 'block';
+                    langDropdown.style.display = isVisible ? 'none' : 'block';
+                    console.log('Language dropdown toggled:', langDropdown.style.display);
+                };
+
+                // Add both click and touchstart for better mobile support
+                langToggle.addEventListener('click', toggleDropdown);
+                langToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+                // Close dropdown when clicking outside
+                const closeDropdown = (e) => {
+                    if (!e.target.closest('.language-switcher')) {
+                        langDropdown.style.display = 'none';
+                    }
+                };
+
+                document.addEventListener('click', closeDropdown);
+                document.addEventListener('touchstart', closeDropdown);
+            }
+        })();
+    </script>
+    <script>
         // Load featured companions in footer and update ratings
         document.addEventListener("DOMContentLoaded", async function() {
             if (typeof window.companionManager === "undefined") {
