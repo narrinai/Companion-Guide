@@ -83,52 +83,44 @@ exports.handler = async (event, context) => {
       .select(selectOptions)
       .all();
 
+    // For Companion_Translations, we need to fetch the base companion data from Table 1
+    let companionDataMap = new Map();
+
+    if (tableName === 'Companion_Translations') {
+      console.log('Fetching base companion data from Table 1...');
+
+      // Get all unique companion IDs from translations
+      const companionIds = records
+        .map(r => r.fields.companion && r.fields.companion[0])
+        .filter(id => id);
+
+      // Fetch all companions from Table 1 in batches
+      const companionsTableId = process.env.AIRTABLE_TABLE_ID_CG;
+      const companionRecords = [];
+
+      // Airtable API limits filterByFormula to ~18k chars, so batch by 50 IDs
+      for (let i = 0; i < companionIds.length; i += 50) {
+        const batch = companionIds.slice(i, i + 50);
+        const formula = `OR(${batch.map(id => `RECORD_ID() = '${id}'`).join(',')})`;
+
+        const batchRecords = await base(companionsTableId)
+          .select({ filterByFormula: formula, maxRecords: 100 })
+          .all();
+
+        companionRecords.push(...batchRecords);
+      }
+
+      console.log(`Fetched ${companionRecords.length} base companions from Table 1`);
+
+      // Create map of companion ID -> companion data
+      companionRecords.forEach(record => {
+        companionDataMap.set(record.id, record.fields);
+      });
+    }
+
     // Map records differently based on table type
     const items = records.map(record => {
       const fields = record.fields;
-      let pricingPlans = [];
-
-      try {
-        pricingPlans = fields.pricing_plans ? JSON.parse(fields.pricing_plans) : [];
-      } catch (e) {
-        console.error('Error parsing pricing plans for', fields.name, ':', e);
-        pricingPlans = [];
-      }
-
-      // Handle categories - can be array (multiselect) or string (semicolon separated)
-      let categories = [];
-      if (fields.categories) {
-        if (Array.isArray(fields.categories)) {
-          categories = fields.categories;
-        } else if (typeof fields.categories === 'string') {
-          categories = fields.categories.split(';').filter(cat => cat.trim());
-        }
-      }
-
-      // Handle badges - can be array (multiselect) or string (semicolon separated)
-      let badges = [];
-      if (fields.badges) {
-        if (Array.isArray(fields.badges)) {
-          badges = fields.badges;
-        } else if (typeof fields.badges === 'string') {
-          badges = fields.badges.split(';').filter(badge => badge.trim());
-        }
-      }
-
-      // Handle features - can be JSON string or array
-      let features = [];
-      if (fields.features) {
-        if (typeof fields.features === 'string') {
-          try {
-            features = JSON.parse(fields.features);
-          } catch (e) {
-            console.error('Error parsing features for', fields.name, ':', e);
-            features = [];
-          }
-        } else if (Array.isArray(fields.features)) {
-          features = fields.features;
-        }
-      }
 
       // Return different structure based on table type
       if (tableName === 'Articles') {
@@ -141,33 +133,73 @@ exports.handler = async (event, context) => {
           featured_order: parseInt(fields.featured_order) || 999,
           status: fields.status || 'Active'
         };
-      } else {
-        // Companion_Translations table - fields from linked 'companion' record come as arrays
-        const companionId = fields.companion && fields.companion.length > 0 ? fields.companion[0] : record.id;
-        const name = (fields['name (from companion)'] && fields['name (from companion)'][0]) || fields.name || 'Unknown';
-        const slug = (fields['slug (from companion)'] && fields['slug (from companion)'][0]) || fields.slug || 'unknown';
-        const rating = (fields['rating (from companion)'] && fields['rating (from companion)'][0]) || fields.rating || 0;
+      } else if (tableName === 'Companion_Translations') {
+        // Get the linked companion ID and fetch its base data
+        const companionId = fields.companion && fields.companion[0];
+        const baseCompanion = companionDataMap.get(companionId) || {};
+
+        // Extract lookup fields from Companion_Translations
+        const name = (fields['name (from companion)'] && fields['name (from companion)'][0]) || baseCompanion.name || 'Unknown';
+        const slug = (fields['slug (from companion)'] && fields['slug (from companion)'][0]) || baseCompanion.slug || 'unknown';
+        const rating = (fields['rating (from companion)'] && fields['rating (from companion)'][0]) || baseCompanion.rating || 0;
+
+        // Parse pricing from translation OR base companion
+        let pricingPlans = [];
+        const pricingSource = fields.pricing_plans || baseCompanion.pricing_plans;
+        if (pricingSource) {
+          try {
+            pricingPlans = typeof pricingSource === 'string' ? JSON.parse(pricingSource) : pricingSource;
+          } catch (e) {
+            console.error('Error parsing pricing for', name);
+          }
+        }
+
+        // Parse features from translation OR base companion
+        let features = [];
+        const featuresSource = fields.features || baseCompanion.features;
+        if (featuresSource) {
+          try {
+            features = typeof featuresSource === 'string' ? JSON.parse(featuresSource) : featuresSource;
+          } catch (e) {
+            console.error('Error parsing features for', name);
+          }
+        }
+
+        // Get categories and badges from base companion (not in translations)
+        let categories = [];
+        if (baseCompanion.categories) {
+          categories = Array.isArray(baseCompanion.categories)
+            ? baseCompanion.categories
+            : baseCompanion.categories.split(';').filter(c => c.trim());
+        }
+
+        let badges = [];
+        if (baseCompanion.badges) {
+          badges = Array.isArray(baseCompanion.badges)
+            ? baseCompanion.badges
+            : baseCompanion.badges.split(';').filter(b => b.trim());
+        }
 
         return {
-          id: companionId, // Use the linked companion ID for consistency
+          id: companionId,
           name: name,
           slug: slug,
           rating: rating,
-          description: fields.description || '',
-          short_description: fields.short_description || '',
-          tagline: fields.tagline || fields.short_description || '',
-          website_url: fields.website_url || '',
-          affiliate_url: fields.affiliate_url || fields.website_url || '',
-          logo_url: fields.logo_url || fields.image_url || '/images/logos/default.png',
-          image_url: fields.image_url || fields.logo_url || '/images/logos/default.png',
+          description: fields.description || baseCompanion.description || '',
+          short_description: fields.short_description || baseCompanion.short_description || '',
+          tagline: fields.tagline || baseCompanion.tagline || '',
+          website_url: baseCompanion.website_url || '',
+          affiliate_url: baseCompanion.affiliate_url || baseCompanion.website_url || '',
+          logo_url: baseCompanion.logo_url || '/images/logos/default.png',
+          image_url: baseCompanion.logo_url || '/images/logos/default.png',
           categories: categories,
           badges: badges,
           features: features,
           pricing_plans: pricingPlans,
-          featured: !!fields.is_featured, // Convert checkbox to boolean
-          status: fields.status || 'active',
-          review_count: parseInt(fields.review_count) || 0,
-          best_for: fields.best_for || '',
+          featured: !!baseCompanion.is_featured,
+          status: baseCompanion.status || 'Active',
+          review_count: parseInt(baseCompanion.review_count) || 0,
+          best_for: fields.best_for || baseCompanion.best_for || '',
           my_verdict: fields.my_verdict || '',
           hero_specs: fields.hero_specs || '',
           body_text: fields.body_text || '',
