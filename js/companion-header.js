@@ -280,11 +280,19 @@ class CompanionHeaderManager {
         // Safety check for features (could be undefined or missing)
         const features = plan.features || [];
 
+        // Format price - add $ if numeric, or use as-is if already formatted
+        let formattedPrice = plan.price;
+        if (typeof plan.price === 'number') {
+          formattedPrice = plan.price === 0 ? 'Free' : `$${plan.price}`;
+        } else if (typeof plan.price === 'string' && !isNaN(parseFloat(plan.price)) && !plan.price.includes('$')) {
+          formattedPrice = `$${plan.price}`;
+        }
+
         return `
           <div class="pricing-tier${plan.badge ? ' popular' : ''}">
             ${plan.badge ? `<div class="badge">${plan.badge}</div>` : ''}
             <h3>${plan.name}</h3>
-            <div class="price">${plan.price} <span class="period">${plan.period || ''}</span></div>
+            <div class="price">${formattedPrice} <span class="period">${plan.period || ''}</span></div>
             ${plan.description ? `<p>${plan.description}</p>` : ''}
             <ul>
               ${features.map(feature => `<li>${feature}</li>`).join('')}
