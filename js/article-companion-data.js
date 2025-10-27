@@ -71,7 +71,7 @@ class ArticleCompanionDataLoader {
 
             case 'rating':
                 const rating = parseFloat(companion.rating);
-                element.textContent = `${rating}/10`;
+                element.textContent = rating;
                 break;
 
             case 'rating-stars':
