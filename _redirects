@@ -5,6 +5,9 @@
 # DUTCH (NL) LANGUAGE REDIRECTS - CRITICAL: MUST BE FIRST!
 ################################################################################
 
+# Dutch companion redirects (specific URLs before wildcards!)
+/nl/companions/replika-ai               /nl/companions/replika                            301!
+
 # Dutch individual companion pages -> Dutch HTML files (no parameters!)
 /nl/companions/*                        /nl/companions/:splat.html                        200!
 
@@ -20,11 +23,15 @@
 /nl/deals                               /nl/deals.html                                    200!
 /nl/news                                /nl/news.html                                     200!
 /nl/contact                             /nl/contact.html                                  200!
-/nl/news/*                              /nl/news/:splat.html                              200!
+# Redirect all NL news articles to main NL news page (articles not translated yet)
+/nl/news/*                              /nl/news                                          301!
 
 ################################################################################
 # PORTUGUESE (PT) LANGUAGE REDIRECTS
 ################################################################################
+
+# Portuguese companion redirects (specific URLs before wildcards!)
+/pt/companions/replika-ai               /pt/companions/replika                            301!
 
 # Portuguese individual companion pages -> Portuguese HTML files
 /pt/companions/*                        /pt/companions/:splat.html                        200!
@@ -41,7 +48,8 @@
 /pt/deals                               /pt/deals.html                                    200!
 /pt/news                                /pt/news.html                                     200!
 /pt/contact                             /pt/contact.html                                  200!
-/pt/news/*                              /pt/news/:splat.html                              200!
+# Redirect all PT news articles to main PT news page (articles not translated yet)
+/pt/news/*                              /pt/news                                          301!
 
 ################################################################################
 # PRETTY URL REDIRECTS
@@ -64,6 +72,12 @@
 ################################################################################
 # ENGLISH (DEFAULT) CLEAN URLs
 ################################################################################
+
+# English companion redirects (specific URLs before wildcards!)
+/companions/replika-ai                  /companions/replika                               301
+
+# English news redirects (specific URLs before wildcards!)
+/news/women-ai-boyfriends-chatgpt-upgrade  /news                                          301
 
 /companions/*                           /companions/:splat.html                           200
 /news/*                                 /news/:splat.html                                 200
