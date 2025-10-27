@@ -81,6 +81,10 @@ class ArticleCompanionDataLoader {
                 element.textContent = '★'.repeat(fullStars) + '☆'.repeat(emptyStars);
                 break;
 
+            case 'review-count':
+                element.textContent = companion.review_count || companion.reviews_count || 0;
+                break;
+
             case 'price':
                 const pricing = this.parsePricing(companion.pricing_plans);
                 if (pricing && pricing.length > 0) {
