@@ -30,7 +30,7 @@ class CompanionHeaderManager {
     try {
       // Detect language from URL path (e.g., /nl/companions/secrets-ai)
       const pathParts = window.location.pathname.split('/').filter(p => p);
-      const lang = (pathParts[0] === 'nl' || pathParts[0] === 'es' || pathParts[0] === 'de')
+      const lang = (pathParts[0] === 'nl' || pathParts[0] === 'pt' || pathParts[0] === 'es' || pathParts[0] === 'de')
         ? pathParts[0]
         : (window.i18n ? window.i18n.currentLang : 'en');
 
