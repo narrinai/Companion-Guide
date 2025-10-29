@@ -28,11 +28,6 @@
     background: #2563eb;
 }
 
-.floating-cta::before {
-    content: "⭐";
-    font-size: 1.2rem;
-    animation: pulse 2s ease-in-out infinite;
-}
 
 .floating-cta-close {
     margin-left: 8px;
