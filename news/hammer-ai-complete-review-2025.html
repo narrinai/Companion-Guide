@@ -11,6 +11,7 @@
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/css/floating-cta.css">
     <link rel="stylesheet" href="/article-styles.css">
 
     <!-- Google tag (gtag.js) -->
@@ -61,6 +62,16 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 <li><a href="/deals">Deals</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
+
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button id="lang-toggle" class="lang-current"></button>
+                <div class="lang-dropdown" id="lang-dropdown" style="display: none;">
+                    <a href="/news/hammer-ai-complete-review-2025" class="lang-option active">🇬🇧</a>
+                    <a href="/nl/news/hammer-ai-complete-review-2025" class="lang-option">🇳🇱</a>
+                    <a href="/pt/news/hammer-ai-complete-review-2025" class="lang-option">🇧🇷</a>
+                </div>
+            </div>
         </nav>
         <div class="nav-menu-overlay" onclick="toggleMenu()"></div>
     </header>
@@ -925,5 +936,6 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     <script src="/js/meta-companion-tracking.js"></script>
     <script src="/js/ga-external-tracking.js?v=20251017"></script>
     <script src="/js/article-companion-data.js"></script>
+    <script src="/js/floating-cta.js"></script>
 </body>
 </html>
