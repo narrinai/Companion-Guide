@@ -43,7 +43,10 @@ class CompanionManager {
         }
 
         const data = await response.json();
-        const companions = data.companions || [];
+        // Filter out hidden companions as a safety net (API should already exclude them)
+        const companions = (data.companions || []).filter(companion => {
+          return !companion.status || companion.status.toLowerCase() !== 'hidden';
+        });
 
         // Cache the result
         this.cache[cacheKey] = companions;

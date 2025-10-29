@@ -81,7 +81,11 @@ class CategoryCompanions {
         if (pageCategories.length === 0) {
             // If no mapping found, show all companions sorted by featured and rating
             console.warn('No category mapping found for', currentPath, 'showing all companions');
-            const sorted = [...companions];
+            // Filter out hidden companions
+            const filtered = companions.filter(companion => {
+                return !companion.status || companion.status.toLowerCase() !== 'hidden';
+            });
+            const sorted = [...filtered];
             sorted.sort((a, b) => {
                 if (a.featured && !b.featured) return -1;
                 if (!a.featured && b.featured) return 1;
@@ -90,8 +94,13 @@ class CategoryCompanions {
             return sorted;
         }
 
-        // Filter companions that have matching categories
+        // Filter companions that have matching categories AND are not hidden
         const filteredCompanions = companions.filter(companion => {
+            // Exclude hidden companions (status must be "Active" or undefined for backwards compatibility)
+            if (companion.status && companion.status.toLowerCase() === 'hidden') {
+                return false;
+            }
+
             if (!companion.categories || !Array.isArray(companion.categories)) {
                 return false;
             }

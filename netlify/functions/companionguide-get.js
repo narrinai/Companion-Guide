@@ -107,7 +107,8 @@ exports.handler = async (event, context) => {
       // Airtable API limits filterByFormula to ~18k chars, so batch by 50 IDs
       for (let i = 0; i < companionIds.length; i += 50) {
         const batch = companionIds.slice(i, i + 50);
-        const formula = `OR(${batch.map(id => `RECORD_ID() = '${id}'`).join(',')})`;
+        // Filter by record IDs AND status = "Active" to exclude hidden companions
+        const formula = `AND(OR(${batch.map(id => `RECORD_ID() = '${id}'`).join(',')}), {status} = "Active")`;
 
         const batchRecords = await base(companionsTableId)
           .select({ filterByFormula: formula, maxRecords: 100 })
