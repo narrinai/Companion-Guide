@@ -675,50 +675,26 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 </section>
 
                 <section class="content-section" id="comparison-table">
-                    <h2>Replika vs Alternatives: Complete Comparison</h2>
-                    
+                    <h2><span data-companion="replika" data-field="name"></span> vs Alternatives: Complete Comparison</h2>
+
                     <p>After trying multiple AI companion platforms, here's how they actually compare:</p>
-                    
-                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;" data-table="comparison" data-companions="replika,character-ai,chai-ai,nomi-ai">
                         <tr style="background: var(--bg-secondary);">
                             <th style="padding: 12px; border: 1px solid var(--border-color);">Platform</th>
+                            <th style="padding: 12px; border: 1px solid var(--border-color);">Rating</th>
+                            <th style="padding: 12px; border: 1px solid var(--border-color);">Pricing</th>
                             <th style="padding: 12px; border: 1px solid var(--border-color);">Best For</th>
-                            <th style="padding: 12px; border: 1px solid var(--border-color);">Free Features</th>
-                            <th style="padding: 12px; border: 1px solid var(--border-color);">Premium Cost</th>
-                            <th style="padding: 12px; border: 1px solid var(--border-color);">My Rating</th>
+                            <th style="padding: 12px; border: 1px solid var(--border-color);">Content Policy</th>
+                            <th style="padding: 12px; border: 1px solid var(--border-color);">Voice Chat</th>
                         </tr>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);"><strong><a href="/companions/replika">Replika</a></strong></td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">Personal relationships, emotional support</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">Limited chat, friend mode</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">$69.99/year</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">7/10</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);"><strong><a href="/companions/character-ai">Character.AI</a></strong></td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">Creative roleplay, character variety</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">Generous free tier</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">$9.99/month</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">6/10</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);"><strong><a href="/companions/chai-ai">Chai AI</a></strong></td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">Casual entertainment</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">Basic chat features</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">$13.99/month</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">5/10</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);"><strong><a href="/companions/nomi-ai">Nomi.AI</a></strong></td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">Emotional intelligence, learning</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">Limited but functional</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">Varies</td>
-                            <td style="padding: 12px; border: 1px solid var(--border-color);">6/10</td>
-                        </tr>
+                        <tbody>
+                            <!-- Companion rows will be dynamically populated from Airtable -->
+                        </tbody>
                     </table>
-                    
-                    <p><a href="/companions/replika">Replika</a> wins for personal relationship building and emotional support. <a href="/companions/character-ai">Character.AI</a> is better for creative purposes. Others are more specialized or limited.</p>
-                    
+
+                    <p><a data-companion="replika" data-field="page_url"><span data-companion="replika" data-field="name"></span></a> wins for personal relationship building and emotional support. <a data-companion="character-ai" data-field="page_url"><span data-companion="character-ai" data-field="name"></span></a> is better for creative purposes. Others are more specialized or limited.</p>
+
                 </section>
 
                 <section class="content-section" id="troubleshooting">
@@ -911,6 +887,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
     <script src="../script.js"></script>
     <script src="/js/companions.js"></script>
+    <script src="/js/blog-post-manager.js"></script>
     <script>
         // Load featured companions in footer
         document.addEventListener("DOMContentLoaded", async function() {
@@ -1130,6 +1107,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
     <script src="../script.js"></script>
     <script src="/js/companions.js"></script>
+    <script src="/js/blog-post-manager.js"></script>
     <script>
         // Load featured companions in footer
         document.addEventListener("DOMContentLoaded", async function() {
