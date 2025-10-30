@@ -215,12 +215,24 @@ exports.handler = async (event, context) => {
       }
     });
 
+    // Filter out companions with status "Hidden"
+    const filteredItems = items.filter(item => {
+      if (tableName === 'Companion_Translations') {
+        // For companions, exclude "Hidden" status
+        return item.status && item.status.toLowerCase() !== 'hidden';
+      }
+      // For articles, keep all
+      return true;
+    });
+
+    console.log(`Filtered ${items.length - filteredItems.length} hidden companions`);
+
     // Sort based on table type
     if (tableName === 'Articles') {
-      items.sort((a, b) => a.featured_order - b.featured_order);
+      filteredItems.sort((a, b) => a.featured_order - b.featured_order);
     } else {
       // Secondary sort by review_count when ratings are equal
-      items.sort((a, b) => {
+      filteredItems.sort((a, b) => {
         // First sort by rating (descending)
         if (b.rating !== a.rating) {
           return b.rating - a.rating;
@@ -273,8 +285,8 @@ exports.handler = async (event, context) => {
           });
         });
 
-        // Apply translations to items
-        items.forEach(item => {
+        // Apply translations to filteredItems
+        filteredItems.forEach(item => {
           const translation = translationMap.get(item.id);
           if (translation) {
             // Override with translated content
@@ -345,8 +357,8 @@ exports.handler = async (event, context) => {
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
       },
       body: JSON.stringify({
-        [responseKey]: items,
-        total: items.length
+        [responseKey]: filteredItems,
+        total: filteredItems.length
       })
     };
 
