@@ -548,13 +548,8 @@ class CompanionPageManager {
         const path = window.location.pathname;
         const langMatch = path.match(/^\/(pt|nl)\//);
 
-        // Only load for PT or NL pages
-        if (!langMatch) {
-            console.log('English page - skipping translations');
-            return;
-        }
-
-        const language = langMatch[1];
+        // Determine language: pt, nl, or en (default)
+        const language = langMatch ? langMatch[1] : 'en';
         console.log(`Loading ${language.toUpperCase()} translations for: ${this.companionId}`);
 
         try {
@@ -568,8 +563,8 @@ class CompanionPageManager {
 
             const data = await response.json();
 
-            // Update tagline/subtitle if available
-            if (data.tagline) {
+            // Update tagline/subtitle if available (only for non-EN pages)
+            if (language !== 'en' && data.tagline) {
                 const taglineElement = document.querySelector('.companion-hero .tagline, .hero-text .tagline, .tagline');
                 if (taglineElement) {
                     taglineElement.textContent = data.tagline;
@@ -577,19 +572,29 @@ class CompanionPageManager {
                 }
             }
 
-            // Update body description (overview paragraphs) if available
-            if (data.body_description || data.description) {
+            // Update body description (overview paragraphs) if available (only for non-EN pages)
+            if (language !== 'en' && (data.body_description || data.description)) {
                 const bodyDesc = data.body_description || data.description;
                 this.updateBodyDescription(bodyDesc);
                 console.log(`✅ Updated body description with ${language.toUpperCase()} translation`);
             }
 
-            // Update verdict section if available
-            if (data.my_verdict) {
+            // Update verdict section if available (only for non-EN pages)
+            if (language !== 'en' && data.my_verdict) {
                 this.updateVerdictSection(data.my_verdict);
                 console.log(`✅ Updated verdict section with ${language.toUpperCase()} translation`);
-            } else {
+            } else if (language !== 'en') {
                 console.warn(`No my_verdict found for ${this.companionId} in ${language}`);
+            }
+
+            // Update features if available from translations (for ALL languages: EN, NL, PT)
+            if (data.features) {
+                console.log(`🎨 Updating features with ${language.toUpperCase()} translation:`, data.features);
+                // Override companionData features with translated version
+                this.companionData.features = data.features;
+                // Re-render features with translated data
+                this.renderFeatures();
+                console.log(`✅ Updated features with ${language.toUpperCase()} translation`);
             }
 
         } catch (error) {
