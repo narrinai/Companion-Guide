@@ -366,6 +366,14 @@ class CompanionPageManager {
 
         console.log('Updating pricing with data:', pricingPlans);
 
+        // Filter to show only monthly and yearly plans (exclude quarterly)
+        const filteredPlans = pricingPlans.filter(plan => {
+            const period = (plan.period || '').toLowerCase();
+            return period !== 'quarterly' && period !== '3-month' && period !== '3 months';
+        });
+
+        console.log('Filtered plans (monthly + yearly):', filteredPlans);
+
         // Find the pricing section
         const pricingSection = document.querySelector('.pricing .pricing-grid');
         if (!pricingSection) return;
@@ -378,7 +386,7 @@ class CompanionPageManager {
         const usesEuro = companionCurrency === '€' || companionCurrency === 'EUR' || this.companionId === 'soulkyn-ai';
 
         // Generate pricing tiers from Airtable data
-        pricingPlans.forEach((plan, index) => {
+        filteredPlans.forEach((plan, index) => {
             const tierDiv = document.createElement('div');
             tierDiv.className = 'pricing-tier';
 
@@ -390,7 +398,7 @@ class CompanionPageManager {
             const period = isFree ? '' : (plan.period ? `/${plan.period}` : '');
 
             // Determine if this should be featured (middle tier, or "Premium" named)
-            const isFeatured = (index === Math.floor(pricingPlans.length / 2)) ||
+            const isFeatured = (index === Math.floor(filteredPlans.length / 2)) ||
                               plan.name.toLowerCase().includes('premium');
 
             if (isFeatured) {
@@ -401,7 +409,7 @@ class CompanionPageManager {
             let badgeHtml = '';
             if (isFeatured) {
                 badgeHtml = '<div class="tier-badge">MOST POPULAR</div>';
-            } else if (index === pricingPlans.length - 1 && !isFree) {
+            } else if (index === filteredPlans.length - 1 && !isFree) {
                 badgeHtml = '<div class="tier-badge">BEST VALUE</div>';
             }
 
