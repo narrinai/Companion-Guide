@@ -373,6 +373,10 @@ class CompanionPageManager {
         // Clear existing pricing tiers
         pricingSection.innerHTML = '';
 
+        // Detect currency - default to $ unless specified
+        const companionCurrency = this.companionData.currency || '$';
+        const usesEuro = companionCurrency === '€' || companionCurrency === 'EUR' || this.companionId === 'soulkyn-ai';
+
         // Generate pricing tiers from Airtable data
         pricingPlans.forEach((plan, index) => {
             const tierDiv = document.createElement('div');
@@ -380,7 +384,9 @@ class CompanionPageManager {
 
             // Handle both numeric prices and "Free" string
             const isFree = plan.price === 0 || plan.price === 'Free' || plan.price === 'free';
-            const price = isFree ? 'Free' : `$${plan.price}`;
+            // Use plan currency if specified, otherwise use companion default
+            const planCurrency = plan.currency || (usesEuro ? '€' : '$');
+            const price = isFree ? 'Free' : `${planCurrency}${plan.price}`;
             const period = isFree ? '' : (plan.period ? `/${plan.period}` : '');
 
             // Determine if this should be featured (middle tier, or "Premium" named)
