@@ -113,6 +113,47 @@ class BlogPostManager {
   }
 
   /**
+   * Inject features into a container
+   * Handles formats like: <div data-companion="soulkyn-ai" data-field="features"></div>
+   */
+  injectCompanionFeatures(element, companionSlug) {
+    const companion = this.getCompanion(companionSlug);
+    if (!companion || !companion.features) {
+      console.warn(`No features found for ${companionSlug}`);
+      return;
+    }
+
+    let features = companion.features;
+
+    // Parse if string
+    if (typeof features === 'string') {
+      try {
+        features = JSON.parse(features);
+      } catch (e) {
+        console.error(`Failed to parse features for ${companionSlug}:`, e);
+        return;
+      }
+    }
+
+    if (!Array.isArray(features)) {
+      console.warn(`Features for ${companionSlug} is not an array`);
+      return;
+    }
+
+    // Generate HTML for features
+    const featuresHtml = features.map(feature => `
+      <div class="deal-feature-item">
+        <div class="deal-feature-icon">${feature.icon || ''}</div>
+        <div class="deal-feature-title">${feature.title || ''}</div>
+        <div class="deal-feature-desc">${feature.description || ''}</div>
+      </div>
+    `).join('');
+
+    element.innerHTML = featuresHtml;
+    console.log(`✅ Injected ${features.length} features for ${companionSlug}`);
+  }
+
+  /**
    * Populate a comparison table
    * Table should have data-table="comparison" and data-companions="replika,character-ai,hammer-ai"
    */
@@ -193,6 +234,9 @@ class BlogPostManager {
           break;
         case 'logo_url':
           this.injectCompanionLogo(element, companionSlug);
+          break;
+        case 'features':
+          this.injectCompanionFeatures(element, companionSlug);
           break;
       }
     });
