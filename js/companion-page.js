@@ -31,11 +31,11 @@ class CompanionPageManager {
         // Update pricing if available
         this.updatePricing();
 
-        // Render features from Airtable
-        this.renderFeatures();
-
-        // Load and update translated content for PT/NL pages
+        // Load and update translated content (including features) for all languages
         await this.loadAndUpdateTranslations();
+
+        // Render features from Airtable (after translations are loaded)
+        this.renderFeatures();
 
         // Update quick-facts with hero_specs from Airtable (PT/NL)
         this.updateQuickFactsFromHeroSpecs();
@@ -557,7 +557,11 @@ class CompanionPageManager {
             const response = await fetch(`/.netlify/functions/get-translations?slug=${this.companionId}&lang=${language}`);
 
             if (!response.ok) {
-                console.warn(`Failed to fetch ${language} translation:`, response.status);
+                if (response.status === 404) {
+                    console.log(`No ${language.toUpperCase()} translation found in Companion_Translations table`);
+                } else {
+                    console.warn(`Failed to fetch ${language} translation:`, response.status);
+                }
                 return;
             }
 
@@ -589,12 +593,10 @@ class CompanionPageManager {
 
             // Update features if available from translations (for ALL languages: EN, NL, PT)
             if (data.features) {
-                console.log(`🎨 Updating features with ${language.toUpperCase()} translation:`, data.features);
+                console.log(`🎨 Loading features from ${language.toUpperCase()} translation:`, data.features);
                 // Override companionData features with translated version
                 this.companionData.features = data.features;
-                // Re-render features with translated data
-                this.renderFeatures();
-                console.log(`✅ Updated features with ${language.toUpperCase()} translation`);
+                console.log(`✅ Loaded features from ${language.toUpperCase()} translation (${data.features.length} features)`);
             }
 
         } catch (error) {
@@ -818,7 +820,8 @@ class CompanionPageManager {
         let features = null;
 
         if (this.companionData) {
-            console.log('📦 Companion data available:', this.companionData);
+            console.log('📦 Companion data available');
+            console.log('📊 Features in companionData:', this.companionData.features);
 
             // Get features - API already returns translated version based on language
             features = this.companionData.features;
