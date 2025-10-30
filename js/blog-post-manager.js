@@ -102,6 +102,17 @@ class BlogPostManager {
   }
 
   /**
+   * Replace logo URL in img element
+   * Handles formats like: <img data-companion="replika" data-field="logo_url" alt="...">
+   */
+  injectCompanionLogo(element, companionSlug) {
+    const companion = this.getCompanion(companionSlug);
+    if (companion && companion.logo_url) {
+      element.src = companion.logo_url;
+    }
+  }
+
+  /**
    * Populate a comparison table
    * Table should have data-table="comparison" and data-companions="replika,character-ai,hammer-ai"
    */
@@ -179,6 +190,9 @@ class BlogPostManager {
           break;
         case 'pricing':
           this.injectCompanionPricing(element, companionSlug);
+          break;
+        case 'logo_url':
+          this.injectCompanionLogo(element, companionSlug);
           break;
       }
     });
