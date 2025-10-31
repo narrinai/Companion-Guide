@@ -939,42 +939,61 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     });
                 }
 
-                // Find Dream Companion
-                const dreamCompanion = allCompanions.find(c => c.slug === 'dream-companion');
+                // Find companion with is_month = true
+                const companionOfMonth = allCompanions.find(c => c.is_month === true);
 
-                console.log('Dream Companion data:', dreamCompanion);
+                console.log('Companion of the Month data:', companionOfMonth);
 
-                if (dreamCompanion) {
+                if (companionOfMonth) {
+                    // Update logo
+                    const logoImg = document.querySelector('.cotm-companion-logo');
+                    if (logoImg && companionOfMonth.logo_url) {
+                        logoImg.src = companionOfMonth.logo_url;
+                        logoImg.alt = companionOfMonth.name;
+                    }
+
+                    // Update logo link
+                    const logoLink = document.querySelector('.cotm-logo-link');
+                    if (logoLink && companionOfMonth.slug) {
+                        logoLink.href = `/companions/${companionOfMonth.slug}`;
+                    }
+
                     // Update rating
-                    if (dreamCompanion.rating) {
+                    if (companionOfMonth.rating) {
                         const ratingElement = document.querySelector('.cotm-rating-score');
                         if (ratingElement) {
-                            ratingElement.textContent = dreamCompanion.rating;
+                            ratingElement.textContent = companionOfMonth.rating;
                         }
 
                         // Update stars
                         const starsElement = document.querySelector('.cotm-stars');
                         if (starsElement) {
-                            starsElement.innerHTML = generateStarRating(dreamCompanion.rating);
+                            starsElement.innerHTML = generateStarRating(companionOfMonth.rating);
                         }
                     }
 
+                    // Update review button link
+                    const reviewButton = document.querySelector('.cotm-review-button');
+                    if (reviewButton && companionOfMonth.slug) {
+                        reviewButton.href = `/companions/${companionOfMonth.slug}`;
+                    }
+
                     // Update website URL
-                    console.log('Dream Companion website_url:', dreamCompanion.website_url);
-                    if (dreamCompanion.website_url && dreamCompanion.website_url !== '#' && dreamCompanion.website_url.startsWith('http')) {
+                    console.log('Companion of the Month website_url:', companionOfMonth.website_url);
+                    if (companionOfMonth.website_url && companionOfMonth.website_url !== '#' && companionOfMonth.website_url.startsWith('http')) {
                         const websiteLink = document.getElementById('cotm-website-link');
                         if (websiteLink) {
-                            console.log('Updating COTM website link from', websiteLink.href, 'to:', dreamCompanion.website_url);
-                            websiteLink.href = dreamCompanion.website_url;
+                            console.log('Updating COTM website link from', websiteLink.href, 'to:', companionOfMonth.website_url);
+                            websiteLink.href = companionOfMonth.website_url;
                             console.log('COTM link updated successfully');
                         } else {
                             console.error('COTM website link element not found');
                         }
                     } else {
-                        console.warn('Dream Companion website_url not valid, keeping fallback URL. Value:', dreamCompanion.website_url);
+                        console.warn('Companion of the Month website_url not valid, keeping fallback URL. Value:', companionOfMonth.website_url);
                     }
                 } else {
-                    console.error('Dream Companion not found in companions list');
+                    console.error('No companion found with is_month = true');
                 }
             } catch (error) {
                 console.error('Error loading Companion of the Month rating:', error);

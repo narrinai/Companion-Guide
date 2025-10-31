@@ -203,6 +203,7 @@ exports.handler = async (event, context) => {
           features: features,
           pricing_plans: pricingPlans,
           featured: !!baseCompanion.is_featured,
+          is_month: !!baseCompanion.is_month,
           status: baseCompanion.status || 'Active',
           review_count: parseInt(baseCompanion.review_count) || 0,
           best_for: fields.best_for || baseCompanion.best_for || '',
