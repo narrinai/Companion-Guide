@@ -29,10 +29,10 @@ class FloatingCTAManager {
   createCTA() {
     // Create the floating CTA element
     this.cta = document.createElement('a');
-    this.cta.href = '/companions';
+    this.cta.href = '/deals';
     this.cta.className = 'floating-cta';
     this.cta.innerHTML = `
-      <span>New Best-Rated Companions</span>
+      <span>Companion Deals 70% Off</span>
       <span class="floating-cta-close" data-close="true">×</span>
     `;
 
@@ -99,7 +99,7 @@ class FloatingCTAManager {
     if (typeof gtag !== 'undefined') {
       gtag('event', 'click', {
         event_category: 'Floating CTA',
-        event_label: 'News Article - Companions Link',
+        event_label: 'News Article - Deals Link',
         value: 1
       });
     }
@@ -107,7 +107,7 @@ class FloatingCTAManager {
     // Track with Facebook Pixel if available
     if (typeof fbq !== 'undefined') {
       fbq('track', 'ViewContent', {
-        content_name: 'Floating CTA Click',
+        content_name: 'Floating CTA Click - Deals',
         content_category: 'News Article'
       });
     }
