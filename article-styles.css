@@ -111,6 +111,30 @@ body:has(.article-hero) .nav-menu {
         left: 0 !important;
     }
 
+    body:has(.article-hero) .mobile-menu-logo {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: var(--space-3) !important;
+        margin-bottom: var(--space-8) !important;
+        padding-bottom: var(--space-4) !important;
+        border-bottom: 1px solid var(--border-primary) !important;
+        margin-top: var(--space-8) !important;
+    }
+
+    body:has(.article-hero) .mobile-menu-logo span {
+        color: white !important;
+        font-size: 1.125rem !important;
+        font-weight: 600 !important;
+    }
+
+    body:has(.article-hero) .nav-menu li {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: var(--space-1) 0 !important;
+    }
+
     body:has(.article-hero) .nav-menu li a {
         color: white !important;
         font-size: 1.25rem !important;
