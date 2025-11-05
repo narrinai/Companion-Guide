@@ -34,7 +34,7 @@ class FloatingCTAManager {
     this.cta.innerHTML = `
       <div class="floating-cta-header">Companion of the Month</div>
       <div class="floating-cta-content">
-        <img src="/images/logos/soulkyn-ai.png" alt="Soulkyn AI" class="floating-cta-logo">
+        <img src="/images/screenshots/soulkyn-ai-review.png" alt="Soulkyn AI" class="floating-cta-logo">
         <div class="floating-cta-info">
           <div class="floating-cta-name">Soulkyn</div>
           <div class="floating-cta-rating">
