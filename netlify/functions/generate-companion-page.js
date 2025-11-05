@@ -405,8 +405,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
             <p>Built for users seeking ${categoryTags || 'AI companion'} experiences, ${name} emphasizes ${features && features.length > 0 ? features[0].title.toLowerCase() : 'personalized interactions'}. The platform provides a space for users to engage with AI companions and develop ongoing virtual relationships.</p>
 
-            <div class="intro-highlights">
-${highlightsHTML}
+            <div class="intro-highlights" id="dynamic-features">
+                <!-- Features will be dynamically loaded from Airtable -->
             </div>
         </section>
 
@@ -701,11 +701,29 @@ ${consHTML}
         </div>
     </footer>
 
-    <script src="../script.js"></script>
-    <script src="/js/companions.js"></script>
-    <script src="/js/meta-companion-tracking.js"></script>
-    <script src="/js/ga-external-tracking.js"></script>
+    <script src="../js/i18n.js?v=20251022"></script>
+    <script src="../script.js?v=20251007"></script>
+    <script src="/js/companions.js?v=20251007"></script>
+    <script src="/js/companion-page.js?v=20251007"></script>
+    <script src="/js/alternatives.js"></script>
+    <script src="/js/companion-header.js"></script>
     <script src="/faq-interactions.js"></script>
+    <script>
+        // Load featured companions in footer
+        document.addEventListener("DOMContentLoaded", async function() {
+            if (typeof window.companionManager === "undefined") {
+                window.companionManager = new CompanionManager();
+            }
+            try {
+                await window.companionManager.renderFooterFeaturedCompanions("featured-companions-footer");
+            } catch (error) {
+                console.error("Error loading footer featured companions:", error);
+            }
+        });
+    </script>
+    <script src="../js/review-names.js"></script>
+    <script src="/js/meta-companion-tracking.js?v=20251007"></script>
+    <script src="/js/ga-external-tracking.js?v=20251017"></script>
 </body>
 </html>`;
 }
