@@ -115,6 +115,27 @@ body:has(.article-hero) .nav-menu {
         left: 0 !important;
     }
 
+    body:has(.article-hero) .menu-close {
+        position: absolute !important;
+        top: var(--space-4) !important;
+        right: var(--space-4) !important;
+        background: none !important;
+        border: none !important;
+        color: white !important;
+        cursor: pointer !important;
+        padding: var(--space-2) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 10 !important;
+        transition: transform 0.2s ease !important;
+    }
+
+    body:has(.article-hero) .menu-close:hover {
+        transform: rotate(90deg) !important;
+        color: var(--accent-blue) !important;
+    }
+
     body:has(.article-hero) .mobile-menu-logo {
         display: flex !important;
         align-items: center !important;
