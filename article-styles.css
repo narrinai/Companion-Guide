@@ -111,6 +111,21 @@ body:has(.article-hero) .nav-menu {
         left: 0 !important;
     }
 
+    body:has(.article-hero) .nav-menu li a {
+        color: white !important;
+        font-size: 1.25rem !important;
+        padding: var(--space-4) !important;
+        font-weight: 500 !important;
+        text-decoration: none !important;
+        border-radius: 8px !important;
+    }
+
+    body:has(.article-hero) .nav-menu li a:hover,
+    body:has(.article-hero) .nav-menu li a.active {
+        background-color: rgba(59, 130, 246, 0.2) !important;
+        color: #3b82f6 !important;
+    }
+
     body:has(.article-hero) header h1 {
         order: 1 !important;
     }
