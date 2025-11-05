@@ -32,7 +32,17 @@ class FloatingCTAManager {
     this.cta.href = '/companions/soulkyn-ai';
     this.cta.className = 'floating-cta';
     this.cta.innerHTML = `
-      <span>⭐ Soulkyn 9.5/10</span>
+      <div class="floating-cta-header">Companion of the Month</div>
+      <div class="floating-cta-content">
+        <img src="/images/logos/soulkyn-ai.png" alt="Soulkyn AI" class="floating-cta-logo">
+        <div class="floating-cta-info">
+          <div class="floating-cta-name">Soulkyn</div>
+          <div class="floating-cta-rating">
+            <span class="floating-cta-stars">★★★★★</span>
+            <span class="floating-cta-score">9.5</span><span class="floating-cta-score-total">/10</span>
+          </div>
+        </div>
+      </div>
       <span class="floating-cta-close" data-close="true">×</span>
     `;
 
