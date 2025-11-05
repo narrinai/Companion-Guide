@@ -35,16 +35,18 @@ body:has(.article-hero) header nav {
     height: 60px !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: space-between !important;
+    justify-content: center !important;
     padding: 0 var(--space-4) !important;
     position: relative !important;
 }
 
-/* Logo on the left like mobile */
+/* Center the logo/title like mobile */
 body:has(.article-hero) header h1 {
     margin: 0 !important;
-    order: 1 !important;
-    flex: 0 0 auto !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
 }
 
 body:has(.article-hero) header h1 a {
@@ -60,6 +62,11 @@ body:has(.article-hero) header h1 a {
 /* Show desktop navigation normally */
 body:has(.article-hero) .nav-menu {
     display: flex !important;
+}
+
+/* Hide mobile menu elements on desktop */
+body:has(.article-hero) .menu-close {
+    display: none !important;
 }
 
 /* Hide hamburger menu on desktop */
@@ -82,6 +89,19 @@ body:has(.article-hero) .nav-menu {
 
 /* Show hamburger menu only on mobile */
 @media (max-width: 767px) {
+    body:has(.article-hero) header nav {
+        justify-content: space-between !important;
+    }
+
+    body:has(.article-hero) header h1 {
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        order: 1 !important;
+        flex: 0 0 auto !important;
+    }
+
     body:has(.article-hero) .hamburger {
         display: flex !important;
         flex-direction: column !important;
@@ -176,10 +196,6 @@ body:has(.article-hero) .nav-menu {
     body:has(.article-hero) .nav-menu li a.active {
         background-color: rgba(59, 130, 246, 0.2) !important;
         color: #3b82f6 !important;
-    }
-
-    body:has(.article-hero) header h1 {
-        order: 1 !important;
     }
 }
 
