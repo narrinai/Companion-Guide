@@ -351,8 +351,31 @@ class CompanionHeaderManager {
       if (faqSection) {
         const faqHeading = faqSection.querySelector('h2');
         if (faqHeading) {
-          const faqText = window.i18n ? window.i18n.t('companion.faqHeading') : 'Veelgestelde Vragen';
-          faqHeading.textContent = `${companionName} ${faqText}`;
+          // Wait for i18n to be initialized if needed
+          const updateHeading = () => {
+            const faqText = (window.i18n && window.i18n.initialized)
+              ? window.i18n.t('companion.faqHeading')
+              : 'FAQ';
+            faqHeading.textContent = `${companionName} ${faqText}`;
+            console.log(`✅ Updated FAQ heading: ${faqHeading.textContent}`);
+          };
+
+          if (window.i18n && !window.i18n.initialized) {
+            // Wait for i18n to initialize
+            const waitForI18n = setInterval(() => {
+              if (window.i18n.initialized) {
+                clearInterval(waitForI18n);
+                updateHeading();
+              }
+            }, 50);
+            // Timeout after 2 seconds
+            setTimeout(() => {
+              clearInterval(waitForI18n);
+              updateHeading();
+            }, 2000);
+          } else {
+            updateHeading();
+          }
         }
       }
 
