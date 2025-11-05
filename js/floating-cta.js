@@ -29,10 +29,10 @@ class FloatingCTAManager {
   createCTA() {
     // Create the floating CTA element
     this.cta = document.createElement('a');
-    this.cta.href = '/deals';
+    this.cta.href = '/companions/soulkyn-ai';
     this.cta.className = 'floating-cta';
     this.cta.innerHTML = `
-      <span>Companion Deals 70% Off</span>
+      <span>Companion of the Month: Soulkyn 9.5/10</span>
       <span class="floating-cta-close" data-close="true">×</span>
     `;
 

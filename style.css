@@ -626,7 +626,7 @@ main {
     align-items: center;
     gap: var(--space-1);
     padding: calc(var(--space-2) - 2px) var(--space-4);
-    background-color: transparent;
+    background-color: #0a0a0a;
     color: white;
     border: 2px solid var(--accent-blue);
     border-radius: var(--radius-md);
