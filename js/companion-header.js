@@ -112,6 +112,14 @@ class CompanionHeaderManager {
       console.log(`✅ Updated tagline`);
     }
 
+    // Update logo
+    const logoElement = document.querySelector('.companion-logo');
+    if (logoElement && companion.logo_url) {
+      logoElement.src = companion.logo_url;
+      logoElement.alt = `${companion.name} logo`;
+      console.log(`✅ Updated logo from Airtable: ${companion.logo_url}`);
+    }
+
     // Update "What is X?" heading with companion name
     // Skip for NL/PT pages - companion-page.js handles this
     const path = window.location.pathname;
