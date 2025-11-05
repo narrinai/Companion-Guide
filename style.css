@@ -265,8 +265,22 @@ header .nav-menu {
     /* Show hamburger on mobile */
     .hamburger {
         display: flex !important;
-        order: 2;
-        margin-left: auto;
+        flex-direction: column !important;
+        order: 2 !important;
+        margin-left: auto !important;
+        cursor: pointer !important;
+        padding: var(--space-2) !important;
+        z-index: 10000 !important;
+    }
+
+    .hamburger span {
+        width: 24px !important;
+        height: 2px !important;
+        background-color: var(--text-primary) !important;
+        margin: 2px 0 !important;
+        transition: 0.3s !important;
+        border-radius: 2px !important;
+        display: block !important;
     }
 }
 
