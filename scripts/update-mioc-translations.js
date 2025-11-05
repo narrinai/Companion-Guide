@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const base = new Airtable({apiKey: process.env.AIRTABLE_TOKEN_CG}).base(process.env.AIRTABLE_BASE_ID_CG);
 
-// First, find the mioc-ai companion record ID
+// Get companion record ID
 async function getMiocAIRecordId() {
     const records = await base('Table 1').select({
         filterByFormula: "{slug} = 'mioc-ai'"
@@ -16,8 +16,26 @@ async function getMiocAIRecordId() {
     return records[0].id;
 }
 
-// Translation content for all languages
-const translations = {
+// Find existing translation records
+async function findTranslations(companionId) {
+    const records = await base('Companion_Translations').select({
+        filterByFormula: `{companion} = '${companionId}'`
+    }).all();
+
+    const translations = {};
+    records.forEach(record => {
+        const lang = record.fields.language;
+        translations[lang] = {
+            id: record.id,
+            ...record.fields
+        };
+    });
+
+    return translations;
+}
+
+// Complete translation data
+const translationData = {
     'en': {
         language: 'en',
         tagline: 'The first Role-Play site with a 1 Trillion parameter Model',
@@ -125,45 +143,58 @@ const translations = {
     }
 };
 
-async function createTranslations() {
+async function updateTranslations() {
     try {
         console.log('Finding mioc-ai companion record...\n');
         const companionRecordId = await getMiocAIRecordId();
         console.log(`Found companion record: ${companionRecordId}\n`);
 
-        console.log('Creating Companion_Translations records for mioc-ai...\n');
+        console.log('Finding existing translation records...\n');
+        const existingTranslations = await findTranslations(companionRecordId);
+        console.log(`Found ${Object.keys(existingTranslations).length} existing translations\n`);
 
-        for (const [lang, data] of Object.entries(translations)) {
-            console.log(`Creating ${lang.toUpperCase()} translation...`);
+        console.log('Updating translation records...\n');
 
-            // Add companion link
-            const translationData = {
-                ...data,
-                companion: [companionRecordId] // Link to Table 1 record
-            };
+        for (const [lang, data] of Object.entries(translationData)) {
+            if (existingTranslations[lang]) {
+                // Update existing record
+                console.log(`Updating ${lang.toUpperCase()} translation (${existingTranslations[lang].id})...`);
 
-            const record = await base('Companion_Translations').create([
-                {
-                    fields: translationData
-                }
-            ]);
+                await base('Companion_Translations').update(existingTranslations[lang].id, data);
 
-            console.log(`✅ Created ${lang.toUpperCase()} record: ${record[0].id}`);
-            console.log(`   - Tagline: ${data.tagline}`);
-            console.log(`   - Language: ${data.language}`);
-            console.log('');
+                console.log(`✅ Updated ${lang.toUpperCase()}`);
+                console.log(`   - Meta title: ${data.meta_title}`);
+                console.log(`   - Pros: ${JSON.parse(data.pros_cons).pros.length} items`);
+                console.log(`   - Cons: ${JSON.parse(data.pros_cons).cons.length} items`);
+                console.log('');
+            } else {
+                // Create new record if doesn't exist
+                console.log(`Creating ${lang.toUpperCase()} translation...`);
+
+                const translationWithCompanion = {
+                    ...data,
+                    companion: [companionRecordId]
+                };
+
+                const record = await base('Companion_Translations').create([{
+                    fields: translationWithCompanion
+                }]);
+
+                console.log(`✅ Created ${lang.toUpperCase()} record: ${record[0].id}`);
+                console.log('');
+            }
         }
 
-        console.log('✅ All translation records created successfully!');
+        console.log('✅ All translations updated successfully!');
         console.log('\nSummary:');
-        console.log('- English (EN): ✓');
-        console.log('- Nederlands (NL): ✓');
-        console.log('- Português (PT): ✓');
+        console.log('- English (EN): Complete with meta, pros/cons, verdict');
+        console.log('- Nederlands (NL): Volledig met meta, pros/cons, verdict');
+        console.log('- Português (PT): Completo com meta, prós/contras, veredicto');
 
     } catch (error) {
-        console.error('Error creating translations:', error);
+        console.error('Error updating translations:', error);
         console.error('Error details:', error.message);
     }
 }
 
-createTranslations();
+updateTranslations();
