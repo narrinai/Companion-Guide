@@ -943,11 +943,20 @@
 
     <script>
         // Mobile menu toggle
-        function toggleMenu() {
+                function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
             const overlay = document.querySelector('.nav-menu-overlay');
+
+            hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             overlay.classList.toggle('active');
+
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
     </script>
 </body>
