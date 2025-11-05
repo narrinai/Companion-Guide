@@ -104,6 +104,10 @@ body:has(.article-hero) .nav-menu {
         align-items: center !important;
         padding-top: var(--space-20) !important;
         transition: left 0.3s ease !important;
+        z-index: 999999 !important;
+    }
+
+    body:has(.article-hero) .nav-menu-overlay {
         z-index: 999998 !important;
     }
 
@@ -142,6 +146,9 @@ body:has(.article-hero) .nav-menu {
         font-weight: 500 !important;
         text-decoration: none !important;
         border-radius: 8px !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        display: block !important;
     }
 
     body:has(.article-hero) .nav-menu li a:hover,
