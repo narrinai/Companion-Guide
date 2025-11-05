@@ -1017,13 +1017,15 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
                 console.log('Using cached companions:', allCompanions.length); // Debug
 
-                // Filter for companions with rating 9.1 or higher (regardless of featured status)
-                const highRatedCompanions = allCompanions.filter(c => (c.rating || 0) >= 9.1);
+                // Filter for featured companions
+                const featuredCompanions = allCompanions.filter(c =>
+                    c.featured === true || c.featured === 'true' || c.is_featured === true || c.is_featured === 'true'
+                );
 
-                console.log('Found companions with rating 9.1+:', highRatedCompanions.length); // Debug
+                console.log('Found featured companions:', featuredCompanions.length); // Debug
 
                 // Sort by rating (highest first)
-                const sortedCompanions = highRatedCompanions.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+                const sortedCompanions = featuredCompanions.sort((a, b) => (b.rating || 0) - (a.rating || 0));
 
                 // Get the companion tags container
                 const companionTagsContainer = document.querySelector('.companion-tags');
@@ -1032,8 +1034,11 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     // Clear existing placeholder tags
                     companionTagsContainer.innerHTML = '';
 
-                    // Add all companions with rating 9.1+
-                    sortedCompanions.forEach((companion, index) => {
+                    // Filter for companions with rating 9.1 or higher
+                    const highRatedCompanions = sortedCompanions.filter(c => (c.rating || 0) >= 9.1);
+
+                    // Add featured companions with rating 9.1+
+                    highRatedCompanions.forEach((companion, index) => {
                         const tag = document.createElement('a');
                         tag.href = `/companions/${companion.slug}`;
                         tag.className = 'featured-companion-tag';
@@ -1042,7 +1047,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                         console.log(`Added companion tag: ${companion.rating}/10 ${companion.name}`); // Debug
                     });
                 } else {
-                    console.warn('No companions with rating 9.1+ found or container missing');
+                    console.warn('No featured companions found or container missing');
                 }
             } catch (error) {
                 console.error('Error loading featured companion tags:', error);
