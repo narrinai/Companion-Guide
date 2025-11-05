@@ -47,7 +47,9 @@ class I18n {
     const targetLang = lang || this.currentLang;
 
     try {
-      const response = await fetch(`/locales/${targetLang}.json`);
+      // Add cache busting parameter
+      const cacheBust = '20251105';
+      const response = await fetch(`/locales/${targetLang}.json?v=${cacheBust}`);
 
       if (!response.ok) {
         throw new Error(`Failed to load ${targetLang} translations`);
