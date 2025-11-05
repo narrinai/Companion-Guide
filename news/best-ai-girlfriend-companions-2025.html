@@ -1546,6 +1546,9 @@
                         </div>
                     `;
                 }
+                // Load featured companions in footer
+                await window.companionManager.renderFooterFeaturedCompanions('featured-companions-footer');
+
 
             } catch (error) {
                 console.error('Error loading companion data:', error);
