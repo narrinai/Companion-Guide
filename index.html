@@ -1034,11 +1034,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     // Clear existing placeholder tags
                     companionTagsContainer.innerHTML = '';
 
-                    // Filter for companions with rating 9.1 or higher
-                    const highRatedCompanions = sortedCompanions.filter(c => (c.rating || 0) >= 9.1);
-
-                    // Add featured companions with rating 9.1+
-                    highRatedCompanions.forEach((companion, index) => {
+                    // Add all featured companions (no rating filter)
+                    sortedCompanions.forEach((companion, index) => {
                         const tag = document.createElement('a');
                         tag.href = `/companions/${companion.slug}`;
                         tag.className = 'featured-companion-tag';
