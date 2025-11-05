@@ -554,7 +554,7 @@ main {
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: var(--space-6) 0 var(--space-4) 0;
+    padding: var(--space-6) 0 var(--space-6) 0;
     background-color: var(--bg-secondary);
 }
 
