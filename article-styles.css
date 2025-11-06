@@ -83,6 +83,14 @@ body:has(.article-hero) {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.publish-date {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
 }
 
 .breadcrumb-nav {
