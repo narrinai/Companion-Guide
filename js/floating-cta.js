@@ -39,7 +39,7 @@ class FloatingCTAManager {
           <div class="floating-cta-name">Soulkyn</div>
           <div class="floating-cta-rating">
             <span class="floating-cta-stars">★★★★★</span>
-            <span class="floating-cta-score">9.5</span><span class="floating-cta-score-total">/10</span>
+            <span class="floating-cta-score">9.6</span><span class="floating-cta-score-total">/10</span>
           </div>
         </div>
       </div>

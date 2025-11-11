@@ -375,7 +375,7 @@ class CompanionPageManager {
 
         // Detect currency - default to $ unless specified
         const companionCurrency = this.companionData.currency || '$';
-        const usesEuro = companionCurrency === '€' || companionCurrency === 'EUR' || this.companionId === 'soulkyn-ai';
+        const usesEuro = companionCurrency === '€' || companionCurrency === 'EUR';
 
         // Generate pricing tiers from Airtable data
         pricingPlans.forEach((plan, index) => {
