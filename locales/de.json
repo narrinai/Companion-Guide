@@ -250,6 +250,7 @@
     "emailAddress": "E-Mail-Adresse",
     "company": "Unternehmen/Organisation (Optional)",
     "subject": "Betreff",
+    "selectSubject": "Wählen Sie ein Thema aus",
     "subjectPlaceholder": "Wählen Sie ein Thema...",
     "generalInquiry": "Allgemeine Anfrage",
     "reviewRequest": "Review-Anfrage",
