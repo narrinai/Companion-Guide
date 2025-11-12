@@ -89,7 +89,7 @@ body:has(.article-hero) {
 
 .publish-date {
     font-size: 0.875rem;
-    color: var(--text-secondary);
+    color: #ffffff;
     white-space: nowrap;
 }
 
