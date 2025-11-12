@@ -96,9 +96,14 @@
     "cons": "Nachteile",
     "prosAndCons": "Vor- und Nachteile",
     "userExperience": "Nutzererfahrung",
-    "alternatives": "Alternativen",
+    "alternatives": "Ähnliche Alternativen",
+    "verdict": "Unser Urteil",
     "faq": "Häufig gestellte Fragen",
-    "faqHeading": "FAQ"
+    "faqHeading": "FAQ",
+    "pricingLabel": "Preise",
+    "bestForLabel": "Ideal für",
+    "platformLabel": "Plattform",
+    "contentPolicyLabel": "Inhaltsrichtlinie"
   },
   "companions": {
     "title": "Beste KI-Chat-Plattformen & Companions nach Bewertung gerankt",
