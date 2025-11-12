@@ -1,0 +1,214 @@
+{
+  "meta": {
+    "language": "de",
+    "name": "Deutsch",
+    "direction": "ltr",
+    "locale": "de-DE"
+  },
+  "nav": {
+    "home": "Startseite",
+    "companions": "Companions",
+    "categories": "Kategorien",
+    "news": "News & Ratgeber",
+    "deals": "Angebote",
+    "about": "Über uns"
+  },
+  "hero": {
+    "title": "Finden Sie Ihren perfekten KI-Companion",
+    "subtitle": "Umfassende Bewertungen und Vergleiche von KI-Chat-Plattformen, KI-Girlfriends und Charakter-Companions",
+    "cta": "Companions entdecken"
+  },
+  "sections": {
+    "bestPlatforms": "Beste KI-Chat & Companion-Plattformen",
+    "categories": "Nach Kategorie durchsuchen",
+    "latestNews": "Neueste News & Ratgeber",
+    "companionOfMonth": "Companion des Monats",
+    "featuredGuides": "Empfohlene Ratgeber"
+  },
+  "companionCard": {
+    "readReview": "Bewertung lesen",
+    "visitWebsite": "Website besuchen",
+    "freeTrial": "Kostenlose Testversion",
+    "fromPrice": "Ab",
+    "bestFor": "Ideal für",
+    "reviews": "Bewertungen",
+    "review": "Bewertung",
+    "rating": "Bewertung"
+  },
+  "pricing": {
+    "free": "Kostenlos",
+    "from": "Ab",
+    "perMonth": "/Monat",
+    "perYear": "/Jahr",
+    "startingAt": "Ab"
+  },
+  "footer": {
+    "tagline": "Ihr vertrauenswürdiger Ratgeber für KI-Companions und Chat-Plattformen",
+    "categories": "Kategorien",
+    "resources": "Ressourcen",
+    "company": "Unternehmen",
+    "aboutUs": "Über uns",
+    "contact": "Kontakt",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen",
+    "allRightsReserved": "Alle Rechte vorbehalten"
+  },
+  "badges": {
+    "popular": "Beliebt",
+    "new": "Neu",
+    "featured": "Empfohlen",
+    "topRated": "Bestbewertet",
+    "leader": "Marktführer",
+    "bestValue": "Bestes Preis-Leistungs-Verhältnis",
+    "trending": "Im Trend"
+  },
+  "categories": {
+    "aiGirlfriends": "KI-Girlfriends",
+    "characterChat": "Charakter-Chat",
+    "companionApps": "Companion-Apps",
+    "nsfwAi": "NSFW KI",
+    "roleplay": "Rollenspiel",
+    "imageGeneration": "Bildgenerierung",
+    "videoGeneration": "Videogenerierung",
+    "voiceChat": "Sprach-Chat"
+  },
+  "common": {
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "tryAgain": "Erneut versuchen",
+    "learnMore": "Mehr erfahren",
+    "readMore": "Weiterlesen",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "sort": "Sortieren",
+    "all": "Alle"
+  },
+  "companion": {
+    "whatIs": "Was ist {name}?",
+    "reviews": "👥 Neueste Nutzerbewertungen",
+    "pricing": "Preise",
+    "keyFeatures": "Hauptmerkmale",
+    "overview": "Übersicht",
+    "features": "Funktionen",
+    "pros": "Vor- & Nachteile",
+    "cons": "Nachteile",
+    "prosAndCons": "Vor- und Nachteile",
+    "userExperience": "Nutzererfahrung",
+    "alternatives": "Alternativen",
+    "faq": "Häufig gestellte Fragen",
+    "faqHeading": "FAQ"
+  },
+  "companions": {
+    "title": "Beste KI-Chat-Plattformen & Companions nach Bewertung gerankt",
+    "subtitle": "Vollständige Rangliste von KI-Chat-Plattformen und KI-Companion-Plattformen basierend auf Benutzerbewertungen, Funktionen und Leistung. Finden Sie die perfekte KI-Chat-Plattform oder den perfekten KI-Companion für Ihre spezifischen Bedürfnisse und Vorlieben.",
+    "comingSoon": "Weitere KI-Companions demnächst verfügbar",
+    "comingSoonDesc": "Wir bewerten aktiv neue KI-Companion-Plattformen",
+    "comingSoonText": "Unser Team testet und bewertet kontinuierlich neue KI-Companion-Plattformen. Schauen Sie regelmäßig vorbei für Updates, während wir weitere Companions mit verschiedenen Funktionen und Möglichkeiten hinzufügen.",
+    "suggestPlatform": "Plattform vorschlagen",
+    "browseCategories": "Kategorien ansehen"
+  },
+  "faq": {
+    "title": "Häufig gestellte Fragen zu KI-Companion-Plattformen"
+  },
+  "categoryPages": {
+    "home": "Startseite",
+    "loading": "Lade Companions...",
+    "roleplay": {
+      "title": "Beste Rollenspiel- & Charakter-Chat-Companions",
+      "description": "Entdecken Sie die besten KI-Plattformen für Rollenspiel- und Charakter-Chat-Erlebnisse. Diese Plattformen zeichnen sich durch interaktives Storytelling, kreative Konversationen und immersive Charakter-Interaktionen für Unterhaltung und kreative Entfaltung aus.",
+      "breadcrumb": "Rollenspiel- & Charakter-Chat-KI-Plattformen",
+      "insightsTitle": "Einblicke in Rollenspiel- & Charakter-Chat-KI-Plattformen",
+      "comparisonTitle": "Vergleich von Rollenspiel- & Charakter-Chat-Plattformen",
+      "metaTitle": "Beste Rollenspiel- & Charakter-KI-Chat-Plattformen 2025",
+      "metaDescription": "Top Rollenspiel- und Charakter-KI-Chat-Plattformen 2025. Interaktives Storytelling, kreative Konversationen, immersive Erlebnisse. Vergleichen Sie 14 bewertete Plattformen.",
+      "insights": {
+        "characterVariety": {
+          "title": "Charakter-Vielfalt",
+          "text": "Diese Plattformen bieten vielfältige Charakter-Bibliotheken aus fiktiven Universen, historischen Persönlichkeiten und Originalkreationen für immersives Rollenspiel."
+        },
+        "storytelling": {
+          "title": "Interaktives Storytelling",
+          "text": "Fokus auf erzählgetriebene Erlebnisse, bei denen Nutzer aktiv an der Geschichtenentwicklung durch Charakter-Interaktionen teilnehmen und diese beeinflussen können."
+        },
+        "expression": {
+          "title": "Kreative Entfaltung",
+          "text": "Plattformen fördern kreatives Schreiben, Charakterentwicklung und fantasievolle Szenarien für Unterhaltung und künstlerischen Ausdruck."
+        },
+        "community": {
+          "title": "Community-Funktionen",
+          "text": "Starke Community-Aspekte einschließlich Charakter-Sharing, gemeinschaftlichem Storytelling und nutzergenerierten Inhalten."
+        }
+      },
+      "comparison": {
+        "platform": "Plattform",
+        "rating": "Bewertung",
+        "pricing": "Preise",
+        "keyFeature": "Hauptmerkmal",
+        "bestFor": "Ideal für"
+      },
+      "faqTitle": "KI-Rollenspiel- & Charakter-Chat-FAQs"
+    },
+    "video": {
+      "title": "Beste Video-KI-Companions",
+      "description": "Erleben Sie die nächste Stufe der KI-Companion-Technologie mit Videofunktionen. Diese Plattformen bieten Video-Chat, KI-generierte Videos und immersive visuelle Erlebnisse, die Ihre KI-Companions zum Leben erwecken. Von virtuellem Dating mit Videoanrufen bis zu personalisierten Videonachrichten – entdecken Sie Plattformen, die über Text und Sprache hinausgehen.",
+      "breadcrumb": "Video-KI-Companions"
+    },
+    "adultContentUncensored": {
+      "title": "Beste Plattformen für Erwachseneninhalte & unzensierte Companions",
+      "description": "Entdecken Sie die besten unzensierten NSFW-KI-Plattformen für Erwachseneninhalte und reife Konversationen (nur 18+). Diese Plattformen bieten vollständige kreative Freiheit für reife Gespräche, KI-Sexting und erotische Chat-Erlebnisse ohne Inhaltsbeschränkungen.",
+      "breadcrumb": "KI-Plattformen für Erwachseneninhalte & unzensiert"
+    },
+    "adultImageGen": {
+      "title": "Beste KI-Plattformen für die Generierung von Erwachsenenbildern",
+      "description": "Beste KI-Plattformen zum Erstellen von NSFW-Kunst und visuellen Inhalten für Erwachsene (nur 18+). Diese Plattformen bieten fortschrittliche Erwachsenenbildgenerierung, NSFW-Inhaltserstellung und erotische Kunstwerkzeuge mit modernster generativer KI.",
+      "breadcrumb": "KI-Plattformen für Erwachsenenbildgenerierung"
+    },
+    "aiBoyfriend": {
+      "title": "Beste KI-Boyfriend-Plattformen",
+      "description": "Top-KI-Boyfriend-Plattformen für virtuelle romantische Beziehungen und männliche Companions. Diese Plattformen bieten personalisierte virtuelle Dating-Erlebnisse, romantische Konversationen und emotionale Verbindungen mit anpassbaren KI-Partnern.",
+      "breadcrumb": "KI-Boyfriend-Plattformen"
+    },
+    "aiGirlfriend": {
+      "title": "Beste KI-Girlfriend-Plattformen",
+      "description": "Entdecken Sie die besten KI-Plattformen für virtuelle romantische Beziehungen. Diese Plattformen bieten personalisierte virtuelle Dating-Erlebnisse, romantische Konversationen und emotionale Verbindungen mit anpassbaren KI-Partnern.",
+      "breadcrumb": "KI-Girlfriend-Plattformen"
+    },
+    "hentaiAI": {
+      "title": "Beste Hentai-KI-Plattformen",
+      "description": "Spezialisierte KI-Generatoren für Erwachseneninhalte im Anime- und Manga-Stil in verschiedenen Kunststilen (nur 18+). Diese Plattformen bieten hochwertige Hentai-Erstellung, NSFW-Anime-Generierung und Manga-Stil-Erotikkunst-Werkzeuge.",
+      "breadcrumb": "Hentai-KI-Plattformen"
+    },
+    "learning": {
+      "title": "Beste KI-Tutoren & pädagogische Companions",
+      "description": "KI-Tutoren und pädagogische Companions für Kompetenzentwicklung und akademische Unterstützung. Diese Plattformen bieten personalisierte Lernhilfe, adaptives Tutoring und interaktive Bildungswerkzeuge.",
+      "breadcrumb": "KI-Tutoren & pädagogische Companions"
+    },
+    "roleplayCharacterChat": {
+      "title": "Beste Rollenspiel- & Charakter-Chat-Companions",
+      "description": "Entdecken Sie die besten KI-Plattformen für Rollenspiel- und Charakter-Chat-Erlebnisse. Diese Plattformen zeichnen sich durch interaktives Storytelling, kreative Konversationen und immersive Charakter-Interaktionen für Unterhaltung und kreative Entfaltung aus.",
+      "breadcrumb": "Rollenspiel- & Charakter-Chat-KI-Plattformen"
+    },
+    "videoCompanions": {
+      "title": "Beste Video-KI-Companions",
+      "description": "KI-Companions mit Video-Chat- und Videogenerierungsfunktionen für immersive Erlebnisse. Entdecken Sie Plattformen, die über Text und Sprache hinausgehen und Videofunktionen bieten.",
+      "breadcrumb": "Video-KI-Companions"
+    },
+    "wellness": {
+      "title": "Beste KI-Wellness-Companions",
+      "description": "KI-Companions mit Fokus auf psychische Gesundheit, emotionales Wohlbefinden und persönliche Unterstützung. Diese Plattformen bieten einfühlsame Gespräche, Achtsamkeitswerkzeuge und Wellness-Anleitung.",
+      "breadcrumb": "KI-Wellness-Companions"
+    },
+    "whatsappOnly": {
+      "title": "Beste WhatsApp-native KI-Companions",
+      "description": "KI-Companions, die nativ in WhatsApp integriert sind – keine separaten Apps erforderlich. Chatten Sie direkt mit KI in Ihrer bevorzugten Messaging-App.",
+      "breadcrumb": "WhatsApp-native KI-Companions"
+    },
+    "aiPorn": {
+      "title": "Beste KI-Porn-Plattformen",
+      "description": "Fortschrittliche KI-Plattformen für fotorealistische Erwachseneninhalts-Generierung und interaktive Erlebnisse (nur 18+). Hochwertige KI-Porn-Erstellung und interaktiver Erwachsenen-Chat.",
+      "breadcrumb": "KI-Porn-Plattformen"
+    }
+  }
+}
