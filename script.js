@@ -273,14 +273,48 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentPath.startsWith('/nl/') || currentPath === '/nl') {
             currentLang = 'NL';
             currentFlag = '🇳🇱';
+            localStorage.setItem('preferredLanguage', 'nl');
         } else if (currentPath.startsWith('/pt/') || currentPath === '/pt') {
             currentLang = 'PT';
             currentFlag = '🇧🇷';
+            localStorage.setItem('preferredLanguage', 'pt');
+        } else if (currentPath.startsWith('/de/') || currentPath === '/de') {
+            currentLang = 'DE';
+            currentFlag = '🇩🇪';
+            localStorage.setItem('preferredLanguage', 'de');
+        } else {
+            // Check if user has a preferred language stored
+            const preferredLang = localStorage.getItem('preferredLanguage');
+            if (preferredLang === 'nl') {
+                currentLang = 'NL';
+                currentFlag = '🇳🇱';
+            } else if (preferredLang === 'pt') {
+                currentLang = 'PT';
+                currentFlag = '🇧🇷';
+            } else if (preferredLang === 'de') {
+                currentLang = 'DE';
+                currentFlag = '🇩🇪';
+            } else {
+                localStorage.setItem('preferredLanguage', 'en');
+            }
         }
 
         // Update button text to show current language
         langToggle.textContent = `${currentFlag} ${currentLang}`;
         console.log('Language selector initialized:', currentLang);
+
+        // Update active class in dropdown based on current/preferred language
+        const dropdownLinks = langDropdown.querySelectorAll('.lang-option');
+        dropdownLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if ((currentLang === 'EN' && (href === '/' || href.startsWith('/') && !href.startsWith('/nl') && !href.startsWith('/pt') && !href.startsWith('/de'))) ||
+                (currentLang === 'NL' && href.includes('/nl')) ||
+                (currentLang === 'PT' && href.includes('/pt')) ||
+                (currentLang === 'DE' && href.includes('/de'))) {
+                link.classList.add('active');
+            }
+        });
 
         // Toggle function
         const toggleDropdown = (e) => {

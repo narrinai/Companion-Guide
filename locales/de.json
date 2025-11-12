@@ -78,6 +78,18 @@
     "imageGeneration": "Bildgenerierung",
     "videoGeneration": "Videogenerierung",
     "voiceChat": "Sprach-Chat",
+    "titles": {
+      "roleplayCharacterChat": "Rollenspiel & Charakter-Chat",
+      "wellness": "Wellness",
+      "aiGirlfriend": "KI-Girlfriend",
+      "aiBoyfriend": "KI-Boyfriend",
+      "whatsappOnly": "WhatsApp-Only",
+      "adultImageGen": "Erwachsenenbilder-Generierung",
+      "adultContentUncensored": "Erwachseneninhalte & Unzensiert",
+      "videoCompanions": "Video-Companions",
+      "aiPorn": "KI-Porn-Plattformen",
+      "hentaiAI": "Hentai-KI-Plattformen"
+    },
     "descriptions": {
       "roleplayCharacterChat": "Beste KI-Plattformen für Rollenspiel- und Charakter-Chat-Erlebnisse mit interaktivem Storytelling",
       "wellness": "KI-Companions für psychische Gesundheit, emotionale Unterstützung und persönliches Wohlbefinden",
