@@ -103,7 +103,9 @@
     "pricingLabel": "Preise",
     "bestForLabel": "Ideal für",
     "platformLabel": "Plattform",
-    "contentPolicyLabel": "Inhaltsrichtlinie"
+    "contentPolicyLabel": "Inhaltsrichtlinie",
+    "readyToTry": "Bereit, {name} zu erleben?",
+    "ctaDescription": "Entdecken Sie realistische KI-Girlfriend-Erlebnisse mit über 100 Fantasieszenarien"
   },
   "companions": {
     "title": "Beste KI-Chat-Plattformen & Companions nach Bewertung gerankt",
@@ -116,6 +118,24 @@
   },
   "faq": {
     "title": "Häufig gestellte Fragen zu KI-Companion-Plattformen"
+  },
+  "reviewForm": {
+    "sectionTitle": "Teilen Sie Ihre Erfahrung mit {companion}",
+    "yourName": "Ihr Name",
+    "yourNamePlaceholder": "Geben Sie Ihren Namen ein",
+    "rating": "Bewertung",
+    "reviewTitle": "Titel der Bewertung",
+    "reviewTitlePlaceholder": "Fassen Sie Ihre Erfahrung in einer Zeile zusammen",
+    "yourReview": "Ihre Bewertung",
+    "yourReviewPlaceholder": "Teilen Sie Ihre detaillierte Erfahrung mit dieser Plattform...",
+    "usageDuration": "Wie lange haben Sie diese Plattform genutzt?",
+    "submitButton": "Bewertung einreichen",
+    "durationSelect": "Dauer auswählen...",
+    "durationLessThanWeek": "Weniger als eine Woche",
+    "duration1to4Weeks": "1-4 Wochen",
+    "duration1to3Months": "1-3 Monate",
+    "duration3to6Months": "3-6 Monate",
+    "duration6MonthsPlus": "6+ Monate"
   },
   "deals": {
     "title": "KI-Chat & Companion-Plattform Angebote",
