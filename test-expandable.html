@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Expandable Body Text</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Test Expandable Body Text Feature</h1>
+
+        <section class="overview">
+            <h2>What is Test Companion?</h2>
+            <p>This is a placeholder paragraph that will be replaced by JavaScript.</p>
+
+            <div class="intro-highlights">
+                <div class="highlight-item">
+                    <strong>🎯 Feature 1:</strong>
+                    <span>Description here</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="alternatives">
+            <h2>Similar Alternatives</h2>
+            <div class="alternatives-grid">
+                <!-- Will be populated by JS -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Simulate companion data
+        const testCompanion = {
+            name: "Test Companion",
+            slug: "test-companion",
+            rating: 8.5,
+            body_text: "I've spent considerable time exploring Test AI, and it's a hyper-realistic AI companion with real-time image and video generation, custom characters, and endless possibilities. From my first interaction, I was impressed by the depth of customization and the quality of conversations.\n\nThe platform offers an intuitive interface that makes it easy to create your ideal AI companion. Whether you're looking for casual conversation, creative storytelling, or something more intimate, Test AI delivers on all fronts.\n\nWhat sets Test AI apart is its advanced AI technology that learns from your interactions and adapts to your preferences over time. The more you chat, the better it gets at understanding your unique communication style and interests.\n\nThe image and video generation capabilities are truly next-level, producing incredibly realistic results that enhance the overall experience. Combined with the text chat, it creates an immersive and engaging interaction that feels surprisingly natural."
+        };
+
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, testing updateBodyText function...');
+
+            const overviewSection = document.querySelector('.overview');
+            const bodyText = testCompanion.body_text;
+
+            console.log('Body text length:', bodyText.length, 'characters');
+            console.log('Body text preview:', bodyText.substring(0, 100) + '...');
+
+            // Call the updateBodyText function
+            updateBodyText(overviewSection, bodyText);
+        });
+
+        // Copy of the updateBodyText function from companion-header.js
+        function updateBodyText(overviewSection, bodyText) {
+            const CHAR_LIMIT = 500;
+
+            // Remove existing paragraphs and containers
+            const existingParagraphs = overviewSection.querySelectorAll('p');
+            existingParagraphs.forEach(p => p.remove());
+            const oldContainer = overviewSection.querySelector('.body-text-container');
+            if (oldContainer) oldContainer.remove();
+
+            // Find insertion point
+            const introHighlights = overviewSection.querySelector('.intro-highlights');
+
+            // If body text is short, just show it all
+            if (bodyText.length <= CHAR_LIMIT) {
+                const paragraphs = bodyText.split('\n\n').filter(p => p.trim());
+                paragraphs.forEach((text) => {
+                    const p = document.createElement('p');
+                    p.textContent = text.trim();
+                    if (introHighlights) {
+                        overviewSection.insertBefore(p, introHighlights);
+                    } else {
+                        overviewSection.appendChild(p);
+                    }
+                });
+                console.log(`✅ Updated body text (${bodyText.length} chars, no expansion needed)`);
+                return;
+            }
+
+            // Body text is long - create expandable section
+            const paragraphs = bodyText.split('\n\n').filter(p => p.trim());
+
+            // Find where to split (at paragraph boundary near CHAR_LIMIT)
+            let visibleText = '';
+            let visibleParaCount = 0;
+            let currentLength = 0;
+
+            for (let i = 0; i < paragraphs.length; i++) {
+                const paraLength = paragraphs[i].trim().length;
+                if (currentLength + paraLength > CHAR_LIMIT && visibleParaCount > 0) {
+                    break;
+                }
+                visibleParaCount++;
+                currentLength += paraLength;
+            }
+
+            if (visibleParaCount === 0) visibleParaCount = 1;
+
+            console.log(`Visible paragraphs: ${visibleParaCount} out of ${paragraphs.length}`);
+            console.log(`Visible chars: ${currentLength} out of ${bodyText.length}`);
+
+            // Create visible paragraphs
+            for (let i = 0; i < visibleParaCount; i++) {
+                const p = document.createElement('p');
+                p.textContent = paragraphs[i].trim();
+                if (introHighlights) {
+                    overviewSection.insertBefore(p, introHighlights);
+                } else {
+                    overviewSection.appendChild(p);
+                }
+            }
+
+            // Create expandable container for remaining paragraphs
+            const bodyTextContainer = document.createElement('div');
+            bodyTextContainer.className = 'body-text-container';
+
+            const expandedContent = document.createElement('div');
+            expandedContent.className = 'expanded-content';
+            expandedContent.style.display = 'none';
+
+            // Add remaining paragraphs
+            for (let i = visibleParaCount; i < paragraphs.length; i++) {
+                const p = document.createElement('p');
+                p.textContent = paragraphs[i].trim();
+                expandedContent.appendChild(p);
+            }
+
+            bodyTextContainer.appendChild(expandedContent);
+
+            // Create read more button
+            const readMoreBtn = document.createElement('button');
+            readMoreBtn.className = 'read-more-btn';
+            readMoreBtn.innerHTML = `
+                <span class="btn-text">Read more</span>
+                <span class="arrow">▼</span>
+            `;
+
+            bodyTextContainer.appendChild(readMoreBtn);
+
+            // Insert container
+            if (introHighlights) {
+                overviewSection.insertBefore(bodyTextContainer, introHighlights);
+            } else {
+                overviewSection.appendChild(bodyTextContainer);
+            }
+
+            // Toggle functionality
+            readMoreBtn.addEventListener('click', () => {
+                const isExpanded = readMoreBtn.classList.contains('expanded');
+
+                if (isExpanded) {
+                    expandedContent.style.display = 'none';
+                    readMoreBtn.classList.remove('expanded');
+                    readMoreBtn.querySelector('.btn-text').textContent = 'Read more';
+                } else {
+                    expandedContent.style.display = 'block';
+                    readMoreBtn.classList.add('expanded');
+                    readMoreBtn.querySelector('.btn-text').textContent = 'Read less';
+                }
+            });
+
+            console.log(`✅ Updated body text (${bodyText.length} chars total, showing ${currentLength} chars, ${paragraphs.length - visibleParaCount} paragraphs hidden)`);
+        }
+    </script>
+</body>
+</html>

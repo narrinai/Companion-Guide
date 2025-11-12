@@ -92,10 +92,31 @@ function updateAlternatives(companions) {
             companion.short_description ||
             (companion.description ? companion.description.split('.')[0].trim() : 'Premium AI companion platform');
 
+        // Generate star rating display
+        const rating = companion.rating || 0;
+        const ratingOutOf5 = rating / 2;
+        const fullStars = Math.floor(ratingOutOf5);
+        const hasHalfStar = (ratingOutOf5 % 1) >= 0.3;
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+        let starsHTML = '';
+        for (let i = 0; i < fullStars; i++) {
+            starsHTML += '<span class="star-filled">★</span>';
+        }
+        if (hasHalfStar) {
+            starsHTML += '<span class="star-half">★</span>';
+        }
+        for (let i = 0; i < emptyStars; i++) {
+            starsHTML += '<span class="star-empty">☆</span>';
+        }
+
+        const ratingDisplay = `<div class="alternative-rating">${starsHTML} <span class="rating-value">${rating.toFixed(1)}/10</span></div>`;
+
         return `
             <a href="${companion.slug}" class="alternative">
                 <img src="${logoSrc}" alt="${companion.name} logo" onerror="this.src='../images/logos/default.png'">
                 <h3>${companion.name}</h3>
+                ${ratingDisplay}
                 <p>${shortDescription}</p>
             </a>
         `;

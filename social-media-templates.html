@@ -169,7 +169,7 @@
             background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 16px;
             border-radius: 8px;
             font-weight: 600;
             font-size: 0.875rem;
@@ -178,10 +178,11 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             white-space: nowrap;
-            min-width: 120px;
+            min-width: 100px;
             justify-content: center;
+            flex: 1;
         }
 
         .download-btn:hover {
@@ -342,9 +343,14 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                                 <div class="dimensions">400x400px</div>
                                 <div class="description">Logo with text below</div>
                             </div>
-                            <button class="download-btn" onclick="downloadTemplate('profile-square', 400, 400)">
-                                <span>📥</span> Download PNG
-                            </button>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="download-btn" onclick="downloadTemplate('profile-square', 400, 400, 'png', true)">
+                                    <span>📥</span> PNG
+                                </button>
+                                <button class="download-btn" onclick="downloadTemplate('profile-square', 400, 400, 'webp', true)">
+                                    <span>📥</span> WebP
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -580,7 +586,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     </footer>
 
     <script>
-        async function downloadTemplate(type, width, height) {
+        async function downloadTemplate(type, width, height, format = 'png', transparent = false) {
             // Create canvas
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
@@ -598,34 +604,41 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
 
-            // Create gradient background
-            const gradient = ctx.createLinearGradient(0, 0, downloadWidth, downloadHeight);
-            gradient.addColorStop(0, '#0a0a0a');
-            gradient.addColorStop(1, '#262626');
+            // Only add background if not transparent
+            if (!transparent) {
+                // Create gradient background
+                const gradient = ctx.createLinearGradient(0, 0, downloadWidth, downloadHeight);
+                gradient.addColorStop(0, '#0a0a0a');
+                gradient.addColorStop(1, '#262626');
 
-            // Fill background
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, downloadWidth, downloadHeight);
+                // Fill background
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, downloadWidth, downloadHeight);
 
-            // Add accent gradient overlay
-            const accentGradient = ctx.createLinearGradient(0, 0, downloadWidth, downloadHeight);
-            accentGradient.addColorStop(0, 'rgba(59, 130, 246, 0.1)');
-            accentGradient.addColorStop(1, 'rgba(139, 92, 246, 0.1)');
+                // Add accent gradient overlay
+                const accentGradient = ctx.createLinearGradient(0, 0, downloadWidth, downloadHeight);
+                accentGradient.addColorStop(0, 'rgba(59, 130, 246, 0.1)');
+                accentGradient.addColorStop(1, 'rgba(139, 92, 246, 0.1)');
 
-            ctx.fillStyle = accentGradient;
-            ctx.fillRect(0, 0, downloadWidth, downloadHeight);
+                ctx.fillStyle = accentGradient;
+                ctx.fillRect(0, 0, downloadWidth, downloadHeight);
+            }
 
-            // Calculate responsive sizes (scaled for higher resolution) - large but contained within bounds
-            const baseFontSize = Math.min(downloadWidth, downloadHeight) * 0.12;
+            // Calculate responsive sizes (scaled for higher resolution) - zoomed out for full visibility
+            const baseFontSize = Math.min(downloadWidth, downloadHeight) * 0.08;
             const titleSize = Math.max(baseFontSize, 30 * downloadMultiplier);
-            const logoRadius = Math.min(titleSize * 1.5, Math.min(downloadWidth, downloadHeight) * 0.15);
+            const logoRadius = Math.min(titleSize * 1.2, Math.min(downloadWidth, downloadHeight) * 0.12);
 
             // For profile pictures, show only the logo
             if (type.includes('profile')) {
                 if (type === 'profile-square') {
-                    // Square profile with logo and text below
-                    const logoRadius = Math.min(downloadWidth, downloadHeight) * 0.25;
-                    const logoY = downloadHeight * 0.35;
+                    // Square profile with logo and text below - zoomed out
+                    const logoRadius = Math.min(downloadWidth, downloadHeight) * 0.20;
+                    // Center the entire composition vertically
+                    const textHeight = titleSize * 0.8;
+                    const totalHeight = logoRadius * 2 + 30 * downloadMultiplier + textHeight;
+                    const startY = (downloadHeight - totalHeight) / 2;
+                    const logoY = startY + logoRadius;
                     await drawCompanionGuideLogo(ctx, downloadWidth / 2, logoY, logoRadius);
 
                     // Text below logo
@@ -634,10 +647,10 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
                     ctx.font = `bold ${titleSize * 0.8}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-                    ctx.fillText('Companionguide.ai', downloadWidth / 2, textY);
+                    ctx.fillText('CompanionGuide.ai', downloadWidth / 2, textY);
                 } else {
-                    // Regular profile - just logo centered
-                    const maxRadius = Math.min(downloadWidth, downloadHeight) * 0.4;
+                    // Regular profile - just logo centered, zoomed out
+                    const maxRadius = Math.min(downloadWidth, downloadHeight) * 0.32;
                     await drawCompanionGuideLogo(ctx, downloadWidth / 2, downloadHeight / 2, maxRadius);
                 }
             } else {
@@ -656,29 +669,33 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 // Draw the complete logo
                 await drawCompanionGuideLogo(ctx, safeLogoX, safeLogoY, logoRadius);
 
-                // White text "Companionguide.ai" - ensure it fits
+                // White text "CompanionGuide.ai" - ensure it fits
                 const textX = safeLogoX + logoRadius + 25;
                 if (textX + textWidth < downloadWidth - 10) {
                     ctx.fillStyle = '#ffffff';
                     ctx.textAlign = 'left';
                     ctx.textBaseline = 'middle';
-                    ctx.fillText('Companionguide.ai', textX, safeLogoY);
+                    ctx.fillText('CompanionGuide.ai', textX, safeLogoY);
                 }
             }
 
             // Platform-specific text removed for cleaner design
 
             // Convert to blob and download
+            const mimeType = format === 'webp' ? 'image/webp' : 'image/png';
+            const fileExtension = format === 'webp' ? 'webp' : 'png';
+            const transparentSuffix = transparent ? '-transparent' : '';
+
             canvas.toBlob(function(blob) {
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `companion-guide-${type}-${width}x${height}.png`;
+                a.download = `companion-guide-${type}-${width}x${height}${transparentSuffix}.${fileExtension}`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-            }, 'image/png');
+            }, mimeType);
         }
 
         let logoSvgContent = null;
@@ -855,17 +872,21 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             ctx.fillStyle = accentGradient;
             ctx.fillRect(0, 0, width, height);
 
-            // Calculate responsive sizes - large but contained within bounds
-            const baseFontSize = Math.min(width, height) * 0.12;
+            // Calculate responsive sizes - zoomed out for full visibility
+            const baseFontSize = Math.min(width, height) * 0.08;
             const titleSize = Math.max(baseFontSize, 30);
-            const logoRadius = Math.min(titleSize * 1.5, Math.min(width, height) * 0.15);
+            const logoRadius = Math.min(titleSize * 1.2, Math.min(width, height) * 0.12);
 
             // For profile pictures, show only the logo
             if (type.includes('profile')) {
                 if (type === 'profile-square') {
-                    // Square profile with logo and text below
-                    const logoRadius = Math.min(width, height) * 0.25;
-                    const logoY = height * 0.35;
+                    // Square profile with logo and text below - zoomed out
+                    const logoRadius = Math.min(width, height) * 0.20;
+                    // Center the entire composition vertically
+                    const textHeight = titleSize * 0.8;
+                    const totalHeight = logoRadius * 2 + 30 + textHeight;
+                    const startY = (height - totalHeight) / 2;
+                    const logoY = startY + logoRadius;
                     drawCompanionGuideLogo(ctx, width / 2, logoY, logoRadius);
 
                     // Text below logo
@@ -874,15 +895,15 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
                     ctx.font = `bold ${titleSize * 0.8}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-                    ctx.fillText('Companionguide.ai', width / 2, textY);
+                    ctx.fillText('CompanionGuide.ai', width / 2, textY);
                 } else {
-                    // Regular profile - just logo centered
-                    const maxRadius = Math.min(width, height) * 0.4;
+                    // Regular profile - just logo centered, zoomed out
+                    const maxRadius = Math.min(width, height) * 0.32;
                     drawCompanionGuideLogo(ctx, width / 2, height / 2, maxRadius);
                 }
             } else {
                 // For all other assets, calculate safe positioning
-                const textWidth = ctx.measureText ? ctx.measureText('Companionguide.ai').width || titleSize * 12 : titleSize * 12;
+                const textWidth = ctx.measureText ? ctx.measureText('CompanionGuide.ai').width || titleSize * 12 : titleSize * 12;
                 const totalWidth = logoRadius * 2 + 25 + textWidth;
                 const logoX = Math.max(logoRadius + 10, (width - totalWidth) / 2 + logoRadius);
                 const logoY = height / 2;
@@ -894,14 +915,14 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 // Draw the complete logo
                 drawCompanionGuideLogo(ctx, safeLogoX, safeLogoY, logoRadius);
 
-                // White text "Companionguide.ai" - ensure it fits
+                // White text "CompanionGuide.ai" - ensure it fits
                 const textX = safeLogoX + logoRadius + 25;
                 if (textX + textWidth < width - 10) {
                     ctx.fillStyle = '#ffffff';
                     ctx.textAlign = 'left';
                     ctx.textBaseline = 'middle';
                     ctx.font = `bold ${titleSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-                    ctx.fillText('Companionguide.ai', textX, safeLogoY);
+                    ctx.fillText('CompanionGuide.ai', textX, safeLogoY);
                 }
             }
         }

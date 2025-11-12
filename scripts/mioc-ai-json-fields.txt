@@ -1,0 +1,393 @@
+===============================================
+MIOC AI - JSON FIELDS FOR AIRTABLE
+===============================================
+
+-----------------
+ENGLISH (EN)
+-----------------
+
+PRICING_PLANS:
+[
+  {
+    "name": "Free",
+    "price": 0,
+    "billing": "Free forever",
+    "features": [
+      "5 credits per week",
+      "Access to standard models",
+      "Basic image generation (1 credit)",
+      "Encrypted conversations",
+      "Unlimited memory"
+    ]
+  },
+  {
+    "name": "Premium",
+    "price": 9.99,
+    "billing": "per month",
+    "features": [
+      "40 credits per week",
+      "Access to all models including Aetherion 1T",
+      "Image generation (1 credit)",
+      "Image upscaling (3 credits)",
+      "Aetherion messages (1 credit each)",
+      "Daily bonus credits",
+      "Priority support"
+    ]
+  },
+  {
+    "name": "Elite",
+    "price": 19.99,
+    "billing": "per month",
+    "features": [
+      "100 credits per week",
+      "All Premium features",
+      "Video generation (30 credits)",
+      "Higher daily bonuses",
+      "Early access to new models",
+      "VIP support",
+      "Purchased credits valid 1 year"
+    ]
+  }
+]
+
+FEATURES:
+[
+  {
+    "icon": "🤖",
+    "title": "1T Parameter Model",
+    "description": "Aetherion AI model"
+  },
+  {
+    "icon": "🔒",
+    "title": "Private & Encrypted",
+    "description": "End-to-end encryption"
+  },
+  {
+    "icon": "🧠",
+    "title": "Unlimited Memory",
+    "description": "Never forgets details"
+  },
+  {
+    "icon": "🎨",
+    "title": "Image Generation",
+    "description": "AI-powered visuals"
+  },
+  {
+    "icon": "🎬",
+    "title": "Video Generation",
+    "description": "Create AI videos"
+  },
+  {
+    "icon": "⬆️",
+    "title": "Image Upscaling",
+    "description": "4x resolution boost"
+  },
+  {
+    "icon": "🎭",
+    "title": "Role-Play Ready",
+    "description": "10+ AI models"
+  },
+  {
+    "icon": "📌",
+    "title": "Pin Messages",
+    "description": "Keep key info"
+  }
+]
+
+FAQ:
+[
+  {
+    "question": "What is the Aetherion 1 trillion parameter model?",
+    "answer": "Aetherion is MiocAI's flagship AI model with 1 trillion parameters, offering unprecedented conversational depth, context understanding, and natural responses. It's significantly more advanced than standard AI models."
+  },
+  {
+    "question": "How does the credit system work?",
+    "answer": "Credits are used for advanced features: 1 credit for standard images or Aetherion messages, 3 credits for image upscaling, and 30 credits for video generation. Free users get 5 weekly credits, Premium gets 40, and Elite gets 100."
+  },
+  {
+    "question": "Are my conversations really private?",
+    "answer": "Yes. MiocAI uses end-to-end encryption for all conversations. Even MiocAI staff cannot access your chats. Your conversations stay completely private and off the record."
+  },
+  {
+    "question": "How does unlimited memory work?",
+    "answer": "Unlike other AI platforms that forget conversations, MiocAI remembers everything indefinitely. You can pin important messages and have long-running storylines without context loss."
+  },
+  {
+    "question": "Can I use MiocAI for adult content?",
+    "answer": "Yes. MiocAI allows adult content with a privacy-first approach. All conversations are encrypted and private, making it suitable for mature role-play scenarios."
+  },
+  {
+    "question": "Do purchased credits expire?",
+    "answer": "Weekly subscription credits don't expire as long as your subscription is active. Purchased credit packs are valid for 1 year from purchase date."
+  },
+  {
+    "question": "What's the difference between Premium and Elite plans?",
+    "answer": "Premium ($9.99/mo) includes 40 weekly credits and all core features. Elite ($19.99/mo) offers 100 weekly credits, video generation, higher daily bonuses, and early access to new models."
+  },
+  {
+    "question": "Is there a mobile app?",
+    "answer": "Currently MiocAI is web-based only, accessible through any browser on mobile or desktop. A dedicated mobile app is in development."
+  }
+]
+
+
+-----------------
+NEDERLANDS (NL)
+-----------------
+
+PRICING_PLANS:
+[
+  {
+    "name": "Gratis",
+    "price": 0,
+    "billing": "Voor altijd gratis",
+    "features": [
+      "5 credits per week",
+      "Toegang tot standaard modellen",
+      "Basis beeldgeneratie (1 credit)",
+      "Versleutelde gesprekken",
+      "Onbeperkt geheugen"
+    ]
+  },
+  {
+    "name": "Premium",
+    "price": 9.99,
+    "billing": "per maand",
+    "features": [
+      "40 credits per week",
+      "Toegang tot alle modellen inclusief Aetherion 1T",
+      "Beeldgeneratie (1 credit)",
+      "Beeld upscaling (3 credits)",
+      "Aetherion berichten (1 credit per bericht)",
+      "Dagelijkse bonus credits",
+      "Prioriteitsondersteuning"
+    ]
+  },
+  {
+    "name": "Elite",
+    "price": 19.99,
+    "billing": "per maand",
+    "features": [
+      "100 credits per week",
+      "Alle Premium functies",
+      "Video generatie (30 credits)",
+      "Hogere dagelijkse bonussen",
+      "Vroege toegang tot nieuwe modellen",
+      "VIP ondersteuning",
+      "Gekochte credits geldig 1 jaar"
+    ]
+  }
+]
+
+FEATURES:
+[
+  {
+    "icon": "🤖",
+    "title": "1T Parameter Model",
+    "description": "Aetherion AI model"
+  },
+  {
+    "icon": "🔒",
+    "title": "Privé & Versleuteld",
+    "description": "End-to-end encryptie"
+  },
+  {
+    "icon": "🧠",
+    "title": "Onbeperkt Geheugen",
+    "description": "Vergeet nooit details"
+  },
+  {
+    "icon": "🎨",
+    "title": "Beeldgeneratie",
+    "description": "AI-aangedreven visuals"
+  },
+  {
+    "icon": "🎬",
+    "title": "Video Generatie",
+    "description": "Maak AI video's"
+  },
+  {
+    "icon": "⬆️",
+    "title": "Beeld Upscaling",
+    "description": "4x resolutie boost"
+  },
+  {
+    "icon": "🎭",
+    "title": "Role-Play Klaar",
+    "description": "10+ AI modellen"
+  },
+  {
+    "icon": "📌",
+    "title": "Pin Berichten",
+    "description": "Behoud belangrijke info"
+  }
+]
+
+FAQ:
+[
+  {
+    "question": "Wat is het Aetherion 1 biljoen parameter model?",
+    "answer": "Aetherion is MiocAI's vlaggenschip AI-model met 1 biljoen parameters, dat ongekende gespreksdiepte, contextbegrip en natuurlijke reacties biedt. Het is aanzienlijk geavanceerder dan standaard AI-modellen."
+  },
+  {
+    "question": "Hoe werkt het credit systeem?",
+    "answer": "Credits worden gebruikt voor geavanceerde functies: 1 credit voor standaard afbeeldingen of Aetherion berichten, 3 credits voor beeld upscaling, en 30 credits voor video generatie. Gratis gebruikers krijgen 5 wekelijkse credits, Premium krijgt 40, en Elite krijgt 100."
+  },
+  {
+    "question": "Zijn mijn gesprekken echt privé?",
+    "answer": "Ja. MiocAI gebruikt end-to-end encryptie voor alle gesprekken. Zelfs MiocAI personeel kan geen toegang krijgen tot je chats. Je gesprekken blijven volledig privé en off the record."
+  },
+  {
+    "question": "Hoe werkt onbeperkt geheugen?",
+    "answer": "In tegenstelling tot andere AI-platforms die gesprekken vergeten, onthoudt MiocAI alles voor onbepaalde tijd. Je kunt belangrijke berichten vastpinnen en langlopende verhaallijnen hebben zonder contextverlies."
+  },
+  {
+    "question": "Kan ik MiocAI gebruiken voor volwassen content?",
+    "answer": "Ja. MiocAI staat volwassen content toe met een privacy-first benadering. Alle gesprekken zijn versleuteld en privé, waardoor het geschikt is voor volwassen role-play scenario's."
+  },
+  {
+    "question": "Verlopen gekochte credits?",
+    "answer": "Wekelijkse abonnement credits verlopen niet zolang je abonnement actief is. Gekochte credit packs zijn geldig voor 1 jaar vanaf de aankoopdatum."
+  },
+  {
+    "question": "Wat is het verschil tussen Premium en Elite plannen?",
+    "answer": "Premium (€9,99/mnd) bevat 40 wekelijkse credits en alle kernfuncties. Elite (€19,99/mnd) biedt 100 wekelijkse credits, video generatie, hogere dagelijkse bonussen en vroege toegang tot nieuwe modellen."
+  },
+  {
+    "question": "Is er een mobiele app?",
+    "answer": "Momenteel is MiocAI alleen web-gebaseerd, toegankelijk via elke browser op mobiel of desktop. Een dedicated mobiele app is in ontwikkeling."
+  }
+]
+
+
+-----------------
+PORTUGUÊS (PT)
+-----------------
+
+PRICING_PLANS:
+[
+  {
+    "name": "Gratuito",
+    "price": 0,
+    "billing": "Grátis para sempre",
+    "features": [
+      "5 créditos por semana",
+      "Acesso a modelos padrão",
+      "Geração básica de imagens (1 crédito)",
+      "Conversas criptografadas",
+      "Memória ilimitada"
+    ]
+  },
+  {
+    "name": "Premium",
+    "price": 9.99,
+    "billing": "por mês",
+    "features": [
+      "40 créditos por semana",
+      "Acesso a todos os modelos incluindo Aetherion 1T",
+      "Geração de imagens (1 crédito)",
+      "Ampliação de imagem (3 créditos)",
+      "Mensagens Aetherion (1 crédito cada)",
+      "Créditos bônus diários",
+      "Suporte prioritário"
+    ]
+  },
+  {
+    "name": "Elite",
+    "price": 19.99,
+    "billing": "por mês",
+    "features": [
+      "100 créditos por semana",
+      "Todos os recursos Premium",
+      "Geração de vídeo (30 créditos)",
+      "Bônus diários mais altos",
+      "Acesso antecipado a novos modelos",
+      "Suporte VIP",
+      "Créditos comprados válidos por 1 ano"
+    ]
+  }
+]
+
+FEATURES:
+[
+  {
+    "icon": "🤖",
+    "title": "Modelo 1T Parâmetros",
+    "description": "Modelo IA Aetherion"
+  },
+  {
+    "icon": "🔒",
+    "title": "Privado & Criptografado",
+    "description": "Criptografia ponta a ponta"
+  },
+  {
+    "icon": "🧠",
+    "title": "Memória Ilimitada",
+    "description": "Nunca esquece detalhes"
+  },
+  {
+    "icon": "🎨",
+    "title": "Geração de Imagens",
+    "description": "Visuais IA"
+  },
+  {
+    "icon": "🎬",
+    "title": "Geração de Vídeos",
+    "description": "Crie vídeos IA"
+  },
+  {
+    "icon": "⬆️",
+    "title": "Ampliação de Imagem",
+    "description": "Resolução 4x maior"
+  },
+  {
+    "icon": "🎭",
+    "title": "Pronto para Role-Play",
+    "description": "Mais de 10 modelos IA"
+  },
+  {
+    "icon": "📌",
+    "title": "Fixar Mensagens",
+    "description": "Manter info importante"
+  }
+]
+
+FAQ:
+[
+  {
+    "question": "O que é o modelo Aetherion de 1 trilhão de parâmetros?",
+    "answer": "Aetherion é o modelo IA principal do MiocAI com 1 trilhão de parâmetros, oferecendo profundidade conversacional sem precedentes, compreensão de contexto e respostas naturais. É significativamente mais avançado que modelos IA padrão."
+  },
+  {
+    "question": "Como funciona o sistema de créditos?",
+    "answer": "Créditos são usados para recursos avançados: 1 crédito para imagens padrão ou mensagens Aetherion, 3 créditos para ampliação de imagem, e 30 créditos para geração de vídeo. Usuários gratuitos recebem 5 créditos semanais, Premium recebe 40, e Elite recebe 100."
+  },
+  {
+    "question": "Minhas conversas são realmente privadas?",
+    "answer": "Sim. MiocAI usa criptografia ponta a ponta para todas as conversas. Mesmo a equipe do MiocAI não pode acessar seus chats. Suas conversas permanecem completamente privadas e fora do registro."
+  },
+  {
+    "question": "Como funciona a memória ilimitada?",
+    "answer": "Ao contrário de outras plataformas de IA que esquecem conversas, o MiocAI lembra de tudo indefinidamente. Você pode fixar mensagens importantes e ter histórias de longo prazo sem perda de contexto."
+  },
+  {
+    "question": "Posso usar o MiocAI para conteúdo adulto?",
+    "answer": "Sim. MiocAI permite conteúdo adulto com uma abordagem de privacidade em primeiro lugar. Todas as conversas são criptografadas e privadas, tornando-o adequado para cenários de role-play maduros."
+  },
+  {
+    "question": "Créditos comprados expiram?",
+    "answer": "Créditos semanais de assinatura não expiram enquanto sua assinatura estiver ativa. Pacotes de créditos comprados são válidos por 1 ano a partir da data de compra."
+  },
+  {
+    "question": "Qual é a diferença entre os planos Premium e Elite?",
+    "answer": "Premium ($9,99/mês) inclui 40 créditos semanais e todos os recursos principais. Elite ($19,99/mês) oferece 100 créditos semanais, geração de vídeo, bônus diários mais altos e acesso antecipado a novos modelos."
+  },
+  {
+    "question": "Existe um aplicativo móvel?",
+    "answer": "Atualmente o MiocAI é apenas baseado na web, acessível através de qualquer navegador em dispositivos móveis ou desktop. Um aplicativo móvel dedicado está em desenvolvimento."
+  }
+]
+
+===============================================
+END OF JSON FIELDS
+===============================================
