@@ -11,7 +11,8 @@
     "categories": "Kategorien",
     "news": "News & Ratgeber",
     "deals": "Angebote",
-    "about": "Über uns"
+    "about": "Über uns",
+    "contact": "Kontakt"
   },
   "hero": {
     "title": "Finden Sie Ihren perfekten KI-Companion",
@@ -34,6 +35,12 @@
     "reviews": "Bewertungen",
     "review": "Bewertung",
     "rating": "Bewertung"
+  },
+  "features": {
+    "characterCreation": "Charaktererstellung",
+    "unlimitedChat": "Unbegrenzter Chat",
+    "imageAndVideo": "Bilder & Videos",
+    "discreetBilling": "Diskrete Abrechnung"
   },
   "pricing": {
     "free": "Kostenlos",
@@ -70,7 +77,20 @@
     "roleplay": "Rollenspiel",
     "imageGeneration": "Bildgenerierung",
     "videoGeneration": "Videogenerierung",
-    "voiceChat": "Sprach-Chat"
+    "voiceChat": "Sprach-Chat",
+    "descriptions": {
+      "roleplayCharacterChat": "Beste KI-Plattformen für Rollenspiel- und Charakter-Chat-Erlebnisse mit interaktivem Storytelling",
+      "wellness": "KI-Companions für psychische Gesundheit, emotionale Unterstützung und persönliches Wohlbefinden",
+      "learning": "KI-Tutoren und pädagogische KI-Companions für Kompetenzentwicklung und akademische Unterstützung",
+      "aiGirlfriend": "Beste KI-Girlfriend-Plattformen für virtuelle romantische Beziehungen und Dating-Erlebnisse",
+      "aiBoyfriend": "Top-KI-Boyfriend-Plattformen für virtuelle romantische Beziehungen und männliche Companions",
+      "whatsappOnly": "KI-Companions, die nativ in WhatsApp integriert sind – keine separaten Apps erforderlich",
+      "adultImageGen": "Beste KI-Plattformen zum Erstellen von NSFW-Kunst und visuellen Inhalten für Erwachsene (nur 18+)",
+      "adultContentUncensored": "Beste unzensierte KI-Plattformen für Erwachseneninhalte und reife Gespräche (nur 18+)",
+      "videoCompanions": "KI-Companions mit Video-Chat- und Videogenerierungsfunktionen für immersive Erlebnisse",
+      "aiPorn": "Fortschrittliche KI-Plattformen für fotorealistische Erwachseneninhalts-Generierung und interaktive Erlebnisse (nur 18+)",
+      "hentaiAI": "Spezialisierte KI-Generatoren für Erwachseneninhalte im Anime- und Manga-Stil in verschiedenen Kunststilen (nur 18+)"
+    }
   },
   "common": {
     "loading": "Lädt...",
@@ -84,6 +104,36 @@
     "filter": "Filtern",
     "sort": "Sortieren",
     "all": "Alle"
+  },
+  "news": {
+    "title": "KI-Chat & Companion-Plattform News",
+    "subtitle": "Bleiben Sie auf dem Laufenden über die neuesten Entwicklungen bei KI-Chat-Plattformen und KI-Companion-Plattformen, Branchenanalysen und Markttrends",
+    "latestNews": "Neueste KI-Chat & Companion-Plattform News",
+    "recentDevelopments": "Aktuelle Entwicklungen und Branchenupdates",
+    "keyFindings": "🔍 Wichtigste Branchenerkenntnisse",
+    "keyFindingsDesc": "Wichtige Einblicke in die Entwicklung von KI-Companion-Plattformen",
+    "marketAnalysis": "📊 Marktanalyse & Trends",
+    "marketAnalysisDesc": "Wichtige Einblicke aus der KI-Companion-Plattform-Branche",
+    "insights": {
+      "marketGrowth": "📈 Marktwachstum",
+      "marketGrowthDesc": "Unterhaltungsplattformen dominieren den Markt, wobei der Umsatz pro Download von $0,52 auf $1,18 gestiegen ist",
+      "pricingModels": "💰 Preismodelle",
+      "pricingModelsDesc": "Freemium-Modell ist Standard bei KI-Companion-Plattformen, mit Premium-Stufen von €5-50/Monat",
+      "safetyConcerns": "⚠️ Sicherheitsbedenken",
+      "safetyConcernsDesc": "Zunehmende rechtliche Prüfung der Kindersicherheit und Content-Moderation bei KI-Companion-Plattformen",
+      "memorySystems": "🧠 Speichersysteme",
+      "memorySystemsDesc": "Fortgeschrittene Speicherfähigkeiten werden zum größten Unterscheidungsmerkmal zwischen KI-Companion-Plattformen",
+      "demographics": "🌍 Demografie",
+      "demographicsDesc": "65,4% der Nutzer sind zwischen 18 und 24 Jahre alt, mit wachsender Akzeptanz in verschiedenen Altersgruppen und Geschlechtern",
+      "globalDistribution": "🌍 Globale Verteilung",
+      "globalDistributionDesc": "USA 42%, Europa 28%, Asien 23%, Rest der Welt 7% - Nordamerika führt bei der KI-Companion-Akzeptanz"
+    },
+    "stats": {
+      "expectedMarketSize": "Erwartete Marktgröße bis 2031",
+      "revenueGeneratingApps": "Umsatzgenerierende KI-Companion-Apps",
+      "revenueFirstHalf": "Umsatz in der ersten Jahreshälfte 2025",
+      "usersAged18to24": "Nutzer im Alter von 18-24 Jahren"
+    }
   },
   "companion": {
     "whatIs": "Was ist {name}?",
@@ -105,7 +155,10 @@
     "platformLabel": "Plattform",
     "contentPolicyLabel": "Inhaltsrichtlinie",
     "readyToTry": "Bereit, {name} zu erleben?",
-    "ctaDescription": "Entdecken Sie realistische KI-Girlfriend-Erlebnisse mit über 100 Fantasieszenarien"
+    "ctaDescription": "Entdecken Sie realistische KI-Girlfriend-Erlebnisse mit über 100 Fantasieszenarien",
+    "learnMoreTitle": "Erfahren Sie mehr über KI-Sex-Chat",
+    "learnMoreDescription": "Möchten Sie den breiteren KI-Sex-Chat-Markt verstehen? Schauen Sie sich unseren umfassenden Leitfaden an, der die gesamte 120-Millionen-Dollar-Industrie, Plattformvergleiche und Expertenempfehlungen abdeckt.",
+    "learnMoreButton": "Lesen Sie den vollständigen KI-Sex-Chat-Leitfaden →"
   },
   "companions": {
     "title": "Beste KI-Chat-Plattformen & Companions nach Bewertung gerankt",
@@ -117,7 +170,30 @@
     "browseCategories": "Kategorien ansehen"
   },
   "faq": {
-    "title": "Häufig gestellte Fragen zu KI-Companion-Plattformen"
+    "title": "Häufig gestellte Fragen zu KI-Companion-Plattformen",
+    "categoriesPage": {
+      "title": "Häufig gestellte Fragen zu KI-Companion-Kategorien",
+      "q1": "Was sind die verschiedenen Kategorien von KI-Companions?",
+      "a1": "KI-Companions fallen in verschiedene Kategorien: KI-Girlfriends (romantischer Fokus), Rollenspiel & Charakter-Chat (vielfältige Persönlichkeiten), Erwachseneninhalte (reife Interaktionen), Wellness (Unterstützung der psychischen Gesundheit), Lernen (pädagogische Hilfe), WhatsApp-Only (Messaging-Integration) und Video-Companions (visuelle Interaktionen).",
+      "q2": "Welche KI-Companion-Kategorie ist am besten für Anfänger?",
+      "a2": "Rollenspiel- & Charakter-Chat-Plattformen wie Character.AI sind ideal für Anfänger und bieten kostenlosen Zugang, vielfältige Charaktere und Inhaltsmoderation. Sie bieten eine sichere Einführung in KI-Companions ohne Erwachseneninhalte.",
+      "q3": "Gibt es kostenlose KI-Companions in jeder Kategorie?",
+      "a3": "Ja, die meisten Kategorien bieten kostenlose Optionen: Character.AI (Rollenspiel), Hammer AI (kostenloser Chat), Replika (Basis-Wellness) und viele KI-Girlfriend-Plattformen bieten kostenlose Stufen mit optionalen Premium-Upgrades.",
+      "q4": "Was ist der Unterschied zwischen KI-Girlfriend und allgemeinen KI-Companion-Plattformen?",
+      "a4": "KI-Girlfriend-Plattformen konzentrieren sich speziell auf romantische Beziehungen mit Funktionen wie Dating-Szenarien, intimen Gesprächen und romantischer Personalisierung. Allgemeine KI-Companions bieten breitere Interaktionen, einschließlich Freundschaft, Bildung und verschiedene soziale Dynamiken.",
+      "q5": "Welche Kategorie bietet die realistischsten KI-Interaktionen?",
+      "a5": "Erwachseneninhalte und KI-Girlfriend-Kategorien bieten in der Regel die realistischsten Interaktionen, da sie für menschenähnliche emotionale und romantische Reaktionen optimiert sind. Allerdings verbessern fortgeschrittene Plattformen in allen Kategorien den Realismus erheblich.",
+      "q6": "Sind KI-Wellness-Companions sicher für die Unterstützung der psychischen Gesundheit?",
+      "a6": "KI-Wellness-Companions können emotionale Unterstützung und Stressabbau bieten, sollten aber keine professionelle psychische Gesundheitsversorgung ersetzen. Sie werden am besten als ergänzende Werkzeuge für das tägliche emotionale Wohlbefinden verwendet und sollten nicht für ernsthafte psychische Gesundheitsprobleme eingesetzt werden.",
+      "q7": "Welche KI-Companion-Kategorien unterstützen mehrere Sprachen?",
+      "a7": "Die meisten großen Plattformen unterstützen mehrere Sprachen, wobei Character.AI, Replika und viele KI-Girlfriend-Plattformen mehrsprachige Fähigkeiten bieten. Spezialisierte Plattformen wie Lovescape konzentrieren sich speziell auf internationale Sprachunterstützung.",
+      "q8": "Welche Altersbeschränkungen gelten für verschiedene KI-Companion-Kategorien?",
+      "a8": "Allgemeine und pädagogische KI-Companions erlauben in der Regel Benutzern ab 13+ mit elterlicher Zustimmung. KI-Girlfriend-Plattformen erfordern in der Regel 18+, während Erwachseninhalte-Kategorien strenge 18+ Altersverifizierung durchsetzen. Überprüfen Sie immer die Richtlinien der einzelnen Plattformen.",
+      "q9": "Wie unterscheiden sich Datenschutzrichtlinien zwischen KI-Companion-Kategorien?",
+      "a9": "Datenschutzrichtlinien variieren erheblich. Wellness- und allgemeine Plattformen haben oft strengere Datenschutzrichtlinien, während Erwachseninhalte-Plattformen möglicherweise unterschiedliche Datenverarbeitungspraktiken haben. Überprüfen Sie immer die Datenschutzrichtlinien, bevor Sie persönliche Informationen teilen.",
+      "q10": "Welche KI-Companion-Kategorie bietet die beste mobile Erfahrung?",
+      "a10": "KI-Girlfriend und allgemeine Companion-Plattformen bieten in der Regel die besten mobilen Erfahrungen mit dedizierten Apps. Character.AI, Replika, Candy AI und ähnliche Plattformen priorisieren mobilfreundliche Schnittstellen und geräteübergreifende Synchronisierung."
+    }
   },
   "reviewForm": {
     "sectionTitle": "Teilen Sie Ihre Erfahrung mit {companion}",

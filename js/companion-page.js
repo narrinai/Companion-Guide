@@ -270,11 +270,13 @@ class CompanionPageManager {
         // Update any "What is [Platform]?" headings with multi-language support
         const whatIsHeading = document.querySelector('h2[data-i18n="companion.whatIs"], .overview h2');
         if (whatIsHeading) {
-            // Skip if heading already has correct format (i18n.js already processed it)
+            // Skip if heading already has correct format AND companion name (not {name} placeholder)
             const currentText = whatIsHeading.textContent.trim();
             const hasCorrectFormat = currentText.includes(companionName) &&
+                                    !currentText.includes('{name}') &&
                                     (currentText.startsWith('What is') ||
                                      currentText.startsWith('Wat is') ||
+                                     currentText.startsWith('Was ist') ||
                                      currentText.startsWith('O que é'));
 
             if (hasCorrectFormat) {
@@ -283,7 +285,7 @@ class CompanionPageManager {
 
             // Detect language from URL
             const path = window.location.pathname;
-            const langMatch = path.match(/^\/(pt|nl)\//);
+            const langMatch = path.match(/^\/(pt|nl|de)\//);
 
             if (langMatch) {
                 const lang = langMatch[1];
@@ -292,6 +294,8 @@ class CompanionPageManager {
                     whatIsHeading.textContent = `Wat is ${companionName}?`;
                 } else if (lang === 'pt') {
                     whatIsHeading.textContent = `O que é ${companionName}?`;
+                } else if (lang === 'de') {
+                    whatIsHeading.textContent = `Was ist ${companionName}?`;
                 }
             } else {
                 // English
@@ -301,12 +305,6 @@ class CompanionPageManager {
     }
 
     updateRating() {
-        // Skip rating update for PT/NL pages - use hardcoded HTML rating
-        const path = window.location.pathname;
-        if (path.match(/^\/(pt|nl)\//)) {
-            return;
-        }
-
         if (!this.companionData.rating) return;
 
         const ratingElement = document.querySelector('.rating');
@@ -541,14 +539,14 @@ class CompanionPageManager {
     }
 
     /**
-     * Load and update translated content (verdict, tagline, body description) from Airtable for PT/NL pages
+     * Load and update translated content (verdict, tagline, body description) from Airtable for PT/NL/DE pages
      */
     async loadAndUpdateTranslations() {
         // Detect language from URL path
         const path = window.location.pathname;
-        const langMatch = path.match(/^\/(pt|nl)\//);
+        const langMatch = path.match(/^\/(pt|nl|de)\//);
 
-        // Determine language: pt, nl, or en (default)
+        // Determine language: pt, nl, de, or en (default)
         const language = langMatch ? langMatch[1] : 'en';
         console.log(`Loading ${language.toUpperCase()} translations for: ${this.companionId}`);
 
