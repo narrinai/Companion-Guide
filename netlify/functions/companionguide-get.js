@@ -319,18 +319,21 @@ exports.handler = async (event, context) => {
 
             if (translation.pros_cons) item.pros_cons = translation.pros_cons;
 
-            // Parse pricing_plans from translation if available
+            // Get pricing_plans from translation if available
+            // Note: pricing_plans in translations can be a direct array (like Airtable's linked records),
+            // not a JSON string like in the base table
             if (translation.pricing_plans) {
-              try {
-                // If it's a string, parse it as JSON
-                if (typeof translation.pricing_plans === 'string') {
+              if (Array.isArray(translation.pricing_plans)) {
+                // Already an array, use directly
+                item.pricing_plans = translation.pricing_plans;
+              } else if (typeof translation.pricing_plans === 'string') {
+                // Try to parse as JSON string
+                try {
                   item.pricing_plans = JSON.parse(translation.pricing_plans);
-                } else {
-                  item.pricing_plans = translation.pricing_plans;
+                } catch (e) {
+                  console.error(`Error parsing translated pricing_plans for ${item.name} (${lang}):`, e);
+                  // Keep original pricing_plans if translation parsing fails
                 }
-              } catch (e) {
-                console.error(`Error parsing translated pricing_plans for ${item.name} (${lang}):`, e);
-                // Keep original pricing_plans if translation parsing fails
               }
             }
 
