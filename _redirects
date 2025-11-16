@@ -23,8 +23,33 @@
 /nl/deals                               /nl/deals.html                                    200!
 /nl/news                                /nl/news.html                                     200!
 /nl/contact                             /nl/contact.html                                  200!
-# Redirect all NL news articles to main NL news page (articles not translated yet)
-/nl/news/*                              /nl/news                                          301!
+# Redirect all NL news articles to English versions (articles not translated)
+/nl/news/*                              /news/:splat                                      301!
+
+################################################################################
+# GERMAN (DE) LANGUAGE REDIRECTS
+################################################################################
+
+# German companion redirects (specific URLs before wildcards!)
+/de/companions/replika-ai               /de/companions/replika                            301!
+
+# German individual companion pages -> German HTML files
+/de/companions/*                        /de/companions/:splat.html                        200!
+
+# German main categories overview page (MUST BE BEFORE wildcard!)
+/de/categories                          /de/categories.html                               200!
+
+# German individual category pages -> German HTML files
+/de/categories/*                        /de/categories/:splat.html                        200!
+
+# German main overview pages -> German HTML files
+/de                                     /de/index.html                                    200!
+/de/companions                          /de/companions.html                               200!
+/de/deals                               /de/deals.html                                    200!
+/de/news                                /de/news.html                                     200!
+/de/contact                             /de/contact.html                                  200!
+# Redirect all DE news articles to English versions (articles not translated)
+/de/news/*                              /news/:splat                                      301!
 
 ################################################################################
 # PORTUGUESE (PT) LANGUAGE REDIRECTS
@@ -48,8 +73,8 @@
 /pt/deals                               /pt/deals.html                                    200!
 /pt/news                                /pt/news.html                                     200!
 /pt/contact                             /pt/contact.html                                  200!
-# Redirect all PT news articles to main PT news page (articles not translated yet)
-/pt/news/*                              /pt/news                                          301!
+# Redirect all PT news articles to English versions (articles not translated)
+/pt/news/*                              /news/:splat                                      301!
 
 ################################################################################
 # PRETTY URL REDIRECTS

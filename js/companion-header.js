@@ -282,7 +282,8 @@ class CompanionHeaderManager {
       const plans = typeof pricingJSON === 'string' ? JSON.parse(pricingJSON) : pricingJSON;
       const pricingGrid = document.querySelector('.pricing-grid');
 
-      if (!pricingGrid || !Array.isArray(plans)) return;
+      // Don't update if no valid pricing data - keep static HTML
+      if (!pricingGrid || !Array.isArray(plans) || plans.length === 0) return;
 
       const pricingHTML = plans.map(plan => {
         // Safety check for features (could be undefined or missing)
