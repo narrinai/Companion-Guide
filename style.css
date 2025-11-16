@@ -1239,6 +1239,8 @@ main .companions-grid {
     border: 1px solid var(--border-secondary);
     border-radius: var(--radius-lg);
     transition: all 0.2s ease;
+    text-align: center;
+    align-items: center;
 }
 
 .highlight-item:hover {
