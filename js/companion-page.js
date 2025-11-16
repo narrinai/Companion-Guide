@@ -826,13 +826,40 @@ class CompanionPageManager {
 
         console.log('✅ Container found:', container);
 
-        // Default fallback features for Dream Companion
-        const fallbackFeatures = [
-            {icon: "💬", title: "Imaginative AI Chat", description: "Captivating conversations that spark imagination"},
-            {icon: "🖼️", title: "Realistic Images", description: "Precise visuals bringing fantasies to life"},
-            {icon: "🎨", title: "Consistent Characters", description: "Well-crafted personalities that stay true"},
-            {icon: "🧠", title: "Long-Term Memory", description: "Remembers preferences and past interactions"}
-        ];
+        // Detect current language from URL
+        const path = window.location.pathname;
+        const langMatch = path.match(/^\/(pt|nl|de)\//);
+        const currentLang = langMatch ? langMatch[1] : 'en';
+
+        // Default fallback features with multilingual support
+        const fallbackFeaturesMap = {
+            'en': [
+                {icon: "💬", title: "Imaginative AI Chat", description: "Captivating conversations that spark imagination"},
+                {icon: "🖼️", title: "Realistic Images", description: "Precise visuals bringing fantasies to life"},
+                {icon: "🎨", title: "Consistent Characters", description: "Well-crafted personalities that stay true"},
+                {icon: "🧠", title: "Long-Term Memory", description: "Remembers preferences and past interactions"}
+            ],
+            'nl': [
+                {icon: "💬", title: "Creatieve AI Chat", description: "Boeiende gesprekken die de verbeelding prikkelen"},
+                {icon: "🖼️", title: "Realistische Afbeeldingen", description: "Precieze visuals die fantasieën tot leven brengen"},
+                {icon: "🎨", title: "Consistente Personages", description: "Goed uitgewerkte persoonlijkheden die trouw blijven"},
+                {icon: "🧠", title: "Langetermijngeheugen", description: "Onthoudt voorkeuren en eerdere interacties"}
+            ],
+            'pt': [
+                {icon: "💬", title: "Chat de IA Criativo", description: "Conversas envolventes que estimulam a imaginação"},
+                {icon: "🖼️", title: "Imagens Realistas", description: "Visuais precisos que dão vida às fantasias"},
+                {icon: "🎨", title: "Personagens Consistentes", description: "Personalidades bem elaboradas que permanecem fiéis"},
+                {icon: "🧠", title: "Memória de Longo Prazo", description: "Lembra preferências e interações passadas"}
+            ],
+            'de': [
+                {icon: "💬", title: "Kreativer KI-Chat", description: "Fesselnde Gespräche, die die Fantasie anregen"},
+                {icon: "🖼️", title: "Realistische Bilder", description: "Präzise Visuals, die Fantasien zum Leben erwecken"},
+                {icon: "🎨", title: "Konsistente Charaktere", description: "Gut ausgearbeitete Persönlichkeiten, die treu bleiben"},
+                {icon: "🧠", title: "Langzeitgedächtnis", description: "Erinnert sich an Vorlieben und frühere Interaktionen"}
+            ]
+        };
+
+        const fallbackFeatures = fallbackFeaturesMap[currentLang] || fallbackFeaturesMap['en'];
 
         let features = null;
 
