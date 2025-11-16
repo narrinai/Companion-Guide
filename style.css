@@ -4899,6 +4899,11 @@ footer {
     .topics-section > *:not(.cotm-award-card) {
         order: 4;
     }
+
+    /* CTA button should be last */
+    .topics-cta {
+        order: 5 !important;
+    }
 }
 
 @media (max-width: 480px) {
