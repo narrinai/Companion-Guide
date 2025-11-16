@@ -155,12 +155,31 @@ exports.handler = async (event, context) => {
 
         // Parse pricing from translation OR base companion
         let pricingPlans = [];
-        const pricingSource = fields.pricing_plans || baseCompanion.pricing_plans;
-        if (pricingSource) {
+
+        // Try translation pricing first (fields.pricing_plans)
+        if (fields.pricing_plans) {
           try {
-            pricingPlans = typeof pricingSource === 'string' ? JSON.parse(pricingSource) : pricingSource;
+            const parsed = typeof fields.pricing_plans === 'string' ? JSON.parse(fields.pricing_plans) : fields.pricing_plans;
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              pricingPlans = parsed;
+            }
           } catch (e) {
-            console.error('Error parsing pricing for', name);
+            console.error(`Error parsing translation pricing_plans for ${name}:`, e.message);
+            // Continue to try base companion pricing
+          }
+        }
+
+        // If no pricing from translation, try base companion
+        if (pricingPlans.length === 0 && baseCompanion.pricing_plans) {
+          try {
+            const baseParsed = typeof baseCompanion.pricing_plans === 'string'
+              ? JSON.parse(baseCompanion.pricing_plans)
+              : baseCompanion.pricing_plans;
+            if (Array.isArray(baseParsed) && baseParsed.length > 0) {
+              pricingPlans = baseParsed;
+            }
+          } catch (e) {
+            console.error(`Error parsing base pricing_plans for ${name}:`, e.message);
           }
         }
 
@@ -324,12 +343,18 @@ exports.handler = async (event, context) => {
             // not a JSON string like in the base table
             if (translation.pricing_plans) {
               if (Array.isArray(translation.pricing_plans)) {
-                // Already an array, use directly
-                item.pricing_plans = translation.pricing_plans;
+                // Only use array if it has items, otherwise keep base companion pricing
+                if (translation.pricing_plans.length > 0) {
+                  item.pricing_plans = translation.pricing_plans;
+                }
               } else if (typeof translation.pricing_plans === 'string') {
                 // Try to parse as JSON string
                 try {
-                  item.pricing_plans = JSON.parse(translation.pricing_plans);
+                  const parsed = JSON.parse(translation.pricing_plans);
+                  // Only use parsed array if it has items
+                  if (Array.isArray(parsed) && parsed.length > 0) {
+                    item.pricing_plans = parsed;
+                  }
                 } catch (e) {
                   console.error(`Error parsing translated pricing_plans for ${item.name} (${lang}):`, e);
                   // Keep original pricing_plans if translation parsing fails
