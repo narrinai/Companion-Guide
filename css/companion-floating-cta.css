@@ -1,0 +1,172 @@
+/* Compact Floating CTA for Companion Pages - Based on COTM design */
+.companion-floating-cta {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--accent-blue);
+    color: white;
+    padding: 12px;
+    border-radius: var(--radius-xl);
+    border: none;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUpCTA 0.5s ease forwards 1.5s;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    max-width: 240px;
+}
+
+.companion-floating-cta:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(59, 130, 246, 0.6);
+}
+
+.companion-floating-cta-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    flex: 1;
+}
+
+.companion-floating-cta-icon {
+    width: 48px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    object-fit: contain;
+    flex-shrink: 0;
+    background: var(--bg-tertiary);
+    padding: 4px;
+}
+
+.companion-floating-cta-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.companion-floating-cta-label {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.companion-floating-cta-name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.companion-floating-cta-arrow {
+    font-size: 1.2rem;
+    color: white;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.companion-floating-cta:hover .companion-floating-cta-arrow {
+    transform: translateX(3px);
+}
+
+.companion-floating-cta-close {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    cursor: pointer;
+    opacity: 0.6;
+    font-size: 1.2rem;
+    transition: opacity 0.2s;
+    color: white;
+    line-height: 1;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.companion-floating-cta-close:hover {
+    opacity: 1;
+}
+
+.companion-floating-cta.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100px);
+}
+
+@keyframes slideUpCTA {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .companion-floating-cta {
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%) translateY(0);
+        left: auto;
+        padding: 10px;
+        max-width: 220px;
+    }
+
+    .companion-floating-cta:hover {
+        transform: translateX(50%) translateY(-2px);
+    }
+
+    .companion-floating-cta-content {
+        padding: 6px;
+        gap: 8px;
+    }
+
+    .companion-floating-cta-icon {
+        width: 44px;
+        height: 36px;
+    }
+
+    .companion-floating-cta-label {
+        font-size: 0.6rem;
+    }
+
+    .companion-floating-cta-name {
+        font-size: 0.8rem;
+    }
+
+    .companion-floating-cta-arrow {
+        font-size: 1.1rem;
+    }
+
+    @keyframes slideUpCTA {
+        to {
+            opacity: 1;
+            transform: translateX(50%) translateY(0);
+        }
+    }
+}
+
+/* Hide when scrolled to footer */
+.companion-floating-cta.near-footer {
+    opacity: 0;
+    pointer-events: none;
+}
