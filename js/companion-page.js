@@ -608,13 +608,9 @@ class CompanionPageManager {
                 console.warn(`No my_verdict found for ${this.companionId} in ${language}`);
             }
 
-            // Update features if available from translations (for ALL languages: EN, NL, PT)
-            if (data.features) {
-                console.log(`🎨 Loading features from ${language.toUpperCase()} translation:`, data.features);
-                // Override companionData features with translated version
-                this.companionData.features = data.features;
-                console.log(`✅ Loaded features from ${language.toUpperCase()} translation (${data.features.length} features)`);
-            }
+            // NOTE: Features are now loaded directly from the main Companions table
+            // The features field in Airtable already contains the correct language version
+            // We no longer override features from Companion_Translations table
 
         } catch (error) {
             console.error('Error loading translations:', error);
@@ -867,10 +863,10 @@ class CompanionPageManager {
             console.log('📦 Companion data available');
             console.log('📊 Features in companionData:', this.companionData.features);
 
-            // Get features - API already returns translated version based on language
+            // Get features from main Airtable Companions table
             features = this.companionData.features;
 
-            // Parse features if it's a string (shouldn't be needed, but safety check)
+            // Parse features if it's a string
             if (typeof features === 'string') {
                 try {
                     features = JSON.parse(features);
@@ -883,16 +879,18 @@ class CompanionPageManager {
 
             // Check if features is valid array
             if (!Array.isArray(features) || features.length === 0) {
-                console.log('⚠️ Features not valid array or empty');
+                console.log('⚠️ Features not valid array or empty, using fallback');
                 features = null;
+            } else {
+                console.log(`✅ Using ${features.length} features from Airtable Companions table`);
             }
         } else {
             console.log('⚠️ No companion data available');
         }
 
-        // Use fallback if no features from Airtable
+        // Use multilingual fallback if no features from Airtable
         if (!features) {
-            console.log('💾 Using fallback features');
+            console.log(`💾 Using ${currentLang.toUpperCase()} fallback features`);
             features = fallbackFeatures;
         }
 
