@@ -296,11 +296,14 @@ class CompanionHeaderManager {
           formattedPrice = `$${plan.price}`;
         }
 
+        // Format period - skip if price is 0/Free to avoid "Free free"
+        const periodText = (plan.price === 0 || formattedPrice === 'Free') ? '' : (plan.period || '');
+
         return `
           <div class="pricing-tier${plan.badge ? ' popular' : ''}">
             ${plan.badge ? `<div class="badge">${plan.badge}</div>` : ''}
             <h3>${plan.name}</h3>
-            <div class="price">${formattedPrice} <span class="period">${plan.period || ''}</span></div>
+            <div class="price">${formattedPrice} <span class="period">${periodText}</span></div>
             ${plan.description ? `<p>${plan.description}</p>` : ''}
             <ul>
               ${features.map(feature => `<li>${feature}</li>`).join('')}
