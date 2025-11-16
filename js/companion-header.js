@@ -326,17 +326,40 @@ class CompanionHeaderManager {
     const verdictSection = document.querySelector('.verdict, section.verdict');
     if (!verdictSection) return;
 
-    // Find the paragraph(s) in verdict section
-    const verdictParagraphs = verdictSection.querySelectorAll('p');
-    const paragraphs = verdictText.split('\n\n').filter(p => p.trim());
+    // Find or create the verdict-text div
+    let verdictTextDiv = verdictSection.querySelector('.verdict-text');
+    if (!verdictTextDiv) {
+      verdictTextDiv = document.createElement('div');
+      verdictTextDiv.className = 'verdict-text';
+      // Insert after the h2
+      const h2 = verdictSection.querySelector('h2');
+      if (h2 && h2.nextSibling) {
+        verdictSection.insertBefore(verdictTextDiv, h2.nextSibling);
+      } else {
+        verdictSection.appendChild(verdictTextDiv);
+      }
+    }
 
-    paragraphs.forEach((text, index) => {
-      if (verdictParagraphs[index]) {
-        verdictParagraphs[index].textContent = text.trim();
+    // Parse the verdict text (supports Markdown-style headers)
+    const lines = verdictText.split('\n').filter(l => l.trim());
+    let html = '';
+
+    lines.forEach(line => {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('# ')) {
+        // H1 Markdown → H3 in HTML
+        html += `<h3>${trimmed.substring(2)}</h3>`;
+      } else if (trimmed.startsWith('## ')) {
+        // H2 Markdown → H4 in HTML
+        html += `<h4>${trimmed.substring(3)}</h4>`;
+      } else if (trimmed.length > 0) {
+        // Regular paragraph
+        html += `<p>${trimmed}</p>`;
       }
     });
 
-    console.log(`✅ Updated verdict`);
+    verdictTextDiv.innerHTML = html;
+    console.log(`✅ Updated verdict with ${lines.length} lines`);
   }
 
   /**
