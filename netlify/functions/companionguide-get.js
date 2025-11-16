@@ -34,9 +34,13 @@ exports.handler = async (event, context) => {
 
     console.log('Using table:', tableName);
 
+    // Determine language for filtering
+    const language = lang || 'en';
+    console.log('Using language:', language);
+
     // For Companion_Translations, filter by language only (no status field)
     let filterByFormula = tableName === 'Companion_Translations'
-      ? '{language} = "en"'
+      ? `{language} = "${language}"`
       : '{status} = "Active"';
 
     if (category) {
