@@ -1454,22 +1454,20 @@ main .companions-grid {
 
 .pricing-cta {
     display: inline-block;
-    margin-top: var(--space-6);
-    padding: var(--space-3) var(--space-6);
-    background-color: var(--accent-blue);
-    color: white;
+    margin-top: var(--space-4);
+    color: var(--accent-blue);
     text-decoration: none;
-    border-radius: var(--radius-md);
     font-size: 0.875rem;
     font-weight: 600;
     transition: all 0.2s ease;
     border: none;
+    background: none;
+    padding: 0;
 }
 
 .pricing-cta:hover {
-    background-color: #2563eb;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
+    color: #2563eb;
+    text-decoration: underline;
 }
 
 .verdict {
