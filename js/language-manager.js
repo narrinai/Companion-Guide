@@ -7,7 +7,9 @@ class LanguageManager {
     constructor() {
         this.supportedLanguages = {
             'en': { name: 'English', flag: '🇺🇸' },
-            'pt': { name: 'Português (Brasil)', flag: '🇧🇷' }
+            'nl': { name: 'Nederlands', flag: '🇳🇱' },
+            'pt': { name: 'Português (Brasil)', flag: '🇧🇷' },
+            'de': { name: 'Deutsch', flag: '🇩🇪' }
         };
 
         this.currentLanguage = this.detectLanguage();
@@ -107,14 +109,18 @@ class LanguageManager {
         const nav = document.querySelector('header nav .nav-menu');
         if (!nav) return;
 
+        // Re-detect language from URL to ensure it's current
+        const actualLanguage = this.detectLanguageFromURL();
+        this.currentLanguage = actualLanguage;
+
         // Create language selector
         const langSelector = document.createElement('li');
         langSelector.className = 'language-selector-item';
         langSelector.innerHTML = `
             <div class="language-selector">
                 <button class="current-language" onclick="window.languageManager.toggleLanguageMenu()">
-                    <span class="flag">${this.supportedLanguages[this.currentLanguage].flag}</span>
-                    <span class="lang-code">${this.currentLanguage.toUpperCase()}</span>
+                    <span class="flag" id="currentLanguageFlag">${this.supportedLanguages[this.currentLanguage].flag}</span>
+                    <span class="lang-code" id="currentLanguageCode">${this.currentLanguage.toUpperCase()}</span>
                     <span class="arrow">▼</span>
                 </button>
                 <div class="language-menu" id="languageMenu">
@@ -129,6 +135,15 @@ class LanguageManager {
         `;
 
         nav.appendChild(langSelector);
+    }
+
+    detectLanguageFromURL() {
+        // Check URL path for language (e.g., /pt/companions/candy-ai)
+        const pathLanguage = window.location.pathname.split('/')[1];
+        if (this.supportedLanguages[pathLanguage]) {
+            return pathLanguage;
+        }
+        return 'en'; // Default to English if no language in URL
     }
 
     applyTranslations() {
