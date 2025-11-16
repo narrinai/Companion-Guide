@@ -385,7 +385,21 @@ class CompanionPageManager {
             // Use plan currency if specified, otherwise use companion default
             const planCurrency = plan.currency || (usesEuro ? '€' : '$');
             const price = isFree ? 'Free' : `${planCurrency}${plan.price}`;
-            const period = isFree ? '' : (plan.period ? `/${plan.period}` : '');
+
+            // Translate period using i18n
+            let period = '';
+            if (!isFree && plan.period) {
+                const periodLower = plan.period.toLowerCase();
+                if (periodLower === 'monthly' || periodLower === 'month' || periodLower === '/month') {
+                    period = '<span class="period" data-i18n="pricing.perMonth">/month</span>';
+                } else if (periodLower === 'yearly' || periodLower === 'year' || periodLower === '/year') {
+                    period = '<span class="period" data-i18n="pricing.perYear">/year</span>';
+                } else if (periodLower === 'free') {
+                    period = '<span class="period" data-i18n="pricing.free">Free</span>';
+                } else {
+                    period = `<span class="period">/${plan.period}</span>`;
+                }
+            }
 
             // Determine if this should be featured (middle tier, or "Premium" named)
             const isFeatured = (index === Math.floor(pricingPlans.length / 2)) ||
@@ -416,20 +430,25 @@ class CompanionPageManager {
                 }
             }).join('');
 
-            const websiteUrl = this.companionData.website_url || this.companionData.website || '#';
+            const websiteUrl = this.companionData.affiliate_url || this.companionData.website_url || this.companionData.website || '#';
 
             tierDiv.innerHTML = `
                 ${badgeHtml}
                 <h3>${plan.name}</h3>
-                <div class="price">${price} <span class="period">${period}</span></div>
+                <div class="price">${price} ${period}</div>
                 <ul>
                     ${featuresHtml}
                 </ul>
-                <a href="${websiteUrl}" class="cta-button primary" target="_blank" rel="noopener" style="margin-top: var(--space-4); width: 100%; text-align: center; display: inline-block; padding: var(--space-3) var(--space-4); background: var(--accent-primary); color: white; text-decoration: none; border-radius: var(--radius-md); font-weight: 600; transition: background 0.3s ease;">Visit Website →</a>
+                <a href="${websiteUrl}" class="pricing-cta" target="_blank" data-i18n="companionCard.visitWebsite">Visit Website</a>
             `;
 
             pricingSection.appendChild(tierDiv);
         });
+
+        // Apply i18n translations to newly added content
+        if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+            window.i18n.applyTranslations();
+        }
     }
 
     addCtaToStaticPricing() {

@@ -297,22 +297,46 @@ class CompanionHeaderManager {
         }
 
         // Format period - skip if price is 0/Free to avoid "Free free"
-        const periodText = (plan.price === 0 || formattedPrice === 'Free') ? '' : (plan.period || '');
+        // Translate period using i18n
+        let periodText = '';
+        if (plan.price !== 0 && formattedPrice !== 'Free' && plan.period) {
+          const periodLower = plan.period.toLowerCase();
+          if (periodLower === 'monthly' || periodLower === 'month' || periodLower === '/month') {
+            periodText = '<span class="period" data-i18n="pricing.perMonth">/month</span>';
+          } else if (periodLower === 'yearly' || periodLower === 'year' || periodLower === '/year') {
+            periodText = '<span class="period" data-i18n="pricing.perYear">/year</span>';
+          } else if (periodLower === 'free') {
+            periodText = '<span class="period" data-i18n="pricing.free">Free</span>';
+          } else {
+            periodText = `<span class="period">${plan.period}</span>`;
+          }
+        }
+
+        // Add Visit Website link with i18n
+        const websiteUrl = this.companionData?.affiliate_url || this.companionData?.website_url || '#';
+        const visitWebsiteLink = `<a href="${websiteUrl}" class="pricing-cta" target="_blank" data-i18n="companionCard.visitWebsite">Visit Website</a>`;
 
         return `
           <div class="pricing-tier${plan.badge ? ' popular' : ''}">
             ${plan.badge ? `<div class="badge">${plan.badge}</div>` : ''}
             <h3>${plan.name}</h3>
-            <div class="price">${formattedPrice} <span class="period">${periodText}</span></div>
+            <div class="price">${formattedPrice} ${periodText}</div>
             ${plan.description ? `<p>${plan.description}</p>` : ''}
             <ul>
               ${features.map(feature => `<li>${feature}</li>`).join('')}
             </ul>
+            ${visitWebsiteLink}
           </div>
         `;
       }).join('');
 
       pricingGrid.innerHTML = pricingHTML;
+
+      // Apply i18n translations to newly added content
+      if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+        window.i18n.applyTranslations();
+      }
+
       console.log(`✅ Updated pricing (${plans.length} plans)`);
     } catch (error) {
       console.error('Error updating pricing:', error);
