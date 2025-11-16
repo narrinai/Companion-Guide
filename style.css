@@ -1452,6 +1452,26 @@ main .companions-grid {
     text-decoration: line-through;
 }
 
+.pricing-cta {
+    display: inline-block;
+    margin-top: var(--space-6);
+    padding: var(--space-3) var(--space-6);
+    background-color: var(--accent-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.pricing-cta:hover {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
 .verdict {
     margin: var(--space-12) 0;
 }
