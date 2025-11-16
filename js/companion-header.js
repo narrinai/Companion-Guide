@@ -121,9 +121,9 @@ class CompanionHeaderManager {
     }
 
     // Update "What is X?" heading with companion name
-    // Skip for NL/PT pages - companion-page.js handles this
+    // Skip for NL/PT/DE pages - companion-page.js handles this
     const path = window.location.pathname;
-    const isTranslatedPage = path.match(/^\/(pt|nl)\//);
+    const isTranslatedPage = path.match(/^\/(pt|nl|de)\//);
 
     if (!isTranslatedPage) {
       const overviewSection = document.querySelector('.overview, section.overview');
