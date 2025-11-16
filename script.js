@@ -283,20 +283,10 @@ document.addEventListener('DOMContentLoaded', function() {
             currentFlag = '🇩🇪';
             localStorage.setItem('preferredLanguage', 'de');
         } else {
-            // Check if user has a preferred language stored
-            const preferredLang = localStorage.getItem('preferredLanguage');
-            if (preferredLang === 'nl') {
-                currentLang = 'NL';
-                currentFlag = '🇳🇱';
-            } else if (preferredLang === 'pt') {
-                currentLang = 'PT';
-                currentFlag = '🇧🇷';
-            } else if (preferredLang === 'de') {
-                currentLang = 'DE';
-                currentFlag = '🇩🇪';
-            } else {
-                localStorage.setItem('preferredLanguage', 'en');
-            }
+            // English page - always show EN flag regardless of localStorage
+            currentLang = 'EN';
+            currentFlag = '🇬🇧';
+            localStorage.setItem('preferredLanguage', 'en');
         }
 
         // Update button text to show current language
