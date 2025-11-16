@@ -1252,6 +1252,8 @@ main .companions-grid {
     font-size: 1rem;
     color: var(--text-primary);
     font-weight: 600;
+    display: block;
+    width: 100%;
 }
 
 .highlight-item span {
