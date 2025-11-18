@@ -1600,6 +1600,18 @@ main .companions-grid {
     transform: translateY(-1px);
 }
 
+/* Native Ads within topics section */
+.topics-section ins[class*="eas6a97888e20"] {
+    display: block;
+    margin-top: var(--space-6);
+    max-width: 100%;
+    overflow: visible;
+}
+
+.topics-section ins[class*="eas6a97888e20"] > * {
+    max-width: 100%;
+}
+
 .topic-badge,
 .news-badge {
     position: absolute;

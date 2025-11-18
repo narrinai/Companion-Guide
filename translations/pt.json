@@ -155,7 +155,11 @@
     "new": "Novo",
     "adult": "Adulto",
     "uncensored": "Sem Censura",
-    "free-trial": "Teste Gratuito"
+    "free-trial": "Teste Gratuito",
+    "companion-of-the-month": "Companion do Mês",
+    "view-all-news": "Ver Todas as Notícias",
+    "more-companions-coming": "Mais AI Companions Em Breve",
+    "browse-categories": "Explorar Categorias"
   },
   "news": {
     "title": "Notícias e Insights",

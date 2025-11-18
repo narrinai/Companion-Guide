@@ -43,7 +43,7 @@ Dit bericht is verzonden via het contactformulier op companionguide.ai
           subject: subject,
           message: message,
           newsletter: newsletter ? 'Ja' : 'Nee',
-          to_email: 'gcastrading@gmail.com'
+          to_email: 'hello@companionguide.ai'
         }
       })
     });

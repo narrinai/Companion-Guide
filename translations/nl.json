@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "home": "Home",
+    "companions": "Companions",
+    "categories": "Categorieën",
+    "news": "Nieuws & Inzichten",
+    "contact": "Contact"
+  },
+  "common": {
+    "read-review": "Lees Review",
+    "visit-website": "Bezoek Website",
+    "free": "Gratis",
+    "premium": "Premium",
+    "rating": "Rating",
+    "reviews": "reviews",
+    "pricing": "Prijzen",
+    "features": "Functies",
+    "platforms": "Platforms",
+    "view-all": "Bekijk Alles",
+    "latest": "Nieuwste",
+    "featured": "Uitgelicht",
+    "companion-of-the-month": "Companion van de Maand",
+    "view-all-news": "Bekijk Al Het Nieuws",
+    "more-companions-coming": "Meer AI Companions Binnenkort",
+    "browse-categories": "Bekijk Categorieën"
+  }
+}

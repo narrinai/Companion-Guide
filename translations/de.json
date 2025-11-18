@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "home": "Home",
+    "companions": "Companions",
+    "categories": "Kategorien",
+    "news": "Nachrichten & Einblicke",
+    "contact": "Kontakt"
+  },
+  "common": {
+    "read-review": "Bewertung Lesen",
+    "visit-website": "Website Besuchen",
+    "free": "Kostenlos",
+    "premium": "Premium",
+    "rating": "Bewertung",
+    "reviews": "Bewertungen",
+    "pricing": "Preise",
+    "features": "Funktionen",
+    "platforms": "Plattformen",
+    "view-all": "Alle Anzeigen",
+    "latest": "Neueste",
+    "featured": "Hervorgehoben",
+    "companion-of-the-month": "Companion des Monats",
+    "view-all-news": "Alle Nachrichten Ansehen",
+    "more-companions-coming": "Mehr AI Companions Demnächst",
+    "browse-categories": "Kategorien Durchsuchen"
+  }
+}
