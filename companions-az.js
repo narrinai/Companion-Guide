@@ -15,11 +15,16 @@ class CompanionsAZ {
 
     async loadCompanions() {
         try {
-            const response = await fetch('/.netlify/functions/get-companions');
+            const response = await fetch('/.netlify/functions/companionguide-get?lang=en');
             const data = await response.json();
 
-            if (data.companions) {
-                this.companions = data.companions;
+            if (data.companions && Array.isArray(data.companions)) {
+                // Filter for only active companions and sort alphabetically
+                this.companions = data.companions
+                    .filter(c => c.status === 'active' || c.status === 'Active')
+                    .sort((a, b) => a.name.localeCompare(b.name));
+
+                console.log(`Loaded ${this.companions.length} active companions from API`);
             } else {
                 console.warn('No companions data received, falling back to static data');
                 this.companions = this.getStaticCompanions();
@@ -83,19 +88,36 @@ class CompanionsAZ {
             noResults.style.display = 'none';
         }
 
-        // Group companions by first letter
-        const grouped = this.groupByLetter(this.companions);
+        // Sort companions alphabetically
+        const sortedCompanions = [...this.companions].sort((a, b) =>
+            a.name.localeCompare(b.name)
+        );
 
-        // Smart grouping to avoid single-item columns
-        const smartGroups = this.createSmartGroups(grouped);
+        // Divide companions into 4 columns
+        const columns = [[], [], [], []];
+        const itemsPerColumn = Math.ceil(sortedCompanions.length / 4);
 
-        // Generate HTML
-        const html = smartGroups.map(group => {
+        sortedCompanions.forEach((companion, index) => {
+            const columnIndex = Math.floor(index / itemsPerColumn);
+            if (columnIndex < 4) {
+                columns[columnIndex].push(companion);
+            }
+        });
+
+        // Generate HTML for 4 columns
+        const html = columns.map((columnCompanions, index) => {
+            if (columnCompanions.length === 0) return '';
+
+            // Get first and last letter of this column
+            const firstLetter = columnCompanions[0].name.charAt(0).toUpperCase();
+            const lastLetter = columnCompanions[columnCompanions.length - 1].name.charAt(0).toUpperCase();
+            const title = firstLetter === lastLetter ? firstLetter : `${firstLetter} - ${lastLetter}`;
+
             return `
                 <div class="az-column">
-                    <h3>${group.title}</h3>
+                    <h3>${title}</h3>
                     <ul>
-                        ${group.companions.map(companion => `
+                        ${columnCompanions.map(companion => `
                             <li>
                                 <a href="/companions/${companion.slug}">
                                     <span>${companion.name}</span>
@@ -185,9 +207,8 @@ class CompanionsAZ {
         }
 
         if (letterCategoriesElement) {
-            const grouped = this.groupByLetter(this.companions);
-            const smartGroups = this.createSmartGroups(grouped);
-            letterCategoriesElement.textContent = smartGroups.length;
+            // Always 4 columns
+            letterCategoriesElement.textContent = '4';
         }
 
         // Calculate free tiers percentage (mock data for now)
