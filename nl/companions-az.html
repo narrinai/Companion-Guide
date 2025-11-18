@@ -88,6 +88,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     <a href="/companions-az" class="lang-option">🇬🇧</a>
                     <a href="/nl/companions-az" class="lang-option active">🇳🇱</a>
                     <a href="/pt/companions-az" class="lang-option">🇧🇷</a>
+                    <a href="/de/companions-az" class="lang-option">🇩🇪</a>
                 </div>
             </div>
         </nav>
@@ -95,14 +96,14 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
     <main class="container">
         <section class="hero">
-            <h1>AI Companions A-Z Directory</h1>
-            <p>Complete alphabetical directory of all AI companion platforms. Find any AI companion quickly by browsing our comprehensive A-Z list.</p>
+            <h1 data-i18n="companionsAZ.title">AI Companions A-Z Gids</h1>
+            <p data-i18n="companionsAZ.description">Compleet alfabetisch overzicht van alle AI companion platformen. Vind snel elk AI companion door onze uitgebreide A-Z lijst te bekijken.</p>
         </section>
 
         <!-- Loading State -->
         <div id="loading-state" class="loading-container">
             <div class="loading-spinner"></div>
-            <p>Loading AI companions...</p>
+            <p data-i18n="companionsAZ.loading">AI companions laden...</p>
         </div>
 
         <!-- A-Z Index Section -->
@@ -115,28 +116,28 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         <!-- No Results State -->
         <div id="no-results" class="no-results" style="display: none;">
             <div class="no-results-icon">🔍</div>
-            <h3>No companions found</h3>
-            <p>Try adjusting your search or filter criteria</p>
+            <h3 data-i18n="companionsAZ.noResults">Geen companions gevonden</h3>
+            <p data-i18n="companionsAZ.noResultsMessage">Probeer je zoek- of filtercriteria aan te passen</p>
         </div>
 
         <section class="directory-stats" id="directory-stats" style="background: var(--bg-secondary); border-radius: 12px; padding: 32px; margin: 40px 0; display: none;">
-            <h2>Directory Statistics</h2>
+            <h2 data-i18n="companionsAZ.statsTitle">Gids Statistieken</h2>
             <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 24px;">
                 <div class="stat-item" style="text-align: center;">
                     <div id="total-companions" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 8px;">0</div>
-                    <div style="color: var(--text-secondary);">Total AI Companions</div>
+                    <div style="color: var(--text-secondary);" data-i18n="companionsAZ.totalCompanions">Totaal AI Companions</div>
                 </div>
                 <div class="stat-item" style="text-align: center;">
                     <div id="letter-categories" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-green); margin-bottom: 8px;">0</div>
-                    <div style="color: var(--text-secondary);">Letter Categories</div>
+                    <div style="color: var(--text-secondary);" data-i18n="companionsAZ.letterCategories">Letter Categorieën</div>
                 </div>
                 <div class="stat-item" style="text-align: center;">
                     <div id="free-tiers-percent" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-purple); margin-bottom: 8px;">0%</div>
-                    <div style="color: var(--text-secondary);">Have Free Tiers</div>
+                    <div style="color: var(--text-secondary);" data-i18n="companionsAZ.freeTiers">Hebben Gratis Opties</div>
                 </div>
                 <div class="stat-item" style="text-align: center;">
                     <div id="average-rating" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-orange); margin-bottom: 8px;">0.0</div>
-                    <div style="color: var(--text-secondary);">Average Rating</div>
+                    <div style="color: var(--text-secondary);" data-i18n="companionsAZ.avgRating">Gemiddelde Waardering</div>
                 </div>
             </div>
         </section>
@@ -165,7 +166,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                         <li><a href="/nl/companions" data-i18n="nav.companions">Companions</a></li>
                         <li><a href="/nl/categories" data-i18n="nav.categories">Categorieën</a></li>
                         <li><a href="/nl/news" data-i18n="nav.news">Nieuws</a></li>
-                        <li><a href="/companions-az">Companions A-Z</a></li>
+                        <li><a href="/nl/companions-az">Companions A-Z</a></li>
+                        <li><a href="/nl/cookie-policy">Cookie Policy</a></li>
                         <li><a href="/nl/contact" data-i18n="nav.contact">Contact</a></li>
                     </ul>
                 </div>
@@ -199,7 +201,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     </footer>
 
     <script src="/script.js"></script>
-    <script src="companions-az.js"></script>
+    <script src="/companions-az.js"></script>
     <script src="/js/companions.js"></script>
     <script>
         // Load featured companions in footer
