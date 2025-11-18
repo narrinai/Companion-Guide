@@ -18,25 +18,28 @@ class ArticleLastUpdated {
   }
 
   addLastUpdatedDate() {
-    // Find the publish date element
-    const publishDateElement = document.querySelector('.publish-date');
-    if (!publishDateElement) {
-      console.warn('Publish date element not found');
-      return;
-    }
-
     // Get today's date in the same format as the publish date
     const today = new Date();
     const formattedDate = this.formatDate(today);
 
-    // Create the "Last updated" span to add inline
-    const lastUpdatedSpan = document.createElement('span');
-    lastUpdatedSpan.className = 'last-updated-date';
-    lastUpdatedSpan.style.cssText = 'color: #888; font-style: italic; margin-left: 1rem;';
-    lastUpdatedSpan.innerHTML = `Last updated: ${formattedDate}`;
+    // Update breadcrumb last updated date
+    const publishDateElement = document.querySelector('.publish-date');
+    if (publishDateElement) {
+      // Create the "Last updated" span to add inline
+      const lastUpdatedSpan = document.createElement('span');
+      lastUpdatedSpan.className = 'last-updated-date';
+      lastUpdatedSpan.style.cssText = 'color: #888; font-style: italic; margin-left: 1rem;';
+      lastUpdatedSpan.innerHTML = `Last updated: ${formattedDate}`;
 
-    // Append to the publish date element (same line)
-    publishDateElement.appendChild(lastUpdatedSpan);
+      // Append to the publish date element (same line)
+      publishDateElement.appendChild(lastUpdatedSpan);
+    }
+
+    // Update footer last updated date
+    const footerDateElement = document.getElementById('last-updated-date');
+    if (footerDateElement) {
+      footerDateElement.textContent = formattedDate;
+    }
   }
 
   formatDate(date) {

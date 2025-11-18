@@ -1802,6 +1802,10 @@ footer {
     color: var(--accent-blue);
 }
 
+.footer-section .reddit-link:hover {
+    color: var(--accent-blue);
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: var(--space-8);
