@@ -28,8 +28,7 @@ class FloatingCTAManager {
 
   createCTA() {
     // Create the floating CTA element
-    this.cta = document.createElement('a');
-    this.cta.href = '/companions/soulkyn-ai';
+    this.cta = document.createElement('div');
     this.cta.className = 'floating-cta';
     this.cta.innerHTML = `
       <div class="floating-cta-header">Companion of the Month</div>
@@ -42,6 +41,10 @@ class FloatingCTAManager {
             <span class="floating-cta-score">9.6</span><span class="floating-cta-score-total">/10</span>
           </div>
         </div>
+      </div>
+      <div class="floating-cta-buttons">
+        <a href="/companions/soulkyn-ai" class="floating-cta-btn floating-cta-btn-review" data-action="review">Full Review</a>
+        <a href="https://soulkyn.ai" target="_blank" rel="noopener noreferrer" class="floating-cta-btn floating-cta-btn-website" data-action="website">Visit Website</a>
       </div>
       <span class="floating-cta-close" data-close="true">×</span>
     `;
@@ -65,11 +68,13 @@ class FloatingCTAManager {
     // Hide CTA when near footer
     window.addEventListener('scroll', () => this.handleScroll());
 
-    // Track clicks
-    this.cta.addEventListener('click', (e) => {
-      if (!e.target.hasAttribute('data-close')) {
-        this.trackClick();
-      }
+    // Track button clicks
+    const buttons = this.cta.querySelectorAll('[data-action]');
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const action = button.getAttribute('data-action');
+        this.trackClick(action);
+      });
     });
   }
 
@@ -104,21 +109,25 @@ class FloatingCTAManager {
     }, 300);
   }
 
-  trackClick() {
+  trackClick(action) {
     // Track with Google Analytics if available
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'click', {
-        event_category: 'Floating CTA',
-        event_label: 'News Article - Deals Link',
+      gtag('event', 'cotm_floating_cta_click', {
+        event_category: 'Companion of the Month',
+        event_label: 'Soulkyn AI',
+        companion_name: 'Soulkyn AI',
+        action: action,
         value: 1
       });
     }
 
     // Track with Facebook Pixel if available
     if (typeof fbq !== 'undefined') {
-      fbq('track', 'ViewContent', {
-        content_name: 'Floating CTA Click - Deals',
-        content_category: 'News Article'
+      fbq('track', 'Lead', {
+        content_name: `COTM Floating CTA - Soulkyn AI - ${action}`,
+        content_category: 'Companion of the Month',
+        value: 1.00,
+        currency: 'USD'
       });
     }
   }

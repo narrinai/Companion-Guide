@@ -23,7 +23,6 @@
 }
 
 .floating-cta:hover {
-    transform: translateY(-2px);
     box-shadow: 0 6px 30px rgba(59, 130, 246, 0.4);
     border-color: #4a9eff;
 }
@@ -148,7 +147,7 @@
     }
 
     .floating-cta:hover {
-        transform: translateX(50%) translateY(-2px);
+        transform: translateX(50%);
     }
 
     .floating-cta-header {
@@ -168,12 +167,62 @@
         font-size: 1rem;
     }
 
+    .floating-cta-btn {
+        padding: 7px 8px;
+        font-size: 0.65rem;
+    }
+
     @keyframes slideUp {
         to {
             opacity: 1;
             transform: translateX(50%) translateY(0);
         }
     }
+}
+
+/* CTA Buttons */
+.floating-cta-buttons {
+    display: flex;
+    gap: 8px;
+    padding: 0 4px;
+}
+
+.floating-cta-btn {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.floating-cta-btn-review {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.floating-cta-btn-review:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.floating-cta-btn-website {
+    background: var(--accent-blue);
+    color: white;
+    border: 1px solid var(--accent-blue);
+}
+
+.floating-cta-btn-website:hover {
+    background: #2563eb;
+    border-color: #2563eb;
 }
 
 /* Hide when scrolled to footer */
