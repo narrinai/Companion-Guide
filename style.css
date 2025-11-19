@@ -342,6 +342,7 @@ header .nav-menu {
 .cotm-header-row {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     margin-bottom: 0.65rem;
     padding: 0.5rem 0.65rem;
@@ -376,7 +377,7 @@ header .nav-menu {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    flex: 1;
+    flex: 0 0 auto;
 }
 
 .cotm-stars {

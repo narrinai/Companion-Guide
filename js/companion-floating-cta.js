@@ -150,24 +150,36 @@ class CompanionFloatingCTA {
   }
 
   trackClick() {
+    // Check if this is the Companion of the Month
+    const isCOTM = this.checkIfCOTM();
+
     // Track with Google Analytics if available
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'companion_floating_cta_click', {
-        event_category: 'Companion Floating CTA',
+      gtag('event', 'cotm_floating_cta_click', {
+        event_category: 'Companion of the Month',
         event_label: this.companionData.name,
         companion_name: this.companionData.name,
-        link_url: this.companionData.url,
+        is_cotm: isCOTM,
         value: 1
       });
     }
 
-    // Track with Facebook Pixel if available
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'ViewContent', {
-        content_name: `Floating CTA - ${this.companionData.name}`,
-        content_category: 'Companion Page'
+    // Track with Facebook Pixel if available (only for COTM)
+    if (isCOTM && typeof fbq !== 'undefined') {
+      fbq('track', 'Lead', {
+        content_name: `COTM Floating CTA - ${this.companionData.name}`,
+        content_category: 'Companion of the Month',
+        value: 1.00,
+        currency: 'USD'
       });
     }
+  }
+
+  checkIfCOTM() {
+    // Check if the URL contains the COTM companion slug
+    const cotmSlugs = ['soulkyn-ai']; // Update this as COTM changes
+    const currentSlug = window.location.pathname.split('/').pop().replace('.html', '');
+    return cotmSlugs.includes(currentSlug);
   }
 
   escapeHtml(text) {

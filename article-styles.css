@@ -165,6 +165,22 @@ body:has(.article-hero) {
     border-bottom-color: var(--accent-blue);
 }
 
+.category-link {
+    font-size: 0.95rem;
+    margin: -0.5rem 0 1.5rem 0;
+}
+
+.category-link a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.category-link a:hover {
+    border-bottom-color: var(--accent-blue);
+}
+
 /* Hero Image */
 .hero-image {
     border-radius: var(--radius-xl);

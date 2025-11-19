@@ -371,7 +371,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                         </div>
                     </div>
                     <div class="cotm-buttons">
-                        <a href="/companions/soulkyn-ai" class="cotm-review-button">Read Review</a>
+                        <a href="/companions/soulkyn-ai" class="cotm-review-button" id="cotm-review-link">Read Review</a>
                         <a href="https://soulkyn.ai/?deal=companionguide" id="cotm-website-link" class="cotm-website-button" target="_blank" rel="noopener">Visit Website</a>
                     </div>
                 </div>
@@ -865,12 +865,52 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     } else {
                         console.warn('Companion of the Month website_url not valid, keeping fallback URL. Value:', companionOfMonth.website_url);
                     }
+
+                    // Add tracking events for COTM elements
+                    addCOTMTracking(companionOfMonth);
                 } else {
                     console.error('No companion found with is_month = true');
                 }
             } catch (error) {
                 console.error('Error loading Companion of the Month rating:', error);
             }
+        }
+
+        // Add tracking events to COTM elements
+        function addCOTMTracking(companion) {
+            if (!companion) return;
+
+            // Single event for all COTM clicks on index
+            const cotmElements = [
+                document.querySelector('.cotm-logo-link'),
+                document.getElementById('cotm-review-link'),
+                document.getElementById('cotm-website-link')
+            ];
+
+            cotmElements.forEach(element => {
+                if (element) {
+                    element.addEventListener('click', function() {
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'cotm_index_click', {
+                                event_category: 'Companion of the Month',
+                                event_label: companion.name,
+                                companion_name: companion.name,
+                                value: 1
+                            });
+                        }
+                        if (typeof fbq !== 'undefined') {
+                            fbq('track', 'Lead', {
+                                content_name: `COTM - ${companion.name}`,
+                                content_category: 'Companion of the Month',
+                                value: 1.00,
+                                currency: 'USD'
+                            });
+                        }
+                    });
+                }
+            });
+
+            console.log(`✅ Added tracking events for Companion of the Month: ${companion.name}`);
         }
 
         // Load four random featured companions for the category tags (v4 - optimized)
