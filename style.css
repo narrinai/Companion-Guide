@@ -1266,6 +1266,7 @@ main .companions-grid {
     font-size: 0.875rem;
     color: var(--text-secondary);
     line-height: 1.5;
+    text-align: center;
 }
 
 .features-list ul {

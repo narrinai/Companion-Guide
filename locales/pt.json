@@ -44,7 +44,7 @@
     "pros": "Vantagens & Desvantagens",
     "cons": "Desvantagens",
     "overview": "Visão Geral",
-    "whatIs": "O que é",
+    "whatIs": "O que é {name}?",
     "pricing": "Preços",
     "verdict": "Nossa Opinião",
     "alternatives": "Alternativas Semelhantes",
