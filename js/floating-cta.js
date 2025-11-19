@@ -82,8 +82,8 @@ class FloatingCTAManager {
     const logo = this.cotmData.logo || `/images/screenshots/${slug}-review.png`;
     const websiteUrl = this.cotmData.website_url || '#';
 
-    // Generate star rating
-    const fullStars = Math.floor(rating);
+    // Generate star rating (convert 0-10 scale to 0-5 stars)
+    const fullStars = Math.floor(rating / 2);
     const stars = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
 
     this.cta.innerHTML = `
