@@ -43,6 +43,9 @@ class CompanionPageManager {
         // Protect quick-facts paragraphs from translation
         this.protectFactContent();
 
+        // Render image gallery if available
+        this.renderGallery();
+
         // Translate CTA section (wait for i18n to be ready)
         if (window.i18n && window.i18n.initialized) {
             this.translateCTASection();
@@ -905,6 +908,56 @@ class CompanionPageManager {
         container.innerHTML = featuresHtml;
         console.log(`✅ Rendered ${features.length} features to container`);
         console.log('📄 HTML:', featuresHtml.substring(0, 200) + '...');
+    }
+
+    /**
+     * Render image gallery from Airtable data
+     */
+    renderGallery() {
+        const galleryContainer = document.getElementById('companionGallery');
+        if (!galleryContainer) {
+            console.log('⚠️ Gallery container not found on this page');
+            return;
+        }
+
+        console.log('🖼️ Rendering companion image gallery...');
+
+        // Check if companion data has gallery_images
+        if (!this.companionData || !this.companionData.gallery_images) {
+            console.log('⚠️ No gallery_images data available');
+            return;
+        }
+
+        try {
+            // Parse gallery_images (comes as JSON string from Airtable)
+            let galleryImages;
+            if (typeof this.companionData.gallery_images === 'string') {
+                galleryImages = JSON.parse(this.companionData.gallery_images);
+            } else if (Array.isArray(this.companionData.gallery_images)) {
+                galleryImages = this.companionData.gallery_images;
+            } else {
+                console.warn('⚠️ gallery_images is not in expected format');
+                return;
+            }
+
+            // Validate images array
+            if (!Array.isArray(galleryImages) || galleryImages.length === 0) {
+                console.log('⚠️ No images in gallery_images array');
+                return;
+            }
+
+            console.log(`✅ Found ${galleryImages.length} images for gallery`);
+
+            // Initialize gallery with CompanionGallery class
+            if (window.CompanionGallery) {
+                window.companionGalleryInstance = new window.CompanionGallery('companionGallery', galleryImages);
+                console.log('✅ Gallery initialized successfully');
+            } else {
+                console.error('❌ CompanionGallery class not loaded');
+            }
+        } catch (error) {
+            console.error('❌ Error rendering gallery:', error);
+        }
     }
 }
 
