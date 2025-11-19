@@ -153,13 +153,39 @@ class CompanionFloatingCTA {
     // Check if this is the Companion of the Month
     const isCOTM = this.checkIfCOTM();
 
-    // Track with Google Analytics if available
+    // Get domain from URL
+    let domain = '';
+    try {
+      const urlObj = new URL(this.companionData.url);
+      domain = urlObj.hostname.replace('www.', '');
+    } catch (e) {
+      domain = 'unknown';
+    }
+
+    // Track outbound click (same as other Visit Website buttons)
     if (typeof gtag !== 'undefined') {
+      gtag('event', 'outbound_click', {
+        event_category: 'outbound',
+        event_label: `${this.companionData.name.toLowerCase().replace(/\s+/g, '_')}_floating_cta_cta_button`,
+        link_text: 'Visit ' + this.companionData.name,
+        link_url: this.companionData.url,
+        link_domain: domain,
+        page_location: window.location.pathname,
+        companion_name: this.companionData.name,
+        link_type: 'floating_cta',
+        link_position: 'floating_cta',
+        link_identifier: `${this.companionData.name.toLowerCase().replace(/\s+/g, '_')}_floating_cta_cta_button`,
+        value: 1
+      });
+    }
+
+    // Track COTM-specific event
+    if (isCOTM && typeof gtag !== 'undefined') {
       gtag('event', 'cotm_floating_cta_click', {
         event_category: 'Companion of the Month',
         event_label: this.companionData.name,
         companion_name: this.companionData.name,
-        is_cotm: isCOTM,
+        is_cotm: true,
         value: 1
       });
     }
