@@ -35,7 +35,7 @@ section.companion-gallery h2 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
@@ -84,7 +84,7 @@ section.companion-gallery h2 {
 }
 
 .blur-reveal-btn {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -99,7 +99,7 @@ section.companion-gallery h2 {
 .blur-reveal-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(135deg, #ee5a52 0%, #ff6b6b 100%);
+    background: linear-gradient(135deg, #0056b3 0%, #007bff 100%);
 }
 
 .blur-reveal-btn:active {

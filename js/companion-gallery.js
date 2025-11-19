@@ -66,8 +66,6 @@ class CompanionGallery {
                 ${this.isBlurred ? `
                     <div class="gallery-blur-overlay" id="galleryBlurOverlay">
                         <div class="gallery-blur-warning">
-                            <div class="blur-warning-icon">🔞</div>
-                            <h3>Adult Content Warning</h3>
                             <p>This gallery contains uncensored NSFW content intended for adults only (18+).</p>
                             <button class="blur-reveal-btn" id="revealGalleryBtn">
                                 I am 18+ - Show Content
