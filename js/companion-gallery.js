@@ -16,6 +16,7 @@ class CompanionGallery {
         this.isTransitioning = false;
         this.isUncensored = options.isUncensored || false;
         this.isBlurred = this.isUncensored;
+        this.websiteUrl = options.websiteUrl || '';
 
         this.init();
     }
@@ -75,6 +76,15 @@ class CompanionGallery {
                     </div>
                 ` : ''}
             </div>
+
+            ${this.websiteUrl ? `
+                <div class="gallery-cta-link" style="text-align: center; margin-top: 1.5rem;">
+                    <a href="${this.escapeHtml(this.websiteUrl)}"
+                       class="pricing-cta"
+                       target="_blank"
+                       data-i18n="companionCard.visitWebsite">Visit Website</a>
+                </div>
+            ` : ''}
         `;
 
         this.container.innerHTML = html;
