@@ -1281,7 +1281,25 @@
                         `;
                     }).join('');
                 }
-                
+
+                // Update "Visit Website" links in platform-review sections with website_url from Airtable
+                pornCompanions.forEach(companion => {
+                    if (companion && companion.slug && companion.website_url) {
+                        // Convert slug to match section IDs (e.g., 'soulkyn-ai', 'ourdream-ai', etc.)
+                        const sectionId = companion.slug;
+                        const section = document.getElementById(sectionId);
+
+                        if (section) {
+                            // Find the "Visit Website" button in this section
+                            const visitButton = section.querySelector('.platform-cta .btn-primary');
+                            if (visitButton && visitButton.textContent.trim() === 'Visit Website') {
+                                console.log(`Updating Visit Website link for ${companion.name}: ${visitButton.href} → ${companion.website_url}`);
+                                visitButton.href = companion.website_url;
+                            }
+                        }
+                    }
+                });
+
                 // Load featured companions in footer
                 await window.companionManager.renderFooterFeaturedCompanions('featured-companions-footer');
 
