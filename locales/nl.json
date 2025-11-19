@@ -63,7 +63,12 @@
     "unfiltered": "Ongefilterd",
     "moderate": "Gematigd gefilterd",
     "readyToTry": "Klaar om {name} te Ervaren?",
-    "ctaDescription": "Ontdek realistische AI girlfriend ervaringen met 100+ fantasiescenario's"
+    "ctaDescription": "Ontdek realistische AI girlfriend ervaringen met 100+ fantasiescenario's",
+    "gallery": "Afbeeldingengalerij"
+  },
+  "gallery": {
+    "warningText": "Deze galerij bevat ongecensureerde NSFW-inhoud alleen voor volwassenen (18+).",
+    "showContent": "Toon Inhoud, Ik ben 18+"
   },
   "reviewForm": {
     "sectionTitle": "Deel je ervaring met {companion}",

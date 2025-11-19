@@ -98,7 +98,12 @@
     "userExperience": "User Experience",
     "alternatives": "Alternatives",
     "faq": "Frequently Asked Questions",
-    "faqHeading": "FAQ"
+    "faqHeading": "FAQ",
+    "gallery": "Image Gallery"
+  },
+  "gallery": {
+    "warningText": "This gallery contains uncensored NSFW content intended for adults only (18+).",
+    "showContent": "Show Content, I am 18+"
   },
   "categoryPages": {
     "home": "Home",

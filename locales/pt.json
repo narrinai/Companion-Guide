@@ -63,7 +63,12 @@
     "unfiltered": "Sem filtro",
     "moderate": "Moderadamente filtrado",
     "readyToTry": "Pronto para Experimentar {name}?",
-    "ctaDescription": "Descubra experiências realistas com namoradas de IA e mais de 100 cenários de fantasia"
+    "ctaDescription": "Descubra experiências realistas com namoradas de IA e mais de 100 cenários de fantasia",
+    "gallery": "Galeria de Imagens"
+  },
+  "gallery": {
+    "warningText": "Esta galeria contém conteúdo NSFW sem censura destinado apenas a adultos (18+).",
+    "showContent": "Mostrar Conteúdo, Eu tenho 18+"
   },
   "reviewForm": {
     "sectionTitle": "Compartilhe sua experiência com {companion}",

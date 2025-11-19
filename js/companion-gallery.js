@@ -66,9 +66,9 @@ class CompanionGallery {
                 ${this.isBlurred ? `
                     <div class="gallery-blur-overlay" id="galleryBlurOverlay">
                         <div class="gallery-blur-warning">
-                            <p>This gallery contains uncensored NSFW content intended for adults only (18+).</p>
-                            <button class="blur-reveal-btn" id="revealGalleryBtn">
-                                I am 18+ - Show Content
+                            <p data-i18n="gallery.warningText">This gallery contains uncensored NSFW content intended for adults only (18+).</p>
+                            <button class="blur-reveal-btn" id="revealGalleryBtn" data-i18n="gallery.showContent">
+                                Show Content, I am 18+
                             </button>
                         </div>
                     </div>
@@ -87,6 +87,11 @@ class CompanionGallery {
 
         this.container.innerHTML = html;
         this.cacheElements();
+
+        // Apply i18n translations to dynamically rendered content
+        if (window.i18nManager) {
+            window.i18nManager.applyTranslations();
+        }
 
         if (this.isBlurred) {
             this.attachBlurHandlers();
