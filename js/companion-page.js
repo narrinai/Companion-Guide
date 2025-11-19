@@ -950,8 +950,11 @@ class CompanionPageManager {
 
             // Initialize gallery with CompanionGallery class
             if (window.CompanionGallery) {
-                window.companionGalleryInstance = new window.CompanionGallery('companionGallery', galleryImages);
-                console.log('✅ Gallery initialized successfully');
+                const options = {
+                    isUncensored: this.companionData.is_uncensored || false
+                };
+                window.companionGalleryInstance = new window.CompanionGallery('companionGallery', galleryImages, options);
+                console.log(`✅ Gallery initialized successfully (uncensored: ${options.isUncensored})`);
             } else {
                 console.error('❌ CompanionGallery class not loaded');
             }

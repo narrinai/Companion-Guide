@@ -227,6 +227,7 @@ exports.handler = async (event, context) => {
           pricing_plans: pricingPlans,
           featured: !!baseCompanion.is_featured,
           is_month: !!baseCompanion.is_month,
+          is_uncensored: !!baseCompanion.is_uncensored,
           status: baseCompanion.status || 'Active',
           review_count: parseInt(baseCompanion.review_count) || 0,
           best_for: fields.best_for || baseCompanion.best_for || '',
@@ -234,7 +235,8 @@ exports.handler = async (event, context) => {
           hero_specs: fields.hero_specs || '',
           body_text: fields.body_text || '',
           faq: fields.faq || '',
-          ready_to_try: fields.ready_to_try || fields.ready_try || ''
+          ready_to_try: fields.ready_to_try || fields.ready_try || '',
+          gallery_images: baseCompanion.gallery_images || ''
         };
       }
     });
