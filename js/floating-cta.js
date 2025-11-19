@@ -34,9 +34,17 @@ class FloatingCTAManager {
 
   async fetchCOTMData() {
     try {
-      // Wait for companionManager to be available
+      // Wait for companionManager to be available (with timeout)
+      let attempts = 0;
+      const maxAttempts = 50; // 5 seconds max wait
+
+      while (!window.companionManager && attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        attempts++;
+      }
+
       if (!window.companionManager) {
-        console.warn('CompanionManager not available for floating CTA');
+        console.warn('CompanionManager not available for floating CTA after timeout');
         return;
       }
 

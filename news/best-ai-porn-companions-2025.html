@@ -1178,6 +1178,12 @@
 
         // Load dynamic companion data
         document.addEventListener('DOMContentLoaded', async () => {
+            // Wait for companionManager to be available
+            if (!window.companionManager) {
+                console.error('CompanionManager not available');
+                return;
+            }
+
             const manager = window.companionManager;
 
             try {
