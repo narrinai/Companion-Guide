@@ -26,6 +26,7 @@ const COMPANION_DIRS = [
     './pt/companions',
     './de/companions'
 ];
+const NEWS_DIR = './news';
 
 // Colors for console output
 const colors = {
