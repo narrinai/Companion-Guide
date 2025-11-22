@@ -347,9 +347,36 @@ class CompanionManager {
       return;
     }
 
-    container.innerHTML = companions.map(companion =>
-      this.generateCompanionCard(companion)
-    ).join('');
+    // Insert advertisement card after 3rd companion
+    console.log(`📊 Rendering ${companions.length} companions for category`);
+    const cards = companions.map((companion, index) => {
+      if (index === 3) {
+        console.log('🎯 Inserting advertisement card at index 3');
+        return this.generateAdvertisementCard() + this.generateCompanionCard(companion);
+      }
+      return this.generateCompanionCard(companion);
+    });
+
+    container.innerHTML = cards.join('');
+  }
+
+  generateAdvertisementCard() {
+    console.log('🎬 Generating advertisement card with video');
+    return `
+      <article class="companion-product-card advertisement-card">
+        <div class="ad-badge">Sponsored</div>
+        <a href="https://www.df4qnp8trk.com/3CQWRGN/9B9DM/?uid=36&sub5=companionguide" target="_blank" rel="noopener" class="ad-video-container">
+          <video autoplay loop muted playsinline class="ad-video">
+            <source src="/videos/950x250-ourdream-ai-video-companionguide.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </a>
+        <div class="product-actions">
+          <a href="https://www.df4qnp8trk.com/3CQWRGN/9B9DM/?uid=36&sub5=companionguide" class="btn-primary ad-cta-primary" target="_blank">Try OurDream AI</a>
+          <a href="https://www.df4qnp8trk.com/3CQWRGN/9B9DM/?uid=36&sub5=companionguide" class="btn-secondary ad-cta-secondary" target="_blank">Visit Website</a>
+        </div>
+      </article>
+    `;
   }
 
   generateCategoryBadges(companion, index) {

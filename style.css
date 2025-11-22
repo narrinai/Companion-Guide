@@ -2916,7 +2916,7 @@ footer {
 .btn-secondary {
     background-color: var(--bg-tertiary);
     color: var(--text-primary);
-    border: 1px solid var(--border-primary);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-md);
     font-weight: 600;
@@ -5488,3 +5488,54 @@ footer {
 }
 
 /* Force Netlify Deploy Sun Sep 29 12:40:00 CEST 2025 */
+
+/* Advertisement Card Styles */
+.advertisement-card {
+    border: 1px solid var(--border-primary);
+}
+
+.advertisement-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.advertisement-card .spotlight-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.advertisement-card .ad-video-container {
+    width: 100%;
+    aspect-ratio: 950 / 250;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: var(--space-4);
+    background-color: var(--bg-tertiary);
+    position: relative;
+}
+
+.advertisement-card .ad-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.advertisement-card .ad-video-container {
+    display: block;
+    cursor: pointer;
+}
+
+/* Mobile optimization for ad video */
+@media (max-width: 768px) {
+    .advertisement-card .ad-video-container {
+        aspect-ratio: 950 / 250;
+        height: auto;
+    }
+
+    .advertisement-card .ad-video {
+        object-fit: contain;
+    }
+}
+

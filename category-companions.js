@@ -66,6 +66,9 @@ class CategoryCompanions {
             '/categories/adult-image-generation-companions': ['image-gen'], // Only show companions with image-gen tag
             '/categories/ai-girlfriend-companions': ['ai-girlfriend', 'romance', 'dating'],
             '/categories/ai-boyfriend-companions': ['ai-boyfriend'],
+            '/categories/ai-anime-companions': ['anime'],
+            '/categories/ai-voice-companions': ['voice'],
+            '/categories/ai-romantic-companions': ['romantic'],
             '/categories/ai-porn-chat-platforms': ['porn'],
             '/categories/hentai-ai-chat-platforms': ['hentai'],
             '/categories/roleplay-character-chat-companions': ['roleplaying', 'character', 'fantasy'],
@@ -381,6 +384,86 @@ class CategoryCompanions {
         }
     }
 
+    generateAdvertisementCard() {
+        console.log('🎬 Generating advertisement card with video');
+
+        // Find OurDream AI companion data from the full companions list
+        const ourdreamCompanion = window.companionsCache?.data?.find(
+            comp => comp.slug === 'ourdream-ai'
+        );
+
+        if (!ourdreamCompanion) {
+            console.warn('OurDream AI companion not found in cache');
+            return ''; // Return empty if not found
+        }
+
+        // Get i18n translations
+        const freeTrialText = window.i18n && window.i18n.initialized
+            ? window.i18n.t('companionCard.freeTrial')
+            : 'Free trial';
+        const readReviewText = window.i18n && window.i18n.initialized
+            ? window.i18n.t('companionCard.readReview')
+            : 'Read Review';
+        const visitWebsiteText = window.i18n && window.i18n.initialized
+            ? window.i18n.t('companionCard.visitWebsite')
+            : 'Visit Website';
+        const reviewsText = window.i18n && window.i18n.initialized
+            ? window.i18n.t('companionCard.reviews')
+            : 'reviews';
+        const bestForLabel = window.i18n && window.i18n.initialized
+            ? window.i18n.t('companionCard.bestFor')
+            : 'Best for:';
+
+        // Extract companion data
+        const name = ourdreamCompanion.name || 'OurDream AI';
+        const logoUrl = ourdreamCompanion.logo_url || '/images/logos/ourdream-ai.png';
+        const rating = ourdreamCompanion.rating || 9.5;
+        const reviewCount = ourdreamCompanion.review_count || 127;
+        const description = ourdreamCompanion.short_description || ourdreamCompanion.description || 'Create and chat with AI companions that feel incredibly real.';
+        const affiliateUrl = ourdreamCompanion.affiliate_url || 'https://www.df4qnp8trk.com/3CQWRGN/9B9DM/?uid=36&sub5=companionguide';
+        const slug = ourdreamCompanion.slug || 'ourdream-ai';
+        const bestFor = ourdreamCompanion.best_for || ourdreamCompanion.Best_for || ourdreamCompanion['Best for'] || this.generateBestFor(ourdreamCompanion);
+
+        // Generate companion URL with proper language prefix
+        const companionUrl = window.i18n && window.i18n.initialized
+            ? window.i18n.getCompanionUrl(slug)
+            : `/companions/${slug}`;
+
+        return `
+            <article class="companion-card advertisement-card">
+                <div class="product-badge spotlight-badge">Companion Spotlight</div>
+                <div class="card-header">
+                    <img src="${logoUrl}" alt="${name}" class="logo" onerror="this.src='/images/logos/default.png'">
+                    <div class="title-section">
+                        <h3><a href="${companionUrl}">${name}</a></h3>
+                        <div class="rating-line">
+                            <span class="stars">${this.generateStarRating(rating)}</span>
+                            <span class="rating-score">${rating.toFixed(1)}/10</span>
+                            ${reviewCount > 0 ? `<span class="review-count">(${reviewCount} ${reviewsText})</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+                <p class="description">${description}</p>
+                <a href="${affiliateUrl}" target="_blank" rel="noopener" class="ad-video-container">
+                    <video autoplay loop muted playsinline class="ad-video">
+                        <source src="/videos/950x250-ourdream-ai-video-companionguide-v2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+                <div class="pricing-section">
+                    <div class="price-main">${freeTrialText}</div>
+                </div>
+                ${bestFor ? `<div class="best-for-section">
+                    <span class="best-for-label">${bestForLabel}</span> ${bestFor}
+                </div>` : ''}
+                <div class="card-actions">
+                    <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">Try ${name}</a>
+                    <a href="${affiliateUrl}" class="btn-secondary" target="_blank" rel="noopener">${visitWebsiteText}</a>
+                </div>
+            </article>
+        `;
+    }
+
     renderCompanionGrid() {
         const container = document.getElementById('nsfw-companions-container');
         if (!container) return;
@@ -391,7 +474,7 @@ class CategoryCompanions {
             loadingState.style.display = 'none';
         }
 
-        const html = this.companions.map((companion, index) => {
+        const companionCards = this.companions.map((companion, index) => {
             const logoUrl = companion.logo_url || '/images/logos/default.png';
             const affiliateUrl = companion.affiliate_url || companion.website_url || '#';
             const rating = companion.rating || 4.0;
@@ -452,27 +535,15 @@ class CategoryCompanions {
                 `;
             }
 
-            // Generate pricing info
-            let pricingInfo = '';
-            try {
-                const plans = typeof companion.pricing_plans === 'string'
-                    ? JSON.parse(companion.pricing_plans)
-                    : companion.pricing_plans || [];
-
-                const freePlan = plans.find(plan => plan.price === 0);
-                if (freePlan) {
-                    const freeTrialText = window.i18n && window.i18n.initialized
-                        ? window.i18n.t('companionCard.freeTrial')
-                        : 'Free trial';
-                    pricingInfo = `
-                        <div class="pricing-section">
-                            <div class="price-main">${freeTrialText}</div>
-                        </div>
-                    `;
-                }
-            } catch (e) {
-                // Silent fallback
-            }
+            // Generate pricing info - always show "Free trial"
+            const freeTrialText = window.i18n && window.i18n.initialized
+                ? window.i18n.t('companionCard.freeTrial')
+                : 'Free trial';
+            const pricingInfo = `
+                <div class="pricing-section">
+                    <div class="price-main">${freeTrialText}</div>
+                </div>
+            `;
 
             // Generate "Best for" section
             const bestFor = companion.best_for || companion.Best_for || companion['Best for'] || this.generateBestFor(companion);
@@ -490,9 +561,6 @@ class CategoryCompanions {
             const reviewsText = window.i18n && window.i18n.initialized
                 ? window.i18n.t('companionCard.reviews')
                 : 'reviews';
-            const freeTrialText = window.i18n && window.i18n.initialized
-                ? window.i18n.t('companionCard.freeTrial')
-                : 'Free trial';
 
             return `
                 <article class="companion-card${companion.featured ? ' featured' : ''}">
@@ -515,13 +583,21 @@ class CategoryCompanions {
                         <span class="best-for-label">${bestForLabel}</span> ${bestFor}
                     </div>` : ''}
                     <div class="card-actions">
-                        <a href="${companionUrl}" class="btn-secondary">${readReviewText}</a>
                         <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">${visitWebsiteText}</a>
+                        <a href="${companionUrl}" class="btn-secondary">${readReviewText}</a>
                     </div>
                 </article>
             `;
-        }).join('');
+        });
 
+        // Insert advertisement card after 4th companion (index 4) - only if OurDream AI is in the list
+        const hasOurDreamAI = this.companions.some(comp => comp.slug === 'ourdream-ai');
+        if (companionCards.length >= 4 && hasOurDreamAI) {
+            console.log('🎯 Inserting advertisement card after 4th companion (5th position)');
+            companionCards.splice(4, 0, this.generateAdvertisementCard());
+        }
+
+        const html = companionCards.join('');
         container.innerHTML = html;
         container.style.display = 'grid'; // Ensure grid display
     }
