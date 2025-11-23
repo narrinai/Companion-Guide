@@ -622,7 +622,10 @@ class CompanionManager {
         'nsfw': 0,
         'video': 0,
         'porn': 0,
-        'hentai': 0
+        'hentai': 0,
+        'anime': 0,
+        'voice': 0,
+        'romantic': 0
       };
 
       // Map category names from Airtable to our internal category keys
@@ -648,7 +651,10 @@ class CompanionManager {
         'video': 'video',
         'video-chat': 'video',
         'porn': 'porn',
-        'hentai': 'hentai'
+        'hentai': 'hentai',
+        'anime': 'anime',
+        'voice': 'voice',
+        'romantic': 'romantic'
       };
 
       allCompanions.forEach(companion => {
@@ -685,8 +691,8 @@ class CompanionManager {
     } catch (error) {
       console.error('Error updating category counts:', error);
       // Fallback to show error state for both pages
-      const categoryIds = ['roleplaying-count', 'wellness-count', 'learning-count', 'ai-girlfriend-count', 'ai-boyfriend-count', 'whatsapp-count', 'image-gen-count', 'nsfw-count', 'video-count', 'porn-count', 'hentai-count'];
-      const indexCategoryIds = ['roleplaying-count-index', 'wellness-count-index', 'learning-count-index', 'ai-girlfriend-count-index', 'ai-boyfriend-count-index', 'whatsapp-count-index', 'image-gen-count-index', 'nsfw-count-index', 'video-count-index', 'porn-count-index', 'hentai-count-index'];
+      const categoryIds = ['roleplaying-count', 'wellness-count', 'learning-count', 'ai-girlfriend-count', 'ai-boyfriend-count', 'whatsapp-count', 'image-gen-count', 'nsfw-count', 'video-count', 'porn-count', 'hentai-count', 'anime-count', 'voice-count', 'romantic-count'];
+      const indexCategoryIds = ['roleplaying-count-index', 'wellness-count-index', 'learning-count-index', 'ai-girlfriend-count-index', 'ai-boyfriend-count-index', 'whatsapp-count-index', 'image-gen-count-index', 'nsfw-count-index', 'video-count-index', 'porn-count-index', 'hentai-count-index', 'anime-count-index', 'voice-count-index', 'romantic-count-index'];
 
       categoryIds.forEach(id => {
         const element = document.getElementById(id);

@@ -420,7 +420,7 @@ class CategoryCompanions {
         const rating = ourdreamCompanion.rating || 9.5;
         const reviewCount = ourdreamCompanion.review_count || 127;
         const description = ourdreamCompanion.short_description || ourdreamCompanion.description || 'Create and chat with AI companions that feel incredibly real.';
-        const affiliateUrl = ourdreamCompanion.affiliate_url || 'https://www.df4qnp8trk.com/3CQWRGN/9B9DM/?uid=36&sub5=companionguide';
+        const affiliateUrl = ourdreamCompanion.website_url || 'https://www.df4qnp8trk.com/3CQWRGN/9B9DM/?uid=36&sub5=companionguide';
         const slug = ourdreamCompanion.slug || 'ourdream-ai';
         const bestFor = ourdreamCompanion.best_for || ourdreamCompanion.Best_for || ourdreamCompanion['Best for'] || this.generateBestFor(ourdreamCompanion);
 

@@ -340,6 +340,24 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                             <p>Geradores IA especializados para conteúdo adulto em estilo anime e manga</p>
                             <div class="category-stats" id="hentai-count-index">Carregando...</div>
                         </a>
+                        <a href="/pt/categories/ai-anime-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-anime"/></svg></div>
+                            <h3 data-i18n="categories.aiAnime.title">AI Anime Companions</h3>
+                            <p data-i18n="categories.aiAnime.description">Melhores plataformas de IA para personagens de anime e interações inspiradas em mangá</p>
+                            <div class="category-stats" id="anime-count-index">Carregando...</div>
+                        </a>
+                        <a href="/pt/categories/ai-voice-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-voice"/></svg></div>
+                            <h3 data-i18n="categories.aiVoice.title">AI Voice Companions</h3>
+                            <p data-i18n="categories.aiVoice.description">Companions de IA com chat de voz avançado e recursos de fala realistas</p>
+                            <div class="category-stats" id="voice-count-index">Carregando...</div>
+                        </a>
+                        <a href="/pt/categories/ai-romantic-companions" class="category-card">
+                            <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-romantic"/></svg></div>
+                            <h3 data-i18n="categories.aiRomantic.title">AI Romantic Companions</h3>
+                            <p data-i18n="categories.aiRomantic.description">Melhores plataformas de IA para conexões românticas profundas e relacionamentos emocionais</p>
+                            <div class="category-stats" id="romantic-count-index">Carregando...</div>
+                        </a>
                     </div>
                 </section>
             </div>
@@ -415,6 +433,31 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                         <span class="category">Notícias da Indústria</span>
                     </div>
                 </article>
+                <!-- Advertisement Card -->
+                <article class="news-card news-ad-card" id="news-ad-ourdream">
+                    <div class="news-badge spotlight-badge">Spotlight</div>
+                    <div class="ad-header">
+                        <img src="/images/logos/ourdream-ai.png" alt="OurDream AI" class="ad-logo" id="ourdream-logo">
+                        <div class="ad-title-section">
+                            <h3><a href="/companions/ourdream-ai" class="ad-companion-name" id="ourdream-name">OurDream AI</a></h3>
+                            <div class="ad-rating-line">
+                                <span class="ad-stars" id="ourdream-stars">★★★★★</span>
+                                <span class="ad-rating-score" id="ourdream-rating">9.5/10</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://ourdream.ai/?via=companionguide" target="_blank" rel="noopener" class="ad-video-link" id="ourdream-video-link">
+                        <video autoplay loop muted playsinline class="ad-video-news">
+                            <source src="/videos/950x250-ourdream-ai-video-companionguide-v2.mp4" type="video/mp4">
+                        </video>
+                    </a>
+                    <p class="ad-description" id="ourdream-best-for">Loading...</p>
+                    <div class="ad-actions">
+                        <a href="https://ourdream.ai/?via=companionguide" class="ad-btn-primary" target="_blank" rel="noopener" id="ourdream-btn-primary">Try OurDream AI</a>
+                        <a href="https://ourdream.ai/?via=companionguide" class="ad-btn-secondary" target="_blank" rel="noopener" id="ourdream-btn-secondary">Visit Website</a>
+                    </div>
+                </article>
+
                 <article class="news-card">
                     <div class="news-source">CompanionGuide.ai</div>
                     <h3><a href="/news/spicychat-ai-alternatives-complete-guide-2025">Melhores Alternativas ao Spicychat AI 2025: Guia Completo de AI Companion NSFW com Roleplay & Chat de Personagens</a></h3>
@@ -424,6 +467,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                         <span class="category">Guia de Plataformas</span>
                     </div>
                 </article>
+
                 <article class="news-card">
                     <div class="news-source">CompanionGuide.ai</div>
                     <h3><a href="/news/crushon-ai-alternatives-complete-guide-2025">Melhores Alternativas ao Crushon AI 2025: Guia Completo de AI Companion NSFW com Roleplay & Chat de Personagens</a></h3>
@@ -733,6 +777,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     <script src="/js/companions.js?v=20251007"></script>
     <script src="/js/meta-companion-tracking.js?v=20251007"></script>
     <script src="/js/ga-external-tracking.js?v=20251115"></script>
+    <script src="/js/ad-tracking.js"></script>
     <script>
         // Prefetch companions data ASAP - but wait for i18n first!
         let companionsDataPromise = null;
@@ -778,6 +823,9 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 
                 // Update category counts dynamically (less critical, can wait)
                 await window.companionManager.updateCategoryCounts();
+
+                // Load OurDream AI data for news ad
+                await loadOurDreamAdData();
 
                 // Load featured companions in footer (least critical)
                 await window.companionManager.renderFooterFeaturedCompanions('featured-companions-footer');
@@ -918,6 +966,71 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 console.error('Error loading featured companion tags:', error);
                 // Hide all tags if there's an error
                 document.querySelectorAll('[data-companion-index]').forEach(tag => tag.remove());
+            }
+        }
+
+        // Load OurDream AI data for the news advertisement card
+        async function loadOurDreamAdData() {
+            try {
+                const companions = await window.companionManager.fetchCompanions({ sort: 'rating' });
+                const ourdream = companions.find(c => c.slug === 'ourdream-ai');
+
+                if (ourdream) {
+                    const affiliateUrl = ourdream.website_url || 'https://ourdream.ai/?via=companionguide';
+
+                    // Update logo
+                    const logoElement = document.getElementById('ourdream-logo');
+                    if (logoElement && ourdream.logo_url) {
+                        logoElement.src = ourdream.logo_url;
+                    }
+
+                    // Update name
+                    const nameElement = document.getElementById('ourdream-name');
+                    if (nameElement && ourdream.name) {
+                        nameElement.textContent = ourdream.name;
+                    }
+
+                    // Update rating
+                    const ratingElement = document.getElementById('ourdream-rating');
+                    if (ratingElement && ourdream.rating) {
+                        ratingElement.textContent = `${ourdream.rating.toFixed(1)}/10`;
+                    }
+
+                    // Update stars
+                    const starsElement = document.getElementById('ourdream-stars');
+                    if (starsElement && ourdream.rating) {
+                        const stars = Math.round(ourdream.rating / 2);
+                        starsElement.textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+                    }
+
+                    // Update best for description
+                    const bestForElement = document.getElementById('ourdream-best-for');
+                    if (bestForElement && ourdream.best_for) {
+                        const bestForLabel = window.i18n && window.i18n.initialized
+                            ? window.i18n.t('companionCard.bestFor')
+                            : 'Best for';
+                        bestForElement.textContent = `${bestForLabel}: ${ourdream.best_for}`;
+                    }
+
+                    // Update all affiliate URLs
+                    const videoLink = document.getElementById('ourdream-video-link');
+                    if (videoLink) {
+                        videoLink.href = affiliateUrl;
+                    }
+
+                    const btnPrimary = document.getElementById('ourdream-btn-primary');
+                    if (btnPrimary) {
+                        btnPrimary.href = affiliateUrl;
+                        btnPrimary.textContent = `Try ${ourdream.name || 'OurDream AI'}`;
+                    }
+
+                    const btnSecondary = document.getElementById('ourdream-btn-secondary');
+                    if (btnSecondary) {
+                        btnSecondary.href = affiliateUrl;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading OurDream AI data:', error);
             }
         }
     </script>
