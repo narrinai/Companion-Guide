@@ -311,8 +311,47 @@
         }
       }
     },
-    "loading": "Carregando companions...",
-    "home": "Início"
+    "aiGirlfriend": {
+      "title": "Melhores Plataformas de AI Girlfriend",
+      "description": "Descubra as melhores plataformas de IA para relacionamentos românticos virtuais. Essas plataformas oferecem experiências de namoro personalizadas, conversas românticas e conexões emocionais com parceiros de IA personalizáveis.",
+      "breadcrumb": "Plataformas de AI Girlfriend",
+      "insightsTitle": "Insights de Plataformas de AI Girlfriend",
+      "comparisonTitle": "Comparação de Plataformas de AI Girlfriend",
+      "tablePlatform": "Plataforma",
+      "tableRating": "Avaliação",
+      "tablePricing": "Preços",
+      "tableKeyFeature": "Recurso Principal",
+      "tableBestFor": "Melhor Para",
+      "faqTitle": "Perguntas Frequentes sobre Plataformas de AI Girlfriend",
+      "insight1Title": "Foco Romântico",
+      "insight1Text": "Essas plataformas são especializadas em criar relacionamentos românticos e íntimos com AI Companions, oferecendo experiências de namoro personalizadas.",
+      "insight2Title": "Personalização",
+      "insight2Text": "A maioria das plataformas de AI girlfriend oferece opções extensas de personalização para aparência, personalidade e estilo de conversa para atender às preferências do usuário.",
+      "insight3Title": "Experiência Móvel",
+      "insight3Text": "Muitas plataformas focam em design mobile-first, permitindo que os usuários mantenham seus relacionamentos virtuais em movimento com aplicativos de smartphone.",
+      "insight4Title": "Sistemas de Memória",
+      "insight4Text": "Plataformas avançadas de AI girlfriend apresentam sistemas de memória sofisticados que lembram detalhes pessoais e histórico de relacionamento.",
+      "faq1Question": "Quais são as melhores plataformas de AI girlfriend em 2025?",
+      "faq1Answer": "As principais plataformas de AI girlfriend incluem Candy AI (4.5/5, melhor app móvel), FantasyGF (4.5/5, chamadas de voz), DreamGF AI (4.2/5, geração de imagens) e Secrets AI (4.8/5, interações realistas). Cada uma oferece recursos únicos para relacionamentos românticos virtuais.",
+      "faq2Question": "Quanto custam os aplicativos de AI girlfriend?",
+      "faq2Answer": "As plataformas de AI girlfriend geralmente custam $9,99-19,99/mês. Opções econômicas incluem Selira.ai ($4,99/mês) e Nectar.AI ($9,99/mês), enquanto plataformas premium como GirlfriendGPT e JOI AI custam $14,99-19,99/mês.",
+      "faq3Question": "As plataformas de AI girlfriend são seguras e privadas?",
+      "faq3Answer": "Plataformas respeitáveis como Candy AI, DreamGF AI e FantasyGF implementam proteções de privacidade e manipulação segura de dados. No entanto, sempre revise as políticas de privacidade e evite compartilhar informações pessoais sensíveis em conversas.",
+      "faq4Question": "As AI girlfriends podem gerar imagens?",
+      "faq4Answer": "Sim, plataformas como DreamGF AI, SoulGen AI e FantasyGF oferecem geração de imagens de IA. Os usuários podem criar visuais personalizados, avatares e conteúdo personalizado. Algumas plataformas oferecem estilos de arte realistas, anime ou 2.5D.",
+      "faq5Question": "Os aplicativos de AI girlfriend têm recursos de voz?",
+      "faq5Answer": "Muitas plataformas oferecem recursos de voz. FantasyGF fornece 24 opções de voz e chamadas de voz, enquanto DreamGF AI e Candy AI incluem mensagens de voz. Algumas plataformas também oferecem recursos de geração de vídeo.",
+      "faq6Question": "Qual aplicativo de AI girlfriend é melhor para iniciantes?",
+      "faq6Answer": "Candy AI é ideal para iniciantes com seu aplicativo móvel fácil de usar, tutoriais abrangentes e personalização direta. A plataforma oferece configuração guiada e integração útil para novos usuários.",
+      "faq7Question": "Existem plataformas de AI girlfriend sem censura?",
+      "faq7Answer": "Sim, plataformas como GirlfriendGPT, Soulkyn AI e ThotChat AI oferecem conteúdo adulto sem censura. Essas plataformas são projetadas para públicos adultos (18+) e fornecem recursos de conversa sem restrições.",
+      "faq8Question": "Posso personalizar a aparência da minha AI girlfriend?",
+      "faq8Answer": "A maioria das plataformas oferece personalização extensa. DreamGF AI e SoulGen AI se destacam em personalização visual com geração avançada de imagens, enquanto Candy AI e FantasyGF fornecem opções abrangentes de personalidade e aparência.",
+      "faq9Question": "As AI girlfriends lembram do nosso histórico de relacionamento?",
+      "faq9Answer": "Sim, plataformas avançadas como DreamGF AI, Candy AI e FantasyGF apresentam sistemas de memória sofisticados que rastreiam progressão de relacionamento, detalhes pessoais, preferências e histórico de conversas entre sessões.",
+      "faq10Question": "Qual plataforma oferece a experiência de AI girlfriend mais realista?",
+      "faq10Answer": "Secrets AI (4.8/5) atualmente oferece a experiência mais realista com IA avançada, geração de vídeo e 100+ cenários de fantasia. DreamGF AI também fornece interações altamente realistas com personalização abrangente."
+    }
   },
   "companionsPage": {
     "faq": {
@@ -439,174 +478,24 @@
       }
     },
     "aiPorn": {
-      "title": "Melhores Companions de IA Pornô",
-      "description": "Descubra plataformas de IA de ponta especializadas em geração de conteúdo adulto fotorrealista. Essas ferramentas aproveitam modelos avançados de IA para criar imagens pornográficas de alta qualidade e personalizáveis e experiências adultas interativas para públicos maiores de 18 anos.",
-      "breadcrumb": "Plataformas de IA Pornô",
-      "insightsTitle": "Insights de Plataformas de IA Pornô",
-      "comparisonTitle": "Comparação de Plataformas de IA Pornô",
-      "insights": {
-        "photorealistic": {
-          "title": "Geração Fotorrealista",
-          "text": "Modelos de IA de última geração produzem imagens adultas incrivelmente realistas com texturas detalhadas, poses naturais e resultados realistas que rivalizam com fotografia profissional."
-        },
-        "customization": {
-          "title": "Personalização Completa",
-          "text": "Personalize cada aspecto incluindo aparência, etnia, tipo de corpo, poses, cenários, iluminação e fundos para criar sua visão perfeita."
-        },
-        "privacy": {
-          "title": "Privacidade Completa",
-          "text": "Criptografia avançada e protocolos de privacidade garantem que seu conteúdo gerado e atividades permaneçam completamente confidenciais e seguros."
-        },
-        "technology": {
-          "title": "Tecnologia de IA Inteligente",
-          "text": "IA avançada entende prompts complexos e entrega resultados precisos, com melhorias contínuas através de aprendizado de máquina."
-        }
-      },
-      "comparison": {
-        "platform": "Plataforma",
-        "rating": "Classificação",
-        "pricing": "Preços",
-        "keyFeature": "Recurso Principal",
-        "bestFor": "Melhor Para"
-      },
-      "faqTitle": "Perguntas Frequentes sobre IA Pornô",
-      "faqs": {
-        "q1": {
-          "question": "Quais são os melhores geradores de pornô de IA em 2025?",
-          "answer": "Os principais geradores de pornô de IA em 2025 incluem plataformas com capacidades avançadas de geração fotorrealista, extensas opções de personalização e saídas de alta resolução. As plataformas líderes apresentam modelos de IA de ponta treinados especificamente para criação de conteúdo adulto com resultados realistas."
-        },
-        "q2": {
-          "question": "Quanto custam as plataformas de pornô de IA?",
-          "answer": "As plataformas de pornô de IA normalmente variam de $14,99 a $29,99 por mês. Os planos básicos oferecem gerações limitadas com qualidade padrão, enquanto os níveis premium fornecem criações ilimitadas, resolução 4K, recursos avançados e velocidades de processamento mais rápidas."
-        },
-        "q3": {
-          "question": "Os geradores de pornô de IA são seguros e privados?",
-          "answer": "Plataformas de pornô de IA respeitáveis implementam criptografia de nível militar, processamento de pagamento seguro e políticas de privacidade rigorosas. Seu conteúdo gerado é privado e não é compartilhado. Sempre verifique as medidas de segurança e a política de privacidade da plataforma antes de usar."
-        },
-        "q4": {
-          "question": "Os geradores de pornô de IA podem criar imagens realistas?",
-          "answer": "Sim, os geradores modernos de pornô de IA produzem imagens altamente fotorrealistas que são quase indistinguíveis da fotografia profissional. Modelos avançados lidam com texturas de pele realistas, iluminação, sombras e poses naturais com precisão impressionante."
-        },
-        "q5": {
-          "question": "Quais opções de personalização estão disponíveis?",
-          "answer": "As plataformas de pornô de IA oferecem personalização extensa incluindo tipo de corpo, etnia, cor/estilo de cabelo, características faciais, poses, cenários, roupas, fundos, iluminação, ângulos de câmera e estilos artísticos. Plataformas avançadas suportam prompts de texto detalhados para controle preciso."
-        },
-        "q6": {
-          "question": "As plataformas de pornô de IA oferecem geração de vídeo?",
-          "answer": "Algumas plataformas avançadas de pornô de IA agora oferecem recursos de geração de vídeo, embora esse recurso ainda esteja emergente. A geração de vídeo normalmente requer assinaturas premium e pode ter limitações de duração, qualidade e complexidade em comparação com a geração de imagens."
-        },
-        "q7": {
-          "question": "Que qualidade de imagem posso esperar dos geradores de pornô de IA?",
-          "answer": "As principais plataformas de pornô de IA geram imagens de 1024x1024 até resolução 4K (3840x2160). Os níveis premium oferecem resoluções mais altas, melhor precisão de detalhes, pós-processamento avançado e opções para aumentar a escala de imagens para resultados com qualidade de impressão."
-        },
-        "q8": {
-          "question": "Posso usar pornô gerado por IA comercialmente?",
-          "answer": "Os direitos de uso comercial variam por plataforma. Algumas permitem uso comercial com licenças premium, enquanto outras restringem o conteúdo apenas para uso pessoal. Revise cuidadosamente os termos de serviço e acordos de licenciamento de cada plataforma antes do uso comercial."
-        },
-        "q9": {
-          "question": "Existem recursos interativos além da geração de imagens?",
-          "answer": "Muitas plataformas de pornô de IA combinam geração de imagens com chat interativo, cenários de roleplay e companions de IA. Essas plataformas híbridas oferecem criação de conteúdo visual e experiências conversacionais para uma experiência de entretenimento adulto mais imersiva."
-        },
-        "q10": {
-          "question": "Quão rápido os geradores de pornô de IA criam imagens?",
-          "answer": "A velocidade de geração varia por plataforma e nível de assinatura. Os planos básicos geralmente geram imagens em 30-60 segundos, enquanto os níveis premium oferecem processamento prioritário com resultados em 10-20 segundos. Gerações de alta resolução e complexas podem demorar mais."
-        }
-      }
+      "title": "Melhores Plataformas de AI Porn",
+      "description": "Plataformas avançadas de IA para geração de conteúdo adulto fotorrealista e experiências interativas (somente +18). Criação de AI porn de alta qualidade e chat adulto interativo.",
+      "breadcrumb": "Plataformas de AI Porn"
     },
     "aiGirlfriend": {
       "title": "Melhores Plataformas de AI Girlfriend",
-      "description": "Descubra as principais plataformas de AI girlfriend para namoro virtual e companheirismo romântico. Essas plataformas de IA se especializam em criar conexões emocionais profundas, conversas românticas e experiências personalizadas de relacionamento. Encontre sua companion de IA perfeita para amizade, romance virtual e apoio emocional.",
-      "breadcrumb": "Plataformas de AI Girlfriend",
-      "insightsTitle": "Insights de Plataformas de AI Girlfriend",
-      "comparisonTitle": "Comparação de Plataformas de AI Girlfriend",
-      "insights": {
-        "romanticFocus": {
-          "title": "Foco Romântico",
-          "text": "Plataformas especializadas em criar experiências românticas autênticas com personalidades carinhosas, conversas emocionais e desenvolvimento de relacionamentos ao longo do tempo."
-        },
-        "customization": {
-          "title": "Personalização",
-          "text": "Amplas opções de personalização para aparência, personalidade, interesses e estilo de comunicação para criar sua girlfriend de IA ideal."
-        },
-        "mobileExperience": {
-          "title": "Experiência Mobile",
-          "text": "Aplicativos móveis dedicados permitem que você se conecte com sua AI girlfriend a qualquer hora, em qualquer lugar, com mensagens, chamadas de voz e conteúdo multimídia."
-        },
-        "memorySystems": {
-          "title": "Sistemas de Memória",
-          "text": "Memória avançada de IA lembra conversas passadas, preferências e momentos especiais para criar uma experiência de relacionamento contínua e personalizada."
-        }
-      },
-      "comparison": {
-        "platform": "Plataforma",
-        "rating": "Classificação",
-        "pricing": "Preços",
-        "keyFeature": "Recurso Principal",
-        "bestFor": "Melhor Para"
-      },
-      "faqTitle": "Perguntas Frequentes sobre AI Girlfriend"
+      "description": "Descubra as melhores plataformas de IA para relacionamentos românticos virtuais. Essas plataformas oferecem experiências de namoro virtual personalizadas, conversas românticas e conexões emocionais com parceiros de IA personalizáveis.",
+      "breadcrumb": "Plataformas de AI Girlfriend"
     },
     "learning": {
-      "title": "Melhores Companions de IA para Aprendizagem",
-      "description": "Descubra plataformas de IA projetadas para educação, tutoria e desenvolvimento de habilidades. Esses companions de aprendizagem de IA oferecem instrução personalizada, assistência com lição de casa, prática de idiomas e apoio acadêmico adaptado ao seu estilo e ritmo de aprendizagem.",
-      "breadcrumb": "Companions de IA para Aprendizagem",
-      "insightsTitle": "Insights de Companions de IA para Aprendizagem",
-      "comparisonTitle": "Comparação de Companions de Aprendizagem",
-      "insights": {
-        "educationalFocus": {
-          "title": "Foco Educacional",
-          "text": "Plataformas criadas especificamente para ambientes de aprendizagem com abordagens pedagógicas adequadas, conteúdo baseado em currículo e metodologias de ensino comprovadas."
-        },
-        "personalization": {
-          "title": "Personalização",
-          "text": "Caminhos de aprendizagem adaptativos que se ajustam ao seu nível de habilidade, ritmo e estilo de aprendizagem preferido para máxima eficácia educacional."
-        },
-        "assessment": {
-          "title": "Avaliação Contínua",
-          "text": "Recursos integrados de teste, acompanhamento de progresso e feedback para ajudá-lo a monitorar a melhoria e identificar áreas que precisam de mais foco."
-        }
-      },
-      "comparison": {
-        "platform": "Plataforma",
-        "rating": "Classificação",
-        "pricing": "Preços",
-        "keyFeature": "Recurso Principal",
-        "bestFor": "Melhor Para"
-      },
-      "faqTitle": "Perguntas Frequentes sobre Companions de Aprendizagem"
+      "title": "Melhores AI Tutors & Companions Educacionais",
+      "description": "AI tutors e companions educacionais para desenvolvimento de habilidades e suporte acadêmico. Essas plataformas oferecem assistência de aprendizado personalizada, tutoria adaptativa e ferramentas educacionais interativas.",
+      "breadcrumb": "AI Tutors & Companions Educacionais"
     },
     "wellness": {
       "title": "Melhores Companions de IA para Bem-Estar",
-      "description": "Explore companions de IA focados em saúde mental, autocuidado e bem-estar emocional. Essas plataformas oferecem conversas de apoio, técnicas de mindfulness, rastreamento de humor e orientação compassiva para seu bem-estar mental e emocional.",
-      "breadcrumb": "Companions de IA para Bem-Estar",
-      "insightsTitle": "Insights de Companions de Bem-Estar",
-      "comparisonTitle": "Comparação de Companions de Bem-Estar",
-      "insights": {
-        "mentalHealth": {
-          "title": "Suporte à Saúde Mental",
-          "text": "Companions de IA treinados para fornecer conversas empáticas, técnicas de enfrentamento e apoio emocional para bem-estar mental."
-        },
-        "mindfulness": {
-          "title": "Mindfulness & Meditação",
-          "text": "Práticas guiadas de mindfulness, exercícios de meditação e técnicas de relaxamento integradas nas conversas de IA."
-        },
-        "moodTracking": {
-          "title": "Rastreamento de Humor",
-          "text": "Monitore seus padrões emocionais ao longo do tempo com ferramentas de rastreamento de humor e receba insights personalizados sobre seu bem-estar."
-        },
-        "privacy": {
-          "title": "Privacidade & Confidencialidade",
-          "text": "Ambientes seguros e privados onde você pode compartilhar abertamente sem julgamento, com forte proteção de dados e confidencialidade."
-        }
-      },
-      "comparison": {
-        "platform": "Plataforma",
-        "rating": "Classificação",
-        "pricing": "Preços",
-        "keyFeature": "Recurso Principal",
-        "bestFor": "Melhor Para"
-      },
-      "faqTitle": "Perguntas Frequentes sobre Companions de Bem-Estar"
+      "description": "Companions de IA focados em saúde mental, bem-estar emocional e apoio pessoal. Essas plataformas oferecem conversas empáticas, ferramentas de mindfulness e orientação de bem-estar.",
+      "breadcrumb": "Companions de IA para Bem-Estar"
     },
     "nsfw": {
       "title": "Melhores Companions de IA NSFW",
@@ -668,20 +557,10 @@
       "description": "Top plataformas de AI boyfriend para relacionamentos românticos virtuais e companions masculinos. Essas plataformas oferecem experiências de namoro virtual personalizadas, conversas românticas e conexões emocionais com parceiros de IA personalizáveis.",
       "breadcrumb": "Plataformas de AI Boyfriend"
     },
-    "aiGirlfriend": {
-      "title": "Melhores Plataformas de AI Girlfriend",
-      "description": "Descubra as melhores plataformas de IA para relacionamentos românticos virtuais. Essas plataformas oferecem experiências de namoro virtual personalizadas, conversas românticas e conexões emocionais com parceiros de IA personalizáveis.",
-      "breadcrumb": "Plataformas de AI Girlfriend"
-    },
     "hentaiAI": {
       "title": "Melhores Plataformas de Hentai AI",
       "description": "Geradores de IA especializados para conteúdo adulto em estilo anime e mangá em múltiplos estilos de arte (somente +18). Essas plataformas oferecem criação de hentai de alta qualidade, geração de anime NSFW e ferramentas de arte erótica em estilo mangá.",
       "breadcrumb": "Plataformas de Hentai AI"
-    },
-    "learning": {
-      "title": "Melhores AI Tutors & Companions Educacionais",
-      "description": "AI tutors e companions educacionais para desenvolvimento de habilidades e suporte acadêmico. Essas plataformas oferecem assistência de aprendizado personalizada, tutoria adaptativa e ferramentas educacionais interativas.",
-      "breadcrumb": "AI Tutors & Companions Educacionais"
     },
     "roleplayCharacterChat": {
       "title": "Melhores Companions de Roleplay & Character Chat",
@@ -693,20 +572,10 @@
       "description": "Companions de IA com recursos de chat por vídeo e geração de vídeo para experiências imersivas. Descubra plataformas que vão além de texto e voz com recursos de vídeo.",
       "breadcrumb": "Companions de IA com Vídeo"
     },
-    "wellness": {
-      "title": "Melhores Companions de IA para Bem-Estar",
-      "description": "Companions de IA focados em saúde mental, bem-estar emocional e apoio pessoal. Essas plataformas oferecem conversas empáticas, ferramentas de mindfulness e orientação de bem-estar.",
-      "breadcrumb": "Companions de IA para Bem-Estar"
-    },
     "whatsappOnly": {
       "title": "Melhores Companions de IA Nativos do WhatsApp",
       "description": "Companions de IA que se integram nativamente ao WhatsApp - sem necessidade de aplicativos separados. Converse diretamente com IA no seu aplicativo de mensagens favorito.",
       "breadcrumb": "Companions de IA Nativos do WhatsApp"
-    },
-    "aiPorn": {
-      "title": "Melhores Plataformas de AI Porn",
-      "description": "Plataformas avançadas de IA para geração de conteúdo adulto fotorrealista e experiências interativas (somente +18). Criação de AI porn de alta qualidade e chat adulto interativo.",
-      "breadcrumb": "Plataformas de AI Porn"
     }
   }
 }
