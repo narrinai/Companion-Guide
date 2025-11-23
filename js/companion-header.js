@@ -365,26 +365,52 @@ class CompanionHeaderManager {
       }
     }
 
-    // Parse the verdict text (supports Markdown-style headers)
-    const lines = verdictText.split('\n').filter(l => l.trim());
+    // Smart heading detection for SEO
+    const paragraphs = verdictText.split('\n\n').filter(p => p.trim());
     let html = '';
 
-    lines.forEach(line => {
-      const trimmed = line.trim();
+    paragraphs.forEach((para, index) => {
+      const trimmed = para.trim();
+
+      // Check if it starts with markdown headers
       if (trimmed.startsWith('# ')) {
-        // H1 Markdown → H3 in HTML
         html += `<h3>${trimmed.substring(2)}</h3>`;
       } else if (trimmed.startsWith('## ')) {
-        // H2 Markdown → H4 in HTML
         html += `<h4>${trimmed.substring(3)}</h4>`;
-      } else if (trimmed.length > 0) {
-        // Regular paragraph
-        html += `<p>${trimmed}</p>`;
+      } else {
+        // Split paragraph into sentences
+        const sentences = trimmed.split(/(?<=[.!?])\s+/);
+
+        if (sentences.length > 0) {
+          const firstSentence = sentences[0].trim();
+          const restOfParagraph = sentences.slice(1).join(' ').trim();
+
+          // Detect if first sentence should be a heading
+          const isShort = firstSentence.length < 100; // Increased from 60 to catch more headings
+          const endsWithColon = firstSentence.endsWith(':');
+          const hasNoPunctuation = !firstSentence.match(/[.!?]$/);
+          const looksLikeHeading = /^(Best for|Who should use|Key features|Conclusion|Final thoughts|Overview|Why choose|Perfect for|Bottom line|The verdict|What makes|Innovation|Standout|Unique|Ideal for|Great for)/i.test(firstSentence);
+          const isFirstParagraph = index === 0;
+
+          // Make first sentence a H3 if it's short without punctuation OR looks like a heading OR ends with colon
+          if ((isShort && (hasNoPunctuation || looksLikeHeading || endsWithColon)) || isFirstParagraph) {
+            const headingText = endsWithColon ? firstSentence.slice(0, -1) : firstSentence;
+            html += `<h3>${headingText}</h3>`;
+
+            // Add the rest of the paragraph if exists
+            if (restOfParagraph) {
+              html += `<p>${restOfParagraph}</p>`;
+            }
+          } else {
+            // Keep entire paragraph as one <p>
+            html += `<p>${trimmed}</p>`;
+          }
+        }
       }
     });
 
     verdictTextDiv.innerHTML = html;
-    console.log(`✅ Updated verdict with ${lines.length} lines`);
+    console.log(`✅ Updated verdict with smart heading detection (${paragraphs.length} paragraphs)`);
   }
 
   /**
