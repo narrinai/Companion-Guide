@@ -568,6 +568,81 @@ class CompanionManager {
     return Array(count).fill(skeleton).join('');
   }
 
+  generateAdvertisementCard(allCompanions) {
+    console.log('🎬 Generating advertisement card for companions page');
+
+    // Find OurDream AI companion data
+    const ourdreamCompanion = allCompanions.find(comp => comp.slug === 'ourdream-ai');
+
+    if (!ourdreamCompanion) {
+      console.warn('OurDream AI companion not found');
+      return '';
+    }
+
+    // Get i18n translations
+    const freeTrialText = window.i18n && window.i18n.initialized
+      ? window.i18n.t('companionCard.freeTrial')
+      : 'Free trial';
+    const visitWebsiteText = window.i18n && window.i18n.initialized
+      ? window.i18n.t('companionCard.visitWebsite')
+      : 'Visit Website';
+    const reviewsText = window.i18n && window.i18n.initialized
+      ? window.i18n.t('companionCard.reviews')
+      : 'reviews';
+    const bestForLabel = window.i18n && window.i18n.initialized
+      ? window.i18n.t('companionCard.bestFor')
+      : 'Best for:';
+
+    // Extract companion data
+    const name = ourdreamCompanion.name || 'OurDream AI';
+    const logoUrl = ourdreamCompanion.logo_url || '/images/logos/ourdream-ai.png';
+    const rating = ourdreamCompanion.rating || 9.5;
+    const reviewCount = ourdreamCompanion.review_count || 127;
+    const description = ourdreamCompanion.short_description || ourdreamCompanion.description || 'Create and chat with AI companions that feel incredibly real.';
+    const affiliateUrl = ourdreamCompanion.website_url || 'https://ourdream.ai/?via=companionguide';
+    const slug = ourdreamCompanion.slug || 'ourdream-ai';
+    const bestFor = ourdreamCompanion.best_for || ourdreamCompanion.Best_for || ourdreamCompanion['Best for'] || 'Advanced AI roleplay, voice chat, and image generation';
+
+    // Generate companion URL with proper language prefix
+    const companionUrl = window.i18n && window.i18n.initialized
+      ? window.i18n.getCompanionUrl(slug)
+      : `/companions/${slug}`;
+
+    return `
+      <article class="companion-card advertisement-card">
+        <div class="product-badge spotlight-badge">Companion Spotlight</div>
+        <div class="card-header">
+          <img src="${logoUrl}" alt="${name}" class="logo" onerror="this.src='/images/logos/default.png'">
+          <div class="title-section">
+            <h3><a href="${companionUrl}">${name}</a></h3>
+            <div class="rating-line">
+              <span class="stars">${this.generateStarRating(rating)}</span>
+              <span class="rating-score">${rating.toFixed(1)}/10</span>
+              ${reviewCount > 0 ? `<span class="review-count">(${reviewCount} ${reviewsText})</span>` : ''}
+            </div>
+          </div>
+        </div>
+        <p class="description">${description}</p>
+        <a href="${affiliateUrl}" target="_blank" rel="noopener" class="ad-video-container">
+          <video autoplay loop muted playsinline class="ad-video">
+            <source src="/videos/950x250-ourdream-ai-video-companionguide-v2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </a>
+        <div class="pricing-section">
+          <div class="price-main">${freeTrialText}</div>
+        </div>
+        ${bestFor ? `<div class="best-for-section">
+          <span class="best-for-label">${bestForLabel}</span> ${bestFor}
+        </div>` : ''}
+        <div class="card-actions">
+          <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">Try ${name}</a>
+          <a href="${affiliateUrl}" class="btn-secondary" target="_blank" rel="noopener">${visitWebsiteText}</a>
+        </div>
+      </article>
+    `;
+  }
+
   async renderAllCompanions(containerId, sortBy = 'rating') {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -583,10 +658,20 @@ class CompanionManager {
         return;
       }
 
-      // Render all companions immediately
-      container.innerHTML = allCompanions.map(companion =>
+      // Generate companion cards
+      const companionCards = allCompanions.map(companion =>
         this.generateCompanionCard(companion)
-      ).join('');
+      );
+
+      // Insert advertisement card after 4th companion (index 4) - only if OurDream AI is in the list
+      const hasOurDreamAI = allCompanions.some(comp => comp.slug === 'ourdream-ai');
+      if (companionCards.length >= 4 && hasOurDreamAI) {
+        console.log('🎯 Inserting advertisement card after 4th companion (5th position)');
+        companionCards.splice(4, 0, this.generateAdvertisementCard(allCompanions));
+      }
+
+      // Render all companions with ad
+      container.innerHTML = companionCards.join('');
 
     } catch (error) {
       console.error('Error loading companions:', error);
