@@ -714,6 +714,99 @@ main {
     color: var(--accent-blue);
 }
 
+/* Advertisement in A-Z List */
+.az-column .advertisement-item {
+    margin: var(--space-4) 0;
+}
+
+.az-column .advertisement-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    position: relative;
+}
+
+.az-column .advertisement-card .ad-label {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 0.625rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.05em;
+}
+
+.az-column .advertisement-card .ad-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.az-column .advertisement-card .ad-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+}
+
+.az-column .advertisement-card .ad-info {
+    flex: 1;
+}
+
+.az-column .advertisement-card .ad-companion-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.az-column .advertisement-card .ad-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+}
+
+.az-column .advertisement-card .stars {
+    color: #fbbf24;
+}
+
+.az-column .advertisement-card .rating-value {
+    font-weight: 600;
+}
+
+.az-column .advertisement-card .ad-description {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-3) 0;
+    line-height: 1.4;
+}
+
+.az-column .advertisement-card .ad-buttons {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.az-column .advertisement-card .ad-btn-primary {
+    flex: 1;
+    padding: 8px 12px;
+    background: var(--accent-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.az-column .advertisement-card .ad-btn-primary:hover {
+    background: var(--accent-blue-hover);
+    transform: translateY(-1px);
+}
+
 /* Buttons */
 .btn {
     display: inline-flex;

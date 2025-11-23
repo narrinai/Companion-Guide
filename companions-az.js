@@ -105,7 +105,7 @@ class CompanionsAZ {
         });
 
         // Generate HTML for 4 columns
-        const html = columns.map((columnCompanions, index) => {
+        const html = columns.map((columnCompanions, columnIndex) => {
             if (columnCompanions.length === 0) return '';
 
             // Get first and last letter of this column
@@ -113,23 +113,56 @@ class CompanionsAZ {
             const lastLetter = columnCompanions[columnCompanions.length - 1].name.charAt(0).toUpperCase();
             const title = firstLetter === lastLetter ? firstLetter : `${firstLetter} - ${lastLetter}`;
 
+            // Generate companion list items
+            const companionItems = columnCompanions.map((companion, index) => {
+                let html = `
+                    <li>
+                        <a href="/companions/${companion.slug}">
+                            <span>${companion.name}</span>
+                        </a>
+                    </li>`;
+
+                // Insert OurDream AI ad after 5th companion in first column
+                if (columnIndex === 0 && index === 4) {
+                    html += `
+                    <li class="advertisement-item">
+                        <div class="advertisement-card" id="ourdream-ad-az">
+                            <div class="ad-label">FEATURED</div>
+                            <div class="ad-header">
+                                <img src="/images/companions/ourdream-ai-logo.svg" alt="OurDream AI" class="ad-logo" id="ourdream-logo-az">
+                                <div class="ad-info">
+                                    <h3 class="ad-companion-name">OurDream AI</h3>
+                                    <div class="ad-rating">
+                                        <span class="stars">★★★★★</span>
+                                        <span class="rating-value" id="ourdream-rating-az">9.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="ad-description" id="ourdream-best-for-az">Advanced AI roleplay, voice chat, and image generation</p>
+                            <div class="ad-buttons">
+                                <a href="#" class="ad-btn-primary" id="ourdream-visit-az">Visit Website</a>
+                            </div>
+                        </div>
+                    </li>`;
+                }
+
+                return html;
+            }).join('');
+
             return `
                 <div class="az-column">
                     <h3>${title}</h3>
                     <ul>
-                        ${columnCompanions.map(companion => `
-                            <li>
-                                <a href="/companions/${companion.slug}">
-                                    <span>${companion.name}</span>
-                                </a>
-                            </li>
-                        `).join('')}
+                        ${companionItems}
                     </ul>
                 </div>
             `;
         }).join('');
 
         container.innerHTML = html;
+
+        // Load OurDream AI data after rendering
+        this.loadOurDreamAd();
     }
 
     groupByLetter(companions) {
@@ -241,6 +274,47 @@ class CompanionsAZ {
 
         if (directoryStats) {
             directoryStats.style.display = 'block';
+        }
+    }
+
+    async loadOurDreamAd() {
+        try {
+            const response = await fetch('/.netlify/functions/companionguide-get?lang=en');
+            const data = await response.json();
+
+            const ourdream = data.companions?.find(c => c.slug === 'ourdream-ai');
+
+            if (ourdream) {
+                // Update logo
+                const logoElement = document.getElementById('ourdream-logo-az');
+                if (logoElement && ourdream.logo_svg) {
+                    logoElement.src = ourdream.logo_svg;
+                }
+
+                // Update rating
+                const ratingElement = document.getElementById('ourdream-rating-az');
+                if (ratingElement && ourdream.rating) {
+                    ratingElement.textContent = ourdream.rating;
+                }
+
+                // Update best for description
+                const bestForElement = document.getElementById('ourdream-best-for-az');
+                if (bestForElement) {
+                    const bestFor = ourdream.best_for || ourdream.Best_for || ourdream['Best for'] || ourdream.short_description || 'Advanced AI roleplay, voice chat, and image generation';
+                    bestForElement.textContent = bestFor;
+                }
+
+                // Update visit website link
+                const visitButton = document.getElementById('ourdream-visit-az');
+                if (visitButton) {
+                    const affiliateUrl = ourdream.website_url || 'https://ourdream.ai/?via=companionguide';
+                    visitButton.href = affiliateUrl;
+                }
+
+                console.log('OurDream AI ad loaded on A-Z page');
+            }
+        } catch (error) {
+            console.error('Error loading OurDream AI ad:', error);
         }
     }
 }
