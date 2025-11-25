@@ -149,10 +149,7 @@ class CompanionFloatingCTA {
     }, 300);
   }
 
-  trackClick() {
-    // Check if this is the Companion of the Month
-    const isCOTM = this.checkIfCOTM();
-
+  async trackClick() {
     // Get domain from URL
     let domain = '';
     try {
@@ -162,21 +159,42 @@ class CompanionFloatingCTA {
       domain = 'unknown';
     }
 
+    // Try to get Airtable data for enriched tracking
+    const airtableData = await this.getAirtableData();
+    const isCOTM = airtableData?.is_month === true;
+
+    // Build event parameters
+    const eventParams = {
+      event_category: 'outbound',
+      event_label: `${this.companionData.name.toLowerCase().replace(/\s+/g, '_')}_floating_cta_cta_button`,
+      link_text: 'Visit ' + this.companionData.name,
+      link_url: this.companionData.url,
+      link_domain: domain,
+      page_location: window.location.pathname,
+      companion_name: this.companionData.name,
+      link_type: 'floating_cta',
+      link_position: 'floating_cta',
+      link_identifier: `${this.companionData.name.toLowerCase().replace(/\s+/g, '_')}_floating_cta_cta_button`,
+      value: 1
+    };
+
+    // Add Airtable-enriched parameters if available
+    if (airtableData) {
+      eventParams.companion_slug = airtableData.slug || '';
+      eventParams.companion_rating = airtableData.rating || 0;
+      eventParams.companion_categories = Array.isArray(airtableData.categories)
+        ? airtableData.categories.join(', ')
+        : '';
+      eventParams.companion_is_featured = airtableData.featured === true || airtableData.is_featured === true;
+      eventParams.companion_is_cotm = isCOTM;
+      eventParams.companion_badges = Array.isArray(airtableData.badges)
+        ? airtableData.badges.join(', ')
+        : '';
+    }
+
     // Track outbound click (same as other Visit Website buttons)
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'outbound_click', {
-        event_category: 'outbound',
-        event_label: `${this.companionData.name.toLowerCase().replace(/\s+/g, '_')}_floating_cta_cta_button`,
-        link_text: 'Visit ' + this.companionData.name,
-        link_url: this.companionData.url,
-        link_domain: domain,
-        page_location: window.location.pathname,
-        companion_name: this.companionData.name,
-        link_type: 'floating_cta',
-        link_position: 'floating_cta',
-        link_identifier: `${this.companionData.name.toLowerCase().replace(/\s+/g, '_')}_floating_cta_cta_button`,
-        value: 1
-      });
+      gtag('event', 'outbound_click', eventParams);
     }
 
     // Track COTM-specific event
@@ -185,6 +203,11 @@ class CompanionFloatingCTA {
         event_category: 'Companion of the Month',
         event_label: this.companionData.name,
         companion_name: this.companionData.name,
+        companion_slug: airtableData?.slug || '',
+        companion_rating: airtableData?.rating || 0,
+        companion_categories: Array.isArray(airtableData?.categories)
+          ? airtableData.categories.join(', ')
+          : '',
         is_cotm: true,
         value: 1
       });
@@ -201,11 +224,27 @@ class CompanionFloatingCTA {
     }
   }
 
-  checkIfCOTM() {
-    // Check if the URL contains the COTM companion slug
-    const cotmSlugs = ['soulkyn-ai']; // Update this as COTM changes
+  async getAirtableData() {
+    // Get current companion slug from URL
     const currentSlug = window.location.pathname.split('/').pop().replace('.html', '');
-    return cotmSlugs.includes(currentSlug);
+
+    // Wait for companionManager if not ready
+    if (!window.companionManager) {
+      let attempts = 0;
+      while (!window.companionManager && attempts < 20) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        attempts++;
+      }
+    }
+
+    if (!window.companionManager) return null;
+
+    try {
+      return await window.companionManager.fetchCompanionById(currentSlug);
+    } catch (e) {
+      console.warn('Could not fetch Airtable data for floating CTA');
+      return null;
+    }
   }
 
   escapeHtml(text) {

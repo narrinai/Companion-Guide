@@ -13,6 +13,11 @@
  *    - link_domain: het domein van de externe link
  *    - page_location: vanaf welke pagina er werd geklikt
  *    - companion_name: naam van de companion (als van toepassing)
+ *    - companion_slug: slug van de companion (uit Airtable)
+ *    - companion_rating: rating van de companion (0-10)
+ *    - companion_categories: categorieën van de companion (comma-separated)
+ *    - companion_is_featured: of de companion featured is
+ *    - companion_is_cotm: of de companion Companion of the Month is
  *    - link_type: type link (hero_cta, pricing_cta, companion_card_link, etc.)
  *    - link_position: positie op de pagina (hero, pricing, alternatives, footer, etc.)
  *    - pricing_tier: welke pricing tier (Free Plan, Premium, etc.)
@@ -27,12 +32,15 @@
  *
  * GEBRUIK IN GA4:
  * - Ga naar Reports > Events > outbound_click
- * - Filter op event parameters zoals 'companion_name' of 'link_position'
- * - Maak custom reports met dimensies: link_identifier, pricing_tier, link_position
+ * - Filter op event parameters zoals 'companion_name', 'companion_rating', 'companion_categories'
+ * - Maak custom reports met dimensies: link_identifier, companion_slug, companion_categories
  */
 
 (function() {
     'use strict';
+
+    // Cache for current page companion data (from Airtable)
+    let currentCompanionData = null;
 
     // Wait for DOM to be fully loaded
     if (document.readyState === 'loading') {
@@ -41,7 +49,10 @@
         initGATracking();
     }
 
-    function initGATracking() {
+    async function initGATracking() {
+        // Load companion data from Airtable if on a companion page
+        await loadCompanionData();
+
         // Track all external companion links
         trackExternalLinks();
 
@@ -56,6 +67,57 @@
 
         // Set up mutation observer for dynamically loaded content
         observeDynamicContent();
+    }
+
+    /**
+     * Load companion data from Airtable via companionManager
+     */
+    async function loadCompanionData() {
+        // Check if we're on a companion page
+        const pathMatch = window.location.pathname.match(/\/companions\/([^\/]+)/);
+        if (!pathMatch) return;
+
+        const slug = pathMatch[1].replace('.html', '');
+
+        // Wait for companionManager to be available
+        let attempts = 0;
+        const maxAttempts = 50; // 5 seconds max
+
+        while (!window.companionManager && attempts < maxAttempts) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+        }
+
+        if (!window.companionManager) {
+            console.warn('GA Tracking: CompanionManager not available');
+            return;
+        }
+
+        try {
+            // Fetch companion data by slug
+            currentCompanionData = await window.companionManager.fetchCompanionById(slug);
+            if (currentCompanionData) {
+                console.log('GA Tracking: Loaded Airtable data for', currentCompanionData.name);
+            }
+        } catch (error) {
+            console.error('GA Tracking: Error loading companion data', error);
+        }
+    }
+
+    /**
+     * Get companion data for a specific companion (from card context or current page)
+     */
+    function getCompanionDataFromContext(linkElement) {
+        // First check if link is inside a companion card with data-companion-id
+        const card = linkElement.closest('[data-companion-id]');
+        if (card && window.companionManager?.companions) {
+            const companionId = card.dataset.companionId;
+            const companion = window.companionManager.companions.find(c => c.id === companionId);
+            if (companion) return companion;
+        }
+
+        // Fall back to current page companion data
+        return currentCompanionData;
     }
 
     /**
@@ -79,7 +141,8 @@
 
                 // Track with Google Analytics 4
                 if (typeof gtag !== 'undefined') {
-                    gtag('event', 'outbound_click', {
+                    // Build event parameters
+                    const eventParams = {
                         event_category: 'outbound',
                         event_label: linkData.linkIdentifier,
                         link_text: linkData.text,
@@ -93,7 +156,29 @@
                         section_name: linkData.sectionName,
                         link_identifier: linkData.linkIdentifier,
                         value: 1
-                    });
+                    };
+
+                    // Add Airtable-enriched parameters if available
+                    if (linkData.companionSlug) {
+                        eventParams.companion_slug = linkData.companionSlug;
+                    }
+                    if (linkData.companionRating) {
+                        eventParams.companion_rating = linkData.companionRating;
+                    }
+                    if (linkData.companionCategories) {
+                        eventParams.companion_categories = linkData.companionCategories;
+                    }
+                    if (linkData.companionIsFeatured !== undefined) {
+                        eventParams.companion_is_featured = linkData.companionIsFeatured;
+                    }
+                    if (linkData.companionIsCotm !== undefined) {
+                        eventParams.companion_is_cotm = linkData.companionIsCotm;
+                    }
+                    if (linkData.companionBadges) {
+                        eventParams.companion_badges = linkData.companionBadges;
+                    }
+
+                    gtag('event', 'outbound_click', eventParams);
 
                     console.log('GA4: Outbound click tracked', linkData);
                 } else {
@@ -113,7 +198,7 @@
     }
 
     /**
-     * Extract link data for tracking
+     * Extract link data for tracking (enriched with Airtable data)
      */
     function extractLinkData(linkElement) {
         const href = linkElement.href;
@@ -125,6 +210,9 @@
         let pricingTier = '';
         let sectionName = '';
 
+        // Get Airtable companion data if available
+        const airtableData = getCompanionDataFromContext(linkElement);
+
         // Extract domain
         try {
             const urlObj = new URL(href);
@@ -133,7 +221,7 @@
             domain = 'unknown';
         }
 
-        // Try to find companion name from URL path
+        // Try to find companion name from URL path (fallback)
         const pathMatch = window.location.pathname.match(/\/companions\/([^\/]+)/);
         if (pathMatch) {
             companionName = pathMatch[1].replace(/-/g, ' ')
@@ -141,6 +229,11 @@
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(' ');
             linkType = 'companion_page_link';
+        }
+
+        // Use Airtable name if available (more accurate)
+        if (airtableData?.name) {
+            companionName = airtableData.name;
         }
 
         // Check for companion card context
@@ -199,7 +292,8 @@
         // Create unique link identifier for better reporting
         const linkIdentifier = `${companionName || domain}_${linkPosition}_${linkType}`.toLowerCase().replace(/\s+/g, '_');
 
-        return {
+        // Build result with Airtable enrichment
+        const result = {
             url: href,
             text: linkText,
             domain: domain,
@@ -210,6 +304,22 @@
             sectionName: sectionName,
             linkIdentifier: linkIdentifier
         };
+
+        // Add Airtable data if available
+        if (airtableData) {
+            result.companionSlug = airtableData.slug || '';
+            result.companionRating = airtableData.rating || 0;
+            result.companionCategories = Array.isArray(airtableData.categories)
+                ? airtableData.categories.join(', ')
+                : '';
+            result.companionIsFeatured = airtableData.featured === true || airtableData.is_featured === true;
+            result.companionIsCotm = airtableData.is_month === true;
+            result.companionBadges = Array.isArray(airtableData.badges)
+                ? airtableData.badges.join(', ')
+                : '';
+        }
+
+        return result;
     }
 
     /**
