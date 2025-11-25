@@ -665,81 +665,22 @@ class CompanionPageManager {
      * Update the verdict section with translated content
      */
     updateVerdictSection(verdictText) {
-        // Find both verdict and personal-experience sections
-        const verdictSection = document.querySelector('.verdict, section.verdict');
-        const personalExpSection = document.querySelector('.personal-experience, section.personal-experience');
+        // Use the companionHeader's updateVerdict method which has smart heading detection and read more
+        if (window.companionHeader && typeof window.companionHeader.updateVerdict === 'function') {
+            console.log('🔄 Using companionHeader.updateVerdict for translated content');
+            window.companionHeader.updateVerdict(verdictText);
+        } else {
+            console.warn('⚠️ companionHeader.updateVerdict not available, falling back to simple update');
+            const verdictSection = document.querySelector('.verdict, section.verdict');
+            if (!verdictSection) return;
 
-        if (!verdictSection) {
-            console.warn('Verdict section not found on page');
-            return;
-        }
-
-        // Split the my_verdict content into lines
-        const lines = verdictText.split('\n');
-        let verdictHtml = '';
-        let personalExpHtml = '';
-        let inPersonalExp = false;
-        let prosHtml = '';
-        let inPros = false;
-
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i].trim();
-            if (!line) continue;
-
-            // Check if we're entering personal experience section
-            if (line.includes('My ') && line.includes('Week') && line.includes('Experience')) {
-                inPersonalExp = true;
-                personalExpHtml += `<h2>${line}</h2>\n`;
-                continue;
-            }
-
-            // Check if we're in pros section
-            if (line.toLowerCase().includes('what genuinely impressed') ||
-                line.toLowerCase().includes('what impressed me') ||
-                line.toLowerCase().includes('companion.pros')) {
-                inPros = true;
-                continue;
-            }
-
-            // Build HTML based on current section
-            if (inPersonalExp) {
-                // Check for headings (H3 and H4)
-                if (line.length < 100 && line.match(/^(Week \d+|Day \d+|The |When |How |My |A |An |During |After |Before |Final |Month |Today )/i)) {
-                    // Determine if H3 or H4
-                    if (line.startsWith('Week ') || line.includes('Experience') || line.length < 50) {
-                        personalExpHtml += `<h3>${line}</h3>\n`;
-                    } else {
-                        personalExpHtml += `<h4>${line}</h4>\n`;
-                    }
-                } else if (line.startsWith('-')) {
-                    personalExpHtml += `<li>${line.substring(1).trim()}</li>\n`;
-                } else {
-                    personalExpHtml += `<p>${line}</p>\n`;
-                }
-            } else if (inPros) {
-                prosHtml += `<li>${line}</li>\n`;
-            } else {
-                // Verdict section
-                if (line.length < 100 && !line.includes('.') && !line.startsWith('-')) {
-                    verdictHtml += `<h3>${line}</h3>\n`;
-                } else {
-                    verdictHtml += `<p>${line}</p>\n`;
-                }
+            const verdictTextDiv = verdictSection.querySelector('.verdict-text');
+            if (verdictTextDiv) {
+                verdictTextDiv.innerHTML = `<p>${verdictText.replace(/\n\n/g, '</p><p>')}</p>`;
             }
         }
 
-        // IMPORTANT: Replace verdict section content (clears English, adds translation)
-        const verdictTextDiv = verdictSection.querySelector('.verdict-text');
-        if (verdictTextDiv) {
-            verdictTextDiv.innerHTML = verdictHtml || ''; // Replace completely
-        }
-
-        // IMPORTANT: Replace personal experience section (clears English, adds translation)
-        if (personalExpSection) {
-            personalExpSection.innerHTML = personalExpHtml || ''; // Replace completely, even if empty
-        }
-
-        console.log('✅ Updated verdict and personal experience sections');
+        console.log('✅ Updated verdict section with translation');
     }
 
     /**
@@ -872,10 +813,13 @@ class CompanionPageManager {
             // Parse features if it's a string
             if (typeof features === 'string') {
                 try {
-                    features = JSON.parse(features);
+                    // Clean up the JSON string: remove ALL line breaks (both \n with spaces and standalone \n)
+                    const cleanedFeatures = features.replace(/\n\s*/g, ' ').replace(/\s{2,}/g, ' ');
+                    features = JSON.parse(cleanedFeatures);
                     console.log('✅ Parsed features from string');
                 } catch (e) {
                     console.error('❌ Failed to parse features:', e);
+                    console.error('Raw features string:', features.substring(0, 500));
                     features = null;
                 }
             }

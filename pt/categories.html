@@ -56,6 +56,17 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
  alt=""/></noscript>
 <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="/faq-styles.css">
+    <script>
+        // Load icon sprite sheet
+        fetch('/icons.svg')
+            .then(r => r.text())
+            .then(svg => {
+                const div = document.createElement('div');
+                div.style.display = 'none';
+                div.innerHTML = svg;
+                document.body.insertBefore(div, document.body.firstChild);
+            });
+    </script>
 </head>
 <body>
     <header>
@@ -101,70 +112,70 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         <section class="categories-overview">
             <div class="categories-grid">
                 <a href="/pt/categories/roleplay-character-chat-companions" class="category-card">
-                    <div class="category-icon">🎭</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-roleplay"/></svg></div>
                     <h3>Roleplay & Chat de Personagens</h3>
                     <p>Melhores plataformas de IA para experiências de roleplay e chat de personagens com narrativa interativa</p>
                     <div class="category-stats" id="roleplaying-count">Loading...</div>
                 </a>
 
                 <a href="/pt/categories/wellness-companions" class="category-card">
-                    <div class="category-icon">🧠</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-wellness"/></svg></div>
                     <h3>Bem-estar</h3>
                     <p>Companheiros de IA focados em saúde mental, apoio emocional e bem-estar pessoal</p>
                     <div class="category-stats" id="wellness-count">Loading...</div>
                 </a>
 
                 <a href="/pt/categories/ai-girlfriend-companions" class="category-card">
-                    <div class="category-icon">💕</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-girlfriend"/></svg></div>
                     <h3>Namorada IA</h3>
                     <p>Melhores plataformas de IA para relacionamentos românticos virtuais e experiências de namoro</p>
                     <div class="category-stats" id="ai-girlfriend-count">Loading...</div>
                 </a>
 
                 <a href="/pt/categories/ai-boyfriend-companions" class="category-card">
-                    <div class="category-icon">💙</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-boyfriend"/></svg></div>
                     <h3>Namorado IA</h3>
                     <p>Principais plataformas de namorado IA para relacionamentos românticos virtuais e companheiros masculinos</p>
                     <div class="category-stats" id="ai-boyfriend-count">Loading...</div>
                 </a>
 
                 <a href="/pt/categories/whatsapp-companions-companions" class="category-card">
-                    <div class="category-icon">📱</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-whatsapp"/></svg></div>
                     <h3>Apenas WhatsApp</h3>
                     <p>Companheiros de IA que se integram nativamente ao WhatsApp - sem necessidade de aplicativos separados</p>
                     <div class="category-stats" id="whatsapp-count">Loading...</div>
                 </a>
 
                 <a href="/pt/categories/adult-image-generation-companions" class="category-card">
-                    <div class="category-icon">🎨</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-image-gen"/></svg></div>
                     <h3>Geração de Imagens Adultas</h3>
                     <p>Melhores plataformas de IA para criar arte NSFW e conteúdo visual adulto (somente +18)</p>
                     <div class="category-stats" id="image-gen-count">Loading...</div>
                 </a>
 
                 <a href="/pt/categories/adult-content-uncensored-companions" class="category-card">
-                    <div class="category-icon">🔞</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
                     <h3>Conteúdo Adulto & Sem Censura</h3>
                     <p>Melhores plataformas de IA sem censura para conteúdo adulto e conversas maduras (somente +18)</p>
                     <div class="category-stats" id="nsfw-count">Loading...</div>
                 </a>
 
-                <a href="/pt/categories/video-companions-companions" class="category-card">
-                    <div class="category-icon">🎬</div>
+                <a href="/pt/categories/ai-video-companions" class="category-card">
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-video"/></svg></div>
                     <h3>Companheiros em Vídeo</h3>
                     <p>Companheiros de IA com recursos de chat por vídeo e geração de vídeo para experiências imersivas</p>
                     <div class="category-stats" id="video-count">Loading...</div>
                 </a>
 
                 <a href="/pt/categories/ai-porn-chat-platforms" class="category-card">
-                    <div class="category-icon">🔥</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-porn"/></svg></div>
                     <h3>Plataformas de Pornografia IA</h3>
                     <p>Plataformas avançadas de IA para geração de conteúdo adulto fotorrealista e experiências interativas (somente +18)</p>
                     <div class="category-stats" id="porn-count">Loading...</div>
                 </a>
 
                 <a href="/pt/categories/hentai-ai-chat-platforms" class="category-card">
-                    <div class="category-icon">🎌</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
                     <h3>Plataformas de Hentai IA</h3>
                     <p>Geradores de IA especializados para conteúdo adulto em estilo anime e mangá em múltiplos estilos de arte (somente +18)</p>
                     <div class="category-stats" id="hentai-count">Loading...</div>

@@ -12,6 +12,7 @@
     <link rel="alternate" hreflang="en" href="https://companionguide.ai/deals">
     <link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/deals">
     <link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/deals">
+    <link rel="alternate" hreflang="de" href="https://companionguide.ai/de/deals">
     <link rel="alternate" hreflang="x-default" href="https://companionguide.ai/deals">
 
     <!-- Open Graph / Facebook -->
@@ -78,8 +79,30 @@
 
         .deals-container {
             display: grid;
-            gap: var(--space-8);
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
             margin-bottom: var(--space-12);
+        }
+
+        @media (max-width: 768px) {
+            .deals-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Ensure deal cards use companion card styling */
+        .deals-container .companion-card {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .deals-container .companion-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
         }
 
         .deal-card {
@@ -428,7 +451,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             <div class="language-switcher">
                 <button id="lang-toggle" class="lang-current"></button>
                 <div class="lang-dropdown" id="lang-dropdown" style="display: none;">
-                    <a href="/" class="lang-option active">🇬🇧</a>
+                    <a href="/deals" class="lang-option active">🇬🇧</a>
                     <a href="/de/deals" class="lang-option">🇩🇪</a>
                     <a href="/nl/deals" class="lang-option">🇳🇱</a>
                     <a href="/pt/deals" class="lang-option">🇧🇷</a>
@@ -440,277 +463,26 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     <main class="container">
         <!-- Hero Section -->
         <section class="deals-hero">
-            <h1>AI Chat & Companion Platform Deals</h1>
-            <p>Save big on premium AI chat platforms and AI companion subscriptions with exclusive deals and discount codes for the best AI chat experiences</p>
+            <h1 data-i18n="dealsPage.title">AI Chat & Companion Platform Deals</h1>
+            <p data-i18n="dealsPage.subtitle">Save big on premium AI chat platforms and AI companion subscriptions with exclusive deals and discount codes for the best AI chat experiences</p>
         </section>
 
-        <!-- Deals Container - Sorted by rating (high to low) -->
+        <!-- Deals Container - Dynamically loaded from Airtable -->
         <div class="deals-container">
-            <!-- OurDream AI Deal - Rating: 4.7 -->
-            <article class="deal-card featured" data-deal-id="ourdream-ai" data-rating="4.7">
-                <div class="deal-badge">🍂 50% OFF</div>
-
-                <div class="deal-header">
-                    <img src="/images/logos/ourdream-ai.png" alt="OurDream AI - AI companion platform special offer logo" class="deal-logo">
-                    <div class="deal-info">
-                        <h3 class="deal-title"><a href="/companions/ourdream-ai" style="color: inherit; text-decoration: none;">OurDream AI</a></h3>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;" data-rating-slug="ourdream-ai">
-                            <span class="rating-stars">★★★★★</span>
-                            <span class="rating-score" style="color: #fff; font-size: 0.95rem;">9.4/10</span>
-                            <span class="rating-count" style="color: #666; font-size: 0.9rem;">(56 reviews)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="deal-description">🍂 Fall Sale Special! Save 50% on OurDream AI's premium AI companion playground. Create unlimited AI characters, chat, generate images & videos with your personalized AI companions. More Chars • More Chat • More Pics!</p>
-
-                <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
-                    <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">🍂 50% OFF - LIMITED TIME</div>
-                    <div style="display: flex; align-items: baseline; gap: 1rem;">
-                        <span style="text-decoration: line-through; color: #666;">was $39.99/month</span>
-                        <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$19.99/month</span>
-                        <span style="color: #666; font-size: 0.85rem;">(50% off monthly • 75% off yearly)</span>
-                    </div>
-                    <div style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Cancel anytime • No adult transaction in bank statement</div>
-                </div>
-
-                <div class="deal-features">
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">🎭</div>
-                        <div class="deal-feature-title">Character Creation</div>
-                        <div class="deal-feature-desc">Unlimited AI companions</div>
-                    </div>
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">💬</div>
-                        <div class="deal-feature-title">Unlimited Chat</div>
-                        <div class="deal-feature-desc">+1,000 DreamCoins</div>
-                    </div>
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">🎨</div>
-                        <div class="deal-feature-title">Image & Video</div>
-                        <div class="deal-feature-desc">AI multimedia gen</div>
-                    </div>
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">🔒</div>
-                        <div class="deal-feature-title">Discreet Billing</div>
-                        <div class="deal-feature-desc">No adult transaction</div>
-                    </div>
-                </div>
-
-                <div class="deal-cta">
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="/companions/ourdream-ai" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
-                        <a href="#" class="deal-button" target="_blank">
-                            View Deal
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Soulkyn AI Deal - Rating: 9.4 -->
-            <article class="deal-card featured" data-deal-id="soulkyn-ai" data-rating="9.4">
-                <div class="deal-badge">💝 10% OFF</div>
-
-                <div class="deal-header">
-                    <img data-companion="soulkyn-ai" data-field="logo_url" alt="Soulkyn AI - AI companion platform special offer logo" class="deal-logo">
-                    <div class="deal-info">
-                        <h3 class="deal-title"><a href="/companions/soulkyn-ai" style="color: inherit; text-decoration: none;"><span data-companion="soulkyn-ai" data-field="name">Soulkyn AI</span></a></h3>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;" data-rating-slug="soulkyn-ai">
-                            <span class="rating-stars">★★★★★</span>
-                            <span class="rating-score" style="color: #fff; font-size: 0.95rem;">9.4/10</span>
-                            <span class="rating-count" style="color: #666; font-size: 0.9rem;">(48 reviews)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="deal-description">💝 Save 10% on Soulkyn AI's 3-month Premium plans! Experience unlimited AI companions (Kyns) with uncensored galleries, voice messages, unlimited images, and the powerful 70B uncensored model. Most popular tier with exclusive badges!</p>
-
-                <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
-                    <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">💝 10% OFF 3-MONTH PLANS</div>
-                    <div style="margin-bottom: 1rem;">
-                        <div style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">⭐ Premium (3 months)</div>
-                        <div style="display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;">
-                            <span style="text-decoration: line-through; color: #666;">was $24.75/mo</span>
-                            <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$22.50/month</span>
-                            <span style="color: #666; font-size: 0.85rem;">(billed $67.49/3 months)</span>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <div style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">💗 Deluxe (3 months)</div>
-                        <div style="display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;">
-                            <span style="text-decoration: line-through; color: #666;">was $49.50/mo</span>
-                            <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$45.00/month</span>
-                            <span style="color: #666; font-size: 0.85rem;">(billed $134.99/3 months)</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">🫶 Deluxe Plus (3 months)</div>
-                        <div style="display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;">
-                            <span style="text-decoration: line-through; color: #666;">was $99/mo</span>
-                            <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$90.00/month</span>
-                            <span style="color: #666; font-size: 0.85rem;">(billed $269.99/3 months)</span>
-                        </div>
-                    </div>
-                    <div style="color: #666; font-size: 0.85rem; margin-top: 0.75rem;">Cancel anytime • No hidden fees</div>
-                </div>
-
-                <div class="deal-features" data-companion="soulkyn-ai" data-field="features">
-                    <!-- Features will be loaded dynamically from Airtable -->
-                </div>
-
-                <div class="deal-cta">
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="/companions/soulkyn-ai" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
-                        <a data-companion="soulkyn-ai" data-field="website_url" class="deal-button" rel="noopener">
-                            View Deal
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Dream Companion Deal - Rating: 9.4 -->
-            <article class="deal-card featured" data-deal-id="dream-companion" data-rating="9.4">
-                <div class="deal-badge">💎 70% OFF</div>
-
-                <div class="deal-header">
-                    <img src="/images/logos/dream-companion-review.svg" alt="Dream Companion - AI roleplay platform special offer logo" class="deal-logo">
-                    <div class="deal-info">
-                        <h3 class="deal-title"><a href="/companions/dream-companion" style="color: inherit; text-decoration: none;">Dream Companion</a></h3>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;" data-rating-slug="dream-companion">
-                            <span class="rating-stars">★★★★★</span>
-                            <span class="rating-score" style="color: #fff; font-size: 0.95rem;">9.4/10</span>
-                            <span class="rating-count" style="color: #666; font-size: 0.9rem;">(127 reviews)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="deal-description">💎 Save 70% on Dream Companion's Premium Yearly Plan! Experience immersive NSFW AI roleplay with custom character creation, video generation, uncensored images, and long-term memory. Get 100 FREE Dream Coins monthly.</p>
-
-                <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
-                    <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">💎 70% OFF YEARLY - BEST VALUE</div>
-                    <div style="display: flex; align-items: baseline; gap: 1rem;">
-                        <span style="text-decoration: line-through; color: #666;">was $20/month</span>
-                        <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$5.84/month</span>
-                        <span style="color: #666; font-size: 0.85rem;">(billed annually at $69.99/year)</span>
-                    </div>
-                    <div style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">6000 text messages • NSFW video generation • Cancel anytime</div>
-                </div>
-
-                <div class="deal-features">
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">💬</div>
-                        <div class="deal-feature-title">AI Roleplay Chat</div>
-                        <div class="deal-feature-desc">6000 messages/month</div>
-                    </div>
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">🎬</div>
-                        <div class="deal-feature-title">Video Generation</div>
-                        <div class="deal-feature-desc">NSFW video creation</div>
-                    </div>
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">🖼️</div>
-                        <div class="deal-feature-title">Image Generation</div>
-                        <div class="deal-feature-desc">Uncensored visuals</div>
-                    </div>
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">🧠</div>
-                        <div class="deal-feature-title">Long-Term Memory</div>
-                        <div class="deal-feature-desc">Remembers you</div>
-                    </div>
-                </div>
-
-                <div class="deal-cta">
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="/companions/dream-companion" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
-                        <a href="#" class="deal-button" target="_blank">
-                            View Deal
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Selira AI Deal - Rating: 9.3 -->
-            <article class="deal-card featured" data-deal-id="selira-ai" data-rating="9.3">
-                <div class="deal-badge">🎯 65% OFF</div>
-
-                <div class="deal-header">
-                    <img src="/images/logos/selira-ai.png" alt="Selira AI - AI companion platform special offer logo" class="deal-logo">
-                    <div class="deal-info">
-                        <h3 class="deal-title"><a href="/companions/selira-ai" style="color: inherit; text-decoration: none;">Selira AI</a></h3>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;" data-rating-slug="selira-ai">
-                            <span class="rating-stars">★★★★★</span>
-                            <span class="rating-score" style="color: #fff; font-size: 0.95rem;">9.3/10</span>
-                            <span class="rating-count" style="color: #666; font-size: 0.9rem;">(89 reviews)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="deal-description">🎯 Save up to 70% on all Selira AI subscriptions and image packs! Create your perfect AI companion with unlimited messaging, realistic & anime AI image generation, and special companions. Choose from monthly subscriptions or one-off credit packs.</p>
-
-                <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
-                    <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">🎯 UP TO 70% OFF</div>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <div style="display: flex; align-items: baseline; gap: 1rem;">
-                            <span style="color: #aaa; min-width: 80px;">Premium:</span>
-                            <span style="text-decoration: line-through; color: #666;">$59.99/mo</span>
-                            <span style="color: #4a9eff; font-size: 1.2rem; font-weight: 600;">$19.99/mo</span>
-                        </div>
-                        <div style="display: flex; align-items: baseline; gap: 1rem;">
-                            <span style="color: #aaa; min-width: 80px;">Basic:</span>
-                            <span style="text-decoration: line-through; color: #666;">$29.99/mo</span>
-                            <span style="color: #4a9eff; font-size: 1.2rem; font-weight: 600;">$9.99/mo</span>
-                        </div>
-                        <div style="display: flex; align-items: baseline; gap: 1rem;">
-                            <span style="color: #aaa; min-width: 80px;">Light:</span>
-                            <span style="text-decoration: line-through; color: #666;">$19.99/mo</span>
-                            <span style="color: #4a9eff; font-size: 1.2rem; font-weight: 600;">$5.99/mo</span>
-                        </div>
-                    </div>
-                    <div style="color: #666; font-size: 0.85rem; margin-top: 0.75rem;">+ Up to 70% off all image credit packs • Realistic & anime styles</div>
-                </div>
-
-                <div class="deal-features">
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">💬</div>
-                        <div class="deal-feature-title">Unlimited Chat</div>
-                        <div class="deal-feature-desc">Message anytime</div>
-                    </div>
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">🎨</div>
-                        <div class="deal-feature-title">AI Image Gen</div>
-                        <div class="deal-feature-desc">Realistic & anime</div>
-                    </div>
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">👥</div>
-                        <div class="deal-feature-title">Unlimited Companions</div>
-                        <div class="deal-feature-desc">Create & chat freely</div>
-                    </div>
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">🧠</div>
-                        <div class="deal-feature-title">Memory System</div>
-                        <div class="deal-feature-desc">Remembers you</div>
-                    </div>
-                </div>
-
-                <div class="deal-cta">
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="/companions/selira-ai" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
-                        <a href="#" class="deal-button" target="_blank">
-                            View Deal
-                        </a>
-                    </div>
-                </div>
-            </article>
+            <!-- Deals will be loaded dynamically by js/deals.js -->
+            <div class="deals-loading" style="text-align: center; padding: 4rem 2rem; color: #999;">
+                <div style="margin-bottom: 1rem;" data-i18n="dealsPage.loading">Loading exclusive deals...</div>
+            </div>
         </div>
 
         <!-- Information Section -->
         <section class="deals-info-section">
-            <h2>How Our AI Chat Deals Work</h2>
-            <p>
+            <h2 data-i18n="dealsPage.infoTitle">How Our AI Chat Deals Work</h2>
+            <p data-i18n="dealsPage.infoText">
                 We partner directly with AI chat platforms and AI companion services to bring you exclusive discounts on premium AI chat subscriptions. All AI chat deals are verified and updated regularly. Simply click on any deal to activate the AI chat platform discount - prices will be automatically adjusted at checkout.
             </p>
             <p style="margin-top: var(--space-4);">
-                <strong>Note:</strong> Deals and discounts are subject to change and may have limited availability. We recommend acting quickly on offers you're interested in. All prices shown are in USD unless otherwise specified.
+                <strong data-i18n="dealsPage.noteTitle">Note:</strong> <span data-i18n="dealsPage.noteText">Deals and discounts are subject to change and may have limited availability. We recommend acting quickly on offers you're interested in. All prices shown are in USD unless otherwise specified.</span>
             </p>
         </section>
 
@@ -793,6 +565,9 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 } else if (currentPath.startsWith('/pt/') || currentPath === '/pt') {
                     currentLang = 'PT';
                     currentFlag = '🇧🇷';
+                } else if (currentPath.startsWith('/de/') || currentPath === '/de') {
+                    currentLang = 'DE';
+                    currentFlag = '🇩🇪';
                 }
 
                 // Update button text to show current language
@@ -909,7 +684,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             deals.forEach(deal => container.appendChild(deal));
         }
     </script>
-    <script src="/js/deals-dynamic.js?v=20251007"></script>
+    <script src="/js/deals.js?v=20251123"></script>
     <script src="/js/meta-companion-tracking.js?v=20251007"></script>
     <script src="/js/ga-external-tracking.js?v=20251115"></script>
 </body>

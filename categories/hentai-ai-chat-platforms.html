@@ -64,6 +64,17 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
  alt=""/></noscript>
 <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="/faq-styles.css">
+    <script>
+        // Load icon sprite sheet
+        fetch('/icons.svg')
+            .then(r => r.text())
+            .then(svg => {
+                const div = document.createElement('div');
+                div.style.display = 'none';
+                div.innerHTML = svg;
+                document.body.insertBefore(div, document.body.firstChild);
+            });
+    </script>
 </head>
 <body>
     <header>
@@ -101,7 +112,10 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             <div class="category-breadcrumb">
                 <a href="/">Home</a> <span>></span> <span data-i18n="categoryPages.hentaiAI.breadcrumb">Hentai AI Platforms</span>
             </div>
-            <h1><span data-i18n="categoryPages.hentaiAI.title">Best Hentai AI Companions</span></h1>
+            <h1 style="display: flex; align-items: center; gap: 8px;">
+                <svg class="icon icon-sm" style="color: var(--accent-red);"><use href="#icon-18plus"/></svg>
+                <span data-i18n="categoryPages.hentaiAI.title">Best Hentai AI Companions</span>
+            </h1>
             <p class="category-description"><span data-i18n="categoryPages.hentaiAI.description">Explore specialized AI platforms for anime and manga-style adult content. These hentai generators leverage advanced AI to create high-quality Japanese-style illustrations, from traditional anime to modern 2.5D styles, for mature audiences (18+).</span></p>
         </section>
 

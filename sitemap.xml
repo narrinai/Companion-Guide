@@ -1444,25 +1444,15 @@
   </url>
 
   <url>
-    <loc>https://companionguide.ai/categories/video-companions-companions</loc>
-    <lastmod>2025-11-19</lastmod>
+    <loc>https://companionguide.ai/categories/ai-video-companions</loc>
+    <lastmod>2025-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/video-companions-companions" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/video-companions-companions" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/video-companions-companions" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://companionguide.ai/categories/video-companions-companions" />
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/categories/video-companions</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/video-companions" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/video-companions" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/video-companions" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://companionguide.ai/categories/video-companions" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/ai-video-companions" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/ai-video-companions" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/ai-video-companions" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://companionguide.ai/de/categories/ai-video-companions" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://companionguide.ai/categories/ai-video-companions" />
   </url>
 
   <url>
@@ -1623,15 +1613,8 @@
   </url>
 
   <url>
-    <loc>https://companionguide.ai/nl/categories/video-companions-companions</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/nl/categories/video-companions</loc>
-    <lastmod>2025-11-19</lastmod>
+    <loc>https://companionguide.ai/nl/categories/ai-video-companions</loc>
+    <lastmod>2025-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1778,15 +1761,8 @@
   </url>
 
   <url>
-    <loc>https://companionguide.ai/pt/categories/video-companions-companions</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/pt/categories/video-companions</loc>
-    <lastmod>2025-11-19</lastmod>
+    <loc>https://companionguide.ai/pt/categories/ai-video-companions</loc>
+    <lastmod>2025-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

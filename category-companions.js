@@ -446,7 +446,7 @@ class CategoryCompanions {
                 <p class="description">${description}</p>
                 <a href="${affiliateUrl}" target="_blank" rel="noopener" class="ad-video-container">
                     <video autoplay loop muted playsinline class="ad-video">
-                        <source src="/videos/950x250-ourdream-ai-video-companionguide-v2.mp4" type="video/mp4">
+                        <source src="/videos/950x250-ourdream-ai-video-companionguide-bj.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </a>

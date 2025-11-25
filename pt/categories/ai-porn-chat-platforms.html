@@ -66,13 +66,32 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
  alt=""/></noscript>
 <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="/faq-styles.css">
+    <script>
+        // Load icon sprite sheet
+        fetch('/icons.svg')
+            .then(r => r.text())
+            .then(svg => {
+                const div = document.createElement('div');
+                div.style.display = 'none';
+                div.innerHTML = svg;
+                document.body.insertBefore(div, document.body.firstChild);
+            });
+    </script>
 </head>
 <body>
     <header>
         <nav class="container">
             <h1><a href="/pt/"><img src="/images/logo.svg" alt="Companion Guide - AI companion reviews and guides logo" width="32" height="32">Companion Guide</a></h1>
-
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="nav-menu">
+                <div class="mobile-menu-logo">
+                    <img src="/images/logo.svg" alt="CompanionGuide.ai" width="48" height="48">
+                    <span>CompanionGuide.ai</span>
+                </div>
                 <li><a href="/pt/">Home</a></li>
                 <li><a href="/pt/companions">Companions</a></li>
                 <li><a href="/pt/categories" class="active">Categorias</a></li>
@@ -88,13 +107,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     <a href="/categories/ai-porn-chat-platforms" class="lang-option">🇬🇧</a>
                     <a href="/nl/categories/ai-porn-chat-platforms" class="lang-option">🇳🇱</a>
                     <a href="/pt/categories/ai-porn-chat-platforms" class="lang-option active">🇧🇷</a>
+                    <a href="/de/categories/ai-porn-chat-platforms" class="lang-option">🇩🇪</a>
                 </div>
-            </div>
-
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </nav>
     </header>
@@ -103,10 +117,10 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         <!-- Category Hero -->
         <section class="category-hero-section">
             <div class="category-breadcrumb">
-                <a href="/pt/" data-i18n="categoryPages.home">Home</a> <span>></span> <span data-i18n="companionsPage.aiPorn.breadcrumb">Plataformas de IA Pornô</span>
+                <a href="/pt/" data-i18n="categoryPages.home">Home</a> <span>></span> <span data-i18n="categoryPages.aiPorn.breadcrumb">Plataformas de IA Pornô</span>
             </div>
-            <h1 data-i18n="companionsPage.aiPorn.title">Melhores Companions de IA Pornô</h1>
-            <p class="category-description" data-i18n="companionsPage.aiPorn.description">Descubra plataformas de IA de ponta especializadas em geração de conteúdo adulto fotorrealista. Essas ferramentas aproveitam modelos avançados de IA para criar imagens pornográficas de alta qualidade e personalizáveis e experiências adultas interativas para públicos maiores de 18 anos.</p>
+            <h1><svg class="icon icon-sm" style="color: var(--accent-red);"><use href="#icon-18plus"/></svg> <span data-i18n="categoryPages.aiPorn.title">Melhores Plataformas de AI Porn</span></h1>
+            <p class="category-description"><span data-i18n="categoryPages.aiPorn.description">Plataformas avançadas de IA para geração de conteúdo adulto fotorrealista e experiências interativas (somente +18).</span></p>
         </section>
 
         <!-- Companion Grid -->

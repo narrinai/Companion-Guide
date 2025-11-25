@@ -577,5 +577,19 @@
       "description": "Companions de IA que se integram nativamente ao WhatsApp - sem necessidade de aplicativos separados. Converse diretamente com IA no seu aplicativo de mensagens favorito.",
       "breadcrumb": "Companions de IA Nativos do WhatsApp"
     }
+  },
+  "dealsPage": {
+    "title": "Ofertas de Plataformas de Chat e Companion de IA",
+    "subtitle": "Economize muito em plataformas premium de chat de IA e assinaturas de companion de IA com ofertas exclusivas e códigos de desconto para as melhores experiências de chat de IA",
+    "tryButton": "Experimentar",
+    "claimDeal": "Reivindicar Oferta",
+    "bestFor": "Melhor Para",
+    "infoTitle": "Como Funcionam Nossas Ofertas de Chat de IA",
+    "infoText": "Fazemos parceria direta com plataformas de chat de IA e serviços de companion de IA para trazer descontos exclusivos em assinaturas premium de chat de IA. Todas as ofertas de chat de IA são verificadas e atualizadas regularmente. Basta clicar em qualquer oferta para ativar o desconto da plataforma de chat de IA - os preços serão ajustados automaticamente no checkout.",
+    "noteTitle": "Nota:",
+    "noteText": "Ofertas e descontos estão sujeitos a alterações e podem ter disponibilidade limitada. Recomendamos agir rapidamente nas ofertas de seu interesse. Todos os preços são mostrados em USD, salvo indicação em contrário.",
+    "loading": "Carregando ofertas exclusivas...",
+    "noDeals": "Nenhuma oferta ativa no momento",
+    "checkBack": "Volte em breve para novas ofertas exclusivas!"
   }
 }

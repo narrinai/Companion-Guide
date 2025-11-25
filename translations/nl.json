@@ -23,5 +23,9 @@
     "view-all-news": "Bekijk Al Het Nieuws",
     "more-companions-coming": "Meer AI Companions Binnenkort",
     "browse-categories": "Bekijk Categorieën"
+  },
+  "gallery": {
+    "warningText": "Deze galerij bevat ongecensureerde NSFW-inhoud alleen bedoeld voor volwassenen (18+).",
+    "showContent": "Toon Inhoud, Ik ben 18+"
   }
 }

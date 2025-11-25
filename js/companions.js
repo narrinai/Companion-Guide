@@ -307,15 +307,33 @@ class CompanionManager {
 
         // Fallback: show top 8 companions by rating if no featured ones
         const topCompanions = allCompanions.slice(0, limit);
-        container.innerHTML = topCompanions.map(companion =>
+        const topCards = topCompanions.map(companion =>
           this.generateCompanionCard(companion)
-        ).join('');
+        );
+
+        // Insert advertisement card after 4th companion (index 4) - only if OurDream AI is in the list
+        const hasOurDreamAI = allCompanions.some(comp => comp.slug === 'ourdream-ai');
+        if (topCards.length >= 4 && hasOurDreamAI) {
+          console.log('🎯 Inserting advertisement card after 4th companion on index page (5th position)');
+          topCards.splice(4, 0, this.generateAdvertisementCard());
+        }
+
+        container.innerHTML = topCards.join('');
         return;
       }
 
-      container.innerHTML = featuredCompanions.map(companion =>
+      const featuredCards = featuredCompanions.map(companion =>
         this.generateCompanionCard(companion)
-      ).join('');
+      );
+
+      // Insert advertisement card after 4th companion (index 4) - only if OurDream AI is in the list
+      const hasOurDreamAI = allCompanions.some(comp => comp.slug === 'ourdream-ai');
+      if (featuredCards.length >= 4 && hasOurDreamAI) {
+        console.log('🎯 Inserting advertisement card after 4th companion on index page (5th position)');
+        featuredCards.splice(4, 0, this.generateAdvertisementCard());
+      }
+
+      container.innerHTML = featuredCards.join('');
     } catch (error) {
       console.error('Error loading featured companions:', error);
       container.innerHTML = `
@@ -667,7 +685,7 @@ class CompanionManager {
       const hasOurDreamAI = allCompanions.some(comp => comp.slug === 'ourdream-ai');
       if (companionCards.length >= 4 && hasOurDreamAI) {
         console.log('🎯 Inserting advertisement card after 4th companion (5th position)');
-        companionCards.splice(4, 0, this.generateAdvertisementCard(allCompanions));
+        companionCards.splice(4, 0, this.generateAdvertisementCard());
       }
 
       // Render all companions with ad

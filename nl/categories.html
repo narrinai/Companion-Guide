@@ -56,6 +56,17 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
  alt=""/></noscript>
 <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="/faq-styles.css">
+    <script>
+        // Load icon sprite sheet
+        fetch('/icons.svg')
+            .then(r => r.text())
+            .then(svg => {
+                const div = document.createElement('div');
+                div.style.display = 'none';
+                div.innerHTML = svg;
+                document.body.insertBefore(div, document.body.firstChild);
+            });
+    </script>
 </head>
 <body>
     <header>
@@ -101,70 +112,70 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         <section class="categories-overview">
             <div class="categories-grid">
                 <a href="/nl/categories/roleplay-character-chat-companions" class="category-card">
-                    <div class="category-icon">🎭</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-roleplay"/></svg></div>
                     <h3>Roleplay & Character Chat</h3>
                     <p>Beste AI platforms voor roleplay en character chat ervaringen met interactieve storytelling</p>
                     <div class="category-stats" id="roleplaying-count">Loading...</div>
                 </a>
 
                 <a href="/nl/categories/wellness-companions" class="category-card">
-                    <div class="category-icon">🧠</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-wellness"/></svg></div>
                     <h3>Wellness</h3>
                     <p>AI companions voor mental health, emotionele ondersteuning en persoonlijk welzijn</p>
                     <div class="category-stats" id="wellness-count">Loading...</div>
                 </a>
 
                 <a href="/nl/categories/ai-girlfriend-companions" class="category-card">
-                    <div class="category-icon">💕</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-girlfriend"/></svg></div>
                     <h3>AI Girlfriend</h3>
                     <p>Beste AI girlfriend platforms voor virtuele romantische relaties en date-ervaringen</p>
                     <div class="category-stats" id="ai-girlfriend-count">Loading...</div>
                 </a>
 
                 <a href="/nl/categories/ai-boyfriend-companions" class="category-card">
-                    <div class="category-icon">💙</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-boyfriend"/></svg></div>
                     <h3>AI Boyfriend</h3>
                     <p>Top AI boyfriend platforms voor virtuele romantische relaties en mannelijke companions</p>
                     <div class="category-stats" id="ai-boyfriend-count">Loading...</div>
                 </a>
 
                 <a href="/nl/categories/whatsapp-companions-companions" class="category-card">
-                    <div class="category-icon">📱</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-whatsapp"/></svg></div>
                     <h3>WhatsApp-Only</h3>
                     <p>AI companions die native integreren in WhatsApp - geen aparte apps nodig</p>
                     <div class="category-stats" id="whatsapp-count">Loading...</div>
                 </a>
 
                 <a href="/nl/categories/adult-image-generation-companions" class="category-card">
-                    <div class="category-icon">🎨</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-image-gen"/></svg></div>
                     <h3>Adult Image Generation</h3>
                     <p>Beste AI platforms voor NSFW art en adult image generation en volwassen visuele content (alleen 18+)</p>
                     <div class="category-stats" id="image-gen-count">Loading...</div>
                 </a>
 
                 <a href="/nl/categories/adult-content-uncensored-companions" class="category-card">
-                    <div class="category-icon">🔞</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
                     <h3>Adult Content & Ongecensureerd</h3>
                     <p>Beste ongecensureerde AI-platforms voor volwassen content en volwassen gesprekken (alleen 18+)</p>
                     <div class="category-stats" id="nsfw-count">Loading...</div>
                 </a>
 
-                <a href="/nl/categories/video-companions-companions" class="category-card">
-                    <div class="category-icon">🎬</div>
+                <a href="/nl/categories/ai-video-companions" class="category-card">
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-video"/></svg></div>
                     <h3>Video Companions</h3>
                     <p>AI companions met videochat en videogeneratie mogelijkheden voor meeslepende ervaringen</p>
                     <div class="category-stats" id="video-count">Loading...</div>
                 </a>
 
                 <a href="/nl/categories/ai-porn-chat-platforms" class="category-card">
-                    <div class="category-icon">🔥</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-porn"/></svg></div>
                     <h3>AI Porn Platforms</h3>
                     <p>Geavanceerde AI platforms voor fotorealistische adult content generation en interactieve ervaringen (alleen 18+)</p>
                     <div class="category-stats" id="porn-count">Loading...</div>
                 </a>
 
                 <a href="/nl/categories/hentai-ai-chat-platforms" class="category-card">
-                    <div class="category-icon">🎌</div>
+                    <div class="category-icon"><svg class="icon icon-lg"><use href="#icon-adult"/></svg></div>
                     <h3>Hentai AI Platforms</h3>
                     <p>Gespecialiseerde AI generators voor anime en manga-stijl adult content in meerdere kunststijlen (alleen 18+)</p>
                     <div class="category-stats" id="hentai-count">Loading...</div>

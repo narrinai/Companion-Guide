@@ -23,5 +23,9 @@
     "view-all-news": "Alle Nachrichten Ansehen",
     "more-companions-coming": "Mehr AI Companions Demnächst",
     "browse-categories": "Kategorien Durchsuchen"
+  },
+  "gallery": {
+    "warningText": "Diese Galerie enthält unzensierte NSFW-Inhalte, die nur für Erwachsene (18+) bestimmt sind.",
+    "showContent": "Inhalt Anzeigen, Ich bin 18+"
   }
 }

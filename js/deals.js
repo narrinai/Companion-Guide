@@ -1,416 +1,219 @@
-// Dynamic Deals System
+/**
+ * Deals Page - Dynamic Deal Loading from Airtable
+ * Fetches and displays deals from Airtable based on deal_active checkbox
+ */
+
 class DealsManager {
-    constructor() {
-        this.deals = [
-            {
-                companionId: 'nectar-ai',
-                airtableSlug: 'nectar-ai',
-                displayName: 'Nectar AI',
-                badge: '🔥 50% OFF',
-                discountPercentage: 50,
-                description: 'Save 50% on Nectar AI\'s premium AI chat platform! Create your perfect AI chat companion with advanced personality crafting, romantic AI chat interactions, and engaging conversations. Experience unlimited AI chat with customizable companions.',
-                features: [
-                    { icon: '💕', title: 'Romantic Chat', desc: 'AI chat love' },
-                    { icon: '🎭', title: 'Customizable', desc: 'Personality traits' },
-                    { icon: '🎨', title: 'Image Gen', desc: 'Visual content' },
-                    { icon: '🎤', title: 'Voice Chat', desc: 'AI audio chat' }
-                ],
-                pricing: {
-                    originalPrice: '$14.99/month',
-                    salePrice: '$7.49/month',
-                    billingNote: '(billed annually)'
-                },
-                affiliate: 'https://trynectar.ai/?utm_source=affiliate&utm_medium=referral&utm_campaign=companionguide',
-                featured: true,
-                cta: 'Claim Deal'
-            },
-            {
-                companionId: 'ourdream-ai',
-                airtableSlug: 'ourdream-ai',
-                displayName: 'OurDream AI',
-                badge: '🍂 50% OFF',
-                discountPercentage: 50,
-                description: '🍂 Fall Sale Special! Save 50% on OurDream AI\'s premium AI companion playground. Create unlimited AI characters, chat, generate images & videos with your personalized AI companions. More Chars • More Chat • More Pics!',
-                features: [
-                    { icon: '🎭', title: 'Character Creation', desc: 'Unlimited AI companions' },
-                    { icon: '💬', title: 'Unlimited Chat', desc: '+1,000 DreamCoins' },
-                    { icon: '🎨', title: 'Image & Video', desc: 'AI multimedia gen' },
-                    { icon: '🔒', title: 'Discreet Billing', desc: 'No adult transaction' }
-                ],
-                pricing: {
-                    originalPrice: 'was $39.99/month',
-                    salePrice: '$19.99/month',
-                    billingNote: '(50% off monthly • 75% off yearly)'
-                },
-                affiliate: 'https://t.mbsrv2.com/388589/7710?popUnder=true&source=companionguide&aff_sub5=SF_006OG000004lmDN',
-                featured: true,
-                cta: 'Subscribe Now'
-            }
-        ];
-        this.companionsData = new Map();
-        this.init();
+  constructor() {
+    this.deals = [];
+    this.container = document.querySelector('.deals-container');
+  }
+
+  async init() {
+    console.log('🎯 Initializing Deals Manager...');
+    this.showLoading();
+    await this.loadDeals();
+    this.renderDeals();
+  }
+
+  showLoading() {
+    if (this.container) {
+      const loadingText = window.i18n && window.i18n.initialized
+        ? window.i18n.t('dealsPage.loading')
+        : 'Loading exclusive deals...';
+
+      this.container.innerHTML = `
+        <div class="deals-loading" style="text-align: center; padding: 4rem 2rem; color: #999;">
+          <div style="margin-bottom: 1rem;">${loadingText}</div>
+        </div>
+      `;
+    }
+  }
+
+  async loadDeals() {
+    try {
+      console.log('📡 Fetching deals from Netlify function...');
+
+      const response = await fetch('/.netlify/functions/deals-get');
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      this.deals = data.deals || [];
+
+      console.log(`✅ Loaded ${this.deals.length} deals`);
+    } catch (error) {
+      console.error('❌ Error loading deals:', error);
+      this.showError(error.message);
+    }
+  }
+
+  renderDeals() {
+    if (!this.container) {
+      console.error('❌ Deals container not found');
+      return;
     }
 
-    async init() {
-        console.log('🎯 DealsManager init started');
+    if (this.deals.length === 0) {
+      const noDealsText = window.i18n && window.i18n.initialized
+        ? window.i18n.t('dealsPage.noDeals')
+        : 'No active deals at the moment';
+      const checkBackText = window.i18n && window.i18n.initialized
+        ? window.i18n.t('dealsPage.checkBack')
+        : 'Check back soon for new exclusive offers!';
 
-        // Always render deals first with fallback data
-        console.log('🎨 Rendering deals with fallback data...');
-        this.renderDeals();
-
-        try {
-            // Try to load companion data in background
-            await this.loadCompanionData();
-            console.log('✅ Companion data loaded successfully, re-rendering...');
-            // Re-render with updated data
-            this.renderDeals();
-        } catch (error) {
-            console.error('❌ Error loading companion data, using fallback:', error);
-        }
-
-        this.attachEventListeners();
-        console.log('✅ DealsManager init completed');
+      this.container.innerHTML = `
+        <div style="text-align: center; padding: 4rem 2rem; color: #999;">
+          <p style="font-size: 1.2rem; margin-bottom: 1rem;">🔥 ${noDealsText}</p>
+          <p>${checkBackText}</p>
+        </div>
+      `;
+      return;
     }
 
-    async loadCompanionData() {
-        console.log('🚀 Starting loadCompanionData for deals...');
+    // Clear container
+    this.container.innerHTML = '';
 
-        // Wait for companionManager to be available
-        if (typeof window.companionManager === 'undefined') {
-            console.log('⏳ Waiting for companionManager...');
-            await this.waitForCompanionManager();
-        }
+    // Render each deal card
+    this.deals.forEach((deal, index) => {
+      const card = this.createDealCard(deal, index);
+      this.container.appendChild(card);
+    });
 
-        try {
-            // Check if fetchCompanionById method exists
-            if (!window.companionManager || typeof window.companionManager.fetchCompanionById !== 'function') {
-                console.warn('❌ fetchCompanionById method not available, using fallback data');
-                return;
-            }
+    console.log(`✅ Rendered ${this.deals.length} deal cards`);
+  }
 
-            console.log('✅ CompanionManager ready, fetching deal companion data...');
+  createDealCard(deal, index) {
+    const article = document.createElement('article');
+    article.className = 'companion-card deal-card';
+    article.setAttribute('data-companion-id', deal.id);
+    article.setAttribute('data-rating', deal.rating);
 
-            // Fetch companion data for each deal
-            for (const deal of this.deals) {
-                try {
-                    // Use airtableSlug if available, otherwise companionId
-                    const primaryId = deal.airtableSlug || deal.companionId;
-
-                    // Try different variations of the companion ID
-                    const companionIds = [
-                        primaryId,
-                        primaryId.replace('-', ''),
-                        primaryId.replace('-ai', ''),
-                        primaryId.replace('-', ' '),
-                        primaryId.charAt(0).toUpperCase() + primaryId.slice(1)
-                    ];
-
-                    let companionData = null;
-                    for (const id of companionIds) {
-                        try {
-                            companionData = await window.companionManager.fetchCompanionById(id);
-                            if (companionData) break;
-                        } catch (e) {
-                            // Try next variation
-                            continue;
-                        }
-                    }
-
-                    if (companionData) {
-                        this.companionsData.set(deal.companionId, companionData);
-                        console.log(`✅ Loaded data for ${deal.companionId}:`, {
-                            name: companionData.name,
-                            rating: companionData.rating,
-                            review_count: companionData.review_count,
-                            reviewCount: companionData.reviewCount,
-                            'Review Count': companionData['Review Count'],
-                            allFields: Object.keys(companionData)
-                        });
-                    } else {
-                        console.warn(`❌ No data found for companion: ${deal.companionId} (tried variations: ${companionIds.join(', ')})`);
-
-                        // Try to get all companions to see what's available
-                        const allCompanions = await window.companionManager.fetchCompanions();
-                        console.log('Available companions in Airtable:', allCompanions.map(c => ({
-                            id: c.id,
-                            slug: c.slug,
-                            name: c.name,
-                            review_count: c.review_count,
-                            reviewCount: c.reviewCount
-                        })));
-                    }
-                } catch (companionError) {
-                    console.error(`Error fetching companion ${deal.companionId}:`, companionError);
-                }
-            }
-        } catch (error) {
-            console.error('Error loading companion data for deals:', error);
-        }
+    // Add staggered animation delay
+    if (index > 0) {
+      article.style.animationDelay = `${index * 0.2}s`;
     }
 
-    async waitForCompanionManager() {
-        return new Promise((resolve) => {
-            const checkInterval = setInterval(() => {
-                if (typeof window.companionManager !== 'undefined') {
-                    clearInterval(checkInterval);
-                    resolve();
-                }
-            }, 100);
+    // Generate stars (same as companion cards)
+    const stars = this.generateStars(deal.rating);
+    const reviewsText = window.i18n && window.i18n.initialized
+      ? (deal.review_count === 1 ? window.i18n.t('companionCard.review') : window.i18n.t('companionCard.reviews'))
+      : 'reviews';
+    const reviewCountText = deal.review_count > 0 ? `(${deal.review_count} ${reviewsText})` : '';
 
-            // Timeout after 5 seconds
-            setTimeout(() => {
-                clearInterval(checkInterval);
-                resolve();
-            }, 5000);
-        });
+    // Deal badge
+    const badges = deal.deal_badge ? `
+      <div class="badge-container">
+        <span class="badge deal-badge" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);">
+          🔥 ${this.escapeHtml(deal.deal_badge)}
+        </span>
+      </div>
+    ` : '';
+
+    article.innerHTML = `
+      ${badges}
+      <div class="card-header">
+        <img src="${this.escapeHtml(deal.logo_url)}"
+             alt="${this.escapeHtml(deal.name)}"
+             class="logo"
+             onerror="this.src='/images/logos/default.png'">
+        <div class="title-section">
+          <h3><a href="/companions/${this.escapeHtml(deal.slug)}">${this.escapeHtml(deal.name)}</a></h3>
+          <div class="rating-line">
+            <span class="stars">${stars}</span>
+            <span class="rating-score">${deal.rating}/10</span>
+            ${reviewCountText ? `<span class="review-count">${reviewCountText}</span>` : ''}
+          </div>
+        </div>
+      </div>
+
+      ${deal.deal_description ? `
+        <p class="description deal-description">${this.escapeHtml(deal.deal_description)}</p>
+      ` : deal.short_description ? `
+        <p class="description">${this.escapeHtml(deal.short_description)}</p>
+      ` : ''}
+
+      ${deal.best_for ? `
+        <div class="best-for-section">
+          <span class="best-for-label">💡 ${window.i18n && window.i18n.initialized ? window.i18n.t('dealsPage.bestFor') : 'Best For'}:</span> ${this.escapeHtml(deal.best_for)}
+        </div>
+      ` : ''}
+
+      <div class="card-actions">
+        <a href="${this.escapeHtml(deal.website_url)}"
+           class="btn-primary"
+           target="_blank"
+           rel="noopener noreferrer nofollow"
+           onclick="if(typeof gtag !== 'undefined') gtag('event', 'deal_click', {'event_category': 'deals', 'event_label': '${this.escapeHtml(deal.slug)}'});">
+          ${window.i18n && window.i18n.initialized ? window.i18n.t('dealsPage.tryButton') : 'Try'} ${this.escapeHtml(deal.name)}
+        </a>
+        <a href="/companions/${this.escapeHtml(deal.slug)}" class="btn-secondary">${window.i18n && window.i18n.initialized ? window.i18n.t('dealsPage.claimDeal') : 'Claim Deal'}</a>
+      </div>
+    `;
+
+    return article;
+  }
+
+  generateStars(rating) {
+    // Rating is stored as 0-10 in Airtable (e.g., 9.6)
+    // We always show exactly 5 stars visually, rating text shows X/10
+    // Simple 1:1 mapping rounded: 9.6 → 5 stars, 8.0 → 4 stars, 6.0 → 3 stars
+    const stars = Math.round(rating / 2); // 9.6 → 5, 8.0 → 4, 7.0 → 4, 6.0 → 3
+    const fullStars = Math.min(5, stars); // Cap at 5 stars max
+    const emptyStars = 5 - fullStars;
+
+    let starsHtml = '';
+
+    for (let i = 0; i < fullStars; i++) {
+      starsHtml += '<span class="star-filled">★</span>';
     }
 
-    renderDeals() {
-        console.log('🎨 Starting renderDeals...');
-        const dealsContainer = document.querySelector('.deals-container');
-        if (!dealsContainer) {
-            console.error('❌ Deals container not found');
-            return;
-        }
-
-        console.log(`✅ Found deals container, rendering ${this.deals.length} deals...`);
-        dealsContainer.innerHTML = '';
-
-        // Sort deals by discount percentage (descending), then by review score (descending)
-        const sortedDeals = [...this.deals].sort((a, b) => {
-            // First sort by discount percentage (higher discounts first)
-            const discountDiff = (b.discountPercentage || 0) - (a.discountPercentage || 0);
-            if (discountDiff !== 0) return discountDiff;
-
-            // If discount is equal, sort by review score (higher ratings first)
-            const aCompanionData = this.companionsData.get(a.companionId);
-            const bCompanionData = this.companionsData.get(b.companionId);
-
-            const aRating = parseFloat(aCompanionData?.rating || aCompanionData?.['Rating'] || '0');
-            const bRating = parseFloat(bCompanionData?.rating || bCompanionData?.['Rating'] || '0');
-
-            return bRating - aRating;
-        });
-
-        sortedDeals.forEach(deal => {
-            const companionData = this.companionsData.get(deal.companionId);
-            const dealCard = this.createDealCard(deal, companionData);
-            dealsContainer.appendChild(dealCard);
-        });
+    for (let i = 0; i < emptyStars; i++) {
+      starsHtml += '<span class="star-empty">☆</span>';
     }
 
-    createDealCard(deal, companionData) {
-        const article = document.createElement('article');
-        article.className = `deal-card${deal.featured ? ' featured' : ''}`;
-        article.setAttribute('data-deal-id', deal.companionId);
+    return starsHtml;
+  }
 
-        // Use displayName from deal if available, otherwise dynamic data, fallback to static data
-        const name = deal.displayName || companionData?.name || companionData?.['Name'] || deal.companionId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
-        const logo = companionData?.logo || companionData?.['Logo'] || `/images/logos/${deal.companionId}.png`;
+  escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
 
-        // Use updated ratings from our knowledge or fallback
-        let rating = companionData?.rating || companionData?.['Rating'];
-        let reviewCount = companionData?.review_count || companionData?.reviewCount || companionData?.['Review Count'] || companionData?.['review_count'];
-
-        // Fallback values for each specific deal if Airtable data is not available
-        if (!rating) {
-            if (deal.companionId === 'nectar-ai') {
-                rating = '4.5';
-                reviewCount = reviewCount || '36';
-            } else if (deal.companionId === 'ourdream-ai') {
-                rating = '4.7';
-                reviewCount = reviewCount || '56';
-            } else {
-                rating = '4.0';
-                reviewCount = reviewCount || '0';
-            }
-        }
-        const reviewLink = `/companions/${deal.companionId}`;
-
-        // Debug log to see what data we're getting
-        if (companionData) {
-            console.log(`🎯 Creating deal card for ${deal.companionId}:`, {
-                name: name,
-                logo: logo,
-                rating: rating,
-                reviewCount: reviewCount,
-                review_count_field: companionData?.review_count,
-                allReviewFields: {
-                    review_count: companionData?.review_count,
-                    reviewCount: companionData?.reviewCount,
-                    'Review Count': companionData?.['Review Count'],
-                    'review_count': companionData?.['review_count']
-                }
-            });
-        } else {
-            console.warn(`🔍 No companion data available for deal card ${deal.companionId}`);
-        }
-
-        // Generate star rating display
-        const fullStars = Math.floor(rating);
-        const hasHalfStar = rating % 1 !== 0;
-        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-        const starDisplay = '★'.repeat(fullStars) + (hasHalfStar ? '☆' : '') + '☆'.repeat(emptyStars);
-
-        article.innerHTML = `
-            <div class="deal-badge">${deal.badge}</div>
-
-            <div class="deal-header">
-                <img src="${logo}" alt="${name} - AI companion platform special offer logo" class="deal-logo">
-                <div class="deal-info">
-                    <h3 class="deal-title"><a href="${reviewLink}" style="color: inherit; text-decoration: none;">${name}</a></h3>
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                        <span style="color: #ffa500;">${starDisplay}</span>
-                        <span style="color: #fff; font-size: 0.95rem;">${rating}/5</span>
-                        <span style="color: #666; font-size: 0.9rem;">(${reviewCount} reviews)</span>
-                    </div>
-                </div>
-            </div>
-
-            <p class="deal-description">${deal.description}</p>
-
-            <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
-                <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">${deal.badge} - LIMITED TIME</div>
-                <div style="display: flex; align-items: baseline; gap: 1rem;">
-                    <span style="text-decoration: line-through; color: #666;">${deal.pricing.originalPrice}</span>
-                    <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">${deal.pricing.salePrice}</span>
-                    <span style="color: #666; font-size: 0.85rem;">${deal.pricing.billingNote}</span>
-                </div>
-                ${deal.companionId === 'ourdream-ai' ? '<div style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Cancel anytime • No adult transaction in bank statement</div>' : ''}
-            </div>
-
-            <div class="deal-features">
-                ${deal.features.map(feature => `
-                    <div class="deal-feature-item">
-                        <div class="deal-feature-icon">${feature.icon}</div>
-                        <div class="deal-feature-title">${feature.title}</div>
-                        <div class="deal-feature-desc">${feature.desc}</div>
-                    </div>
-                `).join('')}
-            </div>
-
-            <div class="deal-cta">
-                <div style="display: flex; gap: 1rem;">
-                    <a href="${reviewLink}" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
-                    <a href="${deal.affiliate}" class="deal-button" target="_blank">
-                        ${deal.cta}
-                    </a>
-                </div>
-            </div>
-        `;
-
-        return article;
+  showError(message) {
+    if (this.container) {
+      this.container.innerHTML = `
+        <div style="text-align: center; padding: 4rem 2rem; color: #ff6b6b;">
+          <p style="font-size: 1.2rem; margin-bottom: 1rem;">⚠️ Failed to load deals</p>
+          <p style="color: #999;">${this.escapeHtml(message)}</p>
+          <p style="color: #666; margin-top: 1rem;">Please refresh the page or try again later.</p>
+        </div>
+      `;
     }
-
-    attachEventListeners() {
-        // Track deal clicks for analytics
-        document.addEventListener('click', (e) => {
-            if (e.target && e.target.classList && e.target.classList.contains('deal-button')) {
-                const dealCard = e.target.closest('.deal-card');
-                if (dealCard) {
-                    const dealId = dealCard.getAttribute('data-deal-id');
-                    this.trackDealClick(dealId, e.target.textContent.trim());
-                }
-            }
-        });
-
-        // Add hover effects
-        document.addEventListener('mouseenter', (e) => {
-            if (e.target && e.target.classList && e.target.classList.contains('deal-card')) {
-                this.animateDealCard(e.target, 'enter');
-            }
-        }, true);
-
-        document.addEventListener('mouseleave', (e) => {
-            if (e.target && e.target.classList && e.target.classList.contains('deal-card')) {
-                this.animateDealCard(e.target, 'leave');
-            }
-        }, true);
-    }
-
-    trackDealClick(dealId, buttonText) {
-        // Analytics tracking
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'deal_click', {
-                'deal_id': dealId,
-                'button_text': buttonText,
-                'event_category': 'deals'
-            });
-        }
-
-        // Facebook Pixel tracking
-        if (typeof fbq !== 'undefined') {
-            fbq('track', 'Lead', {
-                content_name: dealId,
-                content_category: 'deal'
-            });
-        }
-    }
-
-    animateDealCard(card, action) {
-        if (action === 'enter') {
-            card.style.transform = 'translateY(-4px)';
-            card.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
-        } else {
-            card.style.transform = 'translateY(0)';
-            card.style.boxShadow = '';
-        }
-    }
-
-    // Method to add new deals programmatically
-    addDeal(dealData) {
-        this.deals.push(dealData);
-        this.renderDeals();
-    }
-
-    // Method to update existing deal
-    updateDeal(dealId, updates) {
-        const dealIndex = this.deals.findIndex(deal => deal.id === dealId);
-        if (dealIndex !== -1) {
-            this.deals[dealIndex] = { ...this.deals[dealIndex], ...updates };
-            this.renderDeals();
-        }
-    }
-
-    // Method to remove deal
-    removeDeal(dealId) {
-        this.deals = this.deals.filter(deal => deal.id !== dealId);
-        this.renderDeals();
-    }
+  }
 }
 
-// Initialize deals manager when DOM is loaded
-document.addEventListener('DOMContentLoaded', async () => {
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.deals-container')) {
-        console.log('🎯 DOM loaded, initializing deals...');
+      const dealsManager = new DealsManager();
+      dealsManager.init();
 
-        try {
-            // Initialize companion manager first if it doesn't exist
-            if (typeof window.companionManager === 'undefined') {
-                console.log('🔧 Creating CompanionManager...');
-                window.companionManager = new CompanionManager();
-            }
-
-            // Then initialize deals manager
-            console.log('🎯 Creating DealsManager...');
-            window.dealsManager = new DealsManager();
-        } catch (error) {
-            console.error('❌ Error initializing deals:', error);
-
-            // Fallback: render deals without dynamic data
-            const dealsContainer = document.querySelector('.deals-container');
-            if (dealsContainer) {
-                dealsContainer.innerHTML = '<p style="color: #666; text-align: center; padding: 2rem;">Deals loading failed, please refresh the page.</p>';
-            }
-        }
+      // Expose to window for debugging
+      window.dealsManager = dealsManager;
     }
-});
+  });
+} else {
+  if (document.querySelector('.deals-container')) {
+    const dealsManager = new DealsManager();
+    dealsManager.init();
 
-// Expose methods for external use
-window.DealsAPI = {
-    addDeal: (dealData) => window.dealsManager?.addDeal(dealData),
-    updateDeal: (dealId, updates) => window.dealsManager?.updateDeal(dealId, updates),
-    removeDeal: (dealId) => window.dealsManager?.removeDeal(dealId),
-    getDeal: (dealId) => window.dealsManager?.deals.find(deal => deal.id === dealId),
-    getAllDeals: () => window.dealsManager?.deals || []
-};
+    // Expose to window for debugging
+    window.dealsManager = dealsManager;
+  }
+}

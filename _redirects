@@ -8,6 +8,9 @@
 # Dutch companion redirects (specific URLs before wildcards!)
 /nl/companions/replika-ai               /nl/companions/replika                            301!
 
+# Dutch category URL cleanup
+/nl/categories/video-companions-companions  /nl/categories/ai-video-companions            301!
+
 # Dutch individual companion pages -> Dutch HTML files (no parameters!)
 /nl/companions/*                        /nl/companions/:splat.html                        200!
 
@@ -33,6 +36,9 @@
 # German companion redirects (specific URLs before wildcards!)
 /de/companions/replika-ai               /de/companions/replika                            301!
 
+# German category URL cleanup
+/de/categories/video-companions-companions  /de/categories/ai-video-companions            301!
+
 # German individual companion pages -> German HTML files
 /de/companions/*                        /de/companions/:splat.html                        200!
 
@@ -57,6 +63,9 @@
 
 # Portuguese companion redirects (specific URLs before wildcards!)
 /pt/companions/replika-ai               /pt/companions/replika                            301!
+
+# Portuguese category URL cleanup
+/pt/categories/video-companions-companions  /pt/categories/ai-video-companions            301!
 
 # Portuguese individual companion pages -> Portuguese HTML files
 /pt/companions/*                        /pt/companions/:splat.html                        200!
@@ -100,6 +109,9 @@
 
 # English companion redirects (specific URLs before wildcards!)
 /companions/replika-ai                  /companions/replika                               301
+
+# English category URL cleanup
+/categories/video-companions-companions  /categories/ai-video-companions                  301
 
 # English news redirects (specific URLs before wildcards!)
 /news/women-ai-boyfriends-chatgpt-upgrade  /news                                          301

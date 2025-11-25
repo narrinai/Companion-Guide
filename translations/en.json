@@ -84,5 +84,9 @@
     "view-all-news": "View All News",
     "more-companions-coming": "More AI Companions Coming Soon",
     "browse-categories": "Browse Categories"
+  },
+  "gallery": {
+    "warningText": "This gallery contains uncensored NSFW content intended for adults only (18+).",
+    "showContent": "Show Content, I am 18+"
   }
 }

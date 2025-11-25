@@ -34,6 +34,8 @@ class CompanionHeaderManager {
         ? pathParts[0]
         : (window.i18n ? window.i18n.currentLang : 'en');
 
+      console.log('🌍 Detected language:', lang, 'from path:', window.location.pathname);
+
       // Build API URL with language parameter
       const apiUrl = lang && lang !== 'en'
         ? `${this.apiBaseUrl}/companionguide-get?lang=${lang}`
@@ -162,7 +164,10 @@ class CompanionHeaderManager {
 
     // Update my verdict
     if (companion.my_verdict) {
+      console.log('📝 Updating verdict, length:', companion.my_verdict.length);
       this.updateVerdict(companion.my_verdict, rating);
+    } else {
+      console.warn('⚠️ No my_verdict field found in companion data');
     }
 
     // Update FAQ
@@ -348,12 +353,14 @@ class CompanionHeaderManager {
    * Update verdict section
    */
   updateVerdict(verdictText, rating) {
+    console.log('🔧 updateVerdict called, verdict length:', verdictText?.length);
     const verdictSection = document.querySelector('.verdict, section.verdict');
     if (!verdictSection) return;
 
     // Find or create the verdict-text div
     let verdictTextDiv = verdictSection.querySelector('.verdict-text');
     if (!verdictTextDiv) {
+      console.log('📝 Creating new verdict-text div');
       verdictTextDiv = document.createElement('div');
       verdictTextDiv.className = 'verdict-text';
       // Insert after the h2
@@ -363,10 +370,38 @@ class CompanionHeaderManager {
       } else {
         verdictSection.appendChild(verdictTextDiv);
       }
+    } else {
+      console.log('📝 Found existing verdict-text div with', verdictTextDiv.children.length, 'children');
     }
 
     // Smart heading detection for SEO
-    const paragraphs = verdictText.split('\n\n').filter(p => p.trim());
+    let paragraphs = verdictText.split('\n\n').filter(p => p.trim());
+
+    // Check if the entire verdict text is duplicated (common Airtable issue)
+    // If the second half is identical to the first half, remove it
+    if (paragraphs.length > 1 && paragraphs.length % 2 === 0) {
+      const midpoint = paragraphs.length / 2;
+      const firstHalf = paragraphs.slice(0, midpoint).join('\n\n').trim().toLowerCase();
+      const secondHalf = paragraphs.slice(midpoint).join('\n\n').trim().toLowerCase();
+
+      if (firstHalf === secondHalf) {
+        console.log('⚠️ Detected duplicated verdict content, removing second half');
+        paragraphs = paragraphs.slice(0, midpoint);
+      }
+    }
+
+    // Also remove individual duplicate paragraphs
+    const uniqueParagraphs = [];
+    const seen = new Set();
+    paragraphs.forEach(para => {
+      const normalized = para.trim().toLowerCase();
+      if (!seen.has(normalized)) {
+        seen.add(normalized);
+        uniqueParagraphs.push(para);
+      }
+    });
+    paragraphs = uniqueParagraphs;
+
     let html = '';
 
     paragraphs.forEach((para, index) => {
@@ -389,7 +424,9 @@ class CompanionHeaderManager {
           const isShort = firstSentence.length < 100; // Increased from 60 to catch more headings
           const endsWithColon = firstSentence.endsWith(':');
           const hasNoPunctuation = !firstSentence.match(/[.!?]$/);
-          const looksLikeHeading = /^(Best for|Who should use|Key features|Conclusion|Final thoughts|Overview|Why choose|Perfect for|Bottom line|The verdict|What makes|Innovation|Standout|Unique|Ideal for|Great for)/i.test(firstSentence);
+
+          // Multi-language heading patterns (EN, NL, PT, DE)
+          const looksLikeHeading = /^(Best for|Who should use|Key features|Conclusion|Final thoughts|Overview|Why choose|Perfect for|Bottom line|The verdict|What makes|Innovation|Standout|Unique|Ideal for|Great for|Week \d+|Month \d+|Day \d+|Beste voor|Wie moet gebruiken|Belangrijkste kenmerken|Conclusie|Laatste gedachten|Overzicht|Waarom kiezen|Perfect voor|Het verdict|Wat maakt|Innovatie|Uniek|Ideaal voor|Geweldig voor|Week \d+|Maand \d+|Dag \d+|Melhor para|Quem deve usar|Principais recursos|Conclusão|Pensamentos finais|Visão geral|Por que escolher|Perfeito para|O veredicto|O que faz|Inovação|Único|Ideal para|Ótimo para|Semana \d+|Mês \d+|Dia \d+|Am besten für|Wer sollte verwenden|Hauptmerkmale|Fazit|Abschließende Gedanken|Überblick|Warum wählen|Perfekt für|Das Urteil|Was macht|Innovation|Einzigartig|Ideal für|Großartig für|Woche \d+|Monat \d+|Tag \d+)/i.test(firstSentence);
           const isFirstParagraph = index === 0;
 
           // Make first sentence a H3 if it's short without punctuation OR looks like a heading OR ends with colon
@@ -409,8 +446,86 @@ class CompanionHeaderManager {
       }
     });
 
-    verdictTextDiv.innerHTML = html;
-    console.log(`✅ Updated verdict with smart heading detection (${paragraphs.length} paragraphs)`);
+    // Check if verdict is long enough for read more (count HTML tags)
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    const allElements = tempDiv.querySelectorAll('h3, p');
+
+    console.log(`📊 Verdict has ${allElements.length} elements (h3 + p), need > 8 for read more`);
+
+    if (allElements.length > 8) {
+      // Add read more functionality by wrapping content
+      const visibleElements = Array.from(allElements).slice(0, 8);
+      const hiddenElements = Array.from(allElements).slice(8);
+
+      let finalHtml = '';
+
+      // Add visible elements
+      visibleElements.forEach(el => {
+        finalHtml += el.outerHTML;
+      });
+
+      // Get current language for button text
+      const currentLang = document.documentElement.lang || 'en';
+      const readMoreTexts = {
+        'en': 'Read full verdict',
+        'nl': 'Lees volledig oordeel',
+        'pt': 'Ler veredicto completo',
+        'de': 'Vollständiges Urteil lesen'
+      };
+      const showLessTexts = {
+        'en': 'Show less',
+        'nl': 'Toon minder',
+        'pt': 'Mostrar menos',
+        'de': 'Weniger anzeigen'
+      };
+      const readMoreText = readMoreTexts[currentLang] || readMoreTexts['en'];
+
+      // Add read more button
+      finalHtml += `
+        <button class="verdict-read-more">
+          <span class="read-more-text">${readMoreText}</span>
+          <svg class="read-more-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      `;
+
+      // Add collapsed wrapper with hidden elements
+      finalHtml += '<div class="verdict-collapsed-wrapper">';
+      hiddenElements.forEach(el => {
+        finalHtml += el.outerHTML;
+      });
+      finalHtml += '</div>';
+
+      verdictTextDiv.innerHTML = finalHtml;
+
+      // Add toggle event listener
+      const btn = verdictTextDiv.querySelector('.verdict-read-more');
+      const wrapper = verdictTextDiv.querySelector('.verdict-collapsed-wrapper');
+
+      const showLessText = showLessTexts[currentLang] || showLessTexts['en'];
+
+      btn.addEventListener('click', () => {
+        const isExpanded = wrapper.classList.contains('expanded');
+
+        if (isExpanded) {
+          wrapper.classList.remove('expanded');
+          btn.querySelector('.read-more-text').textContent = readMoreText;
+          btn.classList.remove('expanded');
+          verdictTextDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          wrapper.classList.add('expanded');
+          btn.querySelector('.read-more-text').textContent = showLessText;
+          btn.classList.add('expanded');
+        }
+      });
+
+      console.log(`✅ Updated verdict with smart heading detection and read more (${allElements.length} elements, showing 8)`);
+    } else {
+      verdictTextDiv.innerHTML = html;
+      console.log(`✅ Updated verdict with smart heading detection (${paragraphs.length} paragraphs)`);
+    }
   }
 
   /**

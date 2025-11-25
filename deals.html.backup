@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat Platform Deals 2025 - Best Discounts & Offers</title>
+    <meta name="description" content="Save up to 70% on AI chat platforms. Exclusive deals on Soulkyn AI, DreamGF, Secrets AI. Premium AI chat subscription discounts updated daily.">
+    <meta name="keywords" content="AI chat deals, AI companion deals, AI chat discounts, AI chat platform offers, Soulkyn AI discount, AI chat promo codes, best AI chat deals 2025, AI companion coupons">
+    <meta name="author" content="Companion Guide">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://companionguide.ai/deals">
+    <link rel="alternate" hreflang="en" href="https://companionguide.ai/deals">
+    <link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/deals">
+    <link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/deals">
+    <link rel="alternate" hreflang="x-default" href="https://companionguide.ai/deals">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://companionguide.ai/deals">
+    <meta property="og:title" content="AI Companion Deals & Discounts - Save up to 50%">
+    <meta property="og:description" content="Exclusive deals on AI companion platforms. Save big on premium subscriptions with our curated offers.">
+    <meta property="og:image" content="https://companionguide.ai/images/deals-og.jpg">
+    <meta property="og:site_name" content="Companion Guide">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://companionguide.ai/deals">
+    <meta property="twitter:title" content="AI Companion Deals & Discounts 2025">
+    <meta property="twitter:description" content="Save up to 50% on AI companion subscriptions with exclusive deals.">
+    <meta property="twitter:image" content="https://companionguide.ai/images/deals-twitter.jpg">
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNT274T4LT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-NNT274T4LT');
+    </script>
+
+    <style>
+        /* Deals Page Specific Styles */
+        .deals-hero {
+            background: #1a1a1a;
+            color: white;
+            padding: 4rem 2rem 3rem;
+            margin: -2rem -2rem 3rem -2rem;
+            text-align: center;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            width: 100vw;
+        }
+
+        .deals-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+
+        .deals-hero p {
+            font-size: 1.1rem;
+            color: #999;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .deals-container {
+            display: grid;
+            gap: var(--space-8);
+            margin-bottom: var(--space-12);
+        }
+
+        .deal-card {
+            background: #1f1f1f;
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #fff;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: #4a9eff;
+        }
+
+        .deal-card.featured {
+            border-color: #4a9eff;
+        }
+
+        .deal-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: #4a9eff;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .deal-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .deal-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid #333;
+            background: #2a2a2a;
+            padding: 12px;
+        }
+
+        .deal-info {
+            flex: 1;
+        }
+
+        .deal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .deal-offer {
+            font-size: 1.1rem;
+            color: #4a9eff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .deal-original-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            margin-right: var(--space-3);
+        }
+
+        .deal-discount-price {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .deal-description {
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .deal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .deal-feature-item {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .deal-feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .deal-feature-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .deal-feature-desc {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .deal-features h4 {
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: var(--space-3);
+            font-weight: 600;
+        }
+
+        .deal-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .deal-features li {
+            padding: var(--space-2) 0;
+            padding-left: var(--space-6);
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .deal-features li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        .deal-cta {
+            display: flex;
+            gap: var(--space-4);
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .deal-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #4a9eff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .deal-button:hover {
+            background: #3a8eef;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #333;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: #444;
+        }
+
+        .deal-expiry {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .deal-expiry .icon {
+            font-size: 1.2rem;
+        }
+
+        .deals-info-section {
+            background: #1f1f1f;
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .deals-info-section h2 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .deals-info-section p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .deals-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        .deals-loading::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4a9eff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Dynamic card transitions */
+        .deal-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .deal-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .deal-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .deal-card:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .deal-card:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .deals-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .deal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .deal-logo {
+                margin: 0 auto;
+            }
+
+            .deal-cta {
+                flex-direction: column;
+            }
+
+            .deal-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1384707780100464');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
+ alt=""/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <h1><a href="/"><img src="/images/logo.svg" alt="CompanionGuide.ai" width="32" height="32">CompanionGuide.ai</a></h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <div class="mobile-menu-logo">
+                    <img src="/images/logo.svg" alt="CompanionGuide.ai" width="48" height="48">
+                    <span>CompanionGuide.ai</span>
+                </div>
+                <li><a href="/">Home</a></li>
+                <li><a href="/companions">Companions</a></li>
+                <li><a href="/categories">Categories</a></li>
+                <li><a href="/news">News & Guides</a></li>
+                <li><a href="/deals" class="active">Deals</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button id="lang-toggle" class="lang-current"></button>
+                <div class="lang-dropdown" id="lang-dropdown" style="display: none;">
+                    <a href="/" class="lang-option active">🇬🇧</a>
+                    <a href="/de/deals" class="lang-option">🇩🇪</a>
+                    <a href="/nl/deals" class="lang-option">🇳🇱</a>
+                    <a href="/pt/deals" class="lang-option">🇧🇷</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="deals-hero">
+            <h1>AI Chat & Companion Platform Deals</h1>
+            <p>Save big on premium AI chat platforms and AI companion subscriptions with exclusive deals and discount codes for the best AI chat experiences</p>
+        </section>
+
+        <!-- Deals Container - Dynamically loaded from Airtable -->
+        <div class="deals-container">
+            <!-- Deals will be loaded dynamically by js/deals.js -->
+            <div class="deals-loading" style="text-align: center; padding: 4rem 2rem; color: #999;">
+                <div style="margin-bottom: 1rem;">Loading exclusive deals...</div>
+            </div>
+        </div>
+
+        <!-- Information Section -->
+                    <div class="deal-info">
+                        <h3 class="deal-title"><a href="/companions/ourdream-ai" style="color: inherit; text-decoration: none;">OurDream AI</a></h3>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;" data-rating-slug="ourdream-ai">
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-score" style="color: #fff; font-size: 0.95rem;">9.4/10</span>
+                            <span class="rating-count" style="color: #666; font-size: 0.9rem;">(56 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="deal-description">🍂 Fall Sale Special! Save 50% on OurDream AI's premium AI companion playground. Create unlimited AI characters, chat, generate images & videos with your personalized AI companions. More Chars • More Chat • More Pics!</p>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
+                    <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">🍂 50% OFF - LIMITED TIME</div>
+                    <div style="display: flex; align-items: baseline; gap: 1rem;">
+                        <span style="text-decoration: line-through; color: #666;">was $39.99/month</span>
+                        <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$19.99/month</span>
+                        <span style="color: #666; font-size: 0.85rem;">(50% off monthly • 75% off yearly)</span>
+                    </div>
+                    <div style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Cancel anytime • No adult transaction in bank statement</div>
+                </div>
+
+                <div class="deal-features">
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🎭</div>
+                        <div class="deal-feature-title">Character Creation</div>
+                        <div class="deal-feature-desc">Unlimited AI companions</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">💬</div>
+                        <div class="deal-feature-title">Unlimited Chat</div>
+                        <div class="deal-feature-desc">+1,000 DreamCoins</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🎨</div>
+                        <div class="deal-feature-title">Image & Video</div>
+                        <div class="deal-feature-desc">AI multimedia gen</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🔒</div>
+                        <div class="deal-feature-title">Discreet Billing</div>
+                        <div class="deal-feature-desc">No adult transaction</div>
+                    </div>
+                </div>
+
+                <div class="deal-cta">
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="/companions/ourdream-ai" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
+                        <a href="#" class="deal-button" target="_blank">
+                            View Deal
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Soulkyn AI Deal - Rating: 9.4 -->
+            <article class="deal-card featured" data-deal-id="soulkyn-ai" data-rating="9.4">
+                <div class="deal-badge">💝 10% OFF</div>
+
+                <div class="deal-header">
+                    <img data-companion="soulkyn-ai" data-field="logo_url" alt="Soulkyn AI - AI companion platform special offer logo" class="deal-logo">
+                    <div class="deal-info">
+                        <h3 class="deal-title"><a href="/companions/soulkyn-ai" style="color: inherit; text-decoration: none;"><span data-companion="soulkyn-ai" data-field="name">Soulkyn AI</span></a></h3>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;" data-rating-slug="soulkyn-ai">
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-score" style="color: #fff; font-size: 0.95rem;">9.4/10</span>
+                            <span class="rating-count" style="color: #666; font-size: 0.9rem;">(48 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="deal-description">💝 Save 10% on Soulkyn AI's 3-month Premium plans! Experience unlimited AI companions (Kyns) with uncensored galleries, voice messages, unlimited images, and the powerful 70B uncensored model. Most popular tier with exclusive badges!</p>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
+                    <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">💝 10% OFF 3-MONTH PLANS</div>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">⭐ Premium (3 months)</div>
+                        <div style="display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;">
+                            <span style="text-decoration: line-through; color: #666;">was $24.75/mo</span>
+                            <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$22.50/month</span>
+                            <span style="color: #666; font-size: 0.85rem;">(billed $67.49/3 months)</span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">💗 Deluxe (3 months)</div>
+                        <div style="display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;">
+                            <span style="text-decoration: line-through; color: #666;">was $49.50/mo</span>
+                            <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$45.00/month</span>
+                            <span style="color: #666; font-size: 0.85rem;">(billed $134.99/3 months)</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">🫶 Deluxe Plus (3 months)</div>
+                        <div style="display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;">
+                            <span style="text-decoration: line-through; color: #666;">was $99/mo</span>
+                            <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$90.00/month</span>
+                            <span style="color: #666; font-size: 0.85rem;">(billed $269.99/3 months)</span>
+                        </div>
+                    </div>
+                    <div style="color: #666; font-size: 0.85rem; margin-top: 0.75rem;">Cancel anytime • No hidden fees</div>
+                </div>
+
+                <div class="deal-features" data-companion="soulkyn-ai" data-field="features">
+                    <!-- Features will be loaded dynamically from Airtable -->
+                </div>
+
+                <div class="deal-cta">
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="/companions/soulkyn-ai" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
+                        <a data-companion="soulkyn-ai" data-field="website_url" class="deal-button" rel="noopener">
+                            View Deal
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Dream Companion Deal - Rating: 9.4 -->
+            <article class="deal-card featured" data-deal-id="dream-companion" data-rating="9.4">
+                <div class="deal-badge">💎 70% OFF</div>
+
+                <div class="deal-header">
+                    <img src="/images/logos/dream-companion-review.svg" alt="Dream Companion - AI roleplay platform special offer logo" class="deal-logo">
+                    <div class="deal-info">
+                        <h3 class="deal-title"><a href="/companions/dream-companion" style="color: inherit; text-decoration: none;">Dream Companion</a></h3>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;" data-rating-slug="dream-companion">
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-score" style="color: #fff; font-size: 0.95rem;">9.4/10</span>
+                            <span class="rating-count" style="color: #666; font-size: 0.9rem;">(127 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="deal-description">💎 Save 70% on Dream Companion's Premium Yearly Plan! Experience immersive NSFW AI roleplay with custom character creation, video generation, uncensored images, and long-term memory. Get 100 FREE Dream Coins monthly.</p>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
+                    <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">💎 70% OFF YEARLY - BEST VALUE</div>
+                    <div style="display: flex; align-items: baseline; gap: 1rem;">
+                        <span style="text-decoration: line-through; color: #666;">was $20/month</span>
+                        <span style="color: #4a9eff; font-size: 1.3rem; font-weight: 600;">$5.84/month</span>
+                        <span style="color: #666; font-size: 0.85rem;">(billed annually at $69.99/year)</span>
+                    </div>
+                    <div style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">6000 text messages • NSFW video generation • Cancel anytime</div>
+                </div>
+
+                <div class="deal-features">
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">💬</div>
+                        <div class="deal-feature-title">AI Roleplay Chat</div>
+                        <div class="deal-feature-desc">6000 messages/month</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🎬</div>
+                        <div class="deal-feature-title">Video Generation</div>
+                        <div class="deal-feature-desc">NSFW video creation</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🖼️</div>
+                        <div class="deal-feature-title">Image Generation</div>
+                        <div class="deal-feature-desc">Uncensored visuals</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🧠</div>
+                        <div class="deal-feature-title">Long-Term Memory</div>
+                        <div class="deal-feature-desc">Remembers you</div>
+                    </div>
+                </div>
+
+                <div class="deal-cta">
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="/companions/dream-companion" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
+                        <a href="#" class="deal-button" target="_blank">
+                            View Deal
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Selira AI Deal - Rating: 9.3 -->
+            <article class="deal-card featured" data-deal-id="selira-ai" data-rating="9.3">
+                <div class="deal-badge">🎯 65% OFF</div>
+
+                <div class="deal-header">
+                    <img src="/images/logos/selira-ai.png" alt="Selira AI - AI companion platform special offer logo" class="deal-logo">
+                    <div class="deal-info">
+                        <h3 class="deal-title"><a href="/companions/selira-ai" style="color: inherit; text-decoration: none;">Selira AI</a></h3>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;" data-rating-slug="selira-ai">
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-score" style="color: #fff; font-size: 0.95rem;">9.3/10</span>
+                            <span class="rating-count" style="color: #666; font-size: 0.9rem;">(89 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="deal-description">🎯 Save up to 70% on all Selira AI subscriptions and image packs! Create your perfect AI companion with unlimited messaging, realistic & anime AI image generation, and special companions. Choose from monthly subscriptions or one-off credit packs.</p>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: #2a2a2a; border-radius: 8px;">
+                    <div style="color: #4a9eff; font-size: 0.85rem; margin-bottom: 0.5rem;">🎯 UP TO 70% OFF</div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div style="display: flex; align-items: baseline; gap: 1rem;">
+                            <span style="color: #aaa; min-width: 80px;">Premium:</span>
+                            <span style="text-decoration: line-through; color: #666;">$59.99/mo</span>
+                            <span style="color: #4a9eff; font-size: 1.2rem; font-weight: 600;">$19.99/mo</span>
+                        </div>
+                        <div style="display: flex; align-items: baseline; gap: 1rem;">
+                            <span style="color: #aaa; min-width: 80px;">Basic:</span>
+                            <span style="text-decoration: line-through; color: #666;">$29.99/mo</span>
+                            <span style="color: #4a9eff; font-size: 1.2rem; font-weight: 600;">$9.99/mo</span>
+                        </div>
+                        <div style="display: flex; align-items: baseline; gap: 1rem;">
+                            <span style="color: #aaa; min-width: 80px;">Light:</span>
+                            <span style="text-decoration: line-through; color: #666;">$19.99/mo</span>
+                            <span style="color: #4a9eff; font-size: 1.2rem; font-weight: 600;">$5.99/mo</span>
+                        </div>
+                    </div>
+                    <div style="color: #666; font-size: 0.85rem; margin-top: 0.75rem;">+ Up to 70% off all image credit packs • Realistic & anime styles</div>
+                </div>
+
+                <div class="deal-features">
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">💬</div>
+                        <div class="deal-feature-title">Unlimited Chat</div>
+                        <div class="deal-feature-desc">Message anytime</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🎨</div>
+                        <div class="deal-feature-title">AI Image Gen</div>
+                        <div class="deal-feature-desc">Realistic & anime</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">👥</div>
+                        <div class="deal-feature-title">Unlimited Companions</div>
+                        <div class="deal-feature-desc">Create & chat freely</div>
+                    </div>
+                    <div class="deal-feature-item">
+                        <div class="deal-feature-icon">🧠</div>
+                        <div class="deal-feature-title">Memory System</div>
+                        <div class="deal-feature-desc">Remembers you</div>
+                    </div>
+                </div>
+
+                <div class="deal-cta">
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="/companions/selira-ai" class="deal-button btn-secondary" style="background: #333;">Read Review</a>
+                        <a href="#" class="deal-button" target="_blank">
+                            View Deal
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Information Section -->
+        <section class="deals-info-section">
+            <h2>How Our AI Chat Deals Work</h2>
+            <p>
+                We partner directly with AI chat platforms and AI companion services to bring you exclusive discounts on premium AI chat subscriptions. All AI chat deals are verified and updated regularly. Simply click on any deal to activate the AI chat platform discount - prices will be automatically adjusted at checkout.
+            </p>
+            <p style="margin-top: var(--space-4);">
+                <strong>Note:</strong> Deals and discounts are subject to change and may have limited availability. We recommend acting quickly on offers you're interested in. All prices shown are in USD unless otherwise specified.
+            </p>
+        </section>
+
+        <!-- More Deals Coming Soon -->
+        <section class="deals-info-section">
+            <h2>More AI Chat Deals Coming Soon!</h2>
+            <p>
+                We're constantly negotiating new deals with top AI chat platforms and AI companion services. Check back regularly for new AI chat discounts on platforms like DreamGF AI, Candy AI, FantasyGF, and more premium AI chat services. Bookmark this page to stay updated with the latest AI chat platform offers and deals.
+            </p>
+        </section>
+
+    </main>
+
+<footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Companion Guide</h4>
+                    <p>Your trusted source for AI companion reviews and guides</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/companions">Companions</a></li>
+                        <li><a href="/categories">Categories</a></li>
+                        <li><a href="/news">News & Guides</a></li>
+                        <li><a href="/companions-az">Companions A-Z</a></li>
+                        <li><a href="/cookie-policy">Cookie Policy</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Featured AI Companions</h4>
+                    <ul id="featured-companions-footer">
+                        <!-- Dynamic content will be loaded here -->
+                    </ul>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Featured Guides</h4>
+                    <ul>
+                        <li><a href="/news/crushon-ai-alternatives-complete-guide-2025">Crushon AI Alternatives Guide</a></li>
+                        <li><a href="/news/soulkyn-ai-alternatives-complete-guide-2025">Soulkyn AI Alternatives Guide</a></li>
+                        <li><a href="/news/spicychat-ai-complete-guide-2025">SpicyChat AI Complete Guide</a></li>
+                        <li><a href="/news/hammer-ai-complete-review-2025">Hammer AI Complete Review</a></li>
+                        <li><a href="/news/soulgen-ai-adult-image-generation-guide-2025">SoulGen AI Complete Guide</a></li>
+                        <li><a href="/news/character-ai-alternatives-complete-guide-2025">Character AI Alternatives Guide</a></li>
+                        <li><a href="/news/dreamgf-ai-complete-review-2025">DreamGF AI Complete Guide</a></li>
+                        <li><a href="/news/replika-ai-comprehensive-review-2025">Replika AI Comprehensive Review</a></li>
+                        <li><a href="/news/nomi-ai-comprehensive-review-2025">Nomi AI Comprehensive Review</a></li>
+                        <li><a href="/news/candy-ai-alternatives-complete-guide-2025">Candy AI Alternatives Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                                <p>&copy; 2025 CompanionGuide. All rights reserved. | <a href="/2257-compliance" style="color: #888; text-decoration: underline;">Compliance Statement</a> | <a href="/dmca" style="color: #888; text-decoration: underline;">DMCA & Copyright</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+    <script src="/js/companions.js"></script>
+    <script src="/js/blog-post-manager.js"></script>
+    <script>
+        // Language switcher functionality - optimized for mobile
+        (function() {
+            const langToggle = document.getElementById('lang-toggle');
+            const langDropdown = document.getElementById('lang-dropdown');
+
+            if (langToggle && langDropdown) {
+                // Detect current language from URL and update button text
+                const currentPath = window.location.pathname;
+                let currentLang = 'EN';
+                let currentFlag = '🇬🇧';
+
+                if (currentPath.startsWith('/nl/') || currentPath === '/nl') {
+                    currentLang = 'NL';
+                    currentFlag = '🇳🇱';
+                } else if (currentPath.startsWith('/pt/') || currentPath === '/pt') {
+                    currentLang = 'PT';
+                    currentFlag = '🇧🇷';
+                }
+
+                // Update button text to show current language
+                langToggle.textContent = `${currentFlag} ${currentLang}`;
+                console.log('Language selector initialized:', currentLang);
+
+                // Toggle function
+                const toggleDropdown = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isVisible = langDropdown.style.display === 'block';
+                    langDropdown.style.display = isVisible ? 'none' : 'block';
+                    console.log('Language dropdown toggled:', langDropdown.style.display);
+                };
+
+                // Add both click and touchstart for better mobile support
+                langToggle.addEventListener('click', toggleDropdown);
+                langToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+                // Close dropdown when clicking outside
+                const closeDropdown = (e) => {
+                    if (!e.target.closest('.language-switcher')) {
+                        langDropdown.style.display = 'none';
+                    }
+                };
+
+                document.addEventListener('click', closeDropdown);
+                document.addEventListener('touchstart', closeDropdown);
+            }
+        })();
+    </script>
+    <script>
+        // Load featured companions in footer and update ratings
+        document.addEventListener("DOMContentLoaded", async function() {
+            if (typeof window.companionManager === "undefined") {
+                window.companionManager = new CompanionManager();
+            }
+            try {
+                await window.companionManager.renderFooterFeaturedCompanions("featured-companions-footer");
+
+                // Load dynamic ratings for deals
+                await loadDealRatings();
+            } catch (error) {
+                console.error("Error loading footer featured companions:", error);
+            }
+        });
+
+        // Function to load ratings from Airtable for deals
+        async function loadDealRatings() {
+            try {
+                // Fetch all companions
+                const companions = await window.companionManager.fetchCompanions({
+                    sort: 'rating'
+                });
+
+                // Find all rating elements with data-rating-slug attribute
+                const ratingElements = document.querySelectorAll('[data-rating-slug]');
+
+                ratingElements.forEach(ratingElement => {
+                    const slug = ratingElement.getAttribute('data-rating-slug');
+                    const companion = companions.find(c => c.slug === slug);
+
+                    if (companion) {
+                        // Update data-rating attribute on parent deal card
+                        const dealCard = ratingElement.closest('.deal-card');
+                        if (dealCard) {
+                            dealCard.setAttribute('data-rating', companion.rating);
+                        }
+
+                        // Update stars
+                        const starsElement = ratingElement.querySelector('.rating-stars');
+                        if (starsElement) {
+                            starsElement.innerHTML = window.companionManager.generateStarRating(companion.rating);
+                            starsElement.style.color = '#ffa500';
+                        }
+
+                        // Update rating score
+                        const scoreElement = ratingElement.querySelector('.rating-score');
+                        if (scoreElement) {
+                            scoreElement.textContent = `${companion.rating}/10`;
+                        }
+
+                        // Update review count
+                        const countElement = ratingElement.querySelector('.rating-count');
+                        if (countElement && companion.review_count) {
+                            countElement.textContent = `(${companion.review_count} reviews)`;
+                        }
+                    }
+                });
+
+                // Sort deals by rating (high to low)
+                sortDealsByRating();
+            } catch (error) {
+                console.error('Error loading deal ratings:', error);
+                // Keep static ratings on error
+            }
+        }
+
+        // Function to sort deals by rating
+        function sortDealsByRating() {
+            const container = document.querySelector('.deals-container');
+            if (!container) return;
+
+            const deals = Array.from(container.querySelectorAll('.deal-card'));
+
+            // Sort by rating (high to low)
+            deals.sort((a, b) => {
+                const ratingA = parseFloat(a.getAttribute('data-rating')) || 0;
+                const ratingB = parseFloat(b.getAttribute('data-rating')) || 0;
+                return ratingB - ratingA; // Descending order
+            });
+
+            // Reorder in DOM
+            deals.forEach(deal => container.appendChild(deal));
+        }
+    </script>
+    <script src="/js/deals-dynamic.js?v=20251007"></script>
+    <script src="/js/meta-companion-tracking.js?v=20251007"></script>
+    <script src="/js/ga-external-tracking.js?v=20251115"></script>
+</body>
+</html>

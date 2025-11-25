@@ -203,5 +203,19 @@
       "description": "Advanced AI platforms for photorealistic adult content generation and interactive experiences (18+ only). High-quality AI porn creation and interactive adult chat.",
       "breadcrumb": "AI Porn Platforms"
     }
+  },
+  "dealsPage": {
+    "title": "AI Chat & Companion Platform Deals",
+    "subtitle": "Save big on premium AI chat platforms and AI companion subscriptions with exclusive deals and discount codes for the best AI chat experiences",
+    "tryButton": "Try",
+    "claimDeal": "Claim Deal",
+    "bestFor": "Best For",
+    "infoTitle": "How Our AI Chat Deals Work",
+    "infoText": "We partner directly with AI chat platforms and AI companion services to bring you exclusive discounts on premium AI chat subscriptions. All AI chat deals are verified and updated regularly. Simply click on any deal to activate the AI chat platform discount - prices will be automatically adjusted at checkout.",
+    "noteTitle": "Note:",
+    "noteText": "Deals and discounts are subject to change and may have limited availability. We recommend acting quickly on offers you're interested in. All prices shown are in USD unless otherwise specified.",
+    "loading": "Loading exclusive deals...",
+    "noDeals": "No active deals at the moment",
+    "checkBack": "Check back soon for new exclusive offers!"
   }
 }

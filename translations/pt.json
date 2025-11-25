@@ -161,6 +161,10 @@
     "more-companions-coming": "Mais AI Companions Em Breve",
     "browse-categories": "Explorar Categorias"
   },
+  "gallery": {
+    "warningText": "Esta galeria contém conteúdo NSFW sem censura destinado apenas a adultos (18+).",
+    "showContent": "Mostrar Conteúdo, Tenho 18+"
+  },
   "news": {
     "title": "Notícias e Insights",
     "articles": {

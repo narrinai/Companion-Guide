@@ -188,7 +188,13 @@ exports.handler = async (event, context) => {
         const featuresSource = fields.features || baseCompanion.features;
         if (featuresSource) {
           try {
-            features = typeof featuresSource === 'string' ? JSON.parse(featuresSource) : featuresSource;
+            if (typeof featuresSource === 'string') {
+              // Sanitize JSON string: replace control characters with spaces
+              const sanitized = featuresSource.replace(/[\x00-\x1F\x7F]/g, ' ');
+              features = JSON.parse(sanitized);
+            } else {
+              features = featuresSource;
+            }
           } catch (e) {
             console.error('Error parsing features for', name);
           }
@@ -328,7 +334,9 @@ exports.handler = async (event, context) => {
               try {
                 // If it's a string, parse it as JSON
                 if (typeof translation.features === 'string') {
-                  item.features = JSON.parse(translation.features);
+                  // Sanitize JSON string: replace control characters with spaces
+                  const sanitized = translation.features.replace(/[\x00-\x1F\x7F]/g, ' ');
+                  item.features = JSON.parse(sanitized);
                 } else {
                   item.features = translation.features;
                 }
