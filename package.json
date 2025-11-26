@@ -4,6 +4,7 @@
   "description": "AI Companion Reviews website",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.67.0",
+    "@sendgrid/mail": "^8.1.6",
     "airtable": "^0.12.2",
     "dotenv": "^17.2.3",
     "jsdom": "^27.0.1",

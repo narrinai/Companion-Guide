@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsubscribe - CompanionGuide.ai</title>
+    <meta name="description" content="Unsubscribe from CompanionGuide.ai newsletter emails.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNT274T4LT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NNT274T4LT');
+    </script>
+
+    <style>
+        .unsubscribe-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .unsubscribe-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+        .unsubscribe-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        .unsubscribe-message {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        .unsubscribe-email {
+            display: inline-block;
+            background: var(--bg-secondary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            word-break: break-all;
+        }
+        .unsubscribe-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-unsubscribe {
+            background: #dc3545;
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-unsubscribe:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+        .btn-unsubscribe:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-cancel {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 14px 32px;
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-cancel:hover {
+            background: var(--bg-tertiary);
+        }
+        .status-message {
+            margin-top: 24px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            display: none;
+        }
+        .status-message.success {
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            color: #28a745;
+        }
+        .status-message.error {
+            background: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            color: #dc3545;
+        }
+        .success-content {
+            display: none;
+        }
+        .success-content.show {
+            display: block;
+        }
+        .initial-content.hide {
+            display: none;
+        }
+        .resubscribe-note {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-primary);
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .resubscribe-note a {
+            color: var(--accent-primary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <h1><a href="/"><img src="/images/logo.svg" alt="CompanionGuide.ai" width="32" height="32">CompanionGuide.ai</a></h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <div class="mobile-menu-logo">
+                    <img src="/images/logo.svg" alt="CompanionGuide.ai" width="48" height="48">
+                    <span>CompanionGuide.ai</span>
+                </div>
+                <li><a href="/">Home</a></li>
+                <li><a href="/companions">Companions</a></li>
+                <li><a href="/categories">Categories</a></li>
+                <li><a href="/news">News & Guides</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="nav-menu-overlay" onclick="toggleMenu()"></div>
+    </header>
+
+    <main class="container">
+        <div class="unsubscribe-container">
+            <!-- Initial Content -->
+            <div class="initial-content" id="initialContent">
+                <div class="unsubscribe-icon">📧</div>
+                <h1 class="unsubscribe-title">Unsubscribe from Newsletter</h1>
+                <p class="unsubscribe-message">
+                    We're sorry to see you go! Click the button below to unsubscribe from our newsletter emails.
+                    You will no longer receive deals, updates, and AI companion news from CompanionGuide.ai.
+                </p>
+
+                <div class="unsubscribe-email" id="emailDisplay">Loading...</div>
+
+                <div class="unsubscribe-actions">
+                    <button class="btn-unsubscribe" id="unsubscribeBtn" onclick="handleUnsubscribe()">
+                        Unsubscribe
+                    </button>
+                    <a href="/" class="btn-cancel">Keep Subscription</a>
+                </div>
+
+                <div class="status-message" id="statusMessage"></div>
+            </div>
+
+            <!-- Success Content -->
+            <div class="success-content" id="successContent">
+                <div class="unsubscribe-icon">✅</div>
+                <h1 class="unsubscribe-title">Successfully Unsubscribed</h1>
+                <p class="unsubscribe-message">
+                    You have been removed from our mailing list. You will no longer receive newsletter emails from CompanionGuide.ai.
+                </p>
+                <div class="unsubscribe-actions">
+                    <a href="/" class="btn-cancel">Return to Homepage</a>
+                </div>
+            </div>
+
+            <div class="resubscribe-note">
+                Changed your mind? You can always <a href="/contact">contact us</a> to resubscribe to our newsletter.
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Companion Guide</h4>
+                    <p>Your trusted source for AI companion reviews and guides</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/companions">Companions</a></li>
+                        <li><a href="/categories">Categories</a></li>
+                        <li><a href="/news">News & Guides</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CompanionGuide. All rights reserved. | <a href="/2257-compliance" style="color: #888; text-decoration: underline;">Compliance Statement</a> | <a href="/dmca" style="color: #888; text-decoration: underline;">DMCA & Copyright</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Get email from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        const emailDisplay = document.getElementById('emailDisplay');
+        const unsubscribeBtn = document.getElementById('unsubscribeBtn');
+
+        if (email) {
+            emailDisplay.textContent = decodeURIComponent(email);
+        } else {
+            emailDisplay.textContent = 'No email specified';
+            unsubscribeBtn.disabled = true;
+            showStatus('No email address provided. Please use the unsubscribe link from your email.', 'error');
+        }
+
+        async function handleUnsubscribe() {
+            if (!email) return;
+
+            unsubscribeBtn.disabled = true;
+            unsubscribeBtn.textContent = 'Processing...';
+
+            try {
+                const response = await fetch('/.netlify/functions/unsubscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: decodeURIComponent(email) })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Show success content
+                    document.getElementById('initialContent').classList.add('hide');
+                    document.getElementById('successContent').classList.add('show');
+
+                    // Track unsubscribe event
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'newsletter_unsubscribe', {
+                            'event_category': 'engagement',
+                            'event_label': email
+                        });
+                    }
+                } else {
+                    showStatus(data.error || 'Failed to unsubscribe. Please try again.', 'error');
+                    unsubscribeBtn.disabled = false;
+                    unsubscribeBtn.textContent = 'Unsubscribe';
+                }
+            } catch (error) {
+                console.error('Unsubscribe error:', error);
+                showStatus('An error occurred. Please try again later.', 'error');
+                unsubscribeBtn.disabled = false;
+                unsubscribeBtn.textContent = 'Unsubscribe';
+            }
+        }
+
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.textContent = message;
+            statusEl.className = 'status-message ' + type;
+            statusEl.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

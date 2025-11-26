@@ -56,16 +56,18 @@ exports.handler = async (event, context) => {
       sort: [{ field: 'rating', direction: 'desc' }]
     }).all();
 
-    const deals = dealsRecords.map(record => ({
-      name: record.fields.name,
-      slug: record.fields.slug,
-      logo_url: record.fields.logo_url,
-      rating: record.fields.rating,
-      deal_description: record.fields.deal_description,
-      deal_badge: record.fields.deal_badge,
-      short_description: record.fields.short_description,
-      website_url: record.fields.website_url
-    }));
+    const deals = dealsRecords
+      .map(record => ({
+        name: record.fields.name,
+        slug: record.fields.slug,
+        logo_url: record.fields.logo_url,
+        rating: record.fields.rating,
+        deal_description: record.fields.deal_description,
+        deal_badge: record.fields.deal_badge,
+        short_description: record.fields.short_description,
+        website_url: record.fields.website_url
+      }))
+      .filter(d => d.slug !== 'simone' && d.slug !== 'dream-companion');
 
     // Fetch Companion of the Month
     const cotmRecords = await base(process.env.AIRTABLE_TABLE_ID_CG).select({
@@ -95,14 +97,36 @@ exports.handler = async (event, context) => {
         name: record.fields.name,
         slug: record.fields.slug,
         logo_url: record.fields.logo_url,
+        rating: record.fields.rating,
+        best_for: record.fields.best_for,
         website_url: record.fields.website_url
       }))
       .filter(c => c.slug !== 'simone' && c.slug !== 'dream-companion');
 
+    // Latest articles (manually maintained - update when adding new articles)
+    const latestArticles = [
+      {
+        slug: 'best-ai-porn-companions-2025',
+        title: 'Best AI Porn Companions 2025: Complete Guide',
+        excerpt: 'Discover the top-rated AI adult platforms with our comprehensive comparison guide.'
+      },
+      {
+        slug: 'character-ai-alternatives-complete-guide-2025',
+        title: 'Character AI Alternatives: Complete Guide 2025',
+        excerpt: 'Explore the best Character AI alternatives with unrestricted conversations and advanced features.'
+      },
+      {
+        slug: 'crushon-ai-alternatives-complete-guide-2025',
+        title: 'CrushOn AI Alternatives: Complete Guide 2025',
+        excerpt: 'Find the best CrushOn AI alternatives for immersive AI companion experiences.'
+      }
+    ];
+
     console.log('Data fetched:', {
       deals: deals.length,
       companionOfTheMonth: !!companionOfTheMonth,
-      featuredCompanions: featuredCompanions.length
+      featuredCompanions: featuredCompanions.length,
+      latestArticles: latestArticles.length
     });
 
     // Generate email HTML
@@ -110,6 +134,7 @@ exports.handler = async (event, context) => {
       deals,
       companionOfTheMonth,
       featuredCompanions,
+      latestArticles,
       recipientEmail: email
     });
 
