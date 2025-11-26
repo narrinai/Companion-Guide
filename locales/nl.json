@@ -385,5 +385,15 @@
     "loading": "Exclusieve deals laden...",
     "noDeals": "Momenteel geen actieve deals",
     "checkBack": "Kom binnenkort terug voor nieuwe exclusieve aanbiedingen!"
+  },
+  "newsletter": {
+    "title": "Ontvang Exclusieve AI Companion Deals",
+    "subtitle": "Tot 70% korting op premium AI companions.",
+    "placeholder": "Vul je e-mail in",
+    "button": "Ontvang Nu",
+    "privacy": "Geen spam, alleen deals. Altijd opzegbaar.",
+    "subscribing": "Inschrijven...",
+    "subscribed": "✓ Ingeschreven!",
+    "tryAgain": "Probeer Opnieuw"
   }
 }

@@ -468,6 +468,90 @@ header .nav-menu {
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
+/* Newsletter Signup Card */
+.newsletter-signup-card {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 1.5px solid rgba(59, 130, 246, 0.3);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.newsletter-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.newsletter-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.newsletter-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.newsletter-input {
+    flex: 1;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.newsletter-input::placeholder {
+    color: var(--text-muted);
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.newsletter-button {
+    padding: 0.5rem 1rem;
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.newsletter-button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.newsletter-button:disabled {
+    background: #6b7280;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.newsletter-privacy {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
 /* Mobile: More compact */
 @media (max-width: 768px) {
     .cotm-award-card {
@@ -528,6 +612,19 @@ header .nav-menu {
         font-size: 0.75rem;
         padding: 0.4rem 0.6rem;
     }
+
+    /* Newsletter mobile */
+    .newsletter-signup-card {
+        padding: 1rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-button {
+        width: 100%;
+    }
 }
 
 header nav a:not(h1 a) {
@@ -560,14 +657,14 @@ main {
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: var(--space-6) 0 var(--space-6) 0;
+    padding: var(--space-4) 0 var(--space-3) 0;
     background-color: var(--bg-secondary);
 }
 
 .hero h1 {
     font-size: clamp(2.5rem, 6vw, 3.5rem);
     font-weight: 700;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-2);
     color: var(--text-primary);
 }
 
@@ -575,13 +672,13 @@ main {
     font-size: 1.125rem;
     color: var(--text-secondary);
     max-width: 600px;
-    margin: 0 auto var(--space-8);
+    margin: 0 auto var(--space-3);
     line-height: 1.7;
 }
 
 /* Category Tags Section */
 .category-tags-section {
-    margin: var(--space-8) 0 var(--space-6) 0;
+    margin: var(--space-4) 0 var(--space-6) 0;
 }
 
 .category-tags-wrapper {

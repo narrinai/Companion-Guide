@@ -396,6 +396,18 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 </div>
             </div>
 
+            <!-- Newsletter Signup -->
+            <div class="newsletter-signup-card">
+                <div class="newsletter-icon">📧</div>
+                <h3 class="newsletter-title" data-i18n="newsletter.title">Get Exclusive AI Companion Deals</h3>
+                <p class="newsletter-subtitle" data-i18n="newsletter.subtitle">Up to 70% off on premium AI companions.</p>
+                <form class="newsletter-form" id="homepage-newsletter-form">
+                    <input type="email" name="email" data-i18n-placeholder="newsletter.placeholder" placeholder="Enter your email" required class="newsletter-input">
+                    <button type="submit" class="newsletter-button" data-i18n="newsletter.button">Receive Now</button>
+                </form>
+                <p class="newsletter-privacy" data-i18n="newsletter.privacy">No spam, just deals. Unsubscribe anytime.</p>
+            </div>
+
             <div class="section-header">
                 <h2>Latest AI Companion News</h2>
                 <p>Stay updated with the latest news and insights from the AI companion industry</p>
@@ -1106,6 +1118,67 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 // Hide all tags if there's an error
                 document.querySelectorAll('[data-companion-index]').forEach(tag => tag.remove());
             }
+        }
+
+        // Homepage Newsletter Form Handler
+        const homepageNewsletterForm = document.getElementById('homepage-newsletter-form');
+        if (homepageNewsletterForm) {
+            homepageNewsletterForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const emailInput = this.querySelector('input[name="email"]');
+                const submitButton = this.querySelector('button[type="submit"]');
+                const email = emailInput.value.trim();
+
+                if (!email) return;
+
+                // Disable form while submitting
+                submitButton.disabled = true;
+                submitButton.textContent = 'Subscribing...';
+
+                try {
+                    const response = await fetch('/.netlify/functions/send-newsletter', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, sendTest: false })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        emailInput.value = '';
+                        submitButton.textContent = '✓ Subscribed!';
+                        submitButton.style.background = '#16a34a';
+
+                        // Track with Meta Pixel
+                        if (typeof fbq !== 'undefined') {
+                            fbq('track', 'Subscribe', { currency: 'USD', value: 0 });
+                        }
+
+                        // Track with GA4
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'newsletter_signup', { method: 'homepage_sidebar' });
+                        }
+
+                        setTimeout(() => {
+                            submitButton.textContent = 'Receive Now';
+                            submitButton.style.background = '';
+                            submitButton.disabled = false;
+                        }, 3000);
+                    } else {
+                        throw new Error(data.error || 'Subscription failed');
+                    }
+                } catch (error) {
+                    console.error('Newsletter signup error:', error);
+                    submitButton.textContent = 'Try Again';
+                    submitButton.style.background = '#dc2626';
+                    setTimeout(() => {
+                        submitButton.textContent = 'Receive Now';
+                        submitButton.style.background = '';
+                        submitButton.disabled = false;
+                    }, 2000);
+                }
+            });
         }
     </script>
     <script src="/faq-interactions.js"></script>

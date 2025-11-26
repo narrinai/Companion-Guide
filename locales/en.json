@@ -217,5 +217,15 @@
     "loading": "Loading exclusive deals...",
     "noDeals": "No active deals at the moment",
     "checkBack": "Check back soon for new exclusive offers!"
+  },
+  "newsletter": {
+    "title": "Get Exclusive AI Companion Deals",
+    "subtitle": "Up to 70% off on premium AI companions.",
+    "placeholder": "Enter your email",
+    "button": "Receive Now",
+    "privacy": "No spam, just deals. Unsubscribe anytime.",
+    "subscribing": "Subscribing...",
+    "subscribed": "✓ Subscribed!",
+    "tryAgain": "Try Again"
   }
 }

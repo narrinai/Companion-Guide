@@ -330,7 +330,7 @@ class CompanionManager {
       const hasOurDreamAI = allCompanions.some(comp => comp.slug === 'ourdream-ai');
       if (featuredCards.length >= 4 && hasOurDreamAI) {
         console.log('🎯 Inserting advertisement card after 4th companion on index page (5th position)');
-        featuredCards.splice(4, 0, this.generateAdvertisementCard());
+        featuredCards.splice(4, 0, this.generateAdvertisementCard(allCompanions));
       }
 
       container.innerHTML = featuredCards.join('');
@@ -376,25 +376,6 @@ class CompanionManager {
     });
 
     container.innerHTML = cards.join('');
-  }
-
-  generateAdvertisementCard() {
-    console.log('🎬 Generating advertisement card with video');
-    return `
-      <article class="companion-product-card advertisement-card">
-        <div class="ad-badge">Sponsored</div>
-        <a href="https://www.df4qnp8trk.com/3CQWRGN/9B9DM/?uid=36&sub5=companionguide" target="_blank" rel="noopener" class="ad-video-container">
-          <video autoplay loop muted playsinline class="ad-video">
-            <source src="/videos/950x250-ourdream-ai-video-companionguide.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </a>
-        <div class="product-actions">
-          <a href="https://www.df4qnp8trk.com/3CQWRGN/9B9DM/?uid=36&sub5=companionguide" class="btn-primary ad-cta-primary" target="_blank">Try OurDream AI</a>
-          <a href="https://www.df4qnp8trk.com/3CQWRGN/9B9DM/?uid=36&sub5=companionguide" class="btn-secondary ad-cta-secondary" target="_blank">Visit Website</a>
-        </div>
-      </article>
-    `;
   }
 
   generateCategoryBadges(companion, index) {
@@ -586,15 +567,33 @@ class CompanionManager {
     return Array(count).fill(skeleton).join('');
   }
 
-  generateAdvertisementCard(allCompanions) {
+  generateAdvertisementCard(allCompanions = null) {
     console.log('🎬 Generating advertisement card for companions page');
 
+    // Use provided companions or fall back to cached companions
+    const companions = allCompanions || this.companions || [];
+
     // Find OurDream AI companion data
-    const ourdreamCompanion = allCompanions.find(comp => comp.slug === 'ourdream-ai');
+    const ourdreamCompanion = companions.find(comp => comp.slug === 'ourdream-ai');
 
     if (!ourdreamCompanion) {
-      console.warn('OurDream AI companion not found');
-      return '';
+      console.warn('OurDream AI companion not found, using fallback ad');
+      // Fallback to simple video ad
+      return `
+        <article class="companion-card advertisement-card">
+          <div class="product-badge spotlight-badge">Companion Spotlight</div>
+          <a href="https://ourdream.ai/?via=companionguide" target="_blank" rel="noopener" class="ad-video-container">
+            <video autoplay loop muted playsinline class="ad-video">
+              <source src="/videos/950x250-ourdream-ai-video-companionguide-v2.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </a>
+          <div class="card-actions">
+            <a href="https://ourdream.ai/?via=companionguide" class="btn-primary" target="_blank" rel="noopener">Try OurDream AI</a>
+            <a href="/companions/ourdream-ai" class="btn-secondary">Read Review</a>
+          </div>
+        </article>
+      `;
     }
 
     // Get i18n translations

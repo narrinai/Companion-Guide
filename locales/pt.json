@@ -591,5 +591,15 @@
     "loading": "Carregando ofertas exclusivas...",
     "noDeals": "Nenhuma oferta ativa no momento",
     "checkBack": "Volte em breve para novas ofertas exclusivas!"
+  },
+  "newsletter": {
+    "title": "Receba Ofertas Exclusivas de AI Companion",
+    "subtitle": "Até 70% de desconto em AI companions premium.",
+    "placeholder": "Digite seu e-mail",
+    "button": "Receber Agora",
+    "privacy": "Sem spam, apenas ofertas. Cancele quando quiser.",
+    "subscribing": "Inscrevendo...",
+    "subscribed": "✓ Inscrito!",
+    "tryAgain": "Tentar Novamente"
   }
 }

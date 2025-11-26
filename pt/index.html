@@ -398,6 +398,18 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 </div>
             </div>
 
+            <!-- Newsletter Signup -->
+            <div class="newsletter-signup-card">
+                <div class="newsletter-icon">📧</div>
+                <h3 class="newsletter-title" data-i18n="newsletter.title">Receba ofertas exclusivas de AI Companion</h3>
+                <p class="newsletter-subtitle" data-i18n="newsletter.subtitle">Até 70% de desconto em AI companions premium.</p>
+                <form class="newsletter-form" id="homepage-newsletter-form">
+                    <input type="email" name="email" data-i18n-placeholder="newsletter.placeholder" placeholder="Digite seu e-mail" required class="newsletter-input">
+                    <button type="submit" class="newsletter-button" data-i18n="newsletter.button">Receber agora</button>
+                </form>
+                <p class="newsletter-privacy" data-i18n="newsletter.privacy">Sem spam, só ofertas. Cancele a qualquer momento.</p>
+            </div>
+
             <div class="section-header">
                 <h2 data-i18n="sections.latestNews">Últimas Notícias e Guias</h2>
                 <p data-i18n="sections.latestNewsDescription">Mantenha-se atualizado com as últimas notícias e insights da indústria de companion IA</p>
@@ -1033,6 +1045,73 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             } catch (error) {
                 console.error('Error loading OurDream AI data:', error);
             }
+        }
+
+        // Homepage Newsletter Form Handler
+        const homepageNewsletterForm = document.getElementById('homepage-newsletter-form');
+        if (homepageNewsletterForm) {
+            homepageNewsletterForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const emailInput = this.querySelector('input[name="email"]');
+                const submitButton = this.querySelector('button[type="submit"]');
+                const email = emailInput.value.trim();
+
+                if (!email) return;
+
+                // Get i18n translations
+                const subscribingText = window.i18n && window.i18n.t ? window.i18n.t('newsletter.subscribing') : 'Subscribing...';
+                const subscribedText = window.i18n && window.i18n.t ? window.i18n.t('newsletter.subscribed') : '✓ Subscribed!';
+                const tryAgainText = window.i18n && window.i18n.t ? window.i18n.t('newsletter.tryAgain') : 'Try Again';
+                const buttonText = window.i18n && window.i18n.t ? window.i18n.t('newsletter.button') : 'Receive Now';
+
+                // Disable form while submitting
+                submitButton.disabled = true;
+                submitButton.textContent = subscribingText;
+
+                try {
+                    const response = await fetch('/.netlify/functions/send-newsletter', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, sendTest: false })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        emailInput.value = '';
+                        submitButton.textContent = subscribedText;
+                        submitButton.style.background = '#16a34a';
+
+                        // Track with Meta Pixel
+                        if (typeof fbq !== 'undefined') {
+                            fbq('track', 'Subscribe', { currency: 'USD', value: 0 });
+                        }
+
+                        // Track with GA4
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'newsletter_signup', { method: 'homepage_sidebar' });
+                        }
+
+                        setTimeout(() => {
+                            submitButton.textContent = buttonText;
+                            submitButton.style.background = '';
+                            submitButton.disabled = false;
+                        }, 3000);
+                    } else {
+                        throw new Error(data.error || 'Subscription failed');
+                    }
+                } catch (error) {
+                    console.error('Newsletter signup error:', error);
+                    submitButton.textContent = tryAgainText;
+                    submitButton.style.background = '#dc2626';
+                    setTimeout(() => {
+                        submitButton.textContent = buttonText;
+                        submitButton.style.background = '';
+                        submitButton.disabled = false;
+                    }, 2000);
+                }
+            });
         }
     </script>
     <script src="/faq-interactions.js"></script>
