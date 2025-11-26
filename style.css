@@ -479,8 +479,13 @@ header .nav-menu {
 }
 
 .newsletter-icon {
-    font-size: 2rem;
     margin-bottom: 0.5rem;
+    color: #3b82f6;
+}
+
+.newsletter-icon .icon {
+    width: 32px;
+    height: 32px;
 }
 
 .newsletter-title {
@@ -550,6 +555,62 @@ header .nav-menu {
     font-size: 0.75rem;
     color: var(--text-muted);
     margin: 0;
+}
+
+/* Newsletter visibility - mobile only version hidden on desktop */
+.newsletter-mobile-only {
+    display: none;
+}
+
+/* Categories grid - 2 columns on mobile */
+@media (max-width: 768px) {
+    .newsletter-mobile-only {
+        display: block;
+        margin-top: 1.5rem;
+    }
+
+    .newsletter-desktop-only {
+        display: none;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
+    }
+
+    .category-card {
+        padding: 0.75rem !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .category-card h3 {
+        font-size: 0.75rem !important;
+        line-height: 1.2 !important;
+        margin-top: 0.5rem !important;
+    }
+
+    .category-card p {
+        display: none;
+    }
+
+    .category-card .category-stats {
+        font-size: 0.7rem !important;
+        margin-top: auto !important;
+    }
+
+    .category-icon {
+        width: 36px !important;
+        height: 36px !important;
+        margin: 0 auto !important;
+    }
+
+    .category-icon .icon {
+        width: 20px !important;
+        height: 20px !important;
+    }
 }
 
 /* Mobile: More compact */
@@ -1118,14 +1179,29 @@ main .companions-grid {
 }
 
 .companion-card .pricing-section {
-    margin-bottom: var(--space-4);
+    display: none;
 }
 
 .companion-card .price-main {
-    font-size: 1.125rem;
-    font-weight: 700;
+    display: none;
+}
+
+.companion-card .price-badge {
+    font-size: 0.85rem;
+    font-weight: 600;
     color: var(--accent-blue);
-    margin-bottom: var(--space-1);
+    margin-top: 0.25rem;
+}
+
+.product-price-badge {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-top: 0.25rem;
+}
+
+.product-pricing {
+    display: none;
 }
 
 .companion-card .price-note {
@@ -2880,10 +2956,10 @@ footer {
 
 /* Category Pages G2-Style */
 .category-hero-section {
-    padding: var(--space-8) var(--space-6) var(--space-12) var(--space-6);
+    padding: var(--space-6) var(--space-6) var(--space-6) var(--space-6);
     background-color: var(--bg-secondary);
     border-radius: var(--radius-2xl);
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-6);
 }
 
 .category-hero-section h1 {

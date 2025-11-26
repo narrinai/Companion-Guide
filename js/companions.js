@@ -265,10 +265,6 @@ class CompanionManager {
 
         ${this.generateFeatureHighlights(companion.features)}
 
-        <div class="pricing-section">
-          <div class="price-main">${pricing.replace('<p class="price">', '').replace('</p>', '')}</div>
-        </div>
-
         ${bestFor ? `<div class="best-for-section">
           <span class="best-for-label">${bestForLabel}</span> ${bestFor}
         </div>` : ''}
@@ -437,7 +433,6 @@ class CompanionManager {
               <span class="rating-score">${companion.rating}/10</span>
               <span class="rating-count">${reviewCountText}</span>
             </div>
-            <p class="product-tagline">${companion.short_description || 'AI companion platform'}</p>
           </div>
         </div>
 
@@ -445,11 +440,6 @@ class CompanionManager {
           <p class="product-description">${companion.description || companion.short_description || 'AI companion platform'}</p>
 
           ${this.generateCategoryFeatureHighlights(companion.features)}
-
-          <div class="product-pricing">
-            <div class="pricing-main">${pricing.replace('<p class="price">', '').replace('</p>', '')}</div>
-            <div class="pricing-sub">Premium plans available</div>
-          </div>
 
           <div class="product-actions">
             <a href="../companions/${slug}" class="btn-primary">Read Review</a>

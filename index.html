@@ -269,6 +269,18 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                             <div class="skeleton-text skeleton-price"></div>
                         </div>
                     </div>
+
+                    <!-- Newsletter Signup (Mobile Only) -->
+                    <div class="newsletter-signup-card newsletter-mobile-only">
+                        <div class="newsletter-icon"><svg class="icon icon-lg"><use href="#icon-email"/></svg></div>
+                        <h3 class="newsletter-title" data-i18n="newsletter.title">Get Exclusive AI Companion Deals</h3>
+                        <p class="newsletter-subtitle" data-i18n="newsletter.subtitle">Up to 70% off on premium AI companions.</p>
+                        <form class="newsletter-form" id="mobile-newsletter-form">
+                            <input type="email" name="email" data-i18n-placeholder="newsletter.placeholder" placeholder="Enter your email" required class="newsletter-input">
+                            <button type="submit" class="newsletter-button" data-i18n="newsletter.button">Receive Now</button>
+                        </form>
+                        <p class="newsletter-privacy" data-i18n="newsletter.privacy">No spam, just deals. Unsubscribe anytime.</p>
+                    </div>
                 </section>
 
                 <!-- Categories Section -->
@@ -396,9 +408,9 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 </div>
             </div>
 
-            <!-- Newsletter Signup -->
-            <div class="newsletter-signup-card">
-                <div class="newsletter-icon">📧</div>
+            <!-- Newsletter Signup (Desktop Only) -->
+            <div class="newsletter-signup-card newsletter-desktop-only">
+                <div class="newsletter-icon"><svg class="icon icon-lg"><use href="#icon-email"/></svg></div>
                 <h3 class="newsletter-title" data-i18n="newsletter.title">Get Exclusive AI Companion Deals</h3>
                 <p class="newsletter-subtitle" data-i18n="newsletter.subtitle">Up to 70% off on premium AI companions.</p>
                 <form class="newsletter-form" id="homepage-newsletter-form">
@@ -1120,10 +1132,10 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             }
         }
 
-        // Homepage Newsletter Form Handler
-        const homepageNewsletterForm = document.getElementById('homepage-newsletter-form');
-        if (homepageNewsletterForm) {
-            homepageNewsletterForm.addEventListener('submit', async function(e) {
+        // Newsletter Form Handler - handles both desktop and mobile forms
+        function setupNewsletterForm(form) {
+            if (!form) return;
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
                 const emailInput = this.querySelector('input[name="email"]');
@@ -1180,6 +1192,10 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 }
             });
         }
+
+        // Setup both desktop and mobile newsletter forms
+        setupNewsletterForm(document.getElementById('homepage-newsletter-form'));
+        setupNewsletterForm(document.getElementById('mobile-newsletter-form'));
     </script>
     <script src="/faq-interactions.js"></script>
 </body>

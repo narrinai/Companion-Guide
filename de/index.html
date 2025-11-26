@@ -265,6 +265,18 @@ fbq('track', 'PageView');
                             <div class="skeleton-text skeleton-price"></div>
                         </div>
                     </div>
+
+                    <!-- Newsletter Signup (Mobile Only) -->
+                    <div class="newsletter-signup-card newsletter-mobile-only">
+                        <div class="newsletter-icon"><svg class="icon icon-lg"><use href="#icon-email"/></svg></div>
+                        <h3 class="newsletter-title" data-i18n="newsletter.title">Erhalten Sie exklusive AI Companion Angebote</h3>
+                        <p class="newsletter-subtitle" data-i18n="newsletter.subtitle">Bis zu 70% Rabatt auf Premium AI Companions.</p>
+                        <form class="newsletter-form" id="mobile-newsletter-form">
+                            <input type="email" name="email" data-i18n-placeholder="newsletter.placeholder" placeholder="E-Mail eingeben" required class="newsletter-input">
+                            <button type="submit" class="newsletter-button" data-i18n="newsletter.button">Jetzt erhalten</button>
+                        </form>
+                        <p class="newsletter-privacy" data-i18n="newsletter.privacy">Kein Spam, nur Angebote. Jederzeit abmelden.</p>
+                    </div>
                 </section>
 
                 <!-- Categories Section -->
@@ -392,9 +404,9 @@ fbq('track', 'PageView');
                 </div>
             </div>
 
-            <!-- Newsletter Signup -->
-            <div class="newsletter-signup-card">
-                <div class="newsletter-icon">📧</div>
+            <!-- Newsletter Signup (Desktop Only) -->
+            <div class="newsletter-signup-card newsletter-desktop-only">
+                <div class="newsletter-icon"><svg class="icon icon-lg"><use href="#icon-email"/></svg></div>
                 <h3 class="newsletter-title" data-i18n="newsletter.title">Erhalten Sie exklusive AI Companion Angebote</h3>
                 <p class="newsletter-subtitle" data-i18n="newsletter.subtitle">Bis zu 70% Rabatt auf Premium AI Companions.</p>
                 <form class="newsletter-form" id="homepage-newsletter-form">
@@ -1041,10 +1053,10 @@ fbq('track', 'PageView');
             }
         }
 
-        // Homepage Newsletter Form Handler
-        const homepageNewsletterForm = document.getElementById('homepage-newsletter-form');
-        if (homepageNewsletterForm) {
-            homepageNewsletterForm.addEventListener('submit', async function(e) {
+        // Newsletter Form Handler - handles both desktop and mobile forms
+        function setupNewsletterForm(form) {
+            if (!form) return;
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
                 const emailInput = this.querySelector('input[name="email"]');
@@ -1107,6 +1119,10 @@ fbq('track', 'PageView');
                 }
             });
         }
+
+        // Setup both desktop and mobile newsletter forms
+        setupNewsletterForm(document.getElementById('homepage-newsletter-form'));
+        setupNewsletterForm(document.getElementById('mobile-newsletter-form'));
     </script>
     <script src="/faq-interactions.js"></script>
 
