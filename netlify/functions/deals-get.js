@@ -1,6 +1,6 @@
 /**
  * Netlify Function: deals-get
- * Fetches active deals from Airtable (keeps API token server-side)
+ * Fetches active deals from Airtable Companion_Translations table
  */
 
 const Airtable = require('airtable');
@@ -20,14 +20,26 @@ exports.handler = async function(event, context) {
   }
 
   try {
-    // Initialize Airtable with environment variable
+    // Check environment variables
+    if (!process.env.AIRTABLE_TOKEN_CG) {
+      throw new Error('AIRTABLE_TOKEN_CG environment variable is not set');
+    }
+    if (!process.env.AIRTABLE_BASE_ID_CG) {
+      throw new Error('AIRTABLE_BASE_ID_CG environment variable is not set');
+    }
+    if (!process.env.AIRTABLE_TABLE_ID_CG) {
+      throw new Error('AIRTABLE_TABLE_ID_CG environment variable is not set');
+    }
+
+    // Initialize Airtable
     const base = new Airtable({
-      apiKey: process.env.AIRTABLE_TOKEN
-    }).base(process.env.AIRTABLE_BASE_ID || 'appUwBhZ6sR4Grnbg');
+      apiKey: process.env.AIRTABLE_TOKEN_CG
+    }).base(process.env.AIRTABLE_BASE_ID_CG);
 
-    const table = base('Companions');
+    // Use the base Companions table (where deal_active field lives)
+    const table = base(process.env.AIRTABLE_TABLE_ID_CG);
 
-    // Fetch active deals
+    // Fetch active deals - filter by deal_active and exclude hidden
     const records = await table.select({
       filterByFormula: 'AND({deal_active} = TRUE(), {status} != "Hidden")',
       sort: [{ field: 'rating', direction: 'desc' }]

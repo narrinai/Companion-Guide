@@ -9,6 +9,8 @@ class FloatingCTAManager {
     this.dismissed = false;
     this.storageKey = 'floatingCTADismissed';
     this.cotmData = null;
+    this.featuredCompanionSlug = null;
+    this.isFeaturedCompanion = false;
     this.init();
   }
 
@@ -23,8 +25,11 @@ class FloatingCTAManager {
       }
     }
 
-    // Fetch COTM data from Airtable
-    await this.fetchCOTMData();
+    // Check for article-specific featured companion override
+    this.featuredCompanionSlug = document.body.dataset.featuredCompanion;
+
+    // Fetch companion data (featured or COTM)
+    await this.fetchCompanionData();
 
     if (this.cotmData) {
       this.createCTA();
@@ -32,7 +37,7 @@ class FloatingCTAManager {
     }
   }
 
-  async fetchCOTMData() {
+  async fetchCompanionData() {
     try {
       // Wait for companionManager to be available (with timeout)
       let attempts = 0;
@@ -57,14 +62,26 @@ class FloatingCTAManager {
         });
       }
 
-      // Find companion with is_month = true
+      // Check if there's a featured companion override for this article
+      if (this.featuredCompanionSlug) {
+        this.cotmData = allCompanions.find(c => c.slug === this.featuredCompanionSlug);
+        if (this.cotmData) {
+          this.isFeaturedCompanion = true;
+          console.log(`Floating CTA: Using featured companion "${this.cotmData.name}" for this article`);
+          return;
+        } else {
+          console.warn(`Featured companion "${this.featuredCompanionSlug}" not found, falling back to COTM`);
+        }
+      }
+
+      // Default: Find companion with is_month = true
       this.cotmData = allCompanions.find(c => c.is_month === true);
 
       if (!this.cotmData) {
         console.warn('No Companion of the Month found');
       }
     } catch (error) {
-      console.error('Error fetching COTM data for floating CTA:', error);
+      console.error('Error fetching companion data for floating CTA:', error);
     }
   }
 
@@ -75,19 +92,22 @@ class FloatingCTAManager {
     this.cta = document.createElement('div');
     this.cta.className = 'floating-cta';
 
-    // Get data from COTM
+    // Get data from companion
     const name = this.cotmData.name || 'Companion';
     const slug = this.cotmData.slug || '';
     const rating = this.cotmData.rating || 0;
-    const logo = this.cotmData.logo || `/images/screenshots/${slug}-review.png`;
+    const logo = this.cotmData.logo_url || this.cotmData.logo || `/images/logos/${slug}.png`;
     const websiteUrl = this.cotmData.website_url || '#';
+
+    // Header text depends on whether it's a featured companion or COTM
+    const headerText = this.isFeaturedCompanion ? 'Featured in this Article' : 'Companion of the Month';
 
     // Generate star rating (convert 0-10 scale to 0-5 stars)
     const fullStars = Math.floor(rating / 2);
     const stars = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
 
     this.cta.innerHTML = `
-      <div class="floating-cta-header">Companion of the Month</div>
+      <div class="floating-cta-header">${headerText}</div>
       <div class="floating-cta-content">
         <img src="${logo}" alt="${this.escapeHtml(name)}" class="floating-cta-logo">
         <div class="floating-cta-info">
@@ -173,14 +193,17 @@ class FloatingCTAManager {
 
   trackClick(action) {
     const companionName = this.cotmData ? this.cotmData.name : 'Unknown';
+    const ctaType = this.isFeaturedCompanion ? 'Featured Companion' : 'Companion of the Month';
+    const eventName = this.isFeaturedCompanion ? 'featured_floating_cta_click' : 'cotm_floating_cta_click';
 
     // Track with Google Analytics if available
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'cotm_floating_cta_click', {
-        event_category: 'Companion of the Month',
+      gtag('event', eventName, {
+        event_category: ctaType,
         event_label: companionName,
         companion_name: companionName,
         action: action,
+        cta_type: ctaType,
         value: 1
       });
     }
@@ -188,8 +211,8 @@ class FloatingCTAManager {
     // Track with Facebook Pixel if available
     if (typeof fbq !== 'undefined') {
       fbq('track', 'Lead', {
-        content_name: `COTM Floating CTA - ${companionName} - ${action}`,
-        content_category: 'Companion of the Month',
+        content_name: `${ctaType} Floating CTA - ${companionName} - ${action}`,
+        content_category: ctaType,
         value: 1.00,
         currency: 'USD'
       });
