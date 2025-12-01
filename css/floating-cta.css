@@ -47,11 +47,12 @@
 }
 
 .floating-cta-logo {
-    width: 48px;
+    width: 72px;
     height: 48px;
     border-radius: 8px;
-    object-fit: cover;
+    object-fit: contain;
     flex-shrink: 0;
+    background: #0f1419;
 }
 
 .floating-cta-info {
@@ -155,7 +156,7 @@
     }
 
     .floating-cta-logo {
-        width: 42px;
+        width: 64px;
         height: 42px;
     }
 
