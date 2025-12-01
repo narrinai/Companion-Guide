@@ -130,25 +130,58 @@ class CompanionManager {
     return `<div class="product-badge">${firstBadge}</div>`;
   }
 
-  generateFeatureHighlights(features) {
-    if (!features || features.length === 0) return '';
-
+  generateFeatureHighlights(features, companion = null) {
     // Handle if features is a string (JSON)
-    let featureList = features;
+    let featureList = features || [];
     if (typeof features === 'string') {
       try {
         featureList = JSON.parse(features);
       } catch (e) {
-        return '';
+        featureList = [];
       }
     }
 
-    // Ensure featureList is an array and has items
-    if (!Array.isArray(featureList) || featureList.length === 0) {
+    // Ensure featureList is an array
+    if (!Array.isArray(featureList)) {
+      featureList = [];
+    }
+
+    // Generate preview image from gallery_images if companion data is provided
+    let previewFeatureItem = '';
+    if (companion && companion.gallery_images) {
+      let galleryImages = companion.gallery_images;
+      if (typeof galleryImages === 'string') {
+        try {
+          galleryImages = JSON.parse(galleryImages);
+        } catch (e) {
+          galleryImages = [];
+        }
+      }
+      if (Array.isArray(galleryImages) && galleryImages.length > 0 && galleryImages[0].url) {
+        const isUncensored = companion.is_uncensored === true;
+        const companionUrl = window.i18n && window.i18n.initialized
+          ? window.i18n.getCompanionUrl(companion.slug)
+          : `/companions/${companion.slug}`;
+        previewFeatureItem = `
+          <a href="${companionUrl}" class="feature-item feature-preview${isUncensored ? ' nsfw-blur' : ''}">
+            <img src="${galleryImages[0].url}" alt="${companion.name} preview" loading="lazy">
+            ${isUncensored ? `<div class="nsfw-overlay">
+              <svg class="nsfw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>18+</span>
+            </div>` : ''}
+          </a>
+        `;
+      }
+    }
+
+    // If no features and no preview, return empty
+    if (featureList.length === 0 && !previewFeatureItem) {
       return '';
     }
 
-    const featureItems = featureList.map(feature => `
+    const featureItems = featureList.slice(0, 4).map(feature => `
       <div class="feature-item">
         <div class="feature-icon">${feature.icon || '⭐'}</div>
         <div class="feature-title">${feature.title}</div>
@@ -156,8 +189,11 @@ class CompanionManager {
       </div>
     `).join('');
 
+    const hasPreview = previewFeatureItem ? ' has-preview' : '';
+
     return `
-      <div class="feature-highlights">
+      <div class="feature-highlights${hasPreview}">
+        ${previewFeatureItem}
         ${featureItems}
       </div>
     `;
@@ -263,7 +299,7 @@ class CompanionManager {
         </div>
         <p class="description">${companion.description || companion.short_description || 'AI companion platform'}</p>
 
-        ${this.generateFeatureHighlights(companion.features)}
+        ${this.generateFeatureHighlights(companion.features, companion)}
 
         ${bestFor ? `<div class="best-for-section">
           <span class="best-for-label">${bestForLabel}</span> ${bestFor}

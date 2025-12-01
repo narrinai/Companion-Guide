@@ -1318,6 +1318,124 @@ body:has(.article-hero) {
     }
 }
 
+/* Companion Ranking Container (for article comparison tables) */
+.companion-ranking-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.companion-ranking-container .ranking-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    transition: border-color 0.2s ease;
+}
+
+.companion-ranking-container .ranking-item:hover {
+    border-color: var(--accent-primary);
+}
+
+.companion-ranking-container .ranking-position {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    min-width: 50px;
+    text-align: center;
+}
+
+.companion-ranking-container .ranking-logo {
+    flex-shrink: 0;
+}
+
+.companion-ranking-container .ranking-logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+}
+
+.companion-ranking-container .ranking-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.companion-ranking-container .ranking-info h4 {
+    margin: 0 0 var(--space-1) 0;
+    font-size: 1.1rem;
+}
+
+.companion-ranking-container .ranking-info h4 a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.companion-ranking-container .ranking-info h4 a:hover {
+    color: var(--accent-primary);
+}
+
+.companion-ranking-container .ranking-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.companion-ranking-container .ranking-rating {
+    text-align: center;
+}
+
+.companion-ranking-container .rating-score {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+}
+
+.companion-ranking-container .ranking-cta .btn-small {
+    display: inline-block;
+    padding: var(--space-2) var(--space-3);
+    background: var(--accent-primary);
+    color: white;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.companion-ranking-container .ranking-cta .btn-small:hover {
+    background: var(--accent-secondary);
+}
+
+@media (max-width: 768px) {
+    .companion-ranking-container .ranking-item {
+        flex-wrap: wrap;
+        gap: var(--space-3);
+    }
+
+    .companion-ranking-container .ranking-position {
+        font-size: 1.25rem;
+        min-width: 40px;
+    }
+
+    .companion-ranking-container .ranking-logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .companion-ranking-container .ranking-info {
+        flex: 1 1 60%;
+    }
+
+    .companion-ranking-container .ranking-rating,
+    .companion-ranking-container .ranking-cta {
+        flex: 0 0 auto;
+    }
+}
+
 /* Companion Summary Cards */
 .companion-summary-card {
     background: var(--bg-secondary);

@@ -515,26 +515,6 @@ class CategoryCompanions {
                 features = [];
             }
 
-            let featureHighlights = '';
-            if (features.length > 0) {
-                featureHighlights = `
-                    <div class="feature-highlights">
-                        ${features.slice(0, 4).map(feature => {
-                            const icon = feature.icon || '⭐';
-                            const title = feature.title || feature;
-                            const desc = feature.description || '';
-                            return `
-                                <div class="feature-item">
-                                    <div class="feature-icon">${icon}</div>
-                                    <div class="feature-title">${title}</div>
-                                    <div class="feature-desc">${desc}</div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                `;
-            }
-
             // Generate pricing info - always show "Free trial"
             const freeTrialText = window.i18n && window.i18n.initialized
                 ? window.i18n.t('companionCard.freeTrial')
@@ -562,6 +542,55 @@ class CategoryCompanions {
                 ? window.i18n.t('companionCard.reviews')
                 : 'reviews';
 
+            // Get preview image from gallery_images (first image) as feature item
+            let previewFeatureItem = '';
+            if (companion.gallery_images) {
+                let galleryImages = companion.gallery_images;
+                if (typeof galleryImages === 'string') {
+                    try {
+                        galleryImages = JSON.parse(galleryImages);
+                    } catch (e) {
+                        galleryImages = [];
+                    }
+                }
+                if (Array.isArray(galleryImages) && galleryImages.length > 0 && galleryImages[0].url) {
+                    const isUncensored = companion.is_uncensored === true;
+                    previewFeatureItem = `
+                        <a href="${companionUrl}" class="feature-item feature-preview${isUncensored ? ' nsfw-blur' : ''}">
+                            <img src="${galleryImages[0].url}" alt="${companion.name} preview" loading="lazy">
+                            ${isUncensored ? `<div class="nsfw-overlay">
+                                <svg class="nsfw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                                <span>18+</span>
+                            </div>` : ''}
+                        </a>
+                    `;
+                }
+            }
+
+            // Build feature highlights with preview as first item
+            let featureHighlightsWithPreview = '';
+            if (features.length > 0 || previewFeatureItem) {
+                featureHighlightsWithPreview = `
+                    <div class="feature-highlights${previewFeatureItem ? ' has-preview' : ''}">
+                        ${previewFeatureItem}
+                        ${features.slice(0, 4).map(feature => {
+                            const icon = feature.icon || '⭐';
+                            const title = feature.title || feature;
+                            const desc = feature.description || '';
+                            return `
+                                <div class="feature-item">
+                                    <div class="feature-icon">${icon}</div>
+                                    <div class="feature-title">${title}</div>
+                                    <div class="feature-desc">${desc}</div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            }
+
             return `
                 <article class="companion-card${companion.featured ? ' featured' : ''}">
                     ${productBadge ? `<div class="product-badge">${productBadge}</div>` : ''}
@@ -577,7 +606,7 @@ class CategoryCompanions {
                         </div>
                     </div>
                     <p class="description">${description}</p>
-                    ${featureHighlights}
+                    ${featureHighlightsWithPreview}
                     ${pricingInfo}
                     ${bestFor ? `<div class="best-for-section">
                         <span class="best-for-label">${bestForLabel}</span> ${bestFor}

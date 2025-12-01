@@ -1,6 +1,7 @@
 /**
  * Compact Floating CTA for Companion Pages
  * Automatically extracts companion name and URL from the page
+ * Includes "Best Alternative" button linking to high-rated companions (9.4+)
  */
 
 class CompanionFloatingCTA {
@@ -9,6 +10,33 @@ class CompanionFloatingCTA {
     this.dismissed = false;
     this.storageKey = 'companionCTADismissed';
     this.companionData = null;
+    this.alternativeData = null;
+
+    // High-rated alternatives (9.4+ rating)
+    this.highRatedCompanions = [
+      {
+        name: 'Hammer AI',
+        slug: 'hammer-ai',
+        rating: '9.4',
+        url: 'https://gumroad.com/a/748605075/zrsof',
+        logo: '/images/logos/hammer-ai.png'
+      },
+      {
+        name: 'Secrets AI',
+        slug: 'secrets-ai',
+        rating: '9.6',
+        url: 'http://secrets.ai/?spicy=true&gender=female&fpr=companionguide',
+        logo: '/images/logos/secrets-ai.png'
+      },
+      {
+        name: 'Soulkyn AI',
+        slug: 'soulkyn-ai',
+        rating: '9.4',
+        url: 'https://soulkyn.com/?_go=companionguide',
+        logo: '/images/logos/soulkyn-ai.png'
+      }
+    ];
+
     this.init();
   }
 
@@ -25,6 +53,9 @@ class CompanionFloatingCTA {
 
     // Extract companion data from the page
     this.extractCompanionData();
+
+    // Select a random high-rated alternative (excluding current companion)
+    this.selectAlternative();
 
     if (this.companionData) {
       this.createCTA();
@@ -54,39 +85,69 @@ class CompanionFloatingCTA {
       logoSrc = logo.src;
     }
 
+    // Get current slug from URL
+    const currentSlug = window.location.pathname.split('/').pop().replace('.html', '');
+
     // Only create CTA if we have both name and URL
     if (name && url) {
       this.companionData = {
         name: name,
         url: url,
-        logo: logoSrc
+        logo: logoSrc,
+        slug: currentSlug
       };
+    }
+  }
+
+  selectAlternative() {
+    if (!this.companionData) return;
+
+    // Filter out current companion from alternatives
+    const availableAlternatives = this.highRatedCompanions.filter(
+      c => c.slug !== this.companionData.slug
+    );
+
+    // Pick a random alternative
+    if (availableAlternatives.length > 0) {
+      const randomIndex = Math.floor(Math.random() * availableAlternatives.length);
+      this.alternativeData = availableAlternatives[randomIndex];
     }
   }
 
   createCTA() {
     if (!this.companionData) return;
 
-    // Create the floating CTA element
-    this.cta = document.createElement('a');
-    this.cta.href = this.companionData.url;
-    this.cta.target = '_blank';
-    this.cta.rel = 'noopener noreferrer';
+    // Create the floating CTA container (div instead of anchor for multiple buttons)
+    this.cta = document.createElement('div');
     this.cta.className = 'companion-floating-cta';
 
-    // Build CTA HTML with COTM-style design
+    // Build alternative button HTML if available
+    let alternativeHTML = '';
+    if (this.alternativeData) {
+      alternativeHTML = `
+        <a href="${this.alternativeData.url}" target="_blank" rel="noopener noreferrer" class="companion-floating-cta-btn companion-floating-cta-btn-alt" data-action="alternative" data-alternative-slug="${this.alternativeData.slug}">
+          Best Alternative <span class="companion-floating-cta-arrow">→</span>
+        </a>
+      `;
+    }
+
+    // Build CTA HTML with two buttons
     let ctaHTML = `
-      <div class="companion-floating-cta-content">
+      <div class="companion-floating-cta-header">
         ${this.companionData.logo ?
           `<img src="${this.companionData.logo}" alt="${this.escapeHtml(this.companionData.name)}" class="companion-floating-cta-icon">` :
           ''
         }
         <div class="companion-floating-cta-info">
-          <div class="companion-floating-cta-label">Visit</div>
           <div class="companion-floating-cta-name">${this.escapeHtml(this.companionData.name)}</div>
         </div>
       </div>
-      <span class="companion-floating-cta-arrow">→</span>
+      <div class="companion-floating-cta-buttons">
+        <a href="${this.companionData.url}" target="_blank" rel="noopener noreferrer" class="companion-floating-cta-btn companion-floating-cta-btn-primary" data-action="visit">
+          Visit Website <span class="companion-floating-cta-arrow">→</span>
+        </a>
+        ${alternativeHTML}
+      </div>
       <span class="companion-floating-cta-close" data-close="true">×</span>
     `;
 
@@ -110,12 +171,21 @@ class CompanionFloatingCTA {
     // Hide CTA when near footer
     window.addEventListener('scroll', () => this.handleScroll());
 
-    // Track clicks
-    this.cta.addEventListener('click', (e) => {
-      if (!e.target.hasAttribute('data-close')) {
-        this.trackClick();
-      }
-    });
+    // Track clicks on primary button
+    const primaryBtn = this.cta.querySelector('[data-action="visit"]');
+    if (primaryBtn) {
+      primaryBtn.addEventListener('click', () => {
+        this.trackClick('visit');
+      });
+    }
+
+    // Track clicks on alternative button
+    const altBtn = this.cta.querySelector('[data-action="alternative"]');
+    if (altBtn) {
+      altBtn.addEventListener('click', () => {
+        this.trackAlternativeClick();
+      });
+    }
   }
 
   handleScroll() {
@@ -218,6 +288,61 @@ class CompanionFloatingCTA {
       fbq('track', 'Lead', {
         content_name: `COTM Floating CTA - ${this.companionData.name}`,
         content_category: 'Companion of the Month',
+        value: 1.00,
+        currency: 'USD'
+      });
+    }
+  }
+
+  trackAlternativeClick() {
+    if (!this.alternativeData) return;
+
+    // Get domain from URL
+    let domain = '';
+    try {
+      const urlObj = new URL(this.alternativeData.url);
+      domain = urlObj.hostname.replace('www.', '');
+    } catch (e) {
+      domain = 'unknown';
+    }
+
+    // Build event parameters
+    const eventParams = {
+      event_category: 'outbound',
+      event_label: `${this.alternativeData.slug}_floating_cta_best_alternative`,
+      link_text: 'Best Alternative - ' + this.alternativeData.name,
+      link_url: this.alternativeData.url,
+      link_domain: domain,
+      page_location: window.location.pathname,
+      companion_name: this.alternativeData.name,
+      companion_slug: this.alternativeData.slug,
+      companion_rating: this.alternativeData.rating,
+      link_type: 'floating_cta_alternative',
+      link_position: 'floating_cta',
+      link_identifier: `${this.alternativeData.slug}_floating_cta_best_alternative`,
+      source_companion: this.companionData.name,
+      value: 1
+    };
+
+    // Track outbound click
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'outbound_click', eventParams);
+      gtag('event', 'best_alternative_click', {
+        event_category: 'Best Alternative',
+        event_label: this.alternativeData.name,
+        alternative_name: this.alternativeData.name,
+        alternative_slug: this.alternativeData.slug,
+        alternative_rating: this.alternativeData.rating,
+        source_companion: this.companionData.name,
+        value: 1
+      });
+    }
+
+    // Track with Facebook Pixel if available
+    if (typeof fbq !== 'undefined') {
+      fbq('track', 'Lead', {
+        content_name: `Best Alternative - ${this.alternativeData.name}`,
+        content_category: 'Best Alternative',
         value: 1.00,
         currency: 'USD'
       });

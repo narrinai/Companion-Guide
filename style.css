@@ -1153,6 +1153,72 @@ main .companions-grid {
     margin-bottom: var(--space-4);
 }
 
+.companion-card .feature-highlights.has-preview {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.companion-card .feature-preview {
+    display: block;
+    padding: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+}
+
+.companion-card .feature-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.companion-card .feature-preview:hover img {
+    transform: scale(1.05);
+}
+
+.companion-card .feature-preview.nsfw-blur {
+    position: relative;
+}
+
+.companion-card .feature-preview.nsfw-blur img {
+    filter: blur(12px);
+    transform: scale(1.1);
+}
+
+.companion-card .feature-preview.nsfw-blur:hover img {
+    filter: blur(12px);
+    transform: scale(1.15);
+}
+
+.companion-card .feature-preview .nsfw-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.companion-card .feature-preview .nsfw-icon {
+    width: 28px;
+    height: 28px;
+    stroke: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.companion-card .feature-preview .nsfw-overlay span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .companion-card .feature-item {
     background-color: var(--bg-tertiary);
     border-radius: var(--radius-lg);
@@ -4146,7 +4212,16 @@ footer {
         grid-template-columns: 1fr 1fr;
         gap: var(--space-3);
     }
-    
+
+    .companion-card .feature-highlights.has-preview {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .companion-card .feature-preview {
+        grid-column: span 2;
+        height: 120px;
+    }
+
     .companion-card .feature-item {
         text-align: center;
         padding: var(--space-3);
