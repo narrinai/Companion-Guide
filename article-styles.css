@@ -1657,6 +1657,92 @@ body:has(.article-hero) {
     }
 }
 
+/* Platform Image Styling */
+.platform-image {
+    margin: var(--space-4) 0 var(--space-6) 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-primary);
+    position: relative;
+}
+
+.platform-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-height: 400px;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* NSFW Blur for uncensored content */
+.platform-image.nsfw-blur img {
+    filter: blur(12px);
+    transform: scale(1.1);
+}
+
+.platform-image.nsfw-blur:hover img {
+    filter: blur(4px);
+    transform: scale(1.05);
+}
+
+.platform-image .nsfw-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+.platform-image.nsfw-blur:hover .nsfw-overlay {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.platform-image .nsfw-icon {
+    width: 48px;
+    height: 48px;
+    stroke: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.platform-image .nsfw-overlay span {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+    .platform-image {
+        margin: var(--space-3) 0 var(--space-4) 0;
+        border-radius: 8px;
+    }
+
+    .platform-image img {
+        max-height: 250px;
+    }
+
+    .platform-image .nsfw-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .platform-image .nsfw-overlay span {
+        font-size: 0.875rem;
+    }
+}
+
 /* Mobile Readability Improvements */
 @media (max-width: 768px) {
     .article-content {
