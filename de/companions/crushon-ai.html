@@ -703,5 +703,22 @@ fbq('track', 'PageView');
 
     <script src="/js/companion-floating-cta.js?v=20251201"></script>
     <script src="/js/companion-gallery.js"></script>
+    <script>
+        // Initialize gallery with CrushOn AI screenshots
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryImages = [
+                { url: '/images/screenshots/crushon-ai-image-1.png', caption: 'CrushOn AI chat interface' },
+                { url: '/images/screenshots/crushon-ai-image-2.png', caption: 'CrushOn AI character selection' },
+                { url: '/images/screenshots/crushon-ai-image-3.png', caption: 'CrushOn AI roleplay experience' }
+            ];
+
+            if (galleryImages.length > 0 && document.getElementById('companionGallery')) {
+                new CompanionGallery('companionGallery', galleryImages, {
+                    isUncensored: true,
+                    websiteUrl: 'https://crushon.ai/'
+                });
+            }
+        });
+    </script>
 
 </body></html>
