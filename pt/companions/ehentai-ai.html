@@ -715,22 +715,4 @@ fbq('track', 'PageView');
     <script src="/js/companion-floating-cta.js?v=20251201"></script>
     <script src="/js/companion-gallery.js"></script>
 
-    <!-- Initialize gallery with local screenshots -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const galleryImages = [
-                { url: '/images/screenshots/ehentai-ai-review-image-gallery-1.png', caption: 'eHentai AI chat interface' },
-                { url: '/images/screenshots/ehentai-ai-review-image-gallery-2.png', caption: 'eHentai AI girlfriend experience' },
-                { url: '/images/screenshots/ehentai-ai-review-image-gallery-3.png', caption: 'eHentai AI fantasy scenarios' }
-            ];
-
-            if (galleryImages.length > 0 && document.getElementById('companionGallery')) {
-                new CompanionGallery('companionGallery', galleryImages, {
-                    isUncensored: false,
-                    websiteUrl: 'https://ehentai.ai/'
-                });
-            }
-        });
-    </script>
-
 </body></html>
