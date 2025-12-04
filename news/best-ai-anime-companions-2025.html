@@ -890,6 +890,16 @@
                                     `;
                                     el.appendChild(overlay);
                                 }
+                                // Make image clickable - wrap in link to website
+                                const img = el.querySelector('img');
+                                if (img && !img.parentElement.matches('a') && companion.website_url) {
+                                    const link = document.createElement('a');
+                                    link.href = companion.website_url;
+                                    link.target = '_blank';
+                                    link.rel = 'noopener noreferrer';
+                                    img.parentNode.insertBefore(link, img);
+                                    link.appendChild(img);
+                                }
                             } else {
                                 el.classList.remove('nsfw-blur');
                                 const existingOverlay = el.querySelector('.nsfw-overlay');

@@ -384,6 +384,26 @@ class CategoryCompanions {
         }
     }
 
+    isNsfwCategory() {
+        // Determine if current page is an NSFW category
+        let currentPath = window.location.pathname;
+        // Remove language prefix
+        currentPath = currentPath.replace(/^\/(nl|pt|de)\//, '/');
+
+        // NSFW categories that should show the BJ video
+        const nsfwCategories = [
+            '/categories/ai-porn-chat-platforms',
+            '/categories/ai-video-companions',
+            '/categories/adult-content-uncensored',
+            '/categories/adult-content-uncensored-companions',
+            '/categories/hentai-ai-chat-platforms',
+            '/categories/adult-image-generation',
+            '/categories/adult-image-generation-companions'
+        ];
+
+        return nsfwCategories.some(cat => currentPath.includes(cat));
+    }
+
     generateAdvertisementCard() {
         console.log('🎬 Generating advertisement card with video');
 
@@ -429,6 +449,13 @@ class CategoryCompanions {
             ? window.i18n.getCompanionUrl(slug)
             : `/companions/${slug}`;
 
+        // Choose video based on category type: BJ video for NSFW, V2 video for other categories
+        const isNsfw = this.isNsfwCategory();
+        const videoSrc = isNsfw
+            ? '/videos/950x250-ourdream-ai-video-companionguide-bj.mp4'
+            : '/videos/950x250-ourdream-ai-video-companionguide-v2.mp4';
+        console.log(`📹 Using ${isNsfw ? 'NSFW (BJ)' : 'SFW (V2)'} video for category`);
+
         return `
             <article class="companion-card advertisement-card">
                 <div class="product-badge spotlight-badge">Companion Spotlight</div>
@@ -446,7 +473,7 @@ class CategoryCompanions {
                 <p class="description">${description}</p>
                 <a href="${affiliateUrl}" target="_blank" rel="noopener" class="ad-video-container">
                     <video autoplay loop muted playsinline class="ad-video">
-                        <source src="/videos/950x250-ourdream-ai-video-companionguide-bj.mp4" type="video/mp4">
+                        <source src="${videoSrc}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </a>
@@ -619,11 +646,13 @@ class CategoryCompanions {
             `;
         });
 
-        // Insert advertisement card after 4th companion (index 4) - only if OurDream AI is in the list
-        const hasOurDreamAI = this.companions.some(comp => comp.slug === 'ourdream-ai');
-        if (companionCards.length >= 4 && hasOurDreamAI) {
+        // Insert advertisement card after 4th companion (position 5) - always show if enough companions
+        if (companionCards.length >= 4) {
             console.log('🎯 Inserting advertisement card after 4th companion (5th position)');
-            companionCards.splice(4, 0, this.generateAdvertisementCard());
+            const adCard = this.generateAdvertisementCard();
+            if (adCard) {
+                companionCards.splice(4, 0, adCard);
+            }
         }
 
         const html = companionCards.join('');
