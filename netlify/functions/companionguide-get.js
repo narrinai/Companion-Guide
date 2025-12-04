@@ -242,7 +242,8 @@ exports.handler = async (event, context) => {
           body_text: fields.body_text || '',
           faq: fields.faq || '',
           ready_to_try: fields.ready_to_try || fields.ready_try || '',
-          gallery_images: baseCompanion.gallery_images || ''
+          gallery_images: baseCompanion.gallery_images || '',
+          pros_cons: fields.pros_cons || ''
         };
       }
     });
