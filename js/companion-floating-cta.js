@@ -51,6 +51,20 @@ class CompanionFloatingCTA {
       }
     }
 
+    // Wait for i18n to be ready before creating CTA
+    if (window.i18n?.initialized) {
+      this.initCTA();
+    } else {
+      // Listen for i18n ready event
+      window.addEventListener('i18nTranslationsApplied', () => this.initCTA(), { once: true });
+      // Fallback: if i18n doesn't load within 2 seconds, proceed anyway
+      setTimeout(() => {
+        if (!this.cta) this.initCTA();
+      }, 2000);
+    }
+  }
+
+  initCTA() {
     // Extract companion data from the page
     this.extractCompanionData();
 
@@ -117,6 +131,10 @@ class CompanionFloatingCTA {
   createCTA() {
     if (!this.companionData) return;
 
+    // Get translated strings (fallback to English if i18n not available)
+    const visitWebsiteText = window.i18n?.t('floatingCta.visitWebsite') || 'Visit Website';
+    const bestAlternativeText = window.i18n?.t('floatingCta.bestAlternative') || 'Best Alternative';
+
     // Create the floating CTA container (div instead of anchor for multiple buttons)
     this.cta = document.createElement('div');
     this.cta.className = 'companion-floating-cta';
@@ -126,7 +144,7 @@ class CompanionFloatingCTA {
     if (this.alternativeData) {
       alternativeHTML = `
         <a href="${this.alternativeData.url}" target="_blank" rel="noopener noreferrer" class="companion-floating-cta-btn companion-floating-cta-btn-alt" data-action="alternative" data-alternative-slug="${this.alternativeData.slug}">
-          Best Alternative <span class="companion-floating-cta-arrow">→</span>
+          ${bestAlternativeText} <span class="companion-floating-cta-arrow">→</span>
         </a>
       `;
     }
@@ -144,7 +162,7 @@ class CompanionFloatingCTA {
       </div>
       <div class="companion-floating-cta-buttons">
         <a href="${this.companionData.url}" target="_blank" rel="noopener noreferrer" class="companion-floating-cta-btn companion-floating-cta-btn-primary" data-action="visit">
-          Visit Website <span class="companion-floating-cta-arrow">→</span>
+          ${visitWebsiteText} <span class="companion-floating-cta-arrow">→</span>
         </a>
         ${alternativeHTML}
       </div>

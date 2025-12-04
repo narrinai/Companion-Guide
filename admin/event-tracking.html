@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Tracking Registry - Admin</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* Password Protection Overlay */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .password-box {
+            background: #222;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .password-box h2 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .password-box p {
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .password-box input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .password-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .password-box button {
+            width: 100%;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .password-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .password-error {
+            color: #ff6b6b;
+            margin-top: 15px;
+            display: none;
+        }
+
+        /* Admin Content - Hidden by default */
+        .admin-content {
+            display: none;
+        }
+
+        /* Event Tables */
+        .event-section {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .event-section h2 {
+            color: #667eea;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-section h2 .badge {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .badge-ga4 {
+            background: #4285f4;
+            color: white;
+        }
+
+        .badge-meta {
+            background: #1877f2;
+            color: white;
+        }
+
+        .event-section > p {
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .event-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .event-table th {
+            background: #2a2a2a;
+            color: #fff;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #667eea;
+            white-space: nowrap;
+        }
+
+        .event-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #333;
+            color: #ccc;
+            vertical-align: top;
+        }
+
+        .event-table tr:hover td {
+            background: #252525;
+        }
+
+        .event-table code {
+            background: #333;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 12px;
+            color: #7dd3fc;
+            white-space: nowrap;
+        }
+
+        .event-table .file-link {
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .event-table .file-link:hover {
+            text-decoration: underline;
+        }
+
+        .event-table .description {
+            min-width: 500px;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        .event-table .trigger {
+            max-width: 150px;
+            font-size: 12px;
+        }
+
+        .event-table .params {
+            font-size: 11px;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .event-table .params code {
+            font-size: 10px;
+            padding: 2px 5px;
+            margin-right: 3px;
+        }
+
+        /* Platform badges in table */
+        .platform-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .platform-ga4 {
+            background: rgba(66, 133, 244, 0.2);
+            color: #4285f4;
+        }
+
+        .platform-meta {
+            background: rgba(24, 119, 242, 0.2);
+            color: #1877f2;
+        }
+
+        .platform-custom {
+            background: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+        }
+
+        /* Stats cards */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .stat-box .number {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-box .label {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Ad examples */
+        .ad-example {
+            background: #252525;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 3px solid #667eea;
+        }
+
+        .ad-example-title {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ad-example-title img {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+        }
+
+        .ad-example-details {
+            font-size: 12px;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .ad-example-details strong {
+            color: #ccc;
+        }
+
+        /* Last updated */
+        .last-updated-admin {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            padding: 20px;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+        }
+
+        /* Table scroll on mobile */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        /* Section divider */
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #333, transparent);
+            margin: 40px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .event-table {
+                font-size: 11px;
+            }
+
+            .event-table th,
+            .event-table td {
+                padding: 8px 10px;
+            }
+
+            .event-table .description {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Protection -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-box">
+            <h2>Admin Access</h2>
+            <p>Enter password to view event tracking registry</p>
+            <input type="password" id="passwordInput" placeholder="Password" onkeypress="if(event.key==='Enter')checkPassword()">
+            <button onclick="checkPassword()">Access</button>
+            <p class="password-error" id="passwordError">Incorrect password</p>
+        </div>
+    </div>
+
+    <!-- Admin Content -->
+    <div class="admin-content" id="adminContent">
+        <header>
+            <nav class="container">
+                <h1><a href="/"><img src="/images/logo.svg" alt="CompanionGuide.ai" width="32" height="32">CompanionGuide.ai</a></h1>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/companions">Companions</a></li>
+                    <li><a href="/news">News</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="container">
+            <section class="hero">
+                <h1>Event Tracking Registry</h1>
+                <p>Central documentation for all tracking events on CompanionGuide.ai</p>
+            </section>
+
+            <!-- Stats Overview -->
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="number">20</div>
+                    <div class="label">GA4 Events</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">7</div>
+                    <div class="label">Meta Pixel Events</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">10</div>
+                    <div class="label">Ad Placements</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">1</div>
+                    <div class="label">Active Advertiser</div>
+                </div>
+            </div>
+
+            <!-- GA4 Events -->
+            <section class="event-section">
+                <h2><span class="badge badge-ga4">GA4</span> Google Analytics 4 Events</h2>
+                <p>All events tracked via Google Analytics 4 (gtag.js). These events appear in GA4 under Reports > Events. Events marked "Auto" are automatically collected by GA4.</p>
+
+                <div class="table-wrapper">
+                <table class="event-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Event Name</th>
+                            <th>Description</th>
+                            <th>Trigger</th>
+                            <th>Source File</th>
+                            <th>Key Parameters</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Automatic GA4 Events -->
+                        <tr style="background: rgba(66, 133, 244, 0.05);">
+                            <td>1</td>
+                            <td><code>page_view</code></td>
+                            <td class="description">Enhanced page view event with additional context about the page type. Tracks companion detail pages, news articles, and category pages with relevant slugs and metadata. Also includes automatic GA4 page_view.</td>
+                            <td class="trigger">Automatically on every page load</td>
+                            <td><span class="file-link">js/ga-external-tracking.js</span><br><span class="file-link" style="color:#888;">+ GA4 Auto</span></td>
+                            <td class="params">
+                                <code>page_type</code> <code>companion_slug</code> <code>article_slug</code> <code>page_path</code>
+                            </td>
+                        </tr>
+                        <tr style="background: rgba(66, 133, 244, 0.05);">
+                            <td>2</td>
+                            <td><code>session_start</code></td>
+                            <td class="description">Automatically collected by GA4 when a user begins a new session on the website. A session starts when a user first visits or after 30 minutes of inactivity.</td>
+                            <td class="trigger">User begins a new session (automatic)</td>
+                            <td><span class="file-link" style="color:#888;">GA4 Auto</span></td>
+                            <td class="params">
+                                <code>ga_session_id</code> <code>ga_session_number</code>
+                            </td>
+                        </tr>
+                        <tr style="background: rgba(66, 133, 244, 0.05);">
+                            <td>3</td>
+                            <td><code>first_visit</code></td>
+                            <td class="description">Automatically collected by GA4 when a user visits the website for the first time. Used to identify new vs returning visitors.</td>
+                            <td class="trigger">User's first visit (automatic)</td>
+                            <td><span class="file-link" style="color:#888;">GA4 Auto</span></td>
+                            <td class="params">
+                                -
+                            </td>
+                        </tr>
+                        <tr style="background: rgba(66, 133, 244, 0.05);">
+                            <td>4</td>
+                            <td><code>click</code></td>
+                            <td class="description">Automatically collected by GA4 Enhanced Measurement for outbound link clicks. Tracks clicks on links that navigate away from the current domain.</td>
+                            <td class="trigger">Click on outbound link (GA4 Enhanced)</td>
+                            <td><span class="file-link" style="color:#888;">GA4 Auto</span></td>
+                            <td class="params">
+                                <code>link_url</code> <code>link_domain</code> <code>outbound</code>
+                            </td>
+                        </tr>
+                        <tr style="background: rgba(66, 133, 244, 0.05);">
+                            <td>5</td>
+                            <td><code>user_engagement</code></td>
+                            <td class="description">Automatically collected by GA4 when a user is actively engaged with the page (page is in focus and visible). Used to measure engaged sessions.</td>
+                            <td class="trigger">Page in focus for 10+ seconds (automatic)</td>
+                            <td><span class="file-link" style="color:#888;">GA4 Auto</span></td>
+                            <td class="params">
+                                <code>engagement_time_msec</code>
+                            </td>
+                        </tr>
+                        <tr style="background: rgba(66, 133, 244, 0.05);">
+                            <td>6</td>
+                            <td><code>scroll</code></td>
+                            <td class="description">Tracks scroll depth milestones to measure user engagement with page content. Custom implementation fires at 25%, 50%, 75%, 100%. GA4 also auto-collects at 90%.</td>
+                            <td class="trigger">Scroll to 25/50/75/100%</td>
+                            <td><span class="file-link">js/ga-external-tracking.js</span><br><span class="file-link" style="color:#888;">+ GA4 Auto (90%)</span></td>
+                            <td class="params">
+                                <code>scroll_depth</code> <code>page_location</code>
+                            </td>
+                        </tr>
+
+                        <!-- Custom Events -->
+                        <tr>
+                            <td>7</td>
+                            <td><code>outbound_click</code></td>
+                            <td class="description">Tracks all clicks on external links (affiliate links, companion websites, partner sites). This is the PRIMARY CONVERSION EVENT for tracking user interest in companion platforms. Enriched with Airtable companion data including rating, categories, featured status, and COTM status.</td>
+                            <td class="trigger">Click external link with target="_blank"</td>
+                            <td><span class="file-link">js/ga-external-tracking.js</span></td>
+                            <td class="params">
+                                <code>companion_name</code> <code>companion_slug</code> <code>companion_rating</code> <code>companion_categories</code> <code>companion_is_featured</code> <code>companion_is_cotm</code> <code>link_type</code> <code>link_position</code> <code>link_url</code> <code>link_domain</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><code>cta_click</code></td>
+                            <td class="description">Tracks clicks on internal CTA (Call-to-Action) buttons that navigate within the site. Distinguishes from outbound_click which tracks external links. Useful for measuring internal navigation and feature discovery.</td>
+                            <td class="trigger">Click on internal CTA button</td>
+                            <td><span class="file-link">js/ga-external-tracking.js</span></td>
+                            <td class="params">
+                                <code>button_text</code> <code>button_location</code> <code>button_destination</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><code>faq_interaction</code></td>
+                            <td class="description">Tracks user interactions with FAQ accordion items on companion review pages. Fires when a user opens or closes an FAQ question. Useful for understanding which questions users are most interested in and optimizing FAQ content.</td>
+                            <td class="trigger">Click FAQ accordion</td>
+                            <td><span class="file-link">faq-interactions.js</span></td>
+                            <td class="params">
+                                <code>event_label</code> (question text) <code>value</code> (1=open, 0=close)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><code>cotm_floating_cta_click</code></td>
+                            <td class="description">Tracks clicks on the Companion of the Month (COTM) floating CTA banner that appears on companion pages and news articles. This sticky banner at the bottom of the screen promotes the current month's featured companion (set via is_month=true in Airtable).</td>
+                            <td class="trigger">Click COTM floating CTA button</td>
+                            <td><span class="file-link">js/companion-floating-cta.js</span><br><span class="file-link">js/floating-cta.js</span></td>
+                            <td class="params">
+                                <code>companion_name</code> <code>companion_slug</code> <code>companion_rating</code> <code>is_cotm</code> <code>action</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td><code>cotm_index_click</code></td>
+                            <td class="description">Tracks clicks on the Companion of the Month card displayed on the homepage. This is a prominent placement showcasing the monthly featured companion with special styling and badge.</td>
+                            <td class="trigger">Click COTM card on homepage</td>
+                            <td><span class="file-link" style="color:#888;">Legacy/Inline</span></td>
+                            <td class="params">
+                                <code>companion_name</code> <code>companion_slug</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td><code>companion_floating_cta_click</code></td>
+                            <td class="description">Tracks clicks on the companion-specific floating CTA that appears on companion review pages. Shows the current companion being viewed with a "Visit Website" button for quick access.</td>
+                            <td class="trigger">Click floating CTA on companion page</td>
+                            <td><span class="file-link">js/companion-floating-cta.js</span></td>
+                            <td class="params">
+                                <code>companion_name</code> <code>companion_slug</code> <code>link_type</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td><code>ad_click</code></td>
+                            <td class="description">Tracks clicks specifically on advertisement placements (video ads, banner ads). Provides detailed information about which ad placement was clicked (news_feed, category_page) and what element (primary_button, secondary_button, video, name_link). Currently tracking OurDream AI ads.</td>
+                            <td class="trigger">Click on ad placement element</td>
+                            <td><span class="file-link">js/ad-tracking.js</span></td>
+                            <td class="params">
+                                <code>companion_name</code> <code>placement</code> <code>click_type</code> <code>button_text</code> <code>destination_url</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td><code>form_start</code></td>
+                            <td class="description">Tracks when a user starts filling out a form (contact form, newsletter form). Fires on first interaction with form fields. Useful for measuring form abandonment rates.</td>
+                            <td class="trigger">Focus on first form field</td>
+                            <td><span class="file-link" style="color:#888;">GA4 Enhanced / Legacy</span></td>
+                            <td class="params">
+                                <code>form_name</code> <code>form_id</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td><code>form_submit</code></td>
+                            <td class="description">Tracks all form submissions on the site including contact forms, review forms, and newsletter signups. Captures the form name/ID for identifying which form was submitted. Combined with form_start to measure completion rates.</td>
+                            <td class="trigger">Form submission</td>
+                            <td><span class="file-link">js/ga-external-tracking.js</span></td>
+                            <td class="params">
+                                <code>form_name</code> <code>page_location</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td><code>best_alternative_click</code></td>
+                            <td class="description">Tracks clicks on the "Best Alternative" button in the floating CTA on companion pages. This button links to a randomly selected high-rated companion (9.4+ rating: Hammer AI, Secrets AI, or Soulkyn AI) to offer users an alternative option when viewing any companion.</td>
+                            <td class="trigger">Click "Best Alternative" button</td>
+                            <td><span class="file-link">js/companion-floating-cta.js</span></td>
+                            <td class="params">
+                                <code>alternative_name</code> <code>alternative_slug</code> <code>alternative_rating</code> <code>source_companion</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td><code>deal_click</code></td>
+                            <td class="description">Tracks clicks on deal cards on the /deals page. Fires when a user clicks the primary CTA button to visit a companion's website from an active deal offer. Deals are managed via deal_active checkbox in Airtable.</td>
+                            <td class="trigger">Click deal CTA on /deals</td>
+                            <td><span class="file-link">js/deals.js</span></td>
+                            <td class="params">
+                                <code>event_category</code> (deals) <code>event_label</code> (companion slug)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td><code>featured_floating_cta_click</code></td>
+                            <td class="description">Tracks clicks on floating CTA when showing an article-specific featured companion (not COTM). Used on news articles where a specific companion is promoted via data-featured-companion attribute on the body tag.</td>
+                            <td class="trigger">Click featured companion CTA</td>
+                            <td><span class="file-link">js/floating-cta.js</span></td>
+                            <td class="params">
+                                <code>companion_name</code> <code>action</code> <code>cta_type</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td><code>newsletter_signup</code></td>
+                            <td class="description">Tracks successful newsletter subscriptions via the dedicated newsletter form. Fires ONLY after the Netlify function confirms the subscription was successful (not on form submit). Email is stored in Airtable.</td>
+                            <td class="trigger">Successful newsletter signup</td>
+                            <td><span class="file-link">js/newsletter-signup.js</span></td>
+                            <td class="params">
+                                <code>event_category</code> (engagement) <code>event_label</code> (email)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td><code>newsletter_unsubscribe</code></td>
+                            <td class="description">Tracks when a user unsubscribes from the newsletter. Fires when unsubscribe link is clicked or unsubscribe form is submitted.</td>
+                            <td class="trigger">Click unsubscribe link</td>
+                            <td><span class="file-link" style="color:#888;">Legacy/Email</span></td>
+                            <td class="params">
+                                <code>event_label</code> (email)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Meta Pixel Events -->
+            <section class="event-section">
+                <h2><span class="badge badge-meta">Meta</span> Meta Pixel Events</h2>
+                <p>Events tracked via Meta Pixel (fbq) for Facebook/Instagram advertising optimization and audience building.</p>
+
+                <div class="table-wrapper">
+                <table class="event-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Event Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Trigger</th>
+                            <th>Source File</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><code>PageView</code></td>
+                            <td><span class="platform-badge platform-meta">Standard</span></td>
+                            <td class="description">Automatic page view tracking. Fires on every page load. Used for building retargeting audiences and measuring traffic from Meta ads.</td>
+                            <td>Automatically on every page load (inline script in &lt;head&gt;)</td>
+                            <td><span class="file-link">Inline in HTML &lt;head&gt;</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><code>ViewContent</code></td>
+                            <td><span class="platform-badge platform-meta">Standard</span></td>
+                            <td class="description">Tracks when users view specific content pages (companion reviews, news articles). Includes content name, category, and IDs for product catalog integration.</td>
+                            <td>Page load on /companions/* or /news/* pages</td>
+                            <td><span class="file-link">js/meta-companion-tracking.js</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><code>Search</code></td>
+                            <td><span class="platform-badge platform-meta">Standard</span></td>
+                            <td class="description">Tracks search queries entered by users. Captures the search string for understanding user intent and optimizing search functionality.</td>
+                            <td>User presses Enter in a search input field</td>
+                            <td><span class="file-link">js/meta-companion-tracking.js</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><code>Lead</code></td>
+                            <td><span class="platform-badge platform-meta">Standard</span></td>
+                            <td class="description">Tracks lead generation events: contact form submissions, review submissions, and floating CTA clicks. Key conversion event for Meta ad optimization.</td>
+                            <td>Contact form submit, review form submit, or COTM/Featured floating CTA clicks</td>
+                            <td><span class="file-link">js/meta-form-tracking.js</span><br><span class="file-link">js/floating-cta.js</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><code>CompleteRegistration</code></td>
+                            <td><span class="platform-badge platform-meta">Standard</span></td>
+                            <td class="description">Tracks successful newsletter signups and registrations. Fires when a user completes the newsletter subscription process.</td>
+                            <td>Newsletter form submission (via form or checkbox in contact form)</td>
+                            <td><span class="file-link">js/meta-form-tracking.js</span></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><code>CompanionExternalClick</code></td>
+                            <td><span class="platform-badge platform-custom">Custom</span></td>
+                            <td class="description">Custom event tracking all external link clicks with companion context. Similar to GA4 outbound_click but optimized for Meta's event structure.</td>
+                            <td>Click on any external link with <code>target="_blank"</code></td>
+                            <td><span class="file-link">js/meta-companion-tracking.js</span></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><code>AdClick</code></td>
+                            <td><span class="platform-badge platform-custom">Custom</span></td>
+                            <td class="description">Custom event for tracking advertisement clicks specifically. Provides ad placement and click type context for measuring ad performance.</td>
+                            <td>Click on ad placement element</td>
+                            <td><span class="file-link">js/ad-tracking.js</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Current Advertisers -->
+            <section class="event-section">
+                <h2>Current Active Advertisers</h2>
+                <p>Advertisers currently running ad placements on CompanionGuide.ai</p>
+
+                <div class="ad-example">
+                    <div class="ad-example-title">
+                        <img src="/images/logos/ourdream-ai.png" alt="OurDream AI">
+                        OurDream AI
+                    </div>
+                    <div class="ad-example-details">
+                        <strong>Rating:</strong> 9.6/10<br>
+                        <strong>Ad Type:</strong> Video Ad (950x250px, MP4, autoplay, loop, muted)<br>
+                        <strong>Video File:</strong> /videos/950x250-ourdream-ai-video-companionguide-v2.mp4<br>
+                        <strong>Affiliate Link:</strong> https://ourdream.ai/?via=companionguide<br>
+                        <strong>Primary CTA:</strong> "Try OurDream AI"<br>
+                        <strong>Secondary CTA:</strong> "Visit Website"<br>
+                        <strong>Description:</strong> "Best for: NSFW AI sex chat, adult content creation & explicit videos"<br>
+                        <strong>Companion Page:</strong> /companions/ourdream-ai<br>
+                        <strong>Total Placements:</strong> 10 (6 on news.html, 4 on homepage variants)
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Ad Placements -->
+            <section class="event-section">
+                <h2>Ad Placements by Page</h2>
+                <p>All advertisement placements across the site. Each ad click triggers: <code>outbound_click</code> (GA4), <code>ad_click</code> (GA4), <code>CompanionExternalClick</code> (Meta), <code>AdClick</code> (Meta)</p>
+
+                <div class="table-wrapper">
+                <table class="event-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Page</th>
+                            <th>Element ID</th>
+                            <th>Advertiser</th>
+                            <th>Position / Context</th>
+                            <th>Ad Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><code>news.html</code></td>
+                            <td><code>news-ad-ourdream-1</code></td>
+                            <td>OurDream AI</td>
+                            <td>After article 5 ("Character.AI Bans Minors Following Wave of Teen Suicide Lawsuits")</td>
+                            <td>Video (950x250)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><code>news.html</code></td>
+                            <td><code>news-ad-ourdream-2</code></td>
+                            <td>OurDream AI</td>
+                            <td>After article 12 ("Best Crushon AI Alternatives 2025")</td>
+                            <td>Video (950x250)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><code>news.html</code></td>
+                            <td><code>news-ad-ourdream-3</code></td>
+                            <td>OurDream AI</td>
+                            <td>After article 18 ("Best Candy.AI Alternatives 2025")</td>
+                            <td>Video (950x250)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><code>news.html</code></td>
+                            <td><code>news-ad-ourdream-4</code></td>
+                            <td>OurDream AI</td>
+                            <td>After article 23 ("My Complete Hammer AI Experience After 4 Weeks")</td>
+                            <td>Video (950x250)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><code>news.html</code></td>
+                            <td><code>news-ad-ourdream-5</code></td>
+                            <td>OurDream AI</td>
+                            <td>After article 28 ("My Brutally Honest Replika AI Review After 7 Weeks")</td>
+                            <td>Video (950x250)</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><code>news.html</code></td>
+                            <td><code>news-ad-ourdream-6</code></td>
+                            <td>OurDream AI</td>
+                            <td>After article 33 ("AI App Replika Accused of Deceptive Marketing")</td>
+                            <td>Video (950x250)</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><code>index.html</code></td>
+                            <td><code>news-ad-ourdream</code></td>
+                            <td>OurDream AI</td>
+                            <td>Latest News section on English homepage</td>
+                            <td>Video (950x250)</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><code>de/index.html</code></td>
+                            <td><code>news-ad-ourdream</code></td>
+                            <td>OurDream AI</td>
+                            <td>Latest News section on German homepage</td>
+                            <td>Video (950x250)</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><code>nl/index.html</code></td>
+                            <td><code>news-ad-ourdream</code></td>
+                            <td>OurDream AI</td>
+                            <td>Latest News section on Dutch homepage</td>
+                            <td>Video (950x250)</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><code>pt/index.html</code></td>
+                            <td><code>news-ad-ourdream</code></td>
+                            <td>OurDream AI</td>
+                            <td>Latest News section on Portuguese homepage</td>
+                            <td>Video (950x250)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Tracking Files -->
+            <section class="event-section">
+                <h2>Tracking Files Overview</h2>
+                <p>JavaScript files responsible for event tracking</p>
+
+                <div class="table-wrapper">
+                <table class="event-table">
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>Platform</th>
+                            <th>Purpose</th>
+                            <th>Events</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>js/ga-external-tracking.js</code></td>
+                            <td><span class="platform-badge platform-ga4">GA4</span></td>
+                            <td>Main GA4 tracking script. Handles outbound link tracking with Airtable enrichment, scroll depth, form submissions, CTA clicks, and enhanced page views.</td>
+                            <td><code>outbound_click</code> <code>scroll</code> <code>form_submit</code> <code>cta_click</code> <code>page_view</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>js/ad-tracking.js</code></td>
+                            <td><span class="platform-badge platform-ga4">GA4</span> <span class="platform-badge platform-meta">Meta</span></td>
+                            <td>Dedicated ad click tracking. Uses event delegation to capture clicks on ad placements and sends to both GA4 and Meta Pixel.</td>
+                            <td><code>ad_click</code> (GA4) <code>AdClick</code> (Meta)</td>
+                        </tr>
+                        <tr>
+                            <td><code>js/meta-companion-tracking.js</code></td>
+                            <td><span class="platform-badge platform-meta">Meta</span></td>
+                            <td>Meta Pixel tracking for companion-related events. Handles ViewContent for companion/article pages, search tracking, and external link clicks.</td>
+                            <td><code>ViewContent</code> <code>Search</code> <code>CompanionExternalClick</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>js/meta-form-tracking.js</code></td>
+                            <td><span class="platform-badge platform-meta">Meta</span></td>
+                            <td>Meta Pixel form tracking. Captures contact form submissions as leads and newsletter signups as registrations.</td>
+                            <td><code>Lead</code> <code>CompleteRegistration</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>js/newsletter-signup.js</code></td>
+                            <td><span class="platform-badge platform-ga4">GA4</span></td>
+                            <td>Newsletter subscription handler. Submits to Netlify function and tracks successful signups in GA4.</td>
+                            <td><code>newsletter_signup</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>js/companion-floating-cta.js</code></td>
+                            <td><span class="platform-badge platform-ga4">GA4</span> <span class="platform-badge platform-meta">Meta</span></td>
+                            <td>Floating CTA on companion pages. Shows current companion + "Best Alternative" button linking to high-rated companions (Hammer AI, Secrets AI, Soulkyn AI).</td>
+                            <td><code>outbound_click</code> <code>cotm_floating_cta_click</code> <code>best_alternative_click</code> <code>Lead</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>js/floating-cta.js</code></td>
+                            <td><span class="platform-badge platform-ga4">GA4</span> <span class="platform-badge platform-meta">Meta</span></td>
+                            <td>Floating CTA on news articles. Shows COTM or article-specific featured companion with "Full Review" and "Visit Website" buttons.</td>
+                            <td><code>cotm_floating_cta_click</code> <code>featured_floating_cta_click</code> <code>Lead</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>js/deals.js</code></td>
+                            <td><span class="platform-badge platform-ga4">GA4</span></td>
+                            <td>Deals page dynamic loading. Fetches active deals from Airtable and tracks deal CTA clicks.</td>
+                            <td><code>deal_click</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>faq-interactions.js</code></td>
+                            <td><span class="platform-badge platform-ga4">GA4</span></td>
+                            <td>FAQ accordion functionality with accessibility support. Tracks which FAQ questions users open/close.</td>
+                            <td><code>faq_interaction</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </section>
+
+            <div class="last-updated-admin">
+                <p>Last updated: <strong>December 3, 2025</strong></p>
+                <p style="margin-top: 10px; font-size: 12px;">Update this page when adding new events, advertisers, or ad placements</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simple password protection (client-side only - for basic access control)
+        const ADMIN_PASSWORD = 'cg123!';
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('passwordError');
+
+            if (input.value === ADMIN_PASSWORD) {
+                document.getElementById('passwordOverlay').style.display = 'none';
+                document.getElementById('adminContent').style.display = 'block';
+                sessionStorage.setItem('adminAuth', 'true');
+            } else {
+                error.style.display = 'block';
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        // Check if already authenticated this session
+        if (sessionStorage.getItem('adminAuth') === 'true') {
+            document.getElementById('passwordOverlay').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+        }
+
+        // Focus password input on load
+        document.getElementById('passwordInput').focus();
+    </script>
+</body>
+</html>

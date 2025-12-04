@@ -77,7 +77,8 @@
     <link rel="apple-touch-icon" href="/images/logo.svg">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="/css/companion-floating-cta.css">
-    
+    <link rel="stylesheet" href="/css/companion-gallery.css">
+
     <!-- Google tag (gtag.js) -->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NNT274T4LT"></script>
     <script>
@@ -242,6 +243,11 @@ fbq('track', 'PageView');
                     <a href="https://character.ai" class="pricing-cta" target="_blank" data-i18n="companionCard.visitWebsite">Visit Website</a>
                 </div>
             </div>
+        </section>
+
+        <section class="companion-gallery container">
+            <h2 data-i18n="companion.gallery">Image Gallery</h2>
+            <div id="companionGallery"></div>
         </section>
 
         <section class="alternatives">
@@ -643,5 +649,24 @@ fbq('track', 'PageView');
     <script src="/js/ga-external-tracking.js?v=20251126"></script>
 
     <script src="/js/companion-floating-cta.js?v=20251201"></script>
+    <script src="/js/companion-gallery.js"></script>
+
+    <!-- Initialize gallery with local screenshots -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryImages = [
+                { url: '/images/screenshots/character-ai-review-image-gallery-1.png', caption: 'Character.AI chat interface' },
+                { url: '/images/screenshots/character-ai-review-image-gallery-2.png', caption: 'Character.AI character selection' },
+                { url: '/images/screenshots/character-ai-review-image-gallery-3.png', caption: 'Character.AI conversation example' }
+            ];
+
+            if (galleryImages.length > 0 && document.getElementById('companionGallery')) {
+                new CompanionGallery('companionGallery', galleryImages, {
+                    isUncensored: false,
+                    websiteUrl: 'https://character.ai/'
+                });
+            }
+        });
+    </script>
 
 </body></html>

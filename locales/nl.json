@@ -395,5 +395,9 @@
     "subscribing": "Inschrijven...",
     "subscribed": "✓ Ingeschreven!",
     "tryAgain": "Probeer Opnieuw"
+  },
+  "floatingCta": {
+    "visitWebsite": "Bezoek Website",
+    "bestAlternative": "Beste Alternatief"
   }
 }

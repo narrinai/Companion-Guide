@@ -601,5 +601,9 @@
     "subscribing": "Inscrevendo...",
     "subscribed": "✓ Inscrito!",
     "tryAgain": "Tentar Novamente"
+  },
+  "floatingCta": {
+    "visitWebsite": "Visitar Site",
+    "bestAlternative": "Melhor Alternativa"
   }
 }

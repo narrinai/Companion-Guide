@@ -451,5 +451,9 @@
     "subscribing": "Wird abonniert...",
     "subscribed": "✓ Abonniert!",
     "tryAgain": "Erneut Versuchen"
+  },
+  "floatingCta": {
+    "visitWebsite": "Website Besuchen",
+    "bestAlternative": "Beste Alternative"
   }
 }

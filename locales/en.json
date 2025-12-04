@@ -227,5 +227,9 @@
     "subscribing": "Subscribing...",
     "subscribed": "✓ Subscribed!",
     "tryAgain": "Try Again"
+  },
+  "floatingCta": {
+    "visitWebsite": "Visit Website",
+    "bestAlternative": "Best Alternative"
   }
 }

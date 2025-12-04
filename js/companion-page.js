@@ -59,17 +59,12 @@ class CompanionPageManager {
 
     /**
      * Update quick-facts paragraphs with hero_specs from Airtable
-     * Only runs on non-English pages (NL/PT)
+     * Runs on all pages including English
      */
     updateQuickFactsFromHeroSpecs() {
-        // Only run for non-English pages
-        if (!window.i18n || window.i18n.currentLang === 'en') {
-            return;
-        }
-
         // Check if companion data has hero_specs
         if (!this.companionData || !this.companionData.hero_specs) {
-            console.log('⚠️ No hero_specs available for translation');
+            console.log('⚠️ No hero_specs available');
             return;
         }
 
