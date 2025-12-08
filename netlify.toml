@@ -58,46 +58,51 @@
   to = "/nl/index.html"
   status = 200
 
-# Dutch individual companion pages -> Dutch HTML files (with data-i18n attributes)
-# CRITICAL: These must come BEFORE the main page redirects!
-[[redirects]]
-  from = "/nl/companions/:slug"
-  to = "/nl/companions/:slug.html"
-  status = 200
-  force = true
-
-# Dutch individual category pages -> Dutch HTML files (with data-i18n attributes)
-[[redirects]]
-  from = "/nl/categories/:slug"
-  to = "/nl/categories/:slug.html"
-  status = 200
-  force = true
-
 # Dutch main overview pages -> Dutch HTML files
+# CRITICAL: These must come BEFORE the slug patterns!
 [[redirects]]
   from = "/nl/companions"
   to = "/nl/companions.html"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/nl/categories"
   to = "/nl/categories.html"
   status = 200
+  force = true
+
+# Dutch individual companion pages -> Dutch HTML files (with data-i18n attributes)
+[[redirects]]
+  from = "/nl/companions/*"
+  to = "/nl/companions/:splat.html"
+  status = 200
+  force = true
+
+# Dutch individual category pages -> Dutch HTML files (with data-i18n attributes)
+[[redirects]]
+  from = "/nl/categories/*"
+  to = "/nl/categories/:splat.html"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/nl/deals"
   to = "/nl/deals.html"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/nl/news"
   to = "/nl/news.html"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/nl/contact"
   to = "/nl/contact.html"
   status = 200
+  force = true
 
 # Dutch news articles (if any exist)
 [[redirects]]

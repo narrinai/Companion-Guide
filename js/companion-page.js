@@ -3,7 +3,29 @@ class CompanionPageManager {
     constructor() {
         this.companionId = this.extractCompanionIdFromUrl();
         this.companionData = null;
+        // A/B test: use global variant if already set, otherwise determine once per page load
+        // This ensures companion-page.js and companion-header.js use the same variant
+        if (typeof window.abTestVariantB === 'undefined') {
+            window.abTestVariantB = Math.random() > 0.5;
+        }
+        this.useVariantB = window.abTestVariantB;
         this.init();
+    }
+
+    /**
+     * Get the active external URL for A/B testing
+     * If website_url_2 exists and variant B is selected, use it
+     * Otherwise always use website_url
+     */
+    getActiveExternalUrl() {
+        if (!this.companionData) return '#';
+
+        const hasVariantB = this.companionData.website_url_2 && this.companionData.website_url_2.trim() !== '';
+        const isVariantB = hasVariantB && this.useVariantB;
+
+        return isVariantB
+            ? this.companionData.website_url_2
+            : (this.companionData.website_url || '#');
     }
 
     extractCompanionIdFromUrl() {
@@ -428,7 +450,8 @@ class CompanionPageManager {
                 }
             }).join('');
 
-            const websiteUrl = this.companionData.affiliate_url || this.companionData.website_url || this.companionData.website || '#';
+            // Use A/B test URL for pricing CTAs
+            const websiteUrl = this.getActiveExternalUrl();
 
             tierDiv.innerHTML = `
                 ${badgeHtml}
@@ -452,7 +475,7 @@ class CompanionPageManager {
     addCtaToStaticPricing() {
         // Add CTA buttons to existing static pricing tiers
         const staticPricingTiers = document.querySelectorAll('.pricing-tier');
-        const websiteUrl = this.companionData?.website_url || this.companionData?.website || '#';
+        const websiteUrl = this.getActiveExternalUrl();
 
         staticPricingTiers.forEach(tier => {
             // Check if CTA button already exists
@@ -489,32 +512,47 @@ class CompanionPageManager {
             return;
         }
 
-        const websiteUrl = this.companionData.website_url;
-        console.log(`Updating all external links to: ${websiteUrl}`);
+        const websiteUrl = this.getActiveExternalUrl();
+        const variantInfo = this.companionData.website_url_2 ? ` (variant ${this.useVariantB ? 'B' : 'A'})` : '';
+        console.log(`Updating all external links to: ${websiteUrl}${variantInfo}`);
 
         // Find and update all external "Visit Website" links
-        // Target links in hero section, CTA sections, and pricing
+        // Target links in hero section, CTA sections, pricing, and pros/cons (NOT footer)
         const externalLinkSelectors = [
             '.platform-btn', // Hero section button
             '.cta-button.primary', // CTA section buttons
             '.btn-secondary[target="_blank"]', // Companion listing "Visit Website" buttons
-            'a[href*="http"][target="_blank"]:not(.social-link):not(.review-link)' // Generic external links
+            '.pricing-grid .pricing-cta', // Pricing section CTAs
+            '.pros-cons .pricing-cta', // Pros/cons section CTAs
+            '.pros .pricing-cta', // Pros section CTA
+            '.cons .pricing-cta', // Cons section CTA
+            '.cta-section .pricing-cta', // CTA section
+            'main a[href*="http"][target="_blank"]:not(.social-link):not(.review-link):not(footer a)' // Generic external links in main content
         ];
 
         externalLinkSelectors.forEach(selector => {
             const links = document.querySelectorAll(selector);
             links.forEach(link => {
+                // Skip links inside footer
+                if (link.closest('footer')) {
+                    return;
+                }
+
                 // Only update links that look like external affiliate/website links
                 // Skip internal links, social links, and specific external content links
                 const href = link.getAttribute('href');
                 const text = link.textContent.trim();
 
-                // Check if this is likely a "Visit Website" type link
+                // Check if this is likely a "Visit Website" type link (multi-language)
                 if (text.includes('Visit Website') ||
+                    text.includes('Bezoek Website') ||  // Dutch
+                    text.includes('Visitar Site') ||    // Portuguese
+                    text.includes('Website besuchen') || // German
                     text.includes('Try') ||
                     text.includes('Get Started') ||
                     link.classList.contains('platform-btn') ||
-                    link.classList.contains('cta-button')) {
+                    link.classList.contains('cta-button') ||
+                    link.classList.contains('pricing-cta')) {
 
                     console.log(`Updating link: ${href} -> ${websiteUrl}`);
                     link.setAttribute('href', websiteUrl);
@@ -600,7 +638,7 @@ class CompanionPageManager {
 
             // Update verdict section if available (only for non-EN pages)
             if (language !== 'en' && data.my_verdict) {
-                this.updateVerdictSection(data.my_verdict);
+                await this.updateVerdictSection(data.my_verdict);
                 console.log(`✅ Updated verdict section with ${language.toUpperCase()} translation`);
             } else if (language !== 'en') {
                 console.warn(`No my_verdict found for ${this.companionId} in ${language}`);
@@ -659,7 +697,14 @@ class CompanionPageManager {
     /**
      * Update the verdict section with translated content
      */
-    updateVerdictSection(verdictText) {
+    async updateVerdictSection(verdictText) {
+        // Wait for companionHeader to be available (loaded after companion-page.js)
+        let attempts = 0;
+        while (!window.companionHeader && attempts < 30) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+        }
+
         // Use the companionHeader's updateVerdict method which has smart heading detection and read more
         if (window.companionHeader && typeof window.companionHeader.updateVerdict === 'function') {
             console.log('🔄 Using companionHeader.updateVerdict for translated content');

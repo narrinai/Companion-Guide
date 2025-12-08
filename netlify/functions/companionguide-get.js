@@ -224,6 +224,7 @@ exports.handler = async (event, context) => {
           short_description: fields.short_description || baseCompanion.short_description || '',
           tagline: fields.tagline || baseCompanion.tagline || '',
           website_url: baseCompanion.website_url || '',
+          website_url_2: baseCompanion.website_url_2 || '',
           affiliate_url: baseCompanion.affiliate_url || baseCompanion.website_url || '',
           logo_url: baseCompanion.logo_url || '/images/logos/default.png',
           image_url: baseCompanion.logo_url || '/images/logos/default.png',
@@ -243,7 +244,8 @@ exports.handler = async (event, context) => {
           faq: fields.faq || '',
           ready_to_try: fields.ready_to_try || fields.ready_try || '',
           gallery_images: baseCompanion.gallery_images || '',
-          pros_cons: fields.pros_cons || ''
+          pros_cons: fields.pros_cons || '',
+          best_for_tags: baseCompanion.best_for_tags || []
         };
       }
     });

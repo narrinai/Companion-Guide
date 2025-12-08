@@ -238,14 +238,26 @@ class I18n {
 
       // Special handling for companion.whatIs - extract companion name from current text
       if (key === 'companion.whatIs' && el.textContent) {
-        // Match "What is CompanionName?" pattern
-        const match = el.textContent.match(/What is ([^?]+)\?/);
-        if (match && match[1]) {
-          const companionName = match[1].trim();
-          // Only replace if the name isn't a placeholder
-          if (companionName && companionName !== '{name}') {
-            translation = translation.replace('{name}', companionName);
+        // Match multiple language patterns: "What is X?", "Wat is X?", "O que é X?", "Was ist X?"
+        const patterns = [
+          /What is ([^?]+)\?/i,
+          /Wat is ([^?]+)\?/i,
+          /O que é ([^?]+)\?/i,
+          /Was ist ([^?]+)\?/i
+        ];
+
+        let companionName = null;
+        for (const pattern of patterns) {
+          const match = el.textContent.match(pattern);
+          if (match && match[1]) {
+            companionName = match[1].trim();
+            break;
           }
+        }
+
+        // Only replace if the name isn't a placeholder
+        if (companionName && companionName !== '{name}') {
+          translation = translation.replace('{name}', companionName);
         }
       }
 

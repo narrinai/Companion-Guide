@@ -6,6 +6,28 @@
 class CompanionHeaderManager {
   constructor() {
     this.apiBaseUrl = '/.netlify/functions';
+    // A/B test: use global variant if already set, otherwise determine once per page load
+    // This ensures companion-page.js and companion-header.js use the same variant
+    if (typeof window.abTestVariantB === 'undefined') {
+      window.abTestVariantB = Math.random() > 0.5;
+    }
+    this.useVariantB = window.abTestVariantB;
+  }
+
+  /**
+   * Get the active external URL for A/B testing
+   * If website_url_2 exists and variant B is selected, use it
+   * Otherwise always use website_url
+   */
+  getActiveExternalUrl() {
+    if (!this.companionData) return '#';
+
+    const hasVariantB = this.companionData.website_url_2 && this.companionData.website_url_2.trim() !== '';
+    const isVariantB = hasVariantB && this.useVariantB;
+
+    return isVariantB
+      ? this.companionData.website_url_2
+      : (this.companionData.website_url || '#');
   }
 
   /**
@@ -318,9 +340,14 @@ class CompanionHeaderManager {
           }
         }
 
-        // Add Visit Website link with i18n
-        const websiteUrl = this.companionData?.affiliate_url || this.companionData?.website_url || '#';
+        // Add Visit Website link with i18n and A/B test URL
+        const websiteUrl = this.getActiveExternalUrl();
         const visitWebsiteLink = `<a href="${websiteUrl}" class="pricing-cta" target="_blank" data-i18n="companionCard.visitWebsite">Visit Website</a>`;
+
+        // Remove any leading checkmarks/symbols from features (CSS adds them via ::before)
+        const cleanFeatures = features.map(feature =>
+          feature.replace(/^[\s]*[✓✔☑️✅⚫•]\s*/g, '').trim()
+        );
 
         return `
           <div class="pricing-tier${plan.badge ? ' popular' : ''}">
@@ -329,7 +356,7 @@ class CompanionHeaderManager {
             <div class="price">${formattedPrice} ${periodText}</div>
             ${plan.description ? `<p>${plan.description}</p>` : ''}
             <ul>
-              ${features.map(feature => `<li>${feature}</li>`).join('')}
+              ${cleanFeatures.map(feature => `<li>${feature}</li>`).join('')}
             </ul>
             ${visitWebsiteLink}
           </div>
@@ -878,11 +905,14 @@ class CompanionHeaderManager {
   }
 }
 
+// Export class for potential use in other scripts
+window.CompanionHeaderManager = CompanionHeaderManager;
+
+// Create instance immediately and expose globally
+const headerManager = new CompanionHeaderManager();
+window.companionHeader = headerManager;
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  const headerManager = new CompanionHeaderManager();
   headerManager.init();
 });
-
-// Export for potential use in other scripts
-window.CompanionHeaderManager = CompanionHeaderManager;

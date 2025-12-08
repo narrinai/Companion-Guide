@@ -11,7 +11,28 @@ class FloatingCTAManager {
     this.cotmData = null;
     this.featuredCompanionSlug = null;
     this.isFeaturedCompanion = false;
+    // A/B test: use global variant if already set, otherwise determine once per page load
+    if (typeof window.abTestVariantB === 'undefined') {
+      window.abTestVariantB = Math.random() > 0.5;
+    }
+    this.useVariantB = window.abTestVariantB;
     this.init();
+  }
+
+  /**
+   * Get the active external URL for A/B testing
+   * If website_url_2 exists and variant B is selected, use it
+   * Otherwise always use website_url
+   */
+  getActiveExternalUrl() {
+    if (!this.cotmData) return '#';
+
+    const hasVariantB = this.cotmData.website_url_2 && this.cotmData.website_url_2.trim() !== '';
+    const isVariantB = hasVariantB && this.useVariantB;
+
+    return isVariantB
+      ? this.cotmData.website_url_2
+      : (this.cotmData.website_url || '#');
   }
 
   async init() {
@@ -97,7 +118,7 @@ class FloatingCTAManager {
     const slug = this.cotmData.slug || '';
     const rating = this.cotmData.rating || 0;
     const logo = this.cotmData.logo_url || this.cotmData.logo || `/images/logos/${slug}.png`;
-    const websiteUrl = this.cotmData.website_url || '#';
+    const websiteUrl = this.getActiveExternalUrl();
 
     // Header text depends on whether it's a featured companion or COTM
     const headerText = this.isFeaturedCompanion ? 'Featured in this Article' : 'Companion of the Month';

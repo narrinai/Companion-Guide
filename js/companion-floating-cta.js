@@ -11,6 +11,11 @@ class CompanionFloatingCTA {
     this.storageKey = 'companionCTADismissed';
     this.companionData = null;
     this.alternativeData = null;
+    // A/B test: use global variant if already set, otherwise determine once per page load
+    if (typeof window.abTestVariantB === 'undefined') {
+      window.abTestVariantB = Math.random() > 0.5;
+    }
+    this.useVariantB = window.abTestVariantB;
 
     // High-rated alternatives (9.4+ rating)
     this.highRatedCompanions = [
@@ -64,9 +69,9 @@ class CompanionFloatingCTA {
     }
   }
 
-  initCTA() {
-    // Extract companion data from the page
-    this.extractCompanionData();
+  async initCTA() {
+    // Get companion data from Airtable (with A/B test URL)
+    await this.loadCompanionData();
 
     // Select a random high-rated alternative (excluding current companion)
     this.selectAlternative();
@@ -74,6 +79,64 @@ class CompanionFloatingCTA {
     if (this.companionData) {
       this.createCTA();
       this.attachEventListeners();
+    }
+  }
+
+  /**
+   * Get the active external URL for A/B testing
+   * If website_url_2 exists and variant B is selected, use it
+   * Otherwise always use website_url
+   */
+  getActiveExternalUrl(companion) {
+    if (!companion) return '#';
+
+    const hasVariantB = companion.website_url_2 && companion.website_url_2.trim() !== '';
+    const isVariantB = hasVariantB && this.useVariantB;
+
+    return isVariantB
+      ? companion.website_url_2
+      : (companion.website_url || '#');
+  }
+
+  async loadCompanionData() {
+    // Get current companion slug from URL (handles /companions/slug and /nl/companions/slug)
+    const pathParts = window.location.pathname.split('/').filter(p => p);
+    const currentSlug = pathParts[pathParts.length - 1].replace('.html', '');
+
+    // Wait for companionManager if not ready
+    if (!window.companionManager) {
+      let attempts = 0;
+      while (!window.companionManager && attempts < 30) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        attempts++;
+      }
+    }
+
+    if (!window.companionManager) {
+      console.warn('CompanionManager not available for floating CTA');
+      // Fallback to extracting from page
+      this.extractCompanionData();
+      return;
+    }
+
+    try {
+      const airtableData = await window.companionManager.fetchCompanionById(currentSlug);
+      if (airtableData) {
+        this.companionData = {
+          name: airtableData.name,
+          url: this.getActiveExternalUrl(airtableData),
+          logo: airtableData.logo_url || airtableData.logo || '',
+          slug: airtableData.slug || currentSlug
+        };
+        this.airtableData = airtableData; // Store for tracking
+        console.log(`Floating CTA: Loaded ${airtableData.name} with URL ${this.companionData.url}`);
+      } else {
+        // Fallback to extracting from page
+        this.extractCompanionData();
+      }
+    } catch (e) {
+      console.warn('Could not fetch companion data for floating CTA:', e);
+      this.extractCompanionData();
     }
   }
 
@@ -131,9 +194,17 @@ class CompanionFloatingCTA {
   createCTA() {
     if (!this.companionData) return;
 
-    // Get translated strings (fallback to English if i18n not available)
-    const visitWebsiteText = window.i18n?.t('floatingCta.visitWebsite') || 'Visit Website';
-    const bestAlternativeText = window.i18n?.t('floatingCta.bestAlternative') || 'Best Alternative';
+    // Get translated strings (fallback to English if i18n not available or returns key)
+    let visitWebsiteText = 'Visit Website';
+    let bestAlternativeText = 'Best Alternative';
+
+    if (window.i18n?.t) {
+      const visitKey = window.i18n.t('floatingCta.visitWebsite');
+      const altKey = window.i18n.t('floatingCta.bestAlternative');
+      // Only use translation if it doesn't return the key itself
+      if (visitKey && !visitKey.includes('floatingCta.')) visitWebsiteText = visitKey;
+      if (altKey && !altKey.includes('floatingCta.')) bestAlternativeText = altKey;
+    }
 
     // Create the floating CTA container (div instead of anchor for multiple buttons)
     this.cta = document.createElement('div');
@@ -368,8 +439,12 @@ class CompanionFloatingCTA {
   }
 
   async getAirtableData() {
-    // Get current companion slug from URL
-    const currentSlug = window.location.pathname.split('/').pop().replace('.html', '');
+    // Return cached data if already loaded
+    if (this.airtableData) return this.airtableData;
+
+    // Get current companion slug from URL (handles /companions/slug and /nl/companions/slug)
+    const pathParts = window.location.pathname.split('/').filter(p => p);
+    const currentSlug = pathParts[pathParts.length - 1].replace('.html', '');
 
     // Wait for companionManager if not ready
     if (!window.companionManager) {
@@ -383,7 +458,8 @@ class CompanionFloatingCTA {
     if (!window.companionManager) return null;
 
     try {
-      return await window.companionManager.fetchCompanionById(currentSlug);
+      this.airtableData = await window.companionManager.fetchCompanionById(currentSlug);
+      return this.airtableData;
     } catch (e) {
       console.warn('Could not fetch Airtable data for floating CTA');
       return null;

@@ -4,6 +4,27 @@ class CompanionManager {
     this.companions = [];
     this.cache = {}; // Cache for different query combinations
     this.pendingRequests = {}; // Prevent duplicate simultaneous requests
+    // A/B test: use global variant if already set, otherwise determine once per page load
+    if (typeof window.abTestVariantB === 'undefined') {
+      window.abTestVariantB = Math.random() > 0.5;
+    }
+    this.useVariantB = window.abTestVariantB;
+  }
+
+  /**
+   * Get the active external URL for A/B testing
+   * If website_url_2 exists and variant B is selected, use it
+   * Otherwise always use website_url
+   */
+  getActiveExternalUrl(companion) {
+    if (!companion) return '#';
+
+    const hasVariantB = companion.website_url_2 && companion.website_url_2.trim() !== '';
+    const isVariantB = hasVariantB && this.useVariantB;
+
+    return isVariantB
+      ? companion.website_url_2
+      : (companion.website_url || '#');
   }
 
   async fetchCompanions(options = {}) {
@@ -14,8 +35,10 @@ class CompanionManager {
       if (options.sort) params.append('sort', options.sort);
       if (options.limit) params.append('limit', options.limit);
 
-      // Add language parameter if i18n is available and initialized
-      if (window.i18n && window.i18n.initialized && window.i18n.currentLang) {
+      // Add language parameter - priority: options.lang > i18n.currentLang
+      if (options.lang) {
+        params.append('lang', options.lang);
+      } else if (window.i18n && window.i18n.initialized && window.i18n.currentLang) {
         params.append('lang', window.i18n.currentLang);
       }
 
@@ -307,7 +330,7 @@ class CompanionManager {
 
         <div class="card-actions">
           <a href="${companionUrl}" class="btn-primary">${readReview}</a>
-          <a href="${companion.website_url}" class="btn-secondary" target="_blank" rel="noopener">${visitWebsite}</a>
+          <a href="${this.getActiveExternalUrl(companion)}" class="btn-secondary" target="_blank" rel="noopener">${visitWebsite}</a>
         </div>
       </article>
     `;
@@ -479,7 +502,7 @@ class CompanionManager {
 
           <div class="product-actions">
             <a href="../companions/${slug}" class="btn-primary">Read Review</a>
-            <a href="${companion.website_url}" class="btn-secondary" target="_blank">Visit Website</a>
+            <a href="${this.getActiveExternalUrl(companion)}" class="btn-secondary" target="_blank">Visit Website</a>
           </div>
         </div>
       </article>
@@ -642,7 +665,7 @@ class CompanionManager {
     const rating = ourdreamCompanion.rating || 9.5;
     const reviewCount = ourdreamCompanion.review_count || 127;
     const description = ourdreamCompanion.short_description || ourdreamCompanion.description || 'Create and chat with AI companions that feel incredibly real.';
-    const affiliateUrl = ourdreamCompanion.website_url || 'https://ourdream.ai/?via=companionguide';
+    const affiliateUrl = this.getActiveExternalUrl(ourdreamCompanion) || 'https://ourdream.ai/?via=companionguide';
     const slug = ourdreamCompanion.slug || 'ourdream-ai';
     const bestFor = ourdreamCompanion.best_for || ourdreamCompanion.Best_for || ourdreamCompanion['Best for'] || 'Advanced AI roleplay, voice chat, and image generation';
 
