@@ -1276,10 +1276,46 @@
 
   <!-- Category Pages - English -->
   <url>
-    <loc>https://companionguide.ai/categories/adult-content-uncensored-companions</loc>
-    <lastmod>2025-11-19</lastmod>
+    <loc>https://companionguide.ai/categories/ai-anime-companions</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/ai-anime-companions" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/ai-anime-companions" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/ai-anime-companions" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://companionguide.ai/de/categories/ai-anime-companions" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://companionguide.ai/categories/ai-anime-companions" />
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/ai-voice-companions</loc>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/ai-voice-companions" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/ai-voice-companions" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/ai-voice-companions" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://companionguide.ai/de/categories/ai-voice-companions" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://companionguide.ai/categories/ai-voice-companions" />
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/ai-romantic-companions</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/ai-romantic-companions" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/ai-romantic-companions" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/ai-romantic-companions" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://companionguide.ai/de/categories/ai-romantic-companions" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://companionguide.ai/categories/ai-romantic-companions" />
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/categories/adult-content-uncensored-companions</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/adult-content-uncensored-companions" />
     <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/adult-content-uncensored-companions" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/adult-content-uncensored-companions" />
@@ -1332,9 +1368,9 @@
 
   <url>
     <loc>https://companionguide.ai/categories/ai-girlfriend-companions</loc>
-    <lastmod>2025-11-19</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/ai-girlfriend-companions" />
     <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/ai-girlfriend-companions" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/ai-girlfriend-companions" />
@@ -1385,27 +1421,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://companionguide.ai/categories/hentai-ai-chat-platforms" />
   </url>
 
-  <url>
-    <loc>https://companionguide.ai/categories/learning-companions</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/learning-companions" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/learning-companions" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/learning-companions" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://companionguide.ai/categories/learning-companions" />
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/categories/learning</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/learning" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/learning" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/learning" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://companionguide.ai/categories/learning" />
-  </url>
 
   <url>
     <loc>https://companionguide.ai/categories/nsfw</loc>
@@ -1431,9 +1446,9 @@
 
   <url>
     <loc>https://companionguide.ai/categories/roleplay-character-chat-companions</loc>
-    <lastmod>2025-11-19</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://companionguide.ai/categories/roleplay-character-chat-companions" />
     <xhtml:link rel="alternate" hreflang="nl" href="https://companionguide.ai/nl/categories/roleplay-character-chat-companions" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://companionguide.ai/pt/categories/roleplay-character-chat-companions" />
@@ -1509,6 +1524,27 @@
 
   <!-- Category Pages - Nederlands -->
   <url>
+    <loc>https://companionguide.ai/nl/categories/ai-anime-companions</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/nl/categories/ai-voice-companions</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/nl/categories/ai-romantic-companions</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://companionguide.ai/nl/categories/adult-content-uncensored-companions</loc>
     <lastmod>2025-11-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -1578,19 +1614,6 @@
     <priority>0.7</priority>
   </url>
 
-  <url>
-    <loc>https://companionguide.ai/nl/categories/learning-companions</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/nl/categories/learning</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
 
   <url>
     <loc>https://companionguide.ai/nl/categories/nsfw</loc>
@@ -1656,6 +1679,27 @@
   </url>
 
   <!-- Category Pages - Português -->
+  <url>
+    <loc>https://companionguide.ai/pt/categories/ai-anime-companions</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/pt/categories/ai-voice-companions</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://companionguide.ai/pt/categories/ai-romantic-companions</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://companionguide.ai/pt/categories/adult-content-uncensored-companions</loc>
     <lastmod>2025-11-19</lastmod>
@@ -1726,19 +1770,6 @@
     <priority>0.7</priority>
   </url>
 
-  <url>
-    <loc>https://companionguide.ai/pt/categories/learning-companions</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://companionguide.ai/pt/categories/learning</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
 
   <url>
     <loc>https://companionguide.ai/pt/categories/nsfw</loc>
