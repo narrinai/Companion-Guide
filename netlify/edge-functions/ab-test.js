@@ -83,11 +83,23 @@ export default async function handler(request, context) {
 }
 
 // Configure which paths this edge function runs on
+// Run on ALL pages to ensure A/B testing works everywhere
 export const config = {
   path: [
-    '/companions/*',
-    '/nl/companions/*',
-    '/de/companions/*',
-    '/pt/companions/*',
+    '/*',
+  ],
+  // Exclude static assets and API endpoints
+  excludedPath: [
+    '/images/*',
+    '/css/*',
+    '/js/*',
+    '/.netlify/*',
+    '/favicon.*',
+    '/*.css',
+    '/*.js',
+    '/*.svg',
+    '/*.png',
+    '/*.jpg',
+    '/*.ico',
   ],
 };

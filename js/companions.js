@@ -329,8 +329,8 @@ class CompanionManager {
         </div>` : ''}
 
         <div class="card-actions">
-          <a href="${companionUrl}" class="btn-primary">${readReview}</a>
-          <a href="${this.getActiveExternalUrl(companion)}" class="btn-secondary" target="_blank" rel="noopener">${visitWebsite}</a>
+          <a href="${this.getActiveExternalUrl(companion)}" class="btn-primary" target="_blank" rel="noopener">${visitWebsite}</a>
+          <a href="${companionUrl}" class="btn-secondary">${readReview}</a>
         </div>
       </article>
     `;
@@ -501,8 +501,8 @@ class CompanionManager {
           ${this.generateCategoryFeatureHighlights(companion.features)}
 
           <div class="product-actions">
-            <a href="../companions/${slug}" class="btn-primary">Read Review</a>
-            <a href="${this.getActiveExternalUrl(companion)}" class="btn-secondary" target="_blank">Visit Website</a>
+            <a href="${this.getActiveExternalUrl(companion)}" class="btn-primary" target="_blank" rel="noopener">Visit Website</a>
+            <a href="../companions/${slug}" class="btn-secondary">Read Review</a>
           </div>
         </div>
       </article>
