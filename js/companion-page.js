@@ -523,11 +523,12 @@ class CompanionPageManager {
             '.cta-button.primary', // CTA section buttons
             '.btn-secondary[target="_blank"]', // Companion listing "Visit Website" buttons
             '.pricing-grid .pricing-cta', // Pricing section CTAs
+            '.pricing-grid .tier-cta', // Pricing section tier CTAs
             '.pros-cons .pricing-cta', // Pros/cons section CTAs
             '.pros .pricing-cta', // Pros section CTA
             '.cons .pricing-cta', // Cons section CTA
             '.cta-section .pricing-cta', // CTA section
-            'main a[href*="http"][target="_blank"]:not(.social-link):not(.review-link):not(footer a)' // Generic external links in main content
+            'main a[href*="http"][target="_blank"]:not(.social-link):not(.review-link)' // Generic external links in main content
         ];
 
         externalLinkSelectors.forEach(selector => {
@@ -552,7 +553,8 @@ class CompanionPageManager {
                     text.includes('Get Started') ||
                     link.classList.contains('platform-btn') ||
                     link.classList.contains('cta-button') ||
-                    link.classList.contains('pricing-cta')) {
+                    link.classList.contains('pricing-cta') ||
+                    link.classList.contains('tier-cta')) {
 
                     console.log(`Updating link: ${href} -> ${websiteUrl}`);
                     link.setAttribute('href', websiteUrl);
@@ -936,10 +938,11 @@ class CompanionPageManager {
             if (window.CompanionGallery) {
                 const options = {
                     isUncensored: this.companionData.is_uncensored || false,
-                    websiteUrl: this.companionData.website_url || ''
+                    websiteUrl: this.getActiveExternalUrl() // Use A/B tested URL
                 };
                 window.companionGalleryInstance = new window.CompanionGallery('companionGallery', galleryImages, options);
-                console.log(`✅ Gallery initialized successfully (uncensored: ${options.isUncensored})`);
+                const variantInfo = this.companionData.website_url_2 ? ` (variant ${this.useVariantB ? 'B' : 'A'})` : '';
+                console.log(`✅ Gallery initialized successfully (uncensored: ${options.isUncensored})${variantInfo}`);
             } else {
                 console.error('❌ CompanionGallery class not loaded');
             }

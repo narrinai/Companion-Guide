@@ -349,3 +349,5 @@
 # Functions configuration
 [functions]
   directory = "netlify/functions"
+
+# Edge Functions - configured via export config in netlify/edge-functions/*.js
