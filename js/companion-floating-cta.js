@@ -11,11 +11,8 @@ class CompanionFloatingCTA {
     this.storageKey = 'companionCTADismissed';
     this.companionData = null;
     this.alternativeData = null;
-    // A/B test: use global variant if already set, otherwise determine once per page load
-    if (typeof window.abTestVariantB === 'undefined') {
-      window.abTestVariantB = Math.random() > 0.5;
-    }
-    this.useVariantB = window.abTestVariantB;
+    // A/B test: read variant from cookie set by Edge Function
+    this.useVariantB = this.getABVariantFromCookie() === 'B';
 
     // High-rated alternatives (9.4+ rating)
     this.highRatedCompanions = [
@@ -80,6 +77,15 @@ class CompanionFloatingCTA {
       this.createCTA();
       this.attachEventListeners();
     }
+  }
+
+  /**
+   * Get A/B variant from cookie (set by Edge Function)
+   * Returns 'A' or 'B'
+   */
+  getABVariantFromCookie() {
+    const match = document.cookie.match(/ab_variant=([AB])/);
+    return match ? match[1] : 'A';
   }
 
   /**
