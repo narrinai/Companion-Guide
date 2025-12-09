@@ -950,7 +950,8 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 CompanionGuide. All rights reserved. | <a href="/2257-compliance" style="color: #888; text-decoration: underline;">Compliance Statement</a> | <a href="/dmca" style="color: #888; text-decoration: underline;">DMCA & Copyright</a></p>
+                <p>&copy; 2025 CompanionGuide. All rights reserved. | <a href="/cookie-policy" style="color: #888; text-decoration: underline;">Cookies</a> | <a href="/terms" style="color: #888; text-decoration: underline;">Terms</a> | <a href="/2257-compliance" style="color: #888; text-decoration: underline;">2257</a> | <a href="/dmca" style="color: #888; text-decoration: underline;">DMCA</a></p>
+                <p style="font-size: 0.75rem; color: #666; margin-top: 8px;">This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
             </div>
         </div>
     </footer>
@@ -1014,6 +1015,21 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             return '';
         }
 
+        // Get A/B variant from cookie
+        function getABVariant() {
+            const match = document.cookie.match(/ab_variant=([AB])/);
+            return match ? match[1] : 'A';
+        }
+
+        // Get the appropriate website URL based on A/B variant
+        function getWebsiteUrl(companion) {
+            const variant = getABVariant();
+            if (variant === 'B' && companion.website_url_2) {
+                return companion.website_url_2;
+            }
+            return companion.website_url || '#';
+        }
+
         // Generate preview thumbnail HTML
         function generatePreviewThumbnail(companion) {
             let galleryImages = companion.gallery_images;
@@ -1075,7 +1091,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                         ${previewThumbnail}
                     </div>
                     <div class="compact-card-cta">
-                        <a href="${companion.website_url || '#'}" class="btn-primary" target="_blank" rel="noopener">Visit Website</a>
+                        <a href="${getWebsiteUrl(companion)}" class="btn-primary" target="_blank" rel="noopener">Visit Website</a>
                         <a href="/companions/${companion.slug}" class="btn-secondary">Read Review</a>
                     </div>
                 </div>

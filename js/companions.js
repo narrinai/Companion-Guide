@@ -4,11 +4,18 @@ class CompanionManager {
     this.companions = [];
     this.cache = {}; // Cache for different query combinations
     this.pendingRequests = {}; // Prevent duplicate simultaneous requests
-    // A/B test: use global variant if already set, otherwise determine once per page load
-    if (typeof window.abTestVariantB === 'undefined') {
-      window.abTestVariantB = Math.random() > 0.5;
-    }
-    this.useVariantB = window.abTestVariantB;
+    // A/B test: read variant from cookie set by Edge Function
+    // Cookie is set by Netlify Edge Function for consistent 50/50 split
+    this.useVariantB = this.getABVariantFromCookie() === 'B';
+  }
+
+  /**
+   * Get A/B variant from cookie (set by Edge Function)
+   * Returns 'A' or 'B'
+   */
+  getABVariantFromCookie() {
+    const match = document.cookie.match(/ab_variant=([AB])/);
+    return match ? match[1] : 'A';
   }
 
   /**
