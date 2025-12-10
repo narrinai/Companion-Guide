@@ -1,0 +1,205 @@
+/* Companion Spotlight Banner Styles */
+.companion-card-banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin: 0 auto 24px;
+    max-width: 1200px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.companion-card-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+}
+
+.banner-spotlight-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.banner-main-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.banner-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.banner-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.banner-title-section h3 {
+    margin: 0 0 2px 0;
+    font-size: 1.1rem;
+}
+
+.banner-title-section h3 a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.banner-title-section h3 a:hover {
+    color: #3b82f6;
+}
+
+.banner-rating-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.banner-stars {
+    color: #fbbf24;
+    font-size: 0.8rem;
+}
+
+.banner-rating-score {
+    color: var(--text-secondary, #9ca3af);
+    font-size: 0.8rem;
+}
+
+.banner-images-container {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.banner-image-link {
+    flex: 1;
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.banner-image-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.banner-image {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+.banner-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-top: 16px;
+}
+
+.banner-btn-primary,
+.banner-btn-secondary {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.banner-btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    color: white;
+    border: none;
+}
+
+.banner-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.banner-btn-secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.banner-btn-secondary:hover {
+    border-color: #3b82f6;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .banner-main-row {
+        flex-wrap: wrap;
+    }
+
+    .banner-left {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .banner-images-container {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .banner-actions {
+        flex-direction: row;
+        width: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .companion-card-banner {
+        padding: 14px;
+    }
+
+    .banner-images-container {
+        width: 100%;
+    }
+
+    .banner-image {
+        height: 60px;
+    }
+
+    .banner-actions {
+        width: 100%;
+        flex-direction: row;
+    }
+
+    .banner-btn-primary,
+    .banner-btn-secondary {
+        flex: 1;
+        padding: 10px 16px;
+    }
+}
