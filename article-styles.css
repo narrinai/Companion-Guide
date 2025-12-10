@@ -1677,6 +1677,10 @@ body:has(.article-hero) {
 }
 
 /* NSFW Blur for uncensored content */
+.platform-image.nsfw-blur {
+    cursor: pointer;
+}
+
 .platform-image.nsfw-blur img {
     filter: blur(12px);
     transform: scale(1.1);
@@ -1685,6 +1689,17 @@ body:has(.article-hero) {
 .platform-image.nsfw-blur:hover img {
     filter: blur(4px);
     transform: scale(1.05);
+}
+
+/* Revealed state - blur removed */
+.platform-image.nsfw-blur.revealed img {
+    filter: none;
+    transform: scale(1);
+}
+
+.platform-image.nsfw-blur.revealed .nsfw-overlay {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .platform-image .nsfw-overlay {
@@ -1702,7 +1717,7 @@ body:has(.article-hero) {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     z-index: 2;
     background: rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, opacity 0.3s ease;
 }
 
 .platform-image.nsfw-blur:hover .nsfw-overlay {

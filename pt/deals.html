@@ -92,8 +92,8 @@
 
         /* Ensure deal cards use companion card styling */
         .deals-container .companion-card {
-            background: var(--card-background);
-            border: 1px solid var(--border-color);
+            background: var(--bg-surface, #1a1a1a);
+            border: 1px solid var(--border-secondary, #262626);
             border-radius: 12px;
             padding: 1.5rem;
             transition: all 0.3s ease;
@@ -102,7 +102,7 @@
         .deals-container .companion-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            border-color: var(--primary-color);
+            border-color: var(--accent-blue, #3b82f6);
         }
 
         .deal-card {
@@ -111,7 +111,7 @@
             border-radius: 16px;
             padding: 2rem;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             transition: all 0.3s ease;
             color: #fff;
         }
@@ -126,19 +126,31 @@
             border-color: #4a9eff;
         }
 
-        .deal-badge {
+        .deal-badge,
+        .badge.deal-badge {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: #4a9eff;
+            top: -12px;
+            right: 16px;
+            background: var(--bg-primary, #0f0f0f) !important;
+            border: 1.5px solid var(--accent-blue, #3b82f6);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.7rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            z-index: 2;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        .badge-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 10;
         }
 
         @keyframes pulse {

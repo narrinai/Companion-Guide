@@ -134,6 +134,7 @@ class FloatingCTAManager {
     const stars = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
 
     this.cta.innerHTML = `
+      <div class="floating-cta-discount-badge">67% OFF</div>
       <div class="floating-cta-header">${headerText}</div>
       <div class="floating-cta-content">
         <img src="${logo}" alt="${this.escapeHtml(name)}" class="floating-cta-logo">

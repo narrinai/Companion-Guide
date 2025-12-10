@@ -133,8 +133,8 @@ class DealsManager {
     // Deal badge
     const badges = deal.deal_badge ? `
       <div class="badge-container">
-        <span class="badge deal-badge" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);">
-          🔥 ${this.escapeHtml(deal.deal_badge)}
+        <span class="badge deal-badge">
+          ${this.escapeHtml(deal.deal_badge)}
         </span>
       </div>
     ` : '';

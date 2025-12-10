@@ -29,12 +29,17 @@ async function loadSpotlightBanner(slug, lang = 'en') {
             nameLink.href = `${basePath}/companions/${slug}`;
         }
 
-        // Rating - 5 full stars + /10 score
+        // Rating - 5 full stars + /10 score + review count
         const rating = parseFloat(companion.rating) || 0;
         const starsEl = document.getElementById('banner-stars');
         const ratingEl = document.getElementById('banner-rating');
+        const reviewCountEl = document.getElementById('banner-review-count');
         if (starsEl) starsEl.textContent = '★★★★★';
         if (ratingEl) ratingEl.textContent = `${rating}/10`;
+        if (reviewCountEl && companion.review_count > 0) {
+            const reviewText = companion.review_count === 1 ? 'review' : 'reviews';
+            reviewCountEl.textContent = `(${companion.review_count} ${reviewText})`;
+        }
 
         // Website URL
         const websiteUrl = companion.website_url || '#';

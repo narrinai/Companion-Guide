@@ -304,7 +304,7 @@ header .nav-menu {
     padding: 1rem 1rem;
     margin-bottom: 2rem;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     text-align: center;
 }
 
@@ -326,6 +326,21 @@ header .nav-menu {
 
 .cotm-laurel-right {
     right: 2px;
+}
+
+.cotm-discount-badge {
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    background: var(--bg-primary, #0f0f0f);
+    border: 1.5px solid var(--accent-blue, #3b82f6);
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    z-index: 2;
+    letter-spacing: 0.02em;
 }
 
 .laurel-svg {
@@ -914,19 +929,22 @@ main {
     border-radius: var(--radius-lg);
     padding: var(--space-4);
     position: relative;
+    overflow: visible;
 }
 
 .az-column .advertisement-card .ad-label {
     position: absolute;
-    top: var(--space-2);
-    right: var(--space-2);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    top: -10px;
+    right: 12px;
+    background: var(--bg-primary, #0f0f0f);
+    border: 1.5px solid var(--accent-blue, #3b82f6);
     color: white;
-    font-size: 0.625rem;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
-    letter-spacing: 0.05em;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    z-index: 2;
 }
 
 .az-column .advertisement-card .ad-header {

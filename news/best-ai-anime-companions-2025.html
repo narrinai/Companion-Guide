@@ -1016,6 +1016,13 @@
                 }
             });
         });
+
+        // Click to reveal NSFW blurred images
+        document.querySelectorAll('.platform-image.nsfw-blur').forEach(img => {
+            img.addEventListener('click', function() {
+                this.classList.add('revealed');
+            });
+        });
     </script>
     <script src="/js/article-last-updated.js"></script>
 </body>
