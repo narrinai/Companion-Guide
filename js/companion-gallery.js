@@ -78,8 +78,9 @@ class CompanionGallery {
             ${this.websiteUrl ? `
                 <div class="gallery-cta-link" style="text-align: center; margin-top: 1.5rem;">
                     <a href="${this.escapeHtml(this.websiteUrl)}"
-                       class="pricing-cta"
+                       class="platform-btn"
                        target="_blank"
+                       rel="noopener noreferrer"
                        data-i18n="companionCard.visitWebsite">Visit Website</a>
                 </div>
             ` : ''}

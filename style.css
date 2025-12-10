@@ -878,13 +878,39 @@ main {
     color: var(--accent-blue);
 }
 
+/* Featured companions in A-Z List */
+.az-column li.featured-companion {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.12) 100%);
+    border: 1px solid rgba(102, 126, 234, 0.25);
+    border-radius: var(--radius-md);
+    margin: var(--space-1) 0;
+}
+
+.az-column li.featured-companion a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+}
+
+.az-column .featured-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 0.5rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.05em;
+}
+
 /* Advertisement in A-Z List */
 .az-column .advertisement-item {
     margin: var(--space-4) 0;
 }
 
 .az-column .advertisement-card {
-    background: var(--bg-surface);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    border: 1px solid rgba(102, 126, 234, 0.3);
     border-radius: var(--radius-lg);
     padding: var(--space-4);
     position: relative;

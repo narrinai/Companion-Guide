@@ -115,10 +115,15 @@ class CompanionsAZ {
 
             // Generate companion list items
             const companionItems = columnCompanions.map((companion, index) => {
+                const isFeatured = companion.is_featured === true || companion.is_featured === 'true' || companion.featured === true || companion.featured === 'true';
+                const featuredClass = isFeatured ? ' featured-companion' : '';
+                const featuredBadge = isFeatured ? '<span class="featured-badge">FEATURED</span>' : '';
+
                 let html = `
-                    <li>
+                    <li class="${featuredClass}">
                         <a href="/companions/${companion.slug}">
                             <span>${companion.name}</span>
+                            ${featuredBadge}
                         </a>
                     </li>`;
 
@@ -129,16 +134,15 @@ class CompanionsAZ {
                         <div class="advertisement-card" id="ourdream-ad-az">
                             <div class="ad-label">FEATURED</div>
                             <div class="ad-header">
-                                <img src="/images/companions/ourdream-ai-logo.svg" alt="OurDream AI" class="ad-logo" id="ourdream-logo-az">
+                                <img src="/images/logos/ourdream-ai.png" alt="OurDream AI" class="ad-logo" id="ourdream-logo-az">
                                 <div class="ad-info">
-                                    <h3 class="ad-companion-name">OurDream AI</h3>
                                     <div class="ad-rating">
                                         <span class="stars">★★★★★</span>
-                                        <span class="rating-value" id="ourdream-rating-az">9.5</span>
+                                        <span class="rating-value" id="ourdream-rating-az">9.6</span>
                                     </div>
                                 </div>
                             </div>
-                            <p class="ad-description" id="ourdream-best-for-az">Advanced AI roleplay, voice chat, and image generation</p>
+                            <p class="ad-description" id="ourdream-best-for-az">NSFW AI sex chat, adult content creation & explicit videos</p>
                             <div class="ad-buttons">
                                 <a href="#" class="ad-btn-primary" id="ourdream-visit-az">Visit Website</a>
                             </div>
