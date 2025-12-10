@@ -12,10 +12,11 @@ const newsFooter = `<footer>
                 <div class="footer-section">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/companions">Companions</a></li>
-                        <li><a href="/categories">Categories</a></li>
-                        <li><a href="/news">News & Guides</a></li>
+                        <li><a href="/" data-i18n="nav.home">Home</a></li>
+                        <li><a href="/companions" data-i18n="nav.companions">Companions</a></li>
+                        <li><a href="/categories" data-i18n="nav.categories">Categories</a></li>
+                        <li><a href="/best-for" data-i18n="nav.bestFor">Best For</a></li>
+                        <li><a href="/news" data-i18n="nav.news">News & Guides</a></li>
                         <li><a href="/companions-az">Companions A-Z</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>
@@ -29,6 +30,7 @@ const newsFooter = `<footer>
                 <div class="footer-section">
                     <h4>Featured Guides</h4>
                     <ul>
+                        <li><a href="/news/crushon-ai-alternatives-complete-guide-2025">CrushOn AI Alternatives Guide</a></li>
                         <li><a href="/news/soulkyn-ai-alternatives-complete-guide-2025">Soulkyn AI Alternatives Guide</a></li>
                         <li><a href="/news/spicychat-ai-complete-guide-2025">SpicyChat AI Complete Guide</a></li>
                         <li><a href="/news/hammer-ai-complete-review-2025">Hammer AI Complete Review</a></li>
@@ -42,7 +44,8 @@ const newsFooter = `<footer>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Companion Guide. All rights reserved.</p>
+                <p>&copy; 2025 CompanionGuide. All rights reserved. | <a href="/cookie-policy" style="color: #888; text-decoration: underline;">Cookies</a> | <a href="/terms" style="color: #888; text-decoration: underline;">Terms</a> | <a href="/2257-compliance" style="color: #888; text-decoration: underline;">2257</a> | <a href="/dmca" style="color: #888; text-decoration: underline;">DMCA</a></p>
+                <p style="font-size: 0.75rem; color: #666; margin-top: 8px;">This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
             </div>
         </div>
     </footer>`;
