@@ -7,6 +7,33 @@ class DealsManager {
   constructor() {
     this.deals = [];
     this.container = document.querySelector('.deals-container');
+    // A/B test: read variant from cookie set by Edge Function
+    this.useVariantB = this.getABVariantFromCookie() === 'B';
+  }
+
+  /**
+   * Get A/B variant from cookie (set by Edge Function)
+   * Returns 'A' or 'B'
+   */
+  getABVariantFromCookie() {
+    const match = document.cookie.match(/ab_variant=([AB])/);
+    return match ? match[1] : 'A';
+  }
+
+  /**
+   * Get the active external URL for A/B testing
+   * If website_url_2 exists and variant B is selected, use it
+   * Otherwise always use website_url
+   */
+  getActiveExternalUrl(deal) {
+    if (!deal) return '#';
+
+    const hasVariantB = deal.website_url_2 && deal.website_url_2.trim() !== '';
+    const isVariantB = hasVariantB && this.useVariantB;
+
+    return isVariantB
+      ? deal.website_url_2
+      : (deal.website_url || '#');
   }
 
   async init() {
@@ -142,14 +169,20 @@ class DealsManager {
       ` : ''}
 
       <div class="card-actions">
-        <a href="${this.escapeHtml(deal.website_url)}"
+        <a href="${this.escapeHtml(this.getActiveExternalUrl(deal))}"
            class="btn-primary"
            target="_blank"
            rel="noopener noreferrer nofollow"
            onclick="if(typeof gtag !== 'undefined') gtag('event', 'deal_click', {'event_category': 'deals', 'event_label': '${this.escapeHtml(deal.slug)}'});">
           ${window.i18n && window.i18n.initialized ? window.i18n.t('dealsPage.tryButton') : 'Try'} ${this.escapeHtml(deal.name)}
         </a>
-        <a href="/companions/${this.escapeHtml(deal.slug)}" class="btn-secondary">${window.i18n && window.i18n.initialized ? window.i18n.t('dealsPage.claimDeal') : 'Claim Deal'}</a>
+        <a href="${this.escapeHtml(this.getActiveExternalUrl(deal))}"
+           class="btn-secondary"
+           target="_blank"
+           rel="noopener noreferrer nofollow"
+           onclick="if(typeof gtag !== 'undefined') gtag('event', 'deal_claim', {'event_category': 'deals', 'event_label': '${this.escapeHtml(deal.slug)}'});">
+          ${window.i18n && window.i18n.initialized ? window.i18n.t('dealsPage.claimDeal') : 'Claim Deal'}
+        </a>
       </div>
     `;
 
