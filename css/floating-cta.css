@@ -38,7 +38,7 @@
 
 .floating-cta-discount-badge {
     position: absolute;
-    top: -11px;
+    top: -14px;
     left: 12px;
     background: #0f1419;
     border: 1.5px solid var(--accent-blue, #3b82f6);

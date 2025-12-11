@@ -1259,6 +1259,12 @@ body:has(.article-hero) {
     gap: var(--space-4);
 }
 
+@media (max-width: 768px) {
+    .ranking-list {
+        gap: var(--space-3);
+    }
+}
+
 .ranking-item {
     display: flex;
     align-items: center;
@@ -1304,17 +1310,43 @@ body:has(.article-hero) {
     .ranking-item {
         flex-direction: column;
         text-align: center;
-        gap: var(--space-3);
+        gap: var(--space-2);
+        padding: var(--space-3);
     }
 
     .rank-logo {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
     }
 
     .rank-number {
-        font-size: 1.5rem;
-        min-width: auto;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+    }
+
+    .rank-info h3 {
+        font-size: 1rem;
+        margin-bottom: var(--space-1);
+    }
+
+    .rank-info h3 .rank-number {
+        margin-right: var(--space-1);
+    }
+
+    .rank-info p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        margin-bottom: var(--space-2);
+    }
+
+    .rank-rating {
+        margin-bottom: var(--space-1);
+        justify-content: center;
+    }
+
+    .rating-score {
+        font-size: 0.9rem;
     }
 }
 
@@ -1413,26 +1445,41 @@ body:has(.article-hero) {
 @media (max-width: 768px) {
     .companion-ranking-container .ranking-item {
         flex-wrap: wrap;
-        gap: var(--space-3);
+        gap: var(--space-2);
+        padding: var(--space-3);
     }
 
     .companion-ranking-container .ranking-position {
-        font-size: 1.25rem;
-        min-width: 40px;
+        font-size: 1.1rem;
+        min-width: 35px;
     }
 
     .companion-ranking-container .ranking-logo img {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
     }
 
     .companion-ranking-container .ranking-info {
         flex: 1 1 60%;
     }
 
+    .companion-ranking-container .ranking-info h4 {
+        font-size: 0.95rem;
+        margin-bottom: var(--space-1);
+    }
+
+    .companion-ranking-container .ranking-info p {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
     .companion-ranking-container .ranking-rating,
     .companion-ranking-container .ranking-cta {
         flex: 0 0 auto;
+    }
+
+    .companion-ranking-container .rating-score {
+        font-size: 0.9rem;
     }
 }
 
@@ -1802,20 +1849,33 @@ body:has(.article-hero) {
 
     /* Fix button widths on mobile */
     .platform-cta,
-    .card-actions,
     .summary-actions {
         flex-direction: column;
         gap: var(--space-3);
     }
 
     .platform-cta .btn-primary,
-    .platform-cta .btn-secondary,
-    .card-actions .btn-primary,
-    .card-actions .btn-secondary {
+    .platform-cta .btn-secondary {
         width: 100%;
         text-align: center;
         padding: var(--space-3) var(--space-4);
         font-size: 0.9rem;
+    }
+
+    /* Card actions - keep buttons side by side on mobile */
+    .card-actions {
+        flex-direction: row;
+        gap: var(--space-2);
+        margin-top: var(--space-3);
+    }
+
+    .card-actions .btn-primary,
+    .card-actions .btn-secondary {
+        flex: 1;
+        text-align: center;
+        padding: var(--space-2) var(--space-2);
+        font-size: 0.75rem;
+        white-space: nowrap;
     }
 
     /* Ensure CTAs stack properly */

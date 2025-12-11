@@ -9,7 +9,8 @@ class LanguageManager {
             'en': { name: 'English', flag: '🇺🇸' },
             'nl': { name: 'Nederlands', flag: '🇳🇱' },
             'pt': { name: 'Português (Brasil)', flag: '🇧🇷' },
-            'de': { name: 'Deutsch', flag: '🇩🇪' }
+            'de': { name: 'Deutsch', flag: '🇩🇪' },
+            'es': { name: 'Español', flag: '🇪🇸' }
         };
 
         this.currentLanguage = this.detectLanguage();

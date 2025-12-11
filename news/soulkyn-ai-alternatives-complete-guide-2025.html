@@ -292,7 +292,7 @@
                         </div>
 
                         <div class="platform-image">
-                            <img src="/images/screenshots/secrets-ai-review-companionguide.png" alt="Secrets AI - AI Girlfriend Platform Screenshot" loading="lazy">
+                            <a href="/companions/secrets-ai"><img src="/images/screenshots/secrets-ai-review-companionguide.png" alt="Secrets AI - AI Girlfriend Platform Screenshot" loading="lazy"></a>
                         </div>
 
                         <p class="lead-paragraph">Secrets AI is the #1 realistic AI girlfriend platform, offering intimate virtual relationships with advanced video generation, 100+ fantasy scenarios, and powerful memory systems.</p>
@@ -331,7 +331,7 @@
                         </div>
 
                         <div class="platform-image">
-                            <img src="/images/screenshots/ourdream-ai-review-image-gallery-4.png" alt="OurDream AI - Multimedia AI Companion Screenshot" loading="lazy">
+                            <a href="/companions/ourdream-ai"><img src="/images/screenshots/ourdream-ai-review-image-gallery-4.png" alt="OurDream AI - Multimedia AI Companion Screenshot" loading="lazy"></a>
                         </div>
 
                         <p class="lead-paragraph">OurDream AI offers a comprehensive multimedia AI companion playground with unlimited chat, image generation, video creation, and character building tools.</p>
@@ -370,7 +370,7 @@
                         </div>
 
                         <div class="platform-image">
-                            <img src="/images/screenshots/joi-ai-image-gallery-1.png" alt="JOI AI - Interactive AI Companion Screenshot" loading="lazy">
+                            <a href="/companions/joi-ai"><img src="/images/screenshots/joi-ai-image-gallery-1.png" alt="JOI AI - Interactive AI Companion Screenshot" loading="lazy"></a>
                         </div>
 
                         <p class="lead-paragraph">JOI AI delivers highly interactive AI girlfriend experiences with advanced conversation capabilities and immersive relationship features.</p>
@@ -406,7 +406,7 @@
                         </div>
 
                         <div class="platform-image">
-                            <img src="/images/screenshots/girlfriendgpt-ai-review-companionguide.png" alt="GirlfriendGPT - AI Companion Platform Screenshot" loading="lazy">
+                            <a href="/companions/girlfriend-gpt"><img src="/images/screenshots/girlfriendgpt-ai-review-companionguide.png" alt="GirlfriendGPT - AI Companion Platform Screenshot" loading="lazy"></a>
                         </div>
 
                         <p class="lead-paragraph">GirlfriendGPT combines romantic connections with advanced roleplay capabilities, offering voice chat and AI image generation for immersive experiences.</p>
@@ -442,7 +442,7 @@
                         </div>
 
                         <div class="platform-image">
-                            <img src="/images/screenshots/dreamcompanion-ai-image-1.png" alt="Dream Companion - AI Companion Platform Screenshot" loading="lazy">
+                            <a href="/companions/dream-companion"><img src="/images/screenshots/dreamcompanion-ai-image-1.png" alt="Dream Companion - AI Companion Platform Screenshot" loading="lazy"></a>
                         </div>
 
                         <p class="lead-paragraph">Dream Companion offers highly personalized AI girlfriend experiences with extensive customization options for appearance, personality, and relationship style.</p>
@@ -478,7 +478,7 @@
                         </div>
 
                         <div class="platform-image">
-                            <img src="/images/screenshots/hammer-ai-image-1.webp" alt="Hammer AI - AI Companion Platform Screenshot" loading="lazy">
+                            <a href="/companions/hammer-ai"><img src="/images/screenshots/hammer-ai-image-1.webp" alt="Hammer AI - AI Companion Platform Screenshot" loading="lazy"></a>
                         </div>
 
                         <p class="lead-paragraph">Hammer AI delivers a balanced AI companion experience with excellent AI quality, beautiful visuals, and versatile features.</p>
@@ -515,7 +515,7 @@
                         </div>
 
                         <div class="platform-image">
-                            <img src="/images/screenshots/crushon-ai-image-1.png" alt="CrushOn AI - Uncensored AI Platform Screenshot" loading="lazy">
+                            <a href="/companions/crushon-ai"><img src="/images/screenshots/crushon-ai-image-1.png" alt="CrushOn AI - Uncensored AI Platform Screenshot" loading="lazy"></a>
                         </div>
 
                         <p class="lead-paragraph">CrushOn AI offers completely uncensored AI companion experiences with no content filters, perfect for adult users seeking unrestricted interactions.</p>
@@ -547,7 +547,7 @@
                         </div>
 
                         <div class="platform-image">
-                            <img src="/images/screenshots/selira-ai-review-companionguide.png" alt="Selira AI - Free AI Companion Screenshot" loading="lazy">
+                            <a href="/companions/selira-ai"><img src="/images/screenshots/selira-ai-review-companionguide.png" alt="Selira AI - Free AI Companion Screenshot" loading="lazy"></a>
                         </div>
 
                         <p class="lead-paragraph">Selira AI stands out as the premier free alternative to Soulkyn, offering unlimited AI conversations and character creation without any paywalls.</p>
@@ -579,7 +579,7 @@
                         </div>
 
                         <div class="platform-image">
-                            <img src="/images/screenshots/nomi-ai-review-image-gallery-4.png" alt="Nomi.AI - AI Companion Screenshot" loading="lazy">
+                            <a href="/companions/nomi-ai"><img src="/images/screenshots/nomi-ai-review-image-gallery-4.png" alt="Nomi.AI - AI Companion Screenshot" loading="lazy"></a>
                         </div>
 
                         <p class="lead-paragraph">Nomi.AI excels at creating genuine emotional connections with AI companions who remember you and develop meaningful relationships over time.</p>
@@ -604,7 +604,7 @@
                         </div>
 
                         <div class="platform-image">
-                            <img src="/images/screenshots/spicychat-ai-review-2.png" alt="SpicyChat - Community AI Platform Screenshot" loading="lazy">
+                            <a href="/companions/spicychat-ai"><img src="/images/screenshots/spicychat-ai-review-2.png" alt="SpicyChat - Community AI Platform Screenshot" loading="lazy"></a>
                         </div>
 
                         <p class="lead-paragraph">SpicyChat offers uncensored adult conversations with a vast community-created character library.</p>
@@ -803,10 +803,9 @@
                         <div class="ranking-list">
                             ${topCompanions.slice(0, 15).map((companion, index) => `
                                 <div class="ranking-item">
-                                    <div class="rank-number">#${index + 1}</div>
                                     <img src="${companion.logo_url || '/images/logos/default.png'}" alt="${companion.name}" class="rank-logo">
                                     <div class="rank-info">
-                                        <h3><a href="/companions/${companion.slug}">${companion.name}</a></h3>
+                                        <h3><span class="rank-number">#${index + 1}</span> <a href="/companions/${companion.slug}">${companion.name}</a></h3>
                                         <div class="rank-rating">
                                             ${manager.generateStarRating(companion.rating)}
                                             <span class="rating-score">${companion.rating}/10</span>

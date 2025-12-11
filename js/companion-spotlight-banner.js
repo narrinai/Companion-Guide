@@ -3,6 +3,14 @@
  * Dynamically loads companion data and renders a spotlight banner
  */
 
+// Button translations
+const buttonTranslations = {
+    en: { tryButton: 'Try', readReview: 'Read Review' },
+    nl: { tryButton: 'Probeer', readReview: 'Lees Review' },
+    de: { tryButton: 'Testen', readReview: 'Review Lesen' },
+    pt: { tryButton: 'Experimente', readReview: 'Ler Análise' }
+};
+
 async function loadSpotlightBanner(slug, lang = 'en') {
     try {
         const response = await fetch(`/.netlify/functions/companionguide-get?lang=${lang}&limit=100`);
@@ -13,6 +21,9 @@ async function loadSpotlightBanner(slug, lang = 'en') {
             console.error('Companion not found:', slug);
             return;
         }
+
+        const translations = buttonTranslations[lang] || buttonTranslations.en;
+        const basePath = lang === 'en' ? '' : `/${lang}`;
 
         // Logo
         const logo = document.getElementById('banner-logo');
@@ -25,7 +36,6 @@ async function loadSpotlightBanner(slug, lang = 'en') {
         const nameLink = document.getElementById('banner-name-link');
         if (nameLink) {
             nameLink.textContent = companion.name;
-            const basePath = lang === 'en' ? '' : `/${lang}`;
             nameLink.href = `${basePath}/companions/${slug}`;
         }
 
@@ -41,17 +51,21 @@ async function loadSpotlightBanner(slug, lang = 'en') {
             reviewCountEl.textContent = `(${companion.review_count} ${reviewText})`;
         }
 
-        // Website URL
+        // Website URL & Review URL
         const websiteUrl = companion.website_url || '#';
+        const reviewUrl = `${basePath}/companions/${slug}`;
         const btnPrimary = document.getElementById('banner-btn-primary');
         const btnSecondary = document.getElementById('banner-btn-secondary');
 
         if (btnPrimary) {
             btnPrimary.href = websiteUrl;
-            btnPrimary.textContent = `Try ${companion.name}`;
+            btnPrimary.textContent = `${translations.tryButton} ${companion.name}`;
         }
         if (btnSecondary) {
-            btnSecondary.href = websiteUrl;
+            btnSecondary.href = reviewUrl;
+            btnSecondary.textContent = translations.readReview;
+            btnSecondary.removeAttribute('target');
+            btnSecondary.removeAttribute('rel');
         }
 
         // Gallery Images

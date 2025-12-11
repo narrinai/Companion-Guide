@@ -68,6 +68,17 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="/faq-styles.css">
     <link rel="stylesheet" href="/css/companion-spotlight-banner.css">
+    <script>
+        // Load icon sprite sheet
+        fetch('/icons.svg')
+            .then(r => r.text())
+            .then(svg => {
+                const div = document.createElement('div');
+                div.style.display = 'none';
+                div.innerHTML = svg;
+                document.body.insertBefore(div, document.body.firstChild);
+            });
+    </script>
 </head>
 <body>
     <header>
