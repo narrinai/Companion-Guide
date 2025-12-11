@@ -2,10 +2,14 @@
  * Dynamic Companion Links Manager
  * Automatically updates all companion external links to use Airtable website_url
  * Works on news pages, category pages, and any page with companion links
+ *
+ * URL source: Always from Airtable (website_url / website_url_2)
+ * Slug detection: data-companion-slug attribute (preferred) or dynamic domain mapping
  */
 class DynamicCompanionLinks {
     constructor() {
         this.companions = new Map(); // slug -> companion data
+        this.domainToSlug = new Map(); // domain -> slug (built from Airtable data)
         // A/B test: read variant from cookie set by Edge Function
         this.useVariantB = this.getABVariantFromCookie() === 'B';
         this.initialized = false;
@@ -15,6 +19,7 @@ class DynamicCompanionLinks {
     async init() {
         try {
             await this.loadCompanionData();
+            this.buildDomainMappings();
             this.updateAllLinks();
             this.initialized = true;
             console.log('✅ Dynamic companion links initialized');
@@ -56,6 +61,45 @@ class DynamicCompanionLinks {
     }
 
     /**
+     * Build domain-to-slug mappings dynamically from Airtable data
+     * Extracts domain from website_url for each companion
+     */
+    buildDomainMappings() {
+        this.domainToSlug.clear();
+
+        this.companions.forEach((companion, slug) => {
+            // Extract domain from website_url
+            if (companion.website_url) {
+                const domain = this.extractDomain(companion.website_url);
+                if (domain && !this.domainToSlug.has(domain)) {
+                    this.domainToSlug.set(domain, slug);
+                }
+            }
+            // Also map from website_url_2 if different domain
+            if (companion.website_url_2) {
+                const domain2 = this.extractDomain(companion.website_url_2);
+                if (domain2 && !this.domainToSlug.has(domain2)) {
+                    this.domainToSlug.set(domain2, slug);
+                }
+            }
+        });
+
+        console.log(`🗺️ Built ${this.domainToSlug.size} domain mappings from Airtable`);
+    }
+
+    /**
+     * Extract domain from URL (without www prefix)
+     */
+    extractDomain(url) {
+        try {
+            const urlObj = new URL(url);
+            return urlObj.hostname.replace(/^www\./, '').toLowerCase();
+        } catch {
+            return null;
+        }
+    }
+
+    /**
      * Get A/B variant from cookie (set by Edge Function)
      * Returns 'A' or 'B'
      */
@@ -79,84 +123,47 @@ class DynamicCompanionLinks {
     }
 
     /**
-     * Extract companion slug from various link formats
+     * Extract companion slug from link
+     * Priority:
+     * 1. data-companion-slug attribute (most reliable)
+     * 2. Parent element with data-companion-slug
+     * 3. Internal link path (/companions/slug)
+     * 4. Section ID matching companion slug
+     * 5. Domain mapping from Airtable data
      */
     extractSlugFromLink(link) {
+        // 1. Check for data-companion-slug attribute on the link itself
+        if (link.dataset.companionSlug) {
+            return link.dataset.companionSlug;
+        }
+
+        // 2. Check parent elements for data-companion-slug
+        const parentWithSlug = link.closest('[data-companion-slug]');
+        if (parentWithSlug && parentWithSlug.dataset.companionSlug) {
+            return parentWithSlug.dataset.companionSlug;
+        }
+
         const href = link.getAttribute('href') || '';
 
-        // Check for internal companion review links: /companions/slug
+        // 3. Check for internal companion review links: /companions/slug
         const internalMatch = href.match(/\/companions\/([a-z0-9-]+)/i);
         if (internalMatch) {
             return internalMatch[1];
         }
 
-        // Check for data attributes
-        if (link.dataset.companionSlug) {
-            return link.dataset.companionSlug;
-        }
-
-        // Check parent elements for companion context
+        // 4. Check parent elements for companion context via section ID
         const section = link.closest('[id]');
         if (section) {
             const sectionId = section.id;
-            // Section IDs often match companion slugs (e.g., id="crushon-ai")
             if (this.companions.has(sectionId)) {
                 return sectionId;
             }
         }
 
-        // Try to match domain to companion
-        const domainMatch = href.match(/https?:\/\/(?:www\.)?([^\/\?]+)/i);
-        if (domainMatch) {
-            const domain = domainMatch[1].toLowerCase();
-
-            // Domain to slug mapping for common patterns
-            const domainMappings = {
-                'crushon.ai': 'crushon-ai',
-                'soulkyn.com': 'soulkyn-ai',
-                'nomi.ai': 'nomi-ai',
-                'character.ai': 'character-ai',
-                'replika.com': 'replika',
-                'chai.ml': 'chai-ai',
-                'janitorai.com': 'janitor-ai',
-                'spicychat.ai': 'spicychat-ai',
-                'candy.ai': 'candy-ai',
-                'dreamgf.ai': 'dreamgf-ai',
-                'fantasygf.ai': 'fantasygf-ai',
-                'fantasygf.com': 'fantasygf-ai',
-                'promptchan.ai': 'promptchan-ai',
-                'promptchan.com': 'promptchan-ai',
-                'selira.ai': 'selira-ai',
-                'nectar.ai': 'nectar-ai',
-                'soulgen.ai': 'soulgen-ai',
-                'soulgen.net': 'soulgen-ai',
-                'ourdream.ai': 'ourdream-ai',
-                'secrets.ai': 'secrets-ai',
-                'ehentai.ai': 'ehentai-ai',
-                'chub.ai': 'chub-ai',
-                'kupid.ai': 'kupid-ai',
-                'simone.app': 'simone',
-                'sakura.fm': 'sakura-ai',
-                'joyland.ai': 'joyland-ai',
-                'caveduck.io': 'caveduck',
-                'muah.ai': 'muah-ai',
-                'dunia.gg': 'dunia-ai',
-                'kajiwoto.ai': 'kajiwoto-ai',
-                'aviosa.fun': 'aviosa-ai',
-                'junipero.ai': 'junipero-ai',
-                'gptgirlfriend.online': 'girlfriend-gpt',
-                'girlfriendgpt.com': 'girlfriend-gpt',
-                // Affiliate tracking domains - check parent section for context
-                't.crjmpy.com': null,
-                't.avlmy.com': null,
-                't.mbsrv2.com': null,
-                'gumroad.com': null,
-                'edenai.go2cloud.org': null,
-            };
-
-            if (domainMappings.hasOwnProperty(domain)) {
-                return domainMappings[domain];
-            }
+        // 5. Try to match domain using dynamic mappings from Airtable
+        const domain = this.extractDomain(href);
+        if (domain && this.domainToSlug.has(domain)) {
+            return this.domainToSlug.get(domain);
         }
 
         return null;
@@ -176,6 +183,11 @@ class DynamicCompanionLinks {
             return false;
         }
 
+        // Always update links with data-companion-slug
+        if (link.dataset.companionSlug || link.closest('[data-companion-slug]')) {
+            return true;
+        }
+
         const href = link.getAttribute('href') || '';
         const text = link.textContent.trim().toLowerCase();
 
@@ -187,6 +199,7 @@ class DynamicCompanionLinks {
             link.classList.contains('cta-button') ||
             link.classList.contains('cta-primary') ||
             link.classList.contains('pricing-cta') ||
+            link.classList.contains('external-link') ||
             text.includes('visit') ||
             text.includes('try') ||
             text.includes('get started') ||
@@ -207,6 +220,10 @@ class DynamicCompanionLinks {
     updateAllLinks() {
         // Selectors for links that might need updating
         const selectors = [
+            // Data attribute selectors (preferred)
+            '[data-companion-slug] a',
+            'a[data-companion-slug]',
+            // Legacy selectors for backwards compatibility
             '.platform-cta a',
             '.btn-primary[target="_blank"]',
             '.btn-secondary[target="_blank"]',
@@ -218,6 +235,7 @@ class DynamicCompanionLinks {
             'main a[href*="http"][target="_blank"]',
             '.content-section a[href*="http"][target="_blank"]',
             '.platform-review a[href*="http"][target="_blank"]',
+            'a.external-link',
         ];
 
         let updatedCount = 0;
