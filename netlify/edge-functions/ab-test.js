@@ -12,10 +12,10 @@ const URL_MAPPINGS = {
   'https://soulkyn.com/?_go=companionguide': 'https://soulkyn.ai/?_go=companionguide',
 
   // Secrets AI
-  'http://secrets.ai/?spicy=true&gender=female&fpr=companionguide': 'https://www.secrets.ai/custom?spicy=true&fpr=companion88&fpr=companionguide',
+  'http://secrets.ai/?spicy=true&gender=female&fpr=companionguide': 'https://www.secrets.ai/custom?spicy=true&fpr=companion88',
 
-  // Dream Companion (HTML uses short URL without params)
-  'https://mydreamcompanion.com': 'https://www.mydreamcompanion.com/create-character/?mode=presets&deal=companionguide',
+  // Dream Companion (match full Airtable URL)
+  'https://www.mydreamcompanion.com/?deal=companionguide': 'https://www.mydreamcompanion.com/create-character/?mode=presets&deal=companionguide',
 
   // FantasyGF (HTML uses generate-image path)
   'https://fantasygf.com/generate-image?via=53hyme': 'https://fantasygf.com/?via=53hyme',
