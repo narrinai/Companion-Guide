@@ -754,7 +754,7 @@ main {
 
 @media (min-width: 1024px) {
     .hero p {
-        white-space: nowrap;
+        max-width: 900px;
     }
 }
 
