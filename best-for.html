@@ -1156,8 +1156,11 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
         }
 
         // Create OurDream AI ad section HTML
-        function createOurDreamAdSection(variant = 'bj') {
+        function createOurDreamAdSection(variant = 'bj', companions = []) {
             const videoFile = variant === 'v2' ? '950x250-ourdream-ai-video-companionguide-v2.mp4' : '950x250-ourdream-ai-video-companionguide-bj.mp4';
+            // Get OurDream AI companion for A/B test URL
+            const ourdreamCompanion = companions.find(c => c.slug === 'ourdream-ai');
+            const affiliateUrl = ourdreamCompanion ? window.companionManager.getActiveExternalUrl(ourdreamCompanion) : 'https://ourdream.ai/?via=companionguide';
             return `
                 <section class="best-for-ad-section" id="ad-ourdream-${variant}">
                     <article class="best-for-ad-card" id="best-for-ad-ourdream-${variant}">
@@ -1172,15 +1175,15 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                                 </div>
                             </div>
                         </div>
-                        <a href="https://ourdream.ai/?via=companionguide" target="_blank" rel="noopener" class="ad-video-link">
+                        <a href="${affiliateUrl}" target="_blank" rel="noopener" class="ad-video-link">
                             <video autoplay loop muted playsinline class="ad-video-bestfor">
                                 <source src="/videos/${videoFile}" type="video/mp4">
                             </video>
                         </a>
                         <p class="ad-description">Best for: NSFW AI sex chat, adult content creation & explicit videos</p>
                         <div class="ad-actions">
-                            <a href="https://ourdream.ai/?via=companionguide" class="ad-btn-primary" target="_blank" rel="noopener">Try OurDream AI</a>
-                            <a href="https://ourdream.ai/?via=companionguide" class="ad-btn-secondary" target="_blank" rel="noopener">Visit Website</a>
+                            <a href="${affiliateUrl}" class="ad-btn-primary" target="_blank" rel="noopener">Try OurDream AI</a>
+                            <a href="${affiliateUrl}" class="ad-btn-secondary" target="_blank" rel="noopener">Visit Website</a>
                         </div>
                     </article>
                 </section>
@@ -1216,9 +1219,9 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     }
 
                     // Insert OurDream ad after anime section (bj video)
-                    if (category.id === 'anime') sectionsHTML += createOurDreamAdSection('bj');
+                    if (category.id === 'anime') sectionsHTML += createOurDreamAdSection('bj', companions);
                     // Insert second OurDream ad after voice section (v2 video)
-                    if (category.id === 'voice') sectionsHTML += createOurDreamAdSection('v2');
+                    if (category.id === 'voice') sectionsHTML += createOurDreamAdSection('v2', companions);
                 }
 
                 container.innerHTML = sectionsHTML;
