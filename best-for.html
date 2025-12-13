@@ -851,6 +851,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 <button id="lang-toggle" class="lang-current"></button>
                 <div class="lang-dropdown" id="lang-dropdown" style="display: none;">
                     <a href="/best-for" class="lang-option active">🇬🇧</a>
+                    <a href="/es/best-for" class="lang-option">🇪🇸</a>
                     <a href="/nl/best-for" class="lang-option">🇳🇱</a>
                     <a href="/pt/best-for" class="lang-option">🇧🇷</a>
                     <a href="/de/best-for" class="lang-option">🇩🇪</a>
@@ -1065,6 +1066,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             const categories = companion.categories || [];
             const displayTags = categories.slice(0, 3);
             const previewThumbnail = generatePreviewThumbnail(companion);
+            const websiteUrl = getWebsiteUrl(companion);
 
             const tagline = companion.tagline || companion.short_description || '';
 
@@ -1074,9 +1076,11 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     <div class="compact-card-header">
                         <div class="compact-card-left">
                             <div class="compact-card-top">
-                                <img src="${companion.logo_url || '/images/placeholder.png'}" alt="${companion.name}" class="compact-card-logo" loading="lazy">
+                                <a href="${websiteUrl}" target="_blank" rel="noopener">
+                                    <img src="${companion.logo_url || '/images/placeholder.png'}" alt="${companion.name}" class="compact-card-logo" loading="lazy">
+                                </a>
                                 <div class="compact-card-info">
-                                    <h3 class="compact-card-name">${companion.name}</h3>
+                                    <h3 class="compact-card-name"><a href="${websiteUrl}" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">${companion.name}</a></h3>
                                     <div class="compact-card-rating">
                                         <span class="compact-card-stars">${stars}</span>
                                         <span class="compact-card-score">${companion.rating}/10</span>
@@ -1091,7 +1095,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                         ${previewThumbnail}
                     </div>
                     <div class="compact-card-cta">
-                        <a href="${getWebsiteUrl(companion)}" class="btn-primary" target="_blank" rel="noopener">Visit Website</a>
+                        <a href="${websiteUrl}" class="btn-primary" target="_blank" rel="noopener">Visit Website</a>
                         <a href="/companions/${companion.slug}" class="btn-secondary">Read Review</a>
                     </div>
                 </div>

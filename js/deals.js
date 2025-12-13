@@ -9,6 +9,21 @@ class DealsManager {
     this.container = document.querySelector('.deals-container');
     // A/B test: read variant from cookie set by Edge Function
     this.useVariantB = this.getABVariantFromCookie() === 'B';
+    // Detect current language from URL
+    this.currentLang = this.detectLanguage();
+  }
+
+  /**
+   * Detect language from URL path
+   * Examples: /es/deals -> 'es', /deals -> 'en'
+   */
+  detectLanguage() {
+    const pathParts = window.location.pathname.split('/').filter(p => p);
+    const supportedLangs = ['es', 'nl', 'de', 'pt'];
+    if (pathParts.length > 0 && supportedLangs.includes(pathParts[0])) {
+      return pathParts[0];
+    }
+    return 'en';
   }
 
   /**
@@ -61,7 +76,7 @@ class DealsManager {
     try {
       console.log('📡 Fetching deals from Netlify function...');
 
-      const response = await fetch('/.netlify/functions/deals-get');
+      const response = await fetch(`/.netlify/functions/deals-get?lang=${this.currentLang}`);
 
       if (!response.ok) {
         throw new Error(`API error: ${response.status}`);

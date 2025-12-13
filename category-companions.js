@@ -5,6 +5,81 @@ class CategoryCompanions {
         this.init();
     }
 
+    // Helper to get companion URL with proper language prefix (works even before i18n init)
+    getCompanionUrl(slug) {
+        // If i18n is initialized, use its method
+        if (window.i18n && window.i18n.initialized) {
+            return window.i18n.getCompanionUrl(slug);
+        }
+        // Fallback: detect language from URL path
+        const lang = this.detectLangFromUrl();
+        if (lang !== 'en') {
+            return `/${lang}/companions/${slug}`;
+        }
+        return `/companions/${slug}`;
+    }
+
+    // Detect language from URL path
+    detectLangFromUrl() {
+        const pathParts = window.location.pathname.split('/').filter(p => p);
+        const supportedLangs = ['nl', 'es', 'de', 'fr', 'it', 'pt', 'pl'];
+        if (pathParts.length > 0 && supportedLangs.includes(pathParts[0])) {
+            return pathParts[0];
+        }
+        return 'en';
+    }
+
+    // Get translation with URL-based fallback (works before i18n init)
+    t(key, fallback) {
+        // If i18n is initialized, use it
+        if (window.i18n && window.i18n.initialized) {
+            const translation = window.i18n.t(key);
+            // If translation equals key, it means it wasn't found
+            return translation !== key ? translation : fallback;
+        }
+        // Fallback translations per language
+        const lang = this.detectLangFromUrl();
+        const fallbacks = {
+            es: {
+                'companionCard.readReview': 'Leer Análisis',
+                'companionCard.visitWebsite': 'Visitar Web',
+                'companionCard.freeTrial': 'Prueba gratuita',
+                'companionCard.bestFor': 'Mejor para:',
+                'companionCard.reviews': 'reseñas',
+                'companionCard.try': 'Probar',
+                'badges.companionSpotlight': 'Companion Destacado'
+            },
+            nl: {
+                'companionCard.readReview': 'Lees Review',
+                'companionCard.visitWebsite': 'Bezoek Website',
+                'companionCard.freeTrial': 'Gratis proefversie',
+                'companionCard.bestFor': 'Beste voor:',
+                'companionCard.reviews': 'reviews',
+                'companionCard.try': 'Probeer',
+                'badges.companionSpotlight': 'Companion Spotlight'
+            },
+            de: {
+                'companionCard.readReview': 'Review Lesen',
+                'companionCard.visitWebsite': 'Website Besuchen',
+                'companionCard.freeTrial': 'Kostenlose Testversion',
+                'companionCard.bestFor': 'Am besten für:',
+                'companionCard.reviews': 'Bewertungen',
+                'companionCard.try': 'Testen',
+                'badges.companionSpotlight': 'Companion Spotlight'
+            },
+            pt: {
+                'companionCard.readReview': 'Ler Análise',
+                'companionCard.visitWebsite': 'Visitar Site',
+                'companionCard.freeTrial': 'Teste grátis',
+                'companionCard.bestFor': 'Melhor para:',
+                'companionCard.reviews': 'avaliações',
+                'companionCard.try': 'Experimente',
+                'badges.companionSpotlight': 'Companion em Destaque'
+            }
+        };
+        return (fallbacks[lang] && fallbacks[lang][key]) || fallback;
+    }
+
     async init() {
         await this.loadCompanions();
         this.renderCompanionGrid();
@@ -20,13 +95,28 @@ class CategoryCompanions {
                 return;
             }
 
-            // Build URL with language parameter if i18n is available
-            const params = new URLSearchParams();
-            if (window.i18n && window.i18n.currentLang) {
-                params.append('lang', window.i18n.currentLang);
-            }
+            // Detect language from URL as fallback (same as companions.js)
+            const detectLangFromUrl = () => {
+                const pathParts = window.location.pathname.split('/').filter(p => p);
+                const supportedLangs = ['en', 'nl', 'es', 'de', 'fr', 'it', 'pt', 'pl'];
+                if (pathParts.length > 0 && supportedLangs.includes(pathParts[0])) {
+                    return pathParts[0];
+                }
+                return 'en';
+            };
 
-            const url = `/.netlify/functions/companionguide-get${params.toString() ? '?' + params.toString() : ''}`;
+            // Build URL with language parameter
+            const params = new URLSearchParams();
+            // Priority: i18n.currentLang (if initialized) > URL path detection
+            let lang = 'en';
+            if (window.i18n && window.i18n.initialized && window.i18n.currentLang) {
+                lang = window.i18n.currentLang;
+            } else {
+                lang = detectLangFromUrl();
+            }
+            params.append('lang', lang);
+
+            const url = `/.netlify/functions/companionguide-get?${params.toString()}`;
 
             // Start loading immediately (no waiting for other scripts)
             const response = await fetch(url);
@@ -56,8 +146,8 @@ class CategoryCompanions {
         // Get current page URL to determine category
         let currentPath = window.location.pathname;
 
-        // Remove language prefix (/nl/ or /pt/) to get the base category path
-        currentPath = currentPath.replace(/^\/(nl|pt)\//, '/');
+        // Remove language prefix (/nl/, /pt/, /es/, /de/) to get the base category path
+        currentPath = currentPath.replace(/^\/(nl|pt|es|de)\//, '/');
 
         // Map URL paths to Airtable category values
         // For image-gen we need STRICT matching (must have image-gen tag)
@@ -304,9 +394,7 @@ class CategoryCompanions {
                     const slug = companion.slug || 'unknown';
 
                     // Generate companion URL with proper language prefix
-                    const companionUrl = window.i18n && window.i18n.initialized
-                        ? window.i18n.getCompanionUrl(slug)
-                        : `/companions/${slug}`;
+                    const companionUrl = this.getCompanionUrl(slug);
 
                     return `
                         <tr>
@@ -417,22 +505,14 @@ class CategoryCompanions {
             return ''; // Return empty if not found
         }
 
-        // Get i18n translations
-        const freeTrialText = window.i18n && window.i18n.initialized
-            ? window.i18n.t('companionCard.freeTrial')
-            : 'Free trial';
-        const readReviewText = window.i18n && window.i18n.initialized
-            ? window.i18n.t('companionCard.readReview')
-            : 'Read Review';
-        const visitWebsiteText = window.i18n && window.i18n.initialized
-            ? window.i18n.t('companionCard.visitWebsite')
-            : 'Visit Website';
-        const reviewsText = window.i18n && window.i18n.initialized
-            ? window.i18n.t('companionCard.reviews')
-            : 'reviews';
-        const bestForLabel = window.i18n && window.i18n.initialized
-            ? window.i18n.t('companionCard.bestFor')
-            : 'Best for:';
+        // Get i18n translations (using helper with URL-based fallback)
+        const freeTrialText = this.t('companionCard.freeTrial', 'Free trial');
+        const readReviewText = this.t('companionCard.readReview', 'Read Review');
+        const visitWebsiteText = this.t('companionCard.visitWebsite', 'Visit Website');
+        const reviewsText = this.t('companionCard.reviews', 'reviews');
+        const bestForLabel = this.t('companionCard.bestFor', 'Best for:');
+        const spotlightText = this.t('badges.companionSpotlight', 'Companion Spotlight');
+        const tryText = this.t('companionCard.try', 'Try');
 
         // Extract companion data
         const name = ourdreamCompanion.name || 'OurDream AI';
@@ -445,9 +525,7 @@ class CategoryCompanions {
         const bestFor = ourdreamCompanion.best_for || ourdreamCompanion.Best_for || ourdreamCompanion['Best for'] || this.generateBestFor(ourdreamCompanion);
 
         // Generate companion URL with proper language prefix
-        const companionUrl = window.i18n && window.i18n.initialized
-            ? window.i18n.getCompanionUrl(slug)
-            : `/companions/${slug}`;
+        const companionUrl = this.getCompanionUrl(slug);
 
         // Choose video based on category type: BJ video for NSFW, V2 video for other categories
         const isNsfw = this.isNsfwCategory();
@@ -458,7 +536,7 @@ class CategoryCompanions {
 
         return `
             <article class="companion-card advertisement-card">
-                <div class="product-badge spotlight-badge">Companion Spotlight</div>
+                <div class="product-badge spotlight-badge">${spotlightText}</div>
                 <div class="card-header">
                     <img src="${logoUrl}" alt="${name}" class="logo" onerror="this.src='/images/logos/default.png'">
                     <div class="title-section">
@@ -484,7 +562,7 @@ class CategoryCompanions {
                     <span class="best-for-label">${bestForLabel}</span> ${bestFor}
                 </div>` : ''}
                 <div class="card-actions">
-                    <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">Try ${name}</a>
+                    <a href="${affiliateUrl}" class="btn-primary" target="_blank" rel="noopener">${tryText} ${name}</a>
                     <a href="${affiliateUrl}" class="btn-secondary" target="_blank" rel="noopener">${visitWebsiteText}</a>
                 </div>
             </article>
@@ -511,9 +589,7 @@ class CategoryCompanions {
             const slug = companion.slug || 'unknown';
 
             // Generate companion URL with proper language prefix
-            const companionUrl = window.i18n && window.i18n.initialized
-                ? window.i18n.getCompanionUrl(slug)
-                : `/companions/${slug}`;
+            const companionUrl = this.getCompanionUrl(slug);
 
             // Generate product badge based on badges or default ranking
             let productBadge = '';
@@ -543,9 +619,7 @@ class CategoryCompanions {
             }
 
             // Generate pricing info - always show "Free trial"
-            const freeTrialText = window.i18n && window.i18n.initialized
-                ? window.i18n.t('companionCard.freeTrial')
-                : 'Free trial';
+            const freeTrialText = this.t('companionCard.freeTrial', 'Free trial');
             const pricingInfo = `
                 <div class="pricing-section">
                     <div class="price-main">${freeTrialText}</div>
@@ -554,20 +628,12 @@ class CategoryCompanions {
 
             // Generate "Best for" section
             const bestFor = companion.best_for || companion.Best_for || companion['Best for'] || this.generateBestFor(companion);
-            const bestForLabel = window.i18n && window.i18n.initialized
-                ? window.i18n.t('companionCard.bestFor')
-                : 'Best for:';
+            const bestForLabel = this.t('companionCard.bestFor', 'Best for:');
 
-            // Get i18n translations for card text
-            const readReviewText = window.i18n && window.i18n.initialized
-                ? window.i18n.t('companionCard.readReview')
-                : 'Read Review';
-            const visitWebsiteText = window.i18n && window.i18n.initialized
-                ? window.i18n.t('companionCard.visitWebsite')
-                : 'Visit Website';
-            const reviewsText = window.i18n && window.i18n.initialized
-                ? window.i18n.t('companionCard.reviews')
-                : 'reviews';
+            // Get i18n translations for card text (using helper with URL-based fallback)
+            const readReviewText = this.t('companionCard.readReview', 'Read Review');
+            const visitWebsiteText = this.t('companionCard.visitWebsite', 'Visit Website');
+            const reviewsText = this.t('companionCard.reviews', 'reviews');
 
             // Get preview image from gallery_images (first image) as feature item
             let previewFeatureItem = '';

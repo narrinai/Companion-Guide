@@ -3,6 +3,40 @@
  * Shows a floating call-to-action button linking to /companions
  */
 
+// Translations for floating CTA
+const floatingCtaTranslations = {
+  en: {
+    companionOfTheMonth: 'Companion of the Month',
+    featuredInArticle: 'Featured in this Article',
+    fullReview: 'Full Review',
+    visitWebsite: 'Visit Website'
+  },
+  es: {
+    companionOfTheMonth: 'Companion del Mes',
+    featuredInArticle: 'Destacado en este Artículo',
+    fullReview: 'Análisis Completo',
+    visitWebsite: 'Visitar Web'
+  },
+  nl: {
+    companionOfTheMonth: 'Companion van de Maand',
+    featuredInArticle: 'Uitgelicht in dit Artikel',
+    fullReview: 'Volledige Review',
+    visitWebsite: 'Bezoek Website'
+  },
+  de: {
+    companionOfTheMonth: 'Companion des Monats',
+    featuredInArticle: 'In diesem Artikel vorgestellt',
+    fullReview: 'Vollständige Bewertung',
+    visitWebsite: 'Website besuchen'
+  },
+  pt: {
+    companionOfTheMonth: 'Companion do Mês',
+    featuredInArticle: 'Destaque neste Artigo',
+    fullReview: 'Análise Completa',
+    visitWebsite: 'Visitar Site'
+  }
+};
+
 class FloatingCTAManager {
   constructor() {
     this.cta = null;
@@ -13,7 +47,26 @@ class FloatingCTAManager {
     this.isFeaturedCompanion = false;
     // A/B test: read variant from cookie set by Edge Function
     this.useVariantB = this.getABVariantFromCookie() === 'B';
+    // Detect language from URL or html lang attribute
+    this.lang = this.detectLanguage();
+    this.translations = floatingCtaTranslations[this.lang] || floatingCtaTranslations.en;
     this.init();
+  }
+
+  /**
+   * Detect current language from URL path or html lang attribute
+   */
+  detectLanguage() {
+    const path = window.location.pathname;
+    const langMatch = path.match(/^\/(es|nl|de|pt)\//);
+    if (langMatch) {
+      return langMatch[1];
+    }
+    const htmlLang = document.documentElement.lang;
+    if (htmlLang && floatingCtaTranslations[htmlLang]) {
+      return htmlLang;
+    }
+    return 'en';
   }
 
   /**
@@ -127,11 +180,15 @@ class FloatingCTAManager {
     const websiteUrl = this.getActiveExternalUrl();
 
     // Header text depends on whether it's a featured companion or COTM
-    const headerText = this.isFeaturedCompanion ? 'Featured in this Article' : 'Companion of the Month';
+    const headerText = this.isFeaturedCompanion ? this.translations.featuredInArticle : this.translations.companionOfTheMonth;
 
     // Generate star rating (convert 0-10 scale to 0-5 stars)
     const fullStars = Math.floor(rating / 2);
     const stars = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+
+    // Build review URL with language prefix
+    const langPrefix = this.lang === 'en' ? '' : `/${this.lang}`;
+    const reviewUrl = `${langPrefix}/companions/${slug}`;
 
     this.cta.innerHTML = `
       <div class="floating-cta-discount-badge">67% OFF</div>
@@ -147,8 +204,8 @@ class FloatingCTAManager {
         </div>
       </div>
       <div class="floating-cta-buttons">
-        <a href="/companions/${slug}" class="floating-cta-btn floating-cta-btn-review" data-action="review">Full Review</a>
-        <a href="${websiteUrl}" target="_blank" rel="noopener noreferrer" class="floating-cta-btn floating-cta-btn-website" data-action="website">Visit Website</a>
+        <a href="${reviewUrl}" class="floating-cta-btn floating-cta-btn-review" data-action="review">${this.translations.fullReview}</a>
+        <a href="${websiteUrl}" target="_blank" rel="noopener noreferrer" class="floating-cta-btn floating-cta-btn-website" data-action="website">${this.translations.visitWebsite}</a>
       </div>
       <span class="floating-cta-close" data-close="true">×</span>
     `;

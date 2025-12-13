@@ -132,7 +132,9 @@ class CompanionFloatingCTA {
           name: airtableData.name,
           url: this.getActiveExternalUrl(airtableData),
           logo: airtableData.logo_url || airtableData.logo || '',
-          slug: airtableData.slug || currentSlug
+          slug: airtableData.slug || currentSlug,
+          rating: airtableData.rating || null,
+          reviewCount: airtableData.review_count || null
         };
         this.airtableData = airtableData; // Store for tracking
         console.log(`Floating CTA: Loaded ${airtableData.name} with URL ${this.companionData.url}`);
@@ -203,13 +205,16 @@ class CompanionFloatingCTA {
     // Get translated strings (fallback to English if i18n not available or returns key)
     let visitWebsiteText = 'Visit Website';
     let bestAlternativeText = 'Best Alternative';
+    let currentCompanionText = 'CURRENT COMPANION';
 
     if (window.i18n?.t) {
       const visitKey = window.i18n.t('floatingCta.visitWebsite');
       const altKey = window.i18n.t('floatingCta.bestAlternative');
+      const currentKey = window.i18n.t('floatingCta.currentCompanion');
       // Only use translation if it doesn't return the key itself
       if (visitKey && !visitKey.includes('floatingCta.')) visitWebsiteText = visitKey;
       if (altKey && !altKey.includes('floatingCta.')) bestAlternativeText = altKey;
+      if (currentKey && !currentKey.includes('floatingCta.')) currentCompanionText = currentKey;
     }
 
     // Create the floating CTA container (div instead of anchor for multiple buttons)
@@ -226,15 +231,34 @@ class CompanionFloatingCTA {
       `;
     }
 
-    // Build CTA HTML with two buttons
+    // Generate star rating HTML
+    let starsHTML = '';
+    let rating = 0;
+    if (this.companionData.rating) {
+      rating = parseFloat(this.companionData.rating);
+      const fullStars = Math.floor(rating / 2); // Convert 10-scale to 5-star
+      const hasHalfStar = (rating / 2) % 1 >= 0.5;
+      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+      for (let i = 0; i < fullStars; i++) starsHTML += '★';
+      if (hasHalfStar) starsHTML += '★';
+      for (let i = 0; i < emptyStars; i++) starsHTML += '☆';
+    }
+
+    // Build CTA HTML - COTM style design
     let ctaHTML = `
-      <div class="companion-floating-cta-header">
+      <div class="companion-floating-cta-label">${currentCompanionText}</div>
+      <div class="companion-floating-cta-content">
         ${this.companionData.logo ?
-          `<img src="${this.companionData.logo}" alt="${this.escapeHtml(this.companionData.name)}" class="companion-floating-cta-icon">` :
+          `<a href="${this.companionData.url}" target="_blank" rel="noopener noreferrer"><img src="${this.companionData.logo}" alt="${this.escapeHtml(this.companionData.name)}" class="companion-floating-cta-logo"></a>` :
           ''
         }
         <div class="companion-floating-cta-info">
-          <div class="companion-floating-cta-name">${this.escapeHtml(this.companionData.name)}</div>
+          <a href="${this.companionData.url}" target="_blank" rel="noopener noreferrer" class="companion-floating-cta-name-link">${this.escapeHtml(this.companionData.name)}</a>
+          <div class="companion-floating-cta-rating">
+            <span class="companion-floating-cta-stars">${starsHTML}</span>
+            <span class="companion-floating-cta-score">${rating.toFixed(1)}</span><span class="companion-floating-cta-score-label">/10</span>
+          </div>
         </div>
       </div>
       <div class="companion-floating-cta-buttons">
@@ -263,8 +287,10 @@ class CompanionFloatingCTA {
       });
     }
 
-    // Hide CTA when near footer
+    // Hide CTA when near footer or before header on mobile
     window.addEventListener('scroll', () => this.handleScroll());
+    // Initial check
+    this.handleScroll();
 
     // Track clicks on primary button
     const primaryBtn = this.cta.querySelector('[data-action="visit"]');
@@ -285,6 +311,22 @@ class CompanionFloatingCTA {
 
   handleScroll() {
     if (!this.cta || this.dismissed) return;
+
+    // On mobile, show CTA only after scrolling past the header
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      const hero = document.querySelector('.companion-hero');
+      if (hero) {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        if (heroBottom <= 0) {
+          // Scrolled past the header - show CTA
+          this.cta.classList.add('show-after-scroll');
+        } else {
+          // Still at/above header - hide CTA
+          this.cta.classList.remove('show-after-scroll');
+        }
+      }
+    }
 
     const footer = document.querySelector('footer');
     if (!footer) return;

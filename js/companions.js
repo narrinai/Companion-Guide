@@ -339,7 +339,7 @@ class CompanionManager {
       <article class="companion-card" data-companion-id="${companion.id}">
         ${badges}
         <div class="card-header">
-          <img src="${logoUrl}" alt="${companion.name}" class="logo">
+          <a href="${companionUrl}" class="logo-link"><img src="${logoUrl}" alt="${companion.name}" class="logo"></a>
           <div class="title-section">
             <h3><a href="${companionUrl}">${companion.name}</a></h3>
             <div class="rating-line">
@@ -513,7 +513,7 @@ class CompanionManager {
       <article class="${cardClass}">
         ${badgeHtml}
         <div class="product-header">
-          <img src="${logoUrl}" alt="${companion.name} logo" class="product-logo">
+          <a href="../companions/${slug}" class="logo-link"><img src="${logoUrl}" alt="${companion.name} logo" class="product-logo"></a>
           <div class="product-title-section">
             <h3><a href="../companions/${slug}">${companion.name}</a></h3>
             <div class="product-rating">
@@ -707,7 +707,7 @@ class CompanionManager {
       <article class="companion-card advertisement-card">
         <div class="product-badge spotlight-badge">Companion Spotlight</div>
         <div class="card-header">
-          <img src="${logoUrl}" alt="${name}" class="logo" onerror="this.src='/images/logos/default.png'">
+          <a href="${companionUrl}" class="logo-link"><img src="${logoUrl}" alt="${name}" class="logo" onerror="this.src='/images/logos/default.png'"></a>
           <div class="title-section">
             <h3><a href="${companionUrl}">${name}</a></h3>
             <div class="rating-line">

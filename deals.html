@@ -72,7 +72,7 @@
         .deals-hero p {
             font-size: 1.1rem;
             color: #999;
-            max-width: 700px;
+            max-width: 900px;
             margin: 0 auto;
             line-height: 1.6;
         }
@@ -97,12 +97,21 @@
             border-radius: 12px;
             padding: 1.5rem;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .deals-container .companion-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
             border-color: var(--accent-blue, #3b82f6);
+        }
+
+        /* Push buttons to bottom of card and align left */
+        .deals-container .companion-card .card-actions {
+            margin-top: auto;
+            padding-top: 1rem;
+            justify-content: flex-start;
         }
 
         .deal-card {
@@ -505,6 +514,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 <button id="lang-toggle" class="lang-current"></button>
                 <div class="lang-dropdown" id="lang-dropdown" style="display: none;">
                     <a href="/deals" class="lang-option active">🇬🇧</a>
+                    <a href="/es/deals" class="lang-option">🇪🇸</a>
                     <a href="/de/deals" class="lang-option">🇩🇪</a>
                     <a href="/nl/deals" class="lang-option">🇳🇱</a>
                     <a href="/pt/deals" class="lang-option">🇧🇷</a>
@@ -605,58 +615,6 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
     <script src="/script.js"></script>
     <script src="/js/companions.js"></script>
     <script src="/js/blog-post-manager.js"></script>
-    <script>
-        // Language switcher functionality - optimized for mobile
-        (function() {
-            const langToggle = document.getElementById('lang-toggle');
-            const langDropdown = document.getElementById('lang-dropdown');
-
-            if (langToggle && langDropdown) {
-                // Detect current language from URL and update button text
-                const currentPath = window.location.pathname;
-                let currentLang = 'EN';
-                let currentFlag = '🇬🇧';
-
-                if (currentPath.startsWith('/nl/') || currentPath === '/nl') {
-                    currentLang = 'NL';
-                    currentFlag = '🇳🇱';
-                } else if (currentPath.startsWith('/pt/') || currentPath === '/pt') {
-                    currentLang = 'PT';
-                    currentFlag = '🇧🇷';
-                } else if (currentPath.startsWith('/de/') || currentPath === '/de') {
-                    currentLang = 'DE';
-                    currentFlag = '🇩🇪';
-                }
-
-                // Update button text to show current language
-                langToggle.textContent = `${currentFlag} ${currentLang}`;
-                console.log('Language selector initialized:', currentLang);
-
-                // Toggle function
-                const toggleDropdown = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const isVisible = langDropdown.style.display === 'block';
-                    langDropdown.style.display = isVisible ? 'none' : 'block';
-                    console.log('Language dropdown toggled:', langDropdown.style.display);
-                };
-
-                // Add both click and touchstart for better mobile support
-                langToggle.addEventListener('click', toggleDropdown);
-                langToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
-
-                // Close dropdown when clicking outside
-                const closeDropdown = (e) => {
-                    if (!e.target.closest('.language-switcher')) {
-                        langDropdown.style.display = 'none';
-                    }
-                };
-
-                document.addEventListener('click', closeDropdown);
-                document.addEventListener('touchstart', closeDropdown);
-            }
-        })();
-    </script>
     <script>
         // Load featured companions in footer and update ratings
         document.addEventListener("DOMContentLoaded", async function() {

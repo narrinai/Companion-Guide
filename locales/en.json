@@ -231,6 +231,7 @@
   },
   "floatingCta": {
     "visitWebsite": "Visit Website",
-    "bestAlternative": "Best Alternative"
+    "bestAlternative": "Best Alternative",
+    "currentCompanion": "CURRENT COMPANION"
   }
 }

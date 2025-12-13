@@ -68,7 +68,8 @@
     "topRated": "Bestbewertet",
     "leader": "Marktführer",
     "bestValue": "Bestes Preis-Leistungs-Verhältnis",
-    "trending": "Im Trend"
+    "trending": "Im Trend",
+    "companionSpotlight": "Companion Spotlight"
   },
   "categories": {
     "aiGirlfriends": "KI-Girlfriends",
@@ -456,6 +457,7 @@
   },
   "floatingCta": {
     "visitWebsite": "Website Besuchen",
-    "bestAlternative": "Beste Alternative"
+    "bestAlternative": "Beste Alternative",
+    "currentCompanion": "AKTUELLER COMPANION"
   }
 }

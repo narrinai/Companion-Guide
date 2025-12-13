@@ -515,6 +515,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 <button id="lang-toggle" class="lang-current"></button>
                 <div class="lang-dropdown" id="lang-dropdown" style="display: none;">
                     <a href="/best-for" class="lang-option">🇬🇧</a>
+                    <a href="/es/best-for" class="lang-option">🇪🇸</a>
                     <a href="/nl/best-for" class="lang-option">🇳🇱</a>
                     <a href="/pt/best-for" class="lang-option active">🇧🇷</a>
                     <a href="/de/best-for" class="lang-option">🇩🇪</a>
@@ -535,7 +536,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             <span class="nav-label">↓ Ir para categoria</span>
             <div class="best-for-nav-buttons">
                 <a href="#nsfw-video">Vídeo NSFW</a>
-                <a href="#girlfriend">AI Girlfriend</a>
+                <a href="#girlfriend">Namorada IA</a>
                 <a href="#anime">Anime</a>
                 <a href="#hentai">Hentai</a>
                 <a href="#roleplay">Roleplay</a>
@@ -543,9 +544,9 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 <a href="#nsfw-image-gen">Imagens NSFW</a>
                 <a href="#free-nsfw">NSFW Grátis</a>
                 <a href="#memory">Memória</a>
-                <a href="#customization">Custom</a>
+                <a href="#customization">Personalização</a>
                 <a href="#romantic">Romântico</a>
-                <a href="#boyfriend">AI Boyfriend</a>
+                <a href="#boyfriend">Namorado IA</a>
                 <a href="#free-sfw">SFW Grátis</a>
             </div>
         </nav>
@@ -669,6 +670,19 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             return '';
         }
 
+        function getABVariant() {
+            const match = document.cookie.match(/ab_variant=([AB])/);
+            return match ? match[1] : 'A';
+        }
+
+        function getWebsiteUrl(companion) {
+            const variant = getABVariant();
+            if (variant === 'B' && companion.website_url_2) {
+                return companion.website_url_2;
+            }
+            return companion.website_url || '#';
+        }
+
         function generatePreviewThumbnail(companion) {
             let galleryImages = companion.gallery_images;
             if (!galleryImages) return '';
@@ -692,6 +706,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             const categories = companion.categories || [];
             const displayTags = categories.slice(0, 3);
             const previewThumbnail = generatePreviewThumbnail(companion);
+            const websiteUrl = getWebsiteUrl(companion);
             const tagline = companion.tagline || companion.short_description || '';
             return `
                 <div class="compact-card">
@@ -699,9 +714,11 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     <div class="compact-card-header">
                         <div class="compact-card-left">
                             <div class="compact-card-top">
-                                <img src="${companion.logo_url || '/images/placeholder.png'}" alt="${companion.name}" class="compact-card-logo" loading="lazy">
+                                <a href="${websiteUrl}" target="_blank" rel="noopener">
+                                    <img src="${companion.logo_url || '/images/placeholder.png'}" alt="${companion.name}" class="compact-card-logo" loading="lazy">
+                                </a>
                                 <div class="compact-card-info">
-                                    <h3 class="compact-card-name">${companion.name}</h3>
+                                    <h3 class="compact-card-name"><a href="${websiteUrl}" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">${companion.name}</a></h3>
                                     <div class="compact-card-rating">
                                         <span class="compact-card-stars">${stars}</span>
                                         <span class="compact-card-score">${companion.rating}/10</span>
@@ -716,7 +733,7 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                         ${previewThumbnail}
                     </div>
                     <div class="compact-card-cta">
-                        <a href="${companion.website_url || '#'}" class="btn-primary" target="_blank" rel="noopener">Visitar Site</a>
+                        <a href="${websiteUrl}" class="btn-primary" target="_blank" rel="noopener">Visitar Site</a>
                         <a href="/pt/companions/${companion.slug}" class="btn-secondary">Ler Review</a>
                     </div>
                 </div>

@@ -116,7 +116,8 @@
     "topRated": "Mais Avaliado",
     "leader": "Líder",
     "bestValue": "Melhor Custo-Benefício",
-    "trending": "Em Alta"
+    "trending": "Em Alta",
+    "companionSpotlight": "Companion em Destaque"
   },
   "categories": {
     "title": "Categorias de Plataformas de Companion de IA",
@@ -606,6 +607,7 @@
   },
   "floatingCta": {
     "visitWebsite": "Visitar Site",
-    "bestAlternative": "Melhor Alternativa"
+    "bestAlternative": "Melhor Alternativa",
+    "currentCompanion": "COMPANION ATUAL"
   }
 }

@@ -6,6 +6,7 @@
 // Button translations
 const buttonTranslations = {
     en: { tryButton: 'Try', readReview: 'Read Review' },
+    es: { tryButton: 'Probar', readReview: 'Leer Análisis' },
     nl: { tryButton: 'Probeer', readReview: 'Lees Review' },
     de: { tryButton: 'Testen', readReview: 'Review Lesen' },
     pt: { tryButton: 'Experimente', readReview: 'Ler Análise' }

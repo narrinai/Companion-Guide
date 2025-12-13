@@ -1,0 +1,612 @@
+{
+  "meta": {
+    "language": "es",
+    "name": "Español",
+    "direction": "ltr",
+    "locale": "es-ES"
+  },
+  "nav": {
+    "home": "Inicio",
+    "companions": "Companions",
+    "categories": "Categorías",
+    "bestFor": "Mejor Para",
+    "news": "Noticias y Guías",
+    "deals": "Ofertas",
+    "about": "Acerca de",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Encuentra Tu Companion de IA Perfecto",
+    "subtitle": "Análisis completos y comparaciones de plataformas de chat de IA, AI girlfriends y character companions",
+    "cta": "Descubrir Companions"
+  },
+  "sections": {
+    "bestPlatforms": "Mejores Plataformas de Chat y Companion de IA",
+    "categories": "Categorías",
+    "latestNews": "Últimas Noticias y Guías",
+    "companionOfMonth": "Companion del Mes",
+    "featuredGuides": "Guías Destacadas",
+    "latestNewsDescription": "Mantente al día con las últimas noticias e insights de la industria de companions de IA",
+    "explorePlatformsTitle": "Descubre Plataformas de IA por Categoría",
+    "explorePlatformsDescription": "Encuentra plataformas de companion de IA adaptadas a tus necesidades específicas"
+  },
+  "companionCard": {
+    "readReview": "Leer Análisis",
+    "visitWebsite": "Visitar Web",
+    "freeTrial": "Prueba gratuita",
+    "fromPrice": "Desde",
+    "bestFor": "Mejor para:",
+    "reviews": "reseñas",
+    "review": "reseña",
+    "rating": "Puntuación"
+  },
+  "companion": {
+    "keyFeatures": "Características Principales",
+    "pros": "Ventajas y Desventajas",
+    "cons": "Desventajas",
+    "overview": "Descripción General",
+    "whatIs": "¿Qué es {name}?",
+    "pricing": "Precios",
+    "verdict": "Nuestra Opinión",
+    "alternatives": "Alternativas Similares",
+    "faqs": "Preguntas Frecuentes",
+    "reviews": "Reseñas Más Recientes de Usuarios",
+    "faqHeading": "Preguntas Frecuentes",
+    "pricingLabel": "Precios",
+    "bestForLabel": "Mejor para",
+    "platformLabel": "Plataforma",
+    "contentPolicyLabel": "Política de Contenido",
+    "freeTrialLabel": "Prueba Gratuita",
+    "ratingLabel": "Puntuación",
+    "freeWithPremium": "Gratis con Premium",
+    "webAndMobileApps": "Web y Apps Móviles",
+    "familyFriendly": "Familiar (filtrado)",
+    "unfiltered": "Sin filtro",
+    "moderate": "Moderadamente filtrado",
+    "readyToTry": "¿Listo para Probar {name}?",
+    "ctaDescription": "Descubre experiencias realistas con novias de IA y más de 100 escenarios de fantasía",
+    "gallery": "Galería de Imágenes"
+  },
+  "gallery": {
+    "warningText": "Esta galería contiene contenido NSFW sin censura destinado solo a adultos (18+).",
+    "showContent": "Mostrar Contenido, Tengo 18+"
+  },
+  "reviewForm": {
+    "writeReview": "Escribir una Reseña",
+    "sectionTitle": "Comparte tu experiencia con {companion}",
+    "yourName": "Tu Nombre",
+    "yourNamePlaceholder": "Introduce tu nombre",
+    "rating": "Puntuación",
+    "reviewTitle": "Título de la Reseña",
+    "reviewTitlePlaceholder": "Resume tu experiencia en una línea",
+    "yourReview": "Tu Reseña",
+    "yourReviewPlaceholder": "Comparte tu experiencia detallada con esta plataforma...",
+    "usageDuration": "¿Cuánto tiempo has usado esta plataforma?",
+    "submitButton": "Enviar Reseña",
+    "durationSelect": "Selecciona la duración...",
+    "durationLessThanWeek": "Menos de una semana",
+    "duration1to4Weeks": "1-4 semanas",
+    "duration1to3Months": "1-3 meses",
+    "duration3to6Months": "3-6 meses",
+    "duration6MonthsPlus": "6+ meses"
+  },
+  "pricing": {
+    "free": "Gratis",
+    "from": "Desde",
+    "perMonth": "/mes",
+    "perYear": "/año",
+    "startingAt": "Desde",
+    "visitWebsite": "Visitar Web"
+  },
+  "footer": {
+    "tagline": "Tu guía de confianza para companions de IA y plataformas de chat",
+    "categories": "Categorías",
+    "resources": "Recursos",
+    "company": "Empresa",
+    "aboutUs": "Sobre Nosotros",
+    "contact": "Contacto",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "allRightsReserved": "Todos los derechos reservados"
+  },
+  "badges": {
+    "popular": "Popular",
+    "new": "Nuevo",
+    "featured": "Destacado",
+    "topRated": "Mejor Valorado",
+    "leader": "Líder",
+    "bestValue": "Mejor Relación Calidad-Precio",
+    "trending": "Tendencia",
+    "companionSpotlight": "Companion Destacado"
+  },
+  "categories": {
+    "title": "Categorías de Plataformas de Companion de IA",
+    "subtitle": "Descubre las mejores plataformas de companion de IA organizadas por categoría y caso de uso. Encuentra el tipo de plataforma perfecto para tus necesidades y preferencias específicas.",
+    "aiGirlfriends": "AI Girlfriends",
+    "characterChat": "Chat de Personajes",
+    "companionApps": "Apps de Companion",
+    "nsfwAi": "IA NSFW",
+    "roleplay": "Roleplay",
+    "imageGeneration": "Generación de Imágenes",
+    "videoGeneration": "Generación de Videos",
+    "voiceChat": "Chat de Voz"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "tryAgain": "Inténtalo de nuevo",
+    "learnMore": "Saber más",
+    "readMore": "Leer más",
+    "showMore": "Mostrar más",
+    "showLess": "Mostrar menos",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "all": "Todos",
+    "more-companions-coming": "Más AI Companions Próximamente",
+    "browse-categories": "Explorar Categorías",
+    "view-all-news": "Ver Todas las Noticias",
+    "companion-of-the-month": "Companion del Mes"
+  },
+  "companions": {
+    "title": "Mejores Plataformas de Chat de IA y Companions Clasificados por Puntuación",
+    "subtitle": "Clasificación completa de plataformas de chat de IA y plataformas de companion de IA basada en reseñas de usuarios, características y rendimiento. Encuentra la plataforma de chat de IA o companion de IA perfecta para tus necesidades y preferencias específicas.",
+    "comingSoon": "Más Companions de IA Próximamente",
+    "comingSoonDesc": "Estamos revisando activamente nuevas plataformas de companion de IA",
+    "comingSoonText": "Nuestro equipo está probando y revisando continuamente nuevas plataformas de companion de IA. Vuelve regularmente para actualizaciones a medida que añadimos más companions con diversas características y capacidades.",
+    "suggestPlatform": "Sugerir una Plataforma",
+    "browseCategories": "Explorar Categorías"
+  },
+  "categoriesPage": {
+    "title": "Categorías de Plataformas de Companion de IA",
+    "subtitle": "Descubre las mejores plataformas de companion de IA organizadas por categoría y caso de uso. Encuentra el tipo de plataforma perfecto para tus necesidades y preferencias específicas."
+  },
+  "deals": {
+    "title": "Ofertas de Plataformas de Chat y Companion de IA",
+    "subtitle": "Ahorra mucho en suscripciones premium de plataformas de chat de IA y companion de IA con ofertas exclusivas y códigos de descuento para las mejores experiencias de chat de IA",
+    "readReview": "Leer Análisis",
+    "viewDeal": "Ver Oferta",
+    "limitedTime": "TIEMPO LIMITADO",
+    "bestValue": "MEJOR VALOR",
+    "off": "DESCUENTO",
+    "was": "era",
+    "billedAnnually": "facturado anualmente",
+    "billedMonthly": "facturado mensualmente",
+    "cancelAnytime": "Cancela en cualquier momento",
+    "howDealsWork": "Cómo Funcionan Nuestras Ofertas de Chat de IA",
+    "howDealsWorkText": "Trabajamos directamente con plataformas de chat de IA y servicios de companion de IA para ofrecer descuentos exclusivos en suscripciones premium de chat de IA. Todas las ofertas de chat de IA están verificadas y actualizadas regularmente. Simplemente haz clic en una oferta para activar el descuento de la plataforma de chat de IA - los precios se ajustarán automáticamente en el checkout.",
+    "noteTitle": "Nota:",
+    "noteText": "Las ofertas y descuentos pueden cambiar y tener disponibilidad limitada. Recomendamos actuar rápidamente en las ofertas que te interesen. Todos los precios se muestran en USD, salvo indicación contraria.",
+    "moreDealsTitle": "¡Más Ofertas de Chat de IA Próximamente!",
+    "moreDealsText": "Estamos negociando continuamente nuevas ofertas con las principales plataformas de chat de IA y servicios de companion de IA. Vuelve regularmente para nuevos descuentos de chat de IA en plataformas como DreamGF AI, Candy AI, FantasyGF y más servicios premium de chat de IA. Guarda esta página en favoritos para estar al día con las últimas ofertas y promociones de plataformas de chat de IA."
+  },
+  "news": {
+    "title": "Noticias de Plataformas de Chat y Companion de IA",
+    "subtitle": "Mantente al día con los últimos desarrollos en plataformas de chat de IA y plataformas de companion de IA, análisis de la industria y tendencias del mercado",
+    "latestNews": "Últimas Noticias de Plataformas de Chat y Companion de IA",
+    "recentDevelopments": "Desarrollos recientes y actualizaciones de la industria",
+    "keyFindings": "Principales Descubrimientos de la Industria",
+    "keyFindingsDesc": "Insights importantes sobre el desarrollo de plataformas de companion de IA",
+    "marketAnalysis": "Análisis de Mercado y Tendencias",
+    "marketAnalysisDesc": "Principales insights de la industria de plataformas de companion de IA",
+    "featuredCompanions": "Companions de IA Destacados",
+    "featuredCompanionsDesc": "Descubre nuestras plataformas de companion de IA mejor valoradas"
+  },
+  "contact": {
+    "title": "Ponte en Contacto",
+    "subtitle": "¿Tienes una pregunta, sugerencia o quieres colaborar con nosotros? ¡Nos encantaría saber de ti!",
+    "contactInformation": "Información de Contacto",
+    "responseTime": "Tiempo de Respuesta",
+    "responseTimeValue": "Dentro de 24-48 horas",
+    "coverage": "Cobertura",
+    "coverageValue": "Plataformas de companion de IA globales",
+    "helpWith": "¿Cómo podemos ayudarte?",
+    "helpReasons": [
+      "Análisis y recomendaciones de plataformas",
+      "Oportunidades de asociación y colaboración",
+      "Sugerencias de contenido y feedback",
+      "Preguntas técnicas sobre companions de IA",
+      "Consultas de medios y entrevistas"
+    ],
+    "sendMessage": "Envíanos un mensaje",
+    "fullName": "Nombre completo",
+    "emailAddress": "Dirección de correo electrónico",
+    "company": "Empresa/Organización (Opcional)",
+    "subject": "Asunto",
+    "selectSubject": "Selecciona un asunto",
+    "generalInquiry": "Consulta general",
+    "reviewRequest": "Solicitud de análisis",
+    "partnership": "Oportunidad de asociación",
+    "feedback": "Feedback y Sugerencias",
+    "mediaInquiry": "Consulta de medios",
+    "technicalQuestion": "Pregunta técnica",
+    "other": "Otro",
+    "message": "Mensaje",
+    "messagePlaceholder": "Cuéntanos más sobre tu consulta...",
+    "newsletter": "Suscríbete a nuestro newsletter para actualizaciones e insights sobre companions de IA",
+    "sendButton": "Enviar mensaje",
+    "successTitle": "¡Mensaje enviado con éxito!",
+    "successMessage": "Gracias por tu mensaje. Te responderemos dentro de 24-48 horas.",
+    "errorTitle": "Algo salió mal",
+    "errorMessage": "Inténtalo de nuevo más tarde",
+    "faqTitle": "Preguntas Frecuentes",
+    "faq1Question": "¿Cómo seleccionáis las plataformas para revisar?",
+    "faq1Answer": "Evaluamos plataformas de companion de IA basándonos en la popularidad del usuario, innovación de características y feedback de la comunidad. Priorizamos plataformas que ofrecen valor único a los usuarios.",
+    "faq2Question": "¿Puedo solicitar un análisis de una plataforma específica?",
+    "faq2Answer": "¡Por supuesto! Usa el formulario de contacto de arriba con el asunto 'Solicitud de análisis' y cuéntanos sobre la plataforma que te gustaría ver analizada.",
+    "faq3Question": "¿Ofrecéis oportunidades de asociación?",
+    "faq3Answer": "Sí, estamos abiertos a asociaciones con plataformas de companion de IA, desarrolladores y expertos del sector. Contacta con nosotros con tu propuesta de asociación.",
+    "faq4Question": "¿Con qué frecuencia actualizáis los análisis?",
+    "faq4Answer": "Actualizamos nuestros análisis regularmente para reflejar cambios en las plataformas, nuevas características y experiencias de usuario en evolución. Las grandes actualizaciones se revisan trimestralmente."
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes sobre Plataformas de Companion de IA"
+  },
+  "categoryPages": {
+    "home": "Inicio",
+    "loading": "Cargando companions...",
+    "roleplay": {
+      "title": "Mejores Companions de Roleplay y Chat de Personajes",
+      "description": "Descubre las mejores plataformas de IA para experiencias de roleplay y chat de personajes. Estas plataformas destacan en narrativa interactiva, conversaciones creativas e interacciones inmersivas de personajes para entretenimiento y expresión creativa.",
+      "breadcrumb": "Plataformas de IA de Roleplay y Chat de Personajes",
+      "insightsTitle": "Insights de Plataformas de IA de Roleplay y Chat de Personajes",
+      "comparisonTitle": "Comparación de Plataformas de Roleplay y Chat de Personajes",
+      "metaTitle": "Mejores Plataformas de Chat de IA de Roleplay y Personajes 2025",
+      "metaDescription": "Principales plataformas de chat de IA de roleplay y personajes 2025. Narrativa interactiva, conversaciones creativas y experiencias inmersivas. Compara 14 plataformas revisadas.",
+      "insights": {
+        "characterVariety": {
+          "title": "Variedad de Personajes",
+          "text": "Estas plataformas destacan en ofrecer bibliotecas diversas de personajes de universos ficticios, figuras históricas y creaciones originales para roleplay inmersivo."
+        },
+        "storytelling": {
+          "title": "Narrativa Interactiva",
+          "text": "Enfoque en experiencias basadas en narrativas donde los usuarios pueden participar activamente e influir en el desarrollo de la historia a través de interacciones con personajes."
+        },
+        "expression": {
+          "title": "Expresión Creativa",
+          "text": "Las plataformas fomentan la escritura creativa, desarrollo de personajes y escenarios imaginativos para entretenimiento y expresión artística."
+        },
+        "community": {
+          "title": "Características de Comunidad",
+          "text": "Fuertes aspectos comunitarios incluyendo compartición de personajes, narrativa colaborativa y creación de contenido generado por usuarios."
+        }
+      },
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Puntuación",
+        "pricing": "Precios",
+        "keyFeature": "Característica Principal",
+        "bestFor": "Mejor Para"
+      },
+      "faqTitle": "Preguntas Frecuentes sobre IA de Roleplay y Chat de Personajes",
+      "faqs": {
+        "q1": {
+          "question": "¿Cuáles son las mejores plataformas de IA de roleplay en 2025?",
+          "answer": "Las principales plataformas de IA de roleplay incluyen Character.AI (gratuito, mayor variedad), Janitor AI (sin censura), Kajiwoto (personalizable) y Chai AI (enfocado en móvil). Cada una ofrece características únicas de creación de personajes y roleplay."
+        },
+        "q2": {
+          "question": "¿Existen plataformas gratuitas de IA de roleplay?",
+          "answer": "Sí, Character.AI ofrece roleplay totalmente gratuito con millones de personajes, mientras que plataformas como Janitor AI, Chai AI y Kajiwoto proporcionan planes gratuitos con características premium opcionales."
+        },
+        "q3": {
+          "question": "¿Puedo crear mis propios personajes de IA para roleplay?",
+          "answer": "La mayoría de las plataformas soportan creación de personajes. Character.AI ofrece herramientas completas de creación, Kajiwoto proporciona personalización avanzada, y Janitor AI permite programación detallada de personalidad para escenarios de roleplay."
+        },
+        "q4": {
+          "question": "¿Qué plataforma es mejor para roleplay sin censura?",
+          "answer": "Janitor AI lidera en roleplay sin censura sin restricciones de contenido, seguido por plataformas como Kajiwoto y plataformas especializadas en roleplay adulto. Character.AI tiene políticas de moderación de contenido."
+        },
+        "q5": {
+          "question": "¿Cómo recuerdan los personajes de IA de roleplay las historias?",
+          "answer": "Las plataformas avanzadas usan sistemas de memoria para rastrear narrativas de roleplay, relaciones entre personajes y progresión de la historia. Character.AI y Kajiwoto destacan en mantener la continuidad de roleplay a largo plazo."
+        },
+        "q6": {
+          "question": "¿Qué tipos de escenarios de roleplay están disponibles?",
+          "answer": "Las plataformas ofrecen escenarios diversos: aventuras de fantasía, figuras históricas, personajes de anime, personajes originales, roleplay educativo, escenarios terapéuticos y roleplay orientado a adultos, dependiendo de las políticas de la plataforma."
+        },
+        "q7": {
+          "question": "¿Los personajes de IA pueden participar en roleplay grupal?",
+          "answer": "Algunas plataformas soportan interacciones con múltiples personajes. Character.AI ofrece 'Salas' para conversaciones grupales, mientras que otras plataformas pueden soportar interacciones personaje a personaje dentro de las historias."
+        },
+        "q8": {
+          "question": "¿Qué plataforma tiene la mejor app móvil para roleplay?",
+          "answer": "Chai AI está diseñado específicamente para experiencias de roleplay móvil, mientras que Character.AI ofrece una app móvil funcional. Muchos usuarios prefieren versiones web para sesiones de roleplay más largas."
+        },
+        "q9": {
+          "question": "¿Qué tan realistas son las conversaciones de roleplay con IA?",
+          "answer": "El roleplay de IA moderno puede ser muy envolvente, con personajes manteniendo personalidades consistentes, recordando detalles de la trama y adaptándose a las preferencias del usuario. La calidad varía por plataforma y creación de personaje."
+        }
+      }
+    },
+    "aiGirlfriend": {
+      "title": "Mejores Plataformas de AI Girlfriend",
+      "description": "Descubre las mejores plataformas de IA para relaciones románticas virtuales. Estas plataformas ofrecen experiencias de citas personalizadas, conversaciones románticas y conexiones emocionales con parejas de IA personalizables.",
+      "breadcrumb": "Plataformas de AI Girlfriend",
+      "insightsTitle": "Insights de Plataformas de AI Girlfriend",
+      "comparisonTitle": "Comparación de Plataformas de AI Girlfriend",
+      "tablePlatform": "Plataforma",
+      "tableRating": "Puntuación",
+      "tablePricing": "Precios",
+      "tableKeyFeature": "Característica Principal",
+      "tableBestFor": "Mejor Para",
+      "faqTitle": "Preguntas Frecuentes sobre Plataformas de AI Girlfriend",
+      "insight1Title": "Enfoque Romántico",
+      "insight1Text": "Estas plataformas se especializan en crear relaciones románticas e íntimas con AI Companions, ofreciendo experiencias de citas personalizadas.",
+      "insight2Title": "Personalización",
+      "insight2Text": "La mayoría de las plataformas de AI girlfriend ofrecen opciones extensas de personalización para apariencia, personalidad y estilo de conversación para satisfacer las preferencias del usuario.",
+      "insight3Title": "Experiencia Móvil",
+      "insight3Text": "Muchas plataformas se centran en diseño mobile-first, permitiendo a los usuarios mantener sus relaciones virtuales sobre la marcha con apps de smartphone.",
+      "insight4Title": "Sistemas de Memoria",
+      "insight4Text": "Las plataformas avanzadas de AI girlfriend presentan sistemas de memoria sofisticados que recuerdan detalles personales e historial de relación.",
+      "faq1Question": "¿Cuáles son las mejores plataformas de AI girlfriend en 2025?",
+      "faq1Answer": "Las principales plataformas de AI girlfriend incluyen Candy AI (4.5/5, mejor app móvil), FantasyGF (4.5/5, llamadas de voz), DreamGF AI (4.2/5, generación de imágenes) y Secrets AI (4.8/5, interacciones realistas). Cada una ofrece características únicas para relaciones románticas virtuales.",
+      "faq2Question": "¿Cuánto cuestan las apps de AI girlfriend?",
+      "faq2Answer": "Las plataformas de AI girlfriend generalmente cuestan $9,99-19,99/mes. Opciones económicas incluyen Selira.ai ($4,99/mes) y Nectar.AI ($9,99/mes), mientras que plataformas premium como GirlfriendGPT y JOI AI cuestan $14,99-19,99/mes.",
+      "faq3Question": "¿Las plataformas de AI girlfriend son seguras y privadas?",
+      "faq3Answer": "Las plataformas respetables como Candy AI, DreamGF AI y FantasyGF implementan protecciones de privacidad y manejo seguro de datos. Sin embargo, siempre revisa las políticas de privacidad y evita compartir información personal sensible en las conversaciones.",
+      "faq4Question": "¿Las AI girlfriends pueden generar imágenes?",
+      "faq4Answer": "Sí, plataformas como DreamGF AI, SoulGen AI y FantasyGF ofrecen generación de imágenes de IA. Los usuarios pueden crear visuales personalizados, avatares y contenido personalizado. Algunas plataformas ofrecen estilos de arte realistas, anime o 2.5D.",
+      "faq5Question": "¿Las apps de AI girlfriend tienen características de voz?",
+      "faq5Answer": "Muchas plataformas ofrecen características de voz. FantasyGF proporciona 24 opciones de voz y llamadas de voz, mientras que DreamGF AI y Candy AI incluyen mensajes de voz. Algunas plataformas también ofrecen características de generación de video.",
+      "faq6Question": "¿Qué app de AI girlfriend es mejor para principiantes?",
+      "faq6Answer": "Candy AI es ideal para principiantes con su app móvil fácil de usar, tutoriales completos y personalización sencilla. La plataforma ofrece configuración guiada e integración útil para nuevos usuarios.",
+      "faq7Question": "¿Existen plataformas de AI girlfriend sin censura?",
+      "faq7Answer": "Sí, plataformas como GirlfriendGPT, Soulkyn AI y ThotChat AI ofrecen contenido adulto sin censura. Estas plataformas están diseñadas para audiencias adultas (18+) y proporcionan características de conversación sin restricciones.",
+      "faq8Question": "¿Puedo personalizar la apariencia de mi AI girlfriend?",
+      "faq8Answer": "La mayoría de las plataformas ofrecen personalización extensa. DreamGF AI y SoulGen AI destacan en personalización visual con generación avanzada de imágenes, mientras que Candy AI y FantasyGF proporcionan opciones completas de personalidad y apariencia.",
+      "faq9Question": "¿Las AI girlfriends recuerdan nuestro historial de relación?",
+      "faq9Answer": "Sí, plataformas avanzadas como DreamGF AI, Candy AI y FantasyGF presentan sistemas de memoria sofisticados que rastrean progresión de relación, detalles personales, preferencias e historial de conversaciones entre sesiones.",
+      "faq10Question": "¿Qué plataforma ofrece la experiencia de AI girlfriend más realista?",
+      "faq10Answer": "Secrets AI (4.8/5) actualmente ofrece la experiencia más realista con IA avanzada, generación de video y más de 100 escenarios de fantasía. DreamGF AI también proporciona interacciones muy realistas con personalización completa."
+    }
+  },
+  "companionsPage": {
+    "faq": {
+      "title": "Preguntas Frecuentes sobre Plataformas de Companion de IA",
+      "q1": {
+        "question": "¿Cómo elijo la plataforma de companion de IA correcta?",
+        "answer": "Considera tus necesidades: chat casual vs. compañerismo profundo, tipo de personalidad deseada, características específicas (generación de imágenes, voz, video), presupuesto y preocupaciones de privacidad. Nuestra tabla de comparación te ayuda a comparar características, precios y puntuaciones."
+      },
+      "q2": {
+        "question": "¿Cuáles son las plataformas de companion de IA mejor valoradas en 2025?",
+        "answer": "Las plataformas mejor valoradas incluyen Secrets AI (4.8/5), Hammer AI (4.7/5), DreamGF (4.6/5) y Candy AI (4.5/5). Cada una destaca en diferentes áreas - Secrets AI en realismo, Hammer AI en privacidad y características gratuitas, DreamGF en personalización y Candy AI en generación de imágenes."
+      },
+      "q3": {
+        "question": "¿Qué companions de IA ofrecen acceso totalmente gratuito?",
+        "answer": "Hammer AI ofrece uso totalmente gratuito e ilimitado con modelos locales. Character.AI tiene un plan gratuito robusto con funcionalidad central. Otras plataformas como Replika y Anima ofrecen niveles gratuitos con funcionalidad limitada."
+      },
+      "q4": {
+        "question": "¿Cómo funcionan los sistemas de memoria de los companions de IA?",
+        "answer": "Los companions de IA usan diferentes enfoques de memoria: algunos mantienen memoria de conversación a corto plazo, mientras que las plataformas avanzadas almacenan memorias a largo plazo sobre tus preferencias, relaciones y conversaciones pasadas. Plataformas premium como Replika y Romantic AI ofrecen sistemas de memoria persistente que hacen que las interacciones se sientan más personales con el tiempo."
+      },
+      "q5": {
+        "question": "¿Cuáles son los costes medios de las plataformas de companion de IA?",
+        "answer": "Los precios varían ampliamente: Gratis (Hammer AI, Character.AI tier gratuito), $5-10/mes (planes básicos), $15-25/mes (planes estándar con más características), $30-50/mes (planes premium con características avanzadas). Las suscripciones anuales generalmente ofrecen 20-30% de descuento."
+      },
+      "q6": {
+        "question": "¿Qué companions de IA funcionan mejor en dispositivos móviles?",
+        "answer": "Replika, Anima y Character.AI tienen apps móviles nativas excelentes para iOS y Android. Secret AI y Romantic AI también ofrecen experiencias móviles optimizadas. La mayoría de las plataformas modernas son mobile-first o tienen diseños web responsivos."
+      },
+      "q7": {
+        "question": "¿Existen companions de IA especialmente para profesionales?",
+        "answer": "¡Sí! Companions enfocados en productividad como Claude (Anthropic), ChatGPT (OpenAI) y Simone ofrecen asistencia profesional, ayuda con código, análisis de documentos e integración de flujo de trabajo. Algunas plataformas de companion también ofrecen modos profesionales para coaching o soporte de bienestar."
+      },
+      "q8": {
+        "question": "¿Qué tan realistas son las conversaciones modernas de companions de IA?",
+        "answer": "Las plataformas modernas de companion de IA han alcanzado un realismo impresionante. Las plataformas de vanguardia usan modelos de lenguaje grandes (LLMs) que entienden contexto, matices emocionales y mantienen personalidades consistentes. La calidad varía - plataformas premium como Secrets AI y DreamGF ofrecen conversaciones muy realistas que se sienten naturales y envolventes."
+      },
+      "q9": {
+        "question": "¿Qué medidas de seguridad implementan las plataformas de companion de IA?",
+        "answer": "Las plataformas respetables usan cifrado de extremo a extremo, almacenamiento seguro de datos y políticas de privacidad transparentes. Muchas ofrecen procesamiento local (como Hammer AI) para máxima privacidad. Siempre revisa las políticas de privacidad y busca plataformas con reputaciones establecidas y medidas de protección de datos claras."
+      },
+      "q10": {
+        "question": "¿Puedo usar varias plataformas de companion de IA simultáneamente?",
+        "answer": "¡Por supuesto! Muchos usuarios usan diferentes plataformas para diferentes propósitos - una para conversaciones casuales, otra para tareas profesionales, otra para compañerismo romántico. Cada plataforma tiene puntos fuertes únicos. Solo ten en cuenta los costes de suscripción si usas varios servicios premium."
+      }
+    },
+    "video": {
+      "title": "Mejores Companions de IA con Video",
+      "description": "Experimenta el siguiente nivel de compañerismo de IA con capacidades de video. Estas plataformas ofrecen videochat, videos generados por IA y experiencias visuales inmersivas que dan vida a tus companions de IA. Desde citas virtuales con videollamadas hasta mensajes de video personalizados, descubre plataformas que van más allá del texto y la voz.",
+      "breadcrumb": "Companions de IA con Video"
+    },
+    "hentai": {
+      "title": "Mejores Companions de IA Hentai",
+      "description": "Explora plataformas de IA especializadas en contenido adulto de estilo anime y manga. Estos generadores de hentai aprovechan IA avanzada para crear ilustraciones de alta calidad en estilo japonés, desde anime tradicional hasta estilos 2.5D modernos, para audiencias mayores de 18 años.",
+      "breadcrumb": "Plataformas de IA Hentai",
+      "insightsTitle": "Insights de Plataformas de IA Hentai",
+      "comparisonTitle": "Comparación de Plataformas de IA Hentai",
+      "insights": {
+        "animeStyles": {
+          "title": "Estilos de Arte Anime",
+          "text": "Modelos de IA avanzados entrenados específicamente en arte anime y manga, produciendo hentai auténtico en estilo japonés en varios estilos, desde estética anime clásica hasta moderna."
+        },
+        "multipleStyles": {
+          "title": "Múltiples Estilos de Arte",
+          "text": "Elige entre anime tradicional, manga, 2.5D, chibi, anime realista y estilos híbridos personalizados. Muchas plataformas soportan movimientos artísticos de anime específicos y estilos de artistas populares."
+        },
+        "uncensored": {
+          "title": "Contenido Sin Censura",
+          "text": "A diferencia del hentai japonés tradicional, la mayoría de las plataformas de IA occidentales ofrecen generación de contenido totalmente sin censura con libertad creativa completa y sin restricciones."
+        },
+        "characterCreation": {
+          "title": "Creación de Personajes",
+          "text": "Diseña personajes de anime personalizados con control detallado sobre apariencia, ropa, expresiones, poses y escenarios. Guarda y reutiliza tus diseños de personajes favoritos."
+        }
+      },
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Puntuación",
+        "pricing": "Precios",
+        "keyFeature": "Característica Principal",
+        "bestFor": "Mejor Para"
+      },
+      "faqTitle": "Preguntas Frecuentes sobre IA Hentai",
+      "faqs": {
+        "q1": {
+          "question": "¿Cuáles son los mejores generadores de hentai de IA en 2025?",
+          "answer": "Los principales generadores de hentai de IA en 2025 incluyen plataformas especializadas entrenadas en estilos de arte anime y manga, ofreciendo múltiples estéticas artísticas japonesas, personalización de personajes y salidas sin censura de alta calidad. Las principales plataformas presentan modelos específicos de anime que entienden terminología y convenciones visuales de anime."
+        },
+        "q2": {
+          "question": "¿Cuánto cuestan las plataformas de hentai de IA?",
+          "answer": "Las plataformas de hentai de IA generalmente varían de $9,99 a $24,99 por mes. Los planes de entrada ofrecen generaciones limitadas con estilos básicos, mientras que los niveles premium proporcionan creaciones ilimitadas, múltiples estilos de arte, resoluciones más altas y características avanzadas de personalización de personajes."
+        },
+        "q3": {
+          "question": "¿Los generadores de hentai de IA son sin censura?",
+          "answer": "Sí, la mayoría de las plataformas de hentai de IA occidentales ofrecen contenido completamente sin censura, a diferencia del hentai japonés tradicional que normalmente presenta barras de censura. Las plataformas internacionales diseñadas para audiencias globales proporcionan generación de contenido de anime adulto totalmente sin censura."
+        },
+        "q4": {
+          "question": "¿Qué estilos de arte anime están disponibles?",
+          "answer": "Las plataformas de hentai de IA ofrecen varios estilos de anime incluyendo anime tradicional, anime moderno, estilo manga/cómics, 2.5D, anime realista, chibi, anime retro de los 90 y estilos de artistas populares específicos. Muchas plataformas permiten mezcla de estilos para resultados únicos."
+        },
+        "q5": {
+          "question": "¿Puedo crear personajes de anime personalizados?",
+          "answer": "Sí, las plataformas de hentai de IA ofrecen creación extensiva de personajes incluyendo estilo/color de pelo, color/estilo de ojos, tipo de cuerpo, características faciales, expresiones, ropa, accesorios y poses. Las plataformas avanzadas permiten guardar personajes y generación consistente de personajes en múltiples imágenes."
+        },
+        "q6": {
+          "question": "¿Las plataformas de hentai de IA ofrecen características interactivas?",
+          "answer": "Muchas plataformas de hentai de IA combinan generación de imágenes con chat de personajes de anime interactivo, escenarios de roleplay y experiencias estilo visual novel. Las plataformas híbridas ofrecen creación de contenido y companions de IA conversacionales con personalidades de anime."
+        },
+        "q7": {
+          "question": "¿Qué calidad de imagen producen los generadores de hentai?",
+          "answer": "Las plataformas modernas de hentai de IA generan imágenes de 512x512 hasta 2048x2048 o superior. Las suscripciones premium ofrecen resoluciones mejoradas, mejor precisión de trazos, consistencia de colores mejorada y opciones de ampliación para impresiones de alta calidad o fondos de pantalla."
+        },
+        "q8": {
+          "question": "¿Las plataformas de hentai de IA son seguras y privadas?",
+          "answer": "Las plataformas de hentai de IA respetables implementan cifrado fuerte, procesamiento de pago seguro y políticas de privacidad completas. Tu contenido generado y actividades permanecen privados. Siempre verifica las medidas de seguridad y la política de privacidad de la plataforma antes del registro."
+        },
+        "q9": {
+          "question": "¿Puedo usar hentai generado por IA comercialmente?",
+          "answer": "Los derechos de uso comercial dependen de los términos de licenciamiento de la plataforma. Algunas plataformas permiten uso comercial con suscripciones premium, mientras que otras restringen el contenido al uso personal. Revisa los términos de servicio y opciones de licenciamiento comercial de cada plataforma antes del uso comercial."
+        },
+        "q10": {
+          "question": "¿Las plataformas de hentai de IA entienden términos de anime japoneses?",
+          "answer": "Sí, las plataformas de hentai de IA especializadas están entrenadas en terminología específica de anime incluyendo arquetipos de personajes (tsundere, yandere), elementos visuales (ahoge, zettai ryouiki) y términos de estilo de arte. Entienden terminología de anime en inglés y japonés para generación precisa."
+        }
+      }
+    },
+    "aiPorn": {
+      "title": "Mejores Plataformas de AI Porn",
+      "description": "Plataformas avanzadas de IA para generación de contenido adulto fotorrealista y experiencias interactivas (solo +18). Creación de AI porn de alta calidad y chat adulto interactivo.",
+      "breadcrumb": "Plataformas de AI Porn"
+    },
+    "learning": {
+      "title": "Mejores AI Tutors y Companions Educativos",
+      "description": "AI tutors y companions educativos para desarrollo de habilidades y soporte académico. Estas plataformas ofrecen asistencia de aprendizaje personalizada, tutoría adaptativa y herramientas educativas interactivas.",
+      "breadcrumb": "AI Tutors y Companions Educativos"
+    },
+    "wellness": {
+      "title": "Mejores Companions de IA para Bienestar",
+      "description": "Companions de IA enfocados en salud mental, bienestar emocional y apoyo personal. Estas plataformas ofrecen conversaciones empáticas, herramientas de mindfulness y orientación de bienestar.",
+      "breadcrumb": "Companions de IA para Bienestar"
+    },
+    "nsfw": {
+      "title": "Mejores Companions de IA NSFW",
+      "description": "Descubre companions de IA sin censura para conversaciones adultas y contenido NSFW. Estas plataformas ofrecen interacciones no filtradas, chat adulto y experiencias personalizadas de contenido maduro sin restricciones para usuarios mayores de 18 años.",
+      "breadcrumb": "Companions de IA NSFW",
+      "insightsTitle": "Insights de Companions de IA NSFW",
+      "comparisonTitle": "Comparación de Companions NSFW",
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Puntuación",
+        "pricing": "Precios",
+        "keyFeature": "Característica Principal",
+        "bestFor": "Mejor Para"
+      },
+      "faqTitle": "Preguntas Frecuentes sobre Companions NSFW"
+    },
+    "entertainment": {
+      "title": "Mejores Companions de IA para Entretenimiento",
+      "description": "Descubre companions de IA creados para entretenimiento, diversión y conversaciones envolventes. Estas plataformas ofrecen personalidades divertidas, juegos interactivos, narración de historias y experiencias de chat agradables para momentos de ocio.",
+      "breadcrumb": "Companions de IA para Entretenimiento",
+      "insightsTitle": "Insights de Companions de Entretenimiento",
+      "comparisonTitle": "Comparación de Companions de Entretenimiento",
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Puntuación",
+        "pricing": "Precios",
+        "keyFeature": "Característica Principal",
+        "bestFor": "Mejor Para"
+      },
+      "faqTitle": "Preguntas Frecuentes sobre Companions de Entretenimiento"
+    },
+    "productivity": {
+      "title": "Mejores Companions de IA para Productividad",
+      "description": "Explora companions de IA diseñados para aumentar la productividad, enfoque y eficiencia. Estas plataformas ofrecen asistencia con tareas, gestión del tiempo, organización de proyectos y soporte de productividad personalizado para tu flujo de trabajo.",
+      "breadcrumb": "Companions de IA para Productividad",
+      "insightsTitle": "Insights de Companions de Productividad",
+      "comparisonTitle": "Comparación de Companions de Productividad",
+      "comparison": {
+        "platform": "Plataforma",
+        "rating": "Puntuación",
+        "pricing": "Precios",
+        "keyFeature": "Característica Principal",
+        "bestFor": "Mejor Para"
+      },
+      "faqTitle": "Preguntas Frecuentes sobre Companions de Productividad"
+    },
+    "adultContentUncensored": {
+      "title": "Mejores Companions de Adult Content y Sin Censura",
+      "description": "Explora las mejores plataformas de IA NSFW sin censura para contenido adulto y conversaciones maduras (solo +18). Estas plataformas ofrecen libertad creativa completa para conversaciones maduras, AI sexting y experiencias de chat erótico sin restricciones de contenido.",
+      "breadcrumb": "Plataformas de IA de Adult Content y Sin Censura"
+    },
+    "adultImageGen": {
+      "title": "Mejores Plataformas de IA para Adult Image Generation",
+      "description": "Mejores plataformas de IA para crear arte NSFW y contenido visual adulto (solo +18). Estas plataformas ofrecen adult image generation avanzada, creación de contenido NSFW y herramientas de arte erótico usando IA generativa de vanguardia.",
+      "breadcrumb": "Plataformas de AI Adult Image Generation"
+    },
+    "aiBoyfriend": {
+      "title": "Mejores Plataformas de AI Boyfriend",
+      "description": "Top plataformas de AI boyfriend para relaciones románticas virtuales y companions masculinos. Estas plataformas ofrecen experiencias de citas virtuales personalizadas, conversaciones románticas y conexiones emocionales con parejas de IA personalizables.",
+      "breadcrumb": "Plataformas de AI Boyfriend"
+    },
+    "hentaiAI": {
+      "title": "Mejores Plataformas de Hentai AI",
+      "description": "Generadores de IA especializados para contenido adulto en estilo anime y manga en múltiples estilos de arte (solo +18). Estas plataformas ofrecen creación de hentai de alta calidad, generación de anime NSFW y herramientas de arte erótico en estilo manga.",
+      "breadcrumb": "Plataformas de Hentai AI"
+    },
+    "roleplayCharacterChat": {
+      "title": "Mejores Companions de Roleplay y Character Chat",
+      "description": "Explora las mejores plataformas de IA para experiencias de roleplay y character chat. Estas plataformas destacan en narrativa interactiva, conversaciones creativas e interacciones inmersivas de personajes para entretenimiento y expresión creativa.",
+      "breadcrumb": "Plataformas de IA de Roleplay y Character Chat"
+    },
+    "videoCompanions": {
+      "title": "Mejores Companions de IA con Video",
+      "description": "Companions de IA con características de chat por video y generación de video para experiencias inmersivas. Descubre plataformas que van más allá del texto y la voz con características de video.",
+      "breadcrumb": "Companions de IA con Video"
+    },
+    "whatsappOnly": {
+      "title": "Mejores Companions de IA Nativos de WhatsApp",
+      "description": "Companions de IA que se integran nativamente en WhatsApp - sin necesidad de apps separadas. Chatea directamente con IA en tu app de mensajería favorita.",
+      "breadcrumb": "Companions de IA Nativos de WhatsApp"
+    }
+  },
+  "dealsPage": {
+    "title": "Ofertas de Plataformas de Chat y Companion de IA",
+    "subtitle": "Ahorra mucho en plataformas premium de chat de IA y suscripciones de companion de IA con ofertas exclusivas y códigos de descuento para las mejores experiencias de chat de IA",
+    "tryButton": "Probar",
+    "claimDeal": "Reclamar Oferta",
+    "bestFor": "Mejor Para",
+    "infoTitle": "Cómo Funcionan Nuestras Ofertas de Chat de IA",
+    "infoText": "Nos asociamos directamente con plataformas de chat de IA y servicios de companion de IA para traer descuentos exclusivos en suscripciones premium de chat de IA. Todas las ofertas de chat de IA están verificadas y actualizadas regularmente. Simplemente haz clic en cualquier oferta para activar el descuento de la plataforma de chat de IA - los precios se ajustarán automáticamente en el checkout.",
+    "noteTitle": "Nota:",
+    "noteText": "Las ofertas y descuentos están sujetos a cambios y pueden tener disponibilidad limitada. Recomendamos actuar rápidamente en las ofertas de tu interés. Todos los precios se muestran en USD, salvo indicación contraria.",
+    "loading": "Cargando ofertas exclusivas...",
+    "noDeals": "No hay ofertas activas en este momento",
+    "checkBack": "¡Vuelve pronto para nuevas ofertas exclusivas!"
+  },
+  "newsletter": {
+    "title": "Promoción de Noviembre: 70% de descuento",
+    "subtitle": "70% de descuento en AI companions premium.",
+    "placeholder": "Introduce tu email",
+    "button": "Recibir Ahora",
+    "privacy": "Sin spam, solo ofertas. Cancela cuando quieras.",
+    "subscribing": "Suscribiendo...",
+    "subscribed": "¡Suscrito!",
+    "tryAgain": "Intentar de Nuevo"
+  },
+  "floatingCta": {
+    "visitWebsite": "Visitar Web",
+    "bestAlternative": "Mejor Alternativa",
+    "currentCompanion": "COMPANION ACTUAL"
+  }
+}

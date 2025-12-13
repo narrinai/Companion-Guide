@@ -1144,6 +1144,15 @@ main .companions-grid {
     margin-bottom: var(--space-4);
 }
 
+.companion-card .logo-link {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.companion-card .logo-link:hover {
+    transform: scale(1.02);
+}
+
 .companion-card .logo {
     width: 140px;
     height: 100px;
@@ -2354,6 +2363,84 @@ main .companions-grid {
     aspect-ratio: 950 / 250;
     object-fit: contain;
     display: block;
+}
+
+/* Square video variant for portrait/square videos */
+.ad-video-news.ad-video-square {
+    aspect-ratio: 1 / 1;
+    max-height: 280px;
+    object-fit: cover;
+}
+
+/* 18+ blur overlay for adult content */
+.ad-video-18plus {
+    position: relative;
+    display: block;
+}
+
+.ad-video-18plus .ad-video-news {
+    filter: blur(20px);
+    transition: filter 0.3s ease;
+}
+
+.ad-video-blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease;
+}
+
+.ad-video-18plus:hover .ad-video-blur-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.ad-video-18plus-badge {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 4px 12px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ad-video-play-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ad-video-play-icon svg {
+    width: 28px;
+    height: 28px;
+    color: #1a1a1a;
+    margin-left: 3px;
+}
+
+.ad-video-18plus:hover .ad-video-play-icon {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+}
+
+.ad-video-cta {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    opacity: 0.9;
 }
 
 .ad-description {
@@ -4250,16 +4337,53 @@ footer {
         padding: calc(var(--space-1) - 2px) var(--space-3);
     }
 
+    /* Mobile container override */
+    .container {
+        padding: 0 var(--space-3);
+    }
+
     /* Mobile companion hero optimization */
     .companion-hero {
-        padding: var(--space-8) 0;
-        margin-bottom: var(--space-6);
+        padding: var(--space-6) 0 var(--space-4) 0;
+        margin-bottom: var(--space-3);
+        overflow-x: hidden;
+        overflow-y: visible;
+        width: 100%;
+        max-width: 100vw;
     }
 
     .hero-content {
         flex-direction: column;
         text-align: center;
-        gap: var(--space-4);
+        gap: var(--space-3);
+        padding: 0 var(--space-4);
+        overflow: visible;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .hero-text {
+        width: 100%;
+        overflow: visible;
+        max-width: 100%;
+    }
+
+    .hero-text h1 {
+        white-space: normal !important;
+        font-size: 1.4rem !important;
+        padding: 0 var(--space-2);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.3;
+        max-width: 100%;
+    }
+
+    .hero-text .tagline {
+        font-size: 0.9rem;
+        padding: 0 var(--space-3);
+        line-height: 1.4;
+        max-width: 100%;
+        word-wrap: break-word;
     }
 
     .companion-logo {
@@ -4270,13 +4394,19 @@ footer {
 
     .header-gallery-link {
         order: 10;
-        margin: 0 auto;
-        margin-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+        max-width: 90%;
+        min-width: unset;
+        display: flex;
+        justify-content: center;
     }
 
     .header-gallery-image {
-        width: 100%;
-        max-width: 320px;
+        width: auto;
+        max-width: 280px;
+        margin: 0 auto;
         height: auto;
         aspect-ratio: 16/10;
     }
@@ -4284,7 +4414,7 @@ footer {
     .platform-info {
         display: flex;
         justify-content: center;
-        margin-top: var(--space-4);
+        margin-top: var(--space-2);
     }
 
     .platform-btn {
