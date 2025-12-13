@@ -1518,6 +1518,68 @@ main .companions-grid {
     flex-shrink: 0;
 }
 
+.header-gallery-link {
+    flex-shrink: 1;
+    margin-left: var(--space-8);
+    margin-right: -80px;
+    position: relative;
+    min-width: 280px;
+    max-width: 380px;
+}
+
+.header-gallery-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/10;
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--border-primary);
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.header-gallery-link:hover .header-gallery-image:not(.header-gallery-blurred) {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Header Gallery 18+ Blur */
+.header-gallery-blurred {
+    filter: blur(20px);
+    transition: filter 0.3s ease;
+}
+
+.header-blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-xl);
+    z-index: 10;
+}
+
+.header-blur-reveal-btn {
+    padding: var(--space-3) var(--space-6);
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.header-blur-reveal-btn:hover {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+}
+
 .hero-text {
     flex: 1;
 }
@@ -1525,6 +1587,7 @@ main .companions-grid {
 .hero-text h1 {
     font-size: 2.5rem;
     margin-bottom: var(--space-3);
+    white-space: nowrap;
 }
 
 .hero-text .rating {
@@ -4203,6 +4266,19 @@ footer {
         width: 80px;
         height: 80px;
         margin: 0 auto;
+    }
+
+    .header-gallery-link {
+        order: 10;
+        margin: 0 auto;
+        margin-right: 0;
+    }
+
+    .header-gallery-image {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        aspect-ratio: 16/10;
     }
 
     .platform-info {

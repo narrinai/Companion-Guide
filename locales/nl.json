@@ -72,6 +72,7 @@
     "showContent": "Toon Inhoud, Ik ben 18+"
   },
   "reviewForm": {
+    "writeReview": "Schrijf een Review",
     "sectionTitle": "Deel je ervaring met {companion}",
     "yourName": "Jouw Naam",
     "yourNamePlaceholder": "Vul je naam in",

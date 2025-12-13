@@ -216,6 +216,7 @@
     }
   },
   "reviewForm": {
+    "writeReview": "Bewertung Schreiben",
     "sectionTitle": "Teilen Sie Ihre Erfahrung mit {companion}",
     "yourName": "Ihr Name",
     "yourNamePlaceholder": "Geben Sie Ihren Namen ein",

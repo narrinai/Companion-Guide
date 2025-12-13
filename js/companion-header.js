@@ -149,6 +149,9 @@ class CompanionHeaderManager {
       console.log(`✅ Updated logo from Airtable: ${companion.logo_url}`);
     }
 
+    // Add first gallery image to header
+    this.updateHeaderGalleryImage(companion);
+
     // Update "What is X?" heading with companion name
     // Skip for NL/PT/DE/ES pages - companion-page.js handles this
     const path = window.location.pathname;
@@ -239,6 +242,114 @@ class CompanionHeaderManager {
     }
 
     console.log(`✅ Updated all content for ${companion.name}`);
+  }
+
+  /**
+   * Update header with first gallery image
+   */
+  updateHeaderGalleryImage(companion) {
+    if (!companion.gallery_images) {
+      console.log('📷 No gallery_images found for companion');
+      return;
+    }
+
+    try {
+      const galleryImages = typeof companion.gallery_images === 'string'
+        ? JSON.parse(companion.gallery_images)
+        : companion.gallery_images;
+
+      if (!Array.isArray(galleryImages) || galleryImages.length === 0) {
+        console.log('📷 Gallery images array is empty');
+        return;
+      }
+
+      const firstImage = galleryImages[0];
+      const imageUrl = firstImage.url || firstImage;
+
+      // Find the hero content container
+      const heroContent = document.querySelector('.hero-content');
+      if (!heroContent) return;
+
+      // Check if gallery image link already exists
+      let galleryLink = heroContent.querySelector('.header-gallery-link');
+      let galleryImg = heroContent.querySelector('.header-gallery-image');
+
+      if (!galleryLink) {
+        // Create link wrapper
+        galleryLink = document.createElement('a');
+        galleryLink.className = 'header-gallery-link';
+        galleryLink.target = '_blank';
+        galleryLink.rel = 'noopener';
+
+        // Create image element
+        galleryImg = document.createElement('img');
+        galleryImg.className = 'header-gallery-image';
+        galleryLink.appendChild(galleryImg);
+
+        // Append at the end (right side)
+        heroContent.appendChild(galleryLink);
+      }
+
+      // Set link URL using A/B test logic
+      const hasVariantB = companion.website_url_2 && companion.website_url_2.trim() !== '';
+      const isVariantB = hasVariantB && this.useVariantB;
+      galleryLink.href = isVariantB ? companion.website_url_2 : (companion.website_url || '#');
+
+      galleryImg.src = imageUrl;
+      galleryImg.alt = firstImage.caption || `${companion.name} screenshot`;
+
+      // Add 18+ blur overlay if is_uncensored is true
+      if (companion.is_uncensored) {
+        this.addHeaderBlurOverlay(galleryLink, galleryImg);
+      }
+
+      console.log(`✅ Added header gallery image: ${imageUrl}`);
+    } catch (error) {
+      console.error('Error updating header gallery image:', error);
+    }
+  }
+
+  /**
+   * Add 18+ blur overlay to header gallery image
+   */
+  addHeaderBlurOverlay(galleryLink, galleryImg) {
+    // Check if already blurred
+    if (galleryLink.querySelector('.header-blur-overlay')) return;
+
+    // Add blur class to image
+    galleryImg.classList.add('header-gallery-blurred');
+
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'header-blur-overlay';
+
+    // Get translated text based on language
+    const lang = document.documentElement.lang || 'en';
+    const translations = {
+      'en': 'I am 18+',
+      'nl': 'Ik ben 18+',
+      'de': 'Ich bin 18+',
+      'pt': 'Tenho 18+',
+      'es': 'Tengo 18+'
+    };
+    const buttonText = translations[lang] || translations['en'];
+
+    overlay.innerHTML = `
+      <button class="header-blur-reveal-btn">${buttonText}</button>
+    `;
+
+    galleryLink.appendChild(overlay);
+
+    // Add click handler to reveal
+    const revealBtn = overlay.querySelector('.header-blur-reveal-btn');
+    revealBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      galleryImg.classList.remove('header-gallery-blurred');
+      overlay.remove();
+    });
+
+    console.log(`✅ Added 18+ blur overlay to header gallery image`);
   }
 
   /**
@@ -691,28 +802,55 @@ class CompanionHeaderManager {
   }
 
   /**
-   * Update review form using i18n translations from nl.json
+   * Update review form using i18n translations
+   * Only updates if translations are properly loaded (not just returning keys)
    */
   updateReviewFormFromi18n(companionName) {
-    // Skip if not using i18n or not Dutch
+    // Skip if not using i18n or English
     if (!window.i18n || window.i18n.currentLang === 'en') {
+      return;
+    }
+
+    // If i18n not initialized yet, wait for it
+    if (!window.i18n.initialized) {
+      window.addEventListener('i18nTranslationsApplied', () => {
+        this.updateReviewFormFromi18n(companionName);
+      }, { once: true });
       return;
     }
 
     const reviewSection = document.querySelector('.user-reviews');
     if (!reviewSection) return;
 
+    // Helper function to get translation only if it's not the key itself
+    const getTranslation = (key) => {
+      const result = window.i18n.t(key);
+      // If t() returns the key, it means translation is missing
+      return result !== key ? result : null;
+    };
+
     try {
       // Update section title with companion name
       const sectionHeader = reviewSection.querySelector('.section-header p');
       if (sectionHeader) {
-        const sectionTitle = window.i18n.t('reviewForm.sectionTitle').replace('{companion}', companionName);
-        sectionHeader.textContent = sectionTitle;
+        const sectionTitle = getTranslation('reviewForm.sectionTitle');
+        if (sectionTitle) {
+          sectionHeader.textContent = sectionTitle.replace('{companion}', companionName);
+        }
       }
 
       // Find the review form
       const reviewForm = document.querySelector('form[name="companion-review"]');
       if (!reviewForm) return;
+
+      // Update form title (h3)
+      const formTitle = reviewForm.closest('.review-form-container')?.querySelector('h3');
+      if (formTitle) {
+        const writeReviewText = getTranslation('reviewForm.writeReview');
+        if (writeReviewText) {
+          formTitle.textContent = writeReviewText;
+        }
+      }
 
       // Update form labels and placeholders
       const updates = [
@@ -728,14 +866,18 @@ class CompanionHeaderManager {
         const labelEl = document.querySelector(`label[for="${id}"]`);
 
         if (labelEl && label) {
-          const hasAsterisk = labelEl.textContent.includes('*');
-          const translatedLabel = window.i18n.t(label);
-          labelEl.textContent = translatedLabel + (hasAsterisk ? ' *' : '');
+          const translatedLabel = getTranslation(label);
+          if (translatedLabel) {
+            const hasAsterisk = labelEl.textContent.includes('*');
+            labelEl.textContent = translatedLabel + (hasAsterisk ? ' *' : '');
+          }
         }
 
         if (input && placeholder) {
-          const translatedPlaceholder = window.i18n.t(placeholder);
-          input.setAttribute('placeholder', translatedPlaceholder);
+          const translatedPlaceholder = getTranslation(placeholder);
+          if (translatedPlaceholder) {
+            input.setAttribute('placeholder', translatedPlaceholder);
+          }
         }
       });
 
@@ -744,7 +886,10 @@ class CompanionHeaderManager {
       if (durationSelect) {
         const firstOption = durationSelect.querySelector('option[value=""]');
         if (firstOption) {
-          firstOption.textContent = window.i18n.t('reviewForm.durationSelect');
+          const durationSelectText = getTranslation('reviewForm.durationSelect');
+          if (durationSelectText) {
+            firstOption.textContent = durationSelectText;
+          }
         }
 
         const optionMap = {
@@ -758,7 +903,10 @@ class CompanionHeaderManager {
         Object.entries(optionMap).forEach(([value, key]) => {
           const option = durationSelect.querySelector(`option[value="${value}"]`);
           if (option) {
-            option.textContent = window.i18n.t(key);
+            const translatedOption = getTranslation(key);
+            if (translatedOption) {
+              option.textContent = translatedOption;
+            }
           }
         });
       }
@@ -766,7 +914,10 @@ class CompanionHeaderManager {
       // Update submit button
       const submitBtn = reviewForm.querySelector('.submit-review-btn');
       if (submitBtn) {
-        submitBtn.textContent = window.i18n.t('reviewForm.submitButton');
+        const submitText = getTranslation('reviewForm.submitButton');
+        if (submitText) {
+          submitBtn.textContent = submitText;
+        }
       }
 
       console.log(`✅ Updated review form from i18n`);
