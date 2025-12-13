@@ -34,23 +34,45 @@ class CompanionManager {
       : (companion.website_url || '#');
   }
 
+  /**
+   * Detect language from URL path (fallback when i18n not ready)
+   */
+  detectLanguageFromUrl() {
+    const pathParts = window.location.pathname.split('/').filter(p => p);
+    const supportedLangs = ['en', 'nl', 'es', 'de', 'fr', 'it', 'pt', 'pl'];
+    if (pathParts.length > 0 && supportedLangs.includes(pathParts[0])) {
+      return pathParts[0];
+    }
+    return 'en';
+  }
+
   async fetchCompanions(options = {}) {
     try {
+      // Determine language - from options, i18n, or URL fallback (no delays needed)
+      let lang = options.lang;
+
+      if (!lang) {
+        // Get language from i18n if initialized, otherwise detect from URL
+        if (window.i18n && window.i18n.initialized && window.i18n.currentLang) {
+          lang = window.i18n.currentLang;
+        } else {
+          // Direct fallback: detect from URL path - no waiting needed
+          lang = this.detectLanguageFromUrl();
+        }
+      }
+
       const params = new URLSearchParams();
 
       if (options.category) params.append('category', options.category);
       if (options.sort) params.append('sort', options.sort);
       if (options.limit) params.append('limit', options.limit);
 
-      // Add language parameter - priority: options.lang > i18n.currentLang
-      if (options.lang) {
-        params.append('lang', options.lang);
-      } else if (window.i18n && window.i18n.initialized && window.i18n.currentLang) {
-        params.append('lang', window.i18n.currentLang);
-      }
+      // Always add language parameter
+      params.append('lang', lang);
 
       const queryString = params.toString();
-      const cacheKey = queryString || 'default';
+      // Cache key includes language to prevent mixing cached translations
+      const cacheKey = queryString || `default_${lang}`;
 
       // Return cached data if available
       if (this.cache[cacheKey]) {

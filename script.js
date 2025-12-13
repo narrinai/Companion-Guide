@@ -282,6 +282,10 @@ document.addEventListener('DOMContentLoaded', function() {
             currentLang = 'DE';
             currentFlag = '🇩🇪';
             localStorage.setItem('preferredLanguage', 'de');
+        } else if (currentPath.startsWith('/es/') || currentPath === '/es') {
+            currentLang = 'ES';
+            currentFlag = '🇪🇸';
+            localStorage.setItem('preferredLanguage', 'es');
         } else {
             // English page - always show EN flag regardless of localStorage
             currentLang = 'EN';
@@ -298,10 +302,11 @@ document.addEventListener('DOMContentLoaded', function() {
         dropdownLinks.forEach(link => {
             link.classList.remove('active');
             const href = link.getAttribute('href');
-            if ((currentLang === 'EN' && (href === '/' || href.startsWith('/') && !href.startsWith('/nl') && !href.startsWith('/pt') && !href.startsWith('/de'))) ||
+            if ((currentLang === 'EN' && (href === '/' || href.startsWith('/') && !href.startsWith('/nl') && !href.startsWith('/pt') && !href.startsWith('/de') && !href.startsWith('/es'))) ||
                 (currentLang === 'NL' && href.includes('/nl')) ||
                 (currentLang === 'PT' && href.includes('/pt')) ||
-                (currentLang === 'DE' && href.includes('/de'))) {
+                (currentLang === 'DE' && href.includes('/de')) ||
+                (currentLang === 'ES' && href.includes('/es'))) {
                 link.classList.add('active');
             }
         });

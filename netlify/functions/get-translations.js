@@ -94,6 +94,16 @@ exports.handler = async (event, context) => {
       }
     }
 
+    let pros_cons = fields.pros_cons;
+    if (typeof pros_cons === 'string') {
+      try {
+        pros_cons = JSON.parse(pros_cons);
+      } catch (e) {
+        console.error('Error parsing pros_cons:', e);
+        pros_cons = null;
+      }
+    }
+
     return {
       statusCode: 200,
       headers: {
@@ -109,6 +119,7 @@ exports.handler = async (event, context) => {
         features: features,
         pricing_plans: pricing_plans,
         hero_specs: hero_specs,
+        pros_cons: pros_cons,
         language: fields.language || lang
       })
     };

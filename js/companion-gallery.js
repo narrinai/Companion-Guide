@@ -90,8 +90,15 @@ class CompanionGallery {
         this.cacheElements();
 
         // Apply i18n translations to dynamically rendered content
-        if (window.i18nManager) {
-            window.i18nManager.applyTranslations();
+        if (window.i18n && window.i18n.initialized) {
+            window.i18n.applyTranslations();
+        } else {
+            // Listen for i18n initialization if not ready yet
+            window.addEventListener('i18nTranslationsApplied', () => {
+                if (window.i18n && window.i18n.initialized) {
+                    window.i18n.applyTranslations();
+                }
+            }, { once: true });
         }
 
         if (this.isBlurred) {

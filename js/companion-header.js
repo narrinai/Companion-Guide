@@ -150,9 +150,9 @@ class CompanionHeaderManager {
     }
 
     // Update "What is X?" heading with companion name
-    // Skip for NL/PT/DE pages - companion-page.js handles this
+    // Skip for NL/PT/DE/ES pages - companion-page.js handles this
     const path = window.location.pathname;
-    const isTranslatedPage = path.match(/^\/(pt|nl|de)\//);
+    const isTranslatedPage = path.match(/^\/(pt|nl|de|es)\//);
 
     if (!isTranslatedPage) {
       const overviewSection = document.querySelector('.overview, section.overview');
@@ -179,20 +179,28 @@ class CompanionHeaderManager {
       this.updateFeatures(companion.features);
     }
 
-    // Update pros/cons
-    if (companion.pros_cons) {
+    // Note: path and isTranslatedPage already declared above (lines 154-155)
+
+    // Update pros/cons (only for EN pages - translated pages handle this in companion-page.js)
+    if (companion.pros_cons && !isTranslatedPage) {
       this.updateProsCons(companion.pros_cons);
+    } else if (isTranslatedPage && companion.pros_cons) {
+      console.log('📝 Skipping pros/cons update - translated page handles this via companion-page.js');
     }
 
-    // Update pricing plans
-    if (companion.pricing_plans) {
+    // Update pricing plans (only for EN pages - translated pages handle this in companion-page.js)
+    if (companion.pricing_plans && !isTranslatedPage) {
       this.updatePricing(companion.pricing_plans);
+    } else if (isTranslatedPage && companion.pricing_plans) {
+      console.log('📝 Skipping pricing update - translated page handles this via companion-page.js');
     }
 
-    // Update my verdict
-    if (companion.my_verdict) {
+    // Update my verdict (only for EN pages - translated pages handle this in companion-page.js)
+    if (companion.my_verdict && !isTranslatedPage) {
       console.log('📝 Updating verdict, length:', companion.my_verdict.length);
       this.updateVerdict(companion.my_verdict, rating);
+    } else if (isTranslatedPage) {
+      console.log('📝 Skipping verdict update - translated page handles this via companion-page.js');
     } else {
       console.warn('⚠️ No my_verdict field found in companion data');
     }
@@ -457,8 +465,8 @@ class CompanionHeaderManager {
           const endsWithColon = firstSentence.endsWith(':');
           const hasNoPunctuation = !firstSentence.match(/[.!?]$/);
 
-          // Multi-language heading patterns (EN, NL, PT, DE)
-          const looksLikeHeading = /^(Best for|Who should use|Key features|Conclusion|Final thoughts|Overview|Why choose|Perfect for|Bottom line|The verdict|What makes|Innovation|Standout|Unique|Ideal for|Great for|Week \d+|Month \d+|Day \d+|Beste voor|Wie moet gebruiken|Belangrijkste kenmerken|Conclusie|Laatste gedachten|Overzicht|Waarom kiezen|Perfect voor|Het verdict|Wat maakt|Innovatie|Uniek|Ideaal voor|Geweldig voor|Week \d+|Maand \d+|Dag \d+|Melhor para|Quem deve usar|Principais recursos|Conclusão|Pensamentos finais|Visão geral|Por que escolher|Perfeito para|O veredicto|O que faz|Inovação|Único|Ideal para|Ótimo para|Semana \d+|Mês \d+|Dia \d+|Am besten für|Wer sollte verwenden|Hauptmerkmale|Fazit|Abschließende Gedanken|Überblick|Warum wählen|Perfekt für|Das Urteil|Was macht|Innovation|Einzigartig|Ideal für|Großartig für|Woche \d+|Monat \d+|Tag \d+)/i.test(firstSentence);
+          // Multi-language heading patterns (EN, NL, PT, DE, ES)
+          const looksLikeHeading = /^(Best for|Who should use|Key features|Conclusion|Final thoughts|Overview|Why choose|Perfect for|Bottom line|The verdict|What makes|Innovation|Standout|Unique|Ideal for|Great for|Week \d+|Month \d+|Day \d+|Beste voor|Wie moet gebruiken|Belangrijkste kenmerken|Conclusie|Laatste gedachten|Overzicht|Waarom kiezen|Perfect voor|Het verdict|Wat maakt|Innovatie|Uniek|Ideaal voor|Geweldig voor|Week \d+|Maand \d+|Dag \d+|Melhor para|Quem deve usar|Principais recursos|Conclusão|Pensamentos finais|Visão geral|Por que escolher|Perfeito para|O veredicto|O que faz|Inovação|Único|Ideal para|Ótimo para|Semana \d+|Mês \d+|Dia \d+|Am besten für|Wer sollte verwenden|Hauptmerkmale|Fazit|Abschließende Gedanken|Überblick|Warum wählen|Perfekt für|Das Urteil|Was macht|Innovation|Einzigartig|Ideal für|Großartig für|Woche \d+|Monat \d+|Tag \d+|Mejor para|Quién debería usar|Características clave|Conclusión|Pensamientos finales|Resumen|Por qué elegir|Perfecto para|En resumen|El veredicto|Lo que hace|Innovación|Destacado|Único|Ideal para|Excelente para|Semana \d+|Mes \d+|Día \d+)/i.test(firstSentence);
           const isFirstParagraph = index === 0;
 
           // Make first sentence a H3 if it's short without punctuation OR looks like a heading OR ends with colon
@@ -503,13 +511,15 @@ class CompanionHeaderManager {
         'en': 'Read full verdict',
         'nl': 'Lees volledig oordeel',
         'pt': 'Ler veredicto completo',
-        'de': 'Vollständiges Urteil lesen'
+        'de': 'Vollständiges Urteil lesen',
+        'es': 'Leer opinión completa'
       };
       const showLessTexts = {
         'en': 'Show less',
         'nl': 'Toon minder',
         'pt': 'Mostrar menos',
-        'de': 'Weniger anzeigen'
+        'de': 'Weniger anzeigen',
+        'es': 'Mostrar menos'
       };
       const readMoreText = readMoreTexts[currentLang] || readMoreTexts['en'];
 

@@ -295,33 +295,39 @@ class CompanionPageManager {
         // Update any "What is [Platform]?" headings with multi-language support
         const whatIsHeading = document.querySelector('h2[data-i18n="companion.whatIs"], .overview h2');
         if (whatIsHeading) {
-            // Skip if heading already has correct format AND companion name (not {name} placeholder)
+            // Detect language from URL FIRST
+            const path = window.location.pathname;
+            const langMatch = path.match(/^\/(pt|nl|de|es)\//);
+            const lang = langMatch ? langMatch[1] : 'en';
+
+            // Determine expected prefix for current language
+            const expectedPrefix = {
+                'en': 'What is',
+                'nl': 'Wat is',
+                'de': 'Was ist',
+                'pt': 'O que é',
+                'es': '¿Qué es'
+            }[lang];
+
+            // Check if heading already has correct format for THIS language
             const currentText = whatIsHeading.textContent.trim();
             const hasCorrectFormat = currentText.includes(companionName) &&
                                     !currentText.includes('{name}') &&
-                                    (currentText.startsWith('What is') ||
-                                     currentText.startsWith('Wat is') ||
-                                     currentText.startsWith('Was ist') ||
-                                     currentText.startsWith('O que é'));
+                                    currentText.startsWith(expectedPrefix);
 
             if (hasCorrectFormat) {
-                return; // i18n.js already handled this
+                return; // Already correct for this language
             }
 
-            // Detect language from URL
-            const path = window.location.pathname;
-            const langMatch = path.match(/^\/(pt|nl|de)\//);
-
-            if (langMatch) {
-                const lang = langMatch[1];
-                // Use translated "What is" text
-                if (lang === 'nl') {
-                    whatIsHeading.textContent = `Wat is ${companionName}?`;
-                } else if (lang === 'pt') {
-                    whatIsHeading.textContent = `O que é ${companionName}?`;
-                } else if (lang === 'de') {
-                    whatIsHeading.textContent = `Was ist ${companionName}?`;
-                }
+            // Update heading based on language
+            if (lang === 'nl') {
+                whatIsHeading.textContent = `Wat is ${companionName}?`;
+            } else if (lang === 'pt') {
+                whatIsHeading.textContent = `O que é ${companionName}?`;
+            } else if (lang === 'de') {
+                whatIsHeading.textContent = `Was ist ${companionName}?`;
+            } else if (lang === 'es') {
+                whatIsHeading.textContent = `¿Qué es ${companionName}?`;
             } else {
                 // English
                 whatIsHeading.textContent = `What is ${companionName}?`;
@@ -494,7 +500,10 @@ class CompanionPageManager {
             ctaButton.className = 'cta-button primary pricing-cta';
             ctaButton.target = '_blank';
             ctaButton.rel = 'noopener';
-            ctaButton.textContent = 'Visit Website →';
+            ctaButton.setAttribute('data-i18n', 'companionCard.visitWebsite');
+            // Get translated text or fallback to English
+            const visitWebsiteText = window.i18n?.t('companionCard.visitWebsite') || 'Visit Website';
+            ctaButton.textContent = visitWebsiteText + ' →';
             ctaButton.style.cssText = 'margin-top: var(--space-4); width: 100%; text-align: center; display: inline-block; padding: var(--space-3) var(--space-4); background: var(--accent-primary); color: white; text-decoration: none; border-radius: var(--radius-md); font-weight: 600; transition: background 0.3s ease;';
 
             // Add button to the tier
@@ -606,9 +615,9 @@ class CompanionPageManager {
     async loadAndUpdateTranslations() {
         // Detect language from URL path
         const path = window.location.pathname;
-        const langMatch = path.match(/^\/(pt|nl|de)\//);
+        const langMatch = path.match(/^\/(pt|nl|de|es)\//);
 
-        // Determine language: pt, nl, de, or en (default)
+        // Determine language: pt, nl, de, es, or en (default)
         const language = langMatch ? langMatch[1] : 'en';
         console.log(`Loading ${language.toUpperCase()} translations for: ${this.companionId}`);
 
@@ -651,12 +660,185 @@ class CompanionPageManager {
                 console.warn(`No my_verdict found for ${this.companionId} in ${language}`);
             }
 
+            // Update hero_specs (quick facts) with translated content (only for non-EN pages)
+            if (language !== 'en' && data.hero_specs) {
+                this.updateQuickFactsFromTranslatedHeroSpecs(data.hero_specs);
+                console.log(`✅ Updated hero_specs with ${language.toUpperCase()} translation`);
+            }
+
+            // Update pricing_plans with translated content (only for non-EN pages)
+            if (language !== 'en' && data.pricing_plans) {
+                this.updatePricingFromTranslation(data.pricing_plans);
+                console.log(`✅ Updated pricing_plans with ${language.toUpperCase()} translation`);
+            }
+
+            // Update pros_cons with translated content (only for non-EN pages)
+            if (language !== 'en' && data.pros_cons) {
+                this.updateProsConsFromTranslation(data.pros_cons);
+                console.log(`✅ Updated pros_cons with ${language.toUpperCase()} translation`);
+            }
+
             // NOTE: Features are now loaded directly from the main Companions table
             // The features field in Airtable already contains the correct language version
             // We no longer override features from Companion_Translations table
 
         } catch (error) {
             console.error('Error loading translations:', error);
+        }
+    }
+
+    /**
+     * Update quick-facts with translated hero_specs from Companion_Translations table
+     */
+    updateQuickFactsFromTranslatedHeroSpecs(heroSpecs) {
+        if (!heroSpecs) return;
+
+        console.log('📊 Updating quick-facts with translated hero_specs:', heroSpecs);
+
+        const facts = document.querySelectorAll('.quick-facts .fact');
+        facts.forEach(fact => {
+            const header = fact.querySelector('h3');
+            const paragraph = fact.querySelector('p');
+
+            if (!header || !paragraph) return;
+
+            const headerKey = header.getAttribute('data-i18n');
+
+            let heroSpecKey = null;
+            if (headerKey === 'companion.pricingLabel') {
+                heroSpecKey = 'pricing';
+            } else if (headerKey === 'companion.bestForLabel') {
+                heroSpecKey = 'best_for';
+            } else if (headerKey === 'companion.platformLabel') {
+                heroSpecKey = 'platform';
+            } else if (headerKey === 'companion.contentPolicyLabel') {
+                heroSpecKey = 'content_policy';
+            }
+
+            if (heroSpecKey && heroSpecs[heroSpecKey]) {
+                paragraph.textContent = heroSpecs[heroSpecKey];
+                console.log(`✅ Updated ${heroSpecKey}: ${heroSpecs[heroSpecKey]}`);
+            }
+        });
+    }
+
+    /**
+     * Update pricing section with translated pricing_plans from Companion_Translations table
+     */
+    updatePricingFromTranslation(pricingPlans) {
+        if (!pricingPlans || !Array.isArray(pricingPlans) || pricingPlans.length === 0) return;
+
+        console.log('💰 Updating pricing with translated plans:', pricingPlans.length, 'plans');
+
+        const pricingSection = document.querySelector('.pricing .pricing-grid');
+        if (!pricingSection) return;
+
+        // Clear existing pricing tiers
+        pricingSection.innerHTML = '';
+
+        // Get website URL for CTA buttons
+        const websiteUrl = this.getActiveExternalUrl();
+
+        // Generate pricing tiers from translated data
+        pricingPlans.forEach((plan, index) => {
+            const tierDiv = document.createElement('div');
+            tierDiv.className = 'pricing-tier';
+
+            const isFree = plan.price === 0 || plan.price === 'Free' || plan.price === 'free' || plan.price === 'Gratis';
+            const price = isFree ? 'Gratis' : `$${plan.price}`;
+
+            // Translate period
+            let period = '';
+            if (!isFree && plan.period) {
+                const periodLower = plan.period.toLowerCase();
+                if (periodLower === 'mensual' || periodLower === 'monthly' || periodLower === 'month') {
+                    period = '<span class="period">/mes</span>';
+                } else if (periodLower === 'anual' || periodLower === 'yearly' || periodLower === 'year') {
+                    period = '<span class="period">/año</span>';
+                } else if (periodLower === 'gratis' || periodLower === 'free') {
+                    period = '';
+                } else {
+                    period = `<span class="period">/${plan.period}</span>`;
+                }
+            }
+
+            const isFeatured = plan.featured || plan.popular || index === Math.floor(pricingPlans.length / 2);
+            if (isFeatured) {
+                tierDiv.classList.add('featured');
+            }
+
+            let badgeHtml = '';
+            if (isFeatured) {
+                badgeHtml = '<div class="tier-badge">MÁS POPULAR</div>';
+            }
+
+            // Build features HTML - handle ❌ for excluded features
+            const featuresHtml = plan.features.map(feature => {
+                const isExcluded = feature.startsWith('❌');
+                const cleanFeature = feature.replace(/^❌\s*/, '').replace(/^✅\s*/, '');
+                if (isExcluded) {
+                    return `<li class="feature-excluded">${cleanFeature}</li>`;
+                } else {
+                    return `<li>${cleanFeature}</li>`;
+                }
+            }).join('');
+
+            tierDiv.innerHTML = `
+                ${badgeHtml}
+                <h3>${plan.name}</h3>
+                <div class="price">${price} ${period}</div>
+                <ul>
+                    ${featuresHtml}
+                </ul>
+                <a href="${websiteUrl}" class="pricing-cta" target="_blank">Visitar Web →</a>
+            `;
+
+            pricingSection.appendChild(tierDiv);
+        });
+
+        console.log(`✅ Rendered ${pricingPlans.length} translated pricing tiers`);
+    }
+
+    /**
+     * Update pros & cons section with translated content from Companion_Translations table
+     */
+    updateProsConsFromTranslation(prosCons) {
+        if (!prosCons) return;
+
+        console.log('👍👎 Updating pros/cons with translated content');
+
+        const websiteUrl = this.getActiveExternalUrl();
+
+        // Update pros
+        if (prosCons.pros && Array.isArray(prosCons.pros)) {
+            const prosContainer = document.querySelector('.pros-cons .pros ul');
+            if (prosContainer) {
+                prosContainer.innerHTML = prosCons.pros.map(pro => `<li>${pro}</li>`).join('');
+                console.log(`✅ Updated ${prosCons.pros.length} pros`);
+            }
+
+            // Update pros CTA button text
+            const prosCta = document.querySelector('.pros-cons .pros .pricing-cta');
+            if (prosCta) {
+                prosCta.textContent = 'Visitar Web →';
+                prosCta.href = websiteUrl;
+            }
+        }
+
+        // Update cons
+        if (prosCons.cons && Array.isArray(prosCons.cons)) {
+            const consContainer = document.querySelector('.pros-cons .cons ul');
+            if (consContainer) {
+                consContainer.innerHTML = prosCons.cons.map(con => `<li>${con}</li>`).join('');
+                console.log(`✅ Updated ${prosCons.cons.length} cons`);
+            }
+
+            // Update cons CTA button text
+            const consCta = document.querySelector('.pros-cons .cons .pricing-cta');
+            if (consCta) {
+                consCta.textContent = 'Visitar Web →';
+                consCta.href = websiteUrl;
+            }
         }
     }
 
@@ -705,12 +887,17 @@ class CompanionPageManager {
      * Update the verdict section with translated content
      */
     async updateVerdictSection(verdictText) {
+        console.log('🔍 updateVerdictSection called, text length:', verdictText?.length);
+
         // Wait for companionHeader to be available (loaded after companion-page.js)
         let attempts = 0;
         while (!window.companionHeader && attempts < 30) {
             await new Promise(resolve => setTimeout(resolve, 100));
             attempts++;
         }
+        console.log('🔍 companionHeader wait completed after', attempts, 'attempts');
+        console.log('🔍 window.companionHeader exists:', !!window.companionHeader);
+        console.log('🔍 updateVerdict is function:', typeof window.companionHeader?.updateVerdict === 'function');
 
         // Use the companionHeader's updateVerdict method which has smart heading detection and read more
         if (window.companionHeader && typeof window.companionHeader.updateVerdict === 'function') {
@@ -815,7 +1002,7 @@ class CompanionPageManager {
 
         // Detect current language from URL
         const path = window.location.pathname;
-        const langMatch = path.match(/^\/(pt|nl|de)\//);
+        const langMatch = path.match(/^\/(pt|nl|de|es)\//);
         const currentLang = langMatch ? langMatch[1] : 'en';
 
         // Default fallback features with multilingual support
@@ -843,6 +1030,12 @@ class CompanionPageManager {
                 {icon: "🖼️", title: "Realistische Bilder", description: "Präzise Visuals, die Fantasien zum Leben erwecken"},
                 {icon: "🎨", title: "Konsistente Charaktere", description: "Gut ausgearbeitete Persönlichkeiten, die treu bleiben"},
                 {icon: "🧠", title: "Langzeitgedächtnis", description: "Erinnert sich an Vorlieben und frühere Interaktionen"}
+            ],
+            'es': [
+                {icon: "💬", title: "Chat de IA Creativo", description: "Conversaciones cautivadoras que despiertan la imaginación"},
+                {icon: "🖼️", title: "Imágenes Realistas", description: "Visuales precisos que dan vida a las fantasías"},
+                {icon: "🎨", title: "Personajes Consistentes", description: "Personalidades bien elaboradas que se mantienen fieles"},
+                {icon: "🧠", title: "Memoria a Largo Plazo", description: "Recuerda preferencias e interacciones pasadas"}
             ]
         };
 

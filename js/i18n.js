@@ -238,12 +238,13 @@ class I18n {
 
       // Special handling for companion.whatIs - extract companion name from current text
       if (key === 'companion.whatIs' && el.textContent) {
-        // Match multiple language patterns: "What is X?", "Wat is X?", "O que é X?", "Was ist X?"
+        // Match multiple language patterns: "What is X?", "Wat is X?", "O que é X?", "Was ist X?", "¿Qué es X?"
         const patterns = [
           /What is ([^?]+)\?/i,
           /Wat is ([^?]+)\?/i,
           /O que é ([^?]+)\?/i,
-          /Was ist ([^?]+)\?/i
+          /Was ist ([^?]+)\?/i,
+          /¿Qué es ([^?]+)\?/i
         ];
 
         let companionName = null;
