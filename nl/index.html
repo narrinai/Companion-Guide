@@ -451,6 +451,36 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     </div>
                 </article>
 
+                <!-- Joi AI Advertisement Card -->
+                <article class="news-card news-ad-card" id="news-ad-joi">
+                    <div class="news-badge spotlight-badge">Spotlight</div>
+                    <div class="ad-header">
+                        <img src="/images/logos/joi-ai.png" alt="Joi AI" class="ad-logo" id="joi-logo">
+                        <div class="ad-title-section">
+                            <h3><a href="/companions/joi-ai" class="ad-companion-name" id="joi-name">Joi AI</a></h3>
+                            <div class="ad-rating-line">
+                                <span class="ad-stars" id="joi-stars">★★★★★</span>
+                                <span class="ad-rating-score" id="joi-rating">9.5/10</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ad-video-link ad-video-18plus" id="joi-video-container" data-revealed="false">
+                        <video autoplay loop muted playsinline class="ad-video-news ad-video-square">
+                            <source src="/videos/joi-ai-review-video.mp4" type="video/mp4">
+                        </video>
+                        <div class="ad-video-blur-overlay">
+                            <div class="ad-video-18plus-badge">18+</div>
+                            <div class="ad-video-play-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ad-actions">
+                        <a href="https://joi.ai/?via=companionguide" class="ad-btn-primary" target="_blank" rel="noopener" id="joi-btn-primary">Probeer Joi AI</a>
+                        <a href="https://joi.ai/?via=companionguide" class="ad-btn-secondary" target="_blank" rel="noopener" id="joi-btn-secondary">Bezoek Website</a>
+                    </div>
+                </article>
+
                 <!-- Advertisement Card -->
                 <article class="news-card news-ad-card" id="news-ad-ourdream">
                     <div class="news-badge spotlight-badge">Spotlight</div>
@@ -916,6 +946,9 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 // Load OurDream AI data for news ad
                 await loadOurDreamAdData();
 
+                // Load Joi AI data for news ad
+                await loadJoiAdData();
+
                 // Load featured companions in footer (least critical)
                 await window.companionManager.renderFooterFeaturedCompanions('featured-companions-footer');
             } catch (error) {
@@ -1139,6 +1172,57 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                 }
             } catch (error) {
                 console.error('Error loading OurDream AI data:', error);
+            }
+        }
+
+        // Load Joi AI data for the news advertisement card
+        async function loadJoiAdData() {
+            try {
+                const companions = await window.companionManager.fetchCompanions({ sort: 'rating' });
+                const joi = companions.find(c => c.slug === 'joi-ai');
+
+                if (joi) {
+                    const urls = [joi.website_url, joi.website_url_2].filter(u => u && u.startsWith('http'));
+                    const affiliateUrl = urls.length > 0 ? urls[Math.floor(Math.random() * urls.length)] : 'https://joi.ai/?via=companionguide';
+
+                    const logoElement = document.getElementById('joi-logo');
+                    if (logoElement && joi.logo_url) logoElement.src = joi.logo_url;
+
+                    const nameElement = document.getElementById('joi-name');
+                    if (nameElement && joi.name) nameElement.textContent = joi.name;
+
+                    const ratingElement = document.getElementById('joi-rating');
+                    if (ratingElement && joi.rating) ratingElement.textContent = `${joi.rating.toFixed(1)}/10`;
+
+                    const starsElement = document.getElementById('joi-stars');
+                    if (starsElement && joi.rating) {
+                        const stars = Math.round(joi.rating / 2);
+                        starsElement.textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+                    }
+
+                    const btnPrimary = document.getElementById('joi-btn-primary');
+                    if (btnPrimary) {
+                        btnPrimary.href = affiliateUrl;
+                        btnPrimary.textContent = `Probeer ${joi.name || 'Joi AI'}`;
+                    }
+
+                    const btnSecondary = document.getElementById('joi-btn-secondary');
+                    if (btnSecondary) btnSecondary.href = affiliateUrl;
+
+                    const videoContainer = document.getElementById('joi-video-container');
+                    if (videoContainer) {
+                        videoContainer.addEventListener('click', function() {
+                            const isRevealed = this.getAttribute('data-revealed') === 'true';
+                            if (!isRevealed) {
+                                this.setAttribute('data-revealed', 'true');
+                            } else {
+                                window.open(affiliateUrl, '_blank', 'noopener');
+                            }
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading Joi AI data:', error);
             }
         }
 
