@@ -4456,10 +4456,14 @@ footer {
     }
 
     .category-hero-section {
-        padding: var(--space-4) 0 var(--space-8) 0;
-        margin-bottom: var(--space-8);
+        padding: var(--space-4) 0 var(--space-3) 0;
+        margin-bottom: var(--space-3);
     }
-    
+
+    .category-description {
+        margin-bottom: var(--space-3);
+    }
+
     .product-highlights {
         flex-direction: column;
     }
