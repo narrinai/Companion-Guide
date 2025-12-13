@@ -1158,6 +1158,38 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
             `;
         }
 
+        // Create OurDream AI ad section HTML (Dutch)
+        function createOurDreamAdSection(variant = 'bj') {
+            const videoFile = variant === 'v2' ? '950x250-ourdream-ai-video-companionguide-v2.mp4' : '950x250-ourdream-ai-video-companionguide-bj.mp4';
+            return `
+                <section class="best-for-ad-section" id="ad-ourdream-${variant}">
+                    <article class="best-for-ad-card" id="best-for-ad-ourdream-${variant}">
+                        <div class="ad-badge spotlight-badge">Spotlight</div>
+                        <div class="ad-header">
+                            <img src="/images/logos/ourdream-ai.png" alt="OurDream AI" class="ad-logo">
+                            <div class="ad-title-section">
+                                <h3><a href="/companions/ourdream-ai" class="ad-companion-name">OurDream AI</a></h3>
+                                <div class="ad-rating-line">
+                                    <span class="ad-stars">★★★★★</span>
+                                    <span class="ad-rating-score">9.6/10</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://ourdream.ai/?via=companionguide" target="_blank" rel="noopener" class="ad-video-link">
+                            <video autoplay loop muted playsinline class="ad-video-bestfor">
+                                <source src="/videos/${videoFile}" type="video/mp4">
+                            </video>
+                        </a>
+                        <p class="ad-description">Beste voor: NSFW AI seks chat, volwassen content creatie & expliciete video's</p>
+                        <div class="ad-actions">
+                            <a href="https://ourdream.ai/?via=companionguide" class="ad-btn-primary" target="_blank" rel="noopener">Probeer OurDream AI</a>
+                            <a href="https://ourdream.ai/?via=companionguide" class="ad-btn-secondary" target="_blank" rel="noopener">Bezoek Website</a>
+                        </div>
+                    </article>
+                </section>
+            `;
+        }
+
         // Load and render all sections
         async function loadBestForSections() {
             const container = document.getElementById('best-for-container');
@@ -1185,6 +1217,11 @@ src="https://www.facebook.com/tr?id=1384707780100464&ev=PageView&noscript=1"
                     if (sorted.length > 0) {
                         sectionsHTML += createSection(category, sorted);
                     }
+
+                    // Insert OurDream ad after anime section (bj video)
+                    if (category.id === 'anime') sectionsHTML += createOurDreamAdSection('bj');
+                    // Insert second OurDream ad after voice section (v2 video)
+                    if (category.id === 'voice') sectionsHTML += createOurDreamAdSection('v2');
                 }
 
                 container.innerHTML = sectionsHTML;

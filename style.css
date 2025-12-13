@@ -2287,6 +2287,153 @@ main .companions-grid {
     display: inline-block;
 }
 
+/* Category Ad Card - spans 2 columns, vertical card layout */
+.category-ad-card {
+    grid-column: span 2;
+    background-color: var(--bg-surface);
+    border: 2px solid var(--border-accent);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.category-ad-badge {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    color: white;
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.category-ad-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.category-ad-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+}
+
+.category-ad-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.category-ad-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.category-ad-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.category-ad-stars {
+    color: #fbbf24;
+    font-size: 0.875rem;
+}
+
+.category-ad-score {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.category-ad-video-wrapper {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: var(--space-3);
+}
+
+.category-ad-video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+.category-ad-video-wrapper.ad-video-18plus .category-ad-video {
+    filter: blur(20px);
+    transition: filter 0.3s ease;
+}
+
+.category-ad-video-wrapper.ad-video-18plus[data-revealed="true"] .category-ad-video {
+    filter: none;
+}
+
+.category-ad-video-wrapper.ad-video-18plus[data-revealed="true"] .ad-video-blur-overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.category-ad-actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.category-ad-btn-primary,
+.category-ad-btn-secondary {
+    flex: 1;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: block;
+}
+
+.category-ad-btn-primary {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    color: white;
+    border: none;
+}
+
+.category-ad-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.category-ad-btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.category-ad-btn-secondary:hover {
+    border-color: var(--border-accent);
+    background-color: var(--bg-tertiary);
+}
+
+/* Category Ad Card - Mobile responsive */
+@media (max-width: 768px) {
+    .category-ad-card {
+        /* Takes full width on mobile like other cards */
+    }
+}
+
 /* News Advertisement Card */
 .news-ad-card {
     border: 1px solid var(--border-primary);
@@ -2436,11 +2583,18 @@ main .companions-grid {
     box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
 }
 
-.ad-video-cta {
-    color: white;
-    font-size: 0.875rem;
-    font-weight: 500;
-    opacity: 0.9;
+/* Revealed state - blur removed */
+.ad-video-18plus[data-revealed="true"] .ad-video-news {
+    filter: none;
+}
+
+.ad-video-18plus[data-revealed="true"] .ad-video-blur-overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ad-video-18plus {
+    cursor: pointer;
 }
 
 .ad-description {
@@ -2503,6 +2657,62 @@ main .companions-grid {
     .ad-btn-primary,
     .ad-btn-secondary {
         width: 100%;
+    }
+}
+
+/* Best For Ad Section */
+.best-for-ad-section {
+    margin: var(--space-8) 0;
+}
+
+.best-for-ad-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.best-for-ad-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.best-for-ad-card .ad-badge {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.best-for-ad-card .spotlight-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.ad-video-bestfor {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 950 / 250;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .best-for-ad-card {
+        padding: var(--space-4);
+    }
+
+    .ad-video-bestfor {
+        aspect-ratio: 950 / 250;
     }
 }
 

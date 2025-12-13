@@ -399,7 +399,7 @@ class CompanionManager {
         const hasOurDreamAI = allCompanions.some(comp => comp.slug === 'ourdream-ai');
         if (topCards.length >= 4 && hasOurDreamAI) {
           console.log('🎯 Inserting advertisement card after 4th companion on index page (5th position)');
-          topCards.splice(4, 0, this.generateAdvertisementCard());
+          topCards.splice(4, 0, this.generateAdvertisementCard('v2', allCompanions));
         }
 
         container.innerHTML = topCards.join('');
@@ -414,7 +414,7 @@ class CompanionManager {
       const hasOurDreamAI = allCompanions.some(comp => comp.slug === 'ourdream-ai');
       if (featuredCards.length >= 4 && hasOurDreamAI) {
         console.log('🎯 Inserting advertisement card after 4th companion on index page (5th position)');
-        featuredCards.splice(4, 0, this.generateAdvertisementCard(allCompanions));
+        featuredCards.splice(4, 0, this.generateAdvertisementCard('v2', allCompanions));
       }
 
       container.innerHTML = featuredCards.join('');
@@ -454,7 +454,7 @@ class CompanionManager {
     const cards = companions.map((companion, index) => {
       if (index === 3) {
         console.log('🎯 Inserting advertisement card at index 3');
-        return this.generateAdvertisementCard() + this.generateCompanionCard(companion);
+        return this.generateAdvertisementCard('v2', allCompanions) + this.generateCompanionCard(companion);
       }
       return this.generateCompanionCard(companion);
     });
@@ -645,8 +645,13 @@ class CompanionManager {
     return Array(count).fill(skeleton).join('');
   }
 
-  generateAdvertisementCard(allCompanions = null) {
-    console.log('🎬 Generating advertisement card for companions page');
+  generateAdvertisementCard(videoVariant = 'v2', allCompanions = null) {
+    console.log('🎬 Generating advertisement card for companions page with video variant:', videoVariant);
+
+    // Determine video file based on variant
+    const videoFile = videoVariant === 'bj'
+      ? '950x250-ourdream-ai-video-companionguide-bj.mp4'
+      : '950x250-ourdream-ai-video-companionguide-v2.mp4';
 
     // Use provided companions or fall back to cached companions
     const companions = allCompanions || this.companions || [];
@@ -662,7 +667,7 @@ class CompanionManager {
           <div class="product-badge spotlight-badge">Companion Spotlight</div>
           <a href="https://ourdream.ai/?via=companionguide" target="_blank" rel="noopener" class="ad-video-container">
             <video autoplay loop muted playsinline class="ad-video">
-              <source src="/videos/950x250-ourdream-ai-video-companionguide-v2.mp4" type="video/mp4">
+              <source src="/videos/${videoFile}" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </a>
@@ -720,7 +725,7 @@ class CompanionManager {
         <p class="description">${description}</p>
         <a href="${affiliateUrl}" target="_blank" rel="noopener" class="ad-video-container">
           <video autoplay loop muted playsinline class="ad-video">
-            <source src="/videos/950x250-ourdream-ai-video-companionguide-v2.mp4" type="video/mp4">
+            <source src="/videos/${videoFile}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </a>
@@ -758,14 +763,20 @@ class CompanionManager {
         this.generateCompanionCard(companion)
       );
 
-      // Insert advertisement card after 4th companion (index 4) - only if OurDream AI is in the list
+      // Insert advertisement cards - only if OurDream AI is in the list
       const hasOurDreamAI = allCompanions.some(comp => comp.slug === 'ourdream-ai');
       if (companionCards.length >= 4 && hasOurDreamAI) {
-        console.log('🎯 Inserting advertisement card after 4th companion (5th position)');
-        companionCards.splice(4, 0, this.generateAdvertisementCard());
+        console.log('🎯 Inserting first advertisement card after 4th companion (5th position)');
+        companionCards.splice(4, 0, this.generateAdvertisementCard('v2', allCompanions));
+
+        // Insert second ad card after 4 more companions (position 9 = 4 cards + 1 ad + 4 cards)
+        if (companionCards.length >= 9) {
+          console.log('🎯 Inserting second advertisement card after 8th companion (10th position)');
+          companionCards.splice(9, 0, this.generateAdvertisementCard('bj', allCompanions));
+        }
       }
 
-      // Render all companions with ad
+      // Render all companions with ads
       container.innerHTML = companionCards.join('');
 
     } catch (error) {
